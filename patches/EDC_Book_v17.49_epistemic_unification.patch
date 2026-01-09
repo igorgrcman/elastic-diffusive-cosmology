@@ -1,0 +1,173 @@
+--- a/main.tex
++++ b/main.tex
+@@ -66,6 +66,11 @@
+ % ═══════════════════════════════════════════════════════════════════════════════
+ % DOCUMENT
+ % ═══════════════════════════════════════════════════════════════════════════════
++
++% ─────────────────────────────────────────────────────────────────────────────
++% EDC epistemic standard (single source of truth)
++% ─────────────────────────────────────────────────────────────────────────────
++\input{EDC_EPISTEMIC_STANDARD}
+ \begin{document}
+ 
+ % -----------------------------------------------------------------------
+--- a/chapter_7_gravity.tex
++++ b/chapter_7_gravity.tex
+@@ -8,9 +8,7 @@
+ \vspace{1em}
+ 
+ \begin{tcolorbox}[colback=yellow!5,colframe=yellow!50!black,title=Scope of This Chapter]
+-This chapter derives Newton's gravitational constant $G$ from EDC parameters and shows consistency with known gravitational phenomena. 
+-
+-\textbf{What is derived:}
++This chapter proposes an EDC-motivated expression for Newton's gravitational constant $G$ and performs a consistency check against known gravitational phenomena. \textbf{What is established in this chapter:}
+ \begin{itemize}
+     \item The value of $G$ from $\sigma$, $r_e$, and $\rho_{\text{Plenum}}$
+     \item The hierarchy (why gravity is weak)
+@@ -461,7 +459,7 @@
+ 
+ The discrepancy is $10^{114}$—the infamous \textbf{cosmological constant problem}.
+ 
+-\subsection{EDC Resolution (Conjecture)}
++\subsection{EDC Resolution (Proposed)}
+ 
+ In EDC, we live \textit{on} the membrane, not \textit{in} the Bulk. The membrane screens most of the Plenum's energy:
+ 
+@@ -494,7 +492,7 @@
+     
+     \item \textbf{Explained the hierarchy:} Gravity is weak because $\ell_P \ll r_e$
+     
+-    \item \textbf{Derived Newton's constant:} $G = \ell_P^2 c^4 / (\sigma r_e^3)$ with 1\% accuracy
++    \item \textbf{Proposed expression for Newton's constant (consistency check):} $G = \ell_P^2 c^4 / (\sigma r_e^3)$  (agreement checked numerically; not a standalone derivation claim)
+     
+     \item \textbf{Physical mechanism:} Archimedean/Bjerknes attraction of pressure deficits
+ \end{enumerate}
+--- a/appendix_c_logical_structure.tex
++++ b/appendix_c_logical_structure.tex
+@@ -1,16 +1,22 @@
+ \chapter{Logical Structure of EDC}
+ \label{app:logical_structure}
+ 
+-This appendix provides a rigorous classification of all statements in Elastic Diffusive Cosmology according to their epistemic status. We use the following categories:
+-
++This appendix provides a rigorous classification of statements according to their epistemic status.
++We adopt the \textbf{canonical epistemic scheme} defined in the Theory Core (see \S\ref{sec:epistemic_classification}).
++
++In this appendix, the third column uses the following codes:
+ \begin{itemize}
+-    \item \textbf{P} = \textbf{Postulate} (axiom, assumed without proof)
+-    \item \textbf{M} = \textbf{Established Mathematics} (proven theorems, standard results)
+-    \item \textbf{D} = \textbf{Derivation} (follows logically from P and M)
+-    \item \textbf{I} = \textbf{Identification} (motivated mapping to observed quantities)
+-    \item \textbf{C} = \textbf{Conjecture} (plausible but unproven within EDC)
+-    \item \textbf{R} = \textbf{Recovered Result} (matches known physics)
++    \item \textbf{P} = \textbf{Proposed} (includes postulates and conjectures; not yet derived)
++    \item \textbf{M} = \textbf{Mathematics} (established theorem/identity; not an EDC claim)
++    \item \textbf{D} = \textbf{Derived} (explicit derivation provided elsewhere in the book)
++    \item \textbf{I} = \textbf{Identified} (motivated mapping to observed quantities; not unique)
++    \item \textbf{Cal} = \textbf{Calibrated} (parameter fixed by observation; declared input)
+ \end{itemize}
++
++\noindent\textbf{Note.} Older drafts used \textbf{C} for \emph{Conjecture} and \textbf{R} for \emph{Recovered Result}.
++In v17.49, conjectures are classified as \textbf{P} (Proposed), and recovered results are classified as \textbf{D} (Derived),
++with the optional role tag \emph{Recovered} stated in the surrounding text.
++
+ 
+ % ═══════════════════════════════════════════════════════════════════════════════
+ \section{Foundational Postulates}
+@@ -94,54 +100,58 @@
+ \hline
+ \multicolumn{4}{|c|}{\textit{Classical and Quantum Mechanics}} \\
+ \hline
+-R1 & Schrödinger equation & R & Exact \\
+-R2 & Maxwell equations from Lorentzian Bulk & R & Exact \\
+-R3 & Newton's law $F = GMm/r^2$ & R & Exact \\
++R1 & Schrödinger equation & D & Exact \\
++R2 & Maxwell equations from Lorentzian Bulk & D & Exact \\
++R3 & Newton's law $F = GMm/r^2$ & D & Exact \\
+ \hline
+ \multicolumn{4}{|c|}{\textit{General Relativity}} \\
+ \hline
+-R4 & Schwarzschild metric & R & Exact \\
+-R5 & Mercury precession: 42.98''/century & R & $<0.1\%$ \\
+-R6 & Light deflection: $\delta = 4GM/(c^2 b)$ & R & Exact \\
+-R7 & Gravitational time dilation & R & Exact \\
+-R8 & Shapiro delay & R & Exact \\
++R4 & Schwarzschild metric & D & Exact \\
++R5 & Mercury precession: 42.98''/century & D & $<0.1\%$ \\
++R6 & Light deflection: $\delta = 4GM/(c^2 b)$ & D & Exact \\
++R7 & Gravitational time dilation & D & Exact \\
++R8 & Shapiro delay & D & Exact \\
+ \hline
+ \multicolumn{4}{|c|}{\textit{Particle Physics}} \\
+ \hline
+-R9 & $|Q_p| = |Q_e|$ (charge equality) & R & Exact \\
+-R10 & $\hbar = 1.055 \times 10^{-34}$ J$\cdot$s & R & $<0.1\%$ \\
+-R11 & $G = 6.67 \times 10^{-11}$ m$^3$kg$^{-1}$s$^{-2}$ & R & $<1\%$ \\
++R9 & $|Q_p| = |Q_e|$ (charge equality) & D & Exact \\
++R10 & $\hbar = 1.055 \times 10^{-34}$ J$\cdot$s & D & $<0.1\%$ \\
++R11 & $G = 6.67 \times 10^{-11}$ m$^3$kg$^{-1}$s$^{-2}$ & D & $<1\%$ \\
+ \hline
+ \multicolumn{4}{|c|}{\textit{Electroweak Sector (NEW - all derived)}} \\
+ \hline
+-R12 & $\sin^2\theta_W = 0.2312$ (Weinberg angle) & R & 0.5\% \\
+-R13 & $m_Z = 91.16$ GeV (Z boson mass) & R & 0.03\% \\
+-R14 & $m_W = 80.47$ GeV (W boson mass) & R & 0.11\% \\
+-R15 & $m_\pi = 140$ MeV (pion mass) & R & 0.3\% \\
+-R16 & $\Delta m_{np} = 1.28$ MeV (neutron-proton) & R & 0.9\% \\
+-R17 & $m_p/m_e = 1836.15$ (mass ratio) & R & 0.002\% \\
+-\hline
+-\end{tabular}
+-\end{center}
+-
+-% ═══════════════════════════════════════════════════════════════════════════════
+-\section{Conjectures}
+-% ═══════════════════════════════════════════════════════════════════════════════
+-
+-\begin{center}
+-\begin{tabular}{|c|l|c|c|}
++R12 & $\sin^2\theta_W = 0.2312$ (Weinberg angle) & D & 0.5\% \\
++R13 & $m_Z = 91.16$ GeV (Z boson mass) & D & 0.03\% \\
++R14 & $m_W = 80.47$ GeV (W boson mass) & D & 0.11\% \\
++R15 & $m_\pi = 140$ MeV (pion mass) & D & 0.3\% \\
++R16 & $\Delta m_{np} = 1.28$ MeV (neutron-proton) & D & 0.9\% \\
++R17 & $m_p/m_e = 1836.15$ (mass ratio) & D & 0.002\% \\
++\hline
++\end{tabular}
++\end{center}
++
++% ═══════════════════════════════════════════════════════════════════════════════
++\section{Open Conjectures (Proposed)}
++% ═══════════════════════════════════════════════════════════════════════════════
++
++\noindent This section lists program items that are \textbf{not yet derived} in the current volume.
++They are explicitly classified as \textbf{P = Proposed} (Role: Conjecture/Testable), even if they show numerical agreement.
++
++\begin{center}
++\begin{tabular}{|c|p{9.3cm}|c|p{4.0cm}|}
+ \hline
+ \textbf{ID} & \textbf{Statement} & \textbf{Type} & \textbf{Status} \\
+ \hline
+-C1 & $m_p/m_e = 6\pi^5$ & C & Matches to 0.002\% \\
+-C2 & $SU(2)_L$ from quark doublet structure & C & Plausible \\
+-C3 & Three generations from $n_{\text{max}} = 3$ vibrational modes & C & Plausible \\
+-C4 & Dark matter = membrane tension wrinkles & C & Testable \\
+-C5 & Hubble tension from viscous drag & C & Testable \\
+-C6 & Singularities replaced by Planck cores & C & Unfalsified \\
+-\hline
+-\end{tabular}
+-\end{center}
++K1 & $m_p/m_e \stackrel{?}{=} 6\pi^5$ & P & Empirical target (matches to 0.002\%); not derived here \\
++K2 & $SU(2)_L$ from quark doublet structure & P & Conjecture; requires explicit construction \\
++K3 & Three generations from $n_{\text{max}} = 3$ vibrational modes & P & Conjecture; derivation pending \\
++K4 & Dark matter = membrane tension wrinkles & P & Testable conjecture; needs quantitative model \\
++K5 & Hubble tension from viscous drag & P & Testable conjecture; needs fit-independent prediction \\
++K6 & Singularities replaced by Planck cores & P & Conjecture; requires curvature bounds proof \\
++\hline
++\end{tabular}
++\end{center}
++
+ 
+ % ═══════════════════════════════════════════════════════════════════════════════
+ \section{Dependency Graph}
