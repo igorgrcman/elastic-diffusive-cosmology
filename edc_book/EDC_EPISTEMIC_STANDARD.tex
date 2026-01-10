@@ -1,49 +1,101 @@
-% ============================================================
-% EDC Epistemic Standard (Canonical)
-% Insert once (recommended: Book preamble or Chapter 3)
-% ============================================================
+%===============================================================================
+% EDC_EPISTEMIC_STANDARD.tex
+%===============================================================================
+% Purpose:
+%   - Define canonical epistemic labels/macros used across the book and code.
+%   - Provide ONE printable block via \EDCEpistemicStandard (prints the standard).
+%
+% Usage:
+%   1) In main preamble (before \begin{document}):
+%        \input{EDC_EPISTEMIC_STANDARD}
+%   2) Wherever you want the standard to appear:
+%        \EDCEpistemicStandard
+%
+% IMPORTANT:
+%   - This file should be \input exactly once (typically in main.tex preamble).
+%   - The printable standard is produced by \EDCEpistemicStandard.
+%===============================================================================
 
-% Evidence Status (primary)
-\newcommand{\EDCstatus}[1]{\textsc{#1}}
-\newcommand{\EDCderived}{\EDCstatus{Derived}}
-\newcommand{\EDCidentified}{\EDCstatus{Identified}}
-\newcommand{\EDCcalibrated}{\EDCstatus{Calibrated}}
-\newcommand{\EDCproposed}{\EDCstatus{Proposed}}
+% -----------------------------------------------------------------------------
+% 1) Robust macro definitions (safe if the file is accidentally input twice)
+% -----------------------------------------------------------------------------
+\providecommand{\EDCstatus}[1]{\textsc{#1}}
 
-% Role Tag (secondary; optional)
-\newcommand{\EDCrole}[1]{\textsf{#1}}
-\newcommand{\EDCpostulate}{\EDCrole{Postulate}}
-\newcommand{\EDCmath}{\EDCrole{Mathematics}}
-\newcommand{\EDCrecovered}{\EDCrole{Recovered}}
-\newcommand{\EDCprediction}{\EDCrole{Prediction}}
-\newcommand{\EDCconjecture}{\EDCrole{Conjecture}}
-\newcommand{\EDCplaceholder}{\EDCrole{Placeholder}}
+% Evidence Status macros (canonical)
+\providecommand{\EDCderived}{\EDCstatus{Derived}}        % D
+\providecommand{\EDCidentified}{\EDCstatus{Identified}}  % I
+\providecommand{\EDCcalibrated}{\EDCstatus{Calibrated}}  % Cal
+\providecommand{\EDCproposed}{\EDCstatus{Proposed}}      % P
+\providecommand{\EDCbaseline}{\EDCstatus{Baseline}}      % BL
+\providecommand{\EDCmath}{\EDCstatus{Mathematics}}       % M
 
-% Shorthand for tables (optional; avoid C)
-\newcommand{\EDCD}{\EDCderived}
-\newcommand{\EDCI}{\EDCidentified}
-\newcommand{\EDCCal}{\EDCcalibrated}
-\newcommand{\EDCP}{\EDCproposed}
+% Optional Role Tag macros (non-exclusive; can be combined)
+\providecommand{\EDCrole}[1]{\textit{#1}}
+\providecommand{\EDCpostulate}{\EDCrole{Postulate}}
+\providecommand{\EDCprediction}{\EDCrole{Prediction}}
+\providecommand{\EDCrecovered}{\EDCrole{Recovered}}
+\providecommand{\EDCconjecture}{\EDCrole{Conjecture}}
+\providecommand{\EDCansatz}{\EDCrole{Ansatz}}
+\providecommand{\EDCplaceholder}{\EDCrole{Placeholder}}
 
-% Canonical legend text (reuse verbatim)
-\newcommand{\EDCLegendText}{
-\noindent\textbf{Epistemic status (canonical).}
-Every non-trivial statement carries exactly one \emph{Evidence Status}:
+% Short code tokens (useful in tables)
+\providecommand{\EDCD}{\EDCstatus{D}}
+\providecommand{\EDCI}{\EDCstatus{I}}
+\providecommand{\EDCCal}{\EDCstatus{Cal}}
+\providecommand{\EDCP}{\EDCstatus{P}}
+\providecommand{\EDCBL}{\EDCstatus{BL}}
+\providecommand{\EDCM}{\EDCstatus{M}}
+
+% -----------------------------------------------------------------------------
+% 2) Canonical legend text (reusable verbatim)
+% -----------------------------------------------------------------------------
+\providecommand{\EDCLegendText}{%
+\noindent\textbf{Epistemic status (canonical).}\par
+\noindent Every non-trivial statement in this book carries exactly one \emph{Evidence Status}:
 \begin{itemize}
-  \item \EDCderived: derived explicitly from stated postulates and established mathematics, with regime stated.
-  \item \EDCidentified: motivated mapping between EDC parameters and observed quantities (not unique).
-  \item \EDCcalibrated: parameter fixed by observation (declared input).
-  \item \EDCproposed: unproven assumption, conjecture, interpretive claim, or placeholder.
+  \item \EDCderived\ (\EDCD): derived explicitly from stated postulates and established mathematics, with regime stated.
+  \item \EDCidentified\ (\EDCI): motivated mapping between EDC parameters and observed quantities (not unique).
+  \item \EDCcalibrated\ (\EDCCal): parameter fixed by observation (declared input).
+  \item \EDCproposed\ (\EDCP): unproven assumption, conjecture, interpretive claim, or \EDCansatz.
 \end{itemize}
-Optional \emph{Role Tags} may be appended (e.g., \EDCpostulate, \EDCprediction, \EDCrecovered, \EDCconjecture).
+\noindent Two auxiliary codes are allowed for transparency:
+\begin{itemize}
+  \item \EDCbaseline\ (\EDCBL): external reference values/datasets used as declared inputs or benchmarks (CODATA/PDG/NIST, etc.); not an EDC claim.
+  \item \EDCmath\ (\EDCM): pure mathematics (theorem/identity); not an EDC claim.
+\end{itemize}
+\noindent Optional \emph{Role Tags} may be appended to any status (e.g., \EDCpostulate, \EDCprediction, \EDCrecovered, \EDCconjecture, \EDCansatz, \EDCplaceholder).\par
 }
 
-% ============================================================
-% Appendix C patch template
-% Replace Appendix C legend with a reference to §3.5
-% ============================================================
+% -----------------------------------------------------------------------------
+% 3) Printable block (call this where you want the standard to appear)
+% -----------------------------------------------------------------------------
+\providecommand{\EDCEpistemicStandard}{%
+\EDCLegendText
 
-% Example replacement paragraph for Appendix C introduction:
-% "This appendix uses the canonical epistemic classification defined in §3.5.
-%  No new categories are introduced here; where older drafts used 'C = Conjecture',
-%  such items are now marked as \EDCproposed\ (\EDCconjecture)."
+\vspace{0.6em}
+
+\noindent\textbf{Labeling rule.}
+\begin{enumerate}
+  \item Assign exactly one Evidence Status (\EDCD, \EDCI, \EDCCal, \EDCP; optionally \EDCBL/\EDCM).
+  \item If helpful, append one or more Role Tags (e.g., \EDCprediction\ or \EDCansatz).
+  \item State the regime of validity (assumptions, approximations, and parameter domains) for every \EDCderived\ claim.
+\end{enumerate}
+
+\vspace{0.6em}
+
+\noindent\textbf{Recommended table header.}\par
+\noindent\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Statement / Quantity} & \textbf{Status} & \textbf{Notes (regime / inputs)} \\
+\hline
+\end{tabular}
+
+\vspace{0.6em}
+
+\noindent\textbf{Examples.}
+\begin{itemize}
+  \item ``$\hbar = \sigma_{\text{eff}} r_e^3/c$'' \quad $\to$ \EDCI\ (mapping), unless $\sigma_{\text{eff}}$ and $r_e$ are independently fixed.
+  \item ``$m_Z = \frac{19}{2}\,\frac{m_e}{\alpha^2}$'' \quad $\to$ \EDCD\ for the factor $\frac{19}{2}$, with \EDCBL\ inputs ($m_e,\alpha$).
+  \item ``$m_p/m_e \overset{?}{=} 6\pi^5$'' \quad $\to$ \EDCP\ (\EDCconjecture), even if numerically close to PDG.
+\end{itemize}
+}
