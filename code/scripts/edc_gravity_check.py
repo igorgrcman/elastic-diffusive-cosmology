@@ -1,5 +1,6 @@
 import sympy
 from sympy import symbols, sin, Function, Matrix, simplify, diff
+from edc.constants.registry import get_constant
 
 def verify_gravity_derivation():
     print("--- EDC TOOLKIT: Gravity Derivation Check ---")
@@ -9,11 +10,11 @@ def verify_gravity_derivation():
     t, r, theta, phi = symbols('t r theta phi')
     
     # Definiramo nepoznate funkcije metrike A(r) i B(r)
-    # U EDC-u, one ovise o gustoći i napetosti membrane
+
     A = Function('A')(r)  # Povezano s g_tt
     B = Function('B')(r)  # Povezano s g_rr
     
-    # 2. Definiranje Metrike (Sferno simetrična, statična)
+
     # ds^2 = -A(r)dt^2 + B(r)dr^2 + r^2 dtheta^2 + r^2 sin^2(theta) dphi^2
     print("Defining Metric Tensor g_mu_nu...")
     g = Matrix([
@@ -27,7 +28,7 @@ def verify_gravity_derivation():
     g_inv = g.inv()
     coords = [t, r, theta, phi]
     
-    # 3. Izračun Christoffelovih simbola
+
     print("Calculating Christoffel Symbols (Gamma)...")
     Gamma = [[[0 for k in range(4)] for j in range(4)] for i in range(4)]
     for k in range(4):
@@ -40,7 +41,7 @@ def verify_gravity_derivation():
                     sum_term += term
                 Gamma[i][j][k] = simplify(sum_term)
 
-    # 4. Izračun Riccijevog tenzora R_mu_nu
+
     print("Calculating Ricci Tensor (R_mu_nu)...")
     R_tensor = Matrix.zeros(4, 4)
     for i in range(4):
@@ -58,7 +59,7 @@ def verify_gravity_derivation():
                 sum_term += term1 + term2 + term3 + term4
             R_tensor[i, j] = simplify(sum_term)
 
-    # 5. Izračun Riccijevog skalara R
+
     print("Calculating Ricci Scalar (R)...")
     R_scalar = 0
     for i in range(4):
@@ -66,7 +67,7 @@ def verify_gravity_derivation():
             R_scalar += g_inv[i, j] * R_tensor[i, j]
     R_scalar = simplify(R_scalar)
     
-    # 6. Izračun Einsteinovog tenzora G_mu_nu
+
     # G_mu_nu = R_mu_nu - 1/2 * R * g_mu_nu
     print("Calculating Einstein Tensor (G_mu_nu)...")
     G_tensor = Matrix.zeros(4, 4)

@@ -2,6 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from scipy.integrate import odeint
+from edc.constants.registry import get_constant
+
+EDC_NONLINEAR_TERM = get_constant("EDC_NONLINEAR_TERM", allow={"PROPOSED"}).value  # {"PROPOSED"} input
+G = get_constant("G", allow={"BASELINE"}).value  # {"BASELINE"} input
+c = get_constant("c", allow={"BASELINE"}).value  # {"BASELINE"} input
+
 
 # --- EDC KONFIGURACIJA ---
 # U EDC-u gravitacija je rezultat tlaka Plenuma i napetosti Membrane.
@@ -10,13 +16,13 @@ from scipy.integrate import odeint
 
 GM = 4 * np.pi**2  # Gravitacijski parametar (Definiran tlakom Plenuma)
 
-# OVO JE KLJUČNA RAZLIKA U INTERPRETACIJI:
+
 # U GR ovo je "zakrivljenost prostora".
 # U EDC ovo je "MEMBRANE STIFFNESS CORRECTION" (Korekcija krutosti membrane).
-# Kada je membrana jako savijena (blizu Sunca), ona pruža dodatni nelinearni otpor.
+
 EDC_NONLINEAR_TERM = 0.015  
 
-# Početni uvjeti za Merkur (na membrani)
+
 r0 = 0.39  # Perihel
 x0 = r0
 y0 = 0.0
@@ -32,18 +38,18 @@ years = 8.0
 points_per_year = 600
 t = np.linspace(0, years, int(years * points_per_year))
 
-# --- EDC JEDNADŽBE GIBANJA ---
+
 def edc_equations_of_motion(state, t):
     x, y, vx, vy = state
     r = np.sqrt(x**2 + y**2)
     
-    # 1. Hidrostatski član (Newtonov limit)
-    # Ovo dolazi od Young-Laplace jednadžbe: Delta P ~ Curvature
+
+
     accel_hydrostatic = -GM / r**3
     
-    # 2. EDC Nelinearni član (Precesija)
-    # Ovo dolazi od članova višeg reda u Akciji membrane (bending energy).
-    # Membrana se "opire" jakom savijanju više nego što Newton predviđa.
+
+
+
     # Sila F ~ 1/r^2 + alpha/r^4
     membrane_resistance = 1 + (EDC_NONLINEAR_TERM / r**2)
     
@@ -53,7 +59,7 @@ def edc_equations_of_motion(state, t):
     
     return [vx, vy, ax, ay]
 
-# --- IZRAČUN ---
+
 print("Rješavam dinamiku membrane... (EDC Action)")
 solution = odeint(edc_equations_of_motion, initial_state, t)
 x_pos = solution[:, 0]
@@ -72,7 +78,7 @@ ax.set_ylim(-limit, limit)
 ax.set_aspect('equal')
 ax.axis('off')
 
-# Grafički elementi
+
 # Sunce (izvor deformacije membrane)
 sun, = ax.plot([0], [0], 'o', color='#FFD700', markersize=18, 
                markeredgecolor='#FF4500', markeredgewidth=2, label='Sun (Mass Load)')

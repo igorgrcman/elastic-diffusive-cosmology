@@ -1,13 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from edc.constants.registry import get_constant
 
-# --- EDC FIZIKA: GALAKTIČKE SKALE ---
+
 # U EDC-u, ukupni potencijal je V(r) = -GM/r (Gravitacija) + k*r (Napetost membrane)
 # Sila je F = GM/r^2 + F_tension
 # Brzina v^2 = r * F
 
 def newtonian_velocity(r, mass):
-    """Klasična fizika: v pada s udaljenosti (1/sqrt(r))"""
+    """Klasina fizika: v pada s udaljenosti (1/sqrt(r))"""
     # Izbjegavanje dijeljenja s nulom
     r_safe = np.maximum(r, 0.1)
     return np.sqrt(mass / r_safe)
@@ -24,14 +25,14 @@ def edc_velocity(r, mass, membrane_tension):
     # EDC KOREKCIJA:
     # Na velikim udaljenostima, napetost membrane djeluje kao 
     # konstantna sila prema centru (linear potential confinement).
-    # v^2 = GM/r + sigma * r (u određenom limitu)
-    # Ovdje koristimo fenomenološki 'flattening' efekt napetosti.
+
+
     
     v_tension_sq = membrane_tension * r_safe
     
-    # Ukupna brzina je kombinacija gravitacije i elastičnosti
-    # Ali s "gušenjem" napetosti u centru (napetost dominira na rubovima)
-    factor = 1 - np.exp(-r_safe / 5.0) # Napetost se "pali" na većim udaljenostima
+
+
+    factor = 1 - np.exp(-r_safe / 5.0)
     
     return np.sqrt(v_newton_sq + (v_tension_sq * factor))
 
@@ -45,16 +46,16 @@ r = np.linspace(0.1, 30, 100)
 visible_mass = 500.0   # Masa koju vidimo (zvijezde)
 edc_sigma = 1.2        # Napetost membrane (zamjenjuje Tamnu Tvar)
 
-# 1. Newtonovo predviđanje (Ono što očekujemo bez tamne tvari)
+
 v_newton = newtonian_velocity(r, visible_mass)
 
-# 2. EDC predviđanje (S napetošću membrane)
+
 v_edc = edc_velocity(r, visible_mass, edc_sigma)
 
-# 3. "Mjerenja" (Sintetički podaci s malo šuma, prate EDC fiziku)
+
 np.random.seed(42) # Da uvijek bude isto
 noise = np.random.normal(0, 0.5, size=len(r))
-measured_r = r[::4] # Uzimamo svaku četvrtu točku kao "mjerenje"
+measured_r = r[::4]
 measured_v = v_edc[::4] + noise[::4]
 
 # --- VIZUALIZACIJA ---
@@ -71,14 +72,14 @@ ax.plot(r, v_edc, color='#00FFFF', linewidth=3,
 ax.errorbar(measured_r, measured_v, yerr=0.5, fmt='o', color='white', 
             ecolor='gray', capsize=3, label='Observed Data (Galaxy Rotation)')
 
-# Uređivanje grafa
+
 ax.set_title("Galaxy Rotation Curve Problem", fontsize=16, color='white', pad=20)
 ax.set_xlabel("Distance from Galactic Center (kpc)", fontsize=12)
 ax.set_ylabel("Orbital Velocity (km/s)", fontsize=12)
 ax.grid(True, linestyle=':', alpha=0.3)
 ax.legend(fontsize=11)
 
-# Dodavanje EDC objašnjenja na graf
+
 text_str = (
     "THE DARK MATTER ILLUSION:\n"
     "Standard physics requires 80% invisible mass\n"
