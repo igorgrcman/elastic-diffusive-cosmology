@@ -1,0 +1,186 @@
+% !TEX TS-program = xelatex
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Termes} % ili Times New Roman ako hoćeš
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=black
+}
+
+% ------------------------------------------------------------
+% Epistemic standard (paper-local, minimal)
+% ------------------------------------------------------------
+\newcommand{\EDCstatus}[1]{\textsc{#1}}
+\newcommand{\EDCderived}{\EDCstatus{DERIVED}}
+\newcommand{\EDCidentified}{\EDCstatus{IDENTIFIED}}
+\newcommand{\EDCbaseline}{\EDCstatus{BASELINE}}
+\newcommand{\EDCproposed}{\EDCstatus{PROPOSED}}
+
+\newcommand{\StatusLine}[1]{\par\smallskip\noindent\textbf{Status:} #1\par\smallskip}
+
+\newcommand{\EpistemicLegend}{%
+\begin{quote}\small
+\textbf{Epistemic legend (canonical).}
+\begin{itemize}
+  \item \EDCderived: derived from stated postulates + established mathematics, regime stated.
+  \item \EDCidentified: motivated bridge/identification to observed quantities (mapping not unique).
+  \item \EDCbaseline: external reference/benchmark used as declared input (not an EDC claim).
+  \item \EDCproposed: conjecture/assumption/placeholder awaiting derivation or falsification.
+\end{itemize}
+\end{quote}
+}
+
+% ------------------------------------------------------------
+% Title block
+% ------------------------------------------------------------
+\title{\textbf{The EDC River Bridge: Painlev\'e--Gullstrand Flow, Schwarzschild Recovery,\\
+and a Verification Harness for Orbital Observables (v17.49)}}
+\author{Igor Gr\v{c}man}
+\date{January 2026\\
+\small License: CC BY-NC-SA 4.0 \quad|\quad Companion code and LaTeX sources: GitHub/Zenodo sync}
+
+\begin{document}
+\maketitle
+
+\EpistemicLegend
+
+\begin{abstract}
+Elastic-Diffusive Cosmology (EDC) models gravitation as a dynamical inflow of an energetic plenum toward a topological defect (mass). This paper formalizes a rigorous \emph{bridge layer} between EDC plenum-flow kinematics and classical weak-field gravitational observables. We show that the natural laboratory-frame description of a radial inflow yields a Painlev\'e--Gullstrand (PG) line element, and that a standard diagonal Schwarzschild form is recovered by a coordinate redefinition once the weak-field inflow profile $v(r)^2 = 2GM/r$ is adopted as a declared \EDCbaseline\ condition. We then define a reproducible numerical verification harness (difference-of-runs and convergence tests) intended for orbital observables such as Mercury’s perihelion shift. In the current v17.49 line, Mercury is treated strictly as a \emph{consistency and numerical-hygiene check} of the bridge; it becomes an \emph{independent EDC prediction} only after $v(r)$ is derived from EDC’s 5D membrane/plenum dynamics without importing the Newtonian baseline.
+\end{abstract}
+
+\section{Scope and non-claims}
+\StatusLine{\EDCderived\ (structure) + \EDCidentified/\EDCbaseline\ (bridge)}
+This paper does \emph{not} claim that EDC has already produced an independent prediction of Mercury’s perihelion precession. Any reproduction of GR orbital results obtained by importing a Schwarzschild-equivalent potential or metric is a benchmark of the \emph{bridge and integrator}, not a new prediction. The objective here is narrower and stricter:
+\begin{enumerate}
+  \item Write the EDC-native inflow geometry in its natural non-diagonal form (PG).
+  \item Explicitly show the coordinate step that yields the diagonal Schwarzschild form.
+  \item Make epistemic status unambiguous: where external inputs enter, they are declared \EDCbaseline.
+  \item Provide a stable numerical harness ready for the moment when $v(r)$ is derived from EDC first principles.
+\end{enumerate}
+
+\section{EDC plenum inflow as the native gravitational frame}
+\StatusLine{\EDCproposed\ (physical picture) $\rightarrow$ \EDCidentified\ (kinematic metric form)}
+In EDC, gravity is interpreted as a radial inflow of a medium (plenum) toward a defect. In the co-moving frame of the local plenum, local physics is Minkowskian. A stationary observer with respect to the defect sees space as a flow field. This motivates using a flow-adapted line element.
+
+\subsection{Painlev\'e--Gullstrand form from flow kinematics}
+Consider a radial inflow velocity field $v(r)$ (positive inward; sign conventions can be chosen consistently). The PG form of the line element can be written as
+\begin{equation}
+ds^2 = -c^2 dt^2 + \left(dr + v(r)\,dt\right)^2 + r^2 d\Omega^2,
+\label{eq:pg_compact}
+\end{equation}
+which expands to a non-diagonal metric:
+\begin{equation}
+ds^2 = -\bigl(c^2 - v(r)^2\bigr)\,dt^2 + 2 v(r)\,dr\,dt + dr^2 + r^2 d\Omega^2.
+\label{eq:pg_expanded}
+\end{equation}
+\StatusLine{\EDCidentified}
+Equation \eqref{eq:pg_expanded} is the natural laboratory-frame description of a Minkowski local frame embedded in a radial flow: it is not ``assumed Schwarzschild,'' it is the flow geometry itself.
+
+\section{The bridge layer: recovering diagonal Schwarzschild}
+\subsection{Baseline inflow profile in the weak-field limit}
+\StatusLine{\EDCbaseline}
+To connect EDC flow kinematics to classical astronomy benchmarks, we adopt the Newtonian weak-field limit as a declared baseline:
+\begin{equation}
+v(r)^2 = \frac{2GM}{r}.
+\label{eq:v_newton}
+\end{equation}
+This is a bridge condition used to compare with GR in the regime where GR is already validated.
+
+\subsection{Diagonalization via time redefinition}
+\StatusLine{\EDCderived\ (math step) + \EDCbaseline\ (input via \cref{eq:v_newton})}
+Define a new time coordinate $t_S$ by
+\begin{equation}
+dt_S \;=\; dt - \frac{v(r)}{c^2 - v(r)^2}\,dr.
+\label{eq:time_redef}
+\end{equation}
+Substituting \eqref{eq:time_redef} into \eqref{eq:pg_expanded} cancels the cross-term $dr\,dt$ and yields
+\begin{equation}
+ds^2 = -\left(1 - \frac{v(r)^2}{c^2}\right)c^2 dt_S^2
++\left(1 - \frac{v(r)^2}{c^2}\right)^{-1}dr^2 + r^2 d\Omega^2.
+\label{eq:diag_general_v}
+\end{equation}
+Using \eqref{eq:v_newton}, we obtain
+\begin{equation}
+ds^2 = -\left(1 - \frac{2GM}{c^2 r}\right)c^2 dt_S^2
++\left(1 - \frac{2GM}{c^2 r}\right)^{-1}dr^2 + r^2 d\Omega^2,
+\label{eq:schwarzschild}
+\end{equation}
+which is the standard diagonal Schwarzschild form.
+
+\subsection{Interpretive point: what changed relative to GR}
+\StatusLine{\EDCidentified}
+No Einstein field equations were used in this bridge derivation. The diagonal Schwarzschild expression appears as the coordinate-diagonal form of a flow metric once the weak-field inflow profile \eqref{eq:v_newton} is adopted. Within strict epistemic hygiene, this means:
+\begin{itemize}
+  \item PG $\rightarrow$ diagonalization is \EDCderived\ mathematics.
+  \item The specific identification $v(r)^2=2GM/r$ is \EDCbaseline\ (until derived from EDC dynamics).
+\end{itemize}
+
+\section{Verification harness for orbital observables (Mercury-ready)}
+\StatusLine{\EDCderived\ (numerical protocol) + \EDCbaseline\ (benchmark target)}
+This section defines a reproducible harness designed to test orbital observables in two modes:
+\begin{enumerate}
+  \item \textbf{Bridge mode (baseline):} adopt \eqref{eq:v_newton} and verify that orbital observables match known GR limits (numerical hygiene).
+  \item \textbf{EDC mode (future):} replace \eqref{eq:v_newton} with $v(r)$ derived from EDC 5D membrane/plenum dynamics; rerun without importing Newtonian/Schwarzschild baselines.
+\end{enumerate}
+
+\subsection{Difference-of-runs to eliminate drift}
+\StatusLine{\EDCderived}
+To suppress integrator drift and sampling bias, compute an observable as a \emph{difference} between:
+\begin{itemize}
+  \item a Newtonian run on the same $\phi$-grid, and
+  \item a relativistic (bridge/EDC) run on that identical grid,
+\end{itemize}
+and define the anomalous precession $\Delta\varphi$ from the difference in apsidal advance.
+
+\subsection{Convergence reporting standard}
+\StatusLine{\EDCderived}
+For each step size $\Delta\phi$ (or $\Delta t$), report:
+\begin{itemize}
+  \item total simulated time span and number of orbits,
+  \item raw precession in arcsec/cy,
+  \item anomaly (difference-of-runs) in arcsec/cy,
+  \item convergence spread across step sizes,
+  \item optional CI estimate (bootstrap or repeated seeds if stochastic elements exist).
+\end{itemize}
+
+\section{Roadmap: making Mercury an independent EDC prediction}
+\StatusLine{\EDCproposed}
+Mercury becomes an independent EDC prediction only if $v(r)$ (or the effective metric) is obtained without importing \eqref{eq:v_newton}. Concretely:
+\begin{enumerate}
+  \item derive the stationary inflow solution from the EDC action / membrane-plenum equations;
+  \item obtain $v(r)$ (or $n(r)$) in the weak-field regime;
+  \item show that the Newtonian limit emerges (or quantify deviations);
+  \item then rerun the orbital harness.
+\end{enumerate}
+At that point, Mercury is no longer a ``GR reproduction,'' but a test of EDC’s own dynamics.
+
+\section*{Reproducibility}
+\StatusLine{\EDCbaseline}
+This paper accompanies EDC Theory Book v17.49 and the public repository snapshot used in the GitHub--Zenodo sync. The repository contains:
+\begin{itemize}
+  \item the EDC theory book in PDF and LaTeX form,
+  \item the Python simulation toolkit and validation scripts,
+  \item archived experimental scripts and versioned strict variants.
+\end{itemize}
+
+\section*{Data availability}
+Outputs (logs, tables, and figures) are intended to be deposited alongside this paper’s Zenodo record as immutable artifacts.
+
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+\end{document}
