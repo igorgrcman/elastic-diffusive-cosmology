@@ -1,0 +1,253 @@
+\documentclass[../main (2).tex]{subfiles}
+% For standalone compilation, the following packages/commands are used
+% When included via \subfile, main document's preamble is used instead
+
+% Standalone preamble (ignored when included as subfile)
+\ifx\Gam\undefined
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage[normalem]{ulem}
+\usepackage{xcolor}
+
+% Notation macros
+\newcommand{\Gam}{\Gamma}
+\newcommand{\Gammax}{\Gamma_{\mathrm{max}}}
+\newcommand{\Gamzero}{\Gamma_0}
+\newcommand{\taurel}{\tau_{\mathrm{relax}}}
+\newcommand{\tauobs}{\tau_{\mathrm{obs}}}
+\newcommand{\sig}{\sigma}
+\newcommand{\DelA}{\Delta A}
+\newcommand{\DelS}{\Delta S}
+\newcommand{\hb}{\hbar}
+
+% Classification markers
+\newcommand{\Dc}{\textcolor{green!60!black}{\textbf{[Dc]}}}
+\newcommand{\Pp}{\textcolor{orange}{\textbf{[P]}}}
+\newcommand{\Dd}{\textcolor{blue}{\textbf{[D]}}}
+\newcommand{\Mm}{\textcolor{purple}{\textbf{[M]}}}
+\newcommand{\Ii}{\textcolor{gray}{\textbf{[I]}}}
+\fi
+
+\begin{document}
+
+% ============================================================================
+% APPENDIX: FROZEN CRITERION DERIVATION FROM ACTION v1.2
+% ============================================================================
+
+\section{Frozen Criterion From Action}
+\label{app:frozen-criterion}
+
+\subsection*{Changelog v1.2}
+
+\begin{itemize}
+\item \textbf{FIX 1:} Transition rate $\Gamma$ definition corrected from $\lim_{t\to\infty}$ to $\lim_{t\to 0^+}$.
+\item \textbf{FIX 2:} Route B restructured: B1 [M] (homotopy) + B2 [P] (no topology change) + B3 [Dc] (superselection).
+\item \textbf{FIX 3:} Units paragraph added to Route A (natural units $\hbar = c = 1$).
+\item \textbf{FIX 4:} Part I numerical check clarified as order-of-magnitude with QCD tension caveat.
+\end{itemize}
+
+% ----------------------------------------------------------------------------
+\subsection{Part A: Definitions}
+
+\textbf{Definition A.1 ($\theta$-sector) \Dd:}
+A $\theta$-sector is a connected component of configuration space $Q = S^3 \times S^3 \times S^3$ distinguished by the orientation state of the three quark flux tubes.
+
+\textbf{Definition A.2 (Transition Rate) \Dd:}
+The transition rate from sector $\theta$ to sector $\theta'$ is defined via the \textbf{small-time limit}:
+\[
+\Gamma(\theta \to \theta') := \lim_{t \to 0^+} \frac{P(\theta' | \theta, t)}{t}
+\]
+Equivalently: $\Gamma = \left.\frac{d}{dt} P(\theta'|\theta,t)\right|_{t=0}$. This matches Fermi's golden rule and master equation conventions.
+
+\textbf{Definition A.3 (Relaxation Time) \Dd:}
+\[
+\tau_{\mathrm{relax}} := \frac{1}{\Gamma_{\mathrm{max}}}
+\]
+where $\Gamma_{\mathrm{max}} := \max_{\theta,\theta'} \Gamma(\theta \to \theta')$.
+
+\textbf{Definition A.4 (Frozen Criterion) \Dd:}
+A system is frozen if:
+\[
+\Gamma_{\mathrm{max}} \cdot \tau_{\mathrm{obs}} \ll 1 \quad \Leftrightarrow \quad \tau_{\mathrm{relax}} \gg \tau_{\mathrm{obs}}
+\]
+
+% ----------------------------------------------------------------------------
+\subsection{Part B: Route A --- Large-\texorpdfstring{$\sigma$}{sigma} Instanton Barrier}
+
+\subsubsection*{B.0 Units and Dimensional Conventions}
+
+\textbf{Convention \Dd:} Throughout Route A, we work in \textbf{natural units} where $\hbar = c = 1$.
+
+In these units:
+\begin{itemize}
+\item Membrane tension $\sigma$ has dimensions $[\text{Energy}^2] = [\text{Length}^{-2}]$
+\item Area $\Delta A$ has dimensions $[\text{Length}^2] = [\text{Energy}^{-2}]$
+\item The product $\sigma \cdot \Delta A$ is \textbf{dimensionless}
+\end{itemize}
+
+\textbf{SI reference:} For QCD string tension, $\sqrt{\sigma} \approx 440$ MeV, so $\sigma \approx 0.18$ GeV$^2 \approx 0.9$ GeV/fm.
+
+\subsubsection*{B.1 Action for Configuration Change}
+
+\textbf{Postulate (Membrane Action) \Pp:}
+The 5D EDC action for the flux tube membrane includes:
+\[
+S_{\mathrm{membrane}} = \sigma \int d^2\xi \sqrt{-\det h_{ab}}
+\]
+
+\textbf{Theorem (Action Difference) \Dc:}
+A transition from configuration $\theta$ to $\theta'$ requires:
+\[
+\Delta S = \sigma \cdot \Delta A
+\]
+
+\textbf{Theorem (Semiclassical Approximation) \Mm:}
+For large action barriers:
+\[
+\Gamma(\theta \to \theta') \sim \Gamma_0 \, e^{-\Delta S / \hbar}
+\]
+
+\textbf{Theorem (Large-$\sigma$ Freezing) \Dc:}
+If $\sigma \cdot \Delta A_{\mathrm{min}} \gg \hbar$ (i.e., $\gg 1$ in natural units), then:
+\[
+\Gamma \ll \Gamma_0 \quad \Rightarrow \quad \tau_{\mathrm{relax}} \to \infty
+\]
+
+\textbf{Corollary (Frozen Criterion from $\sigma$) \Dc:}
+\[
+\boxed{\sigma \cdot \Delta A_{\mathrm{min}} > \hbar \cdot \ln(\Gamma_0 \cdot \tau_{\mathrm{obs}})}
+\]
+
+% ----------------------------------------------------------------------------
+\subsection{Part C: Route B --- Topological Protection}
+
+Route B is structured into three logically distinct parts.
+
+\subsubsection*{C.1 Part B1: Mathematical Invariance \Mm}
+
+\textbf{Theorem (Homotopy Invariance) \Mm:}
+Winding numbers are invariants under continuous deformations. For any homotopy $\gamma_t$, the winding number $n(\gamma_t)$ is constant.
+
+\textbf{Corollary \Mm:} Integer-valued topological charges cannot change continuously---they either remain constant or jump discontinuously.
+
+\subsubsection*{C.2 Part B2: Physical Admissibility Postulate \Pp}
+
+\textbf{Definition (Flux Tube Winding) \Dd:}
+Each flux tube $i \in \{1,2,3\}$ carries winding number:
+\[
+n_i := \frac{1}{2\pi} \oint_{\gamma_i} d\phi_i \in \mathbb{Z}
+\]
+
+\textbf{Postulate (No Topology-Changing Processes) \Pp:}
+During $\tau_{\mathrm{obs}}$, EDC dynamics forbids:
+\begin{enumerate}
+\item Membrane cutting or tearing
+\item Flux tube reconnection (``string breaking'')
+\item Creation/annihilation of topological defects
+\end{enumerate}
+
+\subsubsection*{C.3 Part B3: Consequence --- Superselection \Dc}
+
+\textbf{Theorem (Topological Freezing) \Dc:}
+If Postulate B2 holds, transitions between different winding sectors are forbidden:
+\[
+\Gamma(\theta \to \theta') = 0 \quad \text{if} \quad \mathbf{n}(\theta) \neq \mathbf{n}(\theta')
+\]
+
+\textbf{Proof:} By B1, winding changes only via discontinuous processes. By B2, such processes are forbidden. Therefore $P(\theta'|\theta,t) = 0$ for all $t$, hence $\Gamma = \lim_{t\to 0^+} 0/t = 0$. $\square$
+
+\subsubsection*{C.4 Route B Classification}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+Step & Statement & Status & Dependencies \\
+\midrule
+B1 & Winding is homotopy invariant & \Mm & Algebraic topology \\
+B2 & No topology change during $\tau_{\mathrm{obs}}$ & \Pp & Physical postulate \\
+B3 & Different winding $\Rightarrow \Gamma = 0$ & \Dc & B1 + B2 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Key insight:} The exact $\Gamma = 0$ depends on physical postulate B2, not pure topology.
+
+% ----------------------------------------------------------------------------
+\subsection{Part D: Synthesis}
+
+\textbf{Theorem (Frozen Criterion from Action/Topology) \Dc:}
+The frozen criterion $\tau_{\mathrm{relax}} \gg \tau_{\mathrm{obs}}$ is satisfied if EITHER:
+
+\begin{itemize}
+\item \textbf{Route A:} $\sigma \cdot \Delta A_{\mathrm{min}} \gg \hbar$
+\item \textbf{Route B:} Winding numbers $\mathbf{n} = (n_1, n_2, n_3)$ are conserved (B2 holds)
+\end{itemize}
+
+\textbf{Dependency Chain (v1.2):}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+Step & Statement & Status & Dependencies \\
+\midrule
+F1 & $\Gamma = \Gamma_0 \exp(-\Delta S/\hbar)$ & \Mm & Instanton calculus \\
+F2 & $\Delta S = \sigma \cdot \Delta A$ & \Dc & Membrane action \\
+F3 & $\sigma$ large $\Rightarrow \Gamma \to 0$ & \Dc & F1 + F2 \\
+F4 & $\tau_{\mathrm{relax}} = 1/\Gamma \to \infty$ & \Dd & Definition \\
+\textbf{F5} & \textbf{$\tau_{\mathrm{relax}} \gg \tau_{\mathrm{obs}}$ (frozen)} & \Dc & F3 + F4 \\
+B1 & Winding is homotopy invariant & \Mm & Topology \\
+B2 & No topology change during $\tau_{\mathrm{obs}}$ & \Pp & Physical postulate \\
+\textbf{B3} & \textbf{$\mathbf{n}$ conserved $\Rightarrow \Gamma = 0$} & \Dc & B1 + B2 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ----------------------------------------------------------------------------
+\subsection{Part E: Order-of-Magnitude Numerical Check}
+
+\textbf{Purpose:} Verify Route A gives meaningful suppression. \textbf{Caveat:} Order-of-magnitude only.
+
+\textbf{QCD string tension:} $\sqrt{\sigma} \approx 440$ MeV $\Rightarrow T \approx 0.9$ GeV/fm.
+
+\textbf{Minimum area:} $\Delta A \sim 0.3$ fm$^2$ (flux tube orientation flip).
+
+\textbf{Action (natural units):} $S/\hbar \approx 0.9 \times 0.3 \times 5 \approx 1.4$.
+
+\textbf{Suppression:} $e^{-1.4} \approx 0.25$ --- \textbf{marginal} with QCD tension.
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Scenario & $S/\hbar$ & Suppression \\
+\midrule
+QCD tension, small $\Delta A$ & $\sim 1$--2 & Marginal (0.1--0.4) \\
+Full rotation & $\sim 5$ & Moderate ($e^{-5} \approx 0.007$) \\
+Large $\sigma$ (EDC) & $\gg 10$ & Exponential freezing \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Conclusion:} Robust freezing requires $\sigma \gg \sigma_{\mathrm{QCD}}$ (Route A) or topological protection via B2 (Route B).
+
+% ----------------------------------------------------------------------------
+\subsection{Status Change}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+Item & v4 Status & v1.2 Status & Change \\
+\midrule
+\textbf{Frozen criterion} & \Pp{} Postulate & \Dc{} Derived & \textbf{PROMOTED} \\
+Route B structure & Mixed & B1\Mm{} + B2\Pp{} + B3\Dc & \textbf{CLARIFIED} \\
+$\Gamma$ definition & $\lim_{t\to\infty}$ & $\lim_{t\to 0^+}$ & \textbf{FIXED} \\
+Dependencies & None stated & $\sigma\Delta A \gg \hbar$ OR B2 & Explicit \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.5cm}
+\noindent\textit{Extended derivation notes available in the supplementary repository.}
+
+\end{document}

@@ -1,0 +1,139 @@
+\documentclass[../main (2).tex]{subfiles}
+% For standalone compilation, the following packages/commands are used
+% When included via \subfile, main document's preamble is used instead
+
+% Standalone preamble (ignored when included as subfile)
+\ifx\Dc\undefined
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+
+% Classification markers
+\newcommand{\Dc}{\textcolor{green!60!black}{\textbf{[Dc]}}}
+\newcommand{\Pp}{\textcolor{orange}{\textbf{[P]}}}
+\newcommand{\Dd}{\textcolor{blue}{\textbf{[D]}}}
+\newcommand{\Mm}{\textcolor{purple}{\textbf{[M]}}}
+\newcommand{\Ii}{\textcolor{gray}{\textbf{[I]}}}
+\fi
+
+\begin{document}
+
+% ============================================================================
+% APPENDIX: MEMBRANE TENSION FROM PRESSURE BALANCE
+% ============================================================================
+
+\section{Membrane Tension \texorpdfstring{$\sigma$}{sigma} From Pressure Balance}
+\label{app:sigma}
+
+\subsection{The Physical Picture}
+
+\Dd{} The membrane $\Sigma^4$ separates the Plenum (bulk) from the effective vacuum below. The Plenum exerts pressure; the membrane resists with tension.
+
+\begin{center}
+\begin{verbatim}
+      | | |  P_bulk = rho_P c^2  | | |
+    =====================================  <- Membrane at xi=0
+                                             Tension sigma
+      vacuum region (effective)
+\end{verbatim}
+\end{center}
+
+\subsection{Dimensional Analysis}
+
+\textbf{Plenum energy density \Dd:}
+\[
+[\rho_P] = \frac{\text{Energy}}{\text{Length}^4} = \frac{J}{m^4}
+\]
+
+This is a 5D energy density (energy per 4-volume).
+
+\textbf{Membrane tension \Dd:}
+\[
+[\sigma] = \frac{\text{Energy}}{\text{Area}} = \frac{J}{m^2}
+\]
+
+\subsection{Step 1: Integrated Pressure}
+
+\Mm{} The membrane feels pressure integrated over the compact dimension $\xi$:
+
+\[
+P_{\text{effective}} = \int_0^{2\pi R_\xi} \rho_P \, d\xi = 2\pi R_\xi \rho_P
+\]
+
+\textbf{Dimension check:}
+\[
+[P_{\text{eff}}] = [m] \times \left[\frac{J}{m^4}\right] = \frac{J}{m^3} = \text{Pa} \quad \checkmark
+\]
+
+This is proper 3D pressure!
+
+\subsection{Step 2: Membrane Thickness}
+
+\Pp{} \textbf{P-membrane-thickness:} The membrane has effective thickness $\delta$ of order the compact radius:
+\[
+\delta \sim R_\xi
+\]
+
+\textbf{Physical justification:} The membrane ``feels'' the compact dimension; its effective thickness is set by $R_\xi$.
+
+\subsection{Step 3: Tension Formula}
+
+\Dc{} For a membrane of thickness $\delta$:
+\[
+\sigma = P_{\text{effective}} \times \delta = 2\pi R_\xi \rho_P \times R_\xi
+\]
+
+\[
+\boxed{\sigma = 2\pi R_\xi^2 \rho_P}
+\]
+
+\subsection{Verification}
+
+\textbf{Dimension check \Mm:}
+\[
+[\sigma] = [m^2] \times \left[\frac{J}{m^4}\right] = \frac{J}{m^2} \quad \checkmark
+\]
+
+\textbf{Circularity check:}
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Quantity & Status \\
+\midrule
+$R_\xi$ & Input (5D geometry) \\
+$\rho_P$ & Input (Plenum property) \\
+$r_e$ & NOT used $\checkmark$ \\
+$\alpha$ & NOT used $\checkmark$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Physical Interpretation}
+
+The membrane tension $\sigma$ is determined by:
+\begin{enumerate}
+\item The bulk energy density $\rho_P$ pressing on the membrane
+\item The compact dimension size $R_\xi$ setting both the pressure integration range AND the membrane thickness
+\end{enumerate}
+
+\textbf{Key insight:} No electron properties ($r_e$, $\alpha$, $m_e$) appear in the derivation. The membrane tension is a \textbf{bulk property}, not a particle property.
+
+\subsection{Status Summary}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+Component & Formula & Status & Dependency \\
+\midrule
+Effective pressure & $2\pi R_\xi \rho_P$ & \Mm & --- \\
+Membrane thickness & $\delta = R_\xi$ & \Pp & P-membrane-thickness \\
+\textbf{Membrane tension} & $\sigma = 2\pi R_\xi^2 \rho_P$ & \Dc & Conditional \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.5cm}
+\noindent\textit{Extended derivation notes available in the supplementary repository.}
+
+\end{document}

@@ -1,0 +1,66 @@
+% ============================================================================
+% APPENDIX: NUMERICAL CHECK — FROZEN VS GL PROFILE
+% ============================================================================
+\section{Numerical Check: Frozen vs GL Profile}
+\label{app:gl_frozen_numerics}
+
+This appendix provides the complete Python code used to generate the numerical comparison between frozen (step-function) and GL-type (smooth tanh) profiles in Section~B.2.
+
+\subsection{Methodology}
+
+We compute the excluded volume coefficient:
+\begin{equation}
+C = \frac{1}{a^3} \int_0^\infty 4\pi r^2 \left[1 - f(r)^2\right] dr
+\end{equation}
+using numerical integration (trapezoidal rule) over a discretized radial grid.
+
+\paragraph{Numerical parameters:}
+\begin{itemize}
+    \item Integration domain: $r \in [0, x_{\max} \cdot a]$ with $x_{\max} = 30$
+    \item Grid points: $n = 500{,}000$
+    \item Dimensionless width: $\delta/a$ (not absolute $\delta$)
+\end{itemize}
+
+\paragraph{Profile functions:}
+\begin{itemize}
+    \item \textbf{Frozen:} $f(r) = \Theta(r - a)$ (Heaviside step function)
+    \item \textbf{GL-type:} $f(r) = \tfrac{1}{2}\bigl(1 + \tanh\bigl(\frac{r-a}{\delta}\bigr)\bigr)$
+\end{itemize}
+
+\subsection{Python Code}
+
+All numerical calculations are reproducible using the following Python script (requires NumPy only):
+
+\lstinputlisting[
+  caption={Frozen vs GL coefficient calculation (pure NumPy; no SciPy dependency).},
+  label={lst:gl_frozen_code}
+]{appendix_gl_frozen_numerics.py}
+
+\subsection{Output}
+
+Running the above code produces:
+
+\begin{verbatim}
+Frozen vs GL Profile Comparison
+============================================================
+Target (4*pi/3) = 4.188790204786
+
+Frozen (step):        C = 4.188790204786  Error = 0.000%
+GL (delta/a= 0.50): C = 10.560219636209  Error = 152.107%
+GL (delta/a= 0.20): C = 5.900185990873  Error = 40.857%
+GL (delta/a= 0.10): C = 4.925630703885  Error = 17.591%
+GL (delta/a= 0.05): C = 4.529433998143  Error = 8.132%
+GL (delta/a= 0.01): C = 4.252660768127  Error = 1.525%
+\end{verbatim}
+
+\subsection{Interpretation}
+
+The numerical results confirm:
+\begin{enumerate}
+    \item The frozen (step-function) profile yields $C = 4\pi/3$ exactly by construction.
+    \item The GL-type profile produces $C(\delta/a)$ as a continuous function of the width parameter.
+    \item As $\delta/a \to 0$, the GL coefficient approaches $4\pi/3$, but never equals it exactly for finite $\delta/a$.
+    \item Without an independent physical mechanism forcing $\delta/a \to 0$, GL-type models do not uniquely predict the geometric coefficient.
+\end{enumerate}
+
+This supports the EDC claim that particles are ``frozen'' configurations with sharp boundaries, not smooth GL-type vortices with tunable width parameters.
