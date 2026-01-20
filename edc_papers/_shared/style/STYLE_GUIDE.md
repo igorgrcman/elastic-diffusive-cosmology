@@ -170,6 +170,45 @@ local Steiner minimum.
 
 ---
 
+---
+
+## Mechanistic Dimension Rule (MANDATORY)
+
+**Canon Rule KB-CANON-001:** When introducing 5D/y, brane, frozen projection, or bulk↔brane energy exchange, you MUST include exactly one `\edcMechanismNote{...}{...}{...}` before equations or immediately after the first equation.
+
+### Usage
+
+```latex
+\edcMechanismNote{Junction relaxes toward Steiner minimum}%
+                 {Energy pumps into brane-layer modes, redistributes}%
+                 {Electron, antineutrino, proton emerge on 3D side}
+```
+
+### Why This Rule Exists
+
+The Mechanistic Dimension Principle states:
+> "In EDC, extra dimensions are not added spatial lengths; they encode physical mechanisms. The brane is a manifestation of the mechanism (bulk → brane → 3D observation), not merely a geometric hypersurface."
+
+Every 5D/brane section must explain:
+1. **5D Cause:** What initiates the process in the bulk?
+2. **Brane Process:** What happens at the brane (absorption/dissipation)?
+3. **3D Output:** What do observers detect?
+4. **Ledger:** Energy/quantum-number conservation closes.
+
+This prevents "numerology smell" and the "relabeled SM" critique.
+
+### Full Box Alternative
+
+For longer narratives, use the full box:
+
+```latex
+\begin{tcolorbox}[edcMechanism, title={Mechanistic Dimension Note}]
+Detailed multi-paragraph narrative here...
+\end{tcolorbox}
+```
+
+---
+
 ## Checklist Before Commit
 
 - [ ] All `\tagXXX` tags used appropriately
@@ -177,6 +216,7 @@ local Steiner minimum.
 - [ ] All TikZ figures use shared styles
 - [ ] No figure-related overfull hbox warnings
 - [ ] References use "Title (DOI: ...)" format, NOT "Paper 2/3"
+- [ ] **Every 5D/y/brane introduction has `\edcMechanismNote` (MANDATORY)**
 
 ---
 
