@@ -1,0 +1,43 @@
+============================================================
+EDC MERCURY PRECESSION SIMULATOR — STRICT (v17.49.020)
+============================================================
+[BASELINE INPUTS]
+  G          = 6.674300e-11 m^3 kg^-1 s^-2
+  c          = 299792458.0 m/s (exact)
+  M_sun      = 1.988470e+30 kg
+  a (Mercury)= 5.790923e+10 m
+  e (Mercury)= 0.205630
+
+[CLAIM MANAGEMENT]
+  Status: DERIVED (conditional on bridge mapping and Schwarzschild-equivalent orbit equation)
+  Interpretation rule: ONLY the anomaly (relativistic - Newtonian) is treated as physical here.
+
+[BASELINE] GR closed-form anomaly (weak-field):
+  42.98 arcsec/century
+
+[DERIVED] Raw perihelion shifts (contain numerical drift):
+  relativistic: φ₂=6.283204450 rad, raw=1639.39 arcsec/century
+  Newtonian:    raw=1596.41 arcsec/century
+
+[DERIVED] Anomalous precession (drift-cancelled):
+  anomaly = (relativistic - Newtonian) = 42.98 arcsec/century
+  deviation vs GR closed-form: 0.0003%
+
+[SELF-TEST] Convergence across step sizes (anomaly spread criterion):
+  steps tested: 1e-04, 5e-05, 2e-05 rad
+  tolerance:    0.050 arcsec/century (max-min anomaly)
+
+  step_dphi    raw_rel      raw_newt     anomaly
+      1e-04    1639.39     1596.41    42.982
+      5e-05    1639.39     1596.41    42.982
+      2e-05     212.03      169.04    42.982
+
+  anomaly spread (max-min): 0.0001 arcsec/century
+  PASS
+
+============================================================
+CONCLUSION (strict):
+• Raw shifts include numerical drift from perihelion detection on a discrete φ grid.
+• The anomalous precession (rel - newt) cancels drift and should match ~43 arcsec/century.
+• Agreement is expected if the bridge reproduces Schwarzschild in the weak-field regime.
+============================================================

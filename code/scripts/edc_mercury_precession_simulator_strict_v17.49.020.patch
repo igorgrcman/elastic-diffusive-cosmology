@@ -1,0 +1,35 @@
+diff --git a/edc_mercury_precession_simulator_strict_v17.49.020.py b/edc_mercury_precession_simulator_strict_v17.49.020.py
+index 0000000..0000000 100644
+--- a/edc_mercury_precession_simulator_strict_v17.49.020.py
++++ b/edc_mercury_precession_simulator_strict_v17.49.020.py
+@@ -223,6 +223,7 @@ def main():
+     parser = argparse.ArgumentParser(description="Mercury perihelion precession (strict numerical extraction).")
+     parser.add_argument("--plot", action="store_true", help="Plot u(φ) and mark the detected perihelion.")
++    parser.add_argument("--out", type=str, default="mercury_precession_v17.49.png", help="Output filename for plot (PNG). Default: mercury_precession_v17.49.png")
++    parser.add_argument("--no-show", action="store_true", help="Do not call plt.show() (useful for MPLBACKEND=Agg / CI).")
+     parser.add_argument("--step", type=float, default=5.0e-5, help="Step size in φ (radians). Default: 5e-5.")
+     parser.add_argument("--phi-max-factor", type=float, default=1.20, help="Max φ as factor of 2π. Default: 1.20.")
+     parser.add_argument("--convergence", action="store_true", help="Run convergence self-test across step sizes.")
+     parser.add_argument("--tol", type=float, default=0.05, help="Convergence tolerance in arcsec/century for anomaly spread. Default: 0.05.")
+     parser.add_argument("--ci", action="store_true", help="CI mode: run convergence test and exit 0/2 accordingly.")
+@@ -297,7 +298,7 @@ def main():
+ 
+     if args.plot:
+         import matplotlib.pyplot as plt
+@@ -329,7 +330,16 @@ def main():
+         plt.xlabel("φ [rad]")
+         plt.ylabel("u = 1/r [1/m]")
+         plt.title("Mercury u(φ) — perihelion detection (strict demo)")
+         plt.legend()
+-        plt.show()
++        # Always write the file if plotting is requested (works with MPLBACKEND=Agg).
++        try:
++            plt.savefig(args.out, dpi=200, bbox_inches="tight")
++            print(f"[PLOT] Saved: {args.out}")
++        except Exception as e:
++            print(f"[PLOT] WARNING: could not save {args.out}: {e}")
++
++        if not args.no_show:
++            plt.show()
++        else:
++            plt.close()
