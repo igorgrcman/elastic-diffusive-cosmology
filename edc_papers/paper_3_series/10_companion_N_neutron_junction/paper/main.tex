@@ -207,11 +207,142 @@ Open & WKB--damping bridge & \tagOpen{} \\
 % ============================================================
 %  SECTION 2: THICK-BRANE SETTING
 % ============================================================
-\section{Thick-Brane Setting}
+\section{Thick-Brane Microphysics}
 \label{sec:thick-brane}
 
-This section summarizes the thick-brane framework established in Companion H. The brane is not a mathematical surface but a \textbf{finite-thickness layer} with distinct bulk-facing and observer-facing boundaries.
+This section establishes the foundational thick-brane microphysical picture for interpreting neutron decay. The goal is to provide a clear physical bridge: how bulk dynamics (junction transitions) produce observed 3D particles (electrons, neutrinos) through the mediation of a thick brane with finite extent.
 
+\textbf{Note:} This section reproduces key definitions from Companion H (DOI: \href{https://doi.org/10.5281/zenodo.18307539}{10.5281/zenodo.18307539}) to make Companion N self-contained. Companion H remains the canonical source for the full thick-brane formalism.
+
+% -----------------------------------------------------------------------------
+\subsection{Thin Brane vs Thick Brane: Why Thickness Matters}
+\label{subsec:thin_vs_thick}
+% -----------------------------------------------------------------------------
+
+\begin{definition}[Thin Brane vs Thick Brane \textup{\tagDef}]
+\label{def:thin_thick_brane}
+\begin{itemize}
+    \item \textbf{Thin brane:} A mathematical idealization where the 4D world-volume has zero thickness in the extra dimension ($\delta \to 0$). Fields are strictly confined to a hypersurface. Computationally convenient but obscures the physical interface structure.
+
+    \item \textbf{Thick brane:} A regularized model where the brane has finite thickness $\delta > 0$ in the extra dimension. The brane possesses two distinct faces:
+    \begin{enumerate}
+        \item \textbf{Bulk-facing side} ($y = -\delta/2$): The interface where bulk fields couple to brane dynamics
+        \item \textbf{Observer-facing side} ($y = +\delta/2$): The interface where effective 3D/4D physics emerges
+    \end{enumerate}
+\end{itemize}
+\end{definition}
+
+\noindent\textbf{Why thick brane for weak processes?} The thick-brane picture provides:
+\begin{enumerate}
+    \item \textbf{Regularization:} Avoids singular delta-function sources in the 5D equations
+    \item \textbf{Two-face structure:} Distinguishes where energy enters (bulk-facing) from where particles emerge (observer-facing)
+    \item \textbf{Localization mechanism:} Brane-layer modes have finite transverse extent, enabling mode selection
+    \item \textbf{Frozen boundary interpretation:} The one-way valve becomes a property of the observer-facing interface
+\end{enumerate}
+
+% -----------------------------------------------------------------------------
+\subsection{Core Definitions: Bulk-Core, Brane-Layer, 3D Outputs}
+\label{subsec:core_definitions}
+% -----------------------------------------------------------------------------
+
+\begin{definition}[Bulk-Core \textup{\tagP}]
+\label{def:bulk_core}
+The \textbf{bulk-core} comprises the degrees of freedom of the Y-junction and its three attached flux-tube arms, located in the 5D bulk away from the brane. The collective coordinate $q(t)$ parametrizes the junction configuration:
+\begin{itemize}
+    \item $q = 0$: proton configuration (ground state $\ket{0}$, Steiner minimum)
+    \item $q > 0$: neutron configuration (excited state $\ket{1}$, displaced from Steiner)
+\end{itemize}
+Bulk-core dynamics are governed by the effective potential $V(q)$ and effective mass $M_{\mathrm{eff}}(q)$.
+\end{definition}
+
+\begin{definition}[Brane-Layer Modes \textup{\tagP}]
+\label{def:brane_layer}
+The \textbf{brane-layer} is the region of finite thickness $\delta$ where the 4D membrane resides. Within this layer, localized field excitations $\phi(y, t)$ propagate, where $y \in [-\delta/2, +\delta/2]$ denotes coordinates across the brane thickness. These are phonon-like or soliton-like modes of the membrane:
+\begin{itemize}
+    \item \textbf{Localized deformations:} electrons, positrons (topological winding)
+    \item \textbf{Delocalized waves:} neutrinos, antineutrinos (lepton-number carriers)
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Observed 3D Particle States \textup{\tagDef}]
+\label{def:3d_outputs}
+\textbf{Observed 3D particle states} are the effective outputs that emerge on the observer-facing side of the brane. These are what laboratory detectors register. The relation to brane-layer modes:
+\[
+\text{Brane-layer mode } \phi(y,t) \xrightarrow{\mathcal{P}_{\mathrm{frozen}}} \text{3D particle state}
+\]
+This projection is mediated by the frozen projection operator (Def.~\ref{def:frozen_operator}).
+\end{definition}
+
+% -----------------------------------------------------------------------------
+\subsection{The Thick-Brane Geometry}
+\label{subsec:thick_brane_geometry}
+% -----------------------------------------------------------------------------
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=0.85, transform shape]
+    % Bulk region (5D)
+    \fill[blue!8] (-6,-3) rectangle (6,3);
+
+    % Brane layer (thick)
+    \fill[yellow!30] (-6,-0.8) rectangle (6,0.8);
+    \draw[thick, orange!70!black] (-6,0.8) -- (6,0.8);
+    \draw[thick, orange!70!black] (-6,-0.8) -- (6,-0.8);
+
+    % Bulk-facing side
+    \draw[very thick, red!70!black, dashed] (-6,0.8) -- (6,0.8);
+    \node[red!70!black, above] at (0,0.85) {\footnotesize\textbf{Bulk-Facing ($y = -\delta/2$)}};
+
+    % Observer-facing side (frozen projection)
+    \draw[thick, green!50!black] (-6,-0.8) -- (6,-0.8);
+    \node[green!50!black, below] at (0,-0.85) {\footnotesize\textbf{Observer-Facing / Frozen Projection ($y = +\delta/2$)}};
+
+    % Labels for regions
+    \node at (-4.5,2) {\textbf{5D Bulk}};
+    \node at (4.5,2) {$\nabla_A T^{AB}_{(5)} = 0$};
+    \node at (0,0) {\textbf{Brane-Layer} (thickness $\delta$)};
+    \node at (-4.5,-2) {\textbf{3D Observer}};
+
+    % Y-junction in bulk (neutron excited state)
+    \begin{scope}[shift={(-3,1.8)}]
+        \draw[thick, blue!60!black] (0,0) -- (0.5,0.6);
+        \draw[thick, blue!60!black] (0,0) -- (-0.6,0.4);
+        \draw[thick, blue!60!black] (0,0) -- (0.05,-0.65);
+        \fill[red!60!black] (0,0) circle (0.08);
+        \node[blue!60!black, right] at (0.5,0.3) {\footnotesize $q_n > 0$};
+        \node[red!60!black, below left, font=\footnotesize] at (-0.3,-0.2) {n};
+    \end{scope}
+
+    % Energy flow arrow (inflow)
+    \draw[->, very thick, red!60!black] (-2,1.5) -- (-2,0.9);
+    \node[red!60!black, left] at (-2,1.2) {\footnotesize $J^\nu_{\mathrm{bulk}\to\mathrm{brane}} > 0$};
+    \node[red!60!black, right] at (-1.3,1.2) {\footnotesize (inflow)};
+
+    % Brane-layer mode
+    \draw[thick, purple!70!black, decorate, decoration={snake, amplitude=2pt, segment length=8pt}]
+        (1,-0.3) -- (3,-0.3);
+    \node[purple!70!black, above] at (2,0) {\footnotesize $\phi(y,t)$};
+
+    % 3D outputs (electron + antineutrino)
+    \fill[black] (1.5,-2) circle (0.1);
+    \node[below] at (1.5,-2.2) {\footnotesize $e^-$};
+    \fill[gray] (2.5,-2) circle (0.08);
+    \node[below] at (2.5,-2.2) {\footnotesize $\bar{\nu}_e$};
+    \draw[->, thick, green!50!black] (2,-0.8) -- (2,-1.7);
+
+    % Dimension labels
+    \draw[<->, thick] (5.5,-3) -- (5.5,3);
+    \node[right] at (5.5,0) {\footnotesize $\xi$ (5th dim)};
+
+    % Criterion box
+    \node[draw, fill=white, rounded corners, inner sep=3pt] at (3.5,2.2)
+        {\footnotesize $\hbar\omega \gg E_{\mathrm{env}}$ \tagP/\tagOpen};
+\end{tikzpicture}
+\caption{Thick-brane geometry for neutron decay. The neutron (Y-junction with $q_n > 0$, displaced from Steiner) relaxes in the 5D bulk, releasing energy as inflow ($J^\nu_{\mathrm{bulk}\to\mathrm{brane}} > 0$) through the bulk-facing boundary. This excites brane-layer modes $\phi(y,t)$, which propagate through the brane thickness and emerge as 3D particle outputs ($e^- + \bar{\nu}_e$) via the frozen projection at the observer-facing boundary.}
+\label{fig:thick_brane_geometry}
+\end{figure}
+
+% -----------------------------------------------------------------------------
 \subsection{The Brane as ``Glass Window''}
 
 \begin{tcolorbox}[colback=yellow!5,colframe=orange!50!black,title=\textbf{Conceptual Picture \tagP}]
@@ -255,10 +386,35 @@ Physics in 5D is the \textbf{cause}; 3D observations are the \textbf{effect}.
 \end{tcolorbox}
 
 \subsection{Bulk--Brane Energy Exchange}
+\label{subsec:energy_exchange}
 
-\begin{remark}[Canonical reference \textup{\tagBL}]
-\label{rem:energy-exchange}
-See Framework v2.0, Remark~4.5 for the canonical bulk--brane conservation statement and sign convention ($J^\nu_{\text{bulk}\to\text{brane}} > 0$ = INFLOW).
+\begin{tcolorbox}[colback=gray!5!white,colframe=gray!60!black,title={\small Framework v2.0, Remark 4.5 --- Canonical Energy Conservation}]
+\textbf{(1) 5D closure:}
+\begin{equation}
+\nabla_A T^{AB}_{(5)} = 0 \quad (A,B = 0,\dots,4)
+\end{equation}
+
+\textbf{(2) Brane open subsystem:}
+\begin{equation}
+\nabla_\mu T^{\mu\nu}_{\mathrm{brane}} = -\,J^\nu_{\mathrm{bulk}\to\mathrm{brane}} \quad (\mu,\nu = 0,\dots,3)
+\end{equation}
+
+\textbf{Sign convention:} $J^\nu_{\mathrm{bulk}\to\mathrm{brane}} > 0$ denotes net \emph{inflow} into the brane sector.
+
+\textbf{(3) Junction determination:} The exchange current $J^\nu_{\mathrm{bulk}\to\mathrm{brane}}$ is fixed by the chosen bulk--brane boundary/junction conditions (e.g., Israel-type matching).
+
+\textbf{(4) Ledger language:} The ``conservation ledger'' is bookkeeping language for bulk--brane closure, not a new law.
+
+\vspace{0.2cm}
+\noindent\textit{\footnotesize This block is quoted verbatim from Framework v2.0, Remark 4.5; Framework remains the canonical source.}
+\end{tcolorbox}
+
+\begin{remark}[Brane Subsystem is Open \textup{\tagDef}]
+\label{rem:brane-open}
+The brane, viewed as a subsystem, can exchange energy-momentum with the bulk. The apparent ``nonconservation'' $\nabla_\mu T^{\mu\nu}_{\mathrm{brane}} \neq 0$ is not a violation of physics---it reflects that the brane is an open system. Conservation is restored when bulk and brane are combined:
+\[
+\Delta E_{\mathrm{brane}} + \Delta E_{\mathrm{bulk}} = 0
+\]
 \end{remark}
 
 The thick-brane allows energy to flow from bulk structures (junctions) into brane-localized modes, which then appear as observable particles on the 3D side.
@@ -642,6 +798,178 @@ Paper 3 computes the neutron lifetime via WKB tunneling through the barrier $V_B
 \tau_n^{-1} = \nu_0 \exp\bigl(-2S/\hbar\bigr) \quad \text{where } S = \int \sqrt{2M V(q)} \, dq
 \end{equation}
 The damped model here describes the \emph{classical} relaxation pathway. The connection between $\Gamma$ (damping) and $\nu_0$ (attempt frequency) remains an open problem---one expects $\nu_0 \sim \omega_0 \sim \sqrt{\kappa_q/M}$ but the mapping $\Gamma \leftrightarrow \nu_0$ is not yet established.
+\end{remark}
+
+% -----------------------------------------------------------------------------
+\subsection{Two-Regime Process Model: Charging $\to$ Trigger $\to$ Release}
+\label{subsec:two_regime}
+% -----------------------------------------------------------------------------
+
+The complete neutron decay process can be understood as passing through two distinct regimes, separated by a trigger event defined by bulk relaxation completion.
+
+\begin{tcolorbox}[colback=green!5,colframe=green!50!black,title=\textbf{Physical Process Narrative: Charging $\to$ Trigger $\to$ Release \tagP}]
+\label{box:charging_release}
+
+\textbf{Canonical description:}\\
+While the junction relaxes toward the Steiner minimum ($q \to 0$), energy \textbf{pumps} from the bulk-core into the brane-layer, where it is \textbf{stored} as mode excitations (``charging''). When the bulk relaxation enters a regime where pumping becomes negligible compared to release---i.e., the effective description transitions from continuous relaxation to event-like (step)---the brane \textbf{releases} the stored energy budget through frozen projection into allowed 3D outputs.
+
+\medskip
+\textbf{Two regimes:}
+\begin{enumerate}[nosep,leftmargin=*]
+    \item[\textbf{(A)}] \textbf{Charging phase (bulk $\to$ brane):}
+    \begin{itemize}[nosep]
+        \item Junction relaxation ($q_n \to 0$) drives energy transfer
+        \item Coupling: $\mathcal{L}_{\mathrm{int}} = g\,q(t)\,\phi(-\delta/2,t)$
+        \item Energy flows as inflow: $J^\nu_{\mathrm{bulk}\to\mathrm{brane}} > 0$
+        \item Brane \textbf{absorbs} and \textbf{stores} the energy budget $\mathcal{E}_{\mathrm{brane}}(t)$
+    \end{itemize}
+
+    \item[\textbf{(B)}] \textbf{Release phase (brane $\to$ 3D):}
+    \begin{itemize}[nosep]
+        \item Stored brane-layer energy excites \textbf{brane-layer modes} $\{\phi_k\}$
+        \item Modes propagate to observer-facing boundary
+        \item Frozen projection $\mathcal{P}_{\mathrm{frozen}}$ maps modes to \textbf{3D particle outputs}
+        \item Selection rules filter allowed channels: $e^- + \bar{\nu}_e + \text{recoil}$
+    \end{itemize}
+\end{enumerate}
+\end{tcolorbox}
+
+% --- Regime-switch interpretation ---
+\begin{remark}[Regime-switch interpretation \textup{\tagP}]
+\label{rem:regime_switch}
+The condition at $t_*$ is \textbf{not} ``$\dot{q} = 0$'' in a literal sense. Instead, $t_*$ marks a \textbf{transition of effective description}: the continuous relaxation of $q(t)$ enters a regime where ongoing pumping is negligible compared to the release channel.
+
+We encode this via a dimensionless \textbf{regime parameter}:
+\begin{equation}
+\Xi(t) \equiv \frac{\Pi_{\mathrm{pump}}(t)}{\Pi_{\mathrm{release}}(t)} \quad \text{(ratio of transfer/release rates)}
+\label{eq:regime_param}
+\end{equation}
+The trigger condition becomes \tagDef{}/\tagP{}:
+\begin{equation}
+\boxed{\mathcal{T}_{n\to p}:\quad q(t_*) \approx 0 \quad \land \quad \Xi(t_*) \ll 1}
+\label{eq:trigger}
+\end{equation}
+\textbf{Interpretation:} In this regime, pumping is no longer dominant; the process becomes event-like (step), and the frozen-projection map $\mathcal{P}_{\mathrm{frozen}}$ governs the observable outputs.
+
+\medskip
+\noindent\textit{Practical asymptotic condition:} We treat $\Xi \ll 1$ as equivalent to ``pumping power $\Pi_{\mathrm{pump}} \sim \dot{q}\,\partial_q V$ becomes negligible.'' This avoids the question ``how does $\dot{q}$ reach exactly zero in finite time?''
+\end{remark}
+
+% --- Charging integral ---
+\begin{definition}[Charging Integral \textup{\tagDef}/\textup{\tagOpen}]
+\label{def:charging_integral}
+The stored brane energy at time $t$ is defined by the integral:
+\begin{equation}
+\boxed{\mathcal{E}_{\mathrm{brane}}(t) \equiv \int_{t_i}^{t} \Pi_{\mathrm{pump}}(t')\,dt' \quad\text{with}\quad \mathcal{E}_{\mathrm{brane}}(t_*) = \Delta E_{\mathrm{brane}}}
+\label{eq:charging_integral}
+\end{equation}
+where $\Pi_{\mathrm{pump}}(t)$ is the instantaneous power transfer rate (bulk $\to$ brane). The functional form of $\Pi_{\mathrm{pump}}$ depends on $(g, \Gamma, \delta, \ldots)$ and remains \tagOpen{} until derived from brane microphysics.
+\end{definition}
+
+% --- Charging ledger with E_other breakdown ---
+\begin{definition}[Charging Ledger \textup{\tagDc}]
+\label{def:charging_ledger}
+During the charging phase, energy conservation requires:
+\begin{equation}
+\boxed{\Delta E_{\mathrm{brane}} = -\Delta E_{\mathrm{bulk}} - E_{\mathrm{other}}}
+\label{eq:charging_ledger}
+\end{equation}
+where:
+\begin{itemize}[nosep]
+    \item $\Delta E_{\mathrm{bulk}} = E(q{=}0) - E(q{=}q_n) < 0$ \quad (bulk loses geometric excitation energy)
+    \item $\Delta E_{\mathrm{brane}} > 0$ \quad (brane gains stored energy)
+\end{itemize}
+The residual term $E_{\mathrm{other}}$ decomposes as \tagDc{}/\tagP{}:
+\begin{equation}
+E_{\mathrm{other}} = E_{\mathrm{recoil}} + E_{\mathrm{soft}} + E_{\mathrm{bulk\,residual}}
+\label{eq:e_other}
+\end{equation}
+\begin{itemize}[nosep]
+    \item $E_{\mathrm{recoil}}$: 3D momentum balance (proton recoil) \tagDc{}
+    \item $E_{\mathrm{soft}}$: low-energy brane modes, soft photons/phonons \tagP{}
+    \item $E_{\mathrm{bulk\,residual}}$: any energy remaining in bulk (if leakage permitted) \tagP{}/\tagOpen{}
+\end{itemize}
+For neutron decay: $|\Delta E_{\mathrm{bulk}}| \approx \Delta m_{np} c^2 \approx 1.293$ MeV \tagBL{}.
+\end{definition}
+
+% --- Two-step release map ---
+\begin{definition}[Two-Step Release Map \textup{\tagDc}/\textup{\tagP}]
+\label{def:release_map}
+After trigger $\mathcal{T}_{n\to p}$, the stored energy releases in two conceptual steps:
+\begin{equation}
+\boxed{
+\Delta E_{\mathrm{brane}} \;\longrightarrow\; \{\text{brane-layer modes } \phi_k\}
+\;\xrightarrow{\mathcal{P}_{\mathrm{frozen}}}\;
+\{e^-, \bar{\nu}_e, \text{recoil}, \ldots\}_{\mathrm{3D}}
+}
+\label{eq:release_map}
+\end{equation}
+\begin{itemize}[nosep]
+    \item \textbf{Step 1} \tagDc{}: Stored energy excites brane-layer modes (ledger transfer)
+    \item \textbf{Step 2} \tagP{}/\tagOpen{}: Frozen projection maps modes to 3D particle outputs
+\end{itemize}
+\textbf{Key point:} Particles are \textbf{not} ``created in the brane''---the brane has modes, and $\mathcal{P}_{\mathrm{frozen}}$ organizes them into quantized 3D outputs satisfying selection rules.
+\end{definition}
+
+\begin{remark}[One-line summary \textup{\tagDef}]
+\label{rem:oneline_summary}
+\begin{quote}
+\textit{``The brane absorbs energy from the relaxing junction (Charging) and releases it as particles when bulk relaxation enters the release-dominated regime (Release).''}
+\end{quote}
+\end{remark}
+
+% -----------------------------------------------------------------------------
+% EPISTEMIC GUARDRAIL BOX
+% -----------------------------------------------------------------------------
+\begin{tcolorbox}[colback=gray!5,colframe=gray!60!black,title=\textbf{Epistemic Guardrail: Observation vs.\ Explanation}]
+\label{box:epistemic_guardrail}
+
+\textbf{(1) Baseline observable} \tagBL{}:\\
+The neutron lifetime $\tau_n = 878.4 \pm 0.5\,\mathrm{s}$ is an \textbf{empirical fact} measured in 3D. It is \textbf{not} a parameter we choose or fit in this companion.
+
+\medskip
+\textbf{$\tau_n$ is not a control knob:} We treat $\tau_n$ as a \textbf{benchmark} \tagBL{}, not as a tuning target. Any mapping $\tau_n \leftrightarrow (\Gamma, g, \delta, \ldots)$ is deferred to \tagOpen{} work.
+
+\medskip
+\textbf{(2) Theoretical explanation} \tagP{}/\tagDc{}:\\
+The EDC claim is that $\tau_n$ is \textbf{explained} (not tuned) by the bulk-to-brane relaxation mechanism:
+\begin{itemize}[nosep]
+    \item The bulk junction relaxes toward the Steiner ground state
+    \item Energy pumps into the brane layer during relaxation
+    \item When the regime parameter $\Xi \ll 1$ (pumping negligible), the brane releases stored energy through frozen projection into allowed 3D outputs
+\end{itemize}
+
+\medskip
+\textbf{(3) Placeholder parameters} \tagOpen{}:\\
+Any effective parameters introduced ($\Gamma$, $g$, $\delta$, $\Pi_{\mathrm{pump}}$, etc.) are \textbf{microphysical placeholders} until derived from the brane model. They are \textbf{not} tuned in this manuscript unless explicitly marked \tagCal{}.
+
+\medskip
+\textbf{(4) Trigger as regime boundary} \tagDef{}:\\
+The ``trigger'' $\mathcal{T}_{n\to p}$ is a \textbf{regime boundary} ($\Xi \ll 1$), not an arbitrary threshold or timer. It marks where the effective description transitions from continuous relaxation to event-like release.
+\end{tcolorbox}
+
+% --- Physical Narration Rule ---
+\begin{tcolorbox}[colback=blue!3,colframe=blue!40!black,title=\textbf{Physical Narration Rule (Canonical Standard) \tagDef}]
+\label{box:narration_rule}
+\textbf{Every key equation must be accompanied by a physical narrative stating:}
+\begin{enumerate}[nosep]
+    \item \textbf{5D cause:} What changes in the bulk-core configuration?
+    \item \textbf{Brane response:} How does the brane layer absorb/redistribute energy?
+    \item \textbf{3D observable output:} What do observers detect on the 3D side?
+\end{enumerate}
+This rule eliminates ``numerology smell'' by ensuring every formula has a mechanistic interpretation.
+\end{tcolorbox}
+
+\begin{remark}[What is NOT claimed \textup{\tagDef}]
+\label{rem:not_claimed}
+This charging/release picture does \textbf{not}:
+\begin{itemize}[nosep]
+    \item Derive $\tau_n$ from first principles (requires deriving $\Gamma$, $g$, $\Pi_{\mathrm{pump}}$, etc.)
+    \item Claim Charging and Release are temporally separated (they may overlap)
+    \item Specify the detailed dynamics within the brane layer
+    \item Fix a numerical value for $\Xi_{\mathrm{crit}}$ (we use $\Xi \ll 1$ as asymptotic regime)
+\end{itemize}
+The model provides a \textbf{physical narrative} for where energy goes (bulk $\to$ brane) and how it emerges (brane $\to$ 3D)---not a complete dynamical calculation.
 \end{remark}
 
 % ============================================================
