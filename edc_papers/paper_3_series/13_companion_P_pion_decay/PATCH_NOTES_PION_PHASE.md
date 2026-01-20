@@ -2,7 +2,7 @@
 
 **Date:** 2026-01-20
 **Document:** Companion P — Pion Decay as Hadron→Lepton Injection Test
-**Status:** Draft v0.1
+**Status:** Draft v0.3 (BabaYaga hardened)
 
 ---
 
@@ -150,7 +150,7 @@ xelatex -interaction=nonstopmode main.tex && xelatex main.tex
 | N | Neutron | Bulk-core junction | v3.0 |
 | M | Muon | Brane-dominant (fundamental) | v0.2 |
 | T | Tau | Brane-dominant (higher mode) | v0.1 |
-| **P** | **Pion** | **Brane-dominant (composite)** | **v0.1** |
+| **P** | **Pion** | **Brane-dominant (composite)** | **v0.3** |
 
 ---
 
@@ -171,3 +171,64 @@ Better 7 pages of truth than 20 pages of numerology.
 ---
 
 *Generated: 2026-01-20 (Pion Hadron→Lepton Phase)*
+
+---
+
+## BabaYaga Pass (v0.3) — 2026-01-20
+
+### What Was Changed
+
+1. **Epistemic Status table added** (Table 2)
+   - Explicit listing of [BL], [P], [OPEN] claims
+   - Clear separation of baseline facts vs EDC postulates vs open problems
+
+2. **Energy Bookkeeping table added** (Table 3)
+   - Qualitative ledger without numeric values
+   - Tracks energy through Absorption→Dissipation→Release stages
+   - Explicit "suppressed bulk leakage" entry
+
+3. **Falsifiability section enhanced**
+   - Added 6th bullet: Ledger consistency
+   - Added guardrail box: "No immunity to falsification"
+   - Each bullet now specifies what would fail
+
+4. **Version updated to v0.3**
+   - Header, date line, and position table updated
+
+### What Was Explicitly NOT Claimed (Anti-Overclaim List)
+
+- ❌ Derivation of $m_\pi$ from first principles
+- ❌ Derivation of $\tau_\pi$ from first principles
+- ❌ Derivation of $m_\ell^2$ helicity suppression factor
+- ❌ Derivation of BR($\mu$)/BR($e$) ratio
+- ❌ Explanation of quark confinement in 5D
+- ❌ Junction-pair as proven (only candidate [P]/[OPEN])
+- ❌ Photon ontology (deferred)
+- ❌ Any numerical fits or parameter tuning
+
+### What Remains [OPEN]
+
+1. Derive $m_\pi$ from 5D binding
+2. Derive $\tau_\pi$ from first principles
+3. Derive $m_\ell^2$ scaling from explicit BC computation
+4. Validate or refute junction-pair micro-ontology
+5. Neutral pion $\pi^0 \to \gamma\gamma$ (requires photon ontology)
+6. Pion-nucleon interactions (coupling to bulk-core junctions)
+
+### Files Modified/Created
+
+- `paper/main.tex` — BabaYaga hardening patches
+- `BABA_YAGA_CHECKLIST_P.md` — New file (red-team verification checklist)
+- `PATCH_NOTES_PION_PHASE.md` — Updated (this section)
+
+### Build Verification
+
+```bash
+cd edc_papers/paper_3_series/13_companion_P_pion_decay/paper/
+xelatex -interaction=nonstopmode main.tex && xelatex main.tex
+# Expected: ~8 pages, no errors, no undefined refs
+```
+
+---
+
+*BabaYaga Pass completed: 2026-01-20*
