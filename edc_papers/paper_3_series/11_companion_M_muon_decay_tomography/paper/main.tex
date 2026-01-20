@@ -1,0 +1,550 @@
+% Companion M: Muon Decay as Thick-Brane Tomography in EDC
+% Version 0.1 — 2026-01-20
+% Build: xelatex main.tex && xelatex main.tex
+
+\documentclass[11pt,a4paper]{article}
+
+% ============================================================
+% PACKAGES
+% ============================================================
+\usepackage{fontspec}
+\IfFontExistsTF{TeX Gyre Termes}{%
+  \setmainfont{TeX Gyre Termes}
+}{%
+  \setmainfont{Times New Roman}[Ligatures=TeX]
+}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,citecolor=green!50!black,urlcolor=blue!70!black}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+
+% TikZ
+\usepackage{tikz}
+\usetikzlibrary{calc,angles,quotes,decorations.markings,decorations.pathmorphing,positioning}
+
+% ============================================================
+% SHARED EDC STYLE FILES
+% ============================================================
+\input{../../../_shared/style/edc_style}
+\input{../../../_shared/style/tikz_style_edc}
+
+% ============================================================
+% DOCUMENT INFO
+% ============================================================
+\title{\textbf{Companion M: Muon Decay as Thick-Brane Tomography}\\[0.3cm]
+\large Elastic Diffusive Cosmology — Paper 3 Series}
+\author{EDC Collaboration}
+\date{Draft v0.1 — January 2026}
+
+% ============================================================
+\begin{document}
+% ============================================================
+
+\maketitle
+
+\begin{abstract}
+We apply the thick-brane microphysics framework developed for neutron decay
+to the purely leptonic process $\mu^- \to e^- + \nu_\mu + \bar{\nu}_e$.
+Unlike the neutron (a bulk-core junction state), the muon is modeled as a
+\emph{brane-dominant excitation}—its primary degrees of freedom reside
+within the brane layer itself. This makes muon decay an ideal ``tomographic
+test'' of the brane absorption/dissipation/release pipeline without the
+complications of baryonic topology. We define the energy bookkeeping ledger,
+establish selection rules for allowed outputs, and introduce the
+\emph{chiral filter} component of the frozen projection operator. No
+numerical fits are performed; the goal is structural consistency.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ============================================================
+\section{Motivation: Why Muon Decay?}
+\label{sec:motivation}
+% ============================================================
+
+\begin{tcolorbox}[edcCornerstone, title=\textbf{Cornerstone: Muon as Brane Tomography}]
+Muon decay ($\mu^- \to e^- + \nu_\mu + \bar{\nu}_e$) is a \emph{purely leptonic}
+weak process. It involves no baryonic topology, no quark flavor transitions,
+and no hadronic complications. If the thick-brane microphysics pipeline
+works for muon decay, this provides strong evidence that the framework is
+not merely ``tuned'' to neutron phenomenology.
+\end{tcolorbox}
+
+\subsection{Strategic Value}
+
+The neutron decay analysis in \emph{Neutron Lifetime from 5D Membrane Cosmology}
+(DOI: \href{https://doi.org/10.5281/zenodo.18262721}{10.5281/zenodo.18262721})
+and \emph{Companion N: Neutron Junction Microphysics}
+(DOI: \href{https://doi.org/10.5281/zenodo.18315110}{10.5281/zenodo.18315110})
+established the bulk$\to$brane$\to$3D pipeline for a \emph{junction state}.
+The neutron's complexity (three-arm Y-junction, baryonic topology, quark
+flavor change) means multiple mechanisms operate simultaneously.
+
+Muon decay strips away these complications:
+\begin{itemize}[nosep]
+    \item No bulk-core junction geometry \tagP{}
+    \item No baryonic number conservation requirement
+    \item Pure brane-layer dynamics \tagP{}
+    \item Same final output structure: $e^-$ + neutrinos
+\end{itemize}
+
+\textbf{Physical Narration:}
+\begin{enumerate}[nosep]
+    \item \textbf{5D cause:} The muon, as a brane-dominant excitation, occupies
+          an unstable mode within the brane layer.
+    \item \textbf{Brane response:} Mode redistribution occurs entirely within
+          the brane layer—no bulk junction relaxation.
+    \item \textbf{3D output:} The frozen projection emits $e^-$, $\nu_\mu$,
+          $\bar{\nu}_e$ as allowed outputs.
+\end{enumerate}
+
+\subsection{What This Document Does \emph{Not} Do}
+
+\begin{tcolorbox}[edcGuardrail, title=\textbf{Epistemic Guardrail}]
+\textbf{No numerical fits:} We do not attempt to derive $\tau_\mu = 2.197 \times 10^{-6}$~s
+from first principles. The muon lifetime is treated as \tagBL{} (baseline).
+Our goal is \emph{structural consistency}: showing that the same pipeline
+that handles neutron decay can accommodate muon decay without contradiction.
+\end{tcolorbox}
+
+% ============================================================
+\section{Thick-Brane Pipeline for Brane-Dominant Excitations}
+\label{sec:pipeline}
+% ============================================================
+
+\subsection{Three-Layer Ontology (Review)}
+
+The thick-brane framework from \emph{Framework v2.0}
+(DOI: \href{https://doi.org/10.5281/zenodo.18299085}{10.5281/zenodo.18299085})
+defines three layers:
+
+\begin{definition}[Three-Layer Ontology] \tagDef{}
+\label{def:three-layer}
+\begin{enumerate}[nosep]
+    \item \textbf{Bulk-core:} 5D interior, $y < -\delta/2$
+    \item \textbf{Brane-layer:} Transition region, $y \in [-\delta/2, +\delta/2]$
+    \item \textbf{3D outputs:} Observer-facing boundary, $y = +\delta/2$
+\end{enumerate}
+where $y$ is the extra-dimensional coordinate and $\delta$ is the brane thickness.
+\end{definition}
+
+\subsection{Muon as Brane-Dominant Excitation}
+
+\begin{postulate}[Muon Ontology] \tagP{}
+\label{post:muon-ontology}
+The muon $\mu^-$ is a \emph{brane-dominant excitation}: a localized,
+metastable mode whose primary degrees of freedom reside within the
+brane layer, not in the bulk-core.
+\end{postulate}
+
+\textbf{Physical Narration:}
+\begin{itemize}[nosep]
+    \item \textbf{5D cause:} Unlike the neutron (bulk junction displaced from
+          Steiner minimum), the muon is a \emph{brane-layer eigenmode} that
+          happens to be unstable.
+    \item \textbf{Brane response:} The instability triggers mode redistribution
+          \emph{within} the brane layer—energy flows to lower-mass modes
+          ($e^-$, neutrinos).
+    \item \textbf{3D output:} The frozen projection maps these modes to
+          observable particles.
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.9]
+    % Background regions
+    \fill[bulk region] (-4,-2) rectangle (-1.5,2);
+    \fill[brane region] (-1.5,-2) rectangle (1.5,2);
+    \fill[observer region] (1.5,-2) rectangle (4,2);
+
+    % Labels
+    \node[section label] at (-2.75,2.4) {\textbf{Bulk-Core}};
+    \node[section label] at (0,2.4) {\textbf{Brane-Layer}};
+    \node[section label] at (2.75,2.4) {\textbf{3D Outputs}};
+
+    % Boundaries
+    \draw[bulk boundary] (-1.5,-2) -- (-1.5,2);
+    \draw[observer boundary] (1.5,-2) -- (1.5,2);
+
+    % Muon in brane layer (not in bulk!)
+    \node[circle, fill=purple!60, minimum size=12pt, inner sep=0pt] (mu) at (0,0) {};
+    \node[below=0.15cm of mu, font=\footnotesize] {$\mu^-$};
+
+    % Annotation: muon is brane-localized
+    \draw[dashed, purple!60!black, thick] (-1.3,0) -- (1.3,0);
+    \node[font=\scriptsize\itshape, text=purple!60!black] at (0,-0.8) {brane-localized mode};
+
+    % Contrast: neutron would have bulk core
+    \node[font=\scriptsize, text=gray] at (-2.75,0) {(no bulk core)};
+
+    % Output particles
+    \node[particle] (e) at (3,0.8) {};
+    \node[neutrino] (nu1) at (3,0) {};
+    \node[neutrino] (nu2) at (3,-0.8) {};
+    \node[right=0.1cm of e, font=\scriptsize] {$e^-$};
+    \node[right=0.1cm of nu1, font=\scriptsize] {$\nu_\mu$};
+    \node[right=0.1cm of nu2, font=\scriptsize] {$\bar{\nu}_e$};
+
+    % Flow arrow
+    \draw[edc flow, purple!60!black] (0.3,0) -- (1.3,0);
+    \node[font=\scriptsize, above] at (0.8,0.1) {$\mathcal{P}_{\mathrm{frozen}}$};
+\end{tikzpicture}
+\caption{Muon as brane-dominant excitation. Unlike the neutron (bulk junction),
+the muon's degrees of freedom are localized within the brane layer itself.
+Decay proceeds via internal mode redistribution, not bulk relaxation.}
+\label{fig:muon-ontology}
+\end{figure}
+
+\subsection{Contrast with Neutron}
+
+\begin{table}[htbp]
+\centering
+\caption{Neutron vs.\ Muon in thick-brane ontology}
+\label{tab:contrast}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Property} & \textbf{Neutron} & \textbf{Muon} \\
+\midrule
+Primary location & Bulk-core (junction) & Brane-layer \\
+Decay trigger & Junction relaxation & Mode instability \\
+Baryonic topology & Yes (3-arm junction) & No \\
+Quark flavor change & Yes ($d \to u$) & No \\
+Output particles & $p + e^- + \bar{\nu}_e$ & $e^- + \nu_\mu + \bar{\nu}_e$ \\
+Lifetime & 878.4~s \tagBL{} & $2.197 \times 10^{-6}$~s \tagBL{} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================
+\section{Energy Bookkeeping Ledger}
+\label{sec:ledger}
+% ============================================================
+
+\begin{tcolorbox}[edcCanonical, title=\textbf{Canonical: Energy Conservation in Muon Decay}]
+The total energy released in muon decay must be accounted for:
+\begin{equation}
+    m_\mu c^2 = E_{e^-} + E_{\nu_\mu} + E_{\bar{\nu}_e} + E_{\mathrm{other}}
+    \label{eq:ledger}
+\end{equation}
+where $E_{\mathrm{other}}$ captures any residual energy (recoil, soft radiation, etc.).
+\end{tcolorbox}
+
+\subsection{Ledger Structure}
+
+Following the pattern established in Companion N, we decompose the energy flow:
+
+\begin{definition}[Energy Partition] \tagDef{}
+\label{def:partition}
+\begin{align}
+    \Delta E_{\mathrm{brane}} &= E_{e^-} + E_{\nu_\mu} + E_{\bar{\nu}_e} \tag{released to 3D} \\
+    E_{\mathrm{other}} &= E_{\mathrm{soft}} + E_{\mathrm{brane\,residual}} \tag{not frozen}
+\end{align}
+\end{definition}
+
+\textbf{Physical Narration:}
+\begin{enumerate}[nosep]
+    \item \textbf{5D cause:} The muon mode (energy $m_\mu c^2$) becomes unstable.
+    \item \textbf{Brane response:} Energy redistributes into brane-layer modes
+          compatible with the frozen projection.
+    \item \textbf{3D output:} Modes satisfying the frozen criterion
+          ($\hbar\omega \gg E_{\mathrm{env}}$) project to observable particles.
+\end{enumerate}
+
+\subsection{Key Difference from Neutron}
+
+In neutron decay, there is a \emph{bulk-core contribution}:
+\[
+    \Delta E_{\mathrm{bulk}} \to \Delta E_{\mathrm{brane}} + E_{\mathrm{residual}}
+\]
+For the muon, this bulk term is absent \tagP{}:
+\[
+    \Delta E_{\mu\,\mathrm{mode}} \to \Delta E_{\mathrm{brane}} + E_{\mathrm{other}}
+\]
+The muon's energy is already ``in'' the brane layer—no bulk$\to$brane pumping
+is required.
+
+\begin{tcolorbox}[edcGuardrail, title=\textbf{Epistemic Guardrail}]
+\textbf{No ``bulk escape'' channel:} In muon decay, we postulate \tagP{} that
+energy cannot escape back into the bulk-core. This is consistent with the
+muon being brane-dominant: it has no bulk degrees of freedom to retreat to.
+\end{tcolorbox}
+
+% ============================================================
+\section{Selection Rules and Allowed Outputs}
+\label{sec:selection}
+% ============================================================
+
+\subsection{Why $e^- + \nu_\mu + \bar{\nu}_e$?}
+
+The observed final state of muon decay is:
+\[
+    \mu^- \to e^- + \nu_\mu + \bar{\nu}_e
+\]
+with branching ratio $\approx 100\%$ \tagBL{}.
+
+In the thick-brane framework, this is not arbitrary: it is the
+\emph{only allowed output configuration} satisfying:
+\begin{enumerate}[nosep]
+    \item \textbf{Charge conservation:} $Q_{\mu} = Q_{e} = -1$
+    \item \textbf{Lepton number conservation:} $L_\mu = 1$, $L_e = 0$ initially;
+          final state has $L_\mu = 1$ (via $\nu_\mu$) and $L_e = 0$
+          (via $e^- + \bar{\nu}_e$ pair)
+    \item \textbf{Energy threshold:} $m_\mu > m_e$ (no other charged leptons allowed)
+    \item \textbf{Frozen projection compatibility:} All outputs must satisfy
+          the frozen criterion $\hbar\omega \gg E_{\mathrm{env}}$
+\end{enumerate}
+
+\begin{definition}[Allowed Output Set] \tagDef{}/\tagDc{}
+\label{def:allowed}
+The allowed output set for muon decay is:
+\[
+    \mathcal{A}_\mu = \{e^-, \nu_\mu, \bar{\nu}_e\}
+\]
+Any other configuration (e.g., $\mu^- \to e^- + \gamma$, $\mu^- \to e^- + e^+ + e^-$)
+is either forbidden by conservation laws or suppressed below $10^{-12}$ \tagBL{}.
+\end{definition}
+
+\textbf{Physical Narration:}
+\begin{itemize}[nosep]
+    \item \textbf{5D cause:} Muon mode instability initiates redistribution.
+    \item \textbf{Brane response:} Only mode combinations in $\mathcal{A}_\mu$
+          can form—the brane layer's mode spectrum constrains the possibilities.
+    \item \textbf{3D output:} The frozen projection maps these to $e^-$,
+          $\nu_\mu$, $\bar{\nu}_e$.
+\end{itemize}
+
+\subsection{Forbidden Channels}
+
+\begin{table}[htbp]
+\centering
+\caption{Forbidden muon decay channels and their suppression mechanism}
+\label{tab:forbidden}
+\begin{tabular}{lll}
+\toprule
+\textbf{Channel} & \textbf{Suppression} & \textbf{EDC interpretation} \\
+\midrule
+$\mu^- \to e^- + \gamma$ & $< 4.2 \times 10^{-13}$ \tagBL{} & Lepton flavor violation \\
+$\mu^- \to e^- + e^+ + e^-$ & $< 1.0 \times 10^{-12}$ \tagBL{} & Mode incompatibility \\
+$\mu^- \to e^- + \nu_e + \bar{\nu}_\mu$ & Forbidden & Wrong lepton numbers \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================
+\section{Frozen Projection as Chiral Filter}
+\label{sec:chiral}
+% ============================================================
+
+\subsection{Refined Projection Operator}
+
+The frozen projection operator, introduced in Companion N, maps brane-layer
+modes to 3D observable particles. For weak processes, this operator must
+account for the observed \emph{chirality/helicity selection} in the outputs.
+
+\begin{definition}[Chiral Filter Decomposition] \tagDef{}/\tagP{}
+\label{def:chiral}
+The frozen projection operator decomposes as:
+\begin{equation}
+    \mathcal{P}_{\mathrm{frozen}} = \mathcal{P}_{\mathrm{energy}} \circ
+    \mathcal{P}_{\mathrm{mode}} \circ \mathcal{P}_{\mathrm{chir}}
+    \label{eq:chiral-decomposition}
+\end{equation}
+where:
+\begin{itemize}[nosep]
+    \item $\mathcal{P}_{\mathrm{energy}}$: Selects modes with $\hbar\omega \gg E_{\mathrm{env}}$ (frozen criterion)
+    \item $\mathcal{P}_{\mathrm{mode}}$: Selects modes compatible with allowed output set $\mathcal{A}$
+    \item $\mathcal{P}_{\mathrm{chir}}$: Selects preferred chirality/helicity channel
+\end{itemize}
+\end{definition}
+
+\begin{tcolorbox}[edcPathway, title=\textbf{Chiral Filter Mechanism}]
+\textbf{Physical picture:} The observer-facing boundary of the brane
+($y = +\delta/2$) has a preferred orientation defined by its normal
+vector $\hat{n}$. This orientation, combined with the brane-layer's
+mode spectrum, acts as a \emph{chiral filter}: modes of one handedness
+couple more strongly to the 3D projection than the other.
+
+\medskip
+\textbf{Consequence:} The weak interaction's ``maximal parity violation''
+emerges from the \emph{geometric asymmetry} of the brane boundary, not
+from an intrinsic property of the interaction vertex.
+\end{tcolorbox}
+
+\textbf{Physical Narration:}
+\begin{enumerate}[nosep]
+    \item \textbf{5D cause:} The brane has two faces: bulk-facing and observer-facing.
+    \item \textbf{Brane response:} Modes in the brane layer can be decomposed
+          into chirality eigenstates. The boundary conditions at $y = +\delta/2$
+          favor one chirality.
+    \item \textbf{3D output:} Observers detect only the ``passed'' chirality—the
+          ``blocked'' component remains in the brane or is reflected.
+\end{enumerate}
+
+\subsection{Chirality Selection in Muon Decay}
+
+In Standard Model language, muon decay produces:
+\begin{itemize}[nosep]
+    \item $e^-$: Left-handed (predominantly)
+    \item $\nu_\mu$: Left-handed
+    \item $\bar{\nu}_e$: Right-handed
+\end{itemize}
+
+In the EDC framework, this pattern arises from $\mathcal{P}_{\mathrm{chir}}$:
+
+\begin{equation}
+    \mathcal{P}_{\mathrm{chir}}: \phi_{\mathrm{brane}} \mapsto
+    \begin{cases}
+        \phi_L & \text{(neutrinos)} \\
+        \bar{\phi}_R & \text{(antineutrinos)} \\
+        \text{mixed} & \text{(charged leptons, mass-dependent)}
+    \end{cases}
+    \label{eq:chiral-selection}
+\end{equation}
+
+\begin{tcolorbox}[edcWarning, title=\textbf{Non-Overclaim Reminder}]
+\textbf{Status:} The chiral filter mechanism is \tagP{}/\tagOpen{}.
+We have not derived the specific form of $\mathcal{P}_{\mathrm{chir}}$ from
+the 5D action. The claim is that such an operator \emph{exists} and
+\emph{can be geometric in origin}—not that we have constructed it explicitly.
+\end{tcolorbox}
+
+% ============================================================
+% FIGURE: Energy Flow Diagram
+% ============================================================
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[edc compact, scale=0.88]
+
+% Nodes
+\node[brane box, minimum width=2.5cm] (mu) at (0,0) {$\mu^-$ mode\\(brane-layer)};
+\node[process box, right=1.8cm of mu] (abs) {Absorption/\\Redistribution};
+\node[process box, right=1.8cm of abs] (diss) {Dissipation/\\Mode population};
+\node[output box, right=1.8cm of diss, minimum width=2.2cm] (out) {3D Outputs\\$e^-, \nu_\mu, \bar{\nu}_e$};
+
+% Arrows with labels
+\draw[edc flow, purple!60!black] (mu) -- node[above, font=\scriptsize] {instability} (abs);
+\draw[edc flow, green!50!black] (abs) -- node[above, font=\scriptsize] {$\Gamma_{\mathrm{eff}}$} (diss);
+\draw[edc flow, blue!60!black] (diss) -- node[above, font=\scriptsize] {$\mathcal{P}_{\mathrm{frozen}}$} (out);
+
+% Phase labels below
+\node[phase label, below=0.4cm of mu] {Initial state};
+\node[phase label, below=0.4cm of abs] {Charging};
+\node[phase label, below=0.4cm of diss] {Mode spectrum};
+\node[phase label, below=0.4cm of out] {Observation};
+
+% Chiral filter annotation
+\draw[dashed, red!60!black] ($(diss.east)!0.5!(out.west)$) ++(0,-0.8) -- ++(0,1.6);
+\node[font=\scriptsize, text=red!60!black, below] at ($(diss.east)!0.5!(out.west) + (0,-1.0)$) {$\mathcal{P}_{\mathrm{chir}}$};
+
+% Ledger closure annotation
+\node[label box, below=1.5cm of abs] (ledger) {\footnotesize Ledger: $m_\mu c^2 = E_e + E_{\nu_\mu} + E_{\bar{\nu}_e} + E_{\mathrm{other}}$};
+\draw[dashed, gray] (ledger.west) -- ++(-1,0);
+\draw[dashed, gray] (ledger.east) -- ++(1,0);
+
+\end{tikzpicture}
+\caption{Energy flow in muon decay. The muon (brane-dominant mode) undergoes
+internal redistribution within the brane layer. The chiral filter
+$\mathcal{P}_{\mathrm{chir}}$ selects the helicity of outputs at the
+observer-facing boundary.}
+\label{fig:energy-flow}
+\end{figure}
+
+% ============================================================
+\section{Falsifiability Guardrails}
+\label{sec:falsifiability}
+% ============================================================
+
+\begin{tcolorbox}[edcGuardrail, title=\textbf{Falsifiability: What Would Break This Model?}]
+The thick-brane tomography picture for muon decay makes the following
+structural predictions. Violation of any would require fundamental revision:
+
+\begin{enumerate}[nosep]
+    \item \textbf{Ledger must close:} If energy accounting shows a deficit
+          that cannot be attributed to $E_{\mathrm{other}}$ (soft radiation,
+          brane residual), the model fails.
+
+    \item \textbf{Only allowed outputs:} If muon decay produced particles
+          outside $\mathcal{A}_\mu = \{e^-, \nu_\mu, \bar{\nu}_e\}$ at
+          observable rates, the selection rule mechanism would be falsified.
+
+    \item \textbf{Chirality must be geometric:} If the chirality pattern
+          could not be explained by boundary geometry (i.e., required
+          intrinsic vertex asymmetry), the chiral filter picture fails.
+
+    \item \textbf{No bulk escape:} If evidence emerged that muon decay
+          deposits energy into bulk modes (not brane or 3D), the
+          brane-dominant ontology would be falsified.
+
+    \item \textbf{Same pipeline, different particle:} If a structurally
+          similar process (e.g., $\tau$ decay) could \emph{not} be
+          accommodated by the same framework, the model loses generality.
+
+    \item \textbf{Lifetime must remain [BL]:} If the model claimed to
+          \emph{predict} $\tau_\mu$ from geometric parameters alone
+          (without fitting), and the prediction disagreed with experiment,
+          the quantitative mapping would be falsified.
+\end{enumerate}
+\end{tcolorbox}
+
+\subsection{What We Do \emph{Not} Claim}
+
+\begin{tcolorbox}[edcWarning, title=\textbf{Non-Overclaim Reminder}]
+\begin{itemize}[nosep]
+    \item $\tau_\mu = 2.197 \times 10^{-6}$~s is \tagBL{} (baseline, not derived)
+    \item The precise form of $\mathcal{P}_{\mathrm{chir}}$ is \tagOpen{}
+    \item The brane-dominant ontology for muon is \tagP{} (postulated, not derived)
+    \item The relationship between $\Gamma_{\mathrm{eff}}$ and microphysics is \tagOpen{}
+\end{itemize}
+\end{tcolorbox}
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+% ============================================================
+
+Muon decay provides a ``clean room'' test of thick-brane microphysics:
+\begin{itemize}[nosep]
+    \item \textbf{Same pipeline:} Absorption$\to$Dissipation$\to$Release
+    \item \textbf{Simpler ontology:} Brane-dominant (no bulk junction)
+    \item \textbf{Same outputs:} $e^-$ + neutrinos (different flavor structure)
+    \item \textbf{New element:} Chiral filter as geometric mechanism
+\end{itemize}
+
+The fact that the same framework accommodates both neutron (bulk junction)
+and muon (brane-dominant) decay without contradiction is a non-trivial
+consistency check. The chiral filter mechanism, while still \tagOpen{},
+provides a geometric interpretation of weak interaction parity violation
+that does not invoke intrinsic vertex asymmetry.
+
+\subsection{Next Steps}
+
+\begin{enumerate}[nosep]
+    \item \textbf{Tau decay:} Apply same pipeline to $\tau \to \ell + \nu + \bar{\nu}$
+    \item \textbf{Pion decay:} Test $\pi^+ \to \mu^+ + \nu_\mu$ (hadron$\to$lepton)
+    \item \textbf{Chiral filter derivation:} Attempt to derive $\mathcal{P}_{\mathrm{chir}}$
+          from boundary conditions at $y = +\delta/2$
+\end{enumerate}
+
+% ============================================================
+% RELATED DOCUMENTS
+% ============================================================
+
+\vfill
+\edcRelatedDocs{Neutron Lifetime from 5D Membrane Cosmology}{10.5281/zenodo.18262721}{%
+    N: \emph{Neutron Junction} (\href{https://doi.org/10.5281/zenodo.18315110}{DOI}) $\cdot$
+    H: \emph{Weak Interactions} (\href{https://doi.org/10.5281/zenodo.18307539}{DOI}) $\cdot$
+    F: \emph{Proton Junction} (\href{https://doi.org/10.5281/zenodo.18302953}{DOI})
+}
+
+% ============================================================
+\end{document}
+% ============================================================
