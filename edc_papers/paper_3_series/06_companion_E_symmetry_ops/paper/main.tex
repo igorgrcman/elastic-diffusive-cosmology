@@ -1,0 +1,197 @@
+% ============================================================================
+% Companion E: Symmetry Layering and Defect Operations in EDC
+% Companion E to Paper 3 (NJSR Edition)
+% Version: 1.0 | Date: 2026-01-18
+% Build: XeLaTeX (Unicode)
+% ============================================================================
+
+\documentclass[11pt,a4paper]{article}
+
+% ============================================================================
+% PACKAGES
+% ============================================================================
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{physics}
+\usepackage{geometry}
+
+% FONTS (TeX Gyre Termes = Times-like with full OpenType support)
+\IfFontExistsTF{TeX Gyre Termes}{%
+  \setmainfont{TeX Gyre Termes}
+  \setsansfont{TeX Gyre Heros}
+}{%
+  \setmainfont{Times New Roman}[Ligatures=TeX]
+  \setsansfont{Helvetica}
+}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{natbib}
+\usepackage{gensymb}
+
+\geometry{margin=2.5cm}
+
+% ============================================================================
+% COLORS FOR EPISTEMIC TAGS
+% ============================================================================
+\definecolor{tagDer}{RGB}{0,100,0}      % Green - Derived
+\definecolor{tagDc}{RGB}{0,80,160}      % Blue - Deduced/Constrained
+\definecolor{tagCal}{RGB}{150,100,0}    % Orange - Calibrated
+\definecolor{tagI}{RGB}{100,0,100}      % Purple - Identified
+\definecolor{tagP}{RGB}{150,0,0}        % Red - Postulated
+\definecolor{tagOpen}{RGB}{128,128,128} % Gray - Open
+\definecolor{tagBL}{RGB}{80,80,80}      % Dark gray - Baseline
+
+% ============================================================================
+% EPISTEMIC TAG COMMANDS
+% ============================================================================
+\newcommand{\tagDer}{\textcolor{tagDer}{\textbf{[Der]}}}
+\newcommand{\tagDc}{\textcolor{tagDc}{\textbf{[Dc]}}}
+\newcommand{\tagCal}{\textcolor{tagCal}{\textbf{[Cal]}}}
+\newcommand{\tagI}{\textcolor{tagI}{\textbf{[I]}}}
+\newcommand{\tagP}{\textcolor{tagP}{\textbf{[P]}}}
+\newcommand{\tagOpen}{\textcolor{tagOpen}{\textbf{[OPEN]}}}
+\newcommand{\tagBL}{\textcolor{tagBL}{\textbf{[BL]}}}
+
+% ============================================================================
+% THEOREM ENVIRONMENTS
+% ============================================================================
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{postulate}{Postulate}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+% ============================================================================
+% CUSTOM COMMANDS
+% ============================================================================
+\newcommand{\Rxi}{R_\xi}
+\newcommand{\Lxi}{L_\xi}
+\newcommand{\re}{r_e}
+\newcommand{\lP}{\ell_P}
+\newcommand{\Mfive}{M_5}
+\newcommand{\Mfour}{M_4}
+\newcommand{\Sone}{S^1}
+\newcommand{\Ztri}{\mathbb{Z}_3}
+\newcommand{\Ztwo}{\mathbb{Z}_2}
+\newcommand{\Zsix}{\mathbb{Z}_6}
+\newcommand{\Diff}{\mathrm{Diff}}
+\newcommand{\Isom}{\mathrm{Isom}}
+\newcommand{\Uone}{U(1)}
+\newcommand{\SUthree}{SU(3)}
+
+% Process operators
+\newcommand{\opE}{\mathcal{E}}
+\newcommand{\opR}{\mathcal{R}}
+\newcommand{\opM}{\mathcal{M}}
+
+% Compton wavelength
+\newcommand{\lambdabar}{\bar{\lambda}}
+
+% ============================================================================
+% TITLE
+% ============================================================================
+\title{\textbf{Symmetry Layering and Defect Operations}\\[0.3em]
+\Large in Elastic Diffusive Cosmology\\[0.5em]
+\normalsize (Companion E to Paper~3: NJSR Edition)}
+\author{Igor Gr\v{c}man}
+\date{January 2026\\[0.5em]
+\small DOI: \href{https://doi.org/10.5281/zenodo.18300199}{10.5281/zenodo.18300199}\\[0.3em]
+\small Repository: \href{https://github.com/igorgrcman/elastic-diffusive-cosmology}{github.com/igorgrcman/elastic-diffusive-cosmology}\\[0.2em]
+\footnotesize (Public artifacts for this paper are in the \texttt{edc\_papers} folder.)}
+
+% ============================================================================
+% DOCUMENT
+% ============================================================================
+\begin{document}
+
+\maketitle
+
+\begin{center}
+\small\textbf{Related Documents:}\\[0.1cm]
+\footnotesize
+\emph{Neutron Lifetime from 5D Membrane Cosmology} (DOI: \href{https://doi.org/10.5281/zenodo.18262721}{10.5281/zenodo.18262721})\\[0.05cm]
+\emph{Framework v2.0} (DOI: \href{https://doi.org/10.5281/zenodo.18299085}{10.5281/zenodo.18299085})\\[0.05cm]
+\textbf{Companions:}\\
+A: \emph{Effective Lagrangian} (\href{https://doi.org/10.5281/zenodo.18292841}{DOI}) ~$\cdot$~
+B: \emph{WKB Prefactor} (\href{https://doi.org/10.5281/zenodo.18299637}{DOI})\\
+C: \emph{5D Reduction} (\href{https://doi.org/10.5281/zenodo.18299751}{DOI}) ~$\cdot$~
+D: \emph{Selection Rules} (\href{https://doi.org/10.5281/zenodo.18299855}{DOI})\\
+F: \emph{Proton Junction} (\href{https://doi.org/10.5281/zenodo.18302953}{DOI}) ~$\cdot$~
+G: \emph{Mass Difference} (\href{https://doi.org/10.5281/zenodo.18303494}{DOI})\\
+H: \emph{Weak Interactions} (\href{https://doi.org/10.5281/zenodo.18307539}{DOI})
+\end{center}
+
+% ============================================================================
+% ABSTRACT
+% ============================================================================
+\begin{abstract}
+\noindent
+This companion paper formalizes the symmetry structure and topological operations within Elastic Diffusive Cosmology (EDC). We present a \emph{layered} description of symmetries acting on the 5D manifold $\Mfive = \Mfour \times \Sone_\xi$: kinematic diffeomorphism invariance on the 4D base, and internal $\Uone$ isometry of the compact dimension generating charge/winding conservation. We define three topological process operators---Excitation ($\opE$), Relaxation ($\opR$), and Merging ($\opM$)---that formalize generation transitions, weak decay, and nuclear binding respectively. A conservation ledger for $\beta^-$ decay demonstrates how topological constraints require a neutral channel, identified in 4D evidence language with the antineutrino.
+
+\textbf{What this paper does:} Provides formal definitions, consistent epistemic tagging, and falsifiability conditions for symmetry and operator structures that the main paper~\cite{paper3} may cite.
+
+\textbf{What this paper does NOT claim:} Full derivation from first principles, replacement of Standard Model phenomenology, or proof of operator dynamics from the 5D action.
+\end{abstract}
+
+\vspace{1em}
+
+% ============================================================================
+% TAGGING STANDARD BOX
+% ============================================================================
+\begin{tcolorbox}[colback=green!5,colframe=green!40!black,title=\textbf{Epistemic Tagging Standard}]
+All claims carry explicit tags indicating derivation status:
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}cl@{}}
+\toprule
+\textbf{Tag} & \textbf{Meaning} \\
+\midrule
+\tagDer{} & Derived: explicit mathematical derivation from stated postulates \\
+\tagDc{} & Deduced/Constrained: follows from assumptions with explicit ansatz \\
+\tagCal{} & Calibrated: parameter fitted to match experimental value \\
+\tagI{} & Identified: pattern matching without full derivation \\
+\tagP{} & Postulated: foundational assumption; not derived \\
+\tagOpen{} & Open: known gap; future work needed \\
+\tagBL{} & Baseline: external empirical input (CODATA, PDG, SM) \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+
+\tableofcontents
+\newpage
+
+% ============================================================================
+% INCLUDE SECTIONS
+% ============================================================================
+\input{sections/01_intro}
+\input{sections/02_geometric_setup}
+\input{sections/03_symmetry_layering}
+\input{sections/04_defect_classification}
+\input{sections/05_process_operators}
+\input{sections/06_beta_decay_ledger}
+\input{sections/07_discussion}
+
+% ============================================================================
+% APPENDICES
+% ============================================================================
+\appendix
+\input{appendices/A_notation}
+\input{appendices/B_claim_registry}
+
+% ============================================================================
+% BIBLIOGRAPHY
+% ============================================================================
+\bibliographystyle{plainnat}
+\bibliography{../bib/references}
+
+\end{document}

@@ -1,0 +1,633 @@
+% ============================================================================
+% PAPER 3 JOURNAL VERSION: Neutron Lifetime from 5D Membrane Cosmology
+% ============================================================================
+% BUILD: xelatex main_journal.tex && xelatex main_journal.tex
+% BRANCH: restructure/paper3-journal-30p
+% PURPOSE: Journal-length (~25-35 pages) with companion references
+% ============================================================================
+\documentclass[11pt,a4paper]{article}
+
+% ============================================================================
+% PATH B SWITCH (inherit from full paper)
+% ============================================================================
+\newif\ifpathB
+\pathBtrue  % PATH B ENABLED
+
+% ============================================================================
+% PACKAGES
+% ============================================================================
+\usepackage{fontspec}
+
+% FONTS (TeX Gyre Termes = Times-like with full OpenType support)
+\IfFontExistsTF{TeX Gyre Termes}{%
+  \setmainfont{TeX Gyre Termes}
+  \setsansfont{TeX Gyre Heros}
+}{%
+  \setmainfont{Times New Roman}[Ligatures=TeX]
+  \setsansfont{Helvetica}
+}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,hypertexnames=false]{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning}
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,skins}
+\usepackage{caption}
+
+% ============================================================================
+% GLOBAL TCOLORBOX STYLE
+% ============================================================================
+\tcbset{
+    pathBbox/.style={
+        width=\linewidth,
+        breakable,
+        enhanced,
+        left=3mm,
+        right=3mm,
+        top=2mm,
+        bottom=2mm,
+        boxrule=0.5pt,
+        fonttitle=\bfseries\small
+    }
+}
+
+% PDF metadata
+\hypersetup{
+  pdftitle={Neutron Lifetime from 5D Membrane Cosmology: NJSR Edition (Journal Version)},
+  pdfauthor={Igor Grcman},
+  pdfsubject={EDC neutron decay model - Journal version},
+  pdfkeywords={neutron lifetime, 5D membrane, EDC, brane soliton, WKB prefactor, golden ratio},
+  pdfcreator={XeLaTeX},
+  pdfproducer={hyperref}
+}
+
+% Suppress hyperref warnings for math in PDF bookmarks
+\pdfstringdefDisableCommands{%
+  \def\pi{pi}%
+  \def\varepsilon{epsilon}%
+  \def\epsilon{epsilon}%
+  \def\Delta{Delta}%
+  \def\Gamma{Gamma}%
+  \def\sigma{sigma}%
+  \def\hbar{hbar}%
+  \def\tau{tau}%
+  \def\to{->}%
+  \def\alpha{alpha}%
+  \def\beta{beta}%
+  \def\kappa{kappa}%
+  \def\lambda{lambda}%
+  \def\mu{mu}%
+  \def\nu{nu}%
+  \def\xi{xi}%
+  \def\rho{rho}%
+  \def\Omega{Omega}%
+  \def\delta{delta}%
+  \def\gamma{gamma}%
+  \def\eta{eta}%
+  \def\theta{theta}%
+  \def\phi{phi}%
+  \def\psi{psi}%
+  \def\omega{omega}%
+  \def\Lambda{Lambda}%
+  \def\Sigma{Sigma}%
+  \def\Phi{Phi}%
+  \def\Psi{Psi}%
+  \def\approx{~}%
+  \def\sim{~}%
+  \def\equiv{=}%
+  \def\neq{!=}%
+  \def\leq{<=}%
+  \def\geq{>=}%
+  \def\cdot{.}%
+  \def\times{x}%
+  \def\pm{+-}%
+  \def\infty{inf}%
+  \def\partial{d}%
+  \def\nabla{grad}%
+  \def\sqrt#1{sqrt(#1)}%
+  \def\frac#1#2{#1/#2}%
+  \def\tfrac#1#2{#1/#2}%
+  \def\mathrm#1{#1}%
+  \def\text#1{#1}%
+  \def\textbf#1{#1}%
+  \def\mathbf#1{#1}%
+  \def\boldsymbol#1{#1}%
+  \def\rm{}%
+  \def\_{}%
+}
+
+% ============================================================================
+% EPISTEMIC MARKERS
+% ============================================================================
+\newcommand{\Dc}{\textcolor{green!60!black}{\textbf{[Dc]}}}
+\newcommand{\Pp}{\textcolor{orange}{\textbf{[P]}}}
+\newcommand{\Dd}{\textcolor{blue}{\textbf{[D]}}}
+\newcommand{\Mm}{\textcolor{purple}{\textbf{[M]}}}
+\newcommand{\Ii}{\textcolor{gray}{\textbf{[I]}}}
+\newcommand{\BL}{\textcolor{brown}{\textbf{[BL]}}}
+\newcommand{\Cal}{\textcolor{cyan!60!black}{\textbf{[Cal]}}}
+\newcommand{\Open}{\textcolor{red}{\textbf{[OPEN]}}}
+
+% ============================================================================
+% SM BASELINE TOGGLE
+% ============================================================================
+\newif\ifSMbaseline
+\SMbaselinetrue
+
+\newenvironment{SMbaselineblock}{%
+    \ifSMbaseline
+    \begin{tcolorbox}[colback=brown!5!white, colframe=brown!50!black,
+        title={\small\BL\ Standard Model Baseline (for comparison only)},
+        fonttitle=\bfseries\small, breakable]
+}{%
+    \end{tcolorbox}
+    \fi
+}
+
+\newcommand{\SMterm}[1]{\ifSMbaseline\textcolor{brown}{#1}\BL\else[SM]\fi}
+
+% ============================================================================
+% THEOREM ENVIRONMENTS
+% ============================================================================
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{postulate}{Postulate}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% ============================================================================
+% CUSTOM COMMANDS
+% ============================================================================
+\newcommand{\VolB}{\mathrm{Vol}(B^3)}
+\newcommand{\AreaS}{\mathrm{Area}(S^3)}
+\newcommand{\Plenum}{\mathcal{P}}
+\newcommand{\Membrane}{\Sigma^3}
+\newcommand{\Bulk}{\mathcal{M}^5}
+\newcommand{\Rdet}{R_{\mathrm{det}}}
+\newcommand{\phitail}{\varphi_{\mathrm{tail}}}
+
+% Framework naming
+\newcommand{\FrameworkNameLong}{Neutron Junction-Slip Reduction}
+\newcommand{\FrameworkNameShort}{NJSR}
+\newcommand{\FrameworkNameEdition}{\FrameworkNameShort\ Edition}
+\newcommand{\FrameworkNameFramework}{\FrameworkNameLong\ (\FrameworkNameShort) framework}
+
+% Canonical notation: bulk-brane exchange current (Framework v2.0)
+\newcommand{\Jbb}[1]{J^{#1}_{\mathrm{bulk}\to\mathrm{brane}}}
+
+% ============================================================================
+% DOCUMENT INFO
+% ============================================================================
+\newcommand{\PaperDOI}{10.5281/zenodo.18262721}
+\newcommand{\PaperDOIURL}{https://doi.org/10.5281/zenodo.18262721}
+
+\title{%
+\textbf{Neutron Lifetime from 5D Membrane Cosmology} \\[0.3cm]
+\Large{WKB Tunneling, Brane-Soliton Structure, and the \FrameworkNameShort\ Framework} \\[0.5cm]
+\large{\textcolor{purple}{Paper 3 --- \FrameworkNameEdition\ (Journal Version)}}
+}
+
+\author{
+Igor Gr\v{c}man\footnote{Corresponding author. Email: igor.grcman@gmail.com}
+\\[0.2cm]
+\small{with computational assistance from AI}
+\\[0.5cm]
+\small{Elastic Diffusive Cosmology Research}
+}
+
+\date{January 2026}
+
+% ============================================================================
+\begin{document}
+% ============================================================================
+
+\maketitle
+
+% Epigraphs
+\begin{quote}\itshape
+``Jedenfalls bin ich \"uberzeugt, da{\ss} der Alte nicht w\"urfelt.''\\
+\hfill--- Albert Einstein, letter to Max Born (4 Dec 1926)~\cite{EinsteinBorn1926}\\[0.35em]
+No --- God plays with compass and triangles.\\
+\hfill--- Igor Gr\v{c}man (author paraphrase)
+\end{quote}
+
+\begin{center}
+\small DOI: \href{\PaperDOIURL}{\PaperDOI}\\[0.2cm]
+\small Repository: \url{https://github.com/igorgrcman/elastic-diffusive-cosmology}\\
+\small\textit{(Public artifacts in \texttt{edc\_papers} folder)}
+\end{center}
+
+\vspace{0.3cm}
+\begin{center}
+\small\textbf{Related Documents:}\\[0.15cm]
+\footnotesize
+\emph{Elastic Diffusive Cosmology: Framework v2.0} (DOI: \href{https://doi.org/10.5281/zenodo.18299085}{10.5281/zenodo.18299085})\\[0.05cm]
+\textbf{Companions:}\\
+A: \emph{Effective Lagrangian} (\href{https://doi.org/10.5281/zenodo.18292841}{DOI}) ~$\cdot$~
+B: \emph{WKB Prefactor} (\href{https://doi.org/10.5281/zenodo.18299637}{DOI})\\
+C: \emph{5D Reduction} (\href{https://doi.org/10.5281/zenodo.18299751}{DOI}) ~$\cdot$~
+D: \emph{Selection Rules} (\href{https://doi.org/10.5281/zenodo.18299855}{DOI})\\
+E: \emph{Symmetry Ops} (\href{https://doi.org/10.5281/zenodo.18300199}{DOI}) ~$\cdot$~
+F: \emph{Proton Junction} (\href{https://doi.org/10.5281/zenodo.18302953}{DOI})\\
+G: \emph{Mass Difference} (\href{https://doi.org/10.5281/zenodo.18303494}{DOI}) ~$\cdot$~
+H: \emph{Weak Interactions} (\href{https://doi.org/10.5281/zenodo.18307539}{DOI})
+\end{center}
+
+% ============================================================================
+% ABSTRACT
+% ============================================================================
+\begin{abstract}
+We present the \textbf{\FrameworkNameFramework} for computing particle lifetimes from
+5D Elastic Diffusive Cosmology (EDC), with the neutron as the primary test case.
+The framework provides:
+\begin{enumerate}
+    \item A WKB tunneling calculation with explicit prefactor $A_0 = (\omega_{\rm well}/2\pi) \cdot \Rdet \cdot C_{\rm zero}$
+    \item Brane-bound soliton structure for the electron ($Q = -1$ defect) with
+          golden-ratio tail exponent $\phitail = (1+\sqrt{5})/2 \approx 1.618$
+    \item Determinant ratio $\Rdet = 0.63 \pm 0.10$ \Dc\ from Gel'fand--Yaglom analysis (method-spread systematic)
+    \item Decay output classification (brane-bound vs bulk-escape) without Standard Model dynamics
+\end{enumerate}
+
+\medskip
+\noindent\textbf{Calibration statement:} We calibrate a single barrier-height scale $V_B$ to the measured
+free-neutron lifetime $\tau_n = 878.4 \pm 0.5$\,s \BL. All other outputs---the functional forms of
+$V(q)$ and $M(q)$ under stated ansätze \Dc, the golden-ratio tail exponent $\phitail$ \Dc, the
+determinant ratio $\Rdet$ \Dc\ (method-spread systematic), and 10/10 verification gates---are
+\emph{not fitted} but follow from the reduction pipeline with $V_B$ held fixed.
+
+\medskip
+\noindent\textbf{This is a journal-length version.} For full forensic derivation chains, verification gates,
+and worked calculations, see the Companion Papers referenced in Section~\ref{sec:companions}.
+
+\medskip
+\noindent\textbf{Guardrail:} \FrameworkNameShort\ uses \textbf{5D EDC language only}---no V--A structure,
+no W boson, no CKM matrix. Standard Model observables serve as calibration benchmarks \BL,
+not as inputs to the derivation.
+\end{abstract}
+
+\vspace{0.5cm}
+\noindent\textbf{Keywords:} neutron lifetime, 5D membrane cosmology, WKB tunneling,
+brane soliton, golden ratio, EDC, determinant ratio
+
+\tableofcontents
+\newpage
+
+% ============================================================================
+% PHANTOM LABELS for appendix references in main_body.tex
+% These resolve refs that point to full-paper appendices → journal companions
+% ============================================================================
+% These labels must be defined BEFORE main_body is input so refs resolve correctly
+\phantomsection\label{app:neutron_lifetime}      % Referenced in main_body → See Companion B
+\phantomsection\label{app:5d_reduction}          % Referenced in main_body → See Companion C
+\phantomsection\label{app:worked_derivation}     % Referenced in main_body → See Companion A
+\phantomsection\label{app:sign_derivation}       % Referenced in main_body → See summary appendix
+% Phantom table label for gates table (main_body references Table~\ref{tab:gates})
+\phantomsection\label{tab:gates}
+
+% ============================================================================
+% MAIN BODY (shared with full paper)
+% ============================================================================
+\input{body_shared/main_body}
+
+% ============================================================================
+% COMPANION PAPERS SECTION (NEW FOR JOURNAL VERSION)
+% Note: Roadmap section is included via main_body.tex
+% ============================================================================
+\section{Companion Papers and Full Derivations}
+\label{sec:companions}
+
+This journal-length paper presents the core narrative and key results. For full derivation
+chains, verification gates, and worked calculations, see the following companion documents:
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{clp{7cm}}
+\toprule
+\textbf{Document} & \textbf{Title} & \textbf{Content} \\
+\midrule
+Framework v2.0 & EDC Mathematical Framework &
+    Complete 5D theory: mass formulas, $\alpha$, Y-junction structure, SU(3) color.
+    DOI: \href{https://doi.org/10.5281/zenodo.18299085}{10.5281/zenodo.18299085} \\[0.3cm]
+Companion A & Effective Lagrangian $L_{\rm eff}$ from 5D Action &
+    Complete derivation of $L_{\rm eff}(q,\dot{q}) = \frac{1}{2}M(q)\dot{q}^2 - V(q)$
+    via Israel junction conditions, with $M(q)$ and $V(q)$ explicit forms.
+    DOI: \href{https://doi.org/10.5281/zenodo.18292841}{10.5281/zenodo.18292841} \\[0.3cm]
+Companion B & WKB Prefactor and Lifetime Calculation &
+    Gel'fand--Yaglom determinant ratio $R_{\rm det} = 0.63 \pm 0.10$, golden-ratio
+    tail exponent $\varphi = 1.618...$, and 10/10 verification gates.
+    DOI: \href{https://doi.org/10.5281/zenodo.18299637}{10.5281/zenodo.18299637} \\[0.3cm]
+Companion C & 5D Reduction Pipeline &
+    Roadmap from brane-world action to 1D mechanics: bulk geometry, embedding,
+    induced metric, extrinsic curvature, and assumption ledger.
+    DOI: \href{https://doi.org/10.5281/zenodo.18299751}{10.5281/zenodo.18299751} \\[0.3cm]
+Companion D & Selection Rules for $\beta^-$ Decay &
+    Topological necessity of neutral mode with $p^\xi \neq 0$; charge, winding,
+    and momentum budget bookkeeping; antineutrino classification.
+    DOI: \href{https://doi.org/10.5281/zenodo.18299855}{10.5281/zenodo.18299855} \\[0.3cm]
+Companion E & Symmetry Layering and Defect Operations &
+    Formal symmetry structure, process operators (Excitation, Relaxation, Merging),
+    conservation ledger for $\beta^-$ decay.
+    DOI: \href{https://doi.org/10.5281/zenodo.18300199}{10.5281/zenodo.18300199} \\
+\bottomrule
+\end{tabular}
+\caption{Companion papers providing full derivation chains. These documents contain the
+forensic-level detail required for independent verification. Available at the Zenodo repository (DOI: 10.5281/zenodo.18262721).}
+\label{tab:companions}
+\end{table}
+
+\noindent\textbf{Navigation guide:}
+\begin{itemize}
+    \item \textbf{This paper} ($\sim$25 pages): narrative, key results, and conclusions---sufficient
+          for understanding the claim and its epistemic status.
+    \item \textbf{Framework v2.0} (38 pages): complete EDC mathematical framework.
+    \item \textbf{Companions A--E} ($\sim$50 pages total): full forensic derivation chain---for readers
+          who wish to audit every step.
+    \item \textbf{Full Paper 3} (147 pages): complete document with all appendices inline, available
+          as \texttt{main\_pathB.pdf} in the repository.
+\end{itemize}
+
+% ============================================================================
+% TECHNICAL SUMMARY
+% ============================================================================
+\section{\FrameworkNameShort: Technical Summary}
+\label{sec:tech_summary}
+
+This section provides a condensed technical summary of the \FrameworkNameShort\ framework.
+
+\subsection{Language Guardrail}
+
+The \FrameworkNameShort\ framework uses \textbf{5D EDC language only}:
+\begin{itemize}
+    \item No V--A structure (replaced by junction-slip topology)
+    \item No W boson propagator (replaced by collective-coordinate tunneling)
+    \item No CKM matrix (replaced by geometric phase factors)
+\end{itemize}
+Standard Model observables serve as calibration benchmarks \BL, not as inputs.
+
+\subsection{Module Summary}
+
+The calculation pipeline consists of the following modules:
+\begin{enumerate}
+    \item \textbf{5D Action} $\to$ collective coordinate $q$ (Companion~C: \emph{5D Action Reduction Pipeline})
+    \item \textbf{Dimensional reduction} $\to$ $S_{\rm eff}[q] = \int dt\, \left(\frac{1}{2}M(q)\dot{q}^2 - V(q)\right)$ (Companion~A: \emph{Effective Lagrangian})
+    \item \textbf{WKB tunneling} $\to$ decay rate $\Gamma = A_0 e^{-2B}$ (Companion~B: \emph{WKB Prefactor})
+    \item \textbf{Calibration} $\to$ $V_B$ fitted to $\tau_n = 878.4$\,s \Cal
+\end{enumerate}
+
+\subsection{Key Results}
+
+\begin{enumerate}
+    \item Golden-ratio tail exponent: $\phitail = (1+\sqrt{5})/2$ \Dc
+    \item Determinant ratio: $\Rdet = 0.63 \pm 0.10$ \Dc
+    \item Verification gates: 10/10 passed \Dc
+    \item Single calibration parameter: $V_B$ \Cal
+\end{enumerate}
+
+\subsection{Narrative Arc: Symmetry Through Saturation}
+\label{subsec:narrative_arc}
+
+The EDC program unfolds through three conceptual stages, each with distinct
+epistemic status:
+
+\paragraph{Act I: $(e, p)$ Topology Distinction \Dc.}
+The electron and proton represent fundamentally different membrane defect classes.
+The electron is a surface defect (simple vortex, $B^3$ configuration space, winding $W = -1$);
+the proton is a volume defect (Y-junction, $S^3 \times S^3 \times S^3$ configuration space).
+This topological distinction yields the mass ratio $m_p/m_e = 6\pi^5$ (0.01\% agreement)
+and explains why the electron is brane-confined while baryons have flux-tube extensions.
+
+\paragraph{Act II: Muon as Higher-Overlap Generational Mode \Pp.}
+The muon is postulated to be a second-generation leptonic defect characterized by
+increased ``overlap'' with baryonic internal geometry. In this picture, the muon
+samples a larger portion of the Y-junction configuration space than the electron,
+yielding higher effective mass. The mass relation $m_\mu/m_e = \frac{3}{2}(1 + \alpha^{-1})$
+(0.14\% agreement) is consistent with this overlap interpretation, but the mechanism
+remains \Pp---a conjecture awaiting derivation from the 5D action.
+
+\paragraph{Act III: Tau and the Saturation Hypothesis \Pp.}
+The tau represents maximal leptonic overlap with baryonic geometry before topological
+instability sets in. The \textbf{Saturation Hypothesis} \Pp\ proposes that no further
+stable lepton generation exists because the tau already saturates the available
+overlap regime. This is explicitly a conjecture: the ``saturation'' criterion has not
+been derived from the action, and the absence of a fourth generation is imposed, not proven.
+
+\medskip
+\noindent\textbf{Status summary:} Act~I is derived (\Dc); Acts~II and III are
+postulated (\Pp) and require future derivation to upgrade their epistemic standing.
+
+\subsection{Strong-Sector Vocabulary}
+\label{subsec:strong_sector}
+
+The Y-junction model provides natural mappings for strong-sector concepts
+(see~\cite{EDC_Paper2} for detailed derivations):
+\begin{itemize}
+    \item \textbf{Color (SU(3)):} The 8 gluon modes emerge from Y-junction arm
+          permutation algebra \Dc---the junction has $\mathbb{Z}_6$ symmetry generating
+          8 independent operations matching the 8 generators of SU(3).
+    \item \textbf{Quarks:} Leg endpoints of the Y-junction; confined by infinite
+          string energy \Pp.
+    \item \textbf{Spin, helicity, chirality:} Conserved quantities tracked via the
+          conservation ledger \BL. These are QFT inputs, not re-derived within EDC;
+          ledger closure ensures consistency across decay channels.
+\end{itemize}
+
+\subsection{Adopted Values}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lcll}
+\toprule
+\textbf{Quantity} & \textbf{Value} & \textbf{Status} & \textbf{Source} \\
+\midrule
+$\tau_n$ & $878.4 \pm 0.5$\,s & \BL & PDG 2024 \\
+$\phitail$ & $1.618...$ & \Dc & Asymptotic ODE analysis \\
+$\Rdet$ & $0.63 \pm 0.10$ & \Dc & Gel'fand--Yaglom \\
+$V_B$ & (calibrated) & \Cal & Fitted to $\tau_n$ \\
+\bottomrule
+\end{tabular}
+\caption{Key quantities and their epistemic status in the \FrameworkNameShort\ framework.}
+\label{tab:adopted}
+\end{table}
+
+% ============================================================================
+% SUMMARY APPENDICES (short, essential only)
+% ============================================================================
+\appendix
+
+\section{Neutron Instability and Beta Decay (Summary)}
+\label{app:neutron}
+
+The neutron is modeled as an asymmetric Y-junction in the 5D membrane framework.
+Unlike the proton (symmetric Y-junction, stable), the neutron has stored
+configurational energy $\Delta E_{\rm config} > 0$ that can be released through
+a junction-slip transition.
+
+The decay $n \to p + e^- + \bar{\nu}_e$ is interpreted as a collective-coordinate
+tunneling event where the asymmetric junction relaxes to the symmetric configuration
+while emitting brane-bound (electron) and bulk-escape (antineutrino) defects.
+
+\textbf{For full derivation:} See Companion~B (\emph{WKB Prefactor and Neutron Lifetime Calculation}, DOI: \href{https://doi.org/10.5281/zenodo.18299637}{10.5281/zenodo.18299637}) and the full Paper~3 Appendix~A.
+
+\section{Matter-Antimatter Asymmetry (Summary)}
+\label{app:matter_antimatter}
+
+The INFLOW/OUTFLOW framework proposes that cosmological particle creation draws
+energy from the 5D Plenum, eliminating the need for antimatter as a conservation
+partner. Under assumptions A1--A6:
+\begin{align}
+\delta S_{\rm INFLOW} &< 0 \quad \text{(energetically favored)} \\
+\delta S_{\rm OUTFLOW} &> 0 \quad \text{(energetically suppressed)}
+\end{align}
+
+This replaces the Sakharov conditions with Plenum properties. The sign derivation
+remains \Open\ pending a first-principles calculation.
+
+\textbf{For full derivation:} See the full Paper 3 Appendix B.
+
+\section{Mathematical Formalization (Summary)}
+\label{app:formalization}
+
+The INFLOW/OUTFLOW formalism rests on assumptions A1--A6:
+\begin{enumerate}
+    \item[A1.] Plenum has positive pressure: $P_{\rm bulk} > 0$
+    \item[A2.] Energy conservation in 5D: $\nabla_A T^{AB} = 0$
+    \item[A3.] Membrane is a codimension-1 hypersurface
+    \item[A4.] Defects are localized perturbations of the membrane
+    \item[A5.] INFLOW defects have $J^\xi > 0$ (energy flows into membrane)
+    \item[A6.] OUTFLOW defects have $J^\xi < 0$ (energy flows out of membrane)
+\end{enumerate}
+
+\medskip\noindent
+\textbf{Canonical energy-exchange statement} (Framework v2.0, Remark~4.5):
+\[
+\nabla_A T^{AB}_{(5)}=0\ (A,B=0,\dots,4),\qquad
+\nabla_\mu T^{\mu\nu}_{\mathrm{brane}}=-\,\Jbb{\nu}\ (\mu,\nu=0,\dots,3).
+\]
+Sign convention: $\Jbb{\nu}>0$ denotes bulk$\to$brane (INFLOW).
+
+\emph{This block is quoted verbatim from Framework v2.0, Remark~4.5; Framework remains the canonical source.}
+
+\textbf{For full derivation:} See the full Paper 3 Appendix C.
+
+\section{Collective Coordinate $q$: Geometric Definition (Summary)}
+\label{app:q_geometry}
+
+The collective coordinate $q$ is defined as the normalized ``openness'' of the
+junction defect:
+\begin{equation}
+q \equiv \frac{A_{\rm junction}}{A_0}
+\end{equation}
+where $A_{\rm junction}$ is the junction cross-sectional area and $A_0$ is a
+reference scale (electron Compton wavelength squared).
+
+The range is $q \in [0, 1]$ where:
+\begin{itemize}
+    \item $q = 0$: closed junction (stable proton)
+    \item $q = 1$: fully open junction (decay threshold)
+\end{itemize}
+
+\textbf{For full derivation:} See Companion~D (\emph{Selection Rules for Neutron Beta Decay}, DOI: \href{https://doi.org/10.5281/zenodo.18299855}{10.5281/zenodo.18299855}) and the full Paper~3 Appendix~E.
+
+% ============================================================================
+% ACKNOWLEDGMENTS
+% ============================================================================
+\section*{Acknowledgments}
+
+This work builds on the EDC framework developed in the \emph{EDC Theory Book} v17.49~\cite{EDC_Book}
+and the companion paper~\cite{EDC_Paper2}.
+Terminology and the 3D/4D $\leftrightarrow$ 5D mapping follow the \emph{Framework Reference Document v2.0}~\cite{grcman2026_framework_v2}.
+
+% ============================================================================
+% BIBLIOGRAPHY
+% ============================================================================
+\begin{thebibliography}{99}
+
+\bibitem{EDC_Book}
+I.~Gr\v{c}man, ``Elastic Diffusive Cosmology: A 5D Membrane Framework for
+Fundamental Physics,'' version 17.49, Zenodo (2026).
+\href{https://doi.org/10.5281/zenodo.18176174}{doi:10.5281/zenodo.18176174}.
+
+\bibitem{EDC_Paper2}
+I.~Gr\v{c}man, ``Geometric Structure of Electron and Proton in 5D Membrane
+Cosmology: Derivation of the Fine-Structure Constant,'' Zenodo (2026).
+\href{https://doi.org/10.5281/zenodo.18211854}{doi:10.5281/zenodo.18211854}.
+
+% Note: EDCPartI_Zenodo and EDCAlphaReport_Zenodo removed (duplicates of EDC_Book and EDC_Paper2)
+
+\bibitem{EinsteinBorn1926}
+A.~Einstein and M.~Born, \emph{The Born--Einstein Letters: Correspondence between Albert Einstein and Max and Hedwig Born 1916--1955}, translated by I.~Born (Macmillan, London, 1971), letter dated 4 December 1926.
+
+\bibitem{Sakharov1967}
+A.~D.~Sakharov, ``Violation of CP invariance, C asymmetry, and baryon
+asymmetry of the universe,'' JETP Lett. \textbf{5}, 24 (1967).
+
+\bibitem{PDG2024}
+Particle Data Group, ``Review of Particle Physics,''
+Phys. Rev. D \textbf{110}, 030001 (2024).
+
+\bibitem{AMS02}
+AMS Collaboration, ``The Alpha Magnetic Spectrometer (AMS) on the
+International Space Station,'' Phys. Rep. \textbf{894}, 1 (2021).
+
+\bibitem{FermiLAT}
+Fermi-LAT Collaboration, ``Search for gamma-ray emission from
+dark matter annihilation,'' Phys. Rev. D \textbf{91}, 122002 (2015).
+
+\bibitem{FermiGamma}
+Fermi-LAT Collaboration, ``Constraints on Galactic dark matter
+annihilation from gamma-ray observations,'' Phys. Rev. D \textbf{103}, 083016 (2021).
+
+% Companion paper references
+\bibitem{Companion_A}
+I.~Gr\v{c}man, ``Derivation of the Effective Lagrangian $L_{\rm eff}(q,\dot{q})$
+from the 5D Einstein-Hilbert Action,''
+Zenodo (2026). [Companion A to Paper 3]
+\href{https://doi.org/10.5281/zenodo.18292841}{doi:10.5281/zenodo.18292841}.
+
+\bibitem{Companion_B}
+I.~Gr\v{c}man, ``WKB Prefactor and Neutron Lifetime Calculation
+in Elastic Diffusive Cosmology,''
+Zenodo (2026). [Companion B to Paper 3]
+\href{https://doi.org/10.5281/zenodo.18299637}{doi:10.5281/zenodo.18299637}.
+
+\bibitem{Companion_C}
+I.~Gr\v{c}man, ``5D Action Reduction Pipeline:
+From Brane-World Gravity to Effective 1D Collective Dynamics,''
+Zenodo (2026). [Companion C to Paper 3]
+\href{https://doi.org/10.5281/zenodo.18299751}{doi:10.5281/zenodo.18299751}.
+
+\bibitem{Companion_D}
+I.~Gr\v{c}man, ``Selection Rules for Neutron $\beta^-$ Decay
+in Elastic Diffusive Cosmology,''
+Zenodo (2026). [Companion D to Paper 3]
+\href{https://doi.org/10.5281/zenodo.18299855}{doi:10.5281/zenodo.18299855}.
+
+\bibitem{grcman2026_framework_v2}
+I.~Gr\v{c}man, ``EDC 5D Complete Mathematical Framework: Reference Document v2.0,''
+Zenodo (2026).
+\href{https://doi.org/10.5281/zenodo.18299085}{doi:10.5281/zenodo.18299085}.
+
+\end{thebibliography}
+
+% ============================================================================
+\end{document}
+% ============================================================================

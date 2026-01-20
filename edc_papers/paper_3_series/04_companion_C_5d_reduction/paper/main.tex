@@ -1,0 +1,521 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% COMPANION NOTE C: 5D Action Reduction Pipeline
+%% From Brane-World Action to Effective 1D Mechanics
+%%
+%% Companion C to Paper 3 (NJSR Edition)
+%% Build: XeLaTeX (Unicode)
+%%
+%% Author: Igor Grčman
+%% Date: January 2026
+%% Status: Reviewer-grade, epistemic cleanup
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+%% ===== PACKAGES =====
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,theorems}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[style=numeric-comp,sorting=none,backend=biber]{biblatex}
+\addbibresource{refs_5d.bib}
+
+\geometry{margin=1in}
+
+%% ===== FONTS (fallback to default if TeX Gyre not available) =====
+\IfFontExistsTF{TeX Gyre Termes}{%
+  \setmainfont{TeX Gyre Termes}
+  \setsansfont{TeX Gyre Heros}
+}{%
+  \setmainfont{Times New Roman}[Ligatures=TeX]
+  \setsansfont{Helvetica}
+}
+
+%% ===== CUSTOM COLORS =====
+\definecolor{derivedblue}{RGB}{0,100,180}
+\definecolor{conditionalgreen}{RGB}{0,128,100}
+\definecolor{proposedred}{RGB}{180,0,0}
+\definecolor{mathpurple}{RGB}{120,0,120}
+\definecolor{openred}{RGB}{200,0,0}
+
+%% ===== THEOREM ENVIRONMENTS =====
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{theorem}[proposition]{Theorem}
+\newtheorem{lemma}[proposition]{Lemma}
+\newtheorem{corollary}[proposition]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[proposition]{Definition}
+\newtheorem{postulate}[proposition]{Postulate}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+%% ===== EPISTEMIC TAG COMMANDS =====
+\newcommand{\tagDer}{\textcolor{derivedblue}{\textbf{[Der]}}}
+\newcommand{\tagDc}{\textcolor{conditionalgreen}{\textbf{[Dc]}}}
+\newcommand{\tagDd}{\textcolor{derivedblue}{\textbf{[Dd]}}}
+\newcommand{\tagP}{\textcolor{proposedred}{\textbf{[P]}}}
+\newcommand{\tagM}{\textcolor{mathpurple}{\textbf{[M]}}}
+\newcommand{\tagBL}{\textcolor{gray}{\textbf{[BL]}}}
+\newcommand{\tagOPEN}{\textcolor{openred}{\textbf{[OPEN]}}}
+
+%% ===== TITLE =====
+\title{\textbf{5D Action Reduction Pipeline}\\[0.5em]
+\large From Brane-World Gravity to Effective 1D Collective Dynamics\\[0.3em]
+\normalsize (Companion C to Paper~3: NJSR Edition)}
+\author{Igor Gr\v{c}man}
+\date{January 2026\\[0.5em]
+\small DOI: \href{https://doi.org/10.5281/zenodo.18299751}{10.5281/zenodo.18299751}\\[0.3em]
+\small Repository: \href{https://github.com/igorgrcman/elastic-diffusive-cosmology}{github.com/igorgrcman/elastic-diffusive-cosmology}\\[0.2em]
+\footnotesize (Public artifacts for this paper are in the \texttt{edc\_papers} folder.)}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+\small\textbf{Related Documents:}\\[0.1cm]
+\footnotesize
+\emph{Neutron Lifetime from 5D Membrane Cosmology} (DOI: \href{https://doi.org/10.5281/zenodo.18262721}{10.5281/zenodo.18262721})\\[0.05cm]
+\emph{Framework v2.0} (DOI: \href{https://doi.org/10.5281/zenodo.18299085}{10.5281/zenodo.18299085})\\[0.05cm]
+\textbf{Companions:}\\
+A: \emph{Effective Lagrangian} (\href{https://doi.org/10.5281/zenodo.18292841}{DOI}) ~$\cdot$~
+B: \emph{WKB Prefactor} (\href{https://doi.org/10.5281/zenodo.18299637}{DOI})\\
+D: \emph{Selection Rules} (\href{https://doi.org/10.5281/zenodo.18299855}{DOI}) ~$\cdot$~
+E: \emph{Symmetry Ops} (\href{https://doi.org/10.5281/zenodo.18300199}{DOI})\\
+F: \emph{Proton Junction} (\href{https://doi.org/10.5281/zenodo.18302953}{DOI}) ~$\cdot$~
+G: \emph{Mass Difference} (\href{https://doi.org/10.5281/zenodo.18303494}{DOI})\\
+H: \emph{Weak Interactions} (\href{https://doi.org/10.5281/zenodo.18307539}{DOI})
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ABSTRACT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{abstract}
+\noindent
+This companion note documents the dimensional reduction pipeline from the 5D brane-world action to the effective 1D mechanical system $S_{\rm eff}[q] = \int dt \left(\frac{1}{2}M(q)\dot{q}^2 - V(q)\right)$. We present: (i)~the bulk geometry ansatz (warped AdS$_5$); (ii)~the brane embedding with collective coordinate $q$; (iii)~the induced geometry and extrinsic curvature; (iv)~the Israel junction conditions; and (v)~the extraction of $M(q)$ and $V(q)$ from the action. All steps are tagged with epistemic status (\tagDer, \tagDc, \tagP, \tagOPEN). The full forensic-level worked derivation is in the main paper~\cite{paper3}, Appendix~J; this note provides the conceptual roadmap and key results.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 1: OVERVIEW
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Overview and Reduction Chain}
+
+\subsection{The Complete Pipeline}
+
+The dimensional reduction proceeds in stages:
+
+\begin{equation}
+\boxed{
+\underbrace{S_{\rm 5D}}_{\text{bulk + GHY + brane}}
+\xrightarrow{\text{embedding}}
+\underbrace{S[\phi(x;q)]}_{\text{defect profile}}
+\xrightarrow{\text{collective coord}}
+\underbrace{S_{\rm eff}[q]}_{\text{1D mechanics}}
+}
+\end{equation}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{cll}
+\toprule
+\textbf{Stage} & \textbf{Content} & \textbf{Status} \\
+\midrule
+0 & Bulk geometry: AdS$_5$ from Einstein equations & \tagDc \\
+1 & Bulk metric ansatz: $ds^2_5 = e^{-2|y|/\ell}\eta_{\mu\nu}dx^\mu dx^\nu + dy^2$ & \tagP \\
+2 & Brane embedding: $X^A(\sigma^\mu; q) = (\sigma^\mu, f(r;q))$ & \tagP \\
+3 & Induced metric $h_{\mu\nu}$ and extrinsic curvature $K_{\mu\nu}$ & \tagDer \\
+4 & Israel junction conditions & \tagDer \\
+5 & Defect profile: Gaussian $f(r;q) = A(q) e^{-r^2/2w^2}$ & \tagP \\
+6 & $M(q)$ from kinetic term & \tagDc \\
+7 & $V(q)$ from static energy & \tagDc \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Epistemic Legend}
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!70!black, title={\textbf{Epistemic Status Tags}}]
+\begin{tabular}{cl}
+\tagDer & \textbf{Derived} --- explicit calculation from stated premises \\
+\tagDc & \textbf{Decisively constrained} --- conditional on approximations \\
+\tagDd & \textbf{Definitional} --- structural/mathematical identity \\
+\tagP & \textbf{Proposed} --- ansatz, not derived from $\delta S = 0$ \\
+\tagM & \textbf{Mathematics} --- pure mathematical theorem \\
+\tagOPEN & \textbf{Open} --- not yet derived
+\end{tabular}
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 2: BULK GEOMETRY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Stage 0--1: Bulk Geometry}
+
+\subsection{From 5D Einstein Equations to AdS$_5$ (Conditional)}
+
+\begin{postulate}[Symmetry Assumptions] \tagDd
+\begin{enumerate}[label=(A\arabic*)]
+\item 5D spacetime: $\mathcal{M}^5 = \mathcal{M}^4 \times I$
+\item 4D Poincaré invariance on constant-$\xi$ slices
+\item Static configuration
+\item Gaussian normal coordinates
+\end{enumerate}
+\end{postulate}
+
+\begin{lemma}[Symmetry-Restricted Metric] \tagDd
+Under (A1)--(A4), the 5D metric takes the form:
+\begin{equation}
+ds^2_5 = e^{-2A(\xi)} \eta_{\mu\nu} dx^\mu dx^\nu + d\xi^2
+\end{equation}
+\end{lemma}
+
+\begin{postulate}[Dynamical Assumptions] \tagP
+\begin{enumerate}[label=(A\arabic*), start=5]
+\item 5D Einstein-Hilbert action: $S_{\rm bulk} = \frac{1}{2\kappa_5^2}\int d^5x \sqrt{-g}(R - 2\Lambda_5)$
+\item Negative cosmological constant: $\Lambda_5 < 0$
+\item $\mathbb{Z}_2$ orbifold symmetry
+\item Thin brane with tension $\sigma$ at $\xi = 0$
+\end{enumerate}
+\end{postulate}
+
+\begin{theorem}[Warp Factor Solution] \tagDc
+From the $(\xi\xi)$-component of Einstein's equations:
+\begin{equation}
+\boxed{A(\xi) = k|\xi|, \quad k^2 = -\frac{\Lambda_5}{6}}
+\end{equation}
+\end{theorem}
+
+\begin{corollary}[Working Metric] \tagP
+We adopt the warped AdS$_5$ metric:
+\begin{equation}
+\boxed{ds^2_5 = e^{-2|y|/\ell} \eta_{\mu\nu} dx^\mu dx^\nu + dy^2}
+\label{eq:bulk_metric}
+\end{equation}
+where $\ell = 1/k$ is the AdS radius.
+\end{corollary}
+
+\begin{remark}
+The physical origin of (A5)--(A8) from EDC Plenum dynamics remains \tagOPEN. We proceed with \eqref{eq:bulk_metric} as an ansatz.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 3: BRANE EMBEDDING
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Stage 2: Brane Embedding}
+
+\subsection{Embedding Map}
+
+\begin{postulate}[Brane Embedding] \tagP
+The 3-brane worldvolume $\Sigma^4$ is embedded via:
+\begin{equation}
+\boxed{X^A : \Sigma^4 \to \mathcal{M}^5, \quad X^A(\sigma^\mu; q) = (\sigma^\mu, f(r; q))}
+\label{eq:embedding}
+\end{equation}
+where:
+\begin{itemize}
+\item $\sigma^\mu = (t, x^1, x^2, x^3)$ are worldvolume coordinates
+\item $r = \sqrt{(x^1)^2 + (x^2)^2 + (x^3)^2}$ is the radial distance
+\item $q \in [0,1]$ is the collective coordinate
+\item $f(r;q)$ is the defect profile function
+\end{itemize}
+\end{postulate}
+
+\subsection{Collective Coordinate Definition}
+
+\begin{definition}[Collective Coordinate] \tagP
+The coordinate $q$ parameterizes the junction asymmetry:
+\begin{itemize}
+\item $q = 0$: Symmetric Y-junction $\Rightarrow$ proton (stable)
+\item $q = 1$: Maximum asymmetry $\Rightarrow$ neutron (metastable)
+\item $q \in (0,1)$: Intermediate configurations $\Rightarrow$ transition states
+\end{itemize}
+\end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 4: INDUCED GEOMETRY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Stage 3: Induced Geometry}
+
+\subsection{Tangent Vectors and Induced Metric}
+
+\begin{proposition}[Tangent Vectors] \tagDer
+\begin{equation}
+e^A_\mu = \frac{\partial X^A}{\partial \sigma^\mu} = (\delta^\nu_\mu, \partial_\mu f)
+\end{equation}
+\end{proposition}
+
+\begin{proposition}[Induced Metric] \tagDer
+\begin{equation}
+\boxed{h_{\mu\nu} = g_{AB} e^A_\mu e^B_\nu = a^2(f) \eta_{\mu\nu} + \partial_\mu f \partial_\nu f}
+\label{eq:induced_metric}
+\end{equation}
+where $a(f) = e^{-|f|/\ell}$ is the warp factor evaluated on the brane.
+\end{proposition}
+
+\subsection{Unit Normal}
+
+\begin{proposition}[Unit Normal] \tagDer
+\begin{equation}
+n^A = \frac{1}{\sqrt{1 + a^{-2}|\nabla f|^2}} \left( -a^{-2} \partial^\mu f, 1 \right)
+\end{equation}
+\end{proposition}
+
+\subsection{Extrinsic Curvature}
+
+\begin{definition}[Extrinsic Curvature] \tagDd
+\begin{equation}
+K_{\mu\nu} = -\nabla_\mu n_\nu = -e^A_\mu e^B_\nu \nabla_A n_B
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Explicit Form] \tagDer
+\begin{equation}
+\boxed{K_{\mu\nu} = \frac{1}{\sqrt{1 + a^{-2}|\nabla f|^2}} \left[ \nabla_\mu \nabla_\nu f - k\, {\rm sgn}(f)\, a^2 \eta_{\mu\nu} \right]}
+\end{equation}
+\end{proposition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 5: ISRAEL JUNCTION CONDITIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Stage 4: Israel Junction Conditions}
+
+\begin{theorem}[Israel Junction Conditions] \tagDer
+For a hypersurface with $\mathbb{Z}_2$ symmetry:
+\begin{equation}
+\boxed{[K_{\mu\nu}] - h_{\mu\nu}[K] = -\kappa_5^2 S_{\mu\nu}}
+\label{eq:israel}
+\end{equation}
+where $S_{\mu\nu} = -\sigma h_{\mu\nu} + \tau_{\mu\nu}^{\rm defect}$ is the brane stress-energy.
+\end{theorem}
+
+\begin{corollary}[Fine-Tuning Condition] \tagDc
+For a flat brane ($f = 0$), the Israel condition yields the RS fine-tuning:
+\begin{equation}
+\sigma = \frac{6k}{\kappa_5^2}
+\end{equation}
+\end{corollary}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 6: DEFECT PROFILE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Stage 5: Defect Profile Ansatz}
+
+\begin{postulate}[Gaussian Profile] \tagP
+\begin{equation}
+\boxed{f(r; q) = A(q) \, e^{-r^2/2w^2}}
+\label{eq:gaussian_profile}
+\end{equation}
+where:
+\begin{itemize}
+\item $A(q)$ is the amplitude function (depends on collective coordinate)
+\item $w$ is the characteristic width (set by defect scale)
+\end{itemize}
+\end{postulate}
+
+\begin{postulate}[Amplitude Parameterization] \tagP
+\begin{equation}
+A(q) = A_{\rm max} \cdot q(1-q)
+\label{eq:amplitude}
+\end{equation}
+This satisfies boundary conditions $A(0) = A(1) = 0$.
+\end{postulate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 7: SUPERMETRIC
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Stage 6: Supermetric $M(q)$}
+
+\begin{theorem}[Supermetric Formula] \tagDc
+\label{thm:supermetric}
+From the kinetic term in the brane action:
+\begin{equation}
+\boxed{M(q) = \sigma \int d^3\sigma \, a^2(f) \sqrt{1 + a^{-2}|\nabla f|^2} \left( \frac{\partial f}{\partial q} \right)^2}
+\label{eq:supermetric}
+\end{equation}
+\end{theorem}
+
+\begin{proposition}[Explicit Form] \tagDc
+For the Gaussian profile \eqref{eq:gaussian_profile} with amplitude \eqref{eq:amplitude}:
+\begin{equation}
+\boxed{M(q) = M_0 \cdot (1 - 2q)^2}
+\label{eq:Mq_explicit}
+\end{equation}
+where $M_0 = 4\pi \sigma a_0^2 A_{\rm max}^2 w^3 \cdot \mathcal{J}$.
+\end{proposition}
+
+\begin{remark}
+The supermetric vanishes at $q = 1/2$ (barrier top), reflecting the geometric singularity in configuration space.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 8: POTENTIAL
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Stage 7: Potential $V(q)$}
+
+\begin{theorem}[Static Energy Functional] \tagDc
+The potential arises from the static energy:
+\begin{equation}
+V(q) = E_{\rm static}[f(\cdot; q)] - E_0
+\end{equation}
+where $E_{\rm static}$ is evaluated on the equilibrium profile.
+\end{theorem}
+
+\begin{proposition}[Quartic Barrier] \tagDc
+For the Gaussian profile:
+\begin{equation}
+\boxed{V(q) = V_B \cdot q^2(1-q)^2}
+\label{eq:Vq}
+\end{equation}
+with barrier height $V_B$ depending on tension and geometry parameters.
+\end{proposition}
+
+\begin{proposition}[Combined Potential with Q-Value] \tagDc
+Including the endpoint energy difference:
+\begin{equation}
+\boxed{V(q) = 16 V_B \, q^2(1-q)^2 + Q \cdot q}
+\label{eq:Vq_full}
+\end{equation}
+where $Q = 0.782$ MeV \tagBL{} is the Q-value of neutron decay.
+\end{proposition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 9: FINAL EFFECTIVE ACTION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Final Result: Effective 1D Action}
+
+\begin{theorem}[Effective Action] \tagDc
+The dimensional reduction yields:
+\begin{equation}
+\boxed{S_{\rm eff}[q] = \int dt \left( \frac{1}{2} M(q) \dot{q}^2 - V(q) \right)}
+\label{eq:seff}
+\end{equation}
+with $M(q)$ from \eqref{eq:Mq_explicit} and $V(q)$ from \eqref{eq:Vq_full}.
+\end{theorem}
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!70!black]
+\textbf{Key Result:} The 5D brane-world action reduces to a 1D mechanical system
+with $q$-dependent mass and a quartic barrier potential. The neutron decay is
+described as tunneling through this barrier.
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 10: DERIVATION CHAIN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Complete Derivation Chain}
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!70!black]
+\begin{center}
+\begin{tabular}{rcl}
+$S_{\rm 5D} = S_{\rm bulk} + S_{\rm GHY} + S_{\rm brane}$ & \tagP & (full action) \\
+$\downarrow$ & & \\
+Warped AdS$_5$ metric & \tagP & (geometric ansatz) \\
+$\downarrow$ & & \\
+Brane embedding $X^A(\sigma; q)$ & \tagP & (defect parameterization) \\
+$\downarrow$ & & \\
+Induced metric $h_{\mu\nu}$, normal $n^A$ & \tagDer & (differential geometry) \\
+$\downarrow$ & & \\
+Extrinsic curvature $K_{\mu\nu}$ & \tagDer & (second fundamental form) \\
+$\downarrow$ & & \\
+Israel conditions & \tagDer & (junction matching) \\
+$\downarrow$ & & \\
+Gaussian profile $f(r;q)$ & \tagP & (shape ansatz) \\
+$\downarrow$ & & \\
+$M(q) \propto (1-2q)^2$ & \tagDc & (supermetric integral) \\
+$\downarrow$ & & \\
+$V(q) \propto q^2(1-q)^2$ & \tagDc & (static energy) \\
+$\downarrow$ & & \\
+$S_{\rm eff}[q] = \int(\frac{1}{2}M\dot{q}^2 - V)dt$ & \tagDc & (final result)
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 11: EPISTEMIC STATUS SUMMARY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Epistemic Status Summary}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Element} & \textbf{Status} & \textbf{Notes} \\
+\midrule
+Warped AdS$_5$ metric & \tagP & Consistent with 5D GR + $\Lambda_5 < 0$ \\
+Brane embedding ansatz & \tagP & Y-junction model \\
+Gaussian profile & \tagP & Tractable; other shapes possible \\
+Induced metric calculation & \tagDer & Standard differential geometry \\
+Israel junction conditions & \tagDer & Standard result \\
+Supermetric $M(q)$ formula & \tagDc & Conditional on profile \\
+$M(q) \propto (1-2q)^2$ & \tagDc & From Gaussian + amplitude form \\
+Potential $V(q)$ formula & \tagDc & Conditional on profile \\
+$V(q) \propto q^2(1-q)^2$ & \tagDc & From static energy evaluation \\
+Barrier height $V_B$ & \tagOPEN & Cannot be derived from action \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 12: RELATION TO OTHER COMPANIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Relation to Other Companions}
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Aspect} & \textbf{This Note} & \textbf{Other} \\
+\midrule
+Reduction pipeline & Full roadmap & --- \\
+$L_{\rm eff}$ derivation & Summary & Companion A (detail) \\
+WKB tunneling & Referenced & Companion B \\
+Selection rules & Referenced & Companion D \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 13: OPEN PROBLEMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Open Problems}
+
+\begin{enumerate}
+\item \tagOPEN{} \textbf{Derive bulk geometry from EDC Plenum:} Why $\Lambda_5 < 0$?
+
+\item \tagOPEN{} \textbf{Derive $\mathbb{Z}_2$ symmetry:} Physical origin in EDC?
+
+\item \tagOPEN{} \textbf{Profile optimization:} Derive optimal $f(r;q)$ from variational principle.
+
+\item \tagOPEN{} \textbf{Barrier height $V_B$:} Requires weak interaction physics (W boson).
+
+\item \tagOPEN{} \textbf{Higher-dimensional corrections:} Beyond leading-order warping.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BIBLIOGRAPHY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\printbibliography
+
+\end{document}

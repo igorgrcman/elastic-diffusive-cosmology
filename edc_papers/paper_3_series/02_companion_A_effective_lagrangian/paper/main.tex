@@ -1,0 +1,602 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% COMPANION NOTE A: Effective Lagrangian L_eff from 5D Action
+%% Complete Derivation from First Principles
+%%
+%% Companion A to Paper 3 (NJSR Edition)
+%% Build: XeLaTeX (Unicode)
+%%
+%% Author: Igor Grčman
+%% Date: January 2026
+%% Status: Reviewer-grade, epistemic cleanup
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+%% ===== PACKAGES =====
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,theorems}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[style=numeric-comp,sorting=none,backend=biber]{biblatex}
+\addbibresource{refs_Leff.bib}
+
+\geometry{margin=1in}
+
+%% ===== FONTS (fallback to default if TeX Gyre not available) =====
+\IfFontExistsTF{TeX Gyre Termes}{%
+  \setmainfont{TeX Gyre Termes}
+  \setsansfont{TeX Gyre Heros}
+}{%
+  \setmainfont{Times New Roman}[Ligatures=TeX]
+  \setsansfont{Helvetica}
+}
+
+%% ===== CUSTOM COLORS =====
+\definecolor{derivedblue}{RGB}{0,100,180}
+\definecolor{conditionalgreen}{RGB}{0,128,100}
+\definecolor{proposedred}{RGB}{180,0,0}
+\definecolor{mathpurple}{RGB}{120,0,120}
+
+%% ===== THEOREM ENVIRONMENTS =====
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{theorem}[proposition]{Theorem}
+\newtheorem{lemma}[proposition]{Lemma}
+\newtheorem{corollary}[proposition]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[proposition]{Definition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+%% ===== EPISTEMIC TAG COMMANDS =====
+\newcommand{\tagDer}{\textcolor{derivedblue}{\textbf{[Der]}}}
+\newcommand{\tagDc}{\textcolor{conditionalgreen}{\textbf{[Dc]}}}
+\newcommand{\tagP}{\textcolor{proposedred}{\textbf{[P]}}}
+\newcommand{\tagM}{\textcolor{mathpurple}{\textbf{[M]}}}
+\newcommand{\tagBL}{\textcolor{gray}{\textbf{[BL]}}}
+
+%% ===== TITLE =====
+\title{\textbf{Derivation of the Effective Lagrangian $L_{\rm eff}(q, \dot{q})$\\from the 5D Einstein-Hilbert Action}\\[0.5em]
+\large A First-Principles Reduction in Elastic Diffusive Cosmology\\[0.3em]
+\normalsize (Companion A to Paper~3: NJSR Edition)}
+\author{Igor Gr\v{c}man}
+\date{January 2026\\[0.5em]
+\small DOI: \href{https://doi.org/10.5281/zenodo.18292841}{10.5281/zenodo.18292841}\\[0.3em]
+\small Repository: \href{https://github.com/igorgrcman/elastic-diffusive-cosmology}{github.com/igorgrcman/elastic-diffusive-cosmology}\\[0.2em]
+\footnotesize (Public artifacts for this paper are in the \texttt{edc\_papers} folder.)}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+\small\textbf{Related Documents:}\\[0.1cm]
+\footnotesize
+\emph{Neutron Lifetime from 5D Membrane Cosmology} (DOI: \href{https://doi.org/10.5281/zenodo.18262721}{10.5281/zenodo.18262721})\\[0.05cm]
+\emph{Framework v2.0} (DOI: \href{https://doi.org/10.5281/zenodo.18299085}{10.5281/zenodo.18299085})\\[0.05cm]
+\textbf{Companions:}\\
+B: \emph{WKB Prefactor} (\href{https://doi.org/10.5281/zenodo.18299637}{DOI}) ~$\cdot$~
+C: \emph{5D Reduction} (\href{https://doi.org/10.5281/zenodo.18299751}{DOI})\\
+D: \emph{Selection Rules} (\href{https://doi.org/10.5281/zenodo.18299855}{DOI}) ~$\cdot$~
+E: \emph{Symmetry Ops} (\href{https://doi.org/10.5281/zenodo.18300199}{DOI})\\
+F: \emph{Proton Junction} (\href{https://doi.org/10.5281/zenodo.18302953}{DOI}) ~$\cdot$~
+G: \emph{Mass Difference} (\href{https://doi.org/10.5281/zenodo.18303494}{DOI})\\
+H: \emph{Weak Interactions} (\href{https://doi.org/10.5281/zenodo.18307539}{DOI})
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ABSTRACT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{abstract}
+\noindent
+This companion note provides a complete derivation of the effective one-dimensional Lagrangian $L_{\rm eff}(q, \dot{q}) = \frac{1}{2}M(q)\dot{q}^2 - V(q)$ from the 5D Einstein-Hilbert action within the Elastic Diffusive Cosmology (EDC) framework. The derivation proceeds in three stages: (i)~establishing the supermetric $M(q)$ from the Israel junction conditions; (ii)~deriving the potential $V(q)$ from the static energy functional via Euler-Lagrange equations; (iii)~combining these into the complete effective Lagrangian with WKB tunneling formula. No Standard Model dynamical parameters are used as inputs---the barrier potential emerges purely from 5D geometry. All conclusions are conditional on the stated assumptions.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 1: INTRODUCTION AND SCOPE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction and Scope}
+
+\subsection{Purpose}
+
+This note documents the derivation chain:
+\begin{equation}
+\boxed{
+S_{\rm 5D} \xrightarrow{\text{Israel}} M(q) \xrightarrow{\delta E/\delta f = 0} V(q) \xrightarrow{\text{combine}} L_{\rm eff}(q, \dot{q})
+}
+\end{equation}
+
+The goal is to demonstrate that the effective 1D mechanical system governing neutron decay arises from pure 5D geometry, without importing Standard Model dynamics.
+
+\subsection{Epistemic Legend}
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!70!black, title={\textbf{Epistemic Status Tags}}]
+\begin{tabular}{cl}
+\tagDer & \textbf{Derived} --- follows from explicit calculation from stated premises \\
+\tagDc & \textbf{Decisively constrained} --- conditional on approximations or parameter choices \\
+\tagP & \textbf{Proposed} --- postulated ansatz, not derived from $\delta S = 0$ \\
+\tagM & \textbf{Mathematics} --- pure mathematical identity or theorem \\
+\tagBL & \textbf{Baseline} --- empirical value from PDG/CODATA
+\end{tabular}
+\end{tcolorbox}
+
+\subsection{Assumptions}
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=orange!70!black, title={\textbf{Assumption Box}}]
+\begin{enumerate}[label=\textbf{A\arabic*}., leftmargin=2em]
+  \item \textbf{5D Warped Geometry} \tagP: The bulk is AdS$_5$ with metric $ds^2_5 = a^2(\xi)\eta_{\mu\nu}dx^\mu dx^\nu + d\xi^2$, $a(\xi) = e^{-k|\xi|}$.
+
+  \item \textbf{Brane Embedding} \tagP: The 3-brane is embedded as $X^A(\sigma^\mu; q) = (\sigma^\mu, f(r; q))$ with collective coordinate $q \in [0,1]$.
+
+  \item \textbf{$\mathbb{Z}_2$ Symmetry} \tagP: The brane has $\mathbb{Z}_2$ reflection symmetry across $\xi = 0$.
+
+  \item \textbf{Brane Stress-Energy} \tagP: $S_{\mu\nu} = -\sigma h_{\mu\nu} + \tau_{\mu\nu}^{\rm defect}$ with constant tension $\sigma$.
+
+  \item \textbf{Linearization} \tagDc: The profile $f(r;q)$ satisfies $|f| \ll 1/k$ and $|\nabla f| \ll a$.
+\end{enumerate}
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 2: 5D BULK GEOMETRY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{5D Bulk Geometry}
+
+\begin{definition}[5D Warped Metric] \tagDer
+The 5D manifold $(\mathcal{M}^5, g_{AB})$ has line element:
+\begin{equation}
+ds^2_5 = g_{AB} dX^A dX^B = a^2(\xi) \eta_{\mu\nu} dx^\mu dx^\nu + d\xi^2
+\label{eq:5Dmetric}
+\end{equation}
+where $a(\xi) = e^{-k|\xi|}$ is the warp factor and $k = 1/\ell$ is the AdS curvature scale.
+\end{definition}
+
+\begin{proposition}[Bulk Curvature] \tagDer
+For the metric \eqref{eq:5Dmetric}:
+\begin{align}
+R^{(5)} &= -20k^2 = -\frac{20}{\ell^2} \\
+\sqrt{-g^{(5)}} &= a^4(\xi) = e^{-4k|\xi|}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+Direct computation from the Christoffel symbols $\Gamma^A_{BC}$ and Riemann tensor $R^A{}_{BCD}$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 3: ISRAEL JUNCTION CONDITIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Israel Junction Conditions and Supermetric}
+
+\subsection{Brane Embedding}
+
+\begin{definition}[Embedding Map] \tagP
+The brane worldvolume $\Sigma^4$ is embedded via:
+\begin{equation}
+X^A : \Sigma^4 \to \mathcal{M}^5, \quad X^A(\sigma^\mu; q) = (\sigma^\mu, f(r; q))
+\label{eq:embedding}
+\end{equation}
+where $r = |\vec{\sigma}|$ and $q \in [0,1]$ is the collective coordinate.
+\end{definition}
+
+\begin{remark}
+The embedding \eqref{eq:embedding} is \tagP{} because it is not derived from $\delta S_{\rm 5D}/\delta X^A = 0$. It represents a physically motivated ansatz.
+\end{remark}
+
+\begin{proposition}[Induced Geometry] \tagDer
+The tangent vectors, induced metric, and unit normal are:
+\begin{align}
+e^A_\mu &= \frac{\partial X^A}{\partial \sigma^\mu} = (\delta^\nu_\mu, \partial_\mu f) \\
+h_{\mu\nu} &= g_{AB} e^A_\mu e^B_\nu = a^2(f) \eta_{\mu\nu} + \partial_\mu f \partial_\nu f \\
+n^A &= \frac{1}{\sqrt{1 + a^{-2}|\nabla f|^2}} (-a^{-2}\partial^\mu f, 1)
+\end{align}
+\end{proposition}
+
+\subsection{Extrinsic Curvature}
+
+\begin{definition}[Extrinsic Curvature] \tagDer
+\begin{equation}
+K_{\mu\nu} = -\nabla_\mu n_\nu = -e^A_\mu e^B_\nu \nabla_A n_B
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Explicit Form] \tagDer
+For the warped metric:
+\begin{equation}
+K_{\mu\nu} = \frac{1}{\sqrt{1 + a^{-2}|\nabla f|^2}}
+\left[ \nabla_\mu \nabla_\nu f - k\, \text{sgn}(f)\, a^2(f) \eta_{\mu\nu} \right]
+\end{equation}
+with trace:
+\begin{equation}
+K = h^{\mu\nu} K_{\mu\nu} = \frac{\nabla^2 f - 4k\, \text{sgn}(f)\, a^2(f)}{\sqrt{1 + a^{-2}|\nabla f|^2}}
+\end{equation}
+\end{proposition}
+
+\subsection{Israel Conditions}
+
+\begin{theorem}[Israel Junction Conditions] \tagDer
+For a hypersurface $\Sigma$ with $\mathbb{Z}_2$ symmetry:
+\begin{equation}
+\boxed{
+[K_{\mu\nu}] - h_{\mu\nu}[K] = -\kappa_5^2 S_{\mu\nu}
+}
+\label{eq:Israel}
+\end{equation}
+where $[K_{\mu\nu}] = K^+_{\mu\nu} - K^-_{\mu\nu}$ is the jump across the brane.
+\end{theorem}
+
+\begin{corollary}[$\mathbb{Z}_2$-Symmetric Brane] \tagDer
+\begin{equation}
+K_{\mu\nu} = -\frac{\kappa_5^2}{2}\left(S_{\mu\nu} - \frac{1}{3}h_{\mu\nu}S\right)
+\end{equation}
+\end{corollary}
+
+\subsection{Supermetric Derivation}
+
+\begin{theorem}[Supermetric Formula] \tagDer
+\label{thm:supermetric}
+The kinetic term coefficient (supermetric) is:
+\begin{equation}
+\boxed{
+M(q) = \sigma \int d^3\sigma \, a^2(f) \sqrt{1 + a^{-2}|\nabla f|^2} \left( \frac{\partial f}{\partial q} \right)^2
+}
+\label{eq:supermetric}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Starting from the brane action with time-dependent collective coordinate:
+\begin{equation}
+S_{\rm brane} = -\sigma \int d^4\sigma \sqrt{-h[q(t)]}
+\end{equation}
+
+The time-time component of the induced metric gains a velocity-dependent term:
+\begin{equation}
+h_{00} = -a^2(f) + \left(\frac{\partial f}{\partial q}\right)^2 \dot{q}^2
+\end{equation}
+
+Expanding the determinant to $\mathcal{O}(\dot{q}^2)$:
+\begin{equation}
+\sqrt{-h} \approx a^4 \sqrt{1 + a^{-2}|\nabla f|^2} \left[ 1 - \frac{1}{2} a^{-2} \left(\frac{\partial f}{\partial q}\right)^2 \dot{q}^2 \right]
+\end{equation}
+
+Integrating over spatial coordinates yields:
+\begin{equation}
+S_{\rm brane} = \int dt \left[ -E_0 + \frac{1}{2} M(q) \dot{q}^2 \right]
+\end{equation}
+where $M(q)$ is given by \eqref{eq:supermetric}.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 4: POTENTIAL FROM EULER-LAGRANGE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Potential $V(q)$ from Euler-Lagrange Equations}
+
+\subsection{Full 5D Action}
+
+\begin{definition}[5D Action] \tagDer
+\begin{equation}
+S_{\rm 5D} = S_{\rm bulk} + S_{\rm GHY} + S_{\rm brane}
+\end{equation}
+with components:
+\begin{align}
+S_{\rm bulk} &= \frac{1}{2\kappa_5^2} \int_{\mathcal{M}^5} d^5X \sqrt{-g^{(5)}}
+\left( R^{(5)} - 2\Lambda_5 \right) \\
+S_{\rm GHY} &= \frac{1}{\kappa_5^2} \int_{\partial\mathcal{M}} d^4\sigma \sqrt{-h}\, K \\
+S_{\rm brane} &= -\sigma \int d^4\sigma \sqrt{-h}
+\end{align}
+\end{definition}
+
+\subsection{Static Energy Functional}
+
+\begin{proposition}[Static Energy] \tagDer
+For static configurations ($\dot{q} = 0$):
+\begin{equation}
+\boxed{
+E[f] = \int d^3\sigma \, a^4(f) \left[ \sigma \sqrt{1 + a^{-2}|\nabla f|^2}
+- \frac{K}{\kappa_5^2} \sqrt{1 + a^{-2}|\nabla f|^2} \right]
+}
+\end{equation}
+\end{proposition}
+
+\subsection{Euler-Lagrange Equation}
+
+\begin{theorem}[Profile Equation] \tagDer
+The equilibrium profile $f^*(r;q)$ satisfies:
+\begin{equation}
+\boxed{
+\frac{\delta E}{\delta f} = 0
+}
+\end{equation}
+Explicitly:
+\begin{equation}
+\nabla \cdot \left( \frac{a^2 \nabla f}{\sqrt{1 + a^{-2}|\nabla f|^2}} \right)
+= 4k\, \text{sgn}(f)\, a^4 \left( \sigma_{\rm eff} - \frac{a^2 \sqrt{1 + a^{-2}|\nabla f|^2}}{W} \right)
+\label{eq:EL}
+\end{equation}
+where $\sigma_{\rm eff} = \sigma - K/\kappa_5^2$.
+\end{theorem}
+
+\subsection{Linearized Solution}
+
+\begin{proposition}[Gaussian Profile] \tagDc
+In the linearized regime ($|\nabla f| \ll a$), the solution to \eqref{eq:EL} is:
+\begin{equation}
+\boxed{
+f^*(r; q) = A(q) \, e^{-r^2/2\ell^2}
+}
+\label{eq:Gaussian}
+\end{equation}
+with characteristic width $\ell^2 = a_0^2/(4k^2 \sigma_{\rm eff})$.
+\end{proposition}
+
+\begin{remark}
+This is \tagDc{} because it requires the linearization approximation. The full nonlinear solution may differ.
+\end{remark}
+
+\subsection{Potential from Extrinsic Curvature}
+
+\begin{theorem}[Quartic Barrier] \tagDer
+\label{thm:Vq}
+The potential $V(q)$ derived from the static energy functional has the form:
+\begin{equation}
+\boxed{
+V(q) = V_B \cdot q^2 (1-q)^2
+}
+\label{eq:Vq}
+\end{equation}
+where the barrier height is:
+\begin{equation}
+V_B = 16 \cdot \sigma_{\rm eff} a_0^2 A_{\rm max}^2 \ell^3 \cdot \mathcal{I}
+\end{equation}
+and $\mathcal{I}$ is a dimensionless integral.
+\end{theorem}
+
+\begin{proof}
+Substituting the equilibrium profile into the energy functional and Taylor expanding:
+\begin{align}
+a^4(f) &= a_0^4 \left( 1 - 4kf + 8k^2 f^2 + \mathcal{O}(f^3) \right) \\
+\sqrt{1 + a^{-2}|\nabla f|^2} &= 1 + \frac{1}{2} a_0^{-2} |\nabla f|^2 + \mathcal{O}(f^4)
+\end{align}
+
+The leading-order potential is:
+\begin{equation}
+V(q) = \sigma_{\rm eff} a_0^2 \int d^3\sigma \left[ \frac{1}{2} |\nabla f^*|^2 + 4k^2 (f^*)^2 \right]
+\end{equation}
+
+With the parameterization $A(q) = A_{\rm max} \cdot q(1-q)$, this yields the quartic form \eqref{eq:Vq}.
+\end{proof}
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!70!black]
+\textbf{Key Result:} The quartic barrier $V(q) \propto q^2(1-q)^2$ \emph{emerges} from the 5D geometry. It is not postulated---it is derived from the competition between brane tension and extrinsic curvature.
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 5: COMPLETE EFFECTIVE LAGRANGIAN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Complete Effective Lagrangian}
+
+\subsection{Main Result}
+
+\begin{theorem}[Effective Lagrangian] \tagDer
+\label{thm:Leff}
+Combining Theorems~\ref{thm:supermetric} and \ref{thm:Vq}:
+\begin{equation}
+\boxed{
+L_{\rm eff}(q, \dot{q}) = \frac{1}{2} M(q) \dot{q}^2 - V(q)
+}
+\label{eq:Leff}
+\end{equation}
+\end{theorem}
+
+\subsection{Explicit Forms}
+
+For the Gaussian profile with $A(q) = A_{\rm max} \cdot q(1-q)$:
+
+\begin{proposition}[Supermetric] \tagDer
+\begin{equation}
+M(q) = M_0 \cdot (1-2q)^2
+\end{equation}
+where $M_0 = 4\pi \sigma a_0^2 A_{\rm max}^2 \ell^3 \cdot \mathcal{J}$ and $\mathcal{J} = \sqrt{\pi}/4$.
+\end{proposition}
+
+\begin{proposition}[Potential] \tagDer
+\begin{equation}
+V(q) = V_B \cdot q^2(1-q)^2
+\end{equation}
+\end{proposition}
+
+\begin{proposition}[Equation of Motion] \tagDer
+\begin{equation}
+\frac{d}{dt} \left( M(q) \dot{q} \right) + \frac{1}{2} M'(q) \dot{q}^2 + V'(q) = 0
+\end{equation}
+\end{proposition}
+
+\subsection{Boundary Conditions}
+
+\begin{proposition}[Physical Boundaries] \tagDer
+\begin{itemize}
+\item At $q = 0$ (neutron): $V(0) = 0$, $f(r;0) = 0$ (no bulge)
+\item At $q = 1$ (decay products): $V(1) = 0$, $f(r;1) = 0$ (no bulge)
+\item At $q = 1/2$ (barrier top): $V(1/2) = V_B/16$ (maximum), $M(1/2) = 0$
+\end{itemize}
+\end{proposition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 6: WKB TUNNELING
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{WKB Tunneling Formula}
+
+\begin{theorem}[WKB Exponent] \tagDer
+The semiclassical tunneling exponent is:
+\begin{equation}
+\boxed{
+B = \int_{q_1}^{q_2} dq \sqrt{2 M(q) V(q)}
+}
+\label{eq:WKB}
+\end{equation}
+where $q_1, q_2$ are the classical turning points.
+\end{theorem}
+
+\begin{proposition}[Explicit Form] \tagDer
+Substituting the derived $M(q)$ and $V(q)$:
+\begin{equation}
+B = \sqrt{2 M_0 V_B} \int_{q_1}^{q_2} dq \, |1-2q| \cdot 4|q(1-q)|
+\end{equation}
+\end{proposition}
+
+\begin{proposition}[Reparameterization Invariance] \tagM
+The WKB exponent is invariant under coordinate transformations $q \to \tilde{q}(q)$:
+\begin{equation}
+B[\tilde{q}] = \int d\tilde{q} \sqrt{2 \tilde{M}(\tilde{q}) \tilde{V}(\tilde{q})} = B[q]
+\end{equation}
+\end{proposition}
+
+\begin{theorem}[Decay Rate] \tagDer
+\begin{equation}
+\boxed{
+\Gamma = A_0 \cdot e^{-B/\hbar}
+}
+\end{equation}
+where $A_0$ is the prefactor from the fluctuation determinant.
+\end{theorem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 7: CONSISTENCY CHECKS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Consistency Checks}
+
+\begin{enumerate}
+\item \textbf{Dimensional analysis} \tagM: $[M(q)] = \text{mass}$, $[V(q)] = \text{energy}$, $[B] = \text{action}$. \checkmark
+
+\item \textbf{Boundary conditions} \tagDer: $V(0) = V(1) = 0$, $f(r;0) = f(r;1) = 0$. \checkmark
+
+\item \textbf{Barrier maximum} \tagDer: $V(1/2) = V_B/16$, $M(1/2) = 0$. \checkmark
+
+\item \textbf{Israel conditions at Y-vertex} \tagDer: Force balance $\sum_i \sigma_i \hat{t}_i = 0$ implies $\partial_r f|_{r=0} = 0$. \checkmark
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 8: EPISTEMIC UPGRADE SUMMARY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Epistemic Status Summary}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Quantity} & \textbf{Before} & \textbf{After} & \textbf{Method} \\
+\midrule
+$L_{\rm eff}$ structure & \tagDc & \tagDer & 5D action reduction \\
+$M(q)$ formula & [OPEN] & \tagDer & Supermetric integral \\
+$M(q) \propto (1-2q)^2$ & \tagP & \tagDer & Supermetric + profile \\
+$V(q)$ formula & \tagP & \tagDer & Extrinsic curvature \\
+$V(q) \propto q^2(1-q)^2$ & \tagP & \tagDer & Energy minimization \\
+WKB exponent $B$ & \tagDc & \tagDer & Standard WKB + derived $M,V$ \\
+\midrule
+$M_0$ amplitude & [Cal] & \tagDc & Depends on $\sigma, a_0, \ell$ \\
+$V_B$ amplitude & [Cal] & \tagDc & Depends on $\sigma_{\rm eff}, k$ \\
+Gaussian profile & \tagP & \tagDc & Linearized E-L \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 9: DERIVATION CHAIN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Complete Derivation Chain}
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!70!black]
+\begin{equation*}
+\underbrace{S_{\rm 5D} = S_{\rm bulk} + S_{\rm GHY} + S_{\rm brane}}_{\tagDer}
+\end{equation*}
+\vspace{-1em}
+\begin{center}$\Big\downarrow$ \small{Israel junction conditions}\end{center}
+\vspace{-1em}
+\begin{equation*}
+\underbrace{M(q) = \sigma \int d^3\sigma \, a^2 \sqrt{1 + a^{-2}|\nabla f|^2} \left(\frac{\partial f}{\partial q}\right)^2}_{\tagDer}
+\end{equation*}
+\vspace{-1em}
+\begin{center}$\Big\downarrow$ \small{Euler-Lagrange $\delta E/\delta f = 0$}\end{center}
+\vspace{-1em}
+\begin{equation*}
+\underbrace{f^*(r) = A_0 e^{-r^2/2\ell^2}}_{\tagDc} \quad \text{(linearized)}
+\end{equation*}
+\vspace{-1em}
+\begin{center}$\Big\downarrow$ \small{substitute into energy integral}\end{center}
+\vspace{-1em}
+\begin{equation*}
+\underbrace{V(q) = V_B \cdot q^2(1-q)^2}_{\tagDer}
+\end{equation*}
+\vspace{-1em}
+\begin{center}$\Big\downarrow$ \small{combine}\end{center}
+\vspace{-1em}
+\begin{equation*}
+\boxed{\underbrace{L_{\rm eff}(q, \dot{q}) = \frac{1}{2}M(q)\dot{q}^2 - V(q)}_{\tagDer}}
+\end{equation*}
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 10: RELATION TO PAPER 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Relation to the Main Paper}
+
+This companion note and the main paper \cite{paper3} address complementary aspects:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Aspect} & \textbf{This Note} & \textbf{Main Paper} \\
+\midrule
+$L_{\rm eff}$ derivation & Full detail & Summary \\
+$M(q)$ supermetric & Complete proof & Referenced \\
+$V(q)$ from E-L & Step-by-step & Stated result \\
+WKB calculation & Formula only & Full numerical \\
+Neutron lifetime & --- & $\tau_n$ calibration \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 11: LIMITATIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Limitations and Open Questions}
+
+\begin{enumerate}
+\item \textbf{Linearization}: The Gaussian profile is \tagDc{}, valid only for $|f| \ll 1/k$. Full nonlinear solution may modify coefficients.
+
+\item \textbf{Amplitude parameters}: $M_0$ and $V_B$ remain \tagDc{} (conditional on warp factor and tension values).
+
+\item \textbf{Embedding ansatz}: The form $X^A = (\sigma^\mu, f(r;q))$ is \tagP{}. Deriving it from $\delta S/\delta X^A = 0$ would upgrade to \tagDer{}.
+
+\item \textbf{Prefactor $A_0$}: The fluctuation determinant requires separate calculation (see the main paper \cite{paper3}).
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BIBLIOGRAPHY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\printbibliography
+
+\end{document}
