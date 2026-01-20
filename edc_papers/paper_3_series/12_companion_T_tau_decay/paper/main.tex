@@ -1,0 +1,561 @@
+% Companion T: Tau Decay as a Brane Mode-Spectrum Test
+% Version 0.1 — 2026-01-20
+% Build: xelatex main.tex && xelatex main.tex
+
+\documentclass[11pt,a4paper]{article}
+
+% ============================================================
+% PACKAGES
+% ============================================================
+\usepackage{fontspec}
+\IfFontExistsTF{TeX Gyre Termes}{%
+  \setmainfont{TeX Gyre Termes}
+}{%
+  \setmainfont{Times New Roman}[Ligatures=TeX]
+}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,citecolor=green!50!black,urlcolor=blue!70!black}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\usepackage{cite}
+
+% TikZ
+\usepackage{tikz}
+\usetikzlibrary{calc,angles,quotes,decorations.markings,decorations.pathmorphing,positioning}
+
+% ============================================================
+% SHARED EDC STYLE FILES
+% ============================================================
+\input{../../../_shared/style/edc_style}
+\input{../../../_shared/style/tikz_style_edc}
+
+% ============================================================
+% DOCUMENT INFO
+% ============================================================
+\title{\textbf{Companion T: Tau Decay as a Brane Mode-Spectrum Test}\\[0.3cm]
+\large Elastic Diffusive Cosmology — Paper 3 Series}
+\author{EDC Collaboration}
+\date{Draft v0.1 — January 2026}
+
+% ============================================================
+\begin{document}
+% ============================================================
+
+\maketitle
+
+\begin{abstract}
+We extend the thick-brane microphysics framework to tau lepton decay,
+focusing on the leptonic channels $\tau^- \to e^- + \bar{\nu}_e + \nu_\tau$
+and $\tau^- \to \mu^- + \bar{\nu}_\mu + \nu_\tau$. Like the muon, the tau
+is modeled as a \emph{brane-dominant excitation}, but with a higher
+``mode index'' corresponding to its greater mass. This companion tests
+whether the same absorption$\to$dissipation$\to$release pipeline that
+describes muon decay generalizes to the heavier lepton. We define
+allowed output sets, establish the mode-spectrum hypothesis, and
+identify falsifiability conditions. No numerical fits are performed;
+tau lifetime and branching fractions are treated as observational
+baselines \tagBL{}.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ============================================================
+\section{Motivation: Why Tau After Muon?}
+\label{sec:motivation}
+% ============================================================
+
+\begin{tcolorbox}[edcCornerstone, title=\textbf{Cornerstone: Tau as Mode-Spectrum Test}]
+The tau lepton ($\tau^-$) is the heaviest charged lepton, with
+$m_\tau \approx 1777$~MeV \tagBL{} \cite{PDG2024}. If the thick-brane
+framework applies to muon decay (Companion M), it must also accommodate
+tau decay without introducing new mechanisms. The tau provides a
+\emph{mode-spectrum test}: same brane-dominant ontology, different
+mass/energy scale.
+\end{tcolorbox}
+
+\subsection{Strategic Position}
+
+The EDC weak-interaction program now has:
+\begin{itemize}[nosep]
+    \item \textbf{Neutron} (Companion N): Bulk-core junction decay
+    \item \textbf{Muon} (Companion M): Brane-dominant leptonic decay
+    \item \textbf{Tau} (this document): Heavier brane-dominant decay
+\end{itemize}
+
+If the same pipeline works for both $\mu$ and $\tau$, this validates the
+\emph{brane-dominant excitation} hypothesis across the charged lepton
+spectrum. The tau's larger mass probes a different region of the
+brane-layer mode spectrum.
+
+\begin{tcolorbox}[edcGuardrail, title=\textbf{Epistemic Guardrail: No Fitting}]
+We treat $\tau$ lifetime and branching fractions as \tagBL{} observational
+constraints. Companion T provides a consistent 5D$\to$brane$\to$3D mechanism
+framing \emph{without tuning parameters to match those numbers}. The goal
+is structural consistency, not numerical prediction.
+\end{tcolorbox}
+
+\subsection{Scope Limitation}
+
+This companion addresses \textbf{leptonic tau decays only}:
+\begin{itemize}[nosep]
+    \item $\tau^- \to e^- + \bar{\nu}_e + \nu_\tau$ \quad (electronic channel)
+    \item $\tau^- \to \mu^- + \bar{\nu}_\mu + \nu_\tau$ \quad (muonic channel)
+\end{itemize}
+
+Hadronic tau decays (e.g., $\tau \to \pi\nu$, $\tau \to \rho\nu$) are
+mentioned as future extensions \tagOpen{}. Pion ontology is \emph{not}
+developed here.
+
+% ============================================================
+\section{Tau Ontology: Brane-Dominant Excitation}
+\label{sec:ontology}
+% ============================================================
+
+\begin{postulate}[Tau Ontology] \tagP{}
+\label{post:tau-ontology}
+The tau lepton $\tau^-$ is a \emph{brane-dominant excitation} with a
+higher mode index than the muon. Its primary degrees of freedom reside
+within the brane layer, not in the bulk-core.
+\end{postulate}
+
+\textbf{Physical Narration:}
+\begin{enumerate}[nosep]
+    \item \textbf{5D cause:} The tau occupies a higher-energy eigenmode of the
+          brane-layer spectrum compared to the muon.
+    \item \textbf{Brane response:} This mode is unstable; it can decay into
+          lower-mass modes (electrons, muons, neutrinos) via internal
+          redistribution.
+    \item \textbf{3D output:} The frozen projection maps allowed mode
+          combinations to observable particles.
+\end{enumerate}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.85]
+    % Background regions
+    \fill[bulk region] (-4.5,-2.5) rectangle (-1.5,2.5);
+    \fill[brane region] (-1.5,-2.5) rectangle (1.5,2.5);
+    \fill[observer region] (1.5,-2.5) rectangle (4.5,2.5);
+
+    % Labels
+    \node[section label] at (-3,2.9) {\textbf{Bulk-Core}};
+    \node[section label] at (0,2.9) {\textbf{Brane-Layer}};
+    \node[section label] at (3,2.9) {\textbf{3D Outputs}};
+
+    % Boundaries
+    \draw[bulk boundary] (-1.5,-2.5) -- (-1.5,2.5);
+    \draw[observer boundary] (1.5,-2.5) -- (1.5,2.5);
+
+    % Mode spectrum visualization (vertical axis = energy/mode index)
+    \node[font=\scriptsize, rotate=90] at (-4.2,0) {Mode energy $\uparrow$};
+
+    % Tau mode (higher)
+    \node[circle, fill=orange!70, minimum size=10pt, inner sep=0pt] (tau) at (0,1.5) {};
+    \node[right=0.15cm of tau, font=\footnotesize] {$\tau^-$ (high mode)};
+    \draw[dashed, orange!60!black, thick] (-1.3,1.5) -- (1.3,1.5);
+
+    % Muon mode (middle)
+    \node[circle, fill=purple!60, minimum size=10pt, inner sep=0pt] (mu) at (0,0) {};
+    \node[right=0.15cm of mu, font=\footnotesize] {$\mu^-$ (mid mode)};
+    \draw[dashed, purple!60!black, thick] (-1.3,0) -- (1.3,0);
+
+    % Electron mode (lowest)
+    \node[circle, fill=blue!60, minimum size=10pt, inner sep=0pt] (e) at (0,-1.5) {};
+    \node[right=0.15cm of e, font=\footnotesize] {$e^-$ (low mode)};
+    \draw[dashed, blue!60!black, thick] (-1.3,-1.5) -- (1.3,-1.5);
+
+    % Arrows showing decay directions
+    \draw[edc arrow, orange!70!black, thick] (0.5,1.3) -- (0.5,0.2);
+    \draw[edc arrow, orange!70!black, thick] (0.7,1.3) -- (0.7,-1.3);
+    \node[font=\scriptsize, text=orange!70!black] at (1.1,0.7) {$\tau \to \mu$};
+    \node[font=\scriptsize, text=orange!70!black] at (1.1,-0.5) {$\tau \to e$};
+
+    % Bulk annotation
+    \node[font=\scriptsize, text=gray] at (-3,0) {(no bulk core)};
+
+\end{tikzpicture}
+\caption{Charged lepton mode spectrum in the brane layer. The tau occupies
+a higher mode than the muon, which in turn is higher than the electron.
+Decay proceeds ``downward'' in the spectrum via mode redistribution.
+All three are brane-dominant; none have bulk-core structure.}
+\label{fig:mode-spectrum}
+\end{figure}
+
+\subsection{Mode Index Hypothesis}
+
+\begin{definition}[Mode Index] \tagDef{}/\tagP{}
+\label{def:mode-index}
+We associate each charged lepton with a \emph{mode index} $n_\ell$
+characterizing its position in the brane-layer spectrum:
+\[
+    n_e < n_\mu < n_\tau
+\]
+Higher mode index corresponds to higher mass and shorter lifetime
+(greater instability).
+\end{definition}
+
+\textbf{Note:} The mode index is a qualitative ordering \tagP{}/\tagOpen{}.
+We do not claim to derive $n_\ell$ values or the precise relationship
+$m_\ell(n_\ell)$ from first principles.
+
+% ============================================================
+\section{Observational Baselines}
+\label{sec:baselines}
+% ============================================================
+
+The following quantities are treated as \textbf{observational inputs}
+\tagBL{}, not outputs of the model.
+
+\begin{table}[htbp]
+\centering
+\caption{Tau lepton properties (PDG 2024) \cite{PDG2024}}
+\label{tab:baselines}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Quantity} & \textbf{Value} & \textbf{Status} \\
+\midrule
+Mass $m_\tau$ & $1776.86 \pm 0.12$~MeV & \tagBL{} \\
+Lifetime $\tau_\tau$ & $(290.3 \pm 0.5) \times 10^{-15}$~s & \tagBL{} \\
+BR($\tau \to e\nu\bar{\nu}$) & $(17.82 \pm 0.04)\%$ & \tagBL{} \\
+BR($\tau \to \mu\nu\bar{\nu}$) & $(17.39 \pm 0.04)\%$ & \tagBL{} \\
+BR(leptonic total) & $\approx 35\%$ & \tagBL{} \\
+BR(hadronic total) & $\approx 65\%$ & \tagBL{} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{tcolorbox}[edcGuardrail, title=\textbf{Epistemic Guardrail}]
+\textbf{These are not tuning targets.} The branching fractions and lifetime
+in Table~\ref{tab:baselines} are \emph{facts about nature} that any viable
+model must be \emph{consistent with}. We do not adjust parameters to
+reproduce them.
+\end{tcolorbox}
+
+% ============================================================
+\section{Canonical Pipeline: Absorption $\to$ Dissipation $\to$ Release}
+\label{sec:pipeline}
+% ============================================================
+
+The tau decay pipeline mirrors that of muon decay (Companion M), with
+the same three phases:
+
+\begin{tcolorbox}[edcPPN, title=\textbf{Physical Process Narrative: Tau Leptonic Decay}]
+\begin{enumerate}[nosep]
+    \item[\textbf{(i)}] \textbf{Absorption/Charging:} The unstable tau mode
+          redistributes energy within the brane layer.
+    \item[\textbf{(ii)}] \textbf{Dissipation:} Brane-layer modes become
+          populated according to the available spectrum and selection rules.
+    \item[\textbf{(iii)}] \textbf{Release/Emission:} The frozen projection
+          $\mathcal{P}_{\mathrm{frozen}}$ maps populated modes to 3D outputs.
+\end{enumerate}
+\end{tcolorbox}
+
+\subsection{Bulk Leakage Suppression}
+
+\begin{postulate}[Suppressed Bulk Leakage] \tagP{}
+\label{post:bulk-suppression}
+For brane-dominant excitations (electron, muon, tau), leakage of energy
+into the bulk-core is suppressed by the mode's localization within the
+brane layer. At leading order, bulk leakage is treated as negligible.
+\end{postulate}
+
+\textbf{Physical Narration:}
+\begin{itemize}[nosep]
+    \item \textbf{5D cause:} Brane-layer modes have exponentially small
+          overlap with bulk-core wavefunctions.
+    \item \textbf{Brane response:} Energy redistribution occurs predominantly
+          within the brane layer.
+    \item \textbf{3D output:} All released energy appears in 3D outputs
+          (plus soft/residual brane modes).
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[edc compact, scale=0.85]
+
+% Nodes
+\node[brane box, minimum width=2.2cm, fill=orange!15] (tau) at (0,0) {$\tau^-$ mode\\(brane-layer)};
+\node[process box, right=1.6cm of tau] (abs) {Absorption/\\Redistribution};
+\node[process box, right=1.6cm of abs] (diss) {Dissipation/\\Mode population};
+\node[output box, right=1.6cm of diss, minimum width=2.0cm] (out) {3D Outputs\\$\ell^-, \bar{\nu}_\ell, \nu_\tau$};
+
+% Arrows with labels
+\draw[edc flow, orange!70!black] (tau) -- node[above, font=\scriptsize] {instability} (abs);
+\draw[edc flow, green!50!black] (abs) -- node[above, font=\scriptsize] {$\Gamma_{\mathrm{eff}}$} (diss);
+\draw[edc flow, blue!60!black] (diss) -- node[above, font=\scriptsize] {$\mathcal{P}_{\mathrm{frozen}}$} (out);
+
+% Phase labels below
+\node[phase label, below=0.4cm of tau] {Initial state};
+\node[phase label, below=0.4cm of abs] {Charging};
+\node[phase label, below=0.4cm of diss] {Mode spectrum};
+\node[phase label, below=0.4cm of out] {Observation};
+
+% Chiral filter annotation
+\draw[dashed, red!60!black] ($(diss.east)!0.5!(out.west)$) ++(0,-0.7) -- ++(0,1.4);
+\node[font=\scriptsize, text=red!60!black, below] at ($(diss.east)!0.5!(out.west) + (0,-0.9)$) {$\mathcal{P}_{\mathrm{chir}}$};
+
+% Ledger closure annotation
+\node[label box, below=1.4cm of abs] (ledger) {\footnotesize Ledger: $m_\tau c^2 = E_\ell + E_{\bar{\nu}} + E_{\nu_\tau} + E_{\mathrm{other}}$};
+
+\end{tikzpicture}
+\caption{Energy flow in tau leptonic decay. The pipeline is identical to
+muon decay (Companion M), with the tau as initial brane-dominant mode.
+The output $\ell^-$ can be either $e^-$ or $\mu^-$.}
+\label{fig:pipeline}
+\end{figure}
+
+% ============================================================
+\section{Allowed Output Sets and Selection Rules}
+\label{sec:outputs}
+% ============================================================
+
+\subsection{Leptonic Channel Definitions}
+
+\begin{definition}[Allowed Output Sets] \tagDef{}/\tagDc{}
+\label{def:allowed-outputs}
+The allowed output sets for tau leptonic decays are:
+\begin{align}
+    \mathcal{A}_{\tau \to e} &= \{e^-, \bar{\nu}_e, \nu_\tau\} \\
+    \mathcal{A}_{\tau \to \mu} &= \{\mu^-, \bar{\nu}_\mu, \nu_\tau\}
+\end{align}
+These follow from:
+\begin{itemize}[nosep]
+    \item Charge conservation: $Q_\tau = Q_\ell = -1$
+    \item Lepton number conservation: $L_\tau = 1$ (carried by $\nu_\tau$),
+          $L_\ell = 0$ (from $\ell^- + \bar{\nu}_\ell$ pair)
+    \item Energy threshold: $m_\tau > m_\mu > m_e$ (both channels kinematically allowed)
+\end{itemize}
+\end{definition}
+
+\subsection{Channel Comparison}
+
+\begin{table}[htbp]
+\centering
+\caption{Tau leptonic channels: experimental vs.\ EDC framing}
+\label{tab:channels}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Channel} & \textbf{BR (exp.)} & \textbf{Status} & \textbf{EDC framing} \\
+\midrule
+$\tau \to e\nu\bar{\nu}$ & $17.82\%$ & \tagBL{} & Allowed by $\mathcal{A}_{\tau \to e}$ \tagDc{} \\
+$\tau \to \mu\nu\bar{\nu}$ & $17.39\%$ & \tagBL{} & Allowed by $\mathcal{A}_{\tau \to \mu}$ \tagDc{} \\
+$\tau \to e\gamma$ & $< 3.3 \times 10^{-8}$ & \tagBL{} & LFV; selection rule violation \tagP{}/\tagOpen{} \\
+$\tau \to \mu\gamma$ & $< 4.2 \times 10^{-8}$ & \tagBL{} & LFV; selection rule violation \tagP{}/\tagOpen{} \\
+$\tau \to eee$ & $< 2.7 \times 10^{-8}$ & \tagBL{} & Mode mismatch hypothesis \tagP{}/\tagOpen{} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Note:} The near-equality of BR($\tau \to e$) and BR($\tau \to \mu$)
+is an observational fact \tagBL{}. We do not claim to derive this ratio;
+explaining it would require a quantitative theory of mode-spectrum
+branching \tagOpen{}.
+
+% ============================================================
+\section{Mode-Spectrum Hypothesis}
+\label{sec:mode-spectrum}
+% ============================================================
+
+\begin{postulate}[Mode-Spectrum Branching] \tagP{}/\tagOpen{}
+\label{post:mode-spectrum}
+The branching fractions for tau decay are determined by the
+\emph{spectral overlap} between the initial tau mode and the allowed
+final-state mode configurations. Schematically:
+\begin{equation}
+    \mathrm{BR}(\tau \to X) \propto |\langle \Psi_X | \hat{T} | \Psi_\tau \rangle|^2
+    \label{eq:spectral-overlap}
+\end{equation}
+where $\hat{T}$ is a transition operator and $\Psi_X$ represents the
+final-state mode configuration.
+\end{postulate}
+
+\textbf{Physical Narration:}
+\begin{enumerate}[nosep]
+    \item \textbf{5D cause:} The tau mode $\Psi_\tau$ has a specific profile
+          in the brane-layer spectrum.
+    \item \textbf{Brane response:} The transition operator $\hat{T}$ couples
+          $\Psi_\tau$ to final-state configurations; the coupling strength
+          depends on spectral overlap.
+    \item \textbf{3D output:} Branching fractions reflect these overlaps,
+          filtered through $\mathcal{P}_{\mathrm{frozen}}$.
+\end{enumerate}
+
+\begin{tcolorbox}[edcWarning, title=\textbf{Non-Overclaim Reminder}]
+Equation~\eqref{eq:spectral-overlap} is a \emph{schematic} representation
+\tagP{}/\tagOpen{}. We have not derived the form of $\hat{T}$ or the mode
+wavefunctions from the 5D action. The claim is that branching fractions
+\emph{can be understood} in terms of spectral structure—not that we have
+computed them.
+\end{tcolorbox}
+
+\subsection{Why Are BR($\tau \to e$) and BR($\tau \to \mu$) Nearly Equal?}
+
+This is an \textbf{open question} \tagOpen{}. Possible framings within EDC:
+\begin{itemize}[nosep]
+    \item The electron and muon final states have similar spectral overlap
+          with the tau initial state (modulo phase-space corrections).
+    \item The mode-spectrum structure is approximately ``democratic'' for
+          leptonic channels.
+    \item Detailed calculation requires knowledge of $\hat{T}$ and brane-layer
+          wavefunctions.
+\end{itemize}
+
+We do not claim to resolve this question; it remains \tagOpen{}.
+
+% ============================================================
+\section{Chiral Filter Hook}
+\label{sec:chiral}
+% ============================================================
+
+As in Companion M, the frozen projection operator includes a chiral
+filter component:
+
+\begin{equation}
+    \mathcal{P}_{\mathrm{frozen}} = \mathcal{P}_{\mathrm{energy}} \circ
+    \mathcal{P}_{\mathrm{mode}} \circ \mathcal{P}_{\mathrm{chir}}
+    \label{eq:projection-stack}
+\end{equation}
+
+\begin{tcolorbox}[edcPathway, title=\textbf{Chiral Filter (Hypothesis)}]
+\textbf{Hypothesis} \tagP{}/\tagOpen{}\textbf{:} We propose that the observed
+chirality pattern in tau leptonic decays (left-handed charged leptons,
+left-handed neutrinos, right-handed antineutrinos) is \emph{consistent with}
+a geometric chiral filter at the observer-facing brane boundary.
+
+\medskip
+The derivation of $\mathcal{P}_{\mathrm{chir}}$ from 5D boundary conditions
+remains \tagOpen{}.
+\end{tcolorbox}
+
+The chirality selection pattern for tau decay is identical to muon decay:
+\begin{itemize}[nosep]
+    \item $\ell^-$ ($e^-$ or $\mu^-$): predominantly left-handed
+    \item $\nu_\tau$: left-handed
+    \item $\bar{\nu}_\ell$: right-handed
+\end{itemize}
+
+This universality across $\mu$ and $\tau$ supports the hypothesis that
+chirality selection is a \emph{boundary property}, not specific to the
+decaying particle.
+
+% ============================================================
+\section{Falsifiability Guardrails}
+\label{sec:falsifiability}
+% ============================================================
+
+\begin{tcolorbox}[edcGuardrail, title=\textbf{Falsifiability: What Would Refute This Framing?}]
+\begin{enumerate}[nosep]
+    \item \textbf{Wrong allowed outputs:} If tau leptonic decay produced
+          particles outside $\mathcal{A}_{\tau \to e}$ or $\mathcal{A}_{\tau \to \mu}$
+          at observable rates, the selection rule mechanism fails.
+
+    \item \textbf{Ledger non-closure:} If energy accounting showed a deficit
+          not attributable to $E_{\mathrm{other}}$ (soft modes, residuals),
+          the pipeline would be falsified.
+
+    \item \textbf{Inconsistent chirality:} If tau decay showed a different
+          chirality pattern than muon decay, the universal chiral-filter
+          hypothesis fails.
+
+    \item \textbf{Bulk leakage evidence:} If tau decay deposited measurable
+          energy into bulk modes, the brane-dominant ontology would be
+          falsified.
+
+    \item \textbf{Pipeline failure for $\tau$ but not $\mu$:} If the same
+          absorption$\to$dissipation$\to$release framework could not
+          accommodate both leptons, the generalization claim fails.
+\end{enumerate}
+\end{tcolorbox}
+
+% ============================================================
+\section{Open Problems}
+\label{sec:open}
+% ============================================================
+
+\begin{enumerate}[nosep]
+    \item \textbf{Derive $\mathcal{P}_{\mathrm{chir}}$ from boundary conditions}
+          \tagOpen{}: Construct the chiral filter from 5D action + BC at
+          $y = +\delta/2$.
+
+    \item \textbf{Explain BR($\tau \to e$) $\approx$ BR($\tau \to \mu$)}
+          \tagOpen{}: Derive from mode-spectrum structure without fitting.
+
+    \item \textbf{Mode index quantification} \tagOpen{}: Derive the
+          relationship $m_\ell(n_\ell)$ from brane-layer spectrum.
+
+    \item \textbf{Hadronic tau decays} \tagOpen{}: Extend to channels like
+          $\tau \to \pi\nu$, which requires pion ontology (future companion).
+
+    \item \textbf{Lifetime from first principles} \tagOpen{}: Currently
+          $\tau_\tau$ is \tagBL{}; deriving it requires quantitative
+          mode-spectrum dynamics.
+\end{enumerate}
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+% ============================================================
+
+Companion T demonstrates that the thick-brane microphysics pipeline
+generalizes from muon to tau without modification:
+
+\begin{itemize}[nosep]
+    \item \textbf{Same ontology:} Brane-dominant excitation (higher mode index)
+    \item \textbf{Same pipeline:} Absorption$\to$Dissipation$\to$Release
+    \item \textbf{Same projection:} $\mathcal{P}_{\mathrm{frozen}} =
+          \mathcal{P}_{\mathrm{energy}} \circ \mathcal{P}_{\mathrm{mode}}
+          \circ \mathcal{P}_{\mathrm{chir}}$
+    \item \textbf{Same chirality pattern:} Universal across lepton sector
+\end{itemize}
+
+This consistency across $\mu$ and $\tau$ supports the claim that the
+framework captures \emph{structural features} of weak leptonic decays,
+not accidental properties of a single particle.
+
+\subsection{Position in the EDC Weak Program}
+
+\begin{itemize}[nosep]
+    \item \textbf{Companion M} ($\mu$): Established brane-dominant pipeline
+    \item \textbf{Companion T} ($\tau$): Mode-spectrum generalization (this document)
+    \item \textbf{Future}: Pion decay (hadron$\to$lepton bridge) \tagOpen{}
+\end{itemize}
+
+% ============================================================
+% RELATED DOCUMENTS
+% ============================================================
+
+\vfill
+\edcRelatedDocs{Neutron Lifetime from 5D Membrane Cosmology}{10.5281/zenodo.18262721}{%
+    M: \emph{Muon Decay Tomography} (this series) $\cdot$
+    N: \emph{Neutron Junction} (\href{https://doi.org/10.5281/zenodo.18315110}{DOI}) $\cdot$
+    H: \emph{Weak Interactions} (\href{https://doi.org/10.5281/zenodo.18307539}{DOI})
+}
+
+% ============================================================
+% REFERENCES
+% ============================================================
+\begin{thebibliography}{9}
+
+\bibitem{PDG2024}
+R.~L.~Workman \emph{et al.} (Particle Data Group),
+``Review of Particle Physics,''
+Prog.\ Theor.\ Exp.\ Phys.\ \textbf{2022}, 083C01 (2022 and 2024 update).
+\href{https://pdg.lbl.gov}{https://pdg.lbl.gov}.
+Tau properties: $m_\tau = 1776.86 \pm 0.12$~MeV;
+$\tau_\tau = (290.3 \pm 0.5) \times 10^{-15}$~s;
+BR($\tau \to e\nu\bar{\nu}$) $= 17.82\%$;
+BR($\tau \to \mu\nu\bar{\nu}$) $= 17.39\%$.
+
+\end{thebibliography}
+
+% ============================================================
+\end{document}
+% ============================================================
