@@ -174,13 +174,13 @@ This document provides the \textbf{neutron backbone}:
     \item Show that instability arises from displacement from Steiner minimum \tagDc{}
     \item Connect junction oscillation to thick-brane energy pumping \tagP{}/\tagOpen{}
     \item Describe the frozen projection boundary as organizing outputs \tagDc{}/\tagP{}
-    \item Identify the bridge to Paper 3's WKB treatment \tagOpen{}
+    \item Identify the bridge to the NJSR paper's WKB treatment \tagOpen{}
 \end{enumerate}
 
 \subsection{What This Companion Does NOT Do}
 
 \begin{itemize}
-    \item Does NOT derive the lifetime $\tau_n \approx 879\,\text{s}$ from first principles (remains \tagCal{} via Paper 3's WKB barrier)
+    \item Does NOT derive the lifetime $\tau_n \approx 879\,\text{s}$ from first principles (remains \tagCal{} via the NJSR paper's WKB barrier)
     \item Does NOT derive the V--A structure of weak interactions (Standard Model input \tagBL{})
     \item Does NOT derive the thick-brane coupling constant (remains \tagOpen{})
 \end{itemize}
@@ -607,7 +607,7 @@ The collective coordinate $q$ measures overall departure from Steiner; the trans
 \end{definition}
 
 \begin{remark}[Effective 1D dynamics \textup{\tagI}]
-For slow (adiabatic) relaxation, the transverse modes equilibrate quickly, and the effective dynamics is one-dimensional in $q$. This justifies the 1D WKB treatment in Paper 3.
+For slow (adiabatic) relaxation, the transverse modes equilibrate quickly, and the effective dynamics is one-dimensional in $q$. This justifies the 1D WKB treatment in the NJSR paper.
 \end{remark}
 
 \subsection{Linearized Oscillation}
@@ -793,7 +793,7 @@ This dissipated energy flows through the brane layer and ultimately emerges as 3
 
 \begin{remark}[Connection to WKB treatment \textup{\tagI}/\textup{\tagOpen}]
 \label{rem:wkb_bridge}
-Paper 3 computes the neutron lifetime via WKB tunneling through the barrier $V_B$, giving:
+The NJSR paper computes the neutron lifetime via WKB tunneling through the barrier $V_B$, giving:
 \begin{equation}
 \tau_n^{-1} = \nu_0 \exp\bigl(-2S/\hbar\bigr) \quad \text{where } S = \int \sqrt{2M V(q)} \, dq
 \end{equation}
@@ -890,6 +890,57 @@ E_{\mathrm{other}} = E_{\mathrm{recoil}} + E_{\mathrm{soft}} + E_{\mathrm{bulk\,
     \item $E_{\mathrm{bulk\,residual}}$: any energy remaining in bulk (if leakage permitted) \tagP{}/\tagOpen{}
 \end{itemize}
 For neutron decay: $|\Delta E_{\mathrm{bulk}}| \approx \Delta m_{np} c^2 \approx 1.293$ MeV \tagBL{}.
+\end{definition}
+
+% --- Energy Bookkeeping Table ---
+\begin{table}[htbp]
+\centering
+\caption{Energy Bookkeeping for Neutron $\beta^-$ Decay \tagDc{}/\tagP{}}
+\label{tab:energy_bookkeeping}
+\small
+\begin{tabular}{@{}lllll@{}}
+\toprule
+\textbf{Term} & \textbf{Meaning} & \textbf{Tag} & \textbf{Units} & \textbf{Location} \\
+\midrule
+$\Delta E_{\mathrm{bulk}}$ & Junction relaxation energy & \tagDc{} & MeV & Bulk-core \\
+$\Delta E_{\mathrm{brane}}$ & Stored brane energy (charging) & \tagDc{} & MeV & Brane-layer \\
+$E_e$ & Electron kinetic + rest mass & \tagBL{} & MeV & 3D output \\
+$E_{\bar{\nu}}$ & Antineutrino energy & \tagBL{} & MeV & 3D output \\
+$E_{\mathrm{recoil}}$ & Proton recoil & \tagDc{} & keV & 3D output \\
+$E_{\mathrm{soft}}$ & Soft photons/phonons & \tagP{} & $\ll$ keV & Brane/3D \\
+$E_{\mathrm{bulk\,res.}}$ & Bulk residual (if any) & \tagP{}/\tagOpen{} & — & Bulk \\
+\midrule
+\multicolumn{5}{@{}l@{}}{\textbf{Conservation check:} $|\Delta E_{\mathrm{bulk}}| = \Delta E_{\mathrm{brane}} + E_{\mathrm{other}}$} \\
+\multicolumn{5}{@{}l@{}}{\textbf{Release check:} $\Delta E_{\mathrm{brane}} = E_e + E_{\bar{\nu}} + E_{\mathrm{recoil}} + E_{\mathrm{soft}}$} \\
+\midrule
+\multicolumn{5}{@{}l@{}}{\textbf{Numerical benchmark} \tagBL{}: $|\Delta E_{\mathrm{bulk}}| \approx 1.293$ MeV (PDG neutron--proton mass difference)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% --- Dimensional definitions for power terms ---
+\begin{definition}[Pumping and Release Power \textup{\tagDef}/\textup{\tagOpen}]
+\label{def:power_terms}
+The power terms appearing in the regime parameter $\Xi(t)$ are defined as:
+
+\medskip
+\textbf{(a) Pumping power} (bulk $\to$ brane transfer rate):
+\begin{equation}
+\boxed{\Pi_{\mathrm{pump}}(t) \equiv -\dot{q}(t) \cdot \partial_q V(q)\big|_{q=q(t)} \quad [\mathrm{units:\ energy/time}]}
+\label{eq:pi_pump}
+\end{equation}
+Physical interpretation: power delivered by the relaxing junction into the coupling interface. When $\dot{q} < 0$ (relaxation toward $q=0$) and $\partial_q V > 0$ (uphill from neutron side), the product is positive.
+
+\medskip
+\textbf{(b) Release power} (brane $\to$ 3D emission rate):
+\begin{equation}
+\boxed{\Pi_{\mathrm{release}}(t) \equiv \Gamma_{\mathrm{eff}} \cdot \mathcal{E}_{\mathrm{brane}}(t) \quad [\mathrm{units:\ energy/time}]}
+\label{eq:pi_release}
+\end{equation}
+where $\Gamma_{\mathrm{eff}}$ is an effective emission rate ($[\mathrm{time}^{-1}]$) characterizing how fast brane-layer modes can transfer into 3D-detectable outputs via frozen projection.
+
+\medskip
+\textbf{Note:} Both $\partial_q V$ and $\Gamma_{\mathrm{eff}}$ remain \tagOpen{} until derived from thick-brane microphysics. The definitions above are \textbf{dimensional placeholders} ensuring $\Xi(t) = \Pi_{\mathrm{pump}}/\Pi_{\mathrm{release}}$ is dimensionless.
 \end{definition}
 
 % --- Two-step release map ---
@@ -1120,13 +1171,13 @@ Proton recoil & $\sim$ keV & \tagBL{} & Small due to mass ratio \\
 \midrule
 $\Delta m_{np}$ from $\Zsix$ breaking & 1.30 MeV & \tagDc{} & Companion G \\
 $q_n \approx 1/3$ & identified & \tagI{} & Half-Steiner \\
-Barrier height $V_B$ & $\sim 2.6$ MeV & \tagCal{} & Fitted to $\tau_n$ (Paper 3) \\
+Barrier height $V_B$ & $\sim 2.6$ MeV & \tagCal{} & Fitted to $\tau_n$ (NJSR) \\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \begin{remark}[Lifetime is NOT predicted \textup{\tagCal}]
-The neutron lifetime $\tau_n \approx 879$ s is reproduced in Paper 3 via WKB tunneling through a barrier $V_B$. However, $V_B$ is \textbf{calibrated} to match $\tau_n$, not derived from first principles. A first-principles derivation of $V_B$ (or equivalently, the attempt frequency $\Gamma_0$) remains \tagOpen{}.
+The neutron lifetime $\tau_n \approx 879$ s is reproduced in the NJSR paper via WKB tunneling through a barrier $V_B$. However, $V_B$ is \textbf{calibrated} to match $\tau_n$, not derived from first principles. A first-principles derivation of $V_B$ (or equivalently, the attempt frequency $\Gamma_0$) remains \tagOpen{}.
 \end{remark}
 
 % ============================================================
@@ -1140,14 +1191,14 @@ The neutron lifetime $\tau_n \approx 879$ s is reproduced in Paper 3 via WKB tun
 \begin{enumerate}
     \item \textbf{Derive $V_B$ from 5D action} \tagOpen{}
     \begin{itemize}
-        \item Current status: $V_B \approx 2.6$ MeV is calibrated (Paper 3)
+        \item Current status: $V_B \approx 2.6$ MeV is calibrated (NJSR paper)
         \item Goal: Show $V_B$ emerges from junction geometry + brane tension
         \item Would upgrade $\tau_n$ from \tagCal{} to \tagDer{}
     \end{itemize}
 
     \item \textbf{WKB--Damping Bridge} \tagOpen{}
     \begin{itemize}
-        \item Paper 3 uses WKB tunneling through $V(q)$
+        \item NJSR paper uses WKB tunneling through $V(q)$
         \item This companion uses damped oscillator + pumping
         \item Goal: Show equivalence in appropriate limits
     \end{itemize}
@@ -1181,7 +1232,7 @@ The neutron lifetime $\tau_n \approx 879$ s is reproduced in Paper 3 via WKB tun
 \toprule
 \textbf{Problem} & \textbf{Solution} & \textbf{Document} \\
 \midrule
-Frozen criterion from action & Two routes (instanton + topological) & Paper 2 \\
+Frozen criterion from action & Two routes (instanton + topological) & Framework v2.0 \\
 $120\degree$ Steiner angles & Variational derivation & Companion F \\
 $\Delta m_{np}$ from geometry & $\Zsix$ symmetry breaking & Companion G \\
 Weak channel selection rules & Thick-brane microphysics & Companion H \\
@@ -1224,10 +1275,10 @@ Excitation $\Rightarrow$ instability & \tagDc{} & Lem.~\ref{lem:excitation-energ
 \midrule
 Ring + springs (heuristic) & \tagI{}/\tagP{} & \S\ref{sec:mechanics} & Mechanical analogy \\
 Thick-brane pumping & \tagP{}/\tagOpen{} & Post.~\ref{post:coupling} & Mechanism open \\
-Frozen projection output & \tagDc{}/\tagP{} & Prop.~\ref{prop:one-way} & From H + Paper 2 \\
+Frozen projection output & \tagDc{}/\tagP{} & Prop.~\ref{prop:one-way} & From H + Framework v2.0 \\
 \midrule
 $\tau_n \approx 879$ s & \tagBL{} & PDG & Observable \\
-$V_B$ barrier height & \tagCal{} & Paper 3 & Fitted to $\tau_n$ \\
+$V_B$ barrier height & \tagCal{} & NJSR paper & Fitted to $\tau_n$ \\
 $q_n \approx 1/3$ & \tagI{} & Rem.~\ref{rem:q-neutron} & From $\Zsix$ pattern \\
 \bottomrule
 \end{tabular}
@@ -1237,7 +1288,7 @@ $q_n \approx 1/3$ & \tagI{} & Rem.~\ref{rem:q-neutron} & From $\Zsix$ pattern \\
 
 \textbf{This companion has zero calibrated parameters.}
 
-The neutron lifetime $\tau_n$ enters only as a baseline observable \tagBL{} for consistency checks. The barrier height $V_B$ that determines $\tau_n$ via WKB is calibrated in Paper 3, not here. All geometric results ($q$ definition, Steiner instability, relaxation direction) are parameter-free consequences of the junction postulate.
+The neutron lifetime $\tau_n$ enters only as a baseline observable \tagBL{} for consistency checks. The barrier height $V_B$ that determines $\tau_n$ via WKB is calibrated in the NJSR paper (\href{https://doi.org/10.5281/zenodo.18262721}{DOI}), not here. All geometric results ($q$ definition, Steiner instability, relaxation direction) are parameter-free consequences of the junction postulate.
 
 \subsection*{Cornerstone Statement}
 

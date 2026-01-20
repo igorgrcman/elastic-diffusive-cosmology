@@ -177,4 +177,40 @@ xelatex -interaction=nonstopmode main.tex && xelatex main.tex
 
 ---
 
-*Generated: 2026-01-20 (Session 3)*
+---
+
+## Session 4 Additions (2026-01-20)
+
+### Energy Bookkeeping Table (Table 1)
+
+| Column | Content |
+|--------|---------|
+| Term | Energy component name |
+| Meaning | Physical interpretation |
+| Tag | Epistemic classification |
+| Units | MeV, keV, etc. |
+| Location | Bulk-core / Brane-layer / 3D output |
+
+### Dimensional Power Definitions (Definition 5.3)
+
+| Power | Formula | Units | Tag |
+|-------|---------|-------|-----|
+| Π_pump | -q̇ · ∂_q V | energy/time | [Def]/[OPEN] |
+| Π_release | Γ_eff · E_brane | energy/time | [Def]/[OPEN] |
+
+### Reference Normalization
+
+All "Paper 2" → "Framework v2.0"
+All "Paper 3" → "NJSR paper" (with DOI where appropriate)
+
+### Build Verification (Session 4)
+
+```bash
+cd edc_papers/paper_3_series/10_companion_N_neutron_junction/paper/
+xelatex -interaction=nonstopmode main.tex && xelatex main.tex
+# Output: main.pdf (19 pages)
+```
+
+---
+
+*Generated: 2026-01-20 (Session 4)*
