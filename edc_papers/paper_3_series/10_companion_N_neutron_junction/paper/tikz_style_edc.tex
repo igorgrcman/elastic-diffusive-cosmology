@@ -1,0 +1,246 @@
+% tikz_style_edc.tex — Reusable TikZ styles for EDC papers
+% Version 1.0 — 2026-01-20
+% Include via: \input{tikz_style_edc}
+
+% ============================================================
+% REQUIRED LIBRARIES (must be loaded in main document)
+% ============================================================
+% \usetikzlibrary{calc,angles,quotes,decorations.markings,decorations.pathmorphing,positioning}
+
+% ============================================================
+% POSITIONING DEFAULTS
+% ============================================================
+\tikzset{
+    % Default node distances for horizontal/vertical layouts
+    edc node distance/.style={node distance=1.6cm and 2.0cm},
+    % Compact variant for dense diagrams
+    edc compact/.style={node distance=1.2cm and 1.5cm},
+    % Spread variant for clarity
+    edc spread/.style={node distance=2.0cm and 2.5cm},
+}
+
+% ============================================================
+% COLOR PALETTE (consistent with epistemic tags)
+% ============================================================
+\definecolor{edcBulk}{RGB}{220,50,50}        % Red tones for bulk/5D
+\definecolor{edcBrane}{RGB}{50,150,50}       % Green tones for brane-layer
+\definecolor{edcOutput}{RGB}{50,100,200}     % Blue tones for 3D outputs
+\definecolor{edcNeutral}{RGB}{100,100,100}   % Gray for neutral/annotations
+
+% ============================================================
+% BOX STYLES
+% ============================================================
+\tikzset{
+    % Generic EDC box (base style)
+    edc box/.style={
+        rectangle,
+        draw,
+        rounded corners=3pt,
+        minimum width=2.2cm,
+        minimum height=0.8cm,
+        align=center,
+        font=\small,
+        inner sep=4pt,
+    },
+    % Bulk-core box (red family)
+    bulk box/.style={
+        edc box,
+        fill=red!10,
+        draw=edcBulk!70!black,
+        text=black,
+    },
+    % Brane-layer box (green family)
+    brane box/.style={
+        edc box,
+        fill=green!10,
+        draw=edcBrane!70!black,
+        text=black,
+    },
+    % 3D output box (blue family)
+    output box/.style={
+        edc box,
+        fill=blue!10,
+        draw=edcOutput!70!black,
+        text=black,
+    },
+    % Neutral/process box
+    process box/.style={
+        edc box,
+        fill=gray!10,
+        draw=gray!60!black,
+        text=black,
+    },
+    % Label-only box (no background)
+    label box/.style={
+        rectangle,
+        rounded corners=2pt,
+        draw=gray!40,
+        fill=white,
+        inner sep=2pt,
+        font=\scriptsize,
+    },
+}
+
+% ============================================================
+% ARROW STYLES
+% ============================================================
+\tikzset{
+    % Standard thick arrow
+    edc arrow/.style={
+        ->,
+        >=stealth,
+        thick,
+    },
+    % Emphasized arrow (for main flow)
+    edc flow/.style={
+        ->,
+        >=stealth,
+        very thick,
+        line width=1.2pt,
+    },
+    % Dashed arrow (for optional/weak connections)
+    edc dashed/.style={
+        ->,
+        >=stealth,
+        thick,
+        dashed,
+    },
+    % Double arrow (for bidirectional)
+    edc bidir/.style={
+        <->,
+        >=stealth,
+        thick,
+    },
+}
+
+% ============================================================
+% REGION STYLES (for background fills)
+% ============================================================
+\tikzset{
+    % Bulk region (5D)
+    bulk region/.style={
+        fill=blue!8,
+    },
+    % Brane layer region
+    brane region/.style={
+        fill=yellow!25,
+    },
+    % Observer/3D region
+    observer region/.style={
+        fill=green!8,
+    },
+}
+
+% ============================================================
+% LABEL STYLES
+% ============================================================
+\tikzset{
+    % Phase label (below nodes)
+    phase label/.style={
+        font=\scriptsize\itshape,
+        text=black!70,
+    },
+    % Equation label (for inline math)
+    eq label/.style={
+        font=\scriptsize,
+        fill=white,
+        inner sep=1pt,
+    },
+    % Section annotation
+    section label/.style={
+        font=\footnotesize\bfseries,
+        text=black,
+    },
+}
+
+% ============================================================
+% JUNCTION/PARTICLE STYLES
+% ============================================================
+\tikzset{
+    % Y-junction point
+    junction point/.style={
+        circle,
+        fill=red!60!black,
+        minimum size=4pt,
+        inner sep=0pt,
+    },
+    % Flux tube arm
+    flux arm/.style={
+        thick,
+        blue!60!black,
+    },
+    % Particle dot (electron, etc.)
+    particle/.style={
+        circle,
+        fill=black,
+        minimum size=5pt,
+        inner sep=0pt,
+    },
+    % Neutrino (smaller, gray)
+    neutrino/.style={
+        circle,
+        fill=gray,
+        minimum size=4pt,
+        inner sep=0pt,
+    },
+}
+
+% ============================================================
+% SPRING DECORATION (for mechanical models)
+% ============================================================
+\tikzset{
+    spring/.style={
+        thick,
+        decorate,
+        decoration={
+            coil,
+            aspect=0.5,
+            segment length=2mm,
+            amplitude=2mm,
+        },
+    },
+    % Wave decoration (for field modes)
+    wave field/.style={
+        thick,
+        decorate,
+        decoration={
+            snake,
+            amplitude=2pt,
+            segment length=8pt,
+        },
+    },
+}
+
+% ============================================================
+% BOUNDARY STYLES
+% ============================================================
+\tikzset{
+    % Bulk-facing boundary (dashed red)
+    bulk boundary/.style={
+        very thick,
+        red!70!black,
+        dashed,
+    },
+    % Observer-facing boundary (solid green)
+    observer boundary/.style={
+        thick,
+        green!50!black,
+    },
+    % Brane edge (orange)
+    brane edge/.style={
+        thick,
+        orange!70!black,
+    },
+}
+
+% ============================================================
+% CONVENIENCE COMMANDS
+% ============================================================
+% Arrow label (above)
+\newcommand{\arrlabel}[1]{\scriptsize #1}
+% Arrow label (below)
+\newcommand{\arrlabelb}[1]{\scriptsize #1}
+
+% ============================================================
+% END OF STYLE FILE
+% ============================================================

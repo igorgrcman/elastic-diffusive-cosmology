@@ -256,4 +256,44 @@ xelatex -interaction=nonstopmode main.tex && xelatex main.tex
 
 ---
 
-*Generated: 2026-01-20 (Session 5)*
+## Session 6 Additions (2026-01-20)
+
+### Figure Hygiene Pass
+
+Created reusable TikZ style infrastructure and refactored all 6 figures in Companion N.
+
+| Component | Content |
+|-----------|---------|
+| Style file | `paper/tikz_style_edc.tex` (reusable for all EDC papers) |
+| Box styles | `bulk box`, `brane box`, `output box`, `process box`, `label box` |
+| Arrow styles | `edc arrow`, `edc flow`, `edc dashed`, `edc bidir` |
+| Region styles | `bulk region`, `brane region`, `observer region` |
+| Positioning | Added `positioning` library, used `node distance` |
+
+### Figures Refactored
+
+| Figure | Location | Key Changes |
+|--------|----------|-------------|
+| Fig 1: Thick-brane geometry | lines 283-343 | Applied region/boundary styles, fixed label overlaps |
+| Conceptual "Glass Window" | lines 350-377 | Applied region styles, scale 0.95 |
+| Fig 2: Potential V(q) | lines 519-548 | Scale 1.6, repositioned labels |
+| Ring + Springs | lines 567-585 | Applied spring style, scale 1.1 |
+| Energy Pathway | lines 671-696 | Applied box styles, edc compact |
+| Fig 3: Energy-flow | lines 964-1008 | Scale 0.88, tight spacing (fixed 70pt overfull) |
+
+### Build Verification (Session 6)
+
+```bash
+cd edc_papers/paper_3_series/10_companion_N_neutron_junction/paper/
+xelatex -interaction=nonstopmode main.tex && xelatex main.tex
+# Output: main.pdf (21 pages)
+# No figure-related overfull warnings
+```
+
+### Documentation
+
+Created `10_companion_N_neutron_junction/FIGURE_FIX_NOTES.md` with detailed change log.
+
+---
+
+*Generated: 2026-01-20 (Session 6 — Figure Hygiene Pass)*
