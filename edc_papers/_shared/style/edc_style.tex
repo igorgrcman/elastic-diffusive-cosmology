@@ -1,0 +1,210 @@
+% edc_style.tex — Canonical EDC Paper Style for Paper 3 Series
+% Version 1.0 — 2026-01-20
+%
+% USAGE: Include in preamble AFTER loading packages but BEFORE \begin{document}
+%   \input{../_shared/style/edc_style}
+%   \input{../_shared/style/tikz_style_edc}  % if using TikZ figures
+%
+% REQUIRED PACKAGES (load these in main document before \input):
+%   fontspec, amsmath, amssymb, amsthm, mathtools, geometry
+%   hyperref, enumitem, booktabs, array, xcolor, tcolorbox
+%
+% ============================================================
+
+% ============================================================
+%  EPISTEMIC TAG COLORS
+% ============================================================
+\definecolor{tagDer}{RGB}{0,128,0}      % Green - Derived
+\definecolor{tagDc}{RGB}{0,0,200}       % Blue - Deduced/Constrained
+\definecolor{tagCal}{RGB}{200,0,0}      % Red - Calibrated
+\definecolor{tagP}{RGB}{128,0,128}      % Purple - Postulated
+\definecolor{tagBL}{RGB}{128,128,128}   % Gray - Baseline
+\definecolor{tagI}{RGB}{255,140,0}      % Orange - Identified
+\definecolor{tagOpen}{RGB}{200,100,0}   % Dark orange - Open
+
+% ============================================================
+%  EPISTEMIC TAG COMMANDS
+% ============================================================
+% Use these to mark claims with their epistemic status
+\newcommand{\tagDer}{\textcolor{tagDer}{\textbf{[Der]}}}    % Derived from axioms
+\newcommand{\tagDc}{\textcolor{tagDc}{\textbf{[Dc]}}}       % Deduced/Constrained
+\newcommand{\tagCal}{\textcolor{tagCal}{\textbf{[Cal]}}}    % Calibrated (fitted)
+\newcommand{\tagP}{\textcolor{tagP}{\textbf{[P]}}}          % Postulated
+\newcommand{\tagBL}{\textcolor{tagBL}{\textbf{[BL]}}}       % Baseline (external fact)
+\newcommand{\tagI}{\textcolor{tagI}{\textbf{[I]}}}          % Identified (pattern match)
+\newcommand{\tagOpen}{\textcolor{tagOpen}{\textbf{[OPEN]}}} % Open problem
+\newcommand{\tagDef}{\textcolor{tagDc}{\textbf{[Def]}}}     % Definition
+
+% ============================================================
+%  THEOREM ENVIRONMENTS
+% ============================================================
+\newtheorem{postulate}{Postulate}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}{Remark}[section]
+
+% ============================================================
+%  COMMON EDC SYMBOLS
+% ============================================================
+% Symmetry groups
+\newcommand{\Ztwo}{\mathbb{Z}_2}
+\newcommand{\Zthree}{\mathbb{Z}_3}
+\newcommand{\Ztri}{\mathbb{Z}_3}    % alias
+\newcommand{\Zsix}{\mathbb{Z}_6}
+
+% Geometric objects
+\newcommand{\Sthree}{S^3}           % 3-sphere
+\newcommand{\Stwo}{S^2}             % 2-sphere
+\newcommand{\Bthree}{B^3}           % 3-ball
+\newcommand{\Mfive}{\mathcal{M}_5}  % 5D manifold
+\newcommand{\Bfour}{\mathcal{B}_4}  % 4D brane
+
+% Physical quantities
+\newcommand{\tension}{\tau}         % string/flux-tube tension (E/L)
+\newcommand{\re}{r_e}               % electron radius
+
+% Operators
+\newcommand{\Pfrozen}{\mathcal{P}_{\mathrm{frozen}}}  % Frozen projection operator
+\newcommand{\Ebrane}{\mathcal{E}_{\mathrm{brane}}}    % Brane energy store
+
+% Bulk-brane exchange current (canonical notation from Framework v2.0)
+\newcommand{\Jbb}[1]{J^{#1}_{\mathrm{bulk}\to\mathrm{brane}}}
+
+% ============================================================
+%  TCOLORBOX STYLES FOR EDC PAPERS
+% ============================================================
+% Cornerstone box (blue) — key claims/foundations
+\tcbset{
+    edcCornerstone/.style={
+        colback=blue!5,
+        colframe=blue!40!black,
+        fonttitle=\bfseries
+    }
+}
+
+% Guardrail box (gray) — epistemic warnings/constraints
+\tcbset{
+    edcGuardrail/.style={
+        colback=gray!5!white,
+        colframe=gray!60!black,
+        fonttitle=\bfseries
+    }
+}
+
+% PPN box (blue, lighter) — Physical Process Narrative
+\tcbset{
+    edcPPN/.style={
+        colback=blue!5,
+        colframe=blue!50!black,
+        fonttitle=\bfseries
+    }
+}
+
+% Canonical box (yellow/orange) — canonical definitions/glossary
+\tcbset{
+    edcCanonical/.style={
+        colback=yellow!5,
+        colframe=orange!60!black,
+        fonttitle=\bfseries
+    }
+}
+
+% Conceptual box (yellow/orange, lighter) — conceptual pictures
+\tcbset{
+    edcConcept/.style={
+        colback=yellow!5,
+        colframe=orange!50!black,
+        fonttitle=\bfseries
+    }
+}
+
+% Pathway box (purple) — energy pathways, mechanisms
+\tcbset{
+    edcPathway/.style={
+        colback=purple!5,
+        colframe=purple!40!black,
+        fonttitle=\bfseries
+    }
+}
+
+% Model box (green) — mechanical analogies, heuristics
+\tcbset{
+    edcModel/.style={
+        colback=green!5,
+        colframe=green!40!black,
+        fonttitle=\bfseries
+    }
+}
+
+% Warning box (red) — non-overclaim, limitations
+\tcbset{
+    edcWarning/.style={
+        colback=red!5,
+        colframe=red!40!black,
+        fonttitle=\bfseries
+    }
+}
+
+% Framework quote box (gray) — verbatim from Framework v2.0
+\tcbset{
+    edcFramework/.style={
+        colback=gray!5!white,
+        colframe=gray!60!black,
+        fonttitle=\small
+    }
+}
+
+% ============================================================
+%  RELATED DOCUMENTS MACRO
+% ============================================================
+% Usage: \edcRelatedDocs{main paper title}{main DOI}{companion list}
+%
+% Example:
+%   \edcRelatedDocs{Neutron Lifetime from 5D Membrane Cosmology}{10.5281/zenodo.18262721}{%
+%     A: \emph{Effective Lagrangian} (\href{...}{DOI}) $\cdot$
+%     B: \emph{WKB Prefactor} (\href{...}{DOI})
+%   }
+
+\newcommand{\edcRelatedDocs}[3]{%
+\begin{center}
+\small\textbf{Related Documents:}\\[0.1cm]
+\footnotesize
+\emph{#1} (DOI: \href{https://doi.org/#2}{#2})\\[0.05cm]
+\emph{Framework v2.0} (DOI: \href{https://doi.org/10.5281/zenodo.18299085}{10.5281/zenodo.18299085})\\[0.05cm]
+\textbf{Companions:}\\
+#3
+\end{center}
+}
+
+% ============================================================
+%  CANONICAL DOIs (for reference)
+% ============================================================
+% Paper 3 (NJSR): 10.5281/zenodo.18262721
+% Framework v2.0: 10.5281/zenodo.18299085
+% Companion A (Effective Lagrangian): 10.5281/zenodo.18292841
+% Companion B (WKB Prefactor): 10.5281/zenodo.18299637
+% Companion C (5D Reduction): 10.5281/zenodo.18299751
+% Companion D (Selection Rules): 10.5281/zenodo.18299855
+% Companion E (Symmetry Ops): 10.5281/zenodo.18300199
+% Companion F (Proton Junction): 10.5281/zenodo.18302953
+% Companion G (Mass Difference): 10.5281/zenodo.18303494
+% Companion H (Weak Interactions): 10.5281/zenodo.18307539
+% Companion N (Neutron Junction): 10.5281/zenodo.18315110
+
+% ============================================================
+%  PHYSICAL NARRATION RULE REMINDER
+% ============================================================
+% Every key equation MUST be accompanied by a physical narrative stating:
+%   1. 5D cause: What changes in the bulk-core configuration?
+%   2. Brane response: How does the brane absorb/redistribute energy?
+%   3. 3D observable output: What do observers detect on the 3D side?
+%
+% This rule eliminates "numerology smell" by ensuring every formula
+% has a mechanistic interpretation.
+
+% ============================================================
+%  END OF STYLE FILE
+% ============================================================
