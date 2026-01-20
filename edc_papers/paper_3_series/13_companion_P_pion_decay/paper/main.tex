@@ -1,0 +1,489 @@
+% Companion P: Pion Decay as Hadron→Lepton Injection Test
+% EDC Paper 3 Series — Companion Document
+% Version: 0.1 (Draft)
+% Date: 2026-01-20
+
+\documentclass[11pt,a4paper]{article}
+
+% ============================================================
+% FONT CONFIGURATION (with fallback for system compatibility)
+% ============================================================
+\usepackage{fontspec}
+\IfFontExistsTF{TeX Gyre Termes}{%
+  \setmainfont{TeX Gyre Termes}
+}{%
+  \setmainfont{Times New Roman}[Ligatures=TeX]
+}
+
+% ============================================================
+% STANDARD PACKAGES
+% ============================================================
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,decorations.pathmorphing,shapes.geometric}
+
+% Load shared EDC style
+\input{../../../_shared/style/edc_style}
+\input{../../../_shared/style/tikz_style_edc}
+
+\geometry{margin=2.5cm}
+
+% ============================================================
+% THEOREM ENVIRONMENTS
+% ============================================================
+\newtheorem{postulate}{Postulate}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{remark}{Remark}[section]
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+\title{\textbf{Companion P: Pion Decay as Hadron$\to$Lepton Injection Test}\\[0.5em]
+\large EDC Paper 3 Series — Thick-Brane Microphysics}
+\author{EDC Collaboration}
+\date{Draft v0.1 — January 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We extend the EDC thick-brane microphysics framework to charged pion decay
+($\pi^+ \to \mu^+\nu_\mu$, $\pi^+ \to e^+\nu_e$), providing the first
+\emph{hadron$\to$lepton injection test} of the absorption$\to$dissipation$\to$release
+pipeline. The pion is modeled as a brane-dominant composite excitation~[P],
+distinct from both fundamental leptons (single brane modes) and the neutron
+(bulk-core junction). We treat helicity suppression as a baseline fact~[BL]
+and provide a qualitative projection-mechanism interpretation~[P]/[OPEN]
+without numerical fits. The dominant $\mu$-channel and suppressed $e$-channel
+are consistent with the frozen-projection framework; explicit derivation of
+the $m_\ell^2$ scaling from boundary conditions remains open.
+\end{abstract}
+
+\tableofcontents
+
+% ============================================================
+\section{Motivation: First Hadron$\to$Lepton Test}
+\label{sec:motivation}
+% ============================================================
+
+Companions M and T established that the absorption$\to$dissipation$\to$release
+pipeline works for \emph{brane-dominant leptonic} decays ($\mu \to e\nu\bar\nu$,
+$\tau \to \ell\nu\bar\nu$). The charged pion $\pi^+$ provides the first test
+in the \emph{hadronic sector}: a composite object decaying into leptons.
+
+\subsection{Strategic Position}
+
+\begin{enumerate}[label=(\roman*)]
+    \item \textbf{Ontology test:} Is the pion a different class of 5D object
+          than leptons? (Answer: yes—composite vs.\ fundamental.)
+    \item \textbf{Pipeline generality:} Does the same three-stage pipeline
+          (absorption$\to$dissipation$\to$release) apply to hadron$\to$lepton
+          transitions?
+    \item \textbf{Selection rule test:} Does the frozen projection $\mathcal{P}_{\mathrm{frozen}}$
+          account for the $\mu$-dominance over $e$?
+\end{enumerate}
+
+\subsection{Scope Limitation}
+
+This companion addresses \emph{leptonic} pion decays only. Hadronic modes
+(e.g., $\pi^0 \to \gamma\gamma$) require photon ontology and are deferred
+to future work~[OPEN].
+
+% ============================================================
+\section{Pion Ontology: Brane-Dominant Composite Excitation}
+\label{sec:ontology}
+% ============================================================
+
+\begin{postulate}[Pion Ontology]
+\label{post:pion-ontology}
+The charged pion $\pi^+$ is a \textbf{brane-dominant composite excitation}
+in the hadronic sector~[P]. It is localized primarily on the brane layer,
+not in the bulk, and consists of a bound configuration of sub-structures
+(quarks in the Standard Model picture; localized defects/modes in the EDC
+picture).
+\end{postulate}
+
+\noindent\textbf{Physical narration:}
+\begin{quote}
+\emph{5D cause:} A composite bound state forms on the brane layer through
+localization of two correlated defect-modes.\\
+\emph{Brane response:} The brane supports this metastable configuration
+with a characteristic energy scale $m_\pi c^2 \approx 140$~MeV~[BL].\\
+\emph{3D output:} Observers detect a spin-0 meson with definite mass and
+charge.
+\end{quote}
+
+\subsection{Candidate Micro-Ontology: Junction-Pair}
+\label{subsec:junction-pair}
+
+\begin{remark}[Junction-Pair Candidate]
+\label{rem:junction-pair}
+One candidate micro-ontology is a \textbf{defect--antidefect bound state}
+(``junction-pair'') on the brane layer~[P]/[OPEN]. In this picture:
+\begin{itemize}
+    \item The $u$ and $\bar{d}$ quarks correspond to localized junction
+          defects of opposite ``charge'' (in the topological sense).
+    \item Confinement arises from the brane-layer potential that binds
+          the junction-pair at characteristic separation $\sim 1$~fm.
+\end{itemize}
+This remains a candidate, not a derived result. Key open questions:
+\begin{enumerate}
+    \item Is the binding bulk-facing or observer-facing?
+    \item How does color confinement map to 5D topology?
+    \item Why $m_\pi \approx 140$~MeV and not another value?
+\end{enumerate}
+All three are flagged \textbf{[OPEN]}.
+\end{remark}
+
+% ============================================================
+\section{Observational Baselines}
+\label{sec:baselines}
+% ============================================================
+
+\begin{table}[h]
+\centering
+\caption{Charged pion properties (PDG 2024)~\cite{PDG2024}}
+\label{tab:baselines}
+\begin{tabular}{lll}
+\toprule
+\textbf{Quantity} & \textbf{Value} & \textbf{Tag} \\
+\midrule
+Mass $m_{\pi^+}$ & $139.570\,39(18)$~MeV/$c^2$ & [BL] \\
+Lifetime $\tau_{\pi^+}$ & $2.6033(5) \times 10^{-8}$~s & [BL] \\
+BR($\pi^+ \to \mu^+\nu_\mu$) & $99.98770(4)\%$ & [BL] \\
+BR($\pi^+ \to e^+\nu_e$) & $1.230(4) \times 10^{-4}$ & [BL] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent The ratio BR($\mu$)/BR($e$) $\approx 8100$ is the \emph{helicity
+suppression} phenomenon~[BL].
+
+% ============================================================
+\section{Canonical Pipeline: Absorption $\to$ Dissipation $\to$ Release}
+\label{sec:pipeline}
+% ============================================================
+
+The pion decay follows the same three-stage pipeline as leptonic decays:
+
+\begin{enumerate}
+    \item \textbf{Absorption:} The composite pion excitation becomes
+          unstable and its energy is absorbed into the brane-layer
+          dissipation channel.
+    \item \textbf{Dissipation:} Energy redistributes through brane
+          modes, subject to conservation laws (charge, lepton number,
+          spin, energy-momentum).
+    \item \textbf{Release:} The frozen projection $\mathcal{P}_{\mathrm{frozen}}$
+          selects allowed output configurations; observers detect
+          $\ell^+ + \nu_\ell$.
+\end{enumerate}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=0.9, every node/.style={font=\small}]
+    % Pion initial state (composite)
+    \node[draw, rounded corners, fill=green!20, minimum width=2cm, minimum height=1cm]
+        (pion) at (0,0) {$\pi^+$ (composite)};
+
+    % Absorption stage
+    \node[draw, rounded corners, fill=yellow!30, minimum width=2cm, minimum height=0.8cm]
+        (abs) at (4,0) {Absorption};
+
+    % Dissipation stage
+    \node[draw, rounded corners, fill=orange!30, minimum width=2cm, minimum height=0.8cm]
+        (diss) at (7,0) {Dissipation};
+
+    % Projection operator
+    \node[draw, rounded corners, fill=red!20, minimum width=2.5cm, minimum height=0.8cm]
+        (proj) at (10.5,0) {$\mathcal{P}_{\mathrm{frozen}}$};
+
+    % Output channels
+    \node[draw, rounded corners, fill=purple!20, minimum width=1.8cm, minimum height=0.6cm]
+        (mu) at (13.5,0.5) {$\mu^+\nu_\mu$ (99.99\%)};
+    \node[draw, rounded corners, fill=blue!20, minimum width=1.8cm, minimum height=0.6cm]
+        (e) at (13.5,-0.5) {$e^+\nu_e$ (0.01\%)};
+
+    % Arrows
+    \draw[-{Stealth}, thick] (pion) -- (abs);
+    \draw[-{Stealth}, thick] (abs) -- (diss);
+    \draw[-{Stealth}, thick] (diss) -- (proj);
+    \draw[-{Stealth}, thick] (proj) -- (mu);
+    \draw[-{Stealth}, thick] (proj) -- (e);
+
+    % Brane layer indication
+    \draw[dashed, gray] (-1.5,-1.5) -- (15,-1.5);
+    \node[gray, anchor=west] at (-1.5,-1.8) {Brane layer};
+\end{tikzpicture}
+\caption{Energy flow in charged pion leptonic decay. The pipeline is
+identical to muon/tau decay, with the pion as initial composite state.
+The projection operator $\mathcal{P}_{\mathrm{frozen}}$ strongly favors
+the $\mu$-channel~[BL].}
+\label{fig:pipeline}
+\end{figure}
+
+\subsection{Key Difference from Leptonic Decays}
+
+In muon and tau decay, the initial state is a \emph{fundamental} brane-dominant
+mode. In pion decay, the initial state is a \emph{composite} brane-dominant
+excitation. The pipeline structure is the same; the input ontology differs.
+
+% ============================================================
+\section{Helicity Suppression}
+\label{sec:helicity}
+% ============================================================
+
+\subsection{Standard Model Scaling [BL]}
+
+The Standard Model predicts~\cite{PDG2024}:
+\begin{equation}
+\Gamma(\pi^+ \to \ell^+\nu_\ell) \propto m_\ell^2 \left(1 - \frac{m_\ell^2}{m_\pi^2}\right)^2
+\label{eq:sm-scaling}
+\end{equation}
+This gives BR($\mu$)/BR($e$) $\approx (m_\mu/m_e)^2 \times (\text{phase space})
+\approx 8100$, matching observation~[BL].
+
+The physical origin in SM: the pion has spin-0, so the $\ell^+\nu_\ell$ pair
+must have total spin-0. Angular momentum conservation forces a helicity
+mismatch for the charged lepton. Lighter leptons have smaller ``wrong helicity''
+amplitude, suppressed by $m_\ell$.
+
+\subsection{EDC Projection Mechanism [P]/[OPEN]}
+
+\begin{postulate}[Projection Mechanism for Helicity Suppression]
+\label{post:projection-mechanism}
+In the EDC framework, the frozen projection operator
+\begin{equation}
+\mathcal{P}_{\mathrm{frozen}} = \mathcal{P}_{\mathrm{energy}} \circ
+\mathcal{P}_{\mathrm{mode}} \circ \mathcal{P}_{\mathrm{chir}}
+\label{eq:projection-stack}
+\end{equation}
+includes a chiral filter $\mathcal{P}_{\mathrm{chir}}$ that acts on
+both the decaying composite and the outgoing lepton~[P]/[OPEN].
+
+The filter preferentially allows channels where the outgoing charged
+lepton can support the required chirality configuration on the brane
+boundary. The mismatch scales with the lepton mass parameter that
+characterizes chirality mixing.
+\end{postulate}
+
+\noindent\textbf{Physical narration:}
+\begin{quote}
+\emph{5D cause:} The brane boundary conditions impose chirality
+constraints on allowed final states.\\
+\emph{Brane response:} The chiral filter $\mathcal{P}_{\mathrm{chir}}$
+projects out configurations with insufficient chirality overlap.\\
+\emph{3D output:} Observers see $\mu$-channel dominance because the
+heavier muon has larger chirality overlap with the pion's release
+configuration.
+\end{quote}
+
+\subsection{Explicit Derivation Status [OPEN]}
+
+\begin{remark}[Derivation Gap]
+\label{rem:derivation-gap}
+Deriving the $m_\ell^2$ scaling from explicit boundary-condition
+computation remains \textbf{[OPEN]}. Required steps:
+\begin{enumerate}
+    \item Specify the pion's brane-layer wavefunction (composite structure).
+    \item Compute the overlap integral with outgoing lepton modes.
+    \item Show that the overlap scales as $m_\ell$ (giving $m_\ell^2$ in rate).
+\end{enumerate}
+Until this is done, we treat the $m_\ell^2$ scaling as~[BL] and the
+projection mechanism as~[P]/[OPEN].
+\end{remark}
+
+% ============================================================
+\section{Existence and Stability}
+\label{sec:stability}
+% ============================================================
+
+Why does the pion exist as a metastable object with $\tau_\pi \approx 26$~ns?
+
+\begin{postulate}[Metastability Mechanism]
+\label{post:metastability}
+The pion is metastable because~[P]/[OPEN]:
+\begin{enumerate}
+    \item \textbf{Brane localization:} The junction-pair (or equivalent
+          composite) is confined to the brane layer by a localization
+          potential (spectral gap).
+    \item \textbf{Suppressed release:} The only allowed release channels
+          ($\ell^+\nu_\ell$) require ``unwinding'' the composite through
+          the frozen projection, which is kinematically constrained.
+    \item \textbf{No bulk escape:} Direct bulk dissipation is suppressed
+          for brane-dominant composites (same as for leptons).
+\end{enumerate}
+\end{postulate}
+
+\noindent\textbf{Physical narration:}
+\begin{quote}
+\emph{5D cause:} The brane layer has a spectral gap that traps
+composite excitations.\\
+\emph{Brane response:} The composite remains localized until it can
+release through allowed leptonic channels.\\
+\emph{3D output:} Observers detect a particle with finite lifetime
+$\tau_\pi \approx 26$~ns~[BL].
+\end{quote}
+
+\begin{remark}[No Mass Derivation]
+\label{rem:no-mass}
+We do \textbf{not} attempt to derive $m_\pi = 140$~MeV from first
+principles. This requires a complete theory of quark/defect binding
+in the 5D framework, which is~\textbf{[OPEN]}.
+\end{remark}
+
+% ============================================================
+\section{Allowed Output Sets}
+\label{sec:outputs}
+% ============================================================
+
+\begin{definition}[Allowed Outputs for $\pi^+$ Decay]
+\label{def:allowed-outputs}
+The allowed output set for $\pi^+$ leptonic decay is~[Dc]:
+\begin{equation}
+\mathcal{A}_{\pi^+} = \{(\mu^+, \nu_\mu), (e^+, \nu_e)\}
+\end{equation}
+Both channels satisfy:
+\begin{itemize}
+    \item Charge conservation: $+1 \to +1 + 0$
+    \item Lepton number: $0 \to (-1)_{\ell^+} + (+1)_{\nu_\ell} = 0$
+    \item Energy-momentum: $m_\pi c^2 > m_\ell c^2 + 0$ (kinematically allowed)
+    \item Spin: $0 \to \frac{1}{2} + \frac{1}{2}$ (total spin-0 possible)
+\end{itemize}
+\end{definition}
+
+\begin{table}[h]
+\centering
+\caption{Pion leptonic channels: experimental vs.\ EDC framing}
+\label{tab:channels}
+\begin{tabular}{llll}
+\toprule
+\textbf{Channel} & \textbf{BR (Exp) [BL]} & \textbf{EDC Status} & \textbf{Tag} \\
+\midrule
+$\pi^+ \to \mu^+\nu_\mu$ & $99.99\%$ & Allowed; projection-favored & [Dc] \\
+$\pi^+ \to e^+\nu_e$ & $0.01\%$ & Allowed; projection-suppressed & [Dc] \\
+$\pi^+ \to \gamma + X$ & --- & Requires photon ontology & [OPEN] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================
+\section{Chiral Filter Hook}
+\label{sec:chiral}
+% ============================================================
+
+The chiral projection $\mathcal{P}_{\mathrm{chir}}$ is hypothesized to
+arise from brane boundary conditions~[P]/[OPEN]. For pion decay, the
+relevant constraint is:
+
+\begin{quote}
+\emph{The spin-0 pion must release into a lepton-neutrino pair with
+total spin-0. The chiral filter preferentially selects configurations
+where the charged lepton's helicity mismatch is minimized—favoring
+heavier leptons.}
+\end{quote}
+
+\noindent This is qualitatively consistent with the SM helicity suppression,
+but the explicit boundary-condition derivation is~[OPEN].
+
+\subsection{Universal Hypothesis}
+
+We hypothesize that the same $\mathcal{P}_{\mathrm{chir}}$ acts in all
+weak decays (muon, tau, pion, neutron)~[P]/[OPEN]. If true, this would
+unify the selection-rule structure across the EDC weak program.
+
+% ============================================================
+\section{Falsifiability Guardrails}
+\label{sec:falsifiability}
+% ============================================================
+
+Companion P makes no numerical predictions. The following structural
+claims are falsifiable:
+
+\begin{enumerate}
+    \item \textbf{Ontology:} If the pion's 5D structure is shown to be
+          bulk-dominant (not brane-dominant), the ontology fails.
+    \item \textbf{Pipeline:} If pion decay requires a fundamentally
+          different mechanism than absorption$\to$dissipation$\to$release,
+          the framework fails.
+    \item \textbf{Selection rules:} If allowed channels violate the
+          $\mathcal{A}_{\pi^+}$ set (e.g., $\pi^+ \to \gamma\gamma$
+          becomes dominant), the selection rules fail.
+    \item \textbf{Helicity suppression:} If future EDC derivation of
+          $\mathcal{P}_{\mathrm{chir}}$ predicts $e$-dominance over $\mu$,
+          the mechanism fails.
+    \item \textbf{Universality:} If the chiral filter must be different
+          for pions than for leptons, the universal hypothesis fails.
+\end{enumerate}
+
+% ============================================================
+\section{Open Problems}
+\label{sec:open}
+% ============================================================
+
+\begin{enumerate}
+    \item \textbf{Derive $m_\pi$ from 5D binding}~[OPEN]: What determines
+          $m_\pi \approx 140$~MeV?
+    \item \textbf{Derive $\tau_\pi$ from first principles}~[OPEN]: Why
+          $\tau_\pi \approx 26$~ns?
+    \item \textbf{Derive $m_\ell^2$ scaling from BC}~[OPEN]: Show that
+          boundary conditions produce the helicity suppression factor.
+    \item \textbf{Junction-pair micro-ontology}~[OPEN]: Is the defect--antidefect
+          picture correct? How does color confinement map to 5D?
+    \item \textbf{Neutral pion $\pi^0 \to \gamma\gamma$}~[OPEN]: Requires
+          photon ontology.
+    \item \textbf{Pion-nucleon interactions}~[OPEN]: How do pions couple
+          to bulk-core junctions (neutrons/protons)?
+\end{enumerate}
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+% ============================================================
+
+Charged pion decay is the first \emph{hadron$\to$lepton injection test}
+of the EDC thick-brane microphysics framework. We model the pion as a
+brane-dominant composite excitation~[P], distinct from fundamental
+leptons and from bulk-core junctions.
+
+The absorption$\to$dissipation$\to$release pipeline applies without
+modification. The dominant $\mu$-channel and suppressed $e$-channel
+are consistent with the frozen-projection + chiral-filter mechanism,
+treating helicity suppression as a baseline fact~[BL] with a qualitative
+EDC interpretation~[P]/[OPEN].
+
+\textbf{No numerical fits are claimed.} The $m_\ell^2$ scaling derivation
+from boundary conditions remains~[OPEN].
+
+\subsection{Position in the EDC Weak Program}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{llll}
+\toprule
+\textbf{Companion} & \textbf{Particle} & \textbf{Ontology} & \textbf{Status} \\
+\midrule
+N & Neutron & Bulk-core junction & v3.0 \\
+M & Muon & Brane-dominant (fundamental) & v0.2 \\
+T & Tau & Brane-dominant (higher mode) & v0.1 \\
+\textbf{P} & \textbf{Pion} & \textbf{Brane-dominant (composite)} & \textbf{v0.1} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================
+% BIBLIOGRAPHY
+% ============================================================
+\begin{thebibliography}{9}
+\bibitem{PDG2024}
+R.~L.~Workman \textit{et al.} (Particle Data Group),
+``Review of Particle Physics,''
+Prog.\ Theor.\ Exp.\ Phys.\ \textbf{2024}, 083C01 (2024).
+\end{thebibliography}
+
+\end{document}
