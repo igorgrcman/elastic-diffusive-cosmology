@@ -1,5 +1,5 @@
 % Companion M: Muon Decay as Thick-Brane Tomography in EDC
-% Version 0.1 — 2026-01-20
+% Version 0.2 — 2026-01-20 (stabilization patch)
 % Build: xelatex main.tex && xelatex main.tex
 
 \documentclass[11pt,a4paper]{article}
@@ -41,7 +41,12 @@
 \title{\textbf{Companion M: Muon Decay as Thick-Brane Tomography}\\[0.3cm]
 \large Elastic Diffusive Cosmology — Paper 3 Series}
 \author{EDC Collaboration}
-\date{Draft v0.1 — January 2026}
+\date{Draft v0.2 — January 2026}
+
+% ============================================================
+% BIBLIOGRAPHY (inline for simplicity)
+% ============================================================
+\usepackage{cite}
 
 % ============================================================
 \begin{document}
@@ -272,9 +277,11 @@ The muon's energy is already ``in'' the brane layer—no bulk$\to$brane pumping
 is required.
 
 \begin{tcolorbox}[edcGuardrail, title=\textbf{Epistemic Guardrail}]
-\textbf{No ``bulk escape'' channel:} In muon decay, we postulate \tagP{} that
-energy cannot escape back into the bulk-core. This is consistent with the
-muon being brane-dominant: it has no bulk degrees of freedom to retreat to.
+\textbf{Suppressed bulk leakage:} In muon decay, we postulate \tagP{} that
+leakage of energy back into the bulk-core is suppressed by the muon's
+brane-localized mode structure. At leading order, bulk leakage is
+treated as negligible. This is consistent with the muon being brane-dominant:
+its degrees of freedom are localized within the brane layer.
 \end{tcolorbox}
 
 % ============================================================
@@ -288,7 +295,9 @@ The observed final state of muon decay is:
 \[
     \mu^- \to e^- + \nu_\mu + \bar{\nu}_e
 \]
-with branching ratio $\approx 100\%$ \tagBL{}.
+This is the dominant decay channel \tagBL{} \cite{PDG2024}.
+Rare radiative modes (e.g., $\mu \to e\nu\bar{\nu}\gamma$) exist but
+are suppressed below $\mathcal{O}(10^{-2})$ of the total width.
 
 In the thick-brane framework, this is not arbitrary: it is the
 \emph{only allowed output configuration} satisfying:
@@ -321,22 +330,26 @@ is either forbidden by conservation laws or suppressed below $10^{-12}$ \tagBL{}
           $\nu_\mu$, $\bar{\nu}_e$.
 \end{itemize}
 
-\subsection{Forbidden Channels}
+\subsection{Rare and Forbidden Channels}
 
 \begin{table}[htbp]
 \centering
-\caption{Forbidden muon decay channels and their suppression mechanism}
+\caption{Rare/forbidden muon decay channels: experimental status vs.\ EDC interpretation}
 \label{tab:forbidden}
-\begin{tabular}{lll}
+\begin{tabular}{lccc}
 \toprule
-\textbf{Channel} & \textbf{Suppression} & \textbf{EDC interpretation} \\
+\textbf{Channel} & \textbf{Exp.\ limit} & \textbf{Status} & \textbf{EDC interpretation} \\
 \midrule
-$\mu^- \to e^- + \gamma$ & $< 4.2 \times 10^{-13}$ \tagBL{} & Lepton flavor violation \\
-$\mu^- \to e^- + e^+ + e^-$ & $< 1.0 \times 10^{-12}$ \tagBL{} & Mode incompatibility \\
-$\mu^- \to e^- + \nu_e + \bar{\nu}_\mu$ & Forbidden & Wrong lepton numbers \\
+$\mu^- \to e^- + \gamma$ & $< 4.2 \times 10^{-13}$ \cite{PDG2024} & \tagBL{} & LFV; selection rule violation \tagP{}/\tagOpen{} \\
+$\mu^- \to e^- + e^+ + e^-$ & $< 1.0 \times 10^{-12}$ \cite{PDG2024} & \tagBL{} & Mode mismatch hypothesis \tagP{}/\tagOpen{} \\
+$\mu^- \to e^- + \nu_e + \bar{\nu}_\mu$ & Not observed & \tagBL{} & Wrong lepton numbers \tagDc{} \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\textbf{Note:} The EDC interpretations for LFV channels are hypotheses \tagP{}/\tagOpen{};
+we propose that these channels violate selection rules emergent from the brane mode
+spectrum, but the precise mechanism remains to be derived.
 
 % ============================================================
 \section{Frozen Projection as Chiral Filter}
@@ -365,17 +378,19 @@ where:
 \end{itemize}
 \end{definition}
 
-\begin{tcolorbox}[edcPathway, title=\textbf{Chiral Filter Mechanism}]
+\begin{tcolorbox}[edcPathway, title=\textbf{Chiral Filter Mechanism (Hypothesis)}]
 \textbf{Physical picture:} The observer-facing boundary of the brane
 ($y = +\delta/2$) has a preferred orientation defined by its normal
 vector $\hat{n}$. This orientation, combined with the brane-layer's
-mode spectrum, acts as a \emph{chiral filter}: modes of one handedness
-couple more strongly to the 3D projection than the other.
+mode spectrum, may act as a \emph{chiral filter}: modes of one handedness
+could couple more strongly to the 3D projection than the other.
 
 \medskip
-\textbf{Consequence:} The weak interaction's ``maximal parity violation''
-emerges from the \emph{geometric asymmetry} of the brane boundary, not
-from an intrinsic property of the interaction vertex.
+\textbf{Hypothesis} \tagP{}/\tagOpen{}\textbf{:} We propose that the weak interaction's
+``maximal parity violation'' is \emph{consistent with} geometric asymmetry
+of the brane boundary, rather than requiring an intrinsic vertex asymmetry.
+The derivation of $\mathcal{P}_{\mathrm{chir}}$ from the 5D action and
+boundary conditions remains \tagOpen{}.
 \end{tcolorbox}
 
 \textbf{Physical Narration:}
@@ -415,6 +430,30 @@ We have not derived the specific form of $\mathcal{P}_{\mathrm{chir}}$ from
 the 5D action. The claim is that such an operator \emph{exists} and
 \emph{can be geometric in origin}—not that we have constructed it explicitly.
 \end{tcolorbox}
+
+\subsection{Formal Sketch: Boundary as Chiral Projector}
+\label{subsec:chiral-sketch}
+
+We outline how boundary conditions at $y = +\delta/2$ could induce chirality
+selection \tagP{}/\tagOpen{}. This is a \emph{sketch}, not a derivation.
+
+\textbf{Setup:} Let $\hat{n}$ be the outward normal to the observer-facing
+boundary. A brane-layer spinor field $\psi(x,y)$ satisfies boundary conditions
+at $y = +\delta/2$ of the schematic form:
+\begin{equation}
+    (1 - i\gamma^5 \hat{n}\cdot\gamma)\,\psi\big|_{y=+\delta/2} = 0
+    \label{eq:bc-sketch}
+\end{equation}
+This type of condition (analogous to MIT bag boundary conditions) projects
+out one chirality component at the boundary.
+
+\textbf{Consequence:} Modes that ``pass through'' to the 3D side satisfy
+a chirality constraint imposed by the boundary geometry, not by the bulk
+Lagrangian. The normal vector $\hat{n}$ breaks parity at the boundary.
+
+\textbf{Status:} Deriving Eq.~\eqref{eq:bc-sketch} from the full 5D action
+with thick-brane profile remains \tagOpen{}. The above is a plausibility
+argument, not a proof.
 
 % ============================================================
 % FIGURE: Energy Flow Diagram
@@ -544,6 +583,23 @@ that does not invoke intrinsic vertex asymmetry.
     H: \emph{Weak Interactions} (\href{https://doi.org/10.5281/zenodo.18307539}{DOI}) $\cdot$
     F: \emph{Proton Junction} (\href{https://doi.org/10.5281/zenodo.18302953}{DOI})
 }
+
+% ============================================================
+% REFERENCES
+% ============================================================
+\begin{thebibliography}{9}
+
+\bibitem{PDG2024}
+R.~L.~Workman \emph{et al.} (Particle Data Group),
+``Review of Particle Physics,''
+Prog.\ Theor.\ Exp.\ Phys.\ \textbf{2022}, 083C01 (2022 and 2024 update).
+\href{https://pdg.lbl.gov}{https://pdg.lbl.gov}.
+Muon properties: $\tau_\mu = 2.1969811(22) \times 10^{-6}$~s;
+$\mathrm{BR}(\mu \to e\nu\bar{\nu}) \approx 100\%$;
+$\mathrm{BR}(\mu \to e\gamma) < 4.2 \times 10^{-13}$;
+$\mathrm{BR}(\mu \to eee) < 1.0 \times 10^{-12}$.
+
+\end{thebibliography}
 
 % ============================================================
 \end{document}

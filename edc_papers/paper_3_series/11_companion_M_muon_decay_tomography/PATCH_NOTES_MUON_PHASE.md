@@ -2,7 +2,7 @@
 
 **Date:** 2026-01-20
 **Document:** Companion M — Muon Decay as Thick-Brane Tomography
-**Status:** Draft v0.1
+**Status:** Draft v0.2 (stabilization patch applied)
 
 ---
 
@@ -86,8 +86,46 @@ m_\mu c^2 = E_{e^-} + E_{\nu_\mu} + E_{\bar{\nu}_e} + E_{\mathrm{other}}
 ```bash
 cd edc_papers/paper_3_series/11_companion_M_muon_decay_tomography/paper/
 xelatex -interaction=nonstopmode main.tex && xelatex main.tex
-# Output: main.pdf (5 pages)
+# Output: main.pdf (8 pages)
 ```
+
+---
+
+## Stabilization Patch (v0.2) — 2026-01-20
+
+### Changes Made
+
+| Item | Before | After |
+|------|--------|-------|
+| Branching ratio | "≈ 100% [BL]" | "dominant channel [BL]; rare radiative modes exist" |
+| Forbidden channels table | Single "EDC interpretation" column | Separated: Exp. limit [BL] + EDC interpretation [P]/[OPEN] |
+| Chiral filter box | "emerges from geometry" | "we propose... consistent with... [P]/[OPEN]" |
+| Bulk escape | "cannot escape" | "suppressed leakage; negligible at leading order [P]" |
+| PDG reference | None | Added \cite{PDG2024} with τ_μ, BR limits |
+| P_chir math hook | None | Added §5.3 with BC sketch (Eq. 4) [P]/[OPEN] |
+
+### Epistemic Tag Updates
+
+| Claim | Old Tag | New Tag |
+|-------|---------|---------|
+| LFV channels interpretation | implicit | [P]/[OPEN] explicit |
+| Mode mismatch hypothesis | "Mode incompatibility" | "Mode mismatch hypothesis [P]/[OPEN]" |
+| Chiral filter mechanism | "emerges" | "we hypothesize... [P]/[OPEN]" |
+| Bulk leakage | "[P] cannot" | "[P] suppressed, negligible at leading order" |
+
+### New Content
+
+**§5.3 Formal Sketch: Boundary as Chiral Projector**
+- Schematic boundary condition: $(1 - i\gamma^5 \hat{n}\cdot\gamma)\psi|_{y=+\delta/2} = 0$
+- Explicitly marked [P]/[OPEN]
+- MIT-bag-like analogy mentioned
+- Status: plausibility argument, not proof
+
+### Build Result
+
+- Pages: 8 (was 5)
+- Overfull boxes: 0
+- Undefined references: 0
 
 ---
 
@@ -96,7 +134,7 @@ xelatex -interaction=nonstopmode main.tex && xelatex main.tex
 ```
 11_companion_M_muon_decay_tomography/
 ├── paper/
-│   ├── main.tex          # Main document (5 pages)
+│   ├── main.tex          # Main document (8 pages after v0.2)
 │   └── main.pdf          # Compiled output
 └── PATCH_NOTES_MUON_PHASE.md  # This file
 ```
