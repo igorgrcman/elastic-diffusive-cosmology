@@ -834,6 +834,44 @@ While the junction relaxes toward the Steiner minimum ($q \to 0$), energy \textb
 \end{enumerate}
 \end{tcolorbox}
 
+% =============================================================================
+% CANONICAL GLOSSARY BOX: Absorption → Dissipation → Release
+% =============================================================================
+\begin{tcolorbox}[colback=yellow!5,colframe=orange!60!black,title=\textbf{Canonical Brane-Language for Neutron Decay \tagDef}]
+\label{box:canonical_glossary}
+
+The neutron decay process involves \textbf{three conceptually distinct phases}, all part of a single energy-conserving flow:
+
+\medskip
+\textbf{(1) Absorption / Charging} (bulk $\to$ brane-layer) \tagDc{}\\
+The brane \textbf{receives} energy from the relaxing bulk-core junction. This is not ``creation''---it is \emph{transfer} governed by the coupling $\mathcal{L}_{\mathrm{int}}$.
+
+\smallskip
+\emph{Ledger:} $\Delta E_{\mathrm{brane}} = -\Delta E_{\mathrm{bulk}} - E_{\mathrm{other}}$
+
+\medskip
+\textbf{(2) Dissipation / Redistribution} (within brane-layer) \tagP{}/\tagOpen{}\\
+Internal brane-layer dynamics \textbf{redistribute} the absorbed energy into allowed mode excitations $\{\phi_k\}$. ``Dissipation'' does \textbf{not} mean energy loss---it means transition from coherent pumping channel to spectral mode distribution.
+
+\smallskip
+\emph{Mechanism:} Characterized by $\Gamma_{\mathrm{eff}}$ (effective redistribution rate); form \tagOpen{}.
+
+\medskip
+\textbf{(3) Release / Emission} (brane-layer $\to$ 3D observer) \tagDc{}/\tagP{}\\
+The frozen projection operator $\mathcal{P}_{\mathrm{frozen}}$ \textbf{maps} brane-layer modes to allowed 3D particle outputs. This is \emph{not} ``particle creation from nothing''---it is a boundary projection enforcing selection rules.
+
+\smallskip
+\emph{Output:} $\{\phi_k\} \xrightarrow{\mathcal{P}_{\mathrm{frozen}}} \{e^-, \bar{\nu}_e, \mathrm{recoil}, \mathrm{soft}\}_{\mathrm{3D}}$
+
+\medskip
+\hrule
+\medskip
+\textbf{One-liner (citable):}
+\begin{quote}
+\emph{``Neutron decay in EDC is bulk-core relaxation that charges the brane (absorption), the brane redistributes energy into layer modes (dissipation), and the observer-facing boundary projects those modes into allowed 3D particle outputs (release).''}
+\end{quote}
+\end{tcolorbox}
+
 % --- Regime-switch interpretation ---
 \begin{remark}[Regime-switch interpretation \textup{\tagP}]
 \label{rem:regime_switch}
@@ -917,6 +955,71 @@ $E_{\mathrm{bulk\,res.}}$ & Bulk residual (if any) & \tagP{}/\tagOpen{} & — & 
 \bottomrule
 \end{tabular}
 \end{table}
+
+% =============================================================================
+% ENERGY-FLOW FIGURE: Bulk → Brane → 3D with ledger closure
+% =============================================================================
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    node distance=1.8cm and 2.2cm,
+    box/.style={rectangle, draw, rounded corners, minimum width=2.8cm, minimum height=0.9cm, align=center, font=\small},
+    bulkbox/.style={box, fill=red!10, draw=red!60!black},
+    branebox/.style={box, fill=green!10, draw=green!60!black},
+    outbox/.style={box, fill=blue!10, draw=blue!60!black},
+    arrow/.style={->, >=stealth, thick},
+    label/.style={font=\scriptsize, midway, above}
+]
+
+% Bulk-core (left)
+\node[bulkbox] (bulk) {Bulk excited junction\\$|n\rangle: q > 0$};
+
+% Pumping arrow and label
+\node[right=of bulk, branebox] (charge) {Brane energy store\\$\mathcal{E}_{\mathrm{brane}}(t)$};
+\draw[arrow, red!70!black] (bulk) -- node[label] {$\Pi_{\mathrm{pump}}$} (charge);
+
+% Brane-layer modes
+\node[right=of charge, branebox] (modes) {Layer modes\\$\{\phi_k\}$};
+\draw[arrow, green!60!black] (charge) -- node[label] {$\Pi_{\mathrm{release}}$} (modes);
+
+% Frozen projection
+\node[right=of modes, outbox] (frozen) {$\mathcal{P}_{\mathrm{frozen}}$};
+\draw[arrow, blue!60!black] (modes) -- (frozen);
+
+% 3D outputs
+\node[right=of frozen, outbox] (output) {3D outputs\\$e^-, \bar{\nu}_e, \ldots$};
+\draw[arrow, blue!60!black] (frozen) -- (output);
+
+% Phase labels below
+\node[below=0.3cm of bulk, font=\scriptsize\itshape, red!60!black] {5D Cause};
+\node[below=0.3cm of charge, font=\scriptsize\itshape, green!60!black] {Absorption};
+\node[below=0.3cm of modes, font=\scriptsize\itshape, green!60!black] {Dissipation};
+\node[below=0.3cm of frozen, font=\scriptsize\itshape, blue!60!black] {Projection};
+\node[below=0.3cm of output, font=\scriptsize\itshape, blue!60!black] {3D Observation};
+
+% Regime indicator
+\node[above=0.6cm of charge, font=\scriptsize] {$\Xi(t) = \Pi_{\mathrm{pump}}/\Pi_{\mathrm{release}}$};
+\node[above=1.1cm of modes, font=\scriptsize] {Trigger: $\Xi(t_*) \ll 1$};
+
+% Ledger closure annotation
+\draw[dashed, gray] ([yshift=-1.2cm]bulk.south west) -- ([yshift=-1.2cm]output.south east);
+\node[below=1.4cm of charge, font=\scriptsize, align=center] {Ledger: $|\Delta E_{\mathrm{bulk}}| = \Delta E_{\mathrm{brane}} + E_{\mathrm{other}}$};
+
+\end{tikzpicture}
+\caption{Energy-flow and ledger closure in the neutron $\to$ proton transition. Pumping from bulk-core relaxation charges the brane ($\Pi_{\mathrm{pump}}$); internal redistribution populates layer modes ($\Pi_{\mathrm{release}}$); frozen projection maps modes to allowed 3D outputs. The trigger occurs when $\Xi(t_*) \ll 1$ (pumping negligible). Ledger closure ensures 5D energy conservation.}
+\label{fig:energy_flow}
+\end{figure}
+
+\begin{remark}[Figure interpretation \textup{\tagDef}]
+\label{rem:figure_interpretation}
+Figure~\ref{fig:energy_flow} visualizes the canonical narrative:
+\begin{itemize}[nosep]
+    \item \textbf{Pumping continues while $\Xi \gtrsim 1$}: bulk relaxation dominates.
+    \item \textbf{Trigger is regime-switch, not timer}: when $\Xi \ll 1$, release takes over.
+    \item \textbf{Release is boundary/projection, not fit}: the frozen operator enforces selection rules.
+    \item \textbf{Ledger closes in 5D}: total energy conserved across bulk--brane--3D.
+\end{itemize}
+\end{remark}
 
 % --- Dimensional definitions for power terms ---
 \begin{definition}[Pumping and Release Power \textup{\tagDef}/\textup{\tagOpen}]
@@ -1239,6 +1342,37 @@ Weak channel selection rules & Thick-brane microphysics & Companion H \\
 \bottomrule
 \end{tabular}
 \end{center}
+
+% =============================================================================
+%  FALSIFIABILITY AND NON-OVERCLAIM GUARDRAILS
+% =============================================================================
+\subsection{Falsifiability and Non-Overclaim Guardrails}
+\label{subsec:falsifiability}
+
+The charging $\to$ dissipation $\to$ release narrative makes specific structural predictions that could, in principle, falsify or constrain the model:
+
+\begin{enumerate}
+    \item \textbf{$E_{\mathrm{other}}$ must have structure} \tagOpen{}\\
+    If the ``charging $\to$ release'' picture is correct, the residual energy $E_{\mathrm{other}} = E_{\mathrm{recoil}} + E_{\mathrm{soft}} + E_{\mathrm{bulk\,residual}}$ is \emph{not} arbitrary ``waste''---it has a definite decomposition with physical meaning. If experiments or calculations show $E_{\mathrm{other}}$ lacks this structure (e.g., all energy goes to $e^- + \bar{\nu}$ with no recoil accounting), the ledger picture must be revised.
+
+    \item \textbf{Dissipation must matter if brane-layer is dynamical} \tagP{}/\tagOpen{}\\
+    If brane-layer dissipation is physically relevant, then $\Pi_{\mathrm{release}}$ should describe actual mode relaxation dynamics. If it turns out that energy transfer bypasses brane-layer modes entirely (no intermediate $\{\phi_k\}$ step), the dissipation phase is superfluous and the model oversimplifies.
+
+    \item \textbf{Trigger must correlate with pumping cessation} \tagDef{}\\
+    The regime parameter $\Xi(t_*) \ll 1$ defines the trigger as ``pumping becomes negligible.'' If observations (or future calculations) show that particle emission occurs \emph{before} pumping becomes negligible---i.e., $\Xi \gtrsim 1$ at emission---then the trigger definition must be revised.
+
+    \item \textbf{Frozen projection must yield allowed outputs only} \tagDc{}/\tagP{}\\
+    The $\beta^-$ channel ($e^- + \bar{\nu}_e + p$) is claimed to emerge from frozen projection with selection rules. If it turns out that the selection rules cannot exclude forbidden channels (e.g., $\gamma + p$, $\mu^- + \bar{\nu}_\mu + p$), then either the frozen projection is incomplete or the weak-sector narrative fails.
+\end{enumerate}
+
+\begin{tcolorbox}[colback=gray!5,colframe=gray!60!black,title=\textbf{Non-Overclaim Reminder}]
+\begin{itemize}[nosep]
+    \item $\tau_n = 878.4 \pm 0.5\,\text{s}$ is \tagBL{} (measured), not a control knob.
+    \item The mapping $\tau_n \leftrightarrow (\Gamma_{\mathrm{eff}}, g, \delta, V(q))$ remains \tagOpen{}.
+    \item This companion provides a \textbf{physical narrative}, not a complete microphysical derivation.
+    \item Falsification would require showing the narrative is \emph{inconsistent} with observations or internal logic---not merely incomplete.
+\end{itemize}
+\end{tcolorbox}
 
 % ============================================================
 %  SECTION 10: SUMMARY

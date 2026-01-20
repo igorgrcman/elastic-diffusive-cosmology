@@ -213,4 +213,47 @@ xelatex -interaction=nonstopmode main.tex && xelatex main.tex
 
 ---
 
-*Generated: 2026-01-20 (Session 4)*
+---
+
+## Session 5 Additions (2026-01-20)
+
+### Patch A: Canonical Glossary Box (§5.5)
+
+| Phase | Description | Tag |
+|-------|-------------|-----|
+| Absorption/Charging | Brane receives energy from bulk relaxation | [Dc] |
+| Dissipation/Redistribution | Internal mode population via Γ_eff | [P]/[OPEN] |
+| Release/Emission | Frozen projection to 3D outputs | [Dc]/[P] |
+
+**One-liner (citable):**
+> "Neutron decay in EDC is bulk-core relaxation that charges the brane (absorption), the brane redistributes energy into layer modes (dissipation), and the observer-facing boundary projects those modes into allowed 3D particle outputs (release)."
+
+### Patch B: Energy-Flow Figure (Figure 3)
+
+TikZ diagram showing:
+```
+Bulk excited junction → Π_pump → E_brane(t) → Π_release → {φ_k} → P_frozen → 3D outputs
+```
+With regime indicator Ξ(t) = Π_pump/Π_release and ledger closure annotation.
+
+### Patch C: Falsifiability Section (§9.4)
+
+Four structural predictions that could falsify the model:
+1. E_other must have structure (recoil/soft/residual decomposition)
+2. Dissipation must matter if brane-layer is dynamical
+3. Trigger must correlate with pumping cessation (Ξ ≪ 1)
+4. Frozen projection must yield allowed outputs only
+
+Plus Non-Overclaim Reminder box: τ_n = [BL], mapping to (Γ_eff, g, δ, V) = [OPEN].
+
+### Build Verification (Session 5)
+
+```bash
+cd edc_papers/paper_3_series/10_companion_N_neutron_junction/paper/
+xelatex -interaction=nonstopmode main.tex && xelatex main.tex
+# Output: main.pdf (21 pages)
+```
+
+---
+
+*Generated: 2026-01-20 (Session 5)*
