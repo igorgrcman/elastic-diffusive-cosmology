@@ -1,0 +1,433 @@
+% ==============================================================================
+% OPEN-W1: Toy Derivation of G_F Scaling from Thick-Brane Mediator
+% Version: 0.1 (Derivation Skeleton)
+% Date: 2026-01-20
+% Status: OPEN (structural pathway, not numerical derivation)
+% ==============================================================================
+
+\documentclass[11pt,a4paper]{article}
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Required packages BEFORE shared style
+% ─────────────────────────────────────────────────────────────────────────────
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,shapes.geometric,calc}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Shared EDC style
+% ─────────────────────────────────────────────────────────────────────────────
+\input{../../../_shared/style/edc_style}
+\input{../../../_shared/style/tikz_style_edc}
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Additional packages
+% ─────────────────────────────────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{hyperref}
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Document metadata
+% ─────────────────────────────────────────────────────────────────────────────
+\title{%
+  \textbf{OPEN-W1: Toy Derivation of $G_F$ Scaling}\\[0.5em]
+  \large From Thick-Brane Mediator Integration\\
+  (Derivation Skeleton --- No Numerical Fit)
+}
+\author{%
+  Igor Grčman\\
+  \small Elastic Diffusive Cosmology Collaboration
+}
+\date{January 2026 \quad v0.1}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{document}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\maketitle
+
+\begin{abstract}
+This document provides a \textbf{structural derivation pathway}---not a
+numerical derivation---for an effective Fermi-like coefficient $G_{\mathrm{EDC}}$
+emerging from thick-brane microphysics. We show how integrating out a
+brane-layer mediator field at tree level produces a contact interaction with
+coefficient $G_{\mathrm{EDC}} \sim g_{\mathrm{eff}}^2 / m_\phi^2$, where the
+effective coupling $g_{\mathrm{eff}}$ encodes overlap integrals and
+boundary-condition operators. The chirality filter from Companion V enters
+the boundary-condition factor, connecting this derivation to V$-$A structure.
+\textbf{No parameter is tuned to match the PDG value of $G_F$}; all numerical
+gaps are explicitly marked \tagOpen{}.
+\end{abstract}
+
+% ==============================================================================
+\section{Scope and Guardrails}
+\label{sec:scope}
+% ==============================================================================
+
+\begin{tcolorbox}[edcGuardrail, title={Non-Negotiable Guardrails}]
+\begin{enumerate}[nosep]
+  \item This is a \textbf{structural pathway}, NOT a numerical derivation.
+  \item We do \textbf{not} fit any parameter to $G_F$, $\tau_\mu$, $\tau_n$,
+        or any weak observable. Those are \tagBL{} benchmarks only.
+  \item The following remain explicitly \tagOpen{}:
+        \begin{itemize}[nosep]
+          \item Brane profile normalization (mode functions)
+          \item Mediator gap $m_\phi$ from geometry
+          \item Overlap integrals with explicit profiles
+        \end{itemize}
+  \item Any numerical agreement obtained by selecting normalizations is
+        \textbf{calibration}, not derivation.
+\end{enumerate}
+\end{tcolorbox}
+
+\textbf{What this document does.}
+We demonstrate the \emph{mechanism} by which a weak-scale contact interaction
+emerges from 5D brane microphysics: bulk-to-brane coupling $\to$ layer
+mediator $\to$ integrate out $\to$ effective 4D operator. This establishes
+``weakness'' as \emph{geometric suppression}, not a fundamental 4D vertex.
+
+% ==============================================================================
+\section{Toy Geometry Setup}
+\label{sec:geometry}
+% ==============================================================================
+
+\begin{definition}[Thick-Brane Coordinates {\normalfont [Def]}]
+\label{def:coords}
+We adopt a minimal coordinate system:
+\begin{itemize}[nosep]
+  \item $x^\mu$ ($\mu = 0,1,2,3$): 4D spacetime coordinates (observer-facing)
+  \item $y \in [-\delta/2, +\delta/2]$: transverse coordinate across brane
+        thickness $\delta$
+  \item $\xi$: compact/throat direction (enters only as a scale placeholder
+        for mediator mass)
+\end{itemize}
+\end{definition}
+
+\textbf{Boundary identification.}
+\begin{itemize}[nosep]
+  \item $y = -\delta/2$: \textbf{bulk-facing boundary} (where bulk pumping
+        couples in)
+  \item $y = +\delta/2$: \textbf{observer-facing boundary} (where 3D outputs
+        emerge)
+\end{itemize}
+
+\edcMechanismNote{Bulk energy flux enters at $y = -\delta/2$ via junction relaxation}%
+                 {Mediator field $\phi$ propagates through brane layer}%
+                 {Effective interaction projects to observer-facing layer at $y = +\delta/2$}
+
+% ==============================================================================
+\section{Toy Lagrangian}
+\label{sec:lagrangian}
+% ==============================================================================
+
+\subsection{Layer Mediator Field}
+
+\begin{definition}[Mediator Sector {\normalfont [Def]/[P]}]
+\label{def:mediator}
+We introduce a scalar layer-mediator field $\phi(x,y)$ with mass gap $m_\phi$:
+\begin{equation}
+  \mathcal{L}_\phi = \frac{1}{2}(\partial_\mu \phi)^2
+                   + \frac{1}{2}(\partial_y \phi)^2
+                   - \frac{1}{2} m_\phi^2 \phi^2
+  \label{eq:L_phi}
+\end{equation}
+The gap $m_\phi$ is postulated \tagP{} to arise from the $\xi$-sector geometry
+(KK mass or throat scale). Its explicit derivation remains \tagOpen{}.
+\end{definition}
+
+\textbf{Physical interpretation.}
+The field $\phi$ represents the lowest brane-layer mode that can mediate
+energy transfer from the bulk-facing to observer-facing boundaries. In a full
+treatment, $\phi$ would be the zero-mode or first KK mode of a higher-dimensional
+gauge/mediator sector.
+
+\subsection{Bulk-Brane Coupling}
+
+\begin{definition}[Interaction Term {\normalfont [Def]/[P]}]
+\label{def:interaction}
+The bulk-core dynamics couple to the mediator at the bulk-facing boundary:
+\begin{equation}
+  \mathcal{L}_{\mathrm{int}} = g_5 \, J(x) \, \phi(x, y = -\delta/2)
+  \label{eq:L_int}
+\end{equation}
+where $J(x)$ is a source current from the bulk trigger (e.g., junction
+relaxation) and $g_5$ is the fundamental 5D coupling scale \tagP{}.
+\end{definition}
+
+\textbf{Physical interpretation.}
+The junction relaxation (neutron $\to$ proton transition) ``pumps'' energy
+into the brane layer through the source $J(x)$. The coupling $g_5$ encodes
+how efficiently this pump excites the mediator mode $\phi$.
+
+% ==============================================================================
+\section{Integrate Out $\phi$ at Tree Level}
+\label{sec:integrate}
+% ==============================================================================
+
+\subsection{Tree-Level Elimination}
+
+At tree level (Gaussian integration), the mediator field satisfies:
+\begin{equation}
+  (\Box + m_\phi^2) \phi(x,y) = g_5 \, J(x) \, \delta(y + \delta/2)
+  \label{eq:eom}
+\end{equation}
+Solving in momentum space and evaluating the propagator:
+\begin{equation}
+  \phi(x, y) \approx \frac{g_5}{m_\phi^2} \, J(x) \, G(y, -\delta/2)
+  \label{eq:phi_solution}
+\end{equation}
+where $G(y, y')$ is the Green's function across the brane thickness, normalized
+so that $G(-\delta/2, -\delta/2) = \mathcal{O}(1)$.
+
+\subsection{Effective Contact Interaction}
+
+Substituting back into the action and integrating out $\phi$:
+\begin{equation}
+  \boxed{
+    \mathcal{L}_{\mathrm{eff}} = -\frac{g_5^2}{2 m_\phi^2} \,
+    \mathcal{O}_{\mathrm{overlap}} \, J(x) J(x)
+  }
+  \label{eq:L_eff}
+\end{equation}
+where $\mathcal{O}_{\mathrm{overlap}}$ is a dimensionless factor encoding
+the Green's function normalization and wavefunction overlaps.
+
+\begin{tcolorbox}[edcCornerstone, title={Key Structural Result [Dc]}]
+\textbf{Physical narration:} Integrating out the layer mediator produces
+a contact interaction between two source currents. The interaction strength
+is suppressed by $1/m_\phi^2$ (mediator mass) and modulated by overlap factors.
+This is the structural origin of ``weakness'': geometric suppression through
+a heavy intermediary, not a fundamentally small coupling.
+\end{tcolorbox}
+
+\subsection{Identification with Fermi-Like Coefficient}
+
+Comparing with the standard four-fermion form:
+\begin{equation}
+  \mathcal{L}_{\mathrm{Fermi}} = -\frac{G_F}{\sqrt{2}} \, J^\mu J_\mu
+  \label{eq:L_fermi}
+\end{equation}
+we identify the \textbf{EDC analog}:
+\begin{equation}
+  \boxed{
+    G_{\mathrm{EDC}} \sim \frac{g_{\mathrm{eff}}^2}{m_\phi^2}
+    \quad \text{where} \quad
+    g_{\mathrm{eff}} \equiv g_5 \sqrt{\mathcal{O}_{\mathrm{overlap}}}
+  }
+  \label{eq:G_EDC}
+\end{equation}
+
+% ==============================================================================
+\section{Where $g_{\mathrm{eff}}$ Comes From: Overlap and BC Operators}
+\label{sec:geff}
+% ==============================================================================
+
+\subsection{Overlap Integral}
+
+\begin{definition}[Overlap Factor {\normalfont [Def]/[OPEN]}]
+\label{def:overlap}
+The overlap factor encodes wavefunction overlaps across the brane:
+\begin{equation}
+  \mathcal{O}_{\mathrm{overlap}} \sim
+  \int d\xi \int_{-\delta/2}^{+\delta/2} dy \;
+  f_a(\xi, y) \, f_b(\xi, y) \, f_\phi(\xi, y)
+  \label{eq:overlap}
+\end{equation}
+where $f_a, f_b$ are fermion mode profiles and $f_\phi$ is the mediator
+profile. \tagOpen{}: Explicit profiles require solving the brane-localization
+BVP.
+\end{definition}
+
+\subsection{Boundary-Condition Operator}
+
+\begin{definition}[BC Factor {\normalfont [Def]/[P]}]
+\label{def:bc}
+The boundary conditions impose a projection factor:
+\begin{equation}
+  \mathcal{O}_{\mathrm{BC}} = \mathcal{O}(\mathcal{P}_{\mathrm{frozen}},
+  \mathcal{P}_{\mathrm{chir}})
+  \label{eq:O_BC}
+\end{equation}
+where $\mathcal{P}_{\mathrm{frozen}}$ is the frozen projection operator and
+$\mathcal{P}_{\mathrm{chir}}$ is the chirality filter from Companion V.
+\end{definition}
+
+\textbf{Connection to Companion V.}
+The chirality filter $\mathcal{P}_{\mathrm{chir}}$ (see Companion V,
+Definition~3) selects left-handed charged leptons and right-handed
+antineutrinos. This is where \textbf{V$-$A structure enters} the effective
+interaction: not as an input assumption, but as an output of boundary
+conditions.
+
+\subsection{Full Effective Coupling}
+
+Combining all factors:
+\begin{equation}
+  \boxed{
+    g_{\mathrm{eff}} \equiv g_5 \times \mathcal{O}_{\mathrm{overlap}}
+    \times \mathcal{O}_{\mathrm{BC}}
+  }
+  \label{eq:geff_full}
+\end{equation}
+
+\begin{tcolorbox}[edcGuardrail, title={Epistemic Status of Each Factor}]
+\begin{tabular}{lll}
+\textbf{Factor} & \textbf{Status} & \textbf{What closes it} \\
+\hline
+$g_5$ & \tagOpen{} & 5D action normalization \\
+$\mathcal{O}_{\mathrm{overlap}}$ & \tagOpen{} & Brane profile BVP solution \\
+$\mathcal{O}_{\mathrm{BC}}$ & \tagP{}/\tagDc{} & Chirality filter (V), frozen projection \\
+$m_\phi$ & \tagOpen{} & $\xi$-sector KK reduction \\
+\end{tabular}
+\end{tcolorbox}
+
+% ==============================================================================
+\section{Dimensional Analysis}
+\label{sec:dimensions}
+% ==============================================================================
+
+\subsection{Unit Conventions}
+
+We work in natural units: $\hbar = c = 1$. Energy has dimension $[E] = 1$,
+length has $[L] = -1$.
+
+\subsection{Dimensional Check}
+
+\begin{table}[ht]
+\centering
+\caption{Dimensions of quantities in the toy derivation}
+\label{tab:dimensions}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Quantity} & \textbf{Symbol} & \textbf{Dimension} \\
+\midrule
+5D coupling & $g_5$ & $[E]^{-1/2}$ \\
+Mediator mass & $m_\phi$ & $[E]^{+1}$ \\
+Brane thickness & $\delta$ & $[E]^{-1}$ \\
+Overlap factor & $\mathcal{O}_{\mathrm{overlap}}$ & dimensionless \\
+BC factor & $\mathcal{O}_{\mathrm{BC}}$ & dimensionless \\
+Effective coupling & $g_{\mathrm{eff}}$ & $[E]^{-1/2}$ \\
+Fermi constant & $G_{\mathrm{EDC}}$ & $[E]^{-2}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Consistency check.}
+\begin{equation}
+  [G_{\mathrm{EDC}}] = \frac{[g_{\mathrm{eff}}]^2}{[m_\phi]^2}
+  = \frac{[E]^{-1}}{[E]^{2}} = [E]^{-2} \quad \checkmark
+  \label{eq:dim_check}
+\end{equation}
+This matches the required dimension of a four-fermion coupling constant.
+
+% ==============================================================================
+\section{How This Would Close to Real $G_F$}
+\label{sec:closure}
+% ==============================================================================
+
+\subsection{Closure Checklist}
+
+A complete derivation of $G_F$ (not just its structure) requires:
+
+\begin{enumerate}
+  \item \textbf{Derive $m_\phi$ from $\xi$-sector geometry} \tagOpen{}
+  \begin{itemize}[nosep]
+    \item Perform KK reduction along $\xi$
+    \item Identify first massive mode as the mediator
+    \item Express $m_\phi$ in terms of $R_\xi$ or throat scale
+  \end{itemize}
+
+  \item \textbf{Derive mode profiles and normalizations} \tagOpen{}
+  \begin{itemize}[nosep]
+    \item Solve the thick-brane BVP for fermion localization
+    \item Normalize the 5D action to canonical 4D kinetic terms
+    \item Extract $g_5$ from the normalized action
+  \end{itemize}
+
+  \item \textbf{Compute overlap integrals with BC operators} \tagOpen{}
+  \begin{itemize}[nosep]
+    \item Evaluate $\mathcal{O}_{\mathrm{overlap}}$ with explicit profiles
+    \item Include $\mathcal{P}_{\mathrm{chir}}$ selection effects
+    \item Obtain numerical value of $g_{\mathrm{eff}}$
+  \end{itemize}
+\end{enumerate}
+
+\subsection{Gap Closure Table}
+
+\begin{table}[ht]
+\centering
+\caption{What closes each gap}
+\label{tab:gaps}
+\begin{tabular}{p{3cm}p{4cm}p{4.5cm}}
+\toprule
+\textbf{Gap} & \textbf{Needed Input} & \textbf{Candidate Source} \\
+\midrule
+Mediator mass $m_\phi$ & $\xi$-geometry, throat scale & Framework v2.0 + KK analysis \\
+5D coupling $g_5$ & 5D action normalization & Companion H thick-brane action \\
+Overlap $\mathcal{O}_{\mathrm{overlap}}$ & Mode profiles, BVP & Future Companion: Brane Profiles \\
+BC factor $\mathcal{O}_{\mathrm{BC}}$ & Chirality filter & Companion V (already defined) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ==============================================================================
+\section{Benchmarks (PDG)}
+\label{sec:benchmarks}
+% ==============================================================================
+
+For reference only, the PDG value is:
+\begin{equation}
+  G_F = 1.1663788(6) \times 10^{-5} \; \mathrm{GeV}^{-2}
+  \quad \tagBL{}
+  \label{eq:GF_PDG}
+\end{equation}
+
+\begin{tcolorbox}[edcWarning, title={No-Fit Statement}]
+\textbf{No parameter in this document is tuned to match the PDG value.}
+The value above is a benchmark only. Any future numerical derivation must
+obtain $G_F$ from geometric quantities ($\delta$, $R_\xi$, $\sigma$, etc.)
+without fitting to weak observables.
+\end{tcolorbox}
+
+% ==============================================================================
+\section{Summary}
+\label{sec:summary}
+% ==============================================================================
+
+\begin{tcolorbox}[edcCornerstone, title={OPEN-W1 Summary}]
+\begin{enumerate}[nosep]
+  \item Integrating out a brane-layer mediator produces a contact interaction
+        with coefficient $G_{\mathrm{EDC}} \sim g_{\mathrm{eff}}^2 / m_\phi^2$
+        \tagDc{}
+  \item The effective coupling is
+        $g_{\mathrm{eff}} = g_5 \times \mathcal{O}_{\mathrm{overlap}} \times
+        \mathcal{O}_{\mathrm{BC}}$ \tagDef{}
+  \item V$-$A structure enters via $\mathcal{P}_{\mathrm{chir}}$ from
+        Companion V \tagP{}/\tagDc{}
+  \item Dimensional analysis confirms $[G_{\mathrm{EDC}}] = [E]^{-2}$ \tagDc{}
+  \item Numerical closure requires: $m_\phi$ from geometry, profiles from
+        BVP, overlaps computed \tagOpen{}
+\end{enumerate}
+\end{tcolorbox}
+
+% ==============================================================================
+% Related Documents
+% ==============================================================================
+\vspace{1em}
+\hrule
+\vspace{0.5em}
+\footnotesize
+\textbf{Related Documents:}\\
+Framework v2.0 (DOI: \href{https://doi.org/10.5281/zenodo.18299085}{10.5281/zenodo.18299085}) $\cdot$
+Companion H (DOI: \href{https://doi.org/10.5281/zenodo.18307539}{10.5281/zenodo.18307539})\\
+Companion V (Neutrino/Chirality) — this series $\cdot$
+Weak Program Overview (DOI: \href{https://doi.org/10.5281/zenodo.18319921}{10.5281/zenodo.18319921})
+\normalsize
+
+% ==============================================================================
+\end{document}
+% ==============================================================================
