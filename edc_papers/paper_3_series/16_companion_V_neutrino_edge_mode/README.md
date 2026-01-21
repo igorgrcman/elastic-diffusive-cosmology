@@ -2,7 +2,7 @@
 
 **Version:** 0.1 (Initial Draft)
 **Date:** 2026-01-20
-**DOI:** [To be reserved]
+**DOI:** 10.5281/zenodo.18321383
 
 ## Purpose
 
