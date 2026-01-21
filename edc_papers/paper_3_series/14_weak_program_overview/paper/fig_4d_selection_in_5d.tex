@@ -1,0 +1,43 @@
+% fig_4d_selection_in_5d.tex — Continuum of 4D submanifolds and mechanistic selection
+% Uses styles from tikz_style_edc.tex
+
+\begin{tikzpicture}[edc node distance, scale=0.9, every node/.style={transform shape}]
+
+  % Geometry box (left)
+  \node[process box, text width=3.0cm, minimum height=1.6cm] (geom) at (0,0) {
+    \textbf{Geometry [Def]}\\[2pt]
+    \footnotesize Continuum of 4D hyperplanes in 5D\\
+    (normals $n \in RP^4$)
+  };
+
+  % Selection filter box (center)
+  \node[brane box, text width=3.2cm, minimum height=1.6cm, right=2.0cm of geom] (filter) {
+    \textbf{Selection [Dc]}\\[2pt]
+    \footnotesize Viability filter:\\
+    proton anchor + ledger closure + suppressed leakage
+  };
+
+  % Selected interface box (top right)
+  \node[output box, text width=2.6cm, right=2.0cm of filter, yshift=0.5cm] (brane) {
+    \textbf{Selected interface}\\
+    \footnotesize thick brane-layer
+  };
+
+  % 3D outputs box (bottom right)
+  \node[output box, text width=2.6cm, right=2.0cm of filter, yshift=-0.5cm] (obs) {
+    \textbf{3D outputs}\\
+    \footnotesize allowed particles
+  };
+
+  % Arrows
+  \draw[edc flow] (geom) -- node[above, font=\scriptsize] {candidate 4D} (filter);
+  \draw[edc arrow] (filter) -- node[above, font=\scriptsize, sloped] {selects} (brane);
+  \draw[edc arrow] (brane) -- node[right, font=\scriptsize] {$\mathcal{P}_{\mathrm{frozen}}$} (obs);
+
+  % OPEN note (below)
+  \node[label box, text width=4.0cm, below=1.2cm of filter] (open) {
+    \textbf{[OPEN]} Other interfaces: require explicit coupling/BC construction
+  };
+  \draw[edc dashed, gray] (filter) -- (open);
+
+\end{tikzpicture}
