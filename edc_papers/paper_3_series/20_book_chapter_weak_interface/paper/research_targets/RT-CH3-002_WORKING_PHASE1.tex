@@ -1,0 +1,384 @@
+% ==============================================================================
+% RT-CH3-002 WORKING DOCUMENT: Phase 1 — Asymmetric Thick-Brane Profile
+% ==============================================================================
+% Status: IN PROGRESS
+% Goal: Replace symmetric tanh profile with realistic EDC asymmetric profile
+% Prerequisite for: G_F derivation from overlap integrals
+% ==============================================================================
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\usepackage{booktabs}
+
+\geometry{margin=2.5cm}
+
+\tcbuselibrary{skins,breakable}
+
+\newcommand{\tagBL}{\textsuperscript{\textcolor{blue}{[BL]}}}
+\newcommand{\tagP}{\textsuperscript{\textcolor{orange}{[P]}}}
+\newcommand{\tagDc}{\textsuperscript{\textcolor{purple}{[Dc]}}}
+\newcommand{\tagOpen}{\textsuperscript{\textcolor{red}{[OPEN]}}}
+\newcommand{\tagDer}{\textsuperscript{\textcolor{green!50!black}{[Der]}}}
+
+\newtcolorbox{keybox}[1][]{colback=green!5,colframe=green!50!black,title=#1,breakable}
+\newtcolorbox{problembox}[1][]{colback=red!5,colframe=red!50!black,title=#1,breakable}
+\newtcolorbox{inputbox}[1][]{colback=blue!5,colframe=blue!50!black,title=#1,breakable}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+
+\title{RT-CH3-002 Working Document\\Phase 1: Asymmetric Thick-Brane Profile}
+\author{EDC Research Program}
+\date{January 2026}
+
+\begin{document}
+\maketitle
+
+% ==============================================================================
+\section{The Problem with Symmetric Profiles}
+% ==============================================================================
+
+\begin{problembox}[Why tanh Doesn't Work for EDC]
+The standard domain wall profile used in Phase 1 (RT-CH3-001):
+\begin{equation}
+m_{\text{tanh}}(z) = m_0 \tanh(z/L)
+\end{equation}
+is \textbf{symmetric} around $z = 0$. This describes a domain wall between two
+semi-infinite bulk regions.
+
+\textbf{But EDC geometry is different:}
+\begin{itemize}
+\item $z = 0$ is the \textbf{observer boundary} (brane surface)
+\item $z > 0$ is the \textbf{bulk} (Plenum)
+\item There is NO region $z < 0$
+\item Plenum flows in \textbf{one direction} ($+z$ to $-z$, into the brane)
+\end{itemize}
+
+The EDC thick brane is a \textbf{half-space} problem, not a symmetric domain wall!
+\end{problembox}
+
+% ==============================================================================
+\section{Physical Setup: Plenum Inflow Creates Asymmetry}
+% ==============================================================================
+
+\subsection{Coordinate Convention}
+
+Following EDC conventions:
+\begin{itemize}
+\item $z = 0$: Observer-facing boundary (``our'' 3+1D world)
+\item $z = \Delta$: Bulk-facing edge of thick brane
+\item $z > \Delta$: Deep bulk (Plenum reservoir)
+\item Plenum flows from bulk ($z > \Delta$) toward boundary ($z = 0$)
+\end{itemize}
+
+\subsection{Pressure Profile from Inflow}
+
+The Plenum inflow creates a pressure gradient \tagP{}:
+\begin{equation}
+P(z) = P_\infty + \Delta P \cdot f(z)
+\end{equation}
+where $P_\infty$ is the asymptotic bulk pressure and $f(z)$ captures the
+pressure buildup near the brane.
+
+\begin{proposition}[Exponential Pressure Decay]
+\label{prop:pressure}
+For steady-state Plenum inflow with viscous dissipation, the pressure profile is:
+\begin{equation}
+P(z) = P_0 \left(1 - e^{-z/\lambda}\right) + P_\infty
+\end{equation}
+where $\lambda$ is the dissipation length scale. \tagP{}
+\end{proposition}
+
+\textbf{Physical justification:} Near the boundary, the Plenum ``piles up'' creating
+higher pressure. This decays exponentially into the brane interior on the scale $\lambda$.
+
+\subsection{Boundary Conditions}
+
+At the observer boundary $z = 0$:
+\begin{itemize}
+\item Dirichlet-like condition: Fields must match 4D physics
+\item Pressure: $P(0) = P_\infty$ (no buildup at boundary itself)
+\end{itemize}
+
+Deep in the bulk $z \to \infty$:
+\begin{itemize}
+\item Asymptotic approach to bulk values
+\item $P(\infty) = P_\infty + P_0$ (full pressure)
+\end{itemize}
+
+% ==============================================================================
+\section{Derivation: Asymmetric Mass Profile}
+% ==============================================================================
+
+\subsection{Fermion Mass from Pressure Coupling}
+
+Following the RT-CH3-001 result, fermion mass couples to Plenum stress \tagP{}:
+\begin{equation}
+m(z) = \kappa \cdot \left(T^{zz}(z) - T^{zz}(0)\right)
+\end{equation}
+
+For the pressure profile from Proposition~\ref{prop:pressure}:
+\begin{equation}
+T^{zz}(z) \propto P(z)
+\end{equation}
+
+This gives:
+
+\begin{keybox}[Asymmetric Mass Profile]
+\begin{equation}
+\boxed{m(z) = m_0 \left(1 - e^{-z/\lambda}\right)}
+\label{eq:asymmetric_mass}
+\end{equation}
+where:
+\begin{itemize}
+\item $m_0 \equiv \kappa P_0$ is the bulk fermion mass
+\item $\lambda$ is the characteristic width of the thick brane
+\item $m(0) = 0$ at the boundary
+\item $m(z) \to m_0$ as $z \to \infty$
+\end{itemize}
+\end{keybox}
+
+\textbf{Key difference from tanh:}
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Property} & \textbf{tanh} & \textbf{EDC Exponential} \\
+\midrule
+Domain & $(-\infty, +\infty)$ & $[0, +\infty)$ \\
+Symmetry & Symmetric around 0 & Asymmetric \\
+Boundary at $z=0$ & Transition point & Hard boundary \\
+$m(0)$ & 0 & 0 \\
+$m'(0)$ & $m_0/L$ & $m_0/\lambda$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ==============================================================================
+\section{Mode Profiles in Asymmetric Potential}
+% ==============================================================================
+
+\subsection{The 5D Dirac Equation}
+
+The 5D Dirac equation with position-dependent mass \tagBL{}:
+\begin{equation}
+\left( i\gamma^\mu \partial_\mu + i\gamma^5 \partial_z - m(z) \right) \Psi = 0
+\end{equation}
+
+Separating $\Psi = \psi(x^\mu) f(z)$, the zero-mode equation becomes:
+\begin{equation}
+\gamma^5 \partial_z f = m(z) f
+\end{equation}
+
+For chiral projections $f = f_L P_L + f_R P_R$ where $\gamma^5 P_{L/R} = \mp P_{L/R}$:
+\begin{align}
+\partial_z f_L &= -m(z) f_L \\
+\partial_z f_R &= +m(z) f_R
+\end{align}
+
+\subsection{Solution with Asymmetric Profile}
+
+Using $m(z) = m_0(1 - e^{-z/\lambda})$ from Eq.~\eqref{eq:asymmetric_mass}:
+
+\begin{align}
+\int_0^z m(z') dz' &= m_0 \int_0^z \left(1 - e^{-z'/\lambda}\right) dz' \\
+&= m_0 \left[ z + \lambda e^{-z'/\lambda} \right]_0^z \\
+&= m_0 \left( z + \lambda e^{-z/\lambda} - \lambda \right) \\
+&= m_0 \left( z - \lambda (1 - e^{-z/\lambda}) \right)
+\end{align}
+
+Define the ``effective depth'':
+\begin{equation}
+\chi(z) \equiv z - \lambda (1 - e^{-z/\lambda})
+\end{equation}
+
+Note that:
+\begin{itemize}
+\item $\chi(0) = 0$
+\item $\chi(z) \approx z - \lambda$ for $z \gg \lambda$
+\item $\chi(z) \approx z^2/(2\lambda)$ for $z \ll \lambda$
+\end{itemize}
+
+\begin{keybox}[Left-Handed Mode Profile]
+\begin{equation}
+\boxed{f_L(z) = N_L \exp\left( -m_0 \chi(z) \right) = N_L \exp\left( -m_0 z + m_0\lambda (1 - e^{-z/\lambda}) \right)}
+\label{eq:fL_profile}
+\end{equation}
+This mode is:
+\begin{itemize}
+\item Localized near $z = 0$ (boundary)
+\item Normalized with $\int_0^\infty |f_L|^2 dz = 1$
+\item Decays as $e^{-m_0 z}$ for $z \gg \lambda$
+\end{itemize}
+\end{keybox}
+
+\begin{keybox}[Right-Handed Mode Profile]
+\begin{equation}
+f_R(z) = N_R \exp\left( +m_0 \chi(z) \right)
+\end{equation}
+This mode:
+\begin{itemize}
+\item Grows as $z$ increases
+\item Is NOT normalizable on $[0, \infty)$
+\item Must be cut off at some $z = L$ (brane thickness)
+\end{itemize}
+\end{keybox}
+
+\textbf{Result:} Left-handed modes are naturally localized at the boundary;
+right-handed modes are expelled into the bulk. This confirms the V$-$A
+structure from RT-CH3-001 with the realistic profile.
+
+% ==============================================================================
+\section{Normalization and Effective Width}
+% ==============================================================================
+
+\subsection{Left-Handed Mode Normalization}
+
+The normalization integral:
+\begin{equation}
+1 = \int_0^\infty |f_L(z)|^2 dz = N_L^2 \int_0^\infty e^{-2m_0\chi(z)} dz
+\end{equation}
+
+For large $m_0\lambda \gg 1$, the mode is sharply peaked near $z = 0$. Expanding:
+\begin{equation}
+\chi(z) \approx \frac{z^2}{2\lambda} \quad \text{for } z \ll \lambda
+\end{equation}
+
+\begin{equation}
+\int_0^\infty e^{-2m_0 z^2/(2\lambda)} dz = \sqrt{\frac{\pi\lambda}{2m_0}}
+\end{equation}
+
+Therefore:
+\begin{equation}
+N_L \approx \left(\frac{2m_0}{\pi\lambda}\right)^{1/4}
+\end{equation}
+
+\subsection{Effective Localization Width}
+
+The mode width is:
+\begin{equation}
+\boxed{\sigma_L \equiv \sqrt{\langle z^2 \rangle} \approx \sqrt{\frac{\lambda}{2m_0}}}
+\end{equation}
+
+\textbf{Numerical estimate:} If $\lambda \sim \Delta \sim 10^{-18}$ m (brane thickness)
+and $m_0 \sim 1$ GeV (electroweak scale):
+\begin{equation}
+\sigma_L \sim \sqrt{\frac{10^{-18} \text{ m}}{2 \times 5 \times 10^{-18} \text{ m}}} \sim 0.3 \text{ (in units of } \lambda\text{)}
+\end{equation}
+
+The mode is localized within a fraction of the brane thickness.
+
+% ==============================================================================
+\section{Connection to $G_F$: Preview}
+% ==============================================================================
+
+\subsection{Overlap Integral for $G_F$}
+
+The Fermi constant arises from the overlap of fermion modes with a bulk mediator:
+\begin{equation}
+G_F \sim \frac{g_5^2}{M_5^2} \int_0^L dz \, |f_L(z)|^2 |f_L(z)|^2 |\phi(z)|^2
+\label{eq:GF_overlap}
+\end{equation}
+
+With the mediator profile $\phi(z) \sim 1/M_5$ (constant for a heavy mediator), this becomes:
+\begin{equation}
+G_F \sim \frac{g_5^2}{M_5^4} \int_0^L |f_L(z)|^4 dz
+\end{equation}
+
+\subsection{Order-of-Magnitude Estimate}
+
+Using the Gaussian approximation for $f_L$:
+\begin{equation}
+\int |f_L|^4 dz \sim N_L^4 \cdot \sigma_L \sim \frac{1}{\sigma_L}
+\end{equation}
+
+Therefore:
+\begin{equation}
+G_F \sim \frac{g_5^2}{M_5^4 \sigma_L} \sim \frac{g_5^2}{M_5^4} \sqrt{\frac{2m_0}{\lambda}}
+\end{equation}
+
+\textbf{This will be the starting point for Phase 2.}
+
+% ==============================================================================
+\section{Determining Parameters from EDC}
+% ==============================================================================
+
+\subsection{What Sets $\lambda$?}
+
+The characteristic length $\lambda$ should be related to EDC scales:
+\begin{itemize}
+\item \textbf{Option A:} $\lambda = \Delta$ (brane thickness) $\sim R_\xi \sim 10^{-18}$ m
+\item \textbf{Option B:} $\lambda = r_e$ (lattice spacing) $\sim 10^{-15}$ m
+\item \textbf{Option C:} Derived from membrane tension $\sigma$ and flow rate
+\end{itemize}
+
+\begin{proposition}[Dissipation Length from Membrane Tension]
+\tagP{}
+The Plenum dissipation length is set by the balance between inflow momentum
+and membrane restoring force:
+\begin{equation}
+\lambda \sim \sqrt{\frac{\sigma}{\rho v^2}}
+\end{equation}
+where $\rho v^2$ is the Plenum ram pressure. \tagOpen{}
+\end{proposition}
+
+\subsection{What Sets $m_0$?}
+
+The bulk mass scale $m_0$ determines fermion localization:
+\begin{itemize}
+\item For light localization: $m_0 \sim 1/\lambda$ (comparable scales)
+\item For strong localization: $m_0 \lambda \gg 1$
+\end{itemize}
+
+From the $\mathbb{Z}_6$ lattice (Chapter 2), a natural mass scale is:
+\begin{equation}
+m_0 \sim \frac{\sigma r_e^2}{\lambda} \sim \frac{5.86 \text{ MeV}}{10^{-18} \text{ m}} \times \hbar c
+\end{equation}
+
+This needs careful dimensional analysis in Phase 2.
+
+% ==============================================================================
+\section{Epistemic Summary}
+% ==============================================================================
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Element} & \textbf{Source} & \textbf{Status} \\
+\midrule
+5D Dirac equation & Standard QFT & \tagBL{} \\
+Asymmetric boundary conditions & EDC geometry & \tagP{} \\
+Pressure profile from inflow & Physical hypothesis & \tagP{} \\
+$m(z) = m_0(1-e^{-z/\lambda})$ & From pressure coupling & \tagDer{} \\
+$f_L(z)$ localized at boundary & Mathematical consequence & \tagDer{} \\
+$f_R(z)$ expelled to bulk & Mathematical consequence & \tagDer{} \\
+$\lambda$ from membrane tension & \tagOpen{} & To derive \\
+$m_0$ from EDC scales & \tagOpen{} & To derive \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ==============================================================================
+\section{Next Steps: Phase 2}
+% ==============================================================================
+
+\begin{enumerate}
+\item \textbf{Fix $\lambda$:} Derive from EDC first principles (membrane + inflow)
+\item \textbf{Fix $m_0$:} Connect to $\sigma r_e^2$ or other EDC scale
+\item \textbf{Compute $\int |f_L|^4$:} Exact integral for overlap
+\item \textbf{Identify $M_5$:} 5D mediator mass from EDC geometry
+\item \textbf{Evaluate $G_F$:} Numerical calculation
+\end{enumerate}
+
+\vspace{1cm}
+\hrule
+\vspace{0.5em}
+\textbf{Status:} Phase 1 COMPLETE (asymmetric profile derived) \\
+\textbf{Next:} Phase 2 (fix parameters, compute $G_F$) \\
+\textbf{Key result:} Asymmetric profile $m(z) = m_0(1-e^{-z/\lambda})$ replaces tanh
+
+\end{document}
