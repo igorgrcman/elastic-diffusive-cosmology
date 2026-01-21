@@ -1,0 +1,56 @@
+% fig_neutrino_localization.tex — Neutrino localization in interfacial zone
+% Uses styles from tikz_style_edc.tex
+
+\begin{tikzpicture}[scale=0.85, every node/.style={transform shape}]
+
+  % Background regions
+  \fill[bulk region] (-4,-2) rectangle (-1.5,2);
+  \fill[brane region] (-1.5,-2) rectangle (1.5,2);
+  \fill[observer region] (1.5,-2) rectangle (4,2);
+
+  % Interfacial zone (highlighted)
+  \fill[yellow!40] (-1.5,-2) rectangle (-0.5,2);
+
+  % Region labels
+  \node[section label] at (-2.75,2.4) {\textbf{5D Bulk}};
+  \node[section label] at (-1,2.4) {\footnotesize\textbf{Interface}};
+  \node[section label] at (0.5,2.4) {\textbf{Brane}};
+  \node[section label] at (2.75,2.4) {\textbf{3D Observer}};
+
+  % Boundaries
+  \draw[bulk boundary] (-1.5,-2) -- (-1.5,2);
+  \draw[brane edge] (-0.5,-2) -- (-0.5,2);
+  \draw[observer boundary] (1.5,-2) -- (1.5,2);
+
+  % Proton junction (extends into bulk)
+  \node[junction point] (pj) at (-2,-0.5) {};
+  \draw[flux arm] (pj) -- ++(120:0.5);
+  \draw[flux arm] (pj) -- ++(240:0.5);
+  \draw[flux arm] (pj) -- ++(0:0.5);
+  \node[font=\scriptsize, below=0.2cm of pj] {proton};
+
+  % Neutrino (in interfacial zone)
+  \node[neutrino, fill=purple!70] (nu) at (-1,0.8) {};
+  \node[font=\scriptsize, right=0.1cm of nu] {$\bar\nu_e$};
+
+  % Electron (observer-facing)
+  \node[particle, fill=blue!70!black] (elec) at (1,0.8) {};
+  \node[font=\scriptsize, right=0.1cm of elec] {$e^-$};
+
+  % y-axis indicator
+  \draw[->, thick] (-3.5,-1.8) -- (-3.5,-0.8);
+  \node[font=\scriptsize] at (-3.5,-1.3) [left] {$y$};
+
+  % Suppressed coupling arrows
+  \draw[edc dashed, purple!60!black] (nu) -- ++(-0.6,0);
+  \draw[edc dashed, purple!60!black] (nu) -- ++(0.8,0);
+  \node[font=\tiny, text width=1.5cm] at (-0.2,-0.5) {suppressed\\coupling};
+
+  % Key
+  \node[label box, text width=3.2cm] at (2.75,-1) {
+    \footnotesize\textbf{Edge mode:} $\nu$ at interface,\\
+    suppressed leakage to bulk\\
+    and observer-facing layers
+  };
+
+\end{tikzpicture}
