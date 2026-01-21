@@ -4,7 +4,6 @@
 **Author:** Claude Code (Opus 4.5)
 **Purpose:** Derive frozen criterion τ_relax >> τ_obs from 5D EDC action — promote Gap 1 to [Dc]
 
-**DOI:** [10.5281/zenodo.18211854](https://doi.org/10.5281/zenodo.18211854)
 
 ---
 
@@ -18,7 +17,6 @@ This document derives the **frozen criterion** from first principles, promoting 
 
 ### v1.2 → v1.3 (2026-01-13)
 
-- **DOI added:** 10.5281/zenodo.18211854 (visible + PDF metadata)
 - **PDF bookmark hygiene:** `\texorpdfstring` added to all section headings with math
 - **Notation & Units box added:** Section 1 defines σ, ΔA_min, Γ₀, τ_obs with dimensions and units
 - **Citations added:** Nambu–Goto action [1,2], WKB/instanton method [3,4], topological sectors [5,6]
@@ -425,4 +423,3 @@ This gives Γ ≈ 0.25 Γ₀ — **marginal suppression** with QCD tension alone
 
 *Claude Code, 2026-01-13*
 
-**DOI:** [10.5281/zenodo.18211854](https://doi.org/10.5281/zenodo.18211854)

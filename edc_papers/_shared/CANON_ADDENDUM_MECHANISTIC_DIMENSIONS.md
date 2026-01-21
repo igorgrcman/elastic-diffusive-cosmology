@@ -47,7 +47,6 @@ See `_shared/style/STYLE_GUIDE.md` for full documentation.
 **This canon applies going forward.**
 
 Published DOI documents remain unchanged:
-- Weak Program Overview (10.5281/zenodo.18319921)
 - Companions N/M/T/P
 - Framework v2.0, Paper 3, etc.
 

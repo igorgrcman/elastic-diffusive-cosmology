@@ -4,7 +4,6 @@
 
 ## Metadata
 
-- **DOI:** [10.5281/zenodo.18211854](https://doi.org/10.5281/zenodo.18211854)
 - **Repository:** [github.com/igorgrcman/elastic-diffusive-cosmology](https://github.com/igorgrcman/elastic-diffusive-cosmology)
 - **Author:** Igor Grcman
 
@@ -115,7 +114,6 @@ See repository root for license information.
   title   = {Geometric Structure of Electron and Proton in 5D Membrane Cosmology},
   journal = {Zenodo},
   year    = {2026},
-  doi     = {10.5281/zenodo.18211854}
 }
 ```
 

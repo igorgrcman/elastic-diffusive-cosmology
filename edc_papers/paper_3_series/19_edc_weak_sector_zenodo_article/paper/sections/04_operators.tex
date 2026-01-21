@@ -1,0 +1,123 @@
+% ==============================================================================
+% Section 4: Projection Operators
+% ==============================================================================
+
+The Release stage of the pipeline is governed by the frozen projection operator,
+which determines what an observer can detect. This section defines the operator
+and its components.
+
+\subsection{The Frozen Projection Operator}
+
+\begin{definition}[Frozen Projection Operator \tagDef{}]
+\label{def:pfrozen}
+The frozen projection operator decomposes as:
+\begin{equation}
+  \mathcal{P}_{\mathrm{frozen}} = \mathcal{P}_{\mathrm{energy}} \circ
+  \mathcal{P}_{\mathrm{mode}} \circ \mathcal{P}_{\mathrm{chir}}
+  \label{eq:pfrozen}
+\end{equation}
+Each component enforces a distinct selection criterion:
+\begin{itemize}[nosep]
+  \item $\mathcal{P}_{\mathrm{energy}}$: Kinematic accessibility (energy/momentum conservation)
+  \item $\mathcal{P}_{\mathrm{mode}}$: Mode-matching (overlap between initial and final configurations)
+  \item $\mathcal{P}_{\mathrm{chir}}$: Chirality filter (V$-$A structure for weak outputs)
+\end{itemize}
+\end{definition}
+
+\textbf{Physical interpretation.}
+The name ``frozen'' indicates that this operator acts at the brane interface
+where bulk dynamics ``freeze out'' into observable 3D physics. It is not a
+dynamical operator but a \emph{projection onto allowed final states}.
+
+\subsection{Energy Projection}
+
+\begin{definition}[$\mathcal{P}_{\mathrm{energy}}$ \tagDef{}]
+\label{def:penergy}
+The energy projection operator selects output channels that are kinematically
+accessible:
+\begin{equation}
+  \mathcal{P}_{\mathrm{energy}}: \quad
+  \text{channel } X \text{ allowed} \iff E_{\mathrm{available}} \geq \sum_{i \in X} m_i
+\end{equation}
+\end{definition}
+
+\textbf{Example (neutron decay).}
+Available energy: $\Delta m_{np} = 1.293$ MeV. Possible channels:
+\begin{itemize}[nosep]
+  \item $p + e^- + \bar{\nu}_e$: requires $m_e \approx 0.511$ MeV $\checkmark$ (allowed)
+  \item $p + \mu^- + \bar{\nu}_\mu$: requires $m_\mu \approx 105.7$ MeV $\times$ (forbidden)
+\end{itemize}
+
+\textbf{Example (pion decay).}
+Available energy: $m_\pi \approx 140$ MeV. Both $\mu$ and $e$ channels are
+kinematically allowed, but their rates differ due to $\mathcal{P}_{\mathrm{chir}}$.
+
+\subsection{Mode Projection}
+
+\begin{definition}[$\mathcal{P}_{\mathrm{mode}}$ \tagDef{}]
+\label{def:pmode}
+The mode projection operator selects output channels based on wavefunction overlap:
+\begin{equation}
+  \mathcal{P}_{\mathrm{mode}}: \quad
+  \Gamma_X \propto \left| \langle \psi_{\mathrm{final}}^X | \psi_{\mathrm{initial}} \rangle \right|^2
+\end{equation}
+Channels with poor overlap are suppressed even if kinematically allowed.
+\end{definition}
+
+\textbf{Physical interpretation.}
+A bulk-core configuration (neutron) has good overlap with other bulk-core
+configurations (proton) and edge modes (neutrino), but poor overlap with
+purely brane-localized high-mode excitations.
+
+\subsection{Chirality Projection}
+
+\begin{definition}[$\mathcal{P}_{\mathrm{chir}}$ \tagDef{}]
+\label{def:pchir}
+The chirality projection operator enforces the V$-$A structure of weak interactions:
+\begin{equation}
+  \mathcal{P}_{\mathrm{chir}}: \quad
+  \text{only left-handed fermions and right-handed antifermions coupled}
+\end{equation}
+\end{definition}
+
+\textbf{Physical interpretation.}
+In EDC, the V$-$A structure emerges from the geometry of the brane interface
+\tagP{}. The interface has an ``inside'' (bulk) and ``outside'' (observer),
+creating a natural handedness. Modes propagating along the interface inherit
+this chirality.
+
+\subsection{Helicity Suppression from Chirality}
+
+For pseudoscalar decays like $\pi^+ \to \ell^+ \nu_\ell$, the chirality
+projection leads to helicity suppression:
+
+\begin{equation}
+  \frac{\Gamma(\pi \to e\nu)}{\Gamma(\pi \to \mu\nu)} \approx
+  \left( \frac{m_e}{m_\mu} \right)^2 \approx 2.3 \times 10^{-5}
+  \label{eq:helicity}
+\end{equation}
+
+This ratio is a \tagBL{} from SM/PDG. In EDC, it is interpreted as:
+the chirality projection $\mathcal{P}_{\mathrm{chir}}$ penalizes configurations
+where the lepton's spin must flip to match the pion's zero spin \tagP{}/\tagOpen{}.
+Heavier leptons (larger $m_\ell$) can more easily accommodate the required
+helicity mismatch.
+
+\subsection{Operator Composition}
+
+The full frozen projection operator acts sequentially:
+
+\begin{enumerate}[nosep]
+  \item $\mathcal{P}_{\mathrm{energy}}$ eliminates kinematically forbidden channels
+  \item $\mathcal{P}_{\mathrm{mode}}$ weights surviving channels by overlap
+  \item $\mathcal{P}_{\mathrm{chir}}$ applies chirality selection (V$-$A)
+\end{enumerate}
+
+The final decay rate for channel $X$ is:
+\begin{equation}
+  \Gamma_X \propto \mathcal{P}_{\mathrm{frozen}}[\text{channel } X]
+  = \mathcal{P}_{\mathrm{chir}} \circ \mathcal{P}_{\mathrm{mode}} \circ
+  \mathcal{P}_{\mathrm{energy}}[\text{channel } X]
+\end{equation}
+
+Numerical computation of these rates remains \tagOpen{}.
