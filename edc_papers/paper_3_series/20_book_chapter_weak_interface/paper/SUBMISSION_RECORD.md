@@ -11,13 +11,16 @@
 
 ## Book Structure: EDC Part II — The Weak Sector
 
-| Chapter | Title | DOI | Pages |
-|---------|-------|-----|-------|
-| 1 | The Weak Interface | (chapter_weak_interface.pdf) | TBD |
-| 2 | **The Z₆ Program** | **10.5281/zenodo.18328508** | **18** |
+| Chapter | Title | DOI | Pages | Status |
+|---------|-------|-----|-------|--------|
+| 1 | The Weak Interface | (pending) | 45 | Draft complete |
+| 2 | **The Z₆ Program** | **10.5281/zenodo.18328508** | **18** | **Published** |
 
 **Note:** Part I was *EDC v17.49* (the foundational framework). Part II addresses
 the weak sector and its geometric origins.
+
+**DOI Scope:** This submission record covers **Chapter 2 only**. Chapter 1 will
+receive its own DOI upon completion of quantitative derivations (RT-CH3-xxx targets).
 
 ---
 
