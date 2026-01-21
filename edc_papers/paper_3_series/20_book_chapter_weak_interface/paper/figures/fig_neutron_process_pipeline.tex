@@ -1,0 +1,92 @@
+% figures/fig_neutron_process_pipeline.tex
+% Neutron decay process pipeline diagram
+\begin{tikzpicture}[scale=0.88, transform shape]
+
+% Load styles
+\input{figures/tikz_style_edc.tex}
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Background regions
+% ─────────────────────────────────────────────────────────────────────────────
+\fill[gray!12] (-5.5,2.0) rectangle (5.5,3.5);
+\fill[blue!8] (-5.5,0.3) rectangle (5.5,2.0);
+\fill[green!8] (-5.5,-1.2) rectangle (5.5,0.3);
+
+% Region labels
+\node[font=\scriptsize, gray!70!black] at (-4.8,3.2) {Bulk / Plenum};
+\node[font=\scriptsize, blue!50!black] at (-4.8,1.7) {Thick brane layer};
+\node[font=\scriptsize, green!50!black] at (-4.8,0.0) {3D outputs};
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Bulk layer nodes
+% ─────────────────────────────────────────────────────────────────────────────
+\node[bulk box, text width=2.4cm] (nexc) at (-3.5,2.7)
+  {Neutron $\Psi_n$\\{\tiny bulk-core junction}};
+
+\node[bulk box, text width=2.4cm] (relax) at (0,2.7)
+  {Relaxation\\{\tiny $q(t)\to 0$}};
+
+\node[output box, text width=2.4cm] (anchor) at (3.5,2.7)
+  {Proton $\Psi_p$\\{\tiny anchor (minimum)}};
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Brane layer nodes
+% ─────────────────────────────────────────────────────────────────────────────
+\node[brane box, text width=2.4cm] (pump) at (-3.5,1.15)
+  {Absorption\\{\tiny $\Pi_{\mathrm{pump}}$}};
+
+\node[brane box, text width=2.4cm] (diss) at (0,1.15)
+  {Dissipation\\{\tiny $\Gamma_{\mathrm{eff}} E_{\mathrm{brane}}$}};
+
+\node[gate box, text width=2.4cm, minimum height=0.8cm] (frozen) at (3.5,1.15)
+  {$\mathcal{P}_{\mathrm{frozen}}$\\{\tiny release gate}};
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Output layer nodes
+% ─────────────────────────────────────────────────────────────────────────────
+\node[output box, text width=1.8cm] (eout) at (1.5,-0.45)
+  {$e^-$\\{\tiny charged}};
+
+\node[output box, text width=1.8cm] (nuout) at (3.5,-0.45)
+  {$\bar\nu_e$\\{\tiny ledger}};
+
+\node[rectangle, draw=gray!50, dashed, rounded corners=2pt,
+      fill=gray!5, text width=1.8cm, font=\tiny, align=center] (recoil) at (5.2,-0.45)
+  {recoil/soft};
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Arrows - bulk flow
+% ─────────────────────────────────────────────────────────────────────────────
+\draw[edc flow] (nexc) -- (relax);
+\draw[edc flow] (relax) -- (anchor);
+
+% Arrow from relaxation down to pump (energy transfer)
+\draw[edc arrow] (relax.south) -- (pump.north);
+
+% Brane flow
+\draw[edc flow] (pump) -- (diss);
+\draw[edc flow] (diss) -- (frozen);
+
+% Release to outputs
+\draw[edc arrow] (frozen.south) -- ++(0,-0.3) -| (eout.north);
+\draw[edc arrow] (frozen.south) -- ++(0,-0.3) -| (nuout.north);
+\draw[edc dashed] (frozen.south) -- ++(0,-0.3) -| (recoil.north);
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Annotations
+% ─────────────────────────────────────────────────────────────────────────────
+
+% Trigger condition
+\node[rectangle, draw=purple!40, fill=purple!5, rounded corners=2pt,
+      font=\tiny, align=center, text width=3.2cm] at (0,0.35)
+  {Trigger: $q(t_\star)\approx 0$, $\Xi\ll 1$};
+
+% Kinematic gate annotation
+\node[rectangle, draw=red!40, fill=red!5, rounded corners=2pt,
+      font=\tiny, align=left, text width=4.5cm] at (-3.0,-0.5)
+  {\textbf{Kinematic gate:}\\
+   $Q_{n\to p} = 1.29$ MeV\\
+   $\Rightarrow$ $e^-$ allowed ($m_e = 0.51$ MeV)\\
+   $\Rightarrow$ $\mu^-$ closed ($m_\mu = 106$ MeV)};
+
+\end{tikzpicture}
