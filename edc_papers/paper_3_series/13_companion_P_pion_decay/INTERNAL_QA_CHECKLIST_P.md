@@ -1,8 +1,8 @@
-# BabaYaga Red-Team Checklist: Companion P (Pion)
+# Internal QA Checklist: Companion P (Pion)
 
 **Date:** 2026-01-20
-**Version:** v0.3 (BabaYaga hardened)
-**Reviewer:** BabaYaga protocol
+**Version:** v0.3 (internal QA hardened)
+**Protocol:** EDC Internal Consistency Audit
 
 ---
 
@@ -82,8 +82,11 @@ xelatex -interaction=nonstopmode main.tex && xelatex main.tex
 
 ## Verdict
 
-**PASS** — Companion P v0.3 satisfies all BabaYaga red-team requirements.
+**PASS** — Companion P v0.3 satisfies all internal QA audit requirements.
+
+This document follows the EDC no-fit policy and has been internally audited for
+dimensional consistency, epistemic tagging, and non-overclaim language.
 
 ---
 
-*Generated: 2026-01-20 (BabaYaga hardening pass)*
+*Generated: 2026-01-20 (internal QA pass)*

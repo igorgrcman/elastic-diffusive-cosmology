@@ -2,7 +2,7 @@
 
 **Date:** 2026-01-20
 **Document:** Companion P — Pion Decay as Hadron→Lepton Injection Test
-**Status:** Draft v0.3 (BabaYaga hardened)
+**Status:** Draft v0.3 (internal QA hardened)
 
 ---
 
@@ -174,7 +174,7 @@ Better 7 pages of truth than 20 pages of numerology.
 
 ---
 
-## BabaYaga Pass (v0.3) — 2026-01-20
+## Internal QA Pass (v0.3) — 2026-01-20
 
 ### What Was Changed
 
@@ -217,8 +217,8 @@ Better 7 pages of truth than 20 pages of numerology.
 
 ### Files Modified/Created
 
-- `paper/main.tex` — BabaYaga hardening patches
-- `BABA_YAGA_CHECKLIST_P.md` — New file (red-team verification checklist)
+- `paper/main.tex` — Internal QA hardening patches
+- `INTERNAL_QA_CHECKLIST_P.md` — QA verification checklist
 - `PATCH_NOTES_PION_PHASE.md` — Updated (this section)
 
 ### Build Verification
@@ -231,4 +231,4 @@ xelatex -interaction=nonstopmode main.tex && xelatex main.tex
 
 ---
 
-*BabaYaga Pass completed: 2026-01-20*
+*Internal QA Pass completed: 2026-01-20*
