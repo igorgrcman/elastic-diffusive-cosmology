@@ -1,18 +1,24 @@
-# Paper 3-2.0: EDC Weak Sector
+# Paper 3J: Mechanistic Dimensions in EDC — The Weak-Sector Brane Interface
 
-**Title:** EDC Weak Sector: Mechanistic Brane Pipeline, Ontology Map, and Structural Pathway to G_F
+**Title:** Mechanistic Dimensions in EDC: The Weak-Sector Brane Interface
 
-**Version:** 0.1 (initial release)
+**Subtitle:** Unified Absorption–Dissipation–Release Pipeline from Neutron to Leptons
+
+**Version:** Paper 3J (Journal Synthesis)
 
 **DOI:** TBD (pending Zenodo upload)
 
 ## Purpose
 
-Journal-style umbrella document that:
+This is the primary journal-style umbrella narrative for the EDC Weak Program;
+the "Weak Program Overview" remains an internal registry/index (DOIs + OPEN checklist),
+not a superseded publication.
+
+This paper:
 1. Consolidates the unified **Absorption → Dissipation → Release** decay pipeline
 2. Presents the **ontology map** (bulk-core / brane-dominant / edge mode / composite)
 3. Promotes the **G_F structural pathway** (OPEN-W1) to visibility
-4. Supersedes the narrative role of the Weak Program Overview (which becomes a registry index)
+4. Provides the **primary reading path** for the EDC Weak Program
 
 ## Document Status
 

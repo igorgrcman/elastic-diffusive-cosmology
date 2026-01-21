@@ -1,4 +1,4 @@
-# PATCH NOTES — Paper 3-2.0: EDC Weak Sector
+# PATCH NOTES — Paper 3J: Mechanistic Dimensions in EDC
 
 ## v0.1 (2026-01-20)
 
@@ -67,12 +67,13 @@
 - [x] TikZ figures render correctly
 - [x] Output: 16 pages PDF
 
-### Supersedes
+### Relation to Overview
 
-This document supersedes the **narrative role** of:
-- `14_weak_program_overview/` (which becomes a pure registry index)
+This journal-style synthesis (Paper 3J) provides the **primary reading path** for the EDC Weak Program.
+The `14_weak_program_overview/` remains an internal registry/index that tracks the citable companion
+DOIs and open problems.
 
-The Overview remains as a quick-reference table; Paper 3-2.0 provides the unified narrative.
+**No previously published DOI documents are modified**; this paper references them as archival sources.
 
 ---
 
