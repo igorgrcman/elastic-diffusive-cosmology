@@ -1,0 +1,860 @@
+% ==============================================================================
+% Paper 3-2.0: EDC Weak Sector — Journal-Style Umbrella Document
+% Version: 2.0 (Supersedes narrative integration from Weak Program Overview)
+% Date: 2026-01-20
+% DOI: [To be assigned upon Zenodo publication]
+% ==============================================================================
+
+\documentclass[11pt,a4paper]{article}
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Required packages BEFORE shared style
+% ─────────────────────────────────────────────────────────────────────────────
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,shapes.geometric,calc,decorations.pathmorphing,fit,backgrounds}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Shared EDC style
+% ─────────────────────────────────────────────────────────────────────────────
+\input{../../../_shared/style/edc_style}
+\input{../../../_shared/style/tikz_style_edc}
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Additional packages
+% ─────────────────────────────────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{hyperref}
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Document metadata
+% ─────────────────────────────────────────────────────────────────────────────
+\title{%
+  \textbf{EDC Weak Sector}\\[0.3em]
+  \large Mechanistic Brane Pipeline, Ontology Map,\\
+  and Structural Pathway to \texorpdfstring{$G_F$}{GF}
+}
+\author{%
+  Igor Grčman\\
+  \small Elastic Diffusive Cosmology Collaboration
+}
+\date{January 2026 \quad v2.0}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{document}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\maketitle
+
+\begin{abstract}
+This paper provides a unified, journal-style presentation of the EDC (Elastic
+Diffusive Cosmology) Weak Sector program. We consolidate the mechanistic
+framework developed across multiple companion documents into a coherent
+narrative: a thick-brane microphysics model where weak decays proceed via
+\textbf{Absorption $\to$ Dissipation $\to$ Release}. The neutron, muon, tau,
+pion, electron, and neutrino are classified by their 5D ontologies (bulk-core
+junction vs.\ brane-dominant excitation vs.\ edge mode). A structural pathway
+to the Fermi constant $G_F$ is presented---showing $G_{\mathrm{EDC}} \sim
+g_{\mathrm{eff}}^2/m_\phi^2$ as geometric suppression, not a fundamental
+vertex---with explicit closure targets for numerical completion.
+\textbf{No parameter is tuned to match SM observables}; all baselines are
+empirical \tagBL{}, and numerical derivations remain \tagOpen{}.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ==============================================================================
+\section{Introduction and Scope Guardrails}
+\label{sec:intro}
+% ==============================================================================
+
+\begin{tcolorbox}[edcWarning, title={Supersede Notice}]
+This paper \textbf{supersedes the narrative integration role} of the
+Weak Program Overview (DOI: 10.5281/zenodo.18319921). All companion documents
+remain archival modules with their own DOIs; this paper provides the unified
+journal-style presentation. The Overview remains valid as a quick-reference
+index.
+\end{tcolorbox}
+
+\subsection{What This Paper Does}
+
+The EDC Weak Sector program investigates weak-interaction phenomenology within
+the thick-brane microphysics framework. This paper:
+\begin{enumerate}[nosep]
+  \item Establishes the \textbf{mechanistic dimension principle}: extra
+        dimensions as mechanism, not geometry-for-its-own-sake
+  \item Presents the \textbf{unified decay pipeline}: Absorption $\to$
+        Dissipation $\to$ Release
+  \item Maps \textbf{particle ontologies}: bulk-core (neutron), brane-dominant
+        (leptons), composite (pion), edge mode (neutrino)
+  \item Provides a \textbf{structural pathway to $G_F$} without numerical
+        fitting
+  \item Consolidates \textbf{falsifiability handles} and open problems
+\end{enumerate}
+
+\subsection{What This Paper Does NOT Claim}
+
+\begin{tcolorbox}[edcGuardrail, title={Non-Overclaim Statement}]
+This paper does \textbf{NOT}:
+\begin{itemize}[nosep]
+  \item Derive particle masses from first principles
+  \item Derive lifetimes ($\tau_n$, $\tau_\mu$, etc.) numerically
+  \item Derive $G_F = 1.166 \times 10^{-5}~\mathrm{GeV}^{-2}$ from geometry
+  \item Claim a complete Standard Model derivation
+  \item Explain CP violation or strong CP problem
+\end{itemize}
+All numerical values are either \tagBL{} (empirical) or \tagOpen{} (derivation
+pending). Any numerical agreement obtained by parameter selection would be
+\textbf{calibration}, not derivation.
+\end{tcolorbox}
+
+\subsection{Document Registry}
+
+Table~\ref{tab:registry} lists all EDC Weak Sector documents with archival DOIs.
+
+\begin{table}[ht]
+\centering
+\caption{EDC Weak Sector document registry (all DOIs are Zenodo archives)}
+\label{tab:registry}
+\small
+\begin{tabular}{llll}
+\toprule
+\textbf{Document} & \textbf{Subject} & \textbf{DOI} & \textbf{Status} \\
+\midrule
+Framework v2.0 & 5D foundation & 10.5281/zenodo.18299085 & Published \\
+Paper 3 (NJSR) & Neutron junction & 10.5281/zenodo.18262721 & Published \\
+Companion H & Thick-brane microphysics & 10.5281/zenodo.18307539 & Published \\
+Companion F & Selection rules & 10.5281/zenodo.18302953 & Published \\
+Companion G & Gauge emergence & 10.5281/zenodo.18303494 & Published \\
+\midrule
+Companion N & Neutron decay & 10.5281/zenodo.18315110 & v3.0 \\
+Companion M & Muon decay & 10.5281/zenodo.18319888 & v0.2 \\
+Companion T & Tau decay & 10.5281/zenodo.18319900 & v0.1 \\
+Companion P & Pion decay & 10.5281/zenodo.18319913 & v0.3 \\
+Companion L & Electron brane defect & 10.5281/zenodo.18321357 & v0.1 \\
+Companion V & Neutrino edge mode & 10.5281/zenodo.18321383 & v0.1 \\
+\midrule
+Weak Overview & Program index & 10.5281/zenodo.18319921 & v1.0 \\
+OPEN-W1 & $G_F$ toy derivation & 10.5281/zenodo.18321396 & BabaYaga PASS \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ==============================================================================
+\section{Foundations: Mechanistic Dimensions and Interface Selection}
+\label{sec:foundations}
+% ==============================================================================
+
+\subsection{Mechanistic Dimension Principle}
+
+\begin{definition}[Mechanistic Dimension Principle {\normalfont [Def]}]
+\label{def:mechanistic}
+In EDC, the fifth dimension $y$ is not a spatial direction one ``travels
+through'' but a \textbf{mechanistic degree of freedom} that:
+\begin{enumerate}[nosep]
+  \item Encodes \textbf{binding state}: how strongly a configuration is
+        localized to the brane
+  \item Determines \textbf{interaction channel availability}: which 3D final
+        states are accessible
+  \item Governs \textbf{stability}: metastable configurations occupy potential
+        wells in $y$; unstable ones sit at saddles with decay channels
+\end{enumerate}
+\end{definition}
+
+\textbf{Physical interpretation.}
+The extra dimension is not ``where particles hide'' but \emph{how} particles
+couple, bind, and decay. A particle's $y$-profile encodes its interaction
+physics, not its spatial location. We probe $y$ through masses, lifetimes,
+and decay spectra---these are observational signatures of the mechanistic
+dimension.
+
+\begin{tcolorbox}[edcCornerstone, title={Brane as Mechanism [Dc]}]
+The 3-brane is not merely ``our location in 5D'' but the \textbf{mechanism}
+by which:
+\begin{itemize}[nosep]
+  \item Bulk energy becomes localized (absorption)
+  \item Localized energy dissipates through allowed modes (dissipation)
+  \item Observable particles emerge on the brane (release)
+\end{itemize}
+Every decay process is a \textbf{brane-mediated energy redistribution}.
+\end{tcolorbox}
+
+\subsection{Continuum of 4D Submanifolds and Mechanistic Selection}
+
+\textbf{Geometry vs.\ physics (core distinction).}
+In a 5D ambient space, there exists a continuum of distinct 4D linear
+submanifolds (hyperplanes). A 4D hyperplane through the origin is specified
+by its normal direction $n \in S^4$ up to sign, hence the space of such
+hyperplanes is $S^4/\{\pm 1\} \cong \mathbb{RP}^4$ \tagDef{}.
+
+\begin{postulate}[Mechanistic Selection {\normalfont [P]}]
+\label{post:selection}
+A 4D subset becomes \emph{physically distinct} only if 5D dynamics selects it
+via a mechanism (boundary conditions, localization potential, coupling
+structure, spectral gaps)---not merely by coordinate rotation.
+\end{postulate}
+
+\textbf{Physical interpretation.}
+The observed brane-layer is a \emph{mechanistically realized interface}---a
+manifestation of physics. EDC treats it as constrained by three viability
+requirements: (i) proton-anchor compatibility, (ii) ledger closure under
+bulk--brane exchange, (iii) suppressed leakage at leading order \tagDc{}.
+
+\subsection{Proton-Anchor Stability Principle}
+
+\begin{postulate}[Proton-Anchor Stability {\normalfont [P]/[Dc]}]
+\label{post:anchor}
+Within EDC, the existence of a stable proton Y-junction ground state (Steiner
+$120^\circ$, charge $q=0$) is treated as a \textbf{necessary stability
+condition} for a persistent observed sector: without such a minimal-energy
+anchor, the bulk--brane ledger lacks a stable baseline and long-lived
+brane-projected particle states are not supported.
+\end{postulate}
+
+\begin{tcolorbox}[edcGuardrail, title={Guardrail: Operational Meaning}]
+This is \textbf{not} a claim that ``the proton causes spacetime.'' It is a
+\emph{stabilization requirement}: without a robust, repeatable minimal-energy
+junction topology, the model would not support long-lived, reproducible
+particle-boundary states. The proton ground state is treated as a necessary
+condition for a stable, persistent observed sector.
+\end{tcolorbox}
+
+\subsection{Generative Closure Principle}
+
+\begin{postulate}[Generative Closure {\normalfont [P]/[Dc]}]
+\label{post:generative}
+Within EDC, the existence of (i) an \textbf{electron sector} (brane-dominant
+defect), and (ii) \textbf{excited states} of the proton/electron, together
+with \textbf{ledger-closed energy exchange} across the bulk--brane interface,
+forms a necessary generative substrate for building the rest of the particle
+spectrum as admissible brane outputs, higher modes, and composites.
+\end{postulate}
+
+\textbf{Physical interpretation.}
+Particles are not created \emph{ex nihilo}; they arise as allowed
+outputs/bound states of the same ledger-consistent absorption $\to$ dissipation
+$\to$ release pipeline. This is a framework-level closure hypothesis, not a
+completed derivation of the full spectrum \tagOpen{}.
+
+% ==============================================================================
+\section{Unified Weak Pipeline: Absorption \texorpdfstring{$\to$}{to} Dissipation \texorpdfstring{$\to$}{to} Release}
+\label{sec:pipeline}
+% ==============================================================================
+
+The central contribution of the EDC Weak Sector program is the recognition
+that all weak decays follow a single mechanistic pipeline.
+
+\subsection{Pipeline Definition}
+
+\begin{definition}[Canonical Decay Pipeline {\normalfont [Def]}]
+\label{def:pipeline}
+A weak decay in EDC proceeds through three stages:
+\begin{enumerate}
+  \item \textbf{Absorption}: Initial configuration transfers energy/quantum
+        numbers to the brane-layer dissipation modes
+  \item \textbf{Dissipation}: Energy redistributes among available brane-layer
+        excitations according to conservation laws (ledger closure)
+  \item \textbf{Release}: Observable final-state particles emerge on the brane,
+        constrained by the frozen projection operator $\mathcal{P}_{\mathrm{frozen}}$
+\end{enumerate}
+\end{definition}
+
+\textbf{Physical interpretation.}
+The decay process is \emph{brane-mediated}: bulk energy (from junction
+relaxation, mode de-excitation, etc.) enters the brane layer, redistributes
+among allowed modes while conserving all quantum numbers, and projects onto
+observer-facing final states. The ``weakness'' of weak interactions arises
+from geometric suppression at each stage, not from a fundamentally small
+coupling constant.
+
+\subsection{The Frozen Projection Operator}
+
+Final-state selection is governed by:
+\begin{equation}
+  \mathcal{P}_{\mathrm{frozen}} = \mathcal{P}_{\mathrm{energy}}
+    \circ \mathcal{P}_{\mathrm{mode}}
+    \circ \mathcal{P}_{\mathrm{chir}}
+  \label{eq:Pfrozen}
+\end{equation}
+where:
+\begin{itemize}[nosep]
+  \item $\mathcal{P}_{\mathrm{energy}}$: Energy conservation filter (kinematic
+        access)
+  \item $\mathcal{P}_{\mathrm{mode}}$: Mode-matching filter (spectral overlap
+        between initial and final states)
+  \item $\mathcal{P}_{\mathrm{chir}}$: Chirality/helicity filter (boundary
+        conditions select L-handed $\ell^-$, R-handed $\bar\nu$)
+\end{itemize}
+
+\textbf{Physical interpretation.}
+The projection operator is not an \emph{ad hoc} selection rule; it emerges
+from the boundary conditions at the bulk--brane interface. The chirality
+filter $\mathcal{P}_{\mathrm{chir}}$ (see Companion V, DOI: 10.5281/zenodo.18321383)
+produces V$-$A structure as an \textbf{output} of boundary conditions, not
+an input assumption \tagDc{}.
+
+\subsection{Suppressed Bulk Leakage}
+
+\begin{postulate}[Suppressed Bulk Leakage {\normalfont [P]}]
+\label{post:leakage}
+For brane-dominant configurations, energy leakage into bulk modes is
+\textbf{suppressed} (not forbidden) by the spectral gap between brane-layer
+and bulk-continuum states.
+\end{postulate}
+
+\textbf{Language precision.}
+We say ``suppressed,'' not ``cannot escape.'' Suppression is quantifiable
+(exponential in gap/energy ratio); absolute prohibition would require infinite
+barrier height. The neutrino's weak interaction arises from \emph{suppressed
+leakage} at the bulk--brane interface, not from ``escape into extra dimensions.''
+
+\subsection{Pipeline Diagram}
+
+Figure~\ref{fig:pipeline} illustrates the unified pipeline with projection
+operator hooks.
+
+\begin{figure}[ht]
+\centering
+\input{../figures/fig_unified_pipeline}
+\caption{Unified weak decay pipeline: Absorption $\to$ Dissipation $\to$
+Release. The frozen projection operator $\mathcal{P}_{\mathrm{frozen}}$
+filters outputs via energy, mode-matching, and chirality constraints.}
+\label{fig:pipeline}
+\end{figure}
+
+% ==============================================================================
+\section{Ontology Map and Dependency Graph}
+\label{sec:ontology}
+% ==============================================================================
+
+The particles addressed in the Weak Sector program fall into distinct
+ontological categories based on their 5D profiles.
+
+\subsection{Ontological Classification}
+
+\begin{table}[ht]
+\centering
+\caption{Particle ontologies in the EDC Weak Sector}
+\label{tab:ontology}
+\begin{tabular}{lllll}
+\toprule
+\textbf{Particle} & \textbf{Ontology} & \textbf{5D Profile} & \textbf{Companion} & \textbf{Tag} \\
+\midrule
+Neutron & Bulk-core junction & Extended into bulk & N & [P] \\
+Proton & Bulk-core junction (stable) & Steiner $120^\circ$ & Paper 3 & [P] \\
+\midrule
+Electron & Brane defect (observer-facing) & Localized at $y \approx 0$ & L & [P] \\
+Muon & Brane-dominant (fundamental) & Localized, mode $n_\mu$ & M & [P] \\
+Tau & Brane-dominant (higher mode) & Localized, mode $n_\tau$ & T & [P] \\
+\midrule
+Neutrino & Edge mode (interfacial) & At bulk--brane interface & V & [P] \\
+\midrule
+Pion & Brane-dominant (composite) & Bound state on brane & P & [P] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Ontology Descriptions}
+
+\textbf{Bulk-core junction (Neutron/Proton).}
+The nucleons are modeled as Y-junction configurations with significant
+amplitude extending into the fifth dimension. The proton sits at the Steiner
+minimum (stable); the neutron has oscillation modes leading to instability
+(decay to proton via junction relaxation).
+
+\textbf{Brane-dominant excitations (Electron, Muon, Tau).}
+Charged leptons are brane-layer excitations localized near the observer-facing
+boundary. They differ by mode index: $n_e < n_\mu < n_\tau$, with higher modes
+corresponding to higher masses \tagP{}/\tagOpen{}.
+
+\textbf{Edge mode (Neutrino).}
+The neutrino resides at the bulk--brane interface---neither fully bulk nor
+fully brane-bound. Its weak interaction arises from suppressed coupling across
+this interface, not from ``escape into the bulk.''
+
+\textbf{Brane-dominant composite (Pion).}
+The pion is a brane-layer bound state of constituent quarks, with energy
+predominantly localized on the brane. It provides the first hadron $\to$ lepton
+injection test of the pipeline.
+
+\subsection{Dependency Graph}
+
+Figure~\ref{fig:ontology} shows the ontological categories and document
+dependencies.
+
+\begin{figure}[ht]
+\centering
+\input{../figures/fig_ontology_map}
+\caption{Ontology map and document dependencies. Bulk-core junctions (N)
+differ from brane-dominant excitations (L, M, T) and composites (P). The
+neutrino (V) is an edge mode. OPEN-W1 provides the $G_F$ structural pathway.}
+\label{fig:ontology}
+\end{figure}
+
+% ==============================================================================
+\section{Case Studies: Module Summaries}
+\label{sec:cases}
+% ==============================================================================
+
+Each companion document addresses a specific particle within the unified
+pipeline. We summarize each using a consistent template.
+
+% ------------------------------------------------------------------------------
+\subsection{Neutron Decay (Companion N)}
+\label{subsec:neutron}
+
+\textbf{DOI:} 10.5281/zenodo.18315110
+
+\textbf{Baselines [BL]:}
+\begin{itemize}[nosep]
+  \item $\tau_n = 878.4 \pm 0.5$ s (PDG 2024)
+  \item $Q_\beta = 1.293$ MeV
+  \item Decay: $n \to p + e^- + \bar\nu_e$
+\end{itemize}
+
+\textbf{Mechanism [P]/[Dc]:}
+\begin{itemize}[nosep]
+  \item Neutron = bulk-core Y-junction with oscillation modes
+  \item Instability from junction relaxation (Steiner deviation)
+  \item Nuclear stabilization via modified boundary conditions in nuclei
+\end{itemize}
+
+\textbf{Closure Targets [OPEN]:}
+\begin{itemize}[nosep]
+  \item Derive $\tau_n$ from junction geometry
+  \item Quantify nuclear stabilization mechanism
+  \item Connect to $G_F$ via OPEN-W1 pathway
+\end{itemize}
+
+\textbf{Pipeline connection.}
+The neutron junction relaxation provides the \emph{bulk trigger} (Absorption).
+Energy dissipates through brane-layer modes and releases as $p + e^- + \bar\nu_e$
+via the frozen projection operator.
+
+% ------------------------------------------------------------------------------
+\subsection{Muon Decay (Companion M)}
+\label{subsec:muon}
+
+\textbf{DOI:} 10.5281/zenodo.18319888
+
+\textbf{Baselines [BL]:}
+\begin{itemize}[nosep]
+  \item $\tau_\mu = 2.197 \times 10^{-6}$ s
+  \item $m_\mu = 105.66$ MeV
+  \item Decay: $\mu^- \to e^- + \bar\nu_e + \nu_\mu$
+\end{itemize}
+
+\textbf{Mechanism [P]/[Dc]:}
+\begin{itemize}[nosep]
+  \item Muon = brane-dominant excitation, mode index $n_\mu > n_e$
+  \item Decay via de-excitation within brane layer
+  \item Same pipeline structure as neutron (validates universality)
+\end{itemize}
+
+\textbf{Closure Targets [OPEN]:}
+\begin{itemize}[nosep]
+  \item Derive $\tau_\mu$ from mode-spectrum analysis
+  \item Quantify mode index $n_\mu$ from brane geometry
+  \item Derive mass ratio $m_\mu/m_e \approx 207$ from mode structure
+\end{itemize}
+
+\textbf{Pipeline connection.}
+The muon provides a \emph{clean test case} with no hadronic complications.
+The higher mode ($n_\mu$) de-excites to lower mode ($n_e$) plus two neutrinos,
+conserving all ledger quantities.
+
+% ------------------------------------------------------------------------------
+\subsection{Tau Decay (Companion T)}
+\label{subsec:tau}
+
+\textbf{DOI:} 10.5281/zenodo.18319900
+
+\textbf{Baselines [BL]:}
+\begin{itemize}[nosep]
+  \item $\tau_\tau = 2.903 \times 10^{-13}$ s
+  \item $m_\tau = 1776.86$ MeV
+  \item BR($\tau \to e$) $\approx$ BR($\tau \to \mu$) $\approx 17.8\%$
+\end{itemize}
+
+\textbf{Mechanism [P]/[Dc]:}
+\begin{itemize}[nosep]
+  \item Tau = brane-dominant excitation, mode index $n_\tau > n_\mu > n_e$
+  \item Mode-spectrum overlap explains near-equal BR to $e$ and $\mu$
+  \item Pipeline generalizes without modification
+\end{itemize}
+
+\textbf{Closure Targets [OPEN]:}
+\begin{itemize}[nosep]
+  \item Derive $\tau_\tau$ from first principles
+  \item Explain BR equality quantitatively
+  \item Address hadronic tau decays
+\end{itemize}
+
+\textbf{Pipeline connection.}
+The tau provides a \emph{mode-spectrum test}: if muon and tau share the same
+ontology, the pipeline should generalize. The near-equal branching ratios
+to $e$ and $\mu$ suggest similar mode-spectrum overlaps \tagP{}/\tagOpen{}.
+
+% ------------------------------------------------------------------------------
+\subsection{Pion Decay (Companion P)}
+\label{subsec:pion}
+
+\textbf{DOI:} 10.5281/zenodo.18319913
+
+\textbf{Baselines [BL]:}
+\begin{itemize}[nosep]
+  \item $\tau_{\pi^\pm} = 2.6 \times 10^{-8}$ s
+  \item $m_\pi = 139.57$ MeV
+  \item BR($\pi \to \mu\nu$)/BR($\pi \to e\nu$) $\approx 8000$ (helicity suppression)
+\end{itemize}
+
+\textbf{Mechanism [P]/[Dc]:}
+\begin{itemize}[nosep]
+  \item Pion = brane-dominant composite (bound state)
+  \item Helicity suppression from $\mathcal{P}_{\mathrm{chir}}$ selection
+  \item First hadron $\to$ lepton injection test
+\end{itemize}
+
+\textbf{Closure Targets [OPEN]:}
+\begin{itemize}[nosep]
+  \item Derive $m_\pi$ from 5D binding
+  \item Derive helicity suppression ($m_\ell^2$ scaling) from BC
+  \item Validate junction-pair micro-ontology
+\end{itemize}
+
+\textbf{Pipeline connection.}
+The pion provides the \emph{hadron $\to$ lepton bridge}: a composite initial
+state decaying to leptonic final states via the same pipeline. The $m_\ell^2$
+helicity suppression is treated as \tagBL{}; its derivation from EDC BC
+remains \tagOpen{}.
+
+% ------------------------------------------------------------------------------
+\subsection{Electron as Brane Defect (Companion L)}
+\label{subsec:electron}
+
+\textbf{DOI:} 10.5281/zenodo.18321357
+
+\textbf{Baselines [BL]:}
+\begin{itemize}[nosep]
+  \item $m_e = 0.511$ MeV (stable)
+  \item Charge $q = -1$, spin $1/2$
+  \item Kinematic access: $Q_\beta - m_e = +0.782$ MeV (allowed in $\beta^-$)
+\end{itemize}
+
+\textbf{Mechanism [P]/[Dc]:}
+\begin{itemize}[nosep]
+  \item Electron = stable topological defect on observer-facing layer
+  \item Localized at $y \approx 0$ (maximal observer coupling)
+  \item Selected by frozen projection: kinematic + ledger + chirality
+\end{itemize}
+
+\textbf{Closure Targets [OPEN]:}
+\begin{itemize}[nosep]
+  \item Derive $m_e$ from defect structure
+  \item Explain mass hierarchy $m_\mu/m_e \approx 207$
+  \item Derive electron spin from 5D topology
+\end{itemize}
+
+\textbf{Pipeline connection.}
+The electron is the \emph{primary allowed output} of neutron $\beta^-$ decay:
+kinematically accessible ($Q > m_e$), ledger-closing (carries charge and
+lepton number), and chirality-selected (left-handed).
+
+% ------------------------------------------------------------------------------
+\subsection{Neutrino as Edge Mode (Companion V)}
+\label{subsec:neutrino}
+
+\textbf{DOI:} 10.5281/zenodo.18321383
+
+\textbf{Baselines [BL]:}
+\begin{itemize}[nosep]
+  \item Masses: $m_\nu < 0.8$ eV (cosmological bound)
+  \item Helicity: left-handed $\nu$, right-handed $\bar\nu$ (V$-$A)
+  \item Three flavors: $\nu_e$, $\nu_\mu$, $\nu_\tau$
+\end{itemize}
+
+\textbf{Mechanism [P]/[Dc]:}
+\begin{itemize}[nosep]
+  \item Neutrino = edge mode at bulk--brane interface
+  \item Weak interaction from \emph{suppressed leakage}, not ``bulk escape''
+  \item Chirality filter $\mathcal{P}_{\mathrm{chir}}$ selects helicity
+\end{itemize}
+
+\textbf{Closure Targets [OPEN]:}
+\begin{itemize}[nosep]
+  \item Derive neutrino masses from interface structure
+  \item Explain three-flavor structure
+  \item Address Dirac vs.\ Majorana nature
+\end{itemize}
+
+\textbf{Pipeline connection.}
+The neutrino is the \emph{ledger-closure partner}: it carries away spin,
+momentum, and lepton number without appearing as a charged output. Its
+``invisibility'' arises from suppressed coupling across the interface, not
+from being ``elsewhere.''
+
+% ==============================================================================
+\section{Structural Pathway to \texorpdfstring{$G_F$}{GF}}
+\label{sec:GF}
+% ==============================================================================
+
+This section promotes the structural derivation from OPEN-W1
+(DOI: 10.5281/zenodo.18321396) to the journal presentation.
+
+\subsection{The Structural Scaling}
+
+Integrating out a brane-layer mediator $\phi$ at tree level yields:
+\begin{equation}
+  \boxed{
+    \mathcal{L}_{\mathrm{eff}} = -\frac{g_5^2}{2 m_\phi^2} \,
+    \mathcal{O}_{\mathrm{overlap}} \, J(x) J(x)
+  }
+  \label{eq:L_eff_main}
+\end{equation}
+where $J(x)$ is the source current from the bulk trigger and
+$\mathcal{O}_{\mathrm{overlap}}$ encodes wavefunction overlaps.
+
+\begin{tcolorbox}[edcCornerstone, title={Canonical Physical Interpretation [Dc]}]
+Equation~\eqref{eq:L_eff_main} is \textbf{not} a fundamental ``weak vertex'';
+it is the low-energy residue of a 5D bulk$\to$brane transfer process. The
+source $J(x)$ represents bulk-facing pumping into the brane layer via the
+mediator $\phi$ at $y = -\delta/2$; integrating out $\phi$ compresses that
+transfer into an effective local contact $JJ$ term. The apparent smallness
+of the coupling is therefore a \textbf{geometric suppression}---set by the
+mediator gap $m_\phi$, mode-profile overlap, and boundary/projection factors
+---rather than a tunable parameter.
+\end{tcolorbox}
+
+\subsection{EDC Structural Analog}
+
+Comparing with the Fermi form, we define \tagDef{}:
+\begin{equation}
+  \boxed{
+    G_{\mathrm{EDC}} \sim \frac{g_{\mathrm{eff}}^2}{m_\phi^2}
+  }
+  \label{eq:G_EDC_main}
+\end{equation}
+where the effective coupling decomposes as:
+\begin{equation}
+  \boxed{
+    g_{\mathrm{eff}} = g_5 \times \mathcal{O}_{\mathrm{overlap}}
+    \times \mathcal{O}_{\mathrm{BC}}
+  }
+  \label{eq:geff_main}
+\end{equation}
+
+\textbf{Factor decomposition.}
+\begin{itemize}[nosep]
+  \item $g_5$: fundamental 5D coupling scale \tagOpen{}
+  \item $\mathcal{O}_{\mathrm{overlap}}$: wavefunction overlap integral
+        $\sim \int dy \, f_a f_b f_\phi$ \tagOpen{}
+  \item $\mathcal{O}_{\mathrm{BC}} = \mathcal{O}(\mathcal{P}_{\mathrm{frozen}},
+        \mathcal{P}_{\mathrm{chir}})$: boundary-condition/projection factor
+        \tagP{}/\tagDc{}
+\end{itemize}
+
+The chirality filter $\mathcal{P}_{\mathrm{chir}}$ (Companion V) enters
+$\mathcal{O}_{\mathrm{BC}}$, producing V$-$A structure as an \emph{output}
+of boundary conditions.
+
+\subsection{Dimensional Analysis}
+
+In natural units ($\hbar = c = 1$):
+\begin{equation}
+  [G_{\mathrm{EDC}}] = \frac{[g_{\mathrm{eff}}]^2}{[m_\phi]^2}
+  = \frac{[E]^{-1}}{[E]^2} = [E]^{-2} \quad \checkmark
+  \label{eq:dim_main}
+\end{equation}
+This matches the required dimension of a four-fermion coupling constant.
+
+\subsection{Closure Checklist}
+
+A complete derivation of $G_F$ (not just its structure) requires:
+\begin{enumerate}[nosep]
+  \item \textbf{Mode profiles}: solve thick-brane BVP for $f_a$, $f_b$, $f_\phi$
+        \tagOpen{}
+  \item \textbf{KK spectrum}: derive $m_\phi$ from $\xi$-sector geometry
+        \tagOpen{}
+  \item \textbf{BC operator evaluation}: compute
+        $\mathcal{O}(\mathcal{P}_{\mathrm{frozen}}, \mathcal{P}_{\mathrm{chir}})$
+        \tagOpen{}
+  \item \textbf{Coupling origin}: derive $g_5$ from 5D action normalization
+        \tagOpen{}
+\end{enumerate}
+
+\begin{tcolorbox}[edcWarning, title={No-Fit Statement}]
+\textbf{No parameter in this derivation is tuned to match the PDG value
+$G_F = 1.166 \times 10^{-5}~\mathrm{GeV}^{-2}$.} That value is a \tagBL{}
+benchmark. Any future numerical derivation must obtain $G_F$ from geometric
+quantities without fitting to weak observables.
+\end{tcolorbox}
+
+% ==============================================================================
+\section{Falsifiability and Non-Overclaim Canon}
+\label{sec:falsifiability}
+% ==============================================================================
+
+\subsection{Falsifiability Handles}
+
+The EDC Weak Sector makes specific structural predictions that can be tested:
+
+\begin{enumerate}
+  \item \textbf{Pipeline universality}: If any weak decay cannot be mapped to
+        Absorption $\to$ Dissipation $\to$ Release, the framework fails.
+
+  \item \textbf{Ontology consistency}: If a bulk-core particle behaves as
+        brane-dominant (or vice versa), the ontology classification fails.
+
+  \item \textbf{Selection rule validity}: If forbidden channels (e.g.,
+        $\mu^- \to e^- + \gamma$ at tree level) are observed at rates
+        inconsistent with suppression, the $\mathcal{P}_{\mathrm{frozen}}$
+        structure fails.
+
+  \item \textbf{Chirality filter}: If right-handed $W$ bosons or V$+$A currents
+        are discovered with SM-like coupling, $\mathcal{P}_{\mathrm{chir}}$
+        fails.
+
+  \item \textbf{Helicity in decays}: If neutrinos are detected with wrong-sign
+        helicity at appreciable rates, the edge-mode hypothesis fails.
+
+  \item \textbf{Ledger closure}: If energy/momentum accounting in weak decays
+        shows systematic deviations beyond neutrino mass effects, the
+        bulk--brane conservation mechanism fails.
+
+  \item \textbf{Nuclear stabilization}: If free neutron decay rate varies with
+        environment in ways inconsistent with BC modification, the junction
+        model fails.
+
+  \item \textbf{Geometric suppression}: If $G_F$ shows energy dependence
+        inconsistent with mediator-exchange structure, the structural pathway
+        fails.
+\end{enumerate}
+
+\subsection{Non-Overclaim Canon}
+
+\begin{tcolorbox}[edcGuardrail, title={What We Do NOT Claim}]
+The EDC Weak Sector does \textbf{NOT} claim:
+\begin{itemize}[nosep]
+  \item Numerical derivation of particle masses
+  \item Numerical derivation of lifetimes
+  \item Derivation of branching ratios beyond selection-rule constraints
+  \item Explanation of CP violation
+  \item Resolution of the strong CP problem
+  \item Complete unification with gravity
+  \item Full Standard Model derivation
+\end{itemize}
+All numerical values are either \tagBL{} (empirical) or \tagOpen{} (pending).
+\end{tcolorbox}
+
+% ==============================================================================
+\section{Roadmap of OPEN Problems}
+\label{sec:roadmap}
+% ==============================================================================
+
+\subsection{Grouped OPEN Items}
+
+\begin{longtable}{lp{5cm}p{5cm}}
+\caption{Consolidated OPEN problems by category}
+\label{tab:open} \\
+\toprule
+\textbf{Category} & \textbf{Problem} & \textbf{Candidate Approach} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Category} & \textbf{Problem} & \textbf{Candidate Approach} \\
+\midrule
+\endhead
+\multirow{3}{*}{Geometry/Modes}
+  & Fermion mode profiles $f_a$, $f_b$ & Thick-brane BVP solution \\
+  & Mediator profile $f_\phi$ & KK reduction in frozen regime \\
+  & Brane thickness $\delta$ & Framework v2.0 + $\sigma$ relationship \\
+\midrule
+\multirow{2}{*}{BC Operators}
+  & $\mathcal{P}_{\mathrm{frozen}}$ explicit form & Companion H + F integration \\
+  & $\mathcal{P}_{\mathrm{chir}}$ derivation from BC & Companion V + spinor BC analysis \\
+\midrule
+\multirow{2}{*}{Mediator Spectrum}
+  & $m_\phi$ from $\xi$-geometry & KK analysis of throat modes \\
+  & Coupling $g_5$ normalization & 5D action principle \\
+\midrule
+\multirow{2}{*}{Ledger Partition}
+  & Energy split in three-body decays & Phase-space + mode overlap \\
+  & Neutrino spectrum shape & Interface mode structure \\
+\midrule
+\multirow{2}{*}{Compositeness}
+  & Pion micro-ontology & Junction-pair hypothesis \\
+  & Quark confinement in 5D & Open (beyond current scope) \\
+\bottomrule
+\end{longtable}
+
+\subsection{Priority: Next Hard Step}
+
+The highest-impact next step is:
+\begin{tcolorbox}[edcCornerstone, title={Priority Closure Target}]
+\textbf{Derive mode profiles + KK spectrum + BC operator evaluation.}
+
+This would:
+\begin{enumerate}[nosep]
+  \item Provide explicit $\mathcal{O}_{\mathrm{overlap}}$ value
+  \item Determine $m_\phi$ from geometry
+  \item Enable numerical check of $G_{\mathrm{EDC}}$ against $G_F$
+  \item Test whether ``geometric suppression'' quantitatively works
+\end{enumerate}
+
+\textbf{Required inputs:} Thick-brane BVP (Companion H), frozen regime
+parameters (Framework v2.0), chirality BC (Companion V).
+
+\textbf{Status:} \tagOpen{}
+\end{tcolorbox}
+
+% ==============================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+% ==============================================================================
+
+The EDC Weak Sector program demonstrates that a single mechanistic
+framework---based on thick-brane microphysics with a unified
+Absorption $\to$ Dissipation $\to$ Release pipeline---can accommodate weak
+decays across diverse particle ontologies:
+
+\begin{itemize}[nosep]
+  \item \textbf{Bulk-core junctions}: neutron (unstable), proton (stable)
+  \item \textbf{Brane-dominant excitations}: electron, muon, tau
+  \item \textbf{Edge modes}: neutrino (interfacial, suppressed leakage)
+  \item \textbf{Composites}: pion (brane-layer bound state)
+\end{itemize}
+
+The structural pathway to $G_F$---showing $G_{\mathrm{EDC}} \sim
+g_{\mathrm{eff}}^2/m_\phi^2$ as geometric suppression---provides a
+falsifiable mechanism without numerical fitting. The chirality filter
+$\mathcal{P}_{\mathrm{chir}}$ produces V$-$A structure as an output of
+boundary conditions.
+
+\textbf{What remains.}
+Numerical closure requires deriving mode profiles, KK spectrum, and BC
+operators from the thick-brane geometry. These are explicitly catalogued
+as \tagOpen{} items with clear closure pathways. The framework is designed
+to either succeed quantitatively or fail falsifiably---there is no room for
+post-hoc adjustment.
+
+\vspace{1em}
+\begin{center}
+\rule{0.5\textwidth}{0.4pt}
+\end{center}
+\vspace{0.5em}
+
+\noindent\textit{Document version: 2.0}\\
+\textit{Generated: January 2026}\\
+\textit{This paper supersedes the narrative integration role of Weak Program
+Overview; all companions remain archival modules with DOIs.}
+
+% ==============================================================================
+\end{document}
+% ==============================================================================

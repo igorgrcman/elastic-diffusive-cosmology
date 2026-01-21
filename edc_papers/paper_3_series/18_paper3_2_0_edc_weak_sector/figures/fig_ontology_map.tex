@@ -1,0 +1,119 @@
+% ==============================================================================
+% Figure: Ontology Map and Document Dependencies
+% Bulk-core vs brane-dominant vs edge mode vs composite
+% ==============================================================================
+
+\begin{tikzpicture}[
+  scale=0.9,
+  doc/.style={
+    rectangle, rounded corners=5pt, minimum width=2.0cm, minimum height=0.7cm,
+    draw=black, thick, font=\footnotesize\bfseries
+  },
+  category/.style={
+    rectangle, rounded corners=8pt, draw=gray, dashed, thick,
+    inner sep=10pt
+  },
+  arrow/.style={-{Stealth[length=6pt]}, thick, gray!70},
+  particle/.style={circle, draw, thick, minimum size=0.6cm, font=\footnotesize\bfseries}
+]
+
+% === Background regions ===
+% Bulk region
+\fill[red!8] (-5.5, 2.5) rectangle (-1.5, 5.5);
+\node[font=\scriptsize, red!60!black, anchor=north west] at (-5.4, 5.4)
+  {Bulk-core};
+
+% Brane-dominant region
+\fill[blue!8] (-1, 2.5) rectangle (5, 5.5);
+\node[font=\scriptsize, blue!60!black, anchor=north west] at (-0.9, 5.4)
+  {Brane-dominant};
+
+% Edge mode region
+\fill[yellow!15] (5.5, 2.5) rectangle (8.5, 5.5);
+\node[font=\scriptsize, orange!70!black, anchor=north west] at (5.6, 5.4)
+  {Edge mode};
+
+% Composite region
+\fill[green!8] (-1, 0) rectangle (3, 2);
+\node[font=\scriptsize, green!60!black, anchor=north west] at (-0.9, 1.9)
+  {Composite};
+
+% OPEN pathway region
+\fill[purple!8] (3.5, 0) rectangle (8.5, 2);
+\node[font=\scriptsize, purple!60!black, anchor=north west] at (3.6, 1.9)
+  {Structural Pathway};
+
+% === Document nodes ===
+% Bulk-core
+\node[doc, fill=red!20] (N) at (-3.5, 4.5) {Comp. N};
+\node[doc, fill=red!20] (P3) at (-3.5, 3.3) {Paper 3};
+\node[font=\scriptsize] at (-3.5, 4.0) {Neutron};
+\node[font=\scriptsize, gray] at (-3.5, 2.9) {(NJSR)};
+
+% Brane-dominant
+\node[doc, fill=blue!20] (L) at (0.5, 4.5) {Comp. L};
+\node[doc, fill=blue!20] (M) at (2.0, 4.5) {Comp. M};
+\node[doc, fill=blue!20] (T) at (3.5, 4.5) {Comp. T};
+\node[font=\scriptsize] at (0.5, 4.0) {$e^-$};
+\node[font=\scriptsize] at (2.0, 4.0) {$\mu$};
+\node[font=\scriptsize] at (3.5, 4.0) {$\tau$};
+
+% Mode index arrow
+\draw[arrow, blue!60!black] (0.5, 3.5) -- (3.5, 3.5);
+\node[font=\tiny, blue!60!black] at (2.0, 3.2) {$n_e < n_\mu < n_\tau$};
+
+% Edge mode
+\node[doc, fill=yellow!30] (V) at (7.0, 4.5) {Comp. V};
+\node[font=\scriptsize] at (7.0, 4.0) {$\nu$};
+\node[font=\tiny, orange!70!black] at (7.0, 3.5) {(interface)};
+
+% Composite
+\node[doc, fill=green!20] (P) at (1.0, 1.0) {Comp. P};
+\node[font=\scriptsize] at (1.0, 0.5) {$\pi$};
+
+% OPEN pathway
+\node[doc, fill=purple!20] (W1) at (6.0, 1.0) {OPEN-W1};
+\node[font=\scriptsize] at (6.0, 0.5) {$G_F$ pathway};
+
+% === Foundation documents ===
+\node[doc, fill=gray!20] (Fw) at (-3.5, -1.5) {Framework};
+\node[doc, fill=gray!20] (H) at (-1.0, -1.5) {Comp. H};
+\node[doc, fill=gray!20] (F) at (1.5, -1.5) {Comp. F};
+\node[doc, fill=gray!20] (G) at (4.0, -1.5) {Comp. G};
+\node[font=\tiny, gray] at (-3.5, -2.0) {v2.0};
+\node[font=\tiny, gray] at (-1.0, -2.0) {Thick-brane};
+\node[font=\tiny, gray] at (1.5, -2.0) {Selection};
+\node[font=\tiny, gray] at (4.0, -2.0) {Gauge};
+
+% === Dependency arrows ===
+% From foundations up
+\draw[arrow] (Fw) -- (-3.5, 2.5);
+\draw[arrow] (H) -- (1.0, 0);
+\draw[arrow] (H) -- (2.0, 2.5);
+\draw[arrow] (F) -- (2.0, 2.5);
+
+% N to leptons
+\draw[arrow] (N) -- (L);
+\draw[arrow] (N) -- (M);
+
+% M to T
+\draw[arrow] (M) -- (T);
+
+% V connection
+\draw[arrow] (V) -- (W1);
+\draw[arrow, purple!60!black] (L) -- (W1);
+
+% P connection
+\draw[arrow] (M) -- (P);
+
+% Pipeline connection
+\draw[arrow, dashed, purple!60!black] (W1) -- (6.0, -0.5) -- (-3.5, -0.5) -- (Fw);
+
+% === Legend ===
+\node[font=\scriptsize\bfseries, anchor=west] at (-5.5, -2.8) {Dependencies:};
+\draw[arrow] (-5.5, -3.2) -- (-4.5, -3.2);
+\node[font=\tiny, anchor=west] at (-4.3, -3.2) {builds upon};
+\draw[arrow, dashed, purple!60!black] (-2.5, -3.2) -- (-1.5, -3.2);
+\node[font=\tiny, anchor=west] at (-1.3, -3.2) {structural pathway};
+
+\end{tikzpicture}

@@ -1,0 +1,77 @@
+% ==============================================================================
+% Figure: Unified Weak Decay Pipeline
+% Absorption → Dissipation → Release with projection operator hooks
+% ==============================================================================
+
+\begin{tikzpicture}[
+  scale=0.95,
+  stage/.style={
+    rectangle, rounded corners=8pt, minimum width=3.2cm, minimum height=1.4cm,
+    draw=black, thick, font=\small\bfseries
+  },
+  operator/.style={
+    rectangle, rounded corners=4pt, minimum width=2.2cm, minimum height=0.8cm,
+    draw=blue!70!black, thick, fill=blue!10, font=\footnotesize
+  },
+  arrow/.style={-{Stealth[length=8pt]}, thick, black},
+  label/.style={font=\footnotesize\itshape, text=gray!70!black}
+]
+
+% === Stage boxes ===
+\node[stage, fill=red!15] (abs) at (0,0) {Absorption};
+\node[stage, fill=yellow!20] (dis) at (5,0) {Dissipation};
+\node[stage, fill=green!15] (rel) at (10,0) {Release};
+
+% === Main flow arrows ===
+\draw[arrow] (abs) -- (dis);
+\draw[arrow] (dis) -- (rel);
+
+% === Projection operator box ===
+\node[operator] (pfrozen) at (7.5, -2.2) {$\mathcal{P}_{\mathrm{frozen}}$};
+
+% === Sub-operators ===
+\node[operator, minimum width=1.6cm] (penergy) at (5.5, -3.8) {$\mathcal{P}_{\mathrm{energy}}$};
+\node[operator, minimum width=1.6cm] (pmode) at (7.5, -3.8) {$\mathcal{P}_{\mathrm{mode}}$};
+\node[operator, minimum width=1.6cm] (pchir) at (9.5, -3.8) {$\mathcal{P}_{\mathrm{chir}}$};
+
+% === Operator decomposition ===
+\draw[-{Stealth[length=5pt]}, thick, blue!70!black] (pfrozen) -- (penergy);
+\draw[-{Stealth[length=5pt]}, thick, blue!70!black] (pfrozen) -- (pmode);
+\draw[-{Stealth[length=5pt]}, thick, blue!70!black] (pfrozen) -- (pchir);
+
+% === Hook from Release to P_frozen ===
+\draw[-{Stealth[length=6pt]}, thick, dashed, blue!70!black]
+  (rel.south) -- ++(0,-0.5) -| (pfrozen.north);
+
+% === Input/output labels ===
+\node[label, anchor=east, text width=2.5cm, align=right] at (-1.2, 0) {Bulk trigger\\(junction relaxation)};
+\node[label, anchor=west, text width=2.5cm, align=left] at (11.5, 0) {3D outputs\\$(e^-, \bar\nu, p, \ldots)$};
+
+% === Stage descriptions ===
+\node[label, anchor=north, text width=3cm, align=center] at (0, -1.1)
+  {Energy enters\\brane layer};
+\node[label, anchor=north, text width=3cm, align=center] at (5, -1.1)
+  {Redistribution\\(ledger closure)};
+\node[label, anchor=north, text width=3cm, align=center] at (10, -1.1)
+  {Observer-facing\\projection};
+
+% === Operator labels ===
+\node[label, anchor=north, text width=1.5cm, align=center] at (5.5, -4.5) {Kinematic\\access};
+\node[label, anchor=north, text width=1.5cm, align=center] at (7.5, -4.5) {Mode\\overlap};
+\node[label, anchor=north, text width=1.5cm, align=center] at (9.5, -4.5) {Chirality\\(V$-$A)};
+
+% === Brane layer indicator ===
+\fill[blue!5] (-2, 0.9) rectangle (12.5, 1.3);
+\draw[thick, blue!50] (-2, 0.9) -- (12.5, 0.9);
+\draw[thick, blue!50] (-2, 1.3) -- (12.5, 1.3);
+\node[font=\scriptsize, blue!70!black] at (5.25, 1.1) {Brane Layer};
+
+% === Bulk indicator ===
+\fill[gray!10] (-2, 1.3) rectangle (12.5, 2.0);
+\node[font=\scriptsize, gray] at (5.25, 1.65) {Bulk (5D)};
+
+% === Observer indicator ===
+\fill[green!5] (-2, 0.5) rectangle (12.5, 0.9);
+\node[font=\scriptsize, green!50!black] at (5.25, 0.7) {Observer};
+
+\end{tikzpicture}
