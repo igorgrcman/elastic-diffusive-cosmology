@@ -64,9 +64,7 @@
 
 ### Dependencies
 
-- Framework v2.0 (DOI: 10.5281/zenodo.18299085) — brane geometry
 - Companion V (this series) — chirality filter P_chir
-- Companion H (DOI: 10.5281/zenodo.18319865) — frozen regime
 
 ### Build Verification
 

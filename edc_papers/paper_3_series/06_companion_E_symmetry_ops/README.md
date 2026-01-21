@@ -2,7 +2,6 @@
 
 **Companion E**
 
-DOI: [10.5281/zenodo.18300199](https://doi.org/10.5281/zenodo.18300199)
 
 ---
 

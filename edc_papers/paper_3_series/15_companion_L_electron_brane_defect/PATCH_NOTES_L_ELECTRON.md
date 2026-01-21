@@ -47,6 +47,4 @@
 
 ### Dependencies
 
-- Framework v2.0 (DOI: 10.5281/zenodo.18299085) — brane layer structure
-- Companion N (DOI: 10.5281/zenodo.18315110) — neutron trigger dynamics
 - Companion V — neutrino as ledger partner (to be created)

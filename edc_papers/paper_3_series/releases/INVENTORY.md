@@ -10,16 +10,6 @@
 
 | # | Title | DOI | Pages | Build Date |
 |---|-------|-----|-------|------------|
-| 00 | Elastic Diffusive Cosmology: A 5D Brane-World Framework for Particle Properties (Framework v2.0) | [10.5281/zenodo.18299085](https://doi.org/10.5281/zenodo.18299085) | 37 | 2026-01-20 |
-| 01 | Neutron Lifetime from 5D Membrane Cosmology (Paper 3 NJSR Journal) | [10.5281/zenodo.18262721](https://doi.org/10.5281/zenodo.18262721) | 22 | 2026-01-20 |
-| 02 | Derivation of the Effective Lagrangian from the 5D Einstein-Hilbert Action (Companion A) | [10.5281/zenodo.18292841](https://doi.org/10.5281/zenodo.18292841) | 9 | 2026-01-20 |
-| 03 | WKB Prefactor and Neutron Lifetime Calculation (Companion B) | [10.5281/zenodo.18299637](https://doi.org/10.5281/zenodo.18299637) | 7 | 2026-01-20 |
-| 04 | 5D Action Reduction Pipeline (Companion C) | [10.5281/zenodo.18299751](https://doi.org/10.5281/zenodo.18299751) | 8 | 2026-01-20 |
-| 05 | Selection Rules for Neutron Beta Decay (Companion D) | [10.5281/zenodo.18299855](https://doi.org/10.5281/zenodo.18299855) | 8 | 2026-01-20 |
-| 06 | Symmetry Layering and Defect Operations (Companion E) | [10.5281/zenodo.18300199](https://doi.org/10.5281/zenodo.18300199) | 19 | 2026-01-20 |
-| 07 | Proton as 5D Junction: Variational Foundation (Companion F) | [10.5281/zenodo.18302953](https://doi.org/10.5281/zenodo.18302953) | 13 | 2026-01-20 |
-| 08 | Neutron-Proton Mass Difference from 5D Y-Junction Topology (Companion G) | [10.5281/zenodo.18303494](https://doi.org/10.5281/zenodo.18303494) | 12 | 2026-01-20 |
-| 09 | Weak Interactions as 5D Junction Transitions (Companion H) | [10.5281/zenodo.18307539](https://doi.org/10.5281/zenodo.18307539) | 20 | 2026-01-20 |
 
 **Total Pages:** 155
 
@@ -83,7 +73,6 @@ paper_3_series/
 ## Related Work
 
 - **Paper 2:** Geometric Structure of Electron and Proton in 5D Membrane Cosmology
-  DOI: [10.5281/zenodo.14538270](https://doi.org/10.5281/zenodo.14538270)
   Location in repo: `edc_papers/paper_2/`
 
 ---

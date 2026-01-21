@@ -9,8 +9,6 @@
 
 This directory contains Python scripts for reproducing numerical results in:
 
-- **Paper 3:** Neutron Lifetime from 5D Membrane Cosmology (DOI: 10.5281/zenodo.18262721)
-- **Companion B:** WKB Prefactor Derivation (DOI: 10.5281/zenodo.18299637)
 - **Companion F/G/H:** Proton junction, mass difference, weak interactions
 
 ---
@@ -130,9 +128,6 @@ Scripts use epistemic tagging for claims:
 
 ## Related Documents
 
-- Framework v2.0: DOI [10.5281/zenodo.18299085](https://doi.org/10.5281/zenodo.18299085)
-- Paper 3: DOI [10.5281/zenodo.18262721](https://doi.org/10.5281/zenodo.18262721)
-- Companion B: DOI [10.5281/zenodo.18299637](https://doi.org/10.5281/zenodo.18299637)
 
 ---
 

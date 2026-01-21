@@ -2,7 +2,6 @@
 
 **Version:** 0.1 (Initial Draft)
 **Date:** 2026-01-20
-**DOI:** 10.5281/zenodo.18321357
 
 ## Purpose
 
@@ -43,7 +42,3 @@ xelatex main.tex  # for references
 
 ## Related Documents
 
-- Framework v2.0 (DOI: 10.5281/zenodo.18299085)
-- Companion N (DOI: 10.5281/zenodo.18315110)
-- Companion V (DOI: 10.5281/zenodo.18321383)
-- Weak Program Overview (DOI: 10.5281/zenodo.18319921)

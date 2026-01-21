@@ -2,7 +2,6 @@
 
 **Paper 3 (NJSR Journal Format)**
 
-DOI: [10.5281/zenodo.18262721](https://doi.org/10.5281/zenodo.18262721)
 
 ---
 
@@ -35,7 +34,6 @@ xelatex -interaction=nonstopmode -halt-on-error main.tex
 
 ## Related Documents
 
-- Framework v2.0 (DOI: 10.5281/zenodo.18299085)
 - Companions A-H (supplementary derivations)
 
 ---

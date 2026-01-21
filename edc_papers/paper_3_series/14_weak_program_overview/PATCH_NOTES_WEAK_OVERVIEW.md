@@ -72,16 +72,6 @@ Canonical blocks introduced:
 
 | Document | DOI |
 |----------|-----|
-| Framework v2.0 | 10.5281/zenodo.18299085 |
-| Paper 3 (NJSR) | 10.5281/zenodo.18262721 |
-| Companion H | 10.5281/zenodo.18307539 |
-| Companion F | 10.5281/zenodo.18302953 |
-| Companion G | 10.5281/zenodo.18303494 |
-| Companion N | 10.5281/zenodo.18315110 |
-| Companion M | 10.5281/zenodo.18319888 |
-| Companion T | 10.5281/zenodo.18319900 |
-| Companion P | 10.5281/zenodo.18319913 |
-| **This doc** | **10.5281/zenodo.18319921** |
 
 ---
 

@@ -2,7 +2,6 @@
 
 **Companion D**
 
-DOI: [10.5281/zenodo.18299855](https://doi.org/10.5281/zenodo.18299855)
 
 ---
 

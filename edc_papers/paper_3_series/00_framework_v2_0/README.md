@@ -2,7 +2,6 @@
 
 **Framework v2.0**
 
-DOI: [10.5281/zenodo.18299085](https://doi.org/10.5281/zenodo.18299085)
 
 ---
 

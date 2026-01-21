@@ -56,18 +56,6 @@ This paper references and builds upon:
 
 | Document | DOI | Role |
 |----------|-----|------|
-| Framework v2.0 | 10.5281/zenodo.18299085 | Foundation |
-| Paper 3 (NJSR) | 10.5281/zenodo.18262721 | Neutron lifetime |
-| Companion H | 10.5281/zenodo.18307539 | Thick-brane microphysics |
-| Companion F | 10.5281/zenodo.18302953 | Selection rules |
-| Companion G | 10.5281/zenodo.18303494 | Gauge emergence |
-| Companion N | 10.5281/zenodo.18315110 | Neutron decay |
-| Companion M | 10.5281/zenodo.18319888 | Muon decay |
-| Companion T | 10.5281/zenodo.18319900 | Tau decay |
-| Companion P | 10.5281/zenodo.18319913 | Pion decay |
-| Companion L | 10.5281/zenodo.18321357 | Electron as brane defect |
-| Companion V | 10.5281/zenodo.18321383 | Neutrino as edge mode |
-| OPEN-W1 | 10.5281/zenodo.18321396 | G_F toy derivation |
 
 ## Key Contributions
 

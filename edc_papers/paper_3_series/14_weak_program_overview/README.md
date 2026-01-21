@@ -40,16 +40,6 @@ thick-brane microphysics framework.
 
 | Document | DOI | Status |
 |----------|-----|--------|
-| Framework v2.0 | 10.5281/zenodo.18299085 | Published |
-| Paper 3 (NJSR) | 10.5281/zenodo.18262721 | Published |
-| Companion H | 10.5281/zenodo.18307539 | Published |
-| Companion F | 10.5281/zenodo.18302953 | Published |
-| Companion G | 10.5281/zenodo.18303494 | Published |
-| Companion N | 10.5281/zenodo.18315110 | v3.0 |
-| Companion M | 10.5281/zenodo.18319888 | v0.2 |
-| Companion T | 10.5281/zenodo.18319900 | v0.1 |
-| Companion P | 10.5281/zenodo.18319913 | v0.3 |
-| **This doc** | **10.5281/zenodo.18319921** | v1.0 |
 
 ---
 

@@ -2,7 +2,6 @@
 
 **Version:** 0.1 (Initial Draft)
 **Date:** 2026-01-20
-**DOI:** 10.5281/zenodo.18321396
 
 ## Purpose
 
@@ -57,6 +56,4 @@ xelatex main.tex  # for references
 
 ## Related Documents
 
-- Framework v2.0 (DOI: 10.5281/zenodo.18299085)
 - Companion V (Neutrino/Chirality) — this series
-- Weak Program Overview (DOI: 10.5281/zenodo.18319921)

@@ -2,7 +2,6 @@
 
 **Companion H**
 
-DOI: [10.5281/zenodo.18307539](https://doi.org/10.5281/zenodo.18307539)
 
 ---
 
