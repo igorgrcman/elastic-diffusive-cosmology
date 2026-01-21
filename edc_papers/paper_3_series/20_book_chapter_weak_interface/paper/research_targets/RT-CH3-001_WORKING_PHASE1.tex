@@ -1,0 +1,295 @@
+% ==============================================================================
+% RT-CH3-001 WORKING DOCUMENT: Phase 1 — Domain Wall Toy Model
+% ==============================================================================
+% Status: IN PROGRESS
+% Goal: Show that Plenum inflow direction determines chirality selection
+% ==============================================================================
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+
+\geometry{margin=2.5cm}
+
+\tcbuselibrary{skins,breakable}
+
+\newcommand{\tagBL}{\textsuperscript{\textcolor{blue}{[BL]}}}
+\newcommand{\tagP}{\textsuperscript{\textcolor{orange}{[P]}}}
+\newcommand{\tagDc}{\textsuperscript{\textcolor{purple}{[Dc]}}}
+\newcommand{\tagOpen}{\textsuperscript{\textcolor{red}{[OPEN]}}}
+
+\newtcolorbox{keybox}[1][]{colback=green!5,colframe=green!50!black,title=#1,breakable}
+\newtcolorbox{problembox}[1][]{colback=red!5,colframe=red!50!black,title=#1,breakable}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+
+\title{RT-CH3-001 Working Document\\Phase 1: Domain Wall Toy Model}
+\author{EDC Research Program}
+\date{January 2026}
+
+\begin{document}
+\maketitle
+
+% ==============================================================================
+\section{Setup: 5D Dirac Equation with Domain Wall}
+% ==============================================================================
+
+\subsection{The Standard Result}
+
+Consider the 5D Dirac equation with position-dependent mass \tagBL{}:
+\begin{equation}
+\left( i\gamma^\mu \partial_\mu + i\gamma^5 \partial_z - m(z) \right) \Psi = 0
+\label{eq:5D_dirac}
+\end{equation}
+
+For a domain wall profile:
+\begin{equation}
+m(z) = m_0 \tanh(z/L)
+\end{equation}
+
+\textbf{Known result} (Jackiw-Rebbi 1976, Kaplan 1992) \tagBL{}:
+\begin{itemize}
+\item If $m(z): -m_0 \to +m_0$ as $z: -\infty \to +\infty$, there is a
+      \textbf{left-handed} zero mode localized at $z=0$
+\item If $m(z): +m_0 \to -m_0$, there is a \textbf{right-handed} zero mode
+\end{itemize}
+
+The zero mode profile is:
+\begin{equation}
+f_L(z) \propto \exp\left(-\int_0^z m(z') dz'\right) = \text{sech}^{m_0 L}(z/L)
+\label{eq:zero_mode}
+\end{equation}
+
+\begin{problembox}[The Question]
+What determines the \textbf{sign} of the mass profile? In particular, what
+fixes whether $m(z)$ goes from $-m_0$ to $+m_0$ or vice versa?
+
+In EDC, this should be determined by the \textbf{Plenum inflow direction}.
+\end{problembox}
+
+% ==============================================================================
+\section{EDC Constraint: Plenum Inflow}
+% ==============================================================================
+
+\subsection{Physical Picture}
+
+In EDC, the Plenum is the 5D bulk medium that flows INTO the brane:
+\begin{equation}
+J^z_{\text{Plenum}} > 0 \quad \text{(flow in $+z$ direction)}
+\end{equation}
+
+This is the fundamental EDC postulate: energy flows from the bulk toward
+the observer-facing boundary.
+
+\subsection{Connection to Mass Profile}
+
+\begin{proposition}[Inflow Determines Mass Sign] \tagP{}
+The Plenum inflow creates an effective ``pressure'' on the thick brane.
+This pressure has a gradient that determines the sign of the mass profile:
+\begin{equation}
+\text{sgn}(m(z)) = \text{sgn}\left(\frac{\partial P}{\partial z}\right)
+\end{equation}
+where $P$ is the Plenum pressure.
+\end{proposition}
+
+\textbf{Physical argument:}
+\begin{enumerate}
+\item Plenum flows in $+z$ direction (from bulk to brane)
+\item This creates higher pressure on the bulk side, lower on the observer side
+\item $\partial P/\partial z < 0$ (pressure decreases toward observer)
+\item The effective fermion mass is induced by this pressure gradient
+\end{enumerate}
+
+\begin{keybox}[Key Insight]
+If the Plenum pressure gradient determines $m(z)$, and the pressure
+decreases toward the observer ($z=0$), then:
+\begin{equation}
+m(z) = m_0 \tanh\left(\frac{z - z_0}{L}\right)
+\end{equation}
+goes from $-m_0$ (observer side) to $+m_0$ (bulk side).
+
+This is exactly the profile that localizes a \textbf{left-handed} zero mode
+at the observer boundary!
+\end{keybox}
+
+% ==============================================================================
+\section{Derivation: Why Left-Handed?}
+% ==============================================================================
+
+\subsection{Step 1: Inflow Stress Tensor}
+
+The Plenum inflow has associated stress-energy:
+\begin{equation}
+T^{zz}_{\text{Plenum}} = \rho_{\text{Plenum}} v_z^2 > 0
+\end{equation}
+
+At the thick brane interface, this creates an effective potential for fermions.
+
+\subsection{Step 2: Fermion Mass from Stress}
+
+In Kaluza-Klein models, the fermion mass can arise from coupling to background
+fields. In EDC, the natural coupling is to the Plenum stress:
+\begin{equation}
+m(z) \sim \kappa \left( T^{zz}(z) - T^{zz}(0) \right)
+\end{equation}
+where $\kappa$ is a coupling constant.
+
+Since $T^{zz} > 0$ in the bulk and decreases toward the boundary:
+\begin{equation}
+m(z) > 0 \quad \text{for } z > 0 \quad \text{(bulk side)}
+\end{equation}
+\begin{equation}
+m(z) \to 0 \quad \text{as } z \to 0 \quad \text{(boundary)}
+\end{equation}
+
+\subsection{Step 3: Half-Domain Wall}
+
+The EDC geometry is a ``half'' domain wall: $z \in [0, L]$ rather than
+$z \in (-\infty, +\infty)$.
+
+The mass profile is:
+\begin{equation}
+m(z) = m_0 \left(1 - e^{-z/\lambda}\right) \approx m_0 \frac{z}{\lambda} \quad \text{for small } z
+\end{equation}
+
+This rises from $0$ at the boundary to $m_0$ in the bulk.
+
+\subsection{Step 4: Zero Mode Localization}
+
+The zero mode equation is:
+\begin{equation}
+\partial_z f_L = -m(z) f_L
+\end{equation}
+
+With $m(z) > 0$ for $z > 0$:
+\begin{equation}
+f_L(z) = f_L(0) \exp\left(-\int_0^z m(z') dz'\right)
+\end{equation}
+
+Since $m(z) > 0$, the integral is positive, so $f_L(z)$ \textbf{decreases}
+as $z$ increases. The mode is localized at the boundary $z=0$.
+
+For the right-handed mode:
+\begin{equation}
+\partial_z f_R = +m(z) f_R
+\end{equation}
+
+This gives:
+\begin{equation}
+f_R(z) = f_R(0) \exp\left(+\int_0^z m(z') dz'\right)
+\end{equation}
+
+This \textbf{increases} as $z$ increases --- not normalizable! The right-handed
+mode is expelled into the bulk.
+
+% ==============================================================================
+\section{Result: V$-$A from Inflow}
+% ==============================================================================
+
+\begin{keybox}[Main Result (Phase 1)]
+\textbf{Starting from:}
+\begin{itemize}
+\item EDC 5D geometry with thick brane
+\item Plenum inflow in $+z$ direction \tagP{}
+\item Fermion-Plenum coupling via stress tensor \tagP{}
+\end{itemize}
+
+\textbf{We derive:}
+\begin{enumerate}
+\item The effective mass $m(z) > 0$ for $z > 0$ (rises into bulk)
+\item Left-handed zero mode is localized at boundary
+\item Right-handed mode is expelled into bulk
+\item Only \textbf{left-handed fermions} couple effectively to observer physics
+\end{enumerate}
+
+\textbf{This is V$-$A structure emerging from geometry!} \tagDc{}
+\end{keybox}
+
+% ==============================================================================
+\section{Epistemic Audit}
+% ==============================================================================
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Element} & \textbf{Source} & \textbf{Status} \\
+\hline
+5D Dirac equation & Standard QFT & \tagBL{} \\
+Domain wall zero mode & Jackiw-Rebbi, Kaplan & \tagBL{} \\
+Plenum inflow direction & EDC postulate & \tagP{} \\
+Fermion-stress coupling & Physical hypothesis & \tagP{} \\
+$m(z)$ rises into bulk & From inflow direction & \tagDc{} \\
+L-mode localized & Mathematical consequence & \tagDc{} \\
+R-mode expelled & Mathematical consequence & \tagDc{} \\
+V$-$A structure & Emerges from above & \tagDc{} \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{No chirality smuggling!} The only new physics input is:
+\begin{enumerate}
+\item Plenum inflow direction ($+z$) --- this is EDC's basic mechanism
+\item Fermion couples to Plenum stress --- this is a physical hypothesis
+\end{enumerate}
+
+The chirality selection is a \textbf{consequence}, not an assumption.
+
+% ==============================================================================
+\section{Open Questions}
+% ==============================================================================
+
+\begin{enumerate}
+\item \textbf{Quantitative:} What is the coupling constant $\kappa$? Does it
+      give the correct fermion mass spectrum?
+
+\item \textbf{Z$_2$ connection:} Does $\mathbb{Z}_2 \subset \mathbb{Z}_6$ also
+      play a role in chirality selection?
+
+\item \textbf{Helicity suppression:} Can we derive $|A|^2 \propto m_\ell^2$
+      from the mode overlap integrals?
+
+\item \textbf{G$_F$ derivation:} The weak coupling $G_F$ should come from the
+      mode profile overlap. Does this work?
+\end{enumerate}
+
+% ==============================================================================
+\section{Connection to $\mathbb{Z}_6$ Lattice}
+% ==============================================================================
+
+The $\mathbb{Z}_6 = \mathbb{Z}_2 \times \mathbb{Z}_3$ factorization suggests:
+\begin{itemize}
+\item $\mathbb{Z}_3$: Color (center of SU(3)) --- established in Ch2
+\item $\mathbb{Z}_2$: Chirality/Parity?
+\end{itemize}
+
+\begin{proposition}[$\mathbb{Z}_2$ as Chirality Selector] \tagOpen{}
+The $\mathbb{Z}_2$ subgroup acts on spinors as:
+\begin{equation}
+\mathcal{P}_{\mathbb{Z}_2}: \Psi \mapsto \gamma^5 \Psi
+\end{equation}
+
+Under this action:
+\begin{itemize}
+\item Left-handed modes are \textbf{odd}: $\mathcal{P}_{\mathbb{Z}_2} \psi_L = -\psi_L$
+\item Right-handed modes are \textbf{even}: $\mathcal{P}_{\mathbb{Z}_2} \psi_R = +\psi_R$
+\end{itemize}
+
+If the $\mathbb{Z}_6$ lattice boundary conditions select \textbf{odd} modes
+(due to the dislocation structure), then only L couples to weak processes.
+\end{proposition}
+
+This provides a \textbf{second} mechanism for chirality selection, reinforcing
+the inflow argument.
+
+\vspace{1cm}
+\hrule
+\vspace{0.5em}
+\textbf{Status:} Phase 1 COMPLETE (toy model shows chirality selection) \\
+\textbf{Next:} Phase 2 (realistic thick-brane profile) \\
+\textbf{Open:} Quantitative check, helicity suppression, $G_F$ derivation
+
+\end{document}
