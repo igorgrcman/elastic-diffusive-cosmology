@@ -1,5 +1,26 @@
 # SUBMISSION RECORD: Z₆ Program Paper
 
+## Publication Information
+
+**DOI:** [10.5281/zenodo.18328508](https://doi.org/10.5281/zenodo.18328508)
+**Type:** Book Chapter
+**Series:** Elastic Diffusive Cosmology — Part II: The Weak Sector
+**Chapter:** 2 (The Z₆ Program)
+
+---
+
+## Book Structure: EDC Part II — The Weak Sector
+
+| Chapter | Title | DOI | Pages |
+|---------|-------|-----|-------|
+| 1 | The Weak Interface | (chapter_weak_interface.pdf) | TBD |
+| 2 | **The Z₆ Program** | **10.5281/zenodo.18328508** | **18** |
+
+**Note:** Part I was *EDC v17.49* (the foundational framework). Part II addresses
+the weak sector and its geometric origins.
+
+---
+
 ## Historical Documentation
 
 **Date of Preparation:** January 21, 2026
@@ -55,7 +76,7 @@ This was not a casual question. It was a **demand for proof**:
 
 Igor had the vision. He needed the mathematics to back it.
 
-**What followed was a 15-page derivation that exceeded all expectations.**
+**What followed was a 20-page derivation that exceeded all expectations.**
 
 ---
 
@@ -96,6 +117,8 @@ but the investigation revealed far more:
 | 2026-01-21 | Step 7: Unification hypothesis | 12 |
 | 2026-01-21 | Step 8: Mass hierarchy (Koide) | 14 |
 | 2026-01-21 | Final polish + Abstract | 15 |
+| 2026-01-21 | Appendix A: Historical diagrams + ASCII art | 19 |
+| 2026-01-21 | Diagrams integrated into main text, appendix removed | 18 |
 
 ---
 
@@ -132,12 +155,29 @@ but the investigation revealed far more:
 
 | File | Purpose | Status |
 |------|---------|--------|
-| `Z6_PROGRAM_COMPLETE_DERIVATION.tex` | Main paper (15 pages) | ✅ Complete |
+| `Z6_PROGRAM_COMPLETE_DERIVATION.tex` | Main paper (18 pages) | ✅ Complete |
 | `Z6_PROGRAM_COMPLETE_DERIVATION.pdf` | Compiled PDF | ✅ Complete |
 | `Z6_PROGRAM_EXECUTIVE_SUMMARY.tex` | Executive summary (6 pages) | ✅ Complete |
 | `Z6_PROGRAM_EXECUTIVE_SUMMARY.pdf` | Compiled PDF | ✅ Complete |
 | `COVER_LETTER_arXiv.tex` | arXiv cover letter | ✅ Complete |
 | `SUBMISSION_RECORD.md` | This file | ✅ Complete |
+| `../Proton Z6/` | Original conversation transcripts | ✅ Archived |
+
+---
+
+## Integrated Visual Content
+
+All key diagrams are now integrated directly into the derivation flow (not as a
+separate appendix). The following TikZ diagrams appear at the relevant points in
+the derivation:
+
+1. **Proton as Perfect 5D Flux Tube Lattice** (Step 4, after Theorem 5.1)
+2. **Burgers Vectors in Hexagonal Lattice** (Step 5, after Definition 6.2)
+3. **Proton vs. Neutron Comparison** (Step 5, after Postulate 6.1)
+4. **Beta Decay as Dislocation Annihilation** (Step 5, after Theorem 6.2)
+
+This structure ensures readers see visualizations as part of the proof process,
+not as separate reference material.
 
 ---
 
@@ -153,13 +193,17 @@ but the investigation revealed far more:
 
 ---
 
-## Submission Target
+## Publication Target
 
-**Primary:** arXiv hep-th
-**Cross-list:** arXiv hep-ph
+**Primary:** Zenodo (Book Chapter)
+**DOI:** 10.5281/zenodo.18328508
+**Classification:** Publication / Book Chapter
 
-**Proposed Title:**
+**Future:** arXiv hep-th (cross-list: hep-ph)
+
+**Title:**
 *Geometric Origin of Color Confinement: From Hexagonal Packing to SU(3) Emergence*
+*(The Z₆ Program — EDC Part II, Chapter 2)*
 
 ---
 
