@@ -1,0 +1,60 @@
+% fig_selection_pipeline.tex — Selection rule pipeline for weak decay outputs
+% Uses styles from tikz_style_edc.tex
+
+\begin{tikzpicture}[edc node distance, scale=0.85, every node/.style={transform shape}]
+
+  % Bulk trigger
+  \node[bulk box, text width=2.4cm] (bulk) at (0,0) {
+    \textbf{Bulk Trigger}\\[2pt]
+    \footnotesize Junction relaxation\\
+    $\Delta E \approx Q$
+  };
+
+  % Brane absorption
+  \node[brane box, text width=2.4cm, right=1.8cm of bulk] (absorb) {
+    \textbf{Absorption}\\[2pt]
+    \footnotesize Energy enters\\
+    brane modes
+  };
+
+  % Kinematic filter
+  \node[process box, text width=2.4cm, right=1.8cm of absorb] (kin) {
+    \textbf{Kinematic Filter}\\[2pt]
+    \footnotesize $Q > m_\ell$?
+  };
+
+  % Chirality filter
+  \node[process box, text width=2.4cm, below=1.2cm of kin] (chir) {
+    \textbf{Chirality Filter}\\[2pt]
+    \footnotesize BC $\to$ L/R
+  };
+
+  % Allowed outputs
+  \node[output box, text width=2.4cm, left=1.8cm of chir] (out) {
+    \textbf{3D Outputs}\\[2pt]
+    \footnotesize $e^-_L + \bar\nu_R$
+  };
+
+  % Suppressed outputs (forbidden)
+  \node[label box, text width=2.0cm, right=1.2cm of kin, yshift=-0.4cm] (forbid) {
+    \footnotesize $\mu^-, \tau^-$\\
+    \textbf{forbidden}\\
+    ($Q < m_\ell$)
+  };
+
+  % Arrows
+  \draw[edc flow] (bulk) -- node[above, font=\scriptsize] {pump} (absorb);
+  \draw[edc flow] (absorb) -- node[above, font=\scriptsize] {modes} (kin);
+  \draw[edc arrow] (kin) -- node[right, font=\scriptsize] {pass} (chir);
+  \draw[edc arrow, red!60!black, dashed] (kin) -- (forbid);
+  \draw[edc flow] (chir) -- node[above, font=\scriptsize] {$\mathcal{P}_{\mathrm{frozen}}$} (out);
+
+  % Legend
+  \node[font=\scriptsize, text width=4cm] at (0,-2.2) {
+    \textbf{Selection criteria:}\\
+    (1) Kinematic: $Q > m_\ell$\\
+    (2) Chirality: BC-consistent\\
+    (3) Ledger: conserved
+  };
+
+\end{tikzpicture}

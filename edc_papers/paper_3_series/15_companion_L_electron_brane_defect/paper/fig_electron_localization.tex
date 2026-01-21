@@ -1,0 +1,57 @@
+% fig_electron_localization.tex — Electron localization in thick-brane structure
+% Uses styles from tikz_style_edc.tex
+
+\begin{tikzpicture}[scale=0.85, every node/.style={transform shape}]
+
+  % Background regions
+  \fill[bulk region] (-4,-2) rectangle (-1,2);
+  \fill[brane region] (-1,-2) rectangle (1,2);
+  \fill[observer region] (1,-2) rectangle (4,2);
+
+  % Region labels
+  \node[section label] at (-2.5,2.4) {\textbf{5D Bulk}};
+  \node[section label] at (0,2.4) {\textbf{Thick Brane}};
+  \node[section label] at (2.5,2.4) {\textbf{3D Observer}};
+
+  % Boundaries
+  \draw[bulk boundary] (-1,-2) -- (-1,2);
+  \draw[observer boundary] (1,-2) -- (1,2);
+
+  % Brane sublayers (dashed)
+  \draw[gray, dashed] (-0.3,-2) -- (-0.3,2);
+  \draw[gray, dashed] (0.3,-2) -- (0.3,2);
+
+  % Sublayer labels
+  \node[font=\tiny, rotate=90] at (-0.65,0) {bulk-facing};
+  \node[font=\tiny, rotate=90] at (0,0) {internal};
+  \node[font=\tiny, rotate=90] at (0.65,0) {observer-facing};
+
+  % Proton junction (extends into bulk-facing)
+  \node[junction point] (pj) at (-0.5,-0.8) {};
+  \draw[flux arm] (pj) -- ++(120:0.6);
+  \draw[flux arm] (pj) -- ++(240:0.6);
+  \draw[flux arm] (pj) -- ++(0:0.6);
+  \node[font=\scriptsize, below=0.3cm of pj] {proton junction};
+
+  % Electron (localized on observer-facing layer)
+  \node[particle, fill=blue!70!black] (elec) at (0.65,0.8) {};
+  \node[font=\scriptsize, right=0.15cm of elec] {$e^-$};
+
+  % y-axis indicator
+  \draw[->, thick] (-3.5,-1.8) -- (-3.5,-0.8);
+  \node[font=\scriptsize] at (-3.5,-1.3) [left] {$y$};
+  \node[font=\tiny] at (-3.5,-1.8) [left] {bulk};
+  \node[font=\tiny] at (-3.5,-0.8) [left] {brane};
+
+  % Localization annotation
+  \draw[edc dashed, blue!60!black] (elec) -- ++(0.8,0);
+  \node[font=\tiny, text width=1.8cm, align=left] at (2.3,0.8) {$y \approx 0$\\(observer-facing)};
+
+  % Stability note
+  \node[label box, text width=3cm] at (2.5,-1.2) {
+    \textbf{Electron:} stable defect,\\
+    no lower-mass charged\\
+    channel available
+  };
+
+\end{tikzpicture}
