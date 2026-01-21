@@ -1,0 +1,171 @@
+% ==============================================================================
+% RESEARCH TARGET RT-CH3-003: Neutron Lifetime from Peierls Barrier
+% ==============================================================================
+% Status: OPEN
+% Priority: HIGH (quantitative validation)
+% Dependencies: Ch2 dislocation model
+% ==============================================================================
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{booktabs}
+
+\geometry{margin=2.5cm}
+
+\newtheorem{problem}{Problem}
+\newtheorem{hypothesis}{Hypothesis}
+\newtheorem{criterion}{Success Criterion}
+
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{inputbox}[1][]{colback=green!5,colframe=green!50!black,title=#1}
+\newtcolorbox{outputbox}[1][]{colback=blue!5,colframe=blue!50!black,title=#1}
+
+\title{\textbf{Research Target RT-CH3-003}\\[0.5em]
+\Large Derivation of Neutron Lifetime from Peierls Barrier}
+\author{EDC Research Program --- Chapter 3}
+\date{Target formulated: January 2026}
+
+\begin{document}
+\maketitle
+
+% ==============================================================================
+\section{Problem Statement}
+% ==============================================================================
+
+\begin{problem}[Neutron Lifetime from Geometry]
+Derive the neutron lifetime $\tau_n \approx 880$ s from the $\mathbb{Z}_6$
+lattice dislocation model, using the Peierls barrier as the tunneling mechanism.
+\end{problem}
+
+\subsection{Why This Matters}
+
+The neutron lifetime is one of the most precisely measured quantities in
+nuclear physics, yet it has no first-principles explanation. In EDC:
+\begin{itemize}
+  \item The neutron is a \emph{dislocation} in the $\mathbb{Z}_6$ lattice (Ch2)
+  \item The proton is the stable $\mathbb{Z}_3$ fixed point
+  \item $\beta$-decay = dislocation annihilation
+\end{itemize}
+
+The Peierls barrier (energy cost to move a dislocation) determines the
+tunneling rate and hence the lifetime.
+
+% ==============================================================================
+\section{What Is INPUT vs OUTPUT}
+% ==============================================================================
+
+\begin{inputbox}[Allowed Inputs (EDC + Ch2)]
+\begin{enumerate}[label=\textbf{I.\arabic*},nosep]
+  \item \textbf{$\mathbb{Z}_6$ Lattice}: Hexagonal brane microstructure (Ch2, Theorem 3.1)
+  \item \textbf{Neutron = Dislocation}: Definition 6.2 from Ch2
+  \item \textbf{Burgers Vector}: $|\vec{b}| = a$ (lattice constant)
+  \item \textbf{Dislocation Energy}: $\Delta E_{\text{dis}} \approx 1.29$ MeV (Ch2, calibrated)
+  \item \textbf{EDC Action}: $S_{\text{EDC}}$ with thick-brane structure
+\end{enumerate}
+\end{inputbox}
+
+\begin{outputbox}[Required Output (Must Derive)]
+\begin{enumerate}[label=\textbf{O.\arabic*},nosep]
+  \item \textbf{Peierls Barrier Height}: $V_P$ in appropriate units
+  \item \textbf{Tunneling Rate}: $\Gamma = A \exp(-S_{\text{tunnel}}/\hbar)$
+  \item \textbf{Lifetime}: $\tau_n = 1/\Gamma \approx 880$ s within factor of 2
+\end{enumerate}
+\end{outputbox}
+
+% ==============================================================================
+\section{Candidate Derivation Strategy}
+% ==============================================================================
+
+\begin{hypothesis}[Peierls-Nabarro Tunneling]
+The neutron decays when the dislocation tunnels through the Peierls barrier
+to annihilate with the lattice, releasing energy as $e^- + \bar\nu_e$.
+\end{hypothesis}
+
+\subsection{Physical Picture}
+
+\textbf{Step 1: Peierls barrier from lattice}
+
+In crystallography, the Peierls barrier height is:
+\begin{equation}
+V_P \approx \frac{2\mu b^2}{(1-\nu)} \exp\left( -\frac{2\pi w}{a} \right)
+\end{equation}
+where $\mu$ = shear modulus, $b$ = Burgers vector, $\nu$ = Poisson ratio,
+$w$ = dislocation width, $a$ = lattice spacing.
+
+\textbf{Step 2: Map to EDC parameters}
+
+The ``shear modulus'' corresponds to flux tube tension. The lattice spacing
+$a$ relates to $R_\xi$. Need to identify the mapping.
+
+\textbf{Step 3: Tunneling action}
+
+The semiclassical tunneling action:
+\begin{equation}
+S_{\text{tunnel}} = \int \sqrt{2m_{\text{eff}} (V(q) - E)} \, dq
+\end{equation}
+
+\textbf{Step 4: Compute lifetime}
+
+\begin{equation}
+\tau_n = \frac{1}{\Gamma} = \frac{1}{A} \exp\left( \frac{S_{\text{tunnel}}}{\hbar} \right)
+\end{equation}
+
+% ==============================================================================
+\section{Success Criteria}
+% ==============================================================================
+
+\begin{criterion}[Order of Magnitude]
+Compute $\tau_n$ and obtain:
+\begin{equation}
+\tau_n^{\text{EDC}} \in [400, 1800] \text{ s}
+\end{equation}
+(within factor of 2 of experimental value).
+\end{criterion}
+
+\begin{criterion}[No Fine-Tuning]
+The barrier height should emerge from lattice parameters, not be fitted.
+\end{criterion}
+
+\begin{criterion}[Consistency with Q-value]
+The released energy must match:
+\begin{equation}
+Q_\beta = m_n - m_p - m_e \approx 0.782 \text{ MeV}
+\end{equation}
+\end{criterion}
+
+% ==============================================================================
+\section{Key Challenges}
+% ==============================================================================
+
+\begin{enumerate}
+\item \textbf{Scale identification}: What is the effective ``mass'' for tunneling?
+\item \textbf{Prefactor $A$}: The attempt frequency---needs derivation
+\item \textbf{Dislocation width}: How wide is the neutron dislocation?
+\item \textbf{Quantum vs classical}: Is tunneling the correct picture?
+\end{enumerate}
+
+% ==============================================================================
+\section{Connection to Experiment}
+% ==============================================================================
+
+Two experimental methods give slightly different values:
+\begin{itemize}
+  \item Beam method: $\tau_n = 888.0 \pm 2.0$ s
+  \item Bottle method: $\tau_n = 878.4 \pm 0.5$ s
+\end{itemize}
+
+The ``neutron lifetime puzzle'' (10 s discrepancy) is itself unexplained.
+EDC might offer insight if the mechanism depends on measurement geometry.
+
+\vspace{1em}
+\hrule
+\vspace{0.5em}
+\textbf{Status}: OPEN \\
+\textbf{Assigned}: Chapter 3 research program \\
+\textbf{Target}: Derive $\tau_n \approx 880$ s from Peierls barrier tunneling
+
+\end{document}

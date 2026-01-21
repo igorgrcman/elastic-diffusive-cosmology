@@ -1,0 +1,162 @@
+% ==============================================================================
+% RESEARCH TARGET RT-CH3-002: G_F from 5D Mediator Integration
+% ==============================================================================
+% Status: OPEN
+% Priority: HIGH (quantitative validation)
+% Dependencies: RT-CH3-001 (mode profiles)
+% ==============================================================================
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{booktabs}
+
+\geometry{margin=2.5cm}
+
+\newtheorem{problem}{Problem}
+\newtheorem{hypothesis}{Hypothesis}
+\newtheorem{criterion}{Success Criterion}
+
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{inputbox}[1][]{colback=green!5,colframe=green!50!black,title=#1}
+\newtcolorbox{outputbox}[1][]{colback=blue!5,colframe=blue!50!black,title=#1}
+
+\title{\textbf{Research Target RT-CH3-002}\\[0.5em]
+\Large Derivation of $G_F$ from 5D Mediator Integration}
+\author{EDC Research Program --- Chapter 3}
+\date{Target formulated: January 2026}
+
+\begin{document}
+\maketitle
+
+% ==============================================================================
+\section{Problem Statement}
+% ==============================================================================
+
+\begin{problem}[$G_F$ from Geometry]
+Derive the Fermi constant $G_F \approx 1.166 \times 10^{-5}$ GeV$^{-2}$ from
+5D thick-brane geometry, without using $M_W$ or $g_{\text{weak}}$ as inputs.
+\end{problem}
+
+\subsection{Why This Matters}
+
+In the Standard Model, $G_F$ is related to $W$-boson exchange:
+\begin{equation}
+G_F = \frac{\sqrt{2}}{8} \frac{g^2}{M_W^2}
+\end{equation}
+But $g$ and $M_W$ are themselves parameters---not explained.
+
+EDC claims weak interactions emerge from thick-brane dynamics. The effective
+coupling $G_F$ should therefore be calculable from:
+\begin{itemize}
+  \item The 5D mediator mass scale
+  \item Mode profile overlaps in the thick brane
+  \item Geometric suppression factors
+\end{itemize}
+
+% ==============================================================================
+\section{What Is INPUT vs OUTPUT}
+% ==============================================================================
+
+\begin{inputbox}[Allowed Inputs (EDC Postulates)]
+\begin{enumerate}[label=\textbf{I.\arabic*},nosep]
+  \item \textbf{5D Manifold}: $M_5 = M_4 \times [0, L]$ with brane thickness $\Delta$
+  \item \textbf{5D Mediator}: A bulk field $\Phi(x^\mu, z)$ with 5D mass $M_5$
+  \item \textbf{Thick Brane Potential}: $V(z)$ localizing fermion modes
+  \item \textbf{Fermion Mode Profiles}: $f_L(z), f_R(z)$ from RT-CH3-001
+  \item \textbf{EDC Scale}: $R_\xi \approx 1.23 \times 10^{-12}$ m (from Paper 2)
+\end{enumerate}
+\end{inputbox}
+
+\begin{outputbox}[Required Output (Must Derive)]
+\begin{enumerate}[label=\textbf{O.\arabic*},nosep]
+  \item \textbf{Effective 4D Coupling}: $G_F$ emerges from overlap integral
+  \item \textbf{Numerical Value}: $G_F \approx 1.166 \times 10^{-5}$ GeV$^{-2}$ within 10\%
+  \item \textbf{Scaling}: Correct dimensional analysis ($[G_F] = E^{-2}$)
+\end{enumerate}
+\end{outputbox}
+
+% ==============================================================================
+\section{Candidate Derivation Strategy}
+% ==============================================================================
+
+\begin{hypothesis}[Overlap Suppression]
+$G_F$ is small because fermion mode profiles have limited overlap in the
+thick-brane region.
+\end{hypothesis}
+
+\subsection{Mathematical Formulation}
+
+\textbf{Step 1: 5D interaction}
+
+The 5D Lagrangian includes:
+\begin{equation}
+\mathcal{L}_{5D} \supset g_5 \, \bar\Psi_1 \Gamma^A \Psi_2 \, \Phi_A
+\end{equation}
+
+\textbf{Step 2: Integrate over extra dimension}
+
+The effective 4D coupling is:
+\begin{equation}
+G_F \sim \frac{g_5^2}{M_5^2} \int_0^L dz \, |f_1(z)|^2 |f_2(z)|^2 |\phi(z)|^2
+\end{equation}
+
+\textbf{Step 3: Overlap integral}
+
+If modes are localized with width $\Delta$ and separation $d$:
+\begin{equation}
+\int |f_1|^2 |f_2|^2 \, dz \sim e^{-d^2/\Delta^2}
+\end{equation}
+This provides natural suppression.
+
+\textbf{Step 4: Connect to EDC scales}
+
+Use $R_\xi$ and brane thickness to determine $M_5$, then compute $G_F$.
+
+% ==============================================================================
+\section{Success Criteria}
+% ==============================================================================
+
+\begin{criterion}[Numerical Agreement]
+Compute $G_F$ from EDC parameters and obtain:
+\begin{equation}
+G_F^{\text{EDC}} = (1.166 \pm 0.1) \times 10^{-5} \text{ GeV}^{-2}
+\end{equation}
+\end{criterion}
+
+\begin{criterion}[No Calibration]
+The value must emerge from geometry, not be fitted to experiment.
+\end{criterion}
+
+\begin{criterion}[Correct Scaling]
+The dimensional analysis must work: $[g_5^2/M_5^2 \cdot \text{overlap}] = E^{-2}$.
+\end{criterion}
+
+% ==============================================================================
+\section{Dependencies}
+% ==============================================================================
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Dependency} & \textbf{Source} & \textbf{Status} \\
+\midrule
+Fermion mode profiles & RT-CH3-001 & OPEN \\
+Brane thickness $\Delta$ & Paper 2 / Framework & Available \\
+$R_\xi$ scale & Paper 2 & Derived \\
+5D mediator profile & This target & To derive \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{1em}
+\hrule
+\vspace{0.5em}
+\textbf{Status}: OPEN \\
+\textbf{Assigned}: Chapter 3 research program \\
+\textbf{Target}: Derive $G_F \approx 1.17 \times 10^{-5}$ GeV$^{-2}$ from geometry
+
+\end{document}

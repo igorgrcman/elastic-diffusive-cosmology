@@ -4,14 +4,14 @@ This directory contains well-posed research problems for EDC Part II, Chapter 3.
 
 ## Index of Research Targets
 
-| ID | Title | Priority | Status | Dependencies |
-|----|-------|----------|--------|--------------|
-| **RT-CH3-001** | V-A Structure from Plenum Inflow | HIGH | OPEN | Ch1 pipeline, Ch2 Z₆ |
-| RT-CH3-002 | G_F from 5D Mediator Integration | HIGH | OPEN | RT-001 (mode profiles) |
-| RT-CH3-003 | Neutron Lifetime from Peierls Barrier | HIGH | OPEN | Ch2 dislocation model |
-| RT-CH3-004 | Lepton Mass Hierarchy from Mode Spectrum | MEDIUM | OPEN | RT-001 |
-| RT-CH3-005 | Neutrino Mass from Edge-Mode Dynamics | MEDIUM | OPEN | Ch1 edge-mode ontology |
-| RT-CH3-006 | Koide Phase from Z₃ Geometry | LOW | OPEN | Ch2 Z₃ structure |
+| ID | Title | Priority | Status | Dependencies | File |
+|----|-------|----------|--------|--------------|------|
+| **RT-CH3-001** | V-A Structure from Plenum Inflow | HIGH | OPEN | Ch1 pipeline, Ch2 Z₆ | `RT-CH3-001_VA_FROM_INFLOW.tex` |
+| **RT-CH3-002** | G_F from 5D Mediator Integration | HIGH | OPEN | RT-001 (mode profiles) | `RT-CH3-002_GF_FROM_MEDIATOR.tex` |
+| **RT-CH3-003** | Neutron Lifetime from Peierls Barrier | HIGH | OPEN | Ch2 dislocation model | `RT-CH3-003_NEUTRON_LIFETIME.tex` |
+| RT-CH3-004 | Lepton Mass Hierarchy from Mode Spectrum | MEDIUM | OPEN | RT-001 | `RT-CH3-004_LEPTON_MASS_HIERARCHY.tex` |
+| RT-CH3-005 | Neutrino Mass from Edge-Mode Dynamics | MEDIUM | OPEN | Ch1 edge-mode ontology | `RT-CH3-005_NEUTRINO_MASS.tex` |
+| RT-CH3-006 | Koide Phase from Z₃ Geometry | LOW | OPEN | Ch2 Z₃ structure | `RT-CH3-006_KOIDE_PHASE.tex` |
 
 ## Principles for Research Targets
 

@@ -1,0 +1,261 @@
+% ==============================================================================
+% ELASTIC DIFFUSIVE COSMOLOGY — PART II: THE WEAK SECTOR
+% ==============================================================================
+% Unified book combining Chapter 1 (The Weak Interface) and Chapter 2 (The Z₆ Program)
+% DOI: 10.5281/zenodo.18328508
+% ==============================================================================
+
+\documentclass[11pt,a4paper]{book}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% PACKAGES
+% ═══════════════════════════════════════════════════════════════════════════════
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{physics}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing,shapes,arrows,arrows.meta,positioning,calc,shapes.geometric,fit,backgrounds}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{epigraph}
+\usepackage{array}
+\usepackage{colortbl}
+
+\tcbuselibrary{breakable,skins}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% PAGE SETUP
+% ═══════════════════════════════════════════════════════════════════════════════
+\geometry{margin=1in}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% PAGE STYLE
+% ═══════════════════════════════════════════════════════════════════════════════
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% THEOREM ENVIRONMENTS
+% ═══════════════════════════════════════════════════════════════════════════════
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{postulate}[theorem]{Postulate}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% CUSTOM COMMANDS (from both chapters)
+% ═══════════════════════════════════════════════════════════════════════════════
+\newcommand{\Membrane}{\Sigma}
+\newcommand{\Bulk}{\mathcal{M}_5}
+\newcommand{\vscan}{v_{\text{scan}}}
+\newcommand{\Rxi}{R_\xi}
+
+% Epistemic tags
+\newcommand{\tagDer}{\textcolor{blue!70!black}{\textsc{[Der]}}}
+\newcommand{\tagDc}{\textcolor{blue!70!black}{\textsc{[Dc]}}}
+\newcommand{\tagP}{\textcolor{orange!80!black}{\textsc{[P]}}}
+\newcommand{\tagBL}{\textcolor{gray}{\textsc{[BL]}}}
+\newcommand{\tagI}{\textcolor{purple!70!black}{\textsc{[I]}}}
+\newcommand{\tagCal}{\textcolor{red!70!black}{\textsc{[Cal]}}}
+\newcommand{\tagOpen}{\textcolor{red!70!black}{\textsc{[OPEN]}}}
+\newcommand{\tagDef}{\textcolor{teal!70!black}{\textsc{[Def]}}}
+
+% tcolorbox styles (from chapter_weak_interface.tex)
+\tcbset{
+  readerContract/.style={
+    colback=blue!5, colframe=blue!50!black,
+    fonttitle=\bfseries, title={Reader Contract}
+  },
+  guardrail/.style={
+    colback=yellow!5, colframe=orange!60!black,
+    fonttitle=\bfseries
+  },
+  falsifiability/.style={
+    colback=red!5, colframe=red!40!black,
+    fonttitle=\bfseries, title={Falsifiability Hooks}
+  },
+  mechanism/.style={
+    colback=teal!5, colframe=teal!50!black,
+    fonttitle=\bfseries
+  }
+}
+
+\newtcolorbox{edcPostulateBox}[2]{
+  colback=orange!5, colframe=orange!60!black,
+  fonttitle=\bfseries, title={#1 \hfill {\small #2}},
+  breakable
+}
+\newtcolorbox{edcDefinitionBox}[2]{
+  colback=green!5, colframe=green!50!black,
+  fonttitle=\bfseries, title={Definition: #1 \hfill {\small #2}},
+  breakable
+}
+\newtcolorbox{edcPropositionBox}[2]{
+  colback=purple!5, colframe=purple!50!black,
+  fonttitle=\bfseries, title={Proposition: #1 \hfill {\small #2}},
+  breakable
+}
+\newtcolorbox{edcLedgerBox}[2]{
+  colback=blue!5, colframe=blue!50!black,
+  fonttitle=\bfseries, title={Ledger: #1 \hfill {\small #2}},
+  breakable
+}
+\newtcolorbox{edcConsequenceBox}[2]{
+  colback=teal!5, colframe=teal!50!black,
+  fonttitle=\bfseries, title={#1 \hfill {\small #2}},
+  breakable
+}
+\newtcolorbox{edcWarningBox}[2]{
+  colback=yellow!10, colframe=orange!70!black,
+  fonttitle=\bfseries, title={Guardrail: #1},
+  breakable
+}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% HYPERREF SETUP
+% ═══════════════════════════════════════════════════════════════════════════════
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=green!50!black,
+  urlcolor=blue!70!black,
+  pdftitle={Elastic Diffusive Cosmology - Part II: The Weak Sector},
+  pdfauthor={Igor Grcman}
+}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% DOCUMENT
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\begin{document}
+
+% -----------------------------------------------------------------------
+% FRONT MATTER
+% -----------------------------------------------------------------------
+\frontmatter
+
+% Title Page
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+{\Huge\bfseries ELASTIC DIFFUSIVE COSMOLOGY}\\[1.5cm]
+{\Large The Weak Sector}\\[0.3cm]
+{\Large Geometric Origin of Weak Interactions}\\[2cm]
+{\large PART II}\\[2cm]
+{\Large Igor Gr\v{c}man}\\[1cm]
+{\large January 2026}\\[0.5cm]
+{\small Version 1.0}\\[2cm]
+\vfill
+{\large\itshape ``Weak interactions are not fundamental gauge vertices.\\
+They are coarse-grained residues of thick-brane dynamics.''}
+\end{titlepage}
+
+% Copyright Page
+\newpage
+\input{frontmatter/copyright_page}
+
+% Table of Contents
+\tableofcontents
+
+% -----------------------------------------------------------------------
+% MAIN MATTER
+% -----------------------------------------------------------------------
+\mainmatter
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% CHAPTER 1: THE WEAK INTERFACE
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter{The Weak Interface}
+\label{ch:weak_interface}
+
+\begin{quote}
+\textit{This chapter establishes the physical mechanism and pipeline for weak-sector
+processes within the thick-brane framework. Claims are marked with epistemic tags;
+proofs are deferred to Chapter~2.}
+\end{quote}
+
+\input{sections/00_reader_contract}
+\input{sections/01_how_we_got_here}
+\input{sections/02_geometry_interface}
+\input{sections/03_unified_pipeline}
+\input{sections/04_ontology}
+\input{sections/04b_proton_anchor}
+\input{sections/05_neutron_story}
+\input{sections/04a_unified_master_figure}
+\input{sections/05_case_neutron}
+\input{sections/06_case_muon}
+\input{sections/07_case_tau}
+\input{sections/08_case_pion}
+\input{sections/09_case_electron}
+\input{sections/10_case_neutrino}
+\input{sections/11_gf_pathway}
+\input{sections/12_epistemic_map}
+\input{sections/13_summary}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% CHAPTER 2: THE Z₆ PROGRAM
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter{The $\mathbb{Z}_6$ Program}
+\label{ch:z6_program}
+
+\begin{quote}
+\textit{This chapter provides the mathematical proofs for claims made in Chapter~1.
+The proton's stability, Steiner angles, and color confinement are derived from
+the hexagonal symmetry of the brane interface.}
+\end{quote}
+
+% Include the Z6 program content
+% Note: This requires extracting the content from Z6_PROGRAM_COMPLETE_DERIVATION.tex
+% For now, we include it as a standalone section
+\input{Z6_content}
+
+% -----------------------------------------------------------------------
+% BACK MATTER
+% -----------------------------------------------------------------------
+\backmatter
+
+\chapter*{Appendix: Research Targets}
+\addcontentsline{toc}{chapter}{Appendix: Research Targets}
+
+The following open problems define the research frontier for Part II:
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{ID} & \textbf{Problem} & \textbf{Priority} & \textbf{Status} \\
+\midrule
+RT-CH3-001 & V$-$A from Plenum Inflow & HIGH & OPEN \\
+RT-CH3-002 & $G_F$ from 5D Mediator & HIGH & OPEN \\
+RT-CH3-003 & Neutron Lifetime from Peierls Barrier & HIGH & OPEN \\
+RT-CH3-004 & Lepton Mass Hierarchy & MEDIUM & OPEN \\
+RT-CH3-005 & Neutrino Mass Scale & MEDIUM & OPEN \\
+RT-CH3-006 & Koide Phase from $\mathbb{Z}_3$ & LOW & OPEN \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{1cm}
+
+These targets are documented in the \texttt{research\_targets/} directory with
+explicit INPUT/OUTPUT specifications and success criteria.
+
+\end{document}

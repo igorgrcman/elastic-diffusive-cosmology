@@ -1,26 +1,32 @@
-# SUBMISSION RECORD: Z₆ Program Paper
+# SUBMISSION RECORD: EDC Part II — The Weak Sector
 
 ## Publication Information
 
 **DOI:** [10.5281/zenodo.18328508](https://doi.org/10.5281/zenodo.18328508)
-**Type:** Book Chapter
-**Series:** Elastic Diffusive Cosmology — Part II: The Weak Sector
-**Chapter:** 2 (The Z₆ Program)
+**Type:** Book (Part II of EDC Series)
+**Series:** Elastic Diffusive Cosmology
+**Title:** The Weak Sector
 
 ---
 
 ## Book Structure: EDC Part II — The Weak Sector
 
-| Chapter | Title | DOI | Pages | Status |
-|---------|-------|-----|-------|--------|
-| 1 | The Weak Interface | (pending) | 45 | Draft complete |
-| 2 | **The Z₆ Program** | **10.5281/zenodo.18328508** | **18** | **Published** |
+| Document | Title | Pages | Status |
+|----------|-------|-------|--------|
+| **Unified Book** | EDC Part II: The Weak Sector | **53** | **Complete** |
+| Chapter 1 | The Weak Interface | 45 | Complete |
+| Chapter 2 | The Z₆ Program | 18 | Complete |
 
-**Note:** Part I was *EDC v17.49* (the foundational framework). Part II addresses
-the weak sector and its geometric origins.
+**Note:** Part I was *EDC v17.49* (the foundational framework, DOI: 10.5281/zenodo.18176174).
+Part II addresses the weak sector and its geometric origins.
 
-**DOI Scope:** This submission record covers **Chapter 2 only**. Chapter 1 will
-receive its own DOI upon completion of quantitative derivations (RT-CH3-xxx targets).
+**DOI Scope:** The DOI 10.5281/zenodo.18328508 now covers the **entire Part II book**
+(both chapters combined).
+
+**Files:**
+- `EDC_Part_II_Weak_Sector.pdf` — Unified book (53 pages)
+- `chapter_weak_interface.pdf` — Chapter 1 standalone (45 pages)
+- `Z6_PROGRAM_COMPLETE_DERIVATION.pdf` — Chapter 2 standalone (18 pages)
 
 ---
 
@@ -158,13 +164,16 @@ but the investigation revealed far more:
 
 | File | Purpose | Status |
 |------|---------|--------|
-| `Z6_PROGRAM_COMPLETE_DERIVATION.tex` | Main paper (18 pages) | ✅ Complete |
-| `Z6_PROGRAM_COMPLETE_DERIVATION.pdf` | Compiled PDF | ✅ Complete |
+| `EDC_Part_II_Weak_Sector.tex` | **Unified book (53 pages)** | ✅ Complete |
+| `EDC_Part_II_Weak_Sector.pdf` | Compiled unified PDF | ✅ Complete |
+| `chapter_weak_interface.tex` | Chapter 1 standalone (45 pages) | ✅ Complete |
+| `chapter_weak_interface.pdf` | Compiled Ch1 PDF | ✅ Complete |
+| `Z6_PROGRAM_COMPLETE_DERIVATION.tex` | Chapter 2 standalone (18 pages) | ✅ Complete |
+| `Z6_PROGRAM_COMPLETE_DERIVATION.pdf` | Compiled Ch2 PDF | ✅ Complete |
 | `Z6_PROGRAM_EXECUTIVE_SUMMARY.tex` | Executive summary (6 pages) | ✅ Complete |
-| `Z6_PROGRAM_EXECUTIVE_SUMMARY.pdf` | Compiled PDF | ✅ Complete |
-| `COVER_LETTER_arXiv.tex` | arXiv cover letter | ✅ Complete |
+| `frontmatter/copyright_page.tex` | Book copyright page | ✅ Complete |
+| `research_targets/*.tex` | RT-CH3-001 through RT-CH3-006 | ✅ Complete |
 | `SUBMISSION_RECORD.md` | This file | ✅ Complete |
-| `../Proton Z6/` | Original conversation transcripts | ✅ Archived |
 
 ---
 
