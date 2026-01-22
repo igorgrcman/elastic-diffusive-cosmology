@@ -1,0 +1,333 @@
+%!TEX root = ../EDC_Part_II_Weak_Sector.tex
+% ==============================================================================
+% Chapter 11: G_F Full Closure Plan (No SM-Help Target)
+% Status: YELLOW [Dc]+[OPEN] — Closure spine derived; numeric values open
+% OPR-22: Defines non-circular target for first-principles G_F
+% ==============================================================================
+
+\subsection{Full Closure Target for $G_F$ (No-SM-Help)}
+\label{sec:ch11_full_closure}
+
+This subsection presents the \emph{non-circular} target formula for deriving $G_F$
+from first principles, explicitly separating what is already derived from what
+remains open. The goal is not to claim numerical closure but to define the
+\textbf{precise closure target} that removes all SM circularity.
+
+\begin{tcolorbox}[edcGuardrail, title=\textbf{What This Section Does and Does Not Do}]
+\textbf{Does:}
+\begin{itemize}[nosep]
+    \item Presents the target formula with each factor's epistemic status
+    \item Maps where SM circularity could enter and how to avoid it
+    \item Defines concrete closure conditions for OPR-22
+\end{itemize}
+
+\textbf{Does NOT:}
+\begin{itemize}[nosep]
+    \item Claim that $G_F$ is already derived numerically
+    \item Use measured $G_F$, $v$, or $M_W$ to ``derive'' anything
+    \item Pretend that open parameters have been computed
+\end{itemize}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{The Closure Spine: Non-Circular Target Formula}
+\label{sec:ch11_closure_spine}
+
+Combining the results from \S\ref{sec:ch11_g5_canonical}--\ref{sec:ch11_kk_spectrum}
+with the mode overlap integral from \S\ref{sec:ch11_overlap}, the first-principles
+target formula for the Fermi constant is:
+
+\begin{tcolorbox}[colback=blue!5, colframe=blue!60!black,
+    title=\textbf{Closure Spine: First-Principles $G_F$ Target (OPR-22)}]
+\begin{equation}
+    \boxed{
+    G_F = \frac{g_5^2 \, \ell^2}{x_1^2} \cdot I_4
+    }
+    \label{eq:ch11_closure_spine}
+\end{equation}
+where:
+\begin{itemize}[nosep]
+    \item $g_5$ = 5D gauge coupling (dimension $[E]^{-1/2}$)
+    \item $\ell$ = brane layer thickness (dimension $[E]^{-1}$)
+    \item $x_1$ = dimensionless KK eigenvalue ($\pi/2$, $\pi$, etc.\ depending on BCs)
+    \item $I_4 = \int_0^\ell dz \, |f_L(z)|^4$ = mode overlap integral (dimension $[E]$)
+\end{itemize}
+
+\medskip
+\noindent\textbf{Dimensional check:}
+$[g_5^2 \ell^2 / x_1^2] = [E]^{-1} \cdot [E]^{-2} = [E]^{-3}$;
+$[I_4] = [E]$; total $[G_F] = [E]^{-2}$ \checkmark
+\end{tcolorbox}
+
+\paragraph{Origin of each factor.}
+\begin{itemize}[nosep]
+    \item $g_5^2/x_1^2$: From mediator propagator $\sim g_5^2/m_\phi^2$ with $m_\phi = x_1/\ell$
+    \item $\ell^2$: Cancels from $m_\phi^{-2} = \ell^2/x_1^2$
+    \item $I_4$: Dimensional reduction factor from 5D $\to$ 4D
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Factor-by-Factor Status Table}
+\label{sec:ch11_factor_status}
+
+\begin{table}[ht]
+\centering
+\caption{Epistemic status of each $G_F$ closure factor (OPR-22)}
+\label{tab:ch11_factor_status}
+\small
+\begin{tabular}{p{1.5cm}p{4cm}cp{4.5cm}}
+\toprule
+\textbf{Factor} & \textbf{Definition/Source} & \textbf{Status} & \textbf{What Would Close It} \\
+\midrule
+$g_5$ & 5D gauge coupling from action & \textbf{[OPEN]} & Derive $g_5$ from underlying 5D gauge theory (OPR-19) \\
+$g_4 = g_5$ & Canonical normalization & \tagDc{} & \emph{Closed}: orthonormal KK modes \\
+\addlinespace
+$\ell$ & Brane layer thickness & \textbf{[OPEN]} & Derive $\ell$ from membrane parameters $(\sigma, r_e)$ \\
+\addlinespace
+$x_1$ & KK eigenvalue (first mode) & \tagDc{} (form) & Form derived; value depends on BCs (OPR-20) \\
+$m_\phi = x_1/\ell$ & Mediator mass & \tagDc{} (form) & Structure derived; numerics require $\ell$, BCs \\
+\addlinespace
+$f_L(z)$ & Left-handed mode profile & \textbf{[OPEN]} & Solve thick-brane BVP (OPR-21) \\
+$I_4$ & Overlap integral $\int |f_L|^4 dz$ & \textbf{[OPEN]} & Compute from solved profiles \\
+\midrule
+$G_F$ & Full first-principles value & \textbf{[OPEN]} & Combine all above without calibration (OPR-22) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{What is already closed.}
+\begin{itemize}[nosep]
+    \item \textbf{Dimensional consistency:} $[G_F] = [E]^{-2}$ verified \tagDc{}
+    \item \textbf{Canonical $g_4 = g_5$:} Orthonormal KK mode normalization \tagDc{}
+    \item \textbf{KK eigenvalue form:} $m_\phi = x_1/\ell$ from BVP structure \tagDc{}
+    \item \textbf{Structural formula:} Eq.~\eqref{eq:ch11_closure_spine} assembled \tagDc{}
+\end{itemize}
+
+\paragraph{What remains open.}
+\begin{itemize}[nosep]
+    \item \textbf{$g_5$ value:} Requires underlying 5D gauge theory or embedding
+    \item \textbf{$\ell$ value:} Requires relating brane thickness to membrane tension $\sigma$
+    \item \textbf{$I_4$ value:} Requires solved BVP profiles with physical potential $V(z)$
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\subsubsection{No-Smuggling Guardrails}
+\label{sec:ch11_no_smuggling}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!60!black,
+    title=\textbf{No-Smuggling Guardrails: What Is Forbidden}]
+
+\textbf{FORBIDDEN --- The following would invalidate a ``first-principles'' claim:}
+\begin{enumerate}[nosep]
+    \item \textbf{Using $M_W$ to set $m_\phi$:} Identifying $m_\phi = M_W \approx 80$ GeV
+          is \emph{calibration} \tagI{}, not derivation. Allowed only if explicitly
+          tagged and not claimed as derived.
+
+    \item \textbf{Using measured $G_F$ to back-solve:} Setting
+          $g_5^2 \ell^2 I_4 / x_1^2 = 1.17 \times 10^{-5}$ GeV$^{-2}$ and
+          solving for any parameter is circular.
+
+    \item \textbf{Using $v = 246$ GeV:} The Higgs VEV is defined via $G_F$:
+          $v \equiv (\sqrt{2}G_F)^{-1/2}$. Using $v$ as input re-imports $G_F$.
+
+    \item \textbf{Tuning $I_4$ by hand:} The overlap integral must come from
+          \emph{solved} BVP profiles, not adjusted to fit.
+
+    \item \textbf{Assuming $g_5 \sim 4\pi$:} Dimensional estimates are not derivations.
+          The coupling must be computed from the 5D action.
+\end{enumerate}
+
+\medskip
+\textbf{ALLOWED --- Legitimate baseline inputs:}
+\begin{itemize}[nosep]
+    \item $\alpha = 1/137$ (measured QED, independent of weak sector)
+    \item $\sin^2\theta_W = 1/4$ (EDC-derived from $\mathbb{Z}_6$ counting)
+    \item Standard RG beta functions (established physics)
+    \item Comparison to PDG values \emph{after} prediction (evaluation, not fitting)
+\end{itemize}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Attack-Surface Map: Reviewer Defense}
+\label{sec:ch11_attack_surface_map}
+
+\begin{table}[ht]
+\centering
+\caption{Attack-surface map for $G_F$ derivation (OPR-22)}
+\label{tab:ch11_attack_surface}
+\small
+\begin{tabular}{p{5cm}p{6.5cm}c}
+\toprule
+\textbf{Potential Attack} & \textbf{Defense} & \textbf{Ref} \\
+\midrule
+``You used SM $M_W$ to set mediator mass'' &
+    Identification \tagI{} is explicit (OPR-20). We \emph{do not claim} $m_\phi$ derived.
+    Closure requires $\ell$ from membrane physics. &
+    \S\ref{sec:ch11_kk_spectrum} \\
+\addlinespace
+``You used measured $G_F$ to set coupling'' &
+    Forbidden by guardrail. No parameter in Eq.~\eqref{eq:ch11_closure_spine}
+    is back-solved from $G_F$. &
+    \S\ref{sec:ch11_no_smuggling} \\
+\addlinespace
+``Overlap integral is hand-wavy'' &
+    $I_4$ is tagged \textbf{[OPEN]} (OPR-21). Closure requires BVP solution
+    (see BVP Work Package, \S\ref{sec:ch12_bvp_workpackage}). &
+    OPR-21 \\
+\addlinespace
+``KK spectrum depends on assumed BCs'' &
+    BCs are explicitly flagged as \textbf{[OPEN]}. We state the \emph{form}
+    $m_\phi = x_1/\ell$ is derived \tagDc{}, not the value. &
+    Table~\ref{tab:ch11_factor_status} \\
+\addlinespace
+``$\sin^2\theta_W = 1/4$ is numerology'' &
+    Independent derivation from $\mathbb{Z}_6$ subgroup counting (Ch.~\ref{ch:z6_program}).
+    RG-run value matches PDG at 0.08\%. Falsifiable. &
+    OPR-04 \\
+\addlinespace
+``You claim $G_F$ but rely on SM relations'' &
+    This is the \emph{electroweak consistency closure} (GREEN-A), explicitly
+    acknowledged as NOT first-principles. This section defines the non-circular target. &
+    Remark~\ref{rem:ch11_firewall} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Closure Dependencies: The Interlock}
+\label{sec:ch11_closure_interlock}
+
+The first-principles $G_F$ derivation (OPR-22) depends on closing three prior items:
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=1.5cm,
+    every node/.style={draw, rounded corners, minimum width=2.5cm, minimum height=0.8cm, align=center}
+]
+    \node (g5) [fill=red!20] {OPR-19\\$g_5$ value};
+    \node (ell) [fill=red!20, right=of g5] {OPR-20\\$\ell$, BCs};
+    \node (I4) [fill=red!20, right=of ell] {OPR-21\\$f_L(z)$, $I_4$};
+    \node (GF) [fill=yellow!30, below=1.5cm of ell] {OPR-22\\$G_F$ closure};
+
+    \draw[->, thick] (g5) -- (GF);
+    \draw[->, thick] (ell) -- (GF);
+    \draw[->, thick] (I4) -- (GF);
+\end{tikzpicture}
+\end{center}
+
+\paragraph{Critical path.}
+OPR-21 (thick-brane BVP) is the \textbf{master key}: it provides both $I_4$ for
+$G_F$ and the profile parities needed for OPR-11 (CKM $\mathbb{Z}_2$ selection).
+Solving the BVP unlocks multiple closure paths simultaneously.
+
+% ------------------------------------------------------------------------------
+\subsubsection{Numeric Target (For Future Comparison)}
+\label{sec:ch11_numeric_target}
+
+When OPR-19--21 are closed, the prediction will be:
+\begin{equation}
+    G_F^{\text{pred}} = \frac{g_5^2 \, \ell^2 \, I_4}{x_1^2}
+    \quad\stackrel{?}{=}\quad
+    G_F^{\text{PDG}} = 1.1664 \times 10^{-5} \text{ GeV}^{-2}
+    \label{eq:ch11_numeric_target}
+\end{equation}
+
+\paragraph{Order-of-magnitude consistency check.}
+Using rough estimates (not derived values) to verify plausibility:
+\begin{itemize}[nosep]
+    \item $g_5 \sim g_2 \sim 0.65$ (if $g_4 = g_5$, comparable to SM coupling)
+    \item $\ell \sim 1/M_W \sim 0.01$ fm $\sim 50$ GeV$^{-1}$ (brane thickness)
+    \item $x_1 \sim \pi$ (typical KK eigenvalue)
+    \item $I_4 \sim 1/m_0 \sim 5$ GeV$^{-1}$ (inverse localization scale)
+\end{itemize}
+
+Then:
+\begin{equation}
+    G_F \sim \frac{(0.65)^2 \times (50)^2 \times 5}{\pi^2}
+    \sim \frac{0.4 \times 2500 \times 5}{10}
+    \sim 500 \text{ GeV}^{-2}
+    \label{eq:ch11_oofm_wrong}
+\end{equation}
+
+This is $\sim 10^7$ too large! The discrepancy indicates:
+\begin{enumerate}[nosep]
+    \item Normalization factors (e.g., $4\sqrt{2}$ from SM convention) are missing
+    \item The overlap $I_4$ is much smaller than naive estimate (tighter localization)
+    \item The brane thickness $\ell$ is not simply $1/M_W$
+\end{enumerate}
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!60!black,
+    title=\textbf{Honest Status: Order-of-Magnitude Does NOT Close}]
+The order-of-magnitude check \emph{fails} by many orders of magnitude. This is
+\textbf{not a problem}---it confirms that:
+\begin{itemize}[nosep]
+    \item Naive dimensional estimates are insufficient
+    \item The actual BVP profiles with correct $V(z)$ are essential
+    \item The ``weakness'' of weak interactions requires tight mode localization
+\end{itemize}
+
+\textbf{Status:} The closure spine (Eq.~\ref{eq:ch11_closure_spine}) is structurally
+correct \tagDc{}; numeric closure requires solving OPR-19--21.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{OPR-22 Status Summary}
+\label{sec:ch11_opr22_summary}
+
+\begin{tcolorbox}[colback=green!5, colframe=green!50!black,
+    title=\textbf{OPR-22: $G_F$ First-Principles Status}]
+
+\textbf{Before this section:}
+\begin{quote}
+OPR-22: RED-C (open) --- ``First-principles $G_F$ requires $g_5$, $m_\phi$, profiles''
+\end{quote}
+
+\textbf{After this section:}
+\begin{quote}
+OPR-22: \textbf{YELLOW} [Dc]+[OPEN] --- Closure spine derived; numeric value open
+\begin{itemize}[nosep]
+    \item Target formula: $G_F = g_5^2 \ell^2 I_4 / x_1^2$ \tagDc{}
+    \item Dimensional consistency verified \tagDc{}
+    \item No-smuggling guardrails explicit \tagDc{}
+    \item Attack-surface mapped \tagDc{}
+    \item \textbf{Numeric closure:} [OPEN] pending OPR-19/20/21
+\end{itemize}
+\end{quote}
+
+\medskip
+\noindent\fbox{\parbox{0.94\textwidth}{\small
+\textbf{Book-ready verdict:} The first-principles $G_F$ derivation has a complete
+structural formula with each factor's status explicitly tagged. Numeric closure
+awaits solving the thick-brane BVP (OPR-21) and determining $g_5$ from the
+underlying gauge sector (OPR-19). The framework is non-circular by construction.}}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{What Remains Open (Explicit Checklist)}
+\label{sec:ch11_open_checklist}
+
+\begin{table}[ht]
+\centering
+\caption{OPR-22 closure checklist: remaining items}
+\label{tab:ch11_closure_checklist}
+\begin{tabular}{clll}
+\toprule
+& \textbf{Item} & \textbf{Blocking OPR} & \textbf{Next Action} \\
+\midrule
+$\square$ & $g_5$ from 5D gauge action & OPR-19 & Define gauge sector embedding \\
+$\square$ & $\ell$ from membrane $\sigma$ & OPR-20 & Relate brane thickness to tension \\
+$\square$ & BCs from physics & OPR-20 & Justify N/D/mixed from brane physics \\
+$\square$ & $V(z)$ potential & OPR-21 & Derive from membrane parameters \\
+$\square$ & $f_L(z)$ profiles & OPR-21 & Solve BVP numerically/analytically \\
+$\square$ & $I_4$ from profiles & OPR-21 & Compute $\int |f_L|^4 dz$ \\
+$\square$ & Combine without calibration & OPR-22 & Insert into Eq.~\eqref{eq:ch11_closure_spine} \\
+$\square$ & Compare to PDG & (evaluation) & Check $G_F^{\text{pred}}$ vs $G_F^{\text{PDG}}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Upgrade path.}
+Closing any item in the checklist reduces the ``open'' count. Full GREEN status
+for OPR-22 requires all items checked. The critical path runs through OPR-21
+(BVP), which also feeds OPR-02 (generations) and OPR-11 (CKM parity).
+

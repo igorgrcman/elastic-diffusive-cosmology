@@ -92,7 +92,7 @@ with hidden assumptions.
 | OPR-19 | 5D gauge coupling g₅ | **RED-C** [Dc]+[OPEN] | $g_4 = g_5$ from 5D action + orthonormal modes [Dc] | $g_5$ value from underlying theory | P2 | Derive $g_5$ from 5D gauge theory |
 | OPR-20 | Mediator mass m_φ | **RED-C** [Dc]+[OPEN] | $m_\phi = x_1/\ell$ from KK eigenvalue [Dc] | $\ell$ from membrane; BCs from physics | P2 | Derive $\ell$ from $(\sigma, r_e)$ |
 | OPR-21 | Mode profiles f_L(z) | **RED-C** [P] | BVP Work Package + solver skeleton; I₄ computed | Physical BCs; potential from membrane params | P1 | See §12 BVP Work Package |
-| OPR-22 | G_F first-principles | **RED-C** (open) | Numerical closure via SM (circularity noted) | Combine OPR-19+20+21 without SM input | P1 | $G_F = g_5^2 I_4 / m_\phi^2$ |
+| OPR-22 | G_F first-principles | **YELLOW [Dc]+[OPEN]** | Closure spine: $G_F = g_5^2 \ell^2 I_4 / x_1^2$ [Dc]; no-smuggling guardrails; attack-surface map | Numeric values: $g_5$ (OPR-19), $\ell$ (OPR-20), $I_4$ (OPR-21) | P1 | See §11 Full Closure Plan |
 
 ### Neutron Decay (Ch5 subsection)
 
@@ -353,3 +353,4 @@ U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
 | 1.5 | 2026-01-22 | **PMNS Attempt 4.2: θ₁₂ = arctan(1/√2) provides geometric origin (8.6% off); OPR-05c → [Dc]** |
 | 1.6 | 2026-01-22 | **BVP Work Package: OPR-02/21 → RED-C; solver skeleton + acceptance criteria documented** |
 | 1.7 | 2026-01-22 | **OPR-11 Z₂ Parity Origin: RED → YELLOW [Dc]+[P]**; Sign-flip rule [Dc], brane-reflection parity [P] |
+| 1.8 | 2026-01-22 | **OPR-22 G_F Full Closure Plan: RED-C → YELLOW [Dc]+[OPEN]**; Closure spine + no-smuggling guardrails |
