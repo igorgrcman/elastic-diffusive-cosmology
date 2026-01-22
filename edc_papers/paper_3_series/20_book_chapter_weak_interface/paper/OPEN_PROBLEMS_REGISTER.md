@@ -240,6 +240,40 @@ U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
 
 ---
 
+### Completed: PMNS Attempt 4.1 (OPR-05)
+
+**Target:** Derive ε from existing EDC quantities (λ, κ ratio) without smuggling PDG θ13
+**Result:** ε = λ/√2 achieves 15% accuracy on θ13
+
+| Candidate | ε (rad) | sin²θ13 | PDG | Error | Status |
+|-----------|---------|---------|-----|-------|--------|
+| C1: λ/√2 | 0.159 | 0.0253 | 0.022 | 15% | **YELLOW** |
+| C2: λ×κ | 0.090 | 0.0081 | 0.022 | 63% | RED |
+
+**Best result (C1 + discrete θ12 = 35°):**
+
+| Angle | Model | PDG | Status |
+|-------|-------|-----|--------|
+| sin²θ12 | 0.329 | 0.307 | GREEN (7%) |
+| sin²θ23 | 0.564 | 0.546 | GREEN (3%) |
+| sin²θ13 | 0.025 | 0.022 | YELLOW (15%) |
+
+**Key findings:**
+1. **ε = λ/√2 works:** Predicts sin²θ13 = 0.025 (15% from PDG) without fitting
+2. **No new [I] dependency:** Uses only λ [BL] + geometric √2 factor
+3. **Discrete θ12 = 35° achieves GREEN:** No PDG-smuggling required for θ12
+4. **C2 fails:** κ_q/κ_ℓ ≈ 0.4 is too small; would need ~0.66
+
+**Epistemic assessment:**
+- θ23: **GREEN [Dc]** — Z6 geometry (unchanged)
+- θ13: **YELLOW [BL→Dc]** — ε = λ/√2, predicted not fit
+- θ12: **YELLOW [I]** — 35° discrete or 33.7° identified
+
+**Code:** `code/pmns_attempt4_1_derive_epsilon.py`
+**LaTeX:** `sections/ch6_pmns_attempt4_1_derive_epsilon.tex`
+
+---
+
 ### Pending: Attempt 4 (CKM δ Refinement)
 
 **Target:** Improve δ from 120° (Z₃ minimal) to ~65° (PDG)
@@ -263,3 +297,4 @@ U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
 | 1.1 | 2026-01-22 | OPR-05 upgraded to YELLOW (PMNS Attempt 2: θ₂₃ derived) |
 | 1.2 | 2026-01-22 | PMNS Attempt 3: Z₆ discrete phases failed to fix θ₁₂, θ₁₃ |
 | 1.3 | 2026-01-22 | **PMNS Attempt 4: Rank-2 + ε achieves GREEN numerically; OPR-05 → YELLOW [Dc/I]** |
+| 1.4 | 2026-01-22 | **PMNS Attempt 4.1: ε = λ/√2 closes reactor scale (15% accuracy); no PDG-smuggling** |
