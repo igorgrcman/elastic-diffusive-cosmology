@@ -63,7 +63,7 @@ with hidden assumptions.
 |----|------|--------|-------------|---------|----------|-------------|
 | OPR-09 | Quark profile ansatz | RED [P] | Exponential postulated | Derive from 5D Dirac BVP | P2 | Solve thick-brane fermion equation |
 | OPR-10 | κ_q/κ_ℓ ≈ 0.4 | YELLOW [I] | Identified from data | First-principles mechanism | P2 | Derive localization asymmetry |
-| OPR-11 | (ρ̄, η̄) derivation | RED (open) | Structure Aλ³ correct | Complex prefactor origin | P2 | Requires Z₂ parity derivation (see OPR-12) |
+| OPR-11 | (ρ̄, η̄) derivation | **YELLOW [Dc]+[P]** | Odd sign-flip rule [Dc]; brane-reflection parity [P] | Specific element from BVP | P2 | See §7 Z₂ parity origin; BVP profiles needed |
 | OPR-12 | CP phase δ | **YELLOW [Dc]+[I]** | Phase Cancellation Thm [Dc]; Z₂→δ=60° (5° from PDG) | Z₂ parity assignment [I] | P2 | **Attempt 4 DONE**: δ improved from 55° to 5° error |
 | OPR-13 | Jarlskog J | YELLOW [Dc] | J = 2.9×10⁻⁵ (no calibration) | δ refinement | P2 | Already partial success |
 
@@ -121,7 +121,7 @@ The following items block major claims and should be prioritized:
 
 1. **OPR-02**: KK tower truncation — needed for N_gen = 3
 2. ~~**OPR-05**: PMNS mixing angles~~ → **PARTIAL SUCCESS (Attempt 2)**: θ₂₃ derived [Dc], θ₁₂/θ₁₃ remain open (downgraded to P2)
-3. ~~**OPR-11/12**: (ρ̄, η̄) and δ~~ → **Attempt 4 DONE**: Phase Cancellation Theorem [Dc], Z₂ selection gives δ=60° (5° from PDG). OPR-11 remains RED, OPR-12 upgraded to YELLOW [Dc]+[I]
+3. ~~**OPR-11/12**: (ρ̄, η̄) and δ~~ → **Attempt 4 + Z₂ DONE**: Phase Cancellation Theorem [Dc], Z₂ sign-selection gives δ=60° (5° from PDG). **OPR-11 upgraded to YELLOW [Dc]+[P]** (odd sign-flip rule [Dc], brane-reflection parity [P]), OPR-12 upgraded to YELLOW [Dc]+[I]
 4. ~~**OPR-17**: SU(2)_L embedding~~ → **PARTIAL (YELLOW [P])**: where/how fixed; origin+masses remain OPEN
 5. **OPR-19–22**: G_F chain — sanity skeleton + **chain tightening** (g₅ canonical + KK spectrum [Dc]); first-principles numerics still RED-C
 
@@ -311,18 +311,33 @@ U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
 
 ---
 
-### Pending: Attempt 4 (CKM δ Refinement)
+### Completed: CKM Attempt 4 + Z₂ Parity (OPR-11/12)
 
-**Target:** Improve δ from 120° (Z₃ minimal) to ~65° (PDG)
+**Target:** Improve δ from 120° (Z₃ minimal) to ~65° (PDG); derive (ρ̄, η̄) sign structure
 **Constraint:** Preserve J ~ 3×10⁻⁵ (already within 6%)
 
-**Mechanisms to test:**
-- M1: Z₆ = Z₂×Z₃ "half-phase" selection
-- M2: Non-uniform discrete charges for u/d sectors
-- M3: Z₂-controlled sign flips in overlaps
-- M4: Minimal holonomy/torsion
+**Mechanisms tested:**
+- M1: Z₆ = Z₂×Z₃ "half-phase" selection → δ = 60° ✓
+- M2: Non-uniform discrete charges → J = 0 (Phase Cancellation Theorem)
+- **M3: Z₂-controlled sign flips → δ = 60° ✓ (SELECTED)**
+- M4: Minimal holonomy/torsion → δ = 60° ✓
 
-**Status:** Pending implementation
+**Key results:**
+| Claim | Status | Note |
+|-------|--------|------|
+| Phase Cancellation Theorem | **GREEN [Dc]** | Pure Z₃ gives J = 0 identically |
+| Sign-flip count rule | **GREEN [Dc]** | Odd # of flips → δ = 60° |
+| Brane-reflection parity | **YELLOW [P]** | Geometric interpretation |
+| Specific element (V_cb/V_ub) | **[OPEN]** | Requires BVP profile computation |
+
+**Numerical accuracy:**
+- δ = 60° (PDG: 65°, error 5°)
+- J = 2.9×10⁻⁵ (PDG: 3.08×10⁻⁵, error 6%)
+
+**Code:** `tools/check_z2_parity_sign_rule.py`
+**LaTeX:** `sections/ch7_z2_parity_origin.tex`
+
+**Status:** COMPLETE — OPR-11: RED → YELLOW [Dc]+[P]; OPR-12: YELLOW [Dc]+[I]
 
 ---
 
@@ -337,3 +352,4 @@ U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
 | 1.4 | 2026-01-22 | **PMNS Attempt 4.1: ε = λ/√2 closes reactor scale (15% accuracy); no PDG-smuggling** |
 | 1.5 | 2026-01-22 | **PMNS Attempt 4.2: θ₁₂ = arctan(1/√2) provides geometric origin (8.6% off); OPR-05c → [Dc]** |
 | 1.6 | 2026-01-22 | **BVP Work Package: OPR-02/21 → RED-C; solver skeleton + acceptance criteria documented** |
+| 1.7 | 2026-01-22 | **OPR-11 Z₂ Parity Origin: RED → YELLOW [Dc]+[P]**; Sign-flip rule [Dc], brane-reflection parity [P] |
