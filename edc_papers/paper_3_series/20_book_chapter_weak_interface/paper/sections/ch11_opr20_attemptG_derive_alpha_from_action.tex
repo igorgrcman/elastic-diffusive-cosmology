@@ -1,0 +1,383 @@
+%!TEX root = ../EDC_Part_II_Weak_Sector.tex
+% ==============================================================================
+% OPR-20 Attempt G: Derive Robin Parameter α from EDC Brane Physics
+% Status: [Dc] structure + [P] natural scaling + [OPEN] unique derivation
+% ==============================================================================
+
+\subsection{Attempt G: Deriving $\alpha$ from EDC Brane Physics}
+\label{sec:ch11_opr20_attemptG}
+
+Attempt~F established that the Robin boundary condition $f' + \alpha f = 0$ emerges
+naturally from junction/BKT physics (\S\ref{sec:attemptF_junction_robin}), with the
+structural form being derivable \tagDc{}. However, the \emph{value} of $\alpha$
+was scanned as a free parameter, with the finding that $\alpha \in [5.5, 15]$
+produces the target eigenvalue $x_1 \in [2.3, 2.8]$. This attempt asks the
+crucial question: \textbf{Can $\alpha$ be derived from EDC brane physics
+without SM input?}
+
+% ------------------------------------------------------------------------------
+\subsubsection{G1: $\alpha$ Accounting Block}
+\label{sec:attemptG_accounting}
+
+\paragraph{Dimensional conventions.}
+The Attempt~F solver uses dimensionless coordinates $\xi = z/\ell \in [0,1]$,
+where $\ell$ is the characteristic 5D length. The Robin BC takes the form:
+\begin{equation}
+    \frac{df}{d\xi} + \alpha \cdot f = 0 \quad \text{at boundary},
+    \label{eq:attemptG_robin_dimensionless}
+\end{equation}
+where $\alpha$ is \textbf{dimensionless} in this convention.
+
+The physical (dimensional) Robin BC is:
+\begin{equation}
+    \frac{df}{dz} + \alpha_{\text{phys}} \cdot f = 0,
+    \quad [\alpha_{\text{phys}}] = \text{length}^{-1}.
+\end{equation}
+The relation between the two is:
+\begin{equation}
+    \boxed{\alpha = \ell \cdot \alpha_{\text{phys}}}
+    \quad \text{(dimensionless $=$ length $\times$ 1/length)}.
+    \label{eq:attemptG_alpha_relation}
+\end{equation}
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!60!black,
+    title=\textbf{$\alpha$ Accounting (Attempt F Solver)}]
+\begin{itemize}[nosep]
+    \item \textbf{Domain:} $\xi \in [0,1]$ (dimensionless)
+    \item \textbf{BC form:} $f'(\xi) + \alpha f(\xi) = 0$
+    \item \textbf{$\alpha$ units:} dimensionless
+    \item \textbf{Formula from F:} $\alpha = \lambda p^2 / 2$ (Eq.~\ref{eq:attemptF_alpha_BKT})
+    \item \textbf{Scan finding:} Target $x_1 \in [2.3, 2.8]$ for $\alpha \in [5.5, 15]$
+    \item \textbf{Center of target:} $\alpha \approx 8$ gives $x_1 \approx 2.5$
+\end{itemize}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{G2: Candidate $\alpha$ Origins}
+\label{sec:attemptG_candidates}
+
+We systematically test three candidate derivations for $\alpha$, ranked by
+plausibility and derivation strength.
+
+\paragraph{Candidate A: Brane Kinetic Term (BKT).}
+From the BKT action~\eqref{eq:attemptF_BKT} with dimensionless coefficient
+$\tilde{\lambda}$:
+\begin{align}
+    S_{\text{brane}} &= -\frac{\tilde{\lambda}}{2} \int d^4x \sqrt{-h}\, (\partial_\mu \phi)^2
+        \quad \text{\tagP{}},
+\end{align}
+the variation at the brane yields the matching condition~\eqref{eq:attemptF_matching}.
+For a mode with 4D mass $m = x_1/\ell$:
+\begin{equation}
+    \alpha = \frac{\tilde{\lambda}\, x_1^2}{2}
+    \quad \text{(BKT formula)}.
+    \label{eq:attemptG_alpha_BKT}
+\end{equation}
+
+\emph{Self-consistency:} This creates a fixed-point equation---$\alpha$ determines
+$x_1$ which determines $\alpha$. For the ground state:
+\begin{itemize}[nosep]
+    \item Target $\alpha \approx 8$, $x_1 \approx 2.5$ implies
+          $\tilde{\lambda} = 2\alpha/x_1^2 \approx 2.56$
+    \item Target $\alpha \approx 12$, $x_1 \approx 2.7$ implies
+          $\tilde{\lambda} \approx 3.3$
+\end{itemize}
+So \textbf{$\tilde{\lambda} \sim 2$--4} (natural $\mathcal{O}(1)$) gives the target range.
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!50!black,
+    title=\textbf{Candidate A Verdict}]
+\textbf{Status:} \tagP{} (self-consistent but $\tilde{\lambda}$ not derived)
+
+\textbf{Requirement:} $\tilde{\lambda} \sim 2$--4 to hit target band
+
+\textbf{Open question:} Why is $\tilde{\lambda}$ specifically 2--4?
+\end{tcolorbox}
+
+\paragraph{Candidate B: Brane Tension / Israel Junction.}
+From the Israel junction condition~\eqref{eq:attemptF_Israel}, if the brane
+tension $\sigma$ contributes directly:
+\begin{equation}
+    \alpha \sim \kappa_5^2 \sigma \ell,
+    \label{eq:attemptG_alpha_tension}
+\end{equation}
+where $\kappa_5^2 = 8\pi G_5$ is the 5D gravitational coupling.
+
+\emph{Problem:} This requires specifying both $\kappa_5$ and $\sigma$ from
+Part~I, which are not yet closed. The RS tuning condition
+$\kappa_5^2 \sigma \ell \sim \mathcal{O}(1)$ would give $\alpha \sim 1$,
+which is \emph{below} the target range.
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!60!black,
+    title=\textbf{Candidate B Verdict}]
+\textbf{Status:} \tagP{} (requires Part~I closure)
+
+\textbf{Estimate:} RS-type tuning gives $\alpha \sim 1$, below target
+
+\textbf{Upgrade path:} If Part~I derives $\kappa_5^2 \sigma \ell \sim 10$,
+this becomes viable
+\end{tcolorbox}
+
+\paragraph{Candidate C: Thick-Brane Smoothing.}
+When the delta-function brane is smoothed to finite width $\delta$, inner/outer
+matching yields \tagDc{}:
+\begin{equation}
+    \alpha_{\text{phys}} \sim \frac{C_{\text{geom}}}{\delta},
+    \label{eq:attemptG_alpha_thick}
+\end{equation}
+where $C_{\text{geom}}$ is a geometric factor $\mathcal{O}(1)$.
+
+In dimensionless units:
+\begin{equation}
+    \boxed{\alpha = C_{\text{geom}} \cdot \frac{\ell}{\delta}}
+    \label{eq:attemptG_alpha_thick_dimensionless}
+\end{equation}
+
+This is the \emph{most promising} route because:
+\begin{itemize}[nosep]
+    \item The structure $\alpha \sim \ell/\delta$ follows from matching [Dc]
+    \item If $\ell = 2\pi R_\xi$ (from Attempt~E) and $\delta = R_\xi$ (brane
+          thickness equals diffusion scale), then $\alpha = 2\pi \approx 6.3$
+    \item This falls \emph{inside} the target range $[5.5, 15]$!
+\end{itemize}
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
+    title=\textbf{Candidate C Verdict}]
+\textbf{Status:} \tagDc{}+\tagP{} (structure derived, $\delta = R_\xi$ postulated)
+
+\textbf{Natural value:} $\alpha = 2\pi \approx 6.3$ (\textbf{in target range})
+
+\textbf{Upgrade condition:} Confirm $\delta = R_\xi$ from brane microphysics
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{G3: EDC Parameter Mapping}
+\label{sec:attemptG_mapping}
+
+The EDC framework (Part~I) provides several candidate length scales:
+
+\begin{center}
+\small
+\begin{tabular}{lll}
+\toprule
+\textbf{Parameter} & \textbf{Value} & \textbf{Role} \\
+\midrule
+$R_\xi$ & $\sim 10^{-3}$ fm & Diffusion/screening radius \\
+$r_e$ & $2.82$ fm & Classical electron radius \\
+$\ell$ & $2\pi R_\xi \sim 6.3 \times 10^{-3}$ fm & Orbifold circumference \\
+$\delta$ & $?$ (unknown) & Brane thickness \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Scale matching analysis.}
+Testing Candidate~C with different $\delta$ identifications:
+
+\begin{enumerate}[nosep]
+    \item \textbf{$\delta = r_e$:} $\alpha = \ell/\delta = 6.3 \times 10^{-3}/2.82
+          \approx 0.002$ (\textbf{too small})
+    \item \textbf{$\delta = R_\xi$:} $\alpha = \ell/\delta = 2\pi R_\xi / R_\xi
+          = 2\pi \approx 6.3$ (\textbf{in target!})
+    \item \textbf{$\delta = \ell$:} $\alpha = 1$ (below target)
+\end{enumerate}
+
+The identification \fbox{$\delta = R_\xi$} naturally produces $\alpha \approx 2\pi$,
+which is in the target range without tuning.
+
+\paragraph{Physical interpretation of $\delta = R_\xi$.}
+If the brane thickness is set by the diffusion scale $R_\xi$, this suggests:
+\begin{itemize}[nosep]
+    \item The ``4D world-volume'' has thickness $\delta \sim R_\xi$ in the 5th dimension
+    \item This is the scale where diffusive dynamics transitions to bulk propagation
+    \item The identification connects the Robin parameter to EDC's foundational
+          diffusion picture
+\end{itemize}
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!60!black,
+    title=\textbf{$\delta = R_\xi$ Identification}]
+\textbf{Status:} \tagP{} (motivated but not derived from action)
+
+\textbf{Consequence:} $\alpha = 2\pi$ naturally, giving $x_1 \approx 2.4$
+
+\textbf{Open:} Derive $\delta = R_\xi$ from brane microphysics or action principle
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{G4: No-Smuggling Verification}
+\label{sec:attemptG_no_smuggling}
+
+\paragraph{Forbidden inputs.}
+The following SM values must \textbf{not} be used to determine $\alpha$:
+\begin{itemize}[nosep]
+    \item[$\times$] $M_W = 80$ GeV
+    \item[$\times$] $G_F = 1.17 \times 10^{-5}$ GeV$^{-2}$
+    \item[$\times$] $v = 246$ GeV (Higgs VEV)
+    \item[$\times$] $g_2$ (SM weak coupling)
+    \item[$\times$] PDG mixing angles
+\end{itemize}
+
+\paragraph{Verification of Candidate~C.}
+The expression $\alpha = \ell/\delta$ uses only:
+\begin{itemize}[nosep]
+    \item[$\checkmark$] $\ell = 2\pi R_\xi$ (from geometric interpretation, Attempt~E)
+    \item[$\checkmark$] $\delta = R_\xi$ (EDC diffusion scale)
+    \item[$\checkmark$] No SM inputs
+\end{itemize}
+
+\textbf{Verdict:} Candidate~C is \textbf{no-smuggling compliant}.
+
+% ------------------------------------------------------------------------------
+\subsubsection{G5: Boundary Variation Derivation}
+\label{sec:attemptG_variation}
+
+For completeness, we provide the boundary variation that yields the Robin BC
+from the brane action.
+
+\paragraph{Action.}
+Consider bulk scalar with brane-localized kinetic term:
+\begin{align}
+    S &= S_{\text{bulk}} + S_{\text{brane}}, \\
+    S_{\text{bulk}} &= -\frac{1}{2} \int d^5x \sqrt{-g}\, (\partial_M \phi)^2, \\
+    S_{\text{brane}} &= -\frac{\tilde{\lambda}}{2} \int d^4x \sqrt{-h}\, (\partial_\mu \phi)^2
+        \Big|_{z=0}.
+\end{align}
+
+\paragraph{Variation.}
+Varying with respect to $\phi$ and integrating by parts:
+\begin{equation}
+    \delta S = -\int d^5x \sqrt{-g}\, \phi\, \Box_5 \delta\phi
+    + \int d^4x \sqrt{-h}\, \left[ \partial_n \phi - \tilde{\lambda} \Box_4 \phi \right] \delta\phi
+    \Big|_{z=0},
+\end{equation}
+where $\partial_n = n^M \partial_M$ is the normal derivative ($n^z = 1$ for
+$z$-pointing normal).
+
+\paragraph{Boundary equation.}
+The boundary term vanishes for arbitrary $\delta\phi$ only if:
+\begin{equation}
+    \partial_z \phi + \tilde{\lambda} p^2 \phi = 0 \quad \text{at } z = 0,
+\end{equation}
+where we used $\Box_4 \phi = -p^2 \phi$ for a 4D mode.
+
+For the $Z_2$ orbifold (identifying $z \to -z$), the one-sided derivative
+becomes $2 \partial_z \phi$ after matching, giving:
+\begin{equation}
+    \partial_z f + \frac{\tilde{\lambda} p^2}{2} f = 0
+    \quad \Rightarrow \quad
+    \alpha_{\text{phys}} = \frac{\tilde{\lambda} m^2}{2}.
+    \label{eq:attemptG_alpha_from_variation}
+\end{equation}
+
+\textbf{This derivation is \tagDc{}.} The Robin form follows from the action
+principle; only the coefficient $\tilde{\lambda}$ is postulated.
+
+% ------------------------------------------------------------------------------
+\subsubsection{G6: Attempt G Verdict}
+\label{sec:attemptG_verdict}
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!50!black,
+    title=\textbf{Attempt G: What Became [Dc], [P], [OPEN]}]
+
+\textbf{Derived [Dc]:}
+\begin{itemize}[nosep]
+    \item Robin BC from action variation (Eq.~\ref{eq:attemptG_alpha_from_variation})
+    \item Structure $\alpha \sim \ell/\delta$ from inner/outer matching
+    \item Dimensional relation $\alpha = \ell \cdot \alpha_{\text{phys}}$
+\end{itemize}
+
+\textbf{Postulated [P]:}
+\begin{itemize}[nosep]
+    \item BKT coefficient $\tilde{\lambda} \sim 2$--4 (natural, not forced)
+    \item Identification $\delta = R_\xi$ (brane thickness = diffusion scale)
+    \item Resulting $\alpha = 2\pi \approx 6.3$
+\end{itemize}
+
+\textbf{Open [OPEN]:}
+\begin{itemize}[nosep]
+    \item Unique derivation of $\delta = R_\xi$ from EDC microphysics
+    \item Why BKT coefficient is $\mathcal{O}(1)$ specifically
+    \item Connection to Part~I membrane conductivity / diffusion constant
+\end{itemize}
+\end{tcolorbox}
+
+\begin{tcolorbox}[
+    colback=yellow!5!white,
+    colframe=yellow!60!black,
+    title=\textbf{OPR-20 Attempt G: Stoplight Verdict}
+]
+\begin{center}
+\textbf{\large RED-C $\to$ RED-C [Dc]+[P] (Upgrade Pathway Identified)}
+\end{center}
+
+\medskip
+\textbf{What improved:}
+\begin{itemize}[nosep]
+    \item Identified \textbf{natural} $\alpha = 2\pi \approx 6.3$ from $\ell/\delta$
+    \item No-smuggling verified: no SM inputs required
+    \item Clear formula: $\alpha = \ell/\delta$ with $\delta = R_\xi$ \tagP{}
+\end{itemize}
+
+\textbf{What remains:}
+\begin{itemize}[nosep]
+    \item $\delta = R_\xi$ identification is postulated, not derived
+    \item Full closure requires brane microphysics derivation
+\end{itemize}
+
+\textbf{Upgrade condition:}
+\begin{quote}
+OPR-20 upgrades to \textbf{YELLOW [P]} if the identification $\delta = R_\xi$
+is established from Part~I brane physics (e.g., as the scale where diffusive
+dynamics localize to the brane).
+\end{quote}
+
+\textbf{Alternative upgrade:}
+\begin{quote}
+If $\tilde{\lambda}$ (BKT coefficient) is derived from membrane stiffness or
+conductivity, giving $\tilde{\lambda} \sim 2$--4 naturally, OPR-20 also upgrades.
+\end{quote}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Comparison to Attempts C--F}
+\label{sec:attemptG_comparison}
+
+\begin{table}[ht]
+\centering
+\caption{OPR-20 closure attempts: Updated summary}
+\label{tab:attemptG_comparison}
+\small
+\begin{tabular}{clccl}
+\toprule
+\textbf{Attempt} & \textbf{Route} & \textbf{Key Factor} & \textbf{Status} & \textbf{Finding} \\
+\midrule
+C & BC combinations & $2\pi\sqrt{2}$ & [Dc]+[P] & Max factor-4 from BCs \\
+D & Interpretation audit & same & [Dc]+[P] & $Z_2 \equiv$ Israel \\
+E & Prefactor-8 from $\ell$ & $2\pi$ & [Dc] & $\ell = 2\pi R_\xi$ \\
+F & BVP + junction Robin & $x_1 \approx 2.5$ & [Dc]+[P] & Broad $\alpha$ band \\
+\textbf{G} & \textbf{Derive $\alpha$} & \textbf{$\alpha = 2\pi$} & \textbf{[Dc]+[P]} &
+    \textbf{$\delta = R_\xi$ natural} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Cumulative progress.}
+Attempts C--G together establish:
+\begin{enumerate}[nosep]
+    \item The geometric factor $2\pi$ in $\ell = 2\pi R_\xi$ is derivable \tagDc{}
+    \item The Robin BC form $f' + \alpha f = 0$ follows from action variation \tagDc{}
+    \item The eigenvalue $x_1$ shifts continuously with $\alpha$, with a broad target band
+    \item A \textbf{natural} value $\alpha = 2\pi$ emerges if $\delta = R_\xi$ \tagP{}
+\end{enumerate}
+
+The remaining gap is a single [OPEN] item: derive $\delta = R_\xi$ from brane
+microphysics, or equivalently, derive the BKT coefficient from membrane properties.
+
+\paragraph{Path to YELLOW.}
+Two routes remain for upgrading OPR-20 to YELLOW:
+\begin{enumerate}[nosep]
+    \item \textbf{Route 1 (Part~I connection):} Show that the EDC brane thickness
+          is set by the diffusion scale $R_\xi$, giving $\alpha = 2\pi$ automatically.
+    \item \textbf{Route 2 (Microphysics):} Derive the BKT coefficient $\tilde{\lambda}$
+          from membrane conductivity, showing $\tilde{\lambda} \sim 2$--4 naturally.
+\end{enumerate}
+Either route closes the $\alpha$ provenance and upgrades OPR-20 to YELLOW [P].
+

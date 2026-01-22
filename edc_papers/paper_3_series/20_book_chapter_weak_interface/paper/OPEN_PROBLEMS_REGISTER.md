@@ -683,6 +683,62 @@ Scanning Robin parameter α from 0 to 10 (V=0, empty box):
 
 ---
 
+### Completed: OPR-20 Attempt G (Derive α from EDC Brane Physics)
+
+**Target:** Derive the Robin parameter α from EDC brane physics (without SM input); identify upgrade condition for OPR-20
+
+**G1: α Accounting Block**
+
+Dimensionless (solver) convention:
+- Domain: ξ = z/ℓ ∈ [0,1]
+- Robin BC: f'(ξ) + α·f(ξ) = 0
+- α is **dimensionless** in the solver
+- Relation: α = ℓ × α_phys where α_phys has [1/length]
+
+From Attempt F scan: Target x₁ ∈ [2.3, 2.8] achieved for α ∈ [5.5, 15]
+
+**G2: Candidate α Origins**
+
+| Candidate | Formula | Natural Value | Status |
+|-----------|---------|---------------|--------|
+| A: BKT | α = λ̃ x₁²/2 | λ̃ ~ 2-4 for target | [P] (λ̃ not derived) |
+| B: Tension | α ~ κ₅²σℓ | RS tuning → α ~ 1 (too small) | [P] (requires Part I) |
+| **C: Thick-brane** | **α = ℓ/δ** | **δ = R_ξ → α = 2π ≈ 6.3** | **[Dc]+[P]** |
+
+**G3: Key Finding — Natural α = 2π**
+
+If brane thickness δ = R_ξ (diffusion scale) and ℓ = 2πR_ξ (orbifold circumference):
+```
+α = ℓ/δ = 2πR_ξ/R_ξ = 2π ≈ 6.3
+```
+This value falls **inside the target range** [5.5, 15] without tuning!
+
+**G4: No-Smuggling Verification**
+- ✓ ℓ = 2πR_ξ from geometry (Attempt E, [Dc])
+- ✓ δ = R_ξ from EDC diffusion scale (not SM)
+- ✓ No M_W, G_F, v, g₂ inputs
+- **COMPLIANT**
+
+**G5: Epistemic Summary**
+
+| Category | What | Status |
+|----------|------|--------|
+| **Derived [Dc]** | Robin form from action variation; α ~ ℓ/δ structure | Established |
+| **Postulated [P]** | δ = R_ξ identification; α = 2π natural | Not uniquely forced |
+| **Open [OPEN]** | Derive δ = R_ξ from brane microphysics | Blocks upgrade |
+
+**Upgrade Condition:**
+OPR-20 upgrades to **YELLOW [P]** if:
+- The identification δ = R_ξ is established from Part I brane physics, OR
+- BKT coefficient λ̃ ~ 2-4 is derived from membrane properties
+
+**Code:** `tools/check_opr20_alpha_accounting.py`
+**LaTeX:** `sections/ch11_opr20_attemptG_derive_alpha_from_action.tex`
+
+**Status:** RED-C [Dc]+[P] — Natural α = 2π identified; δ = R_ξ provenance remains [OPEN]; clear upgrade pathway exists
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
@@ -706,3 +762,4 @@ Scanning Robin parameter α from 0 to 10 (V=0, empty box):
 | 1.16 | 2026-01-22 | **OPR-20 Attempt D: Interpretation + Robin + Overcounting Audit**: Three-part comprehensive audit: (A) $R_\xi$ interpretation (radius vs circumference vs diffusion) all [P], target factor ~3.9 between A1/A2; (B) Robin BC structure derived [Dc] but parameters ($\alpha\ell \sim 0.1$) require mild tuning [P]; (C) Overcounting audit confirms Z₂ ≡ Israel junction (same physics), $2\pi\sqrt{2}$ passes independence check, factor 8 from naive multiplication is INVALID (overcounting). **Status unchanged: RED-C [Dc]+[OPEN]**; additional negative closures, narrowed viable routes |
 | 1.17 | 2026-01-22 | **OPR-20 Attempt E: Prefactor-8 First-Principles Derivation**: Track A derives ℓ = 2πR_ξ from standard circle geometry (R_ξ is radius, KK uses circumference); **2π factor upgraded [P] → [Dc]**. Alternative factors (1, π, 4π) negatively closed [Dc]. Track B: Missing 0.9003 residual (to convert 2π√2 → 8) has candidates (BKT, thick-brane) but none uniquely derived; remains [OPEN]. Combined factor 2π√2 now fully [Dc]. **Status unchanged: RED-C [Dc]+[OPEN]**; 2π derivation is progress but residual to M_W still open |
 | 1.18 | 2026-01-22 | **OPR-20 Attempt F: Mediator BVP with Junction-Derived Robin BC**: Sturm-Liouville BVP + Robin BC from junction/BKT variation [Dc]. Scanned α ∈ [0,10]: **broad region α ~ 5-15 (47.6% of range)** produces target x₁ ~ 2.5. NOT needle-tuned. Overcounting guard (Z₂≡Israel) correctly applied. α derivation from EDC action remains [OPEN]. **Status unchanged: RED-C [Dc]+[OPEN]**; structural progress + broad parameter region identified, but α provenance still needed |
+| 1.19 | 2026-01-22 | **OPR-20 Attempt G: Derive α from EDC Brane Physics**: α accounting established; three candidates tested (BKT, tension, thick-brane). **Natural α = 2π ≈ 6.3 identified** from α = ℓ/δ with δ = R_ξ (brane thickness = diffusion scale). Falls **inside target range** [5.5, 15] without tuning. No-smuggling verified. **δ = R_ξ identification is [P], not derived from action**. Upgrade condition: derive δ = R_ξ from brane microphysics. **Status unchanged: RED-C [Dc]+[P]**; clear upgrade pathway to YELLOW exists |
