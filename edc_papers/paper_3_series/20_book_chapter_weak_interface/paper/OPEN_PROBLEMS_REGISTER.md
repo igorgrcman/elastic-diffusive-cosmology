@@ -1,6 +1,6 @@
 # Open Problems Register (OPR) — Part II: Weak Sector
 
-**Version:** 1.10
+**Version:** 1.11
 **Date:** 2026-01-22
 **Status:** Active research program
 
@@ -414,6 +414,41 @@ U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
 
 ---
 
+### Completed: OPR-20 Factor-8 Forensic Sweep (Attempt A3)
+
+**Target:** Derive the factor C ≈ 7.75 needed to bring Candidate A's m_φ ~ 620 GeV down to M_W ~ 80 GeV
+
+**Result:** Attack surface narrowed but no [Dc] closure; status remains RED-C [OPEN]
+
+**Factor-8 suspects surveyed:**
+
+| Rank | Candidate | C value | Error | Tag | Assessment |
+|------|-----------|---------|-------|-----|------------|
+| 1 | Robin BC (tuned) | 7.75 | +0.5% | [P] | Exact fit but α must be tuned |
+| 2 | 8 (octahedral/2³) | 8.00 | +3.7% | [P] | Best numeric match, no derivation |
+| 3 | √2 × 2π | 8.89 | +15% | [P] | If Z₂ contributes √2 |
+| 4 | 2π (circumference) | 6.28 | -19% | [Dc] | **Best derived factor** |
+| 5 | 4π/3 (sphere volume) | 4.19 | -46% | [Dc] | Too small |
+
+**Key findings:**
+1. **No [Dc] candidate within 10%:** Best derived factor is 2π ≈ 6.28 (19% below target)
+2. **C = 8 is suggestive:** Best numeric match (3.7% off) but lacks derivation
+3. **Tunable candidates exist:** Robin BC or junction α can match exactly but are [P]
+4. **Attack surface narrowed:** Either BC eigenvalue, junction normalization, or R_ξ value must be revised
+
+**What would close OPR-20:**
+1. Derive x₁ ≠ π from physical BCs (x₁ ≈ π/8 needed)
+2. Derive junction normalization factor of order 8 from Israel matching
+3. Derive R_ξ ≈ 8 × 10⁻³ fm from first principles
+4. Motivate C = 8 from discrete symmetry (Z₆ × Z₂ or topology)
+
+**Code:** `tools/scan_factor8_mechanisms.py` → `code/output/opr20_factor8_scan.txt`
+**LaTeX:** `sections/ch11_g5_ell_suppression_attempt3_factor8.tex`
+
+**Status:** RED-C [OPEN] — Factor-8 suspects enumerated; no [Dc] closure. Attack surface: BC/junction/R_ξ.
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
@@ -429,3 +464,4 @@ U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
 | 1.8 | 2026-01-22 | **OPR-22 G_F Full Closure Plan: RED-C → YELLOW [Dc]+[OPEN]**; Closure spine + no-smuggling guardrails |
 | 1.9 | 2026-01-22 | **OPR-19/20 Value Closure Attempt**: G1 ($g^2 = 4\pi\sigma r_e^3/\hbar c$) promising (11% from SM); L1/L2 for $\ell$ surveyed—no SM-free closure achieved. Status unchanged: RED-C [OPEN] |
 | 1.10 | 2026-01-22 | **OPR-20 Suppression Mechanism (Attempt A2)**: Candidate A ($f = R_\xi/r_e \sim 10^{-3}$) identified; factor-8 discrepancy ($m_\phi \approx 620$ GeV vs $M_W \approx 80$ GeV). Status: RED-C [OPEN], mechanism [P] |
+| 1.11 | 2026-01-22 | **OPR-20 Factor-8 Forensic Sweep (Attempt A3)**: 19 candidates surveyed; best [Dc] is 2π (19% off); C=8 best fit but [P]. Attack surface narrowed to BC/junction/R_ξ. Status unchanged: RED-C [OPEN] |

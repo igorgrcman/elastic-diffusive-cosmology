@@ -1,0 +1,320 @@
+%!TEX root = ../EDC_Part_II_Weak_Sector.tex
+% ==============================================================================
+% Chapter 11: Factor-8 Forensic Sweep (OPR-20 Attempt 3)
+% Status: Mechanism candidates surveyed [P]; closure still RED-C [OPEN]
+% ==============================================================================
+
+\subsection{Factor-8 Forensic Sweep: Attempt A3}
+\label{sec:ch11_factor8_attempt}
+
+\subsubsection{Context from Attempt A2}
+
+The previous suppression mechanism analysis (\S\ref{sec:ch11_suppression_attempt})
+established Candidate~A as the most promising SM-free approach:
+\begin{equation}
+    f_A = \frac{R_\xi}{r_e} \sim 10^{-3}
+    \quad\Rightarrow\quad
+    m_\phi^A = \frac{x_1}{\ell_A} = \frac{\pi \hbar c}{R_\xi}
+    \approx 620 \text{ GeV}
+    \label{eq:ch11_a2_recap}
+\end{equation}
+where we used $x_1 = \pi$ (Dirichlet BCs) and $R_\xi \sim 10^{-3}$ fm.
+
+\paragraph{The problem.}
+The target mediator mass is $M_W \approx 80$ GeV. Candidate~A overshoots by:
+\begin{equation}
+    \boxed{
+    C_{\text{required}} = \frac{m_\phi^A}{M_W} = \frac{620}{80} \approx 7.75
+    }
+    \label{eq:ch11_factor8_required}
+\end{equation}
+
+\paragraph{Goal of this section.}
+Systematically survey \textbf{SM-free mechanisms} that could supply a factor
+$C \approx 7.75$, thereby closing the gap \emph{without importing weak-scale inputs}.
+
+\begin{tcolorbox}[colback=blue!5, colframe=blue!60!black,
+    title=\textbf{Executive Summary: Factor-8 Forensic Sweep}]
+\textbf{Question:} Can we find a derived factor $C \approx 7.75$ from boundary
+conditions, junction matching, or geometric normalization?
+
+\textbf{Result:} Several candidates come within 10--30\% of the target, but
+\textbf{none is uniquely derived} from existing EDC formalism. All remain \tagP{}.
+
+\textbf{Best candidates:}
+\begin{itemize}[nosep]
+    \item $C = 2\pi \approx 6.28$ (20\% off) --- Dirichlet-to-periodic BC ratio
+    \item $C = 8$ (3\% off) --- ``octahedral factor'' from $\mathbb{Z}_6 \times \mathbb{Z}_2$ if motivated
+    \item $C = \pi^2/(\pi/4) = 4\pi \approx 12.6$ (63\% off) --- half-wavelength vs quarter-wavelength
+\end{itemize}
+
+\textbf{Status:} OPR-20 remains \textbf{RED-C [OPEN]}. Attack surface narrowed to
+BC/junction normalization choice. Explicit derivation still needed.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{No-Smuggling Checklist}
+\label{sec:ch11_factor8_guardrails}
+
+Before proceeding, we explicitly verify that no SM weak-scale inputs contaminate
+the analysis:
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!60!black,
+    title=\textbf{No-Smuggling Checklist (Attempt A3)}]
+\textbf{Forbidden inputs (must NOT appear in any candidate formula):}
+\begin{itemize}[nosep]
+    \item[\ding{55}] $M_W = 80$ GeV (target mass --- forbidden as input)
+    \item[\ding{55}] $G_F = 1.17 \times 10^{-5}$ GeV$^{-2}$ (target of derivation)
+    \item[\ding{55}] $v = 246$ GeV (Higgs VEV --- defined via $G_F$)
+    \item[\ding{55}] $\sin^2\theta_W = 0.231$ from experiment
+    \item[\ding{55}] Any ratio constructed \emph{a posteriori} to give $C = 7.75$
+\end{itemize}
+
+\textbf{Allowed inputs:}
+\begin{itemize}[nosep]
+    \item[\ding{51}] $\sigma r_e^2 = 5.86$ MeV \tagDc{} (from $\mathbb{Z}_6$ geometry)
+    \item[\ding{51}] $r_e = 1$ fm \tagP{} (lattice spacing postulate)
+    \item[\ding{51}] $R_\xi \sim 10^{-3}$ fm \tagP{} (from Part I diffusion)
+    \item[\ding{51}] Eigenvalue roots $x_n$ from Sturm--Liouville BVP \tagDc{}
+    \item[\ding{51}] Geometric factors from $\mathbb{Z}_6$, $\mathbb{Z}_2$ symmetry \tagDc{}/\tagP{}
+    \item[\ding{51}] Israel junction conditions (general form) \tagBL{}/\tagDc{}
+\end{itemize}
+
+\textbf{Procedure:} Each candidate factor $C$ is computed from allowed inputs
+only. A posteriori comparison to 7.75 is a \emph{consistency check}, not calibration.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Factor-8 Suspect Table}
+\label{sec:ch11_factor8_table}
+
+We survey four classes of mechanisms that could supply $C \approx 7.75$:
+
+\begin{table}[ht]
+\centering
+\caption{Factor-8 suspect mechanisms for OPR-20}
+\label{tab:ch11_factor8_suspects}
+\small
+\begin{tabular}{p{3.8cm}lcccc}
+\toprule
+\textbf{Mechanism} & \textbf{Symbol} & \textbf{$C$ value} & \textbf{Error vs 7.75} & \textbf{Derived?} & \textbf{Tag} \\
+\midrule
+\multicolumn{6}{l}{\textit{(a) Eigenvalue / BC factors}} \\
+Dirichlet $\to$ Neumann & $x_1^D / x_1^N = \pi / (\pi/2)$ & 2.00 & $-74\%$ & \tagDc{} & rejected \\
+Dirichlet $\to$ periodic & $x_1^D / x_1^P = \pi / (2\pi)^{-1}$ & $2\pi$ & $-19\%$ & \tagDc{} & candidate \\
+Robin BC ($\alpha = 1$) & $x_1(\alpha)$ & varies & — & \tagP{} & tunable \\
+Mixed Neumann-Dirichlet & $x_1^{ND}$ & $\approx \pi/2$ & $-80\%$ & \tagDc{} & rejected \\
+\addlinespace
+\multicolumn{6}{l}{\textit{(b) Junction / normalization factors}} \\
+Israel matching $\sqrt{1+\alpha}$ & — & $\sqrt{1+\alpha}$ & tunable & \tagP{} & requires $\alpha \approx 59$ \\
+Brane tension ratio & $\sigma_b / \sigma$ & unknown & — & \tagP{} & unspecified \\
+Mode normalization $(1+\kappa g_5^2)$ & — & $1+\kappa g_5^2$ & tunable & \tagP{} & see Cand.~B \\
+\addlinespace
+\multicolumn{6}{l}{\textit{(c) Geometric factors from discrete symmetry}} \\
+$2\pi$ (circumference/radius) & $2\pi$ & 6.28 & $-19\%$ & \tagDc{} & candidate \\
+$\sqrt{2} \cdot 2\pi$ & $\sqrt{2} \cdot 2\pi$ & 8.89 & $+15\%$ & \tagP{} & if from $\mathbb{Z}_2$ \\
+$8$ (octahedral / $\mathbb{Z}_6 \times \mathbb{Z}_2$) & 8 & 8.00 & $+3\%$ & \tagP{} & best numeric \\
+$4\pi/3$ (sphere area factor) & $4\pi/3$ & 4.19 & $-46\%$ & \tagDc{} & rejected \\
+$8/\pi$ (lattice geometry) & $8/\pi$ & 2.55 & $-67\%$ & \tagP{} & rejected \\
+\addlinespace
+\multicolumn{6}{l}{\textit{(d) Effective length redefinition}} \\
+$\ell_{\text{eff}} = \ell / C$ via BKT & — & requires $c_\kappa$ & — & \tagP{} & see Cand.~B \\
+$R_\xi \to 8 R_\xi$ postulate & 8 & 8.00 & $+3\%$ & \tagP{} & ad hoc \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Analysis of Leading Candidates}
+\label{sec:ch11_factor8_analysis}
+
+\paragraph{(a) Eigenvalue / BC factors.}
+
+The KK mass formula is $m_n = x_n / \ell$, where $x_n$ is the $n$-th eigenvalue
+of the Sturm--Liouville problem. Different BCs give different $x_1$:
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Boundary condition} & \textbf{$x_1$} & \textbf{$C = \pi / x_1$} \\
+\midrule
+Dirichlet--Dirichlet & $\pi$ & 1.00 \\
+Neumann--Neumann & $0$ (zero mode) & $\infty$ \\
+Dirichlet--Neumann & $\pi/2$ & 2.00 \\
+Periodic & $2\pi/L$ (depends on $L$) & varies \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Problem:} Standard BCs give $C \leq 2$, far from the required 7.75.
+The only way to get large $C$ from eigenvalues is via \emph{Robin BCs} with
+fine-tuned parameter, which would be \tagP{}.
+
+\paragraph{(b) Junction / normalization factors.}
+
+The Israel junction condition at a brane relates the extrinsic curvature jump
+to the brane stress-energy:
+\begin{equation}
+    [K_{\mu\nu}] - [K] h_{\mu\nu} = -\kappa_5^2 S_{\mu\nu}
+    \label{eq:ch11_israel}
+\end{equation}
+This introduces a dimensionless parameter $\alpha = \kappa_5^2 \sigma_b \ell$
+(brane tension times length scale). Corrections to mode normalization scale as:
+\begin{equation}
+    C_{\text{junction}} \sim \sqrt{1 + \alpha}
+    \quad\text{or}\quad
+    C_{\text{junction}} \sim (1 + \alpha)
+    \label{eq:ch11_junction_factor}
+\end{equation}
+depending on whether the correction enters linearly or quadratically.
+
+\textbf{Problem:} To get $C \approx 8$, we need $\alpha \approx 63$ (for linear)
+or $\alpha \approx 7$ (for $\sqrt{1+\alpha}$). Neither value is derived from
+existing EDC parameters.
+
+\paragraph{(c) Geometric factors from discrete symmetry.}
+
+Several factors of order $\sim 2\pi$ appear naturally in EDC:
+\begin{itemize}[nosep]
+    \item $2\pi$: ratio of circumference to radius (standard geometry)
+    \item $4\pi$: solid angle / area of unit sphere
+    \item $8 = 2^3$: number of octants / corners of unit cube
+\end{itemize}
+
+The factor $C = 2\pi \approx 6.28$ is 19\% below target, tantalizingly close.
+If we could motivate a $\sqrt{2}$ enhancement from $\mathbb{Z}_2$ parity
+(as in the CKM sector), we get $\sqrt{2} \cdot 2\pi \approx 8.89$, which is
+15\% above target.
+
+\textbf{Best numeric match:} $C = 8$ (exactly) is within 3\% of the required 7.75.
+However, this value has no \emph{derived} origin in current formalism. It would
+be \tagP{} unless we can show:
+\begin{itemize}[nosep]
+    \item $\mathbb{Z}_6 \times \mathbb{Z}_2 = \mathbb{Z}_{12}$ contributes a factor of 8
+          via counting/degeneracy argument, or
+    \item Bulk topology gives 8-fold covering, or
+    \item Some other discrete structure yields exactly 8.
+\end{itemize}
+
+\paragraph{(d) Effective length redefinition.}
+
+If the ``physical'' length scale is not $R_\xi$ but $R_\xi / C$ for some $C$,
+then the mass formula becomes:
+\begin{equation}
+    m_\phi = \frac{x_1 \cdot C}{R_\xi}
+    \label{eq:ch11_ell_eff}
+\end{equation}
+This is equivalent to redefining $R_\xi \to C \cdot R_\xi$. Without a derivation
+of $C$, this is just moving the problem.
+
+% ------------------------------------------------------------------------------
+\subsubsection{Summary: Ranked Candidate List}
+\label{sec:ch11_factor8_ranking}
+
+\begin{table}[ht]
+\centering
+\caption{Factor-8 candidates ranked by proximity to target}
+\label{tab:ch11_factor8_ranking}
+\small
+\begin{tabular}{clcccl}
+\toprule
+\textbf{Rank} & \textbf{Candidate} & \textbf{$C$} & \textbf{Error} & \textbf{Tag} & \textbf{Assessment} \\
+\midrule
+1 & Octahedral / $2^3$ & 8.00 & $+3\%$ & \tagP{} & Best fit, no derivation \\
+2 & $\sqrt{2} \cdot 2\pi$ & 8.89 & $+15\%$ & \tagP{} & If $\mathbb{Z}_2$ contributes \\
+3 & $2\pi$ & 6.28 & $-19\%$ & \tagDc{} & Circumference ratio \\
+4 & Robin BC ($\alpha = 7$) & 7.75 & $0\%$ & \tagP{} & Exact fit but tuned \\
+5 & Israel $\sqrt{1+\alpha}$ ($\alpha=59$) & 7.75 & $0\%$ & \tagP{} & Exact fit but tuned \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Interpretation.}
+\begin{itemize}[nosep]
+    \item \textbf{No [Dc] candidate matches within 10\%.} The closest derived factor
+          is $2\pi \approx 6.28$ (19\% off).
+    \item \textbf{Exact fits require tuning.} Robin BC or junction parameter can
+          be chosen to give $C = 7.75$ exactly, but this is calibration, not derivation.
+    \item \textbf{$C = 8$ is suggestive.} If a discrete symmetry argument
+          (e.g., $2^3$ from three generations or $\mathbb{Z}_8$ subgroup) can be
+          motivated, this would be a compelling closure. Currently \tagP{}.
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Closure Path Forward}
+\label{sec:ch11_factor8_closure_path}
+
+\paragraph{What would close OPR-20.}
+Any of the following would upgrade the factor-8 from \tagP{} to \tagDc{}:
+
+\begin{enumerate}[nosep]
+    \item \textbf{Derive $x_1 \neq \pi$ from physical BCs.}
+          If the correct BC at the brane is \emph{not} Dirichlet but Robin with
+          parameter $\alpha$ derived from membrane physics, and if $x_1(\alpha) \approx \pi/8$,
+          then Candidate~A would give $m_\phi \approx 80$ GeV directly.
+
+    \item \textbf{Derive junction normalization factor.}
+          If Israel matching with EDC brane tension gives a mode normalization
+          correction of order 8, this would close the gap.
+
+    \item \textbf{Derive $R_\xi$ more precisely.}
+          If the diffusion correlation length is actually $R_\xi \approx 8 \times 10^{-3}$ fm
+          rather than $10^{-3}$ fm, and this value is derived from first principles,
+          then Candidate~A would match $M_W$ directly.
+
+    \item \textbf{Motivate $C = 8$ from discrete symmetry.}
+          Show that $\mathbb{Z}_6 \times \mathbb{Z}_2$ or bulk topology contributes
+          a factor of exactly 8 via counting or degeneracy.
+\end{enumerate}
+
+\paragraph{Recommended next action.}
+\begin{itemize}[nosep]
+    \item \textbf{BVP solver priority:} Compute KK spectrum with physical $V(z)$
+          and brane BCs derived from membrane action. Check if $m_1 \approx 80$ GeV
+          emerges naturally.
+    \item \textbf{Junction analysis:} Compute Israel matching for EDC brane with
+          known tension $\sigma$ and extract mode normalization correction.
+    \item \textbf{$R_\xi$ review:} Revisit Part~I derivation of diffusion correlation
+          length; check if factor of 8 is hidden in approximations.
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Attempt A3 Verdict}
+\label{sec:ch11_factor8_verdict}
+
+\begin{tcolorbox}[colback=green!5, colframe=green!50!black,
+    title=\textbf{OPR-20 Factor-8 Forensic Sweep: Status}]
+
+\textbf{Before this section:}
+\begin{quote}
+OPR-20: RED-C [OPEN] --- Candidate A ($f = R_\xi/r_e$) overshoots $M_W$ by factor $\sim 8$;
+origin of discrepancy unexplained.
+\end{quote}
+
+\textbf{After this section:}
+\begin{quote}
+OPR-20: \textbf{RED-C [OPEN]} --- Factor-8 suspects enumerated; attack surface narrowed.
+\begin{itemize}[nosep]
+    \item Best numeric match: $C = 8$ (3\% off), but \tagP{} (no derivation)
+    \item Best derived factor: $C = 2\pi$ (19\% off), from circumference geometry \tagDc{}
+    \item Tunable candidates (Robin BC, junction $\alpha$) can fit exactly but are \tagP{}
+\end{itemize}
+\end{quote}
+
+\medskip
+\noindent\fbox{\parbox{0.94\textwidth}{\small
+\textbf{Honest verdict:} The factor-8 discrepancy is \emph{not resolved}. We have
+identified several plausible mechanisms but none with derived status.
+
+\textbf{Progress:} The attack surface is now sharply defined:
+\begin{itemize}[nosep]
+    \item Either the BC eigenvalue $x_1$ is smaller than $\pi$ by factor $\sim 8$, or
+    \item A junction/normalization factor of order 8 exists, or
+    \item $R_\xi$ is factor 8 larger than currently assumed.
+\end{itemize}
+These are concrete, testable hypotheses for the BVP work package.
+
+\textbf{Remaining gap:} Derive one of the above from EDC first principles.
+Until then, OPR-20 closure requires \tagP{} postulate for the factor-8.}}
+\end{tcolorbox}
+
