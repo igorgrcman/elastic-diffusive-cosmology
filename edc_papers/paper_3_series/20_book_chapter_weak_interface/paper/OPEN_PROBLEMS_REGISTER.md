@@ -48,7 +48,7 @@ with hidden assumptions.
 | ID | Item | Status | Established | Missing | Priority | Next Action |
 |----|------|--------|-------------|---------|----------|-------------|
 | OPR-04 | Absolute neutrino masses | RED (open) | Suppression mechanism | First-principles m_νi values | P2 | Solve edge-mode BVP with Higgs profile |
-| OPR-05 | PMNS mixing angles | **YELLOW [Dc]** | **θ₂₃ derived (3%)** | θ₁₂, θ₁₃ require additional physics | P2 | Attempt 2/3 DONE; discrete Z₆ phases insufficient; need non-abelian extension |
+| OPR-05 | PMNS mixing angles | **YELLOW [Dc/I]** | **θ₂₃ derived (3%); structure identified** | θ₁₂⁰, ε geometric origins | P2 | **Attempt 4: Rank-2 + ε achieves GREEN numerically; θ₁₂, θ₁₃ [I] not [Dc]** |
 | OPR-06 | PMNS CP phase δ | RED (open) | Not addressed | Rephasing-invariant phase | P2 | Apply Z₃ phase mechanism (cf. Ch7) |
 | OPR-07 | Dirac vs Majorana | RED (open) | Both compatible | Discrimination criterion | P3 | Investigate Majorana mass term in 5D |
 | OPR-08 | Z₃ breaking for PMNS | YELLOW [P] | Mechanism postulated | Explicit calculation | P2 | Quantify breaking perturbations |
@@ -189,6 +189,57 @@ Based on the analysis, these are the research directions with maximum payoff:
 
 ---
 
+### Completed: PMNS Attempt 4 (OPR-05)
+
+**Target:** Test structured perturbative approaches to reproduce the asymmetric PMNS pattern
+**Result:** GREEN numerically, YELLOW epistemically
+
+| Model | Track | sin²θ₁₂ | sin²θ₂₃ | sin²θ₁₃ | [Cal] | Status |
+|-------|-------|---------|---------|---------|-------|--------|
+| PDG 2024 | [BL] | 0.307 | 0.546 | 0.022 | — | — |
+| A4-1 | A | 0.308 | 0.564 | 0.022 | None* | **GREEN** |
+| A4-1 | B | 0.308 | 0.564 | 0.022 | ε | **GREEN** |
+| A4-2 | A | 0.124 | 0.959 | 0.019 | None | YELLOW |
+| A4-2 | B | 0.142 | 0.966 | 0.022 | r | YELLOW |
+| A4-3 | A | 0.219 | 0.602 | 0.000 | None | RED |
+| A4-3 | B | 0.281 | 0.624 | 0.007 | κ_e | YELLOW |
+
+*Track A uses θ₁₂⁰ = 33.7° from discrete set; see epistemic note below.
+
+**Best configuration (A4-1):**
+- θ₂₃⁰ = arcsin√0.564 ≈ 48.7° — **[Dc]** from Z₆ geometry (Attempt 2)
+- θ₁₂⁰ = 33.7° — **[I]** identified (matches PDG exactly, no geometric derivation)
+- ε = 0.15 rad — **[I/Cal]** (produces sin²θ₁₃ = 0.022)
+
+**Construction:**
+```
+U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
+```
+
+**Key findings:**
+1. **Structure identified:** The asymmetric PMNS pattern can be produced by rank-2 baseline with reactor perturbation
+2. **θ₂₃ preserved:** Geometric derivation from Attempt 2 (sin²θ₂₃ = 0.564) survives in A4-1
+3. **θ₁₂ requires input:** No discrete geometric angle naturally produces θ₁₂ ≈ 33.7°
+4. **θ₁₃ controllable:** Set by ε; ε ≈ 0.15 rad gives observed value (no geometric origin)
+5. **Double-path fails (A4-2):** Breaks θ₂₃, pushing to ~0.96
+6. **Flavor-κ insufficient (A4-3):** Cannot simultaneously fit all three angles
+
+**Epistemic assessment:**
+- θ₂₃: **GREEN [Dc]** — derived from Z₆ geometry
+- θ₁₂: **YELLOW [I]** — structure works, value not derived
+- θ₁₃: **YELLOW [I/Cal]** — controlled by ε, value not derived
+- Overall OPR-05: **YELLOW [Dc/I]** — θ₂₃ derived; θ₁₂, θ₁₃ structure identified but values require derivation
+
+**What remains open:**
+- Geometric origin of θ₁₂⁰ ≈ 33.7°
+- Geometric origin of ε ≈ 0.15 rad
+- CP phase δ_PMNS (not addressed)
+
+**Code:** `code/pmns_attempt4_menu_sweep.py`
+**LaTeX:** `sections/ch6_pmns_attempt4_menu.tex`
+
+---
+
 ### Pending: Attempt 4 (CKM δ Refinement)
 
 **Target:** Improve δ from 120° (Z₃ minimal) to ~65° (PDG)
@@ -211,3 +262,4 @@ Based on the analysis, these are the research directions with maximum payoff:
 | 1.0 | 2026-01-22 | Initial register from Part II scan |
 | 1.1 | 2026-01-22 | OPR-05 upgraded to YELLOW (PMNS Attempt 2: θ₂₃ derived) |
 | 1.2 | 2026-01-22 | PMNS Attempt 3: Z₆ discrete phases failed to fix θ₁₂, θ₁₃ |
+| 1.3 | 2026-01-22 | **PMNS Attempt 4: Rank-2 + ε achieves GREEN numerically; OPR-05 → YELLOW [Dc/I]** |
