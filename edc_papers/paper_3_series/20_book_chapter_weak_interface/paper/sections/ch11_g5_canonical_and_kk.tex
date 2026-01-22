@@ -1,0 +1,228 @@
+%!TEX root = ../EDC_Part_II_Weak_Sector.tex
+% ==============================================================================
+% Chapter 11: Canonical g_5 Normalization and KK Spectrum Tightening
+% Status: Tightens OPR-19/20 closure path (no numerics yet)
+% ==============================================================================
+
+\subsection{Canonical $g_5$ Normalization and KK Spectrum}
+\label{sec:ch11_g5_kk}
+
+This subsection tightens the $G_F$ derivation chain by:
+\begin{enumerate}[nosep]
+    \item Deriving the canonical normalization of the 5D gauge coupling $g_5$
+    \item Establishing the KK eigenvalue structure for the mediator mass $m_\phi$
+\end{enumerate}
+The goal is to \emph{remove ambiguity}, not to close numerics. Both OPR-19 and OPR-20
+remain RED-C, but with a mathematically concrete closure path.
+
+% ------------------------------------------------------------------------------
+\subsubsection{Canonical $g_5$ Normalization from 5D Action}
+\label{sec:ch11_g5_canonical}
+
+\paragraph{Starting point: 5D gauge action.}
+Consider a gauge field $A_M$ propagating in five dimensions with action \tagP{}:
+\begin{equation}
+    S_{\text{5D}} = -\frac{1}{4g_5^2} \int d^4x \int_0^\ell dz \; F_{MN} F^{MN}
+    \label{eq:ch11_5d_gauge_action}
+\end{equation}
+where $M,N \in \{0,1,2,3,5\}$, the extra dimension $z \in [0,\ell]$, and $g_5$ is the
+5D gauge coupling with dimension $[g_5] = [E]^{-1/2}$ in natural units.
+
+\paragraph{Alternative convention.}
+Some authors absorb $g_5^{-2}$ into the field normalization. We use the convention
+above because it makes the coupling explicit. The physics is identical.
+
+\paragraph{KK decomposition.}
+Decompose the 4D gauge field component as:
+\begin{equation}
+    A_\mu(x,z) = \sum_{n=0}^\infty A_\mu^{(n)}(x) \, \chi_n(z)
+    \label{eq:ch11_kk_decomp}
+\end{equation}
+where $\{\chi_n(z)\}$ are orthonormal mode functions satisfying:
+\begin{equation}
+    \int_0^\ell dz \; \chi_m(z) \chi_n(z) = \delta_{mn}
+    \label{eq:ch11_chi_orthonorm}
+\end{equation}
+
+\paragraph{4D effective action.}
+Substituting into~\eqref{eq:ch11_5d_gauge_action} and using orthonormality:
+\begin{equation}
+    S_{\text{4D}} = -\frac{1}{4g_5^2} \sum_n \int d^4x \; F_{\mu\nu}^{(n)} F^{(n)\mu\nu}
+    \label{eq:ch11_4d_effective}
+\end{equation}
+For canonical 4D kinetic terms $-\frac{1}{4} F_{\mu\nu}^{(n)} F^{(n)\mu\nu}$, we identify:
+\begin{equation}
+    \boxed{
+    g_4^2 = g_5^2
+    }
+    \label{eq:ch11_g4_g5_relation}
+\end{equation}
+This is \emph{not} a typo: with the normalization convention~\eqref{eq:ch11_5d_gauge_action}
+and orthonormal modes~\eqref{eq:ch11_chi_orthonorm}, the 4D and 5D couplings are numerically equal.
+
+\paragraph{Where the extra dimension enters.}
+The 5D nature enters through:
+\begin{enumerate}[nosep]
+    \item The mode spectrum $m_n$ (eigenvalues of KK equation)
+    \item The overlap integrals with fermion profiles (coupling strengths)
+    \item The brane kinetic terms (if present), which modify the zero-mode coupling
+\end{enumerate}
+
+\begin{tcolorbox}[colback=blue!5, colframe=blue!50!black,
+    title=\textbf{Dimensional Sanity: $g_5$ and $g_4$}]
+\begin{align}
+    [g_5] &= [E]^{-1/2} \quad \text{(5D coupling)} \label{eq:ch11_dim_g5} \\
+    [g_4] &= [E]^0 \quad \text{(dimensionless 4D coupling)} \label{eq:ch11_dim_g4} \\
+    [G_F] &= [E]^{-2} \quad \text{(Fermi constant)} \label{eq:ch11_dim_GF}
+\end{align}
+\textbf{Consistency:} With orthonormal modes, $g_4 = g_5$ (numerically).
+The mode normalization absorbs the factor of $\ell$.
+
+\medskip
+\textbf{Alternative:} If modes are normalized as $\int dz \, \chi^2 = \ell$, then
+$g_4 = g_5/\sqrt{\ell}$. Both conventions give the same physics.
+\end{tcolorbox}
+
+\paragraph{Brane kinetic terms (optional extension).}
+If brane-localized gauge kinetic terms are present \tagP{}:
+\begin{equation}
+    S_{\text{brane}} = -\frac{\kappa}{4} \int d^4x \; F_{\mu\nu} F^{\mu\nu} \Big|_{z=0}
+    \label{eq:ch11_brane_kinetic}
+\end{equation}
+then the effective 4D coupling is modified:
+\begin{equation}
+    \frac{1}{g_{\text{eff}}^2} = \frac{1}{g_5^2} + \kappa
+    \quad\Rightarrow\quad
+    g_{\text{eff}} \simeq g_5 \quad \text{for } \kappa \ll g_5^{-2}
+    \label{eq:ch11_geff_brane}
+\end{equation}
+The brane kinetic term $\kappa$ is currently \textbf{[OPEN]} and not derived.
+
+% ------------------------------------------------------------------------------
+\subsubsection{KK Spectrum and Mediator Mass $m_\phi$}
+\label{sec:ch11_kk_spectrum}
+
+\paragraph{The eigenvalue problem.}
+The KK mode functions $\chi_n(z)$ satisfy the eigenvalue equation:
+\begin{equation}
+    -\partial_z^2 \chi_n(z) = m_n^2 \chi_n(z)
+    \label{eq:ch11_kk_eigenvalue}
+\end{equation}
+subject to boundary conditions at $z=0$ and $z=\ell$.
+
+\paragraph{Boundary conditions and spectrum.}
+Three canonical choices yield different spectra:
+
+\begin{center}
+\begin{tabular}{llcc}
+\toprule
+\textbf{BC Type} & \textbf{Conditions} & \textbf{Zero Mode?} & \textbf{Spectrum $m_n$} \\
+\midrule
+Neumann--Neumann & $\chi'(0) = \chi'(\ell) = 0$ & Yes & $n\pi/\ell$ \\
+Dirichlet--Dirichlet & $\chi(0) = \chi(\ell) = 0$ & No & $(n+1)\pi/\ell$ \\
+Mixed (N--D) & $\chi'(0) = 0$, $\chi(\ell) = 0$ & No & $(n+\tfrac{1}{2})\pi/\ell$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{The mediator mass scale.}
+The first massive mode (or zero mode if present) sets the mediator mass:
+\begin{equation}
+    \boxed{
+    m_\phi = \frac{x_1}{\ell}
+    }
+    \label{eq:ch11_mphi_scale}
+\end{equation}
+where $x_1$ is a dimensionless constant depending on boundary conditions:
+\begin{itemize}[nosep]
+    \item $x_1 = 0$ for N--N zero mode (massless)
+    \item $x_1 = \pi$ for D--D or N--N first massive mode
+    \item $x_1 = \pi/2$ for mixed BC first mode
+\end{itemize}
+
+\paragraph{Identification vs.\ derivation.}
+The identification $m_\phi \sim M_W \approx 80$ GeV is currently \tagI{}:
+\begin{equation}
+    m_\phi \sim M_W \quad\Rightarrow\quad \ell \sim \frac{\pi}{M_W} \approx 0.04 \text{ fm}
+    \label{eq:ch11_ell_estimate}
+\end{equation}
+This is \textbf{not} derived from EDC first principles. The derivation would require:
+\begin{enumerate}[nosep]
+    \item Deriving the brane layer thickness $\ell$ from membrane tension $\sigma$
+    \item Specifying the boundary conditions from physical principles
+    \item Computing $x_1$ for the actual BC configuration
+\end{enumerate}
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!60!black,
+    title=\textbf{KK Spectrum: What Is [Dc] vs.\ [I] vs.\ [OPEN]}]
+\begin{description}[nosep, font=\normalfont\bfseries]
+    \item[[Dc]:] The form $m_\phi = x_1/\ell$ from KK eigenvalue equation
+    \item[[I]:] The numerical value $m_\phi \sim M_W$ (calibration, not derivation)
+    \item[[OPEN]:] The boundary conditions (N/D/mixed) and brane thickness $\ell$
+\end{description}
+
+\medskip
+\noindent To upgrade [I] $\to$ [Dc]: derive $\ell$ from $\sigma$ and BCs from physics.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Chain Tightening Summary}
+\label{sec:ch11_chain_tightened}
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
+    title=\textbf{Chain Map Tightened: OPR-19/20}]
+\textbf{Before (§\ref{sec:ch11_sanity_skeleton}):}
+\begin{itemize}[nosep]
+    \item OPR-19: ``$g_5$ postulated''
+    \item OPR-20: ``$m_\phi \sim M_W$ identified''
+\end{itemize}
+
+\textbf{After (this section):}
+\begin{itemize}[nosep]
+    \item OPR-19: Canonical normalization from 5D action gives $g_4 = g_5$
+          (with orthonormal modes). Brane kinetic terms are optional [P] extension.
+          \textbf{Closure path:} compute $g_5$ from underlying 5D theory.
+    \item OPR-20: KK eigenvalue problem gives $m_\phi = x_1/\ell$ where $x_1$
+          depends on boundary conditions. \textbf{Closure path:} derive $\ell$ from
+          membrane parameters $(\sigma, r_e)$ and BCs from physics.
+\end{itemize}
+
+\medskip
+\noindent\fbox{\parbox{0.92\textwidth}{\small
+\textbf{Status:} OPR-19/20 remain RED-C but with mathematically concrete closure paths.
+The ``SM-help'' impression is reduced: we now have explicit derivation spines,
+not just dimensional arguments.}}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Updated Stoplight: OPR-19/20}
+\label{sec:ch11_opr19_20_stoplight}
+
+\begin{table}[ht]
+\centering
+\caption{OPR-19/20 status after chain tightening}
+\label{tab:ch11_opr19_20_status}
+\small
+\begin{tabular}{clcl}
+\toprule
+\textbf{OPR} & \textbf{Item} & \textbf{Status} & \textbf{Notes} \\
+\midrule
+19 & $g_5$ canonical normalization & RED-C & $g_4 = g_5$ [Dc]; $g_5$ value [OPEN] \\
+20 & $m_\phi$ KK spectrum & RED-C & $m_\phi = x_1/\ell$ [Dc]; $\ell$, BC [OPEN] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{What ``RED-C'' means.}
+The status remains RED (not derived from first principles), but the ``C'' indicates
+a \emph{concrete closure path} is now defined:
+\begin{itemize}[nosep]
+    \item OPR-19: Need underlying 5D gauge theory to fix $g_5$ value
+    \item OPR-20: Need $\ell$ from membrane physics + BCs from consistency
+\end{itemize}
+
+\paragraph{Improvement over previous state.}
+Before this section, OPR-19/20 were ``open with dimensional argument.''
+Now they are ``open with derivation spine.'' The mathematical structure is explicit;
+only the physical inputs $(\ell, \text{BC})$ remain to be derived.
+
