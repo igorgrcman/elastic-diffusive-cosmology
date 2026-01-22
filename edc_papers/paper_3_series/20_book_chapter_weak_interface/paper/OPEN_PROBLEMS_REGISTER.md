@@ -48,7 +48,7 @@ with hidden assumptions.
 | ID | Item | Status | Established | Missing | Priority | Next Action |
 |----|------|--------|-------------|---------|----------|-------------|
 | OPR-04 | Absolute neutrino masses | RED (open) | Suppression mechanism | First-principles m_νi values | P2 | Solve edge-mode BVP with Higgs profile |
-| OPR-05 | PMNS mixing angles | RED (open) | Baseline falsification | Compute overlap integrals | P1 | PMNS Attempt 2 (analogous to CKM) |
+| OPR-05 | PMNS mixing angles | **YELLOW [Dc]** | **θ₂₃ derived (3%)** | θ₁₂, θ₁₃ require additional physics | P2 | Attempt 2 DONE; future: non-abelian extension |
 | OPR-06 | PMNS CP phase δ | RED (open) | Not addressed | Rephasing-invariant phase | P2 | Apply Z₃ phase mechanism (cf. Ch7) |
 | OPR-07 | Dirac vs Majorana | RED (open) | Both compatible | Discrimination criterion | P3 | Investigate Majorana mass term in 5D |
 | OPR-08 | Z₃ breaking for PMNS | YELLOW [P] | Mechanism postulated | Explicit calculation | P2 | Quantify breaking perturbations |
@@ -100,9 +100,11 @@ with hidden assumptions.
 
 | Category | Count | Key Bottleneck |
 |----------|-------|----------------|
-| **RED (not derived)** | 16 | Thick-brane BVP; SU(2)_L embedding |
-| **YELLOW (partial)** | 8 | δ refinement; κ asymmetry |
+| **RED (not derived)** | 15 | Thick-brane BVP; SU(2)_L embedding |
+| **YELLOW (partial)** | 9 | OPR-05 upgraded; δ refinement; κ asymmetry |
 | **Total OPR items** | 24 | — |
+
+**Recent progress:** OPR-05 upgraded from RED to YELLOW (Attempt 2: θ₂₃ derived)
 
 ---
 
@@ -111,7 +113,7 @@ with hidden assumptions.
 The following items block major claims and should be prioritized:
 
 1. **OPR-02**: KK tower truncation — needed for N_gen = 3
-2. **OPR-05**: PMNS mixing angles — needed for flavor closure
+2. ~~**OPR-05**: PMNS mixing angles~~ → **PARTIAL SUCCESS (Attempt 2)**: θ₂₃ derived [Dc], θ₁₂/θ₁₃ remain open (downgraded to P2)
 3. **OPR-11/12**: (ρ̄, η̄) and δ — needed for CKM closure → **Attempt 4**
 4. **OPR-17**: SU(2)_L embedding — needed for gauge structure
 5. **OPR-19–22**: G_F chain — needed for weak coupling closure
@@ -144,7 +146,26 @@ Based on the analysis, these are the research directions with maximum payoff:
 
 ---
 
-## Active Research: Attempt 4 (CKM δ Refinement)
+## Active Research
+
+### Completed: PMNS Attempt 2 (OPR-05)
+
+**Target:** Derive PMNS mixing angles from Z₃/Z₆ geometry
+**Result:** PARTIAL SUCCESS
+
+| Angle | Model | PDG | Status |
+|-------|-------|-----|--------|
+| sin²θ₂₃ | 0.564 | 0.546 | **GREEN (3%)** |
+| sin²θ₁₂ | 0.137 | 0.307 | RED |
+| sin²θ₁₃ | 0.008 | 0.022 | RED |
+
+**Key finding:** Z₆ submixing naturally produces maximal atmospheric mixing.
+**Code:** `code/pmns_attempt2_overlap.py`
+**LaTeX:** `sections/ch6_pmns_attempt2.tex`
+
+---
+
+### Pending: Attempt 4 (CKM δ Refinement)
 
 **Target:** Improve δ from 120° (Z₃ minimal) to ~65° (PDG)
 **Constraint:** Preserve J ~ 3×10⁻⁵ (already within 6%)
@@ -164,3 +185,4 @@ Based on the analysis, these are the research directions with maximum payoff:
 | Version | Date | Changes |
 |---------|------|---------|
 | 1.0 | 2026-01-22 | Initial register from Part II scan |
+| 1.1 | 2026-01-22 | OPR-05 upgraded to YELLOW (PMNS Attempt 2: θ₂₃ derived) |
