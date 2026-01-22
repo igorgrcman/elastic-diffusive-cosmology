@@ -1,0 +1,149 @@
+==============================================================================
+OPR-20 RECONCILIATION AUDIT: Attempt E vs Attempt C/D
+==============================================================================
+
+ISSUE IDENTIFIED: m_phi = 70 GeV (Attempt C) vs m_phi = 35 GeV (Attempt E)
+
+This is exactly a FACTOR OF 2 discrepancy.
+
+==============================================================================
+FORMULA COMPARISON
+==============================================================================
+
+ATTEMPT C (ch11_opr20_geometric_factor8_attemptC.tex, lines 196-210):
+-----------------------------------------------------------------------------
+Formula:    m_phi = x_1 / (C_geom * R_xi)
+            = pi / (2*pi*sqrt(2) * R_xi)
+            = 1 / (2*sqrt(2) * R_xi)
+
+Parameters:
+  - x_1 = pi (IMPLICIT: Dirichlet-Dirichlet BC, or full circle)
+  - C_geom = 2*pi*sqrt(2) = 8.886
+  - R_xi = 10^-3 fm
+
+Numeric:    m_phi = hbar*c / (2*sqrt(2) * R_xi)
+            = 197.3 MeV / (2.83 * 10^-3)
+            = 69.8 GeV
+
+ATTEMPT E (tools/check_opr20_prefactor8_attemptE.py):
+-----------------------------------------------------------------------------
+Formula:    m_phi = x_1 * hbar_c / ell
+            = x_1 * hbar_c / (factor * R_xi)
+
+Parameters:
+  - x_1 = pi/2 = 1.5708 (EXPLICIT: Neumann-Neumann BC on orbifold)
+  - factor = 2*pi*sqrt(2) = 8.886
+  - R_xi = 10^-3 fm
+
+Numeric:    m_phi = 1.5708 * 197.327 / (8.886 * 0.001)
+            = 310 / 8.886 = 34.9 GeV
+
+==============================================================================
+ROOT CAUSE: DIFFERENT x_1 VALUES
+==============================================================================
+
+Attempt C uses:  x_1 = pi = 3.1416
+Attempt E uses:  x_1 = pi/2 = 1.5708
+
+RATIO: pi / (pi/2) = 2  →  70 / 35 = 2  ✓  (explains discrepancy)
+
+WHY THE DIFFERENCE?
+------------------
+The choice of x_1 depends on boundary conditions:
+
+| BC Type            | x_1      | Physical Interpretation              |
+|--------------------|----------|--------------------------------------|
+| Dirichlet-Dirichlet| n*pi     | f(0)=f(L)=0; modes vanish at ends    |
+| Neumann-Neumann    | n*pi/2   | f'(0)=f'(L)=0; derivative vanishes   |
+| Mixed (D-N or N-D) | (n+1/2)*pi/2 | One vanishes, one derivative       |
+
+For Z_2 ORBIFOLD S^1/Z_2:
+- Physical interval is [0, L/2] (half-circle)
+- BC at fixed points depends on mode parity:
+  * EVEN modes (e.g., scalar, gravity): Neumann → x_1 = pi/2
+  * ODD modes (e.g., gauge A_5, axion): Dirichlet → x_1 = pi
+
+WHICH IS CORRECT FOR THE W/Z MEDIATOR?
+--------------------------------------
+The weak gauge boson W^± / Z^0 in 5D:
+- If treated as a bulk vector field → A_5 component is Z_2-odd → Dirichlet
+- If treated as brane-localized → No KK tower, different formula
+
+The sqrt(2) normalization factor comes from:
+- Orbifold mode normalization: int_0^{L/2} |f|^2 = 1 with period L
+- This gives sqrt(2) relative to full-circle normalization
+
+==============================================================================
+DIAGNOSIS
+==============================================================================
+
+The discrepancy is NOT double-counting or error.
+
+It is a DIFFERENT IMPLICIT ASSUMPTION about boundary conditions:
+- Attempt C implicitly assumes x_1 = pi (Dirichlet or full-circle picture)
+- Attempt E explicitly assumes x_1 = pi/2 (Neumann-Neumann on orbifold)
+
+BOTH ARE SELF-CONSISTENT within their assumptions.
+
+The question is: Which BC is physically correct for the weak mediator?
+
+==============================================================================
+RESOLUTION OPTIONS
+==============================================================================
+
+OPTION A: Neumann-Neumann is correct (scalar-like mediator)
+  - Use x_1 = pi/2, factor 2*pi*sqrt(2) → m_phi = 35 GeV
+  - This is 56% below M_W = 80 GeV
+  - Need factor 2.3 to match M_W
+
+OPTION B: Dirichlet-Dirichlet is correct (vector A_5 component)
+  - Use x_1 = pi, factor 2*pi*sqrt(2) → m_phi = 70 GeV
+  - This is 12% below M_W = 80 GeV
+  - Need factor 1.15 to match M_W
+
+OPTION C: Robin BC (junction-derived, Attempt F finding)
+  - x_1 can be tuned via alpha parameter
+  - With alpha ~ 6-10, x_1 ~ 2.5 → intermediate value
+  - This would give m_phi ~ 50-60 GeV
+
+==============================================================================
+RECOMMENDED FIX
+==============================================================================
+
+1. EXPLICIT BC TRACKING:
+   All OPR-20 attempts should explicitly state x_1 and its BC origin.
+
+2. CANONICAL CONVENTION:
+   Choose ONE interpretation and stick with it across all attempts:
+   - SUGGESTED: x_1 = pi (Dirichlet), giving m_phi = 70 GeV as baseline
+   - This is closer to M_W and matches Attempt C/D
+
+3. UPDATE ATTEMPT E:
+   - Note that x_1 = pi/2 was used (Neumann assumption)
+   - Add clarification that with x_1 = pi, result would be 70 GeV (consistent with C/D)
+   - Mark BC choice as [P] (postulated)
+
+4. ATTEMPT F CONTEXT:
+   - Attempt F already explores how Robin BC shifts x_1
+   - The broad region finding (alpha ~ 5-15 → x_1 ~ 2.5) is still valid
+   - But now we know the target depends on baseline BC choice
+
+==============================================================================
+NO [Dc] CLAIMS NEED TO CHANGE
+==============================================================================
+
+The following remain valid:
+- 2*pi factor from circumference interpretation [Dc]
+- sqrt(2) from orbifold normalization [Dc]
+- Combined factor 2*pi*sqrt(2) = 8.886 [Dc]
+- BC-eigenvalue relationship x_1 = n*pi/2 for Neumann [Dc] (mathematics)
+
+What is [P]:
+- The CHOICE of which BC applies to the weak mediator
+- Whether x_1 = pi or x_1 = pi/2
+
+What is [OPEN]:
+- Physical derivation of BC from EDC brane action
+- This is exactly what Attempt F addresses via junction → Robin
+
+==============================================================================
