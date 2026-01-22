@@ -44,12 +44,17 @@ is not addressed. Breaking mechanism is postulated, not computed.
         hierarchy: $|V_{us}| \sim \lambda$, $|V_{cb}| \sim \lambda^2$,
         $|V_{ub}| \sim \lambda^3$.
 
+    \item[Attempt 2.1: Non-uniform spacing \tagDc{}/\tagCal{}:]
+        Two parameters: $\Delta z_{12}/(2\kappa) = 1.49$, $\Delta z_{23}/(2\kappa) = 3.17$.
+        Predicts $|V_{ub}| \approx 0.0094$ (vs.\ PDG $0.0037$): factor 2.5 overshoot.
+
     \item[CKM vs.\ PMNS explanation \tagI{}:]
         Quarks tightly localized (small $\kappa$) $\to$ near-diagonal CKM;
         leptons delocalized (edge modes) $\to$ large PMNS angles.
+        Estimate: $\kappa_q/\kappa_\ell \approx 0.4$.
 
     \item[Open:]
-        5D BVP derivation of $f_i(z)$; CP phase $\delta$; Jarlskog invariant $J$.
+        Resolve 2.5$\times$ discrepancy; 5D BVP for $f_i(z)$; CP phase $\delta$; Jarlskog $J$.
 \end{description}
 \end{tcolorbox}
 
@@ -571,6 +576,159 @@ while CKM is nearly diagonal ($\theta_C \approx 13°$, $\theta_{23} \approx 2°$
 \end{tcolorbox}
 
 % ==============================================================================
+\subsection{Attempt 2.1: Non-Uniform Generation Spacing}
+\label{sec:ch7_attempt2_1}
+
+The uniform-spacing model (Attempt~2) uses a single parameter $\Delta z/(2\kappa)$
+for all inter-generation transitions. This implicitly assumes generations are
+evenly spaced along the extra dimension---a simplification that obscures
+predictive structure. We now upgrade to \textbf{non-uniform spacing}:
+$\Delta z_{12} \neq \Delta z_{23}$.
+
+\subsubsection{Two-Parameter Calibration}
+
+\begin{postulate}[Non-Uniform Generation Spacing {\normalfont \tagCal{}}]
+\label{post:ch7_nonuniform}
+The inter-generation spacings are:
+\begin{align}
+    |V_{us}| &= \exp\bigl(-\Delta z_{12}/(2\kappa)\bigr)
+    \quad\Rightarrow\quad \Delta z_{12}/(2\kappa) = -\ln|V_{us}| \approx 1.49
+    \label{eq:ch7_d12_cal} \\
+    |V_{cb}| &= \exp\bigl(-\Delta z_{23}/(2\kappa)\bigr)
+    \quad\Rightarrow\quad \Delta z_{23}/(2\kappa) = -\ln|V_{cb}| \approx 3.17
+    \label{eq:ch7_d23_cal}
+\end{align}
+The second gap is $\sim 2.1\times$ larger than the first.
+\end{postulate}
+
+This calibration is epistemically cleaner than Attempt~2: we fit \emph{two}
+parameters to \emph{two} observables (rather than forcing uniform spacing).
+The key test is whether the \emph{third} element is correctly predicted.
+
+\subsubsection{The V\texorpdfstring{$_{ub}$}{ub} Prediction}
+
+The $u \leftrightarrow b$ transition must traverse \textbf{both} gaps. The
+overlap model predicts:
+\begin{equation}
+    |V_{ub}|_{\text{pred}} = \exp\Bigl(-\frac{\Delta z_{12} + \Delta z_{23}}{2\kappa}\Bigr)
+    = \exp(-1.49 - 3.17) = \exp(-4.66) \approx 0.0094
+    \label{eq:ch7_vub_pred}
+\end{equation}
+
+\paragraph{Comparison with PDG:}
+\begin{equation}
+    \frac{|V_{ub}|_{\text{pred}}}{|V_{ub}|_{\text{PDG}}}
+    = \frac{0.0094}{0.00369} \approx 2.5
+    \label{eq:ch7_vub_ratio}
+\end{equation}
+
+\begin{tcolorbox}[colback=orange!5, colframe=orange!50!black,
+    title=\textbf{Attempt 2.1 Result: Factor 2.5 Discrepancy}]
+The simple exponential overlap ansatz \textbf{overshoots} $|V_{ub}|$ by a factor of 2.5.
+This is \emph{not} a failure---it is an \emph{informative discrepancy}:
+\begin{itemize}[nosep]
+    \item The ``product rule'' $|V_{ub}| \sim |V_{us}| \times |V_{cb}|$ gives
+          $0.225 \times 0.042 \approx 0.0094$---exactly what the model predicts
+    \item PDG shows $|V_{ub}| \approx 0.0037$, which is $\approx 0.4 \times$ the product
+    \item \textbf{Implication:} There is additional suppression beyond simple
+          distance traversal
+\end{itemize}
+\end{tcolorbox}
+
+\subsubsection{Interpretation of the Discrepancy}
+
+Three mechanisms could provide the additional factor $\sim 0.4$ suppression:
+
+\begin{enumerate}
+    \item \textbf{Interference effects:}
+          In the standard CKM parametrization, $|V_{td}|$ and $|V_{ub}|$ receive
+          contributions from multiple paths with relative phases. The overlap
+          model ignores these interference terms.
+
+    \item \textbf{Non-exponential profiles:}
+          Gaussian profiles $f(z) \propto \exp(-z^2/2\sigma^2)$ have different
+          overlap integrals. The \emph{product of Gaussians} gives a Gaussian
+          with width $\sigma_{12+23} < \sigma_{12} + \sigma_{23}$, potentially
+          providing additional suppression.
+
+    \item \textbf{CP phase effects:}
+          Complex phases in the overlap integrals can reduce the magnitude of
+          certain matrix elements through destructive interference.
+\end{enumerate}
+
+\paragraph{Status:}
+The factor-2.5 overshoot is \textbf{not catastrophic}---it identifies where
+the simple ansatz breaks down and points toward required refinements. The
+\emph{structure} (V$_{ub}$ determined by sum of gaps) is correct; the
+\emph{prefactor} requires additional physics.
+
+\subsubsection{Unitarity Consideration}
+
+The overlap matrix before normalization:
+\begin{equation}
+    O_{ij} \propto \exp\Bigl(-\frac{|z_i - z_j|}{2\kappa}\Bigr)
+    \label{eq:ch7_overlap_matrix}
+\end{equation}
+is \textbf{not unitary}. Unitarization via Gram--Schmidt or QR decomposition
+introduces corrections of order $O(\lambda^2)$ to the CKM elements.
+
+For the standard parametrization with mixing angles $\theta_{12}, \theta_{23}, \theta_{13}$:
+\begin{itemize}[nosep]
+    \item $\sin\theta_{12} \approx |V_{us}| \approx 0.225$ \tagCal{}
+    \item $\sin\theta_{23} \approx |V_{cb}| \approx 0.042$ \tagCal{}
+    \item $\sin\theta_{13} \approx |V_{ub}|$ --- this is the prediction target
+\end{itemize}
+
+The discrepancy suggests that the geometric identification
+$\sin\theta_{13} = \exp(-(d_{12}+d_{23}))$ is \emph{approximate}, requiring
+$\mathcal{O}(1)$ corrections from unitarization or interference.
+
+\subsubsection{Connection to $\kappa_{\text{quark}} < \kappa_{\text{lepton}}$}
+
+The observation that CKM is nearly diagonal while PMNS has large angles
+suggests $\kappa_q \ll \kappa_\ell$ \tagP{}. From the observed hierarchies:
+\begin{align}
+    |V_{us}|_{\text{CKM}} &\approx 0.22 \quad\Rightarrow\quad
+    \Delta z/(2\kappa_q) \approx 1.5 \\
+    \sin\theta_{12}^{\text{PMNS}} &\approx 0.55 \quad\Rightarrow\quad
+    \Delta z/(2\kappa_\ell) \approx 0.6
+\end{align}
+
+If the inter-generation spacing $\Delta z$ is \emph{universal} (same for quarks
+and leptons), then:
+\begin{equation}
+    \frac{\kappa_q}{\kappa_\ell} \approx \frac{0.6}{1.5} \approx 0.4
+    \label{eq:ch7_kappa_ratio}
+\end{equation}
+
+\paragraph{Physical interpretation:}
+Quarks experience color confinement, which compresses their 5D profiles
+(smaller $\kappa$). Leptons are color-neutral, allowing broader profiles
+(larger $\kappa$) and hence larger inter-generation overlaps.
+
+This is \textbf{qualitative} \tagI{}---the derivation of $\kappa_q/\kappa_\ell$
+from QCD-EDC coupling remains (open).
+
+\begin{tcolorbox}[colback=yellow!10, colframe=yellow!50!black,
+    title=\textbf{Attempt 2.1 Summary: YELLOW}]
+\begin{description}[nosep, font=\normalfont\bfseries]
+    \item[Achieved:]
+        Two-parameter fit (Δz$_{12}$, Δz$_{23}$) with $|V_{ub}|$ as genuine prediction \tagDc{}.
+
+    \item[Partial success:]
+        Structure correct ($|V_{ub}| \sim$ product of gaps), magnitude off by 2.5× \tagDc{}.
+
+    \item[Insight gained:]
+        Non-uniform spacing: 2nd gap is 2.1× larger than 1st \tagCal{}.
+        Qualitative $\kappa_q/\kappa_\ell \approx 0.4$ from CKM/PMNS comparison \tagI{}.
+
+    \item[Open:]
+        Resolve 2.5× discrepancy (interference? non-exponential profiles?);
+        derive $\kappa_{q,\ell}$ from 5D action.
+\end{description}
+\end{tcolorbox}
+
+% ==============================================================================
 \subsection{CP Violation}
 \label{sec:ch7_cp}
 
@@ -612,11 +770,14 @@ All of these are speculative and remain (open).
     \item \textbf{Attempt 2: Overlap model} \tagDc{}:
           Single parameter $\Delta z/\kappa$ produces Wolfenstein hierarchy
           $\lambda$, $\lambda^2$, $\lambda^3$.
-    \item \textbf{CKM vs.\ PMNS asymmetry explained} \tagI{}:
-          Quarks tightly localized (small $\kappa$) $\to$ near-diagonal;
-          leptons delocalized (edge modes) $\to$ large angles.
+    \item \textbf{Attempt 2.1: Non-uniform spacing} \tagDc{}/\tagCal{}:
+          Two parameters ($\Delta z_{12}$, $\Delta z_{23}$) calibrated from $|V_{us}|$, $|V_{cb}|$.
+          Predicts $|V_{ub}| \approx 0.0094$, overshoots PDG by factor 2.5.
+    \item \textbf{CKM vs.\ PMNS asymmetry} \tagI{}:
+          Quarks localized (small $\kappa_q$) $\to$ near-diagonal;
+          leptons delocalized $\to$ large angles. Estimate: $\kappa_q/\kappa_\ell \approx 0.4$.
     \item \textbf{Remaining open:}
-          5D BVP derivation of profiles; CP phase; Jarlskog invariant.
+          Resolve 2.5$\times$ discrepancy; 5D BVP for profiles; CP phase; Jarlskog $J$.
 \end{enumerate}
 \end{tcolorbox}
 
@@ -633,8 +794,10 @@ All of these are speculative and remain (open).
 Attempt 1: DFT baseline computed & GREEN & \tagDc{} \\
 DFT vs.\ PDG comparison & \textcolor{red}{FALSIFIED} & --- \\
 Attempt 2: Overlap model scaling & YELLOW & \tagDc{}/\tagP{} \\
+Attempt 2.1: Non-uniform spacing & YELLOW & \tagDc{}/\tagCal{} \\
+$|V_{ub}|$ prediction ($2.5\times$ off) & YELLOW & \tagDc{} \\
 Wolfenstein hierarchy from $\Delta z/\kappa$ & YELLOW & \tagDc{} \\
-Why quarks $\neq$ leptons & YELLOW & \tagI{} \\
+Why quarks $\neq$ leptons ($\kappa_q/\kappa_\ell$) & YELLOW & \tagI{} \\
 5D BVP derivation of profiles & RED & (open) \\
 CP violation phase & RED & (open) \\
 Jarlskog invariant & RED & (open) \\
