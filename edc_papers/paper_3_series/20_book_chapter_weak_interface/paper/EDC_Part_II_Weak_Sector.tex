@@ -16,7 +16,7 @@
 \usepackage{geometry}
 \usepackage{graphicx}
 \usepackage{float}
-\usepackage{xcolor}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{tcolorbox}
 \usepackage{hyperref}
 \usepackage{tikz}
@@ -34,8 +34,17 @@
 \usepackage{array}
 \usepackage{colortbl}
 \usepackage{pifont}  % For \ding symbols
+\usepackage[normalem]{ulem}  % For \sout (strikethrough) in stoplight legend
 
 \tcbuselibrary{breakable,skins}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% META DOCUMENTATION SWITCH
+% ═══════════════════════════════════════════════════════════════════════════════
+% Set to \MetaPartIItrue to include Meta Documentation appendix (adds ~20 pages)
+% Default: OFF for journal submissions; ON for archive/full builds
+\newif\ifMetaPartII
+\MetaPartIIfalse  % Change to \MetaPartIItrue for full archive build
 
 % ═══════════════════════════════════════════════════════════════════════════════
 % PAGE SETUP
@@ -288,6 +297,15 @@
 % Canonical source: edc_papers/_shared/style/tikz_style_edc.tex (Version 1.0)
 % ═══════════════════════════════════════════════════════════════════════════════
 \input{../../../_shared/style/tikz_style_edc.tex}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% META DOCUMENTATION UTILITIES (only needed if MetaPartII is enabled)
+% ═══════════════════════════════════════════════════════════════════════════════
+\ifMetaPartII
+  \input{../../../_shared/meta/edc_meta_macros.tex}
+  \input{../../../_shared/meta/edc_intermezzo_boxes.tex}
+  \input{../../../_shared/meta/edc_stoplight_legend.tex}
+\fi
 
 % Part II specific TikZ styles (extend shared styles)
 \tikzset{
@@ -1055,5 +1073,17 @@ g^2 = 4\pi \times \frac{\sigma r_e^3}{\hbar c} \approx 0.37 \text{ (bare)}
 \begin{equation}
 Q = \frac{m_e + m_\mu + m_\tau}{(\sqrt{m_e} + \sqrt{m_\mu} + \sqrt{m_\tau})^2} = \frac{2}{3}
 \end{equation}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% META DOCUMENTATION APPENDIX (optional, controlled by \MetaPartIItrue/false)
+% ═══════════════════════════════════════════════════════════════════════════════
+\ifMetaPartII
+\input{meta_part2/00_meta_index}
+\input{meta_part2/01_claim_ledger}
+\input{meta_part2/02_decision_log}
+\input{meta_part2/03_research_timeline}
+\input{meta_part2/04_evidence_map}
+\input{meta_part2/05_historical_log_pointer}
+\fi
 
 \end{document}
