@@ -15,10 +15,12 @@ Chapter 6 explains neutrino properties within EDC's 5D framework:
 | Mass suppression (overlap) | YELLOW | [Dc] — Geometrically sound, profiles postulated |
 | Three flavors from Z₃ | YELLOW | [I] — Cardinality matches, dynamics not derived |
 | Left-handed selection | GREEN | [Dc] — Follows from Ch9 V–A derivation |
-| PMNS mixing angles | RED | [P] — Postulated mechanism, no calculation |
+| PMNS: Z₃ DFT baseline | GREEN | [Dc] — Computed, gives all |U|²=1/3 |
+| PMNS: DFT vs PDG | FALSIFIED | θ₁₃ off by factor 15 |
+| PMNS: breaking mechanism | YELLOW | [P] — ~25% anisotropy needed |
 | Dirac vs. Majorana | RED | (open) — No prediction |
 
-**Bottom line:** EDC provides structural explanations for neutrino smallness and chirality, identifies flavor count with Z₃, but leaves quantitative mixing predictions open.
+**Bottom line:** EDC provides structural explanations for neutrino smallness and chirality, identifies flavor count with Z₃, and computes a DFT baseline for PMNS that is falsified by θ₁₃ — indicating ~25% symmetry breaking is required. Breaking mechanism and Dirac/Majorana remain open.
 
 ---
 
@@ -85,21 +87,22 @@ Ch9 V–A boundary conditions → Left-handed neutrinos localized
 
 **Verdict: GREEN** — Follows directly from Ch9 derivation.
 
-### Mechanism D: PMNS Mixing
+### Mechanism D: PMNS Mixing (Updated with Attempt 1)
 
 ```
-Flavor wavefunctions × Mass wavefunctions → Overlap matrix → PMNS?
+Z₃ symmetric → DFT matrix → All |U_αi|² = 1/3 → θ₁₃ = 1/3 → FALSIFIED
 ```
 
 | Step | Status | Issue |
 |------|--------|-------|
 | PMNS observed | [BL] GREEN | Oscillation data |
-| Mixing from overlaps | [P] RED | Mechanism not computed |
-| θ₁₂ ≈ 33° | [OPEN] RED | Not derived |
-| θ₂₃ ≈ 45° | [OPEN] RED | Not derived |
-| θ₁₃ ≈ 8.5° | [OPEN] RED | Not derived |
+| Z₃ DFT baseline computed | [Dc] GREEN | Eq. ch6_dft_matrix |
+| DFT predicts sin²θ₁₃ = 1/3 | [Dc] GREEN | Explicit calculation |
+| DFT vs PDG θ₁₃ | FALSIFIED | Factor 15 off (0.333 vs 0.022) |
+| Breaking mechanism | [P] YELLOW | ~25% anisotropy needed |
+| Explicit ε derivation | [OPEN] RED | Not computed |
 
-**Verdict: RED** — Pure postulate, no progress.
+**Verdict: YELLOW** — Computed baseline (DFT) that is falsified; breaking required. Logical loop closed.
 
 ---
 
