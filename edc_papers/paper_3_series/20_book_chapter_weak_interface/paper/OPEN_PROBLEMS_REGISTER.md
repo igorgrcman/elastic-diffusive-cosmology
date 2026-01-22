@@ -1,6 +1,6 @@
 # Open Problems Register (OPR) — Part II: Weak Sector
 
-**Version:** 1.1
+**Version:** 1.10
 **Date:** 2026-01-22
 **Status:** Active research program
 
@@ -374,6 +374,46 @@ U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
 
 ---
 
+### In Progress: OPR-20 Suppression Mechanism (Attempt A2)
+
+**Target:** Derive the dimensionless suppression factor $f_{\text{geom}} \sim 10^{-3}$ that explains why $\ell \ll r_e$ without using SM inputs
+
+**Result:** PARTIAL — Candidate mechanism identified but with factor-8 discrepancy; status remains RED-C [OPEN]
+
+**Candidates surveyed:**
+
+| Candidate | Formula | Value | Target | m_φ (GeV) | Status | SM-Free? |
+|-----------|---------|-------|--------|-----------|--------|----------|
+| A (diffusion ratio) | $R_\xi / r_e$ | $10^{-3}$ | $\sim 10^{-3}$ | ~620 | YELLOW [P] | YES |
+| A' (corrected) | $8 \times R_\xi / r_e$ | $8 \times 10^{-3}$ | — | ~80 | RED (ad-hoc) | YES* |
+| B (BKT) | $\sqrt{c_\kappa / (\sigma r_e^2)}$ | — | — | ~80 | RED (unnatural) | YES |
+
+*A' uses ad-hoc factor of 8; not derived.
+
+**Key findings:**
+1. **Candidate A promising:** $f = R_\xi / r_e \sim 10^{-3}$ uses ONLY EDC parameters (diffusion correlation length $R_\xi$ and lattice spacing $r_e$)
+2. **Factor-of-8 discrepancy:** Candidate A predicts $m_\phi \approx 620$ GeV, overshooting $M_W \approx 80$ GeV by factor of ~8
+3. **Candidate B problematic:** Brane kinetic term mechanism requires $c_\kappa \sim 10^4$ (unnaturally large)
+4. **$R_\xi$ origin unresolved:** The diffusion correlation length $R_\xi \sim 10^{-3}$ fm is postulated [P], not derived
+
+**Interpretation of factor-8 discrepancy:**
+- Different boundary conditions (e.g., $x_1 \neq \pi$)
+- $R_\xi$ should be ~8× larger than currently postulated
+- Additional geometric factor from bulk/brane junction
+- OR: Candidate A overshoots because it captures only the dominant scale; sub-leading corrections needed
+
+**What would close OPR-20:**
+- Derive $R_\xi$ from membrane dynamics (e.g., diffusion length in frozen-regime)
+- OR derive the factor-of-8 correction from boundary condition analysis
+- OR find alternative suppression mechanism with smaller residual
+
+**Code:** `tools/check_dimensionless_fgeom.py`
+**LaTeX:** `sections/ch11_g5_ell_suppression_attempt2.tex`
+
+**Status:** RED-C [OPEN] — Suppression mechanism candidate exists [P]; factor-8 discrepancy unresolved.
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
@@ -388,3 +428,4 @@ U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
 | 1.7 | 2026-01-22 | **OPR-11 Z₂ Parity Origin: RED → YELLOW [Dc]+[P]**; Sign-flip rule [Dc], brane-reflection parity [P] |
 | 1.8 | 2026-01-22 | **OPR-22 G_F Full Closure Plan: RED-C → YELLOW [Dc]+[OPEN]**; Closure spine + no-smuggling guardrails |
 | 1.9 | 2026-01-22 | **OPR-19/20 Value Closure Attempt**: G1 ($g^2 = 4\pi\sigma r_e^3/\hbar c$) promising (11% from SM); L1/L2 for $\ell$ surveyed—no SM-free closure achieved. Status unchanged: RED-C [OPEN] |
+| 1.10 | 2026-01-22 | **OPR-20 Suppression Mechanism (Attempt A2)**: Candidate A ($f = R_\xi/r_e \sim 10^{-3}$) identified; factor-8 discrepancy ($m_\phi \approx 620$ GeV vs $M_W \approx 80$ GeV). Status: RED-C [OPEN], mechanism [P] |
