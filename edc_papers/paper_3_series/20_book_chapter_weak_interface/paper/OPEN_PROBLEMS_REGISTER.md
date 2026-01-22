@@ -1,8 +1,10 @@
 # Open Problems Register (OPR) — Part II: Weak Sector
 
-**Version:** 1.0
+**Version:** 1.1
 **Date:** 2026-01-22
 **Status:** Active research program
+
+> **PMNS:** θ₂₃ closed; θ₁₃ partially closed by ε=λ/√2 (no tuning); θ₁₂ still identified—not derived (OPR-05a/b/c).
 
 ---
 
