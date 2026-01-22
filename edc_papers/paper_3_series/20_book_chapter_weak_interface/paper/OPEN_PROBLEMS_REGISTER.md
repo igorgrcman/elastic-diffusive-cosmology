@@ -42,7 +42,7 @@ with hidden assumptions.
 | ID | Item | Status | Established | Missing | Priority | Next Action |
 |----|------|--------|-------------|---------|----------|-------------|
 | OPR-01 | N_gen = 3 from Z₃ | YELLOW [I] | Numerical matching |Z₃| = 3 | Dynamical derivation linking fermion modes to Z₃ | P2 | Derive mode-symmetry coupling from action |
-| OPR-02 | KK tower truncation | RED [P] | Plausible mechanism | Explicit thick-brane potential V(z); mode lifetimes | P1 | Solve thick-brane BVP |
+| OPR-02 | KK tower truncation | **RED-C** [P] | BVP Work Package defined; solver skeleton exists | Physical potential V(z); BCs from physics | P1 | See §12 BVP Work Package |
 | OPR-03 | Bulk topology π₁(M₅) = Z₃ | RED [P] | Speculative | EDC dynamics constraint on π₁ | P3 | Investigate topological constraints |
 
 ### Chapter 6: Neutrinos & Edge Modes
@@ -91,7 +91,7 @@ with hidden assumptions.
 |----|------|--------|-------------|---------|----------|-------------|
 | OPR-19 | 5D gauge coupling g₅ | **RED-C** [Dc]+[OPEN] | $g_4 = g_5$ from 5D action + orthonormal modes [Dc] | $g_5$ value from underlying theory | P2 | Derive $g_5$ from 5D gauge theory |
 | OPR-20 | Mediator mass m_φ | **RED-C** [Dc]+[OPEN] | $m_\phi = x_1/\ell$ from KK eigenvalue [Dc] | $\ell$ from membrane; BCs from physics | P2 | Derive $\ell$ from $(\sigma, r_e)$ |
-| OPR-21 | Mode profiles f_L(z) | **RED-C** (open) | Ansatz only; BVP not solved | Solve $[\partial_z^2 - m(z)^2]f = \lambda f$ | P1 | Thick-brane BVP with BCs |
+| OPR-21 | Mode profiles f_L(z) | **RED-C** [P] | BVP Work Package + solver skeleton; I₄ computed | Physical BCs; potential from membrane params | P1 | See §12 BVP Work Package |
 | OPR-22 | G_F first-principles | **RED-C** (open) | Numerical closure via SM (circularity noted) | Combine OPR-19+20+21 without SM input | P1 | $G_F = g_5^2 I_4 / m_\phi^2$ |
 
 ### Neutron Decay (Ch5 subsection)
@@ -135,6 +135,7 @@ Based on the analysis, these are the research directions with maximum payoff:
 **Appears in:** OPR-02, 09, 14, 15, 21
 **Unlocks:** Generation counting, pion decay, G_F derivation, neutrino masses
 **Effort:** High (requires numerical/analytic solution)
+**Progress (2026-01-22):** BVP Work Package defined in §12; solver skeleton demonstrates bound states exist (Neumann/Mixed BCs); acceptance criteria + failure modes documented. Path forward: physical potential V(z) from membrane parameters + BC justification.
 
 ### 2. CP Violation Mechanism Refinement
 **Appears in:** OPR-06, 11, 12, 13
@@ -335,3 +336,4 @@ U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
 | 1.3 | 2026-01-22 | **PMNS Attempt 4: Rank-2 + ε achieves GREEN numerically; OPR-05 → YELLOW [Dc/I]** |
 | 1.4 | 2026-01-22 | **PMNS Attempt 4.1: ε = λ/√2 closes reactor scale (15% accuracy); no PDG-smuggling** |
 | 1.5 | 2026-01-22 | **PMNS Attempt 4.2: θ₁₂ = arctan(1/√2) provides geometric origin (8.6% off); OPR-05c → [Dc]** |
+| 1.6 | 2026-01-22 | **BVP Work Package: OPR-02/21 → RED-C; solver skeleton + acceptance criteria documented** |
