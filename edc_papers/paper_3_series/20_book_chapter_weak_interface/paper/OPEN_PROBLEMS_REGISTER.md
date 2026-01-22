@@ -85,11 +85,12 @@ with hidden assumptions.
 ### Chapter 11: Fermi Constant G_F
 
 **Sanity skeleton established:** Chain map + dimensional checks + attack-surface analysis complete. See §11.8.
+**Chain tightened (2026-01-22):** Canonical g₅ normalization + KK spectrum derivation spine added. See §11.9.
 
 | ID | Item | Status | Established | Missing | Priority | Next Action |
 |----|------|--------|-------------|---------|----------|-------------|
-| OPR-19 | 5D gauge coupling g₅ | **RED-C** [P] | Postulated; chain map explicit | Derive from $\int d^5x(-\frac{1}{4}F_{MN}F^{MN})$ | P1 | Canonical 5D normalization |
-| OPR-20 | Mediator mass m_φ | **RED-C** [I] | Identified $m_\phi \sim M_W$; not derived | KK spectrum: $m_\phi^2 = (n\pi/L_\xi)^2$ | P1 | Throat geometry reduction |
+| OPR-19 | 5D gauge coupling g₅ | **RED-C** [Dc]+[OPEN] | $g_4 = g_5$ from 5D action + orthonormal modes [Dc] | $g_5$ value from underlying theory | P2 | Derive $g_5$ from 5D gauge theory |
+| OPR-20 | Mediator mass m_φ | **RED-C** [Dc]+[OPEN] | $m_\phi = x_1/\ell$ from KK eigenvalue [Dc] | $\ell$ from membrane; BCs from physics | P2 | Derive $\ell$ from $(\sigma, r_e)$ |
 | OPR-21 | Mode profiles f_L(z) | **RED-C** (open) | Ansatz only; BVP not solved | Solve $[\partial_z^2 - m(z)^2]f = \lambda f$ | P1 | Thick-brane BVP with BCs |
 | OPR-22 | G_F first-principles | **RED-C** (open) | Numerical closure via SM (circularity noted) | Combine OPR-19+20+21 without SM input | P1 | $G_F = g_5^2 I_4 / m_\phi^2$ |
 
@@ -122,7 +123,7 @@ The following items block major claims and should be prioritized:
 2. ~~**OPR-05**: PMNS mixing angles~~ → **PARTIAL SUCCESS (Attempt 2)**: θ₂₃ derived [Dc], θ₁₂/θ₁₃ remain open (downgraded to P2)
 3. ~~**OPR-11/12**: (ρ̄, η̄) and δ~~ → **Attempt 4 DONE**: Phase Cancellation Theorem [Dc], Z₂ selection gives δ=60° (5° from PDG). OPR-11 remains RED, OPR-12 upgraded to YELLOW [Dc]+[I]
 4. ~~**OPR-17**: SU(2)_L embedding~~ → **PARTIAL (YELLOW [P])**: where/how fixed; origin+masses remain OPEN
-5. **OPR-19–22**: G_F chain — sanity skeleton complete; first-principles derivation still RED-C
+5. **OPR-19–22**: G_F chain — sanity skeleton + **chain tightening** (g₅ canonical + KK spectrum [Dc]); first-principles numerics still RED-C
 
 ---
 
