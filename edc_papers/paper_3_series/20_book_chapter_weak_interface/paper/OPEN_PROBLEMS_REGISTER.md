@@ -79,7 +79,7 @@ with hidden assumptions.
 
 | ID | Item | Status | Established | Missing | Priority | Next Action |
 |----|------|--------|-------------|---------|----------|-------------|
-| OPR-17 | SU(2)_L gauge embedding | RED (open) | V-A derived at interface | Full non-abelian structure | P1 | 5D gauge theory; W±, Z⁰ masses |
+| OPR-17 | SU(2)_L gauge embedding | **YELLOW [P]** | Where/how fixed (brane-localized) | Gauge origin + W/Z masses | P2 | Origin requires deriving gauge symmetry |
 | OPR-18 | CKM/PMNS from Ch7/Ch6 | RED (open) | Flagged as dependency | See OPR-05, OPR-11 | P1 | Cross-reference |
 
 ### Chapter 11: Fermi Constant G_F
@@ -119,7 +119,7 @@ The following items block major claims and should be prioritized:
 1. **OPR-02**: KK tower truncation — needed for N_gen = 3
 2. ~~**OPR-05**: PMNS mixing angles~~ → **PARTIAL SUCCESS (Attempt 2)**: θ₂₃ derived [Dc], θ₁₂/θ₁₃ remain open (downgraded to P2)
 3. **OPR-11/12**: (ρ̄, η̄) and δ — needed for CKM closure → **Attempt 4**
-4. **OPR-17**: SU(2)_L embedding — needed for gauge structure
+4. ~~**OPR-17**: SU(2)_L embedding~~ → **PARTIAL (YELLOW [P])**: where/how fixed; origin+masses remain OPEN
 5. **OPR-19–22**: G_F chain — needed for weak coupling closure
 
 ---
