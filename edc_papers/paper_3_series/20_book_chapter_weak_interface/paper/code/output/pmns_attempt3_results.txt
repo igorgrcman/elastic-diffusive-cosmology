@@ -1,0 +1,114 @@
+======================================================================
+PMNS ATTEMPT 3: Z6 DISCRETE-PHASE SWEEP
+======================================================================
+
+Goal: Preserve theta23 from Attempt 2 A3, fix theta12 and theta13
+Method: Apply discrete Z6 = Z2 x Z3 phases to A3 overlap magnitudes
+
+PDG 2024 targets [BL]:
+  sin2_theta12 = 0.307
+  sin2_theta23 = 0.546
+  sin2_theta13 = 0.022
+  J = 3.08e-05
+
+A3 overlap magnitudes:
+[[1.         0.59238485 0.35091981]
+ [0.35091981 0.59238485 1.        ]
+ [0.12314471 0.20787958 0.35091981]]
+
+Baseline (no phases):
+  sin2_theta12 = 0.137 (PDG: 0.307)
+  sin2_theta23 = 0.564 (PDG: 0.546)
+  sin2_theta13 = 0.0075 (PDG: 0.022)
+  Score = 1.250
+
+
+======================================================================
+TRACK A VARIANTS: STRUCTURED PHASE PATTERNS
+======================================================================
+
+Variant                             Removable?   Score    sin2_12  sin2_23  sin2_13  J           
+                                                          (0.307)  (0.546)  (0.022)  (3e-5)      
+----------------------------------------------------------------------------------------------------
+A3-0: No phases (baseline)          YES (gauge)  1.250    0.137    0.564    0.0075   0.00e+00    
+A3-1: Z3 row phases                 YES (gauge)  1.339    0.137    0.613    0.0075   5.80e-03    
+A3-2: Z3 column phases              YES (gauge)  1.555    0.137    0.731    0.0075   8.94e-03    
+A3-3: DFT phases (i*j mod 3)        NO (physical) 3.092    0.260    0.623    0.0835   5.59e-02    
+A3-4: Anti-DFT phases               NO (physical) 3.092    0.260    0.623    0.0835   -5.59e-02   
+A3-5: Z2 checkerboard               YES (gauge)  2.044    0.137    0.998    0.0075   0.00e+00    
+A3-6: Sign flip on U_e3             NO (physical) 6.726    0.227    0.648    0.1602   0.00e+00    
+A3-7: omega on U_e3                 NO (physical) 6.275    0.211    0.999    0.1349   1.37e-03    
+A3-8: omega^2 on U_e3               NO (physical) 6.091    0.211    0.899    0.1349   3.87e-02    
+A3-9: TBM-inspired pattern          NO (physical) 3.113    0.148    0.627    0.0758   4.32e-02    
+A3-10: Cancel in col 3              NO (physical) 3.932    0.072    0.713    0.0849   2.15e-02    
+A3-11: Z6 diagonal                  NO (physical) 2.056    0.075    0.733    0.0009   -1.38e-03   
+
+======================================================================
+TRACK B: ONE CALIBRATED PARAMETER
+======================================================================
+
+Target: Calibrate theta13
+
+Strategy B1: Scale O[0,2] magnitude
+----------------------------------------------------------------------
+Best scale factor: 0.650
+Score: 0.574
+sin2_theta12: 0.155 (PDG: 0.307) [YELLOW]
+sin2_theta23: 0.585 (PDG: 0.546) [GREEN]
+sin2_theta13: 0.0222 (PDG: 0.022) [GREEN]
+J: 0.00e+00 (PDG: 3e-5)
+
+Strategy B2: Vary kappa (localization scale)
+----------------------------------------------------------------------
+Best kappa: 2.565
+Score: 1.008
+sin2_theta12: 0.144 (PDG: 0.307) [RED]
+sin2_theta23: 0.287 (PDG: 0.546) [YELLOW]
+sin2_theta13: 0.0220 (PDG: 0.022) [GREEN]
+J: 0.00e+00 (PDG: 3e-5)
+
+======================================================================
+FINAL SUMMARY: STOPLIGHT TABLE
+======================================================================
+
+----------------------------------------------------------------------
+TRACK A BEST (DISCRETE PHASES ONLY):
+----------------------------------------------------------------------
+Variant: A3-11: Z6 diagonal
+Removable by rephasing: NO (physical)
+
+| Angle    | Model  | PDG    | Status  |
+|----------|--------|--------|---------|
+| sin2_12  | 0.075  | 0.307  | RED     |
+| sin2_23  | 0.733  | 0.546  | YELLOW  |
+| sin2_13  | 0.0009 | 0.022  | RED     |
+| J        | -1.38e-03 | 3e-5   | RED     |
+
+Overall Score: 2.056
+
+----------------------------------------------------------------------
+TRACK B (ONE CALIBRATED PARAMETER):
+----------------------------------------------------------------------
+
+B1: Scale O[0,2] by 0.650
+| Angle    | Model  | PDG    | Status  |
+|----------|--------|--------|---------|
+| sin2_12  | 0.155  | 0.307  | YELLOW  |
+| sin2_23  | 0.585  | 0.546  | GREEN   |
+| sin2_13  | 0.0222 | 0.022  | GREEN   |
+Overall Score: 0.574
+
+B2: kappa = 2.565
+| Angle    | Model  | PDG    | Status  |
+|----------|--------|--------|---------|
+| sin2_12  | 0.144  | 0.307  | RED     |
+| sin2_23  | 0.287  | 0.546  | YELLOW  |
+| sin2_13  | 0.0220 | 0.022  | GREEN   |
+Overall Score: 1.008
+
+======================================================================
+VERDICT:
+======================================================================
+Both tracks FAILED: Additional physics needed.
+
+Overall verdict: RED

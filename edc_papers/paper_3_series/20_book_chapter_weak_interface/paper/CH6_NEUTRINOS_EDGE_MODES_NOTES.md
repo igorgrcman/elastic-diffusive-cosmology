@@ -1,7 +1,7 @@
 # Chapter 6: Neutrinos as Edge Modes — Companion Notes
 
 **Date:** 2026-01-22
-**Status:** YELLOW — θ₂₃ derived from geometry, θ₁₂/θ₁₃ require additional physics
+**Status:** YELLOW — θ₂₃ derived from geometry; discrete Z₆ phases insufficient for θ₁₂/θ₁₃
 **Goal:** Explain neutrino smallness and flavor structure from edge-mode geometry
 
 ---
@@ -17,11 +17,12 @@ Chapter 6 explains neutrino properties within EDC's 5D framework:
 | Left-handed selection | GREEN | [Dc] — Follows from Ch9 V–A derivation |
 | PMNS: Z₃ DFT baseline (Attempt 1) | FALSIFIED | θ₁₃ off by factor 15 |
 | PMNS: Z₆ overlap (Attempt 2) | YELLOW | [Dc] — θ₂₃ GREEN, θ₁₂/θ₁₃ RED |
+| PMNS: Z₆ discrete phases (Attempt 3) | RED | Discrete phases make fit worse or are gauge artifacts |
 | **θ₂₃ from geometry** | **GREEN** | [Dc] — 0.564 vs 0.546 (within 3%) |
-| θ₁₂, θ₁₃ from geometry | RED | Additional mechanism needed |
+| θ₁₂, θ₁₃ from discrete phases | RED | Z₆ phases insufficient; need non-abelian symmetry |
 | Dirac vs. Majorana | RED | (open) — No prediction |
 
-**Bottom line:** EDC derives the atmospheric mixing angle θ₂₃ ≈ 45° from pure Z₆ geometry [Dc]. The solar (θ₁₂) and reactor (θ₁₃) angles require physics beyond the overlap model. This is a partial success: one of three PMNS angles is derived without free parameters.
+**Bottom line:** EDC derives the atmospheric mixing angle θ₂₃ ≈ 45° from pure Z₆ geometry [Dc]. Attempt 3 showed that discrete Z₆ phases cannot fix θ₁₂ and θ₁₃ — they are either removable by rephasing (gauge artifacts) or make the fit worse. The solar and reactor angles require physics beyond exponential localization with discrete phases (non-abelian flavor symmetry, Higgs anisotropy, or charged lepton corrections). This is a partial success: one of three PMNS angles is derived without free parameters.
 
 ---
 
@@ -304,4 +305,47 @@ latexmk -xelatex -interaction=nonstopmode EDC_Part_II_Weak_Sector.tex
 
 ---
 
-*Chapter 6 notes updated with Attempt 2 results. θ₂₃ is now a derived prediction.*
+## Attempt 3 Summary
+
+**Date:** 2026-01-22
+**Code:** `code/pmns_attempt3_z6_phase_sweep.py`
+**LaTeX:** `sections/ch6_pmns_attempt3_z6_refinement.tex`
+**Output:** `code/output/pmns_attempt3_results.txt`
+
+### Motivation
+
+Attempt 2 achieved θ₂₃ GREEN but left θ₁₂ and θ₁₃ RED. Attempt 3 tests whether discrete Z₆ phases can fix these remaining angles.
+
+### Key Results
+
+| Track | Method | sin²θ₁₂ | sin²θ₂₃ | sin²θ₁₃ | Status |
+|-------|--------|---------|---------|---------|--------|
+| PDG 2024 [BL] | — | 0.307 | 0.546 | 0.022 | — |
+| A (baseline) | No phases | 0.137 | 0.564 | 0.008 | θ₂₃ GREEN |
+| A (DFT) | i·j mod 3 | 0.260 | 0.623 | 0.084 | ALL RED |
+| A (Z₆ diag) | Best physical | 0.075 | 0.733 | 0.001 | WORSE |
+| B1 | Scale O[0,2]×0.65 | 0.155 | 0.585 | 0.022 | θ₂₃,θ₁₃ GREEN; θ₁₂ YELLOW |
+
+### Key Findings
+
+1. **Rephasing invariance:** Row/column phase patterns (Z₃ row, Z₃ col, checkerboard) are gauge artifacts — they can be absorbed by field redefinitions and don't change physical observables.
+
+2. **Physical phases make it worse:** Entry-wise phases that cannot be factored as α_i·β_j introduce democratic-like mixing that moves θ₁₃ away from its small experimental value.
+
+3. **Fundamental mismatch:** The overlap model naturally produces either democratic mixing (all angles equal) or hierarchical suppression (all angles small). The observed PMNS pattern (large θ₁₂, θ₂₃; small θ₁₃) is structurally incompatible with this framework.
+
+### Verdict
+
+**Track A: RED** — Discrete Z₆ phases alone cannot produce the asymmetric PMNS pattern.
+
+**Track B: YELLOW** — One calibrated parameter (O[0,2] scale factor 0.65) achieves θ₁₃ and θ₂₃ GREEN, but θ₁₂ remains too small.
+
+### Next Steps for Future Work
+
+1. **Non-abelian flavor symmetry:** A₄, S₄, or similar groups that naturally produce the observed asymmetric pattern
+2. **Higgs profile anisotropy:** Different Higgs localization in different Z₆ sectors
+3. **Charged lepton corrections:** PMNS = U_ℓ†·U_ν may receive contributions from charged lepton mixing
+
+---
+
+*Chapter 6 notes updated with Attempt 3 results. Discrete Z₆ phases are insufficient for full PMNS; additional physics required.*

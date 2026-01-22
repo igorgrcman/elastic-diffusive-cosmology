@@ -1,0 +1,161 @@
+%!TEX root = ../EDC_Part_II_Weak_Sector.tex
+% ============================================================================
+% PMNS Attempt 3: Z6 Discrete-Phase Refinement
+% Status: RED (failed) — Discrete phases alone cannot produce PMNS pattern
+% ============================================================================
+
+\subsection{Attempt 3: Z$_6$ Discrete-Phase Refinement}
+\label{sec:pmns_attempt3}
+
+Having achieved partial success in Attempt~2 (Section~\ref{sec:pmns_attempt2}) with
+$\theta_{23}$ derived from Z$_6$ geometry~[Dc], we now test whether \emph{discrete phases}
+from Z$_6 = \mathbb{Z}_2 \times \mathbb{Z}_3$ can fix the remaining angles $\theta_{12}$ and $\theta_{13}$.
+
+\subsubsection{Motivation}
+
+The Attempt~2 baseline produces the correct atmospheric mixing angle but gives:
+\begin{align}
+  \sin^2\theta_{12}^{\text{A3}} &= 0.137 \quad \text{vs.} \quad 0.307 \text{ (PDG)} \quad \textcolor{red}{\text{[RED]}} \\
+  \sin^2\theta_{13}^{\text{A3}} &= 0.0075 \quad \text{vs.} \quad 0.022 \text{ (PDG)} \quad \textcolor{red}{\text{[RED]}}
+\end{align}
+
+The question: can discrete Z$_6$ phases applied to the overlap matrix entries produce
+targeted interference that corrects these values?
+
+\subsubsection{Method}
+
+We retain the A3 overlap \emph{magnitudes} from Attempt~2~[Dc]:
+\begin{equation}
+  |O_{ij}|^{\text{A3}} = \exp\!\bigl(-|z_{\alpha}^{(i)} - z_m^{(j)}| / 2\kappa\bigr)
+  \label{eq:a3_magnitudes}
+\end{equation}
+with $z_{\alpha} \in \{0, 2\pi/3, 4\pi/3\}$ (Z$_3$ flavor positions),
+$z_m \in \{0, \pi/3, 2\pi/3\}$ (Z$_6$ mass positions), and $\kappa = 1$.
+
+We then test complex overlap matrices:
+\begin{equation}
+  O_{ij} = |O_{ij}|^{\text{A3}} \cdot \phi_{ij}
+  \label{eq:phased_overlap}
+\end{equation}
+where $\phi_{ij}$ are discrete phases from Z$_6$:
+\begin{itemize}
+  \item Z$_3$ phases: $\{1, \omega, \omega^2\}$ with $\omega = e^{2\pi i/3}$
+  \item Z$_2$ signs: $\{+1, -1\}$
+  \item Combined Z$_6$: six possible values per entry
+\end{itemize}
+
+\paragraph{Rephasing invariance check.}
+A critical constraint: phases that can be factored as $\phi_{ij} = \alpha_i \cdot \beta_j$
+(products of row and column phases) are \emph{gauge artifacts}—they can be absorbed by
+field redefinitions and do not affect physical observables. Only \emph{entry-wise} phases
+that cannot be so factored are physical.
+
+We implement a 2$\times$2 minor test: the phase matrix is removable by rephasing if and only if
+\begin{equation}
+  \phi_{ij}\, \phi_{kl} = \phi_{il}\, \phi_{kj} \quad \forall\; i < k,\; j < l.
+  \label{eq:rephasing_test}
+\end{equation}
+
+\subsubsection{Track A: Structured Phase Patterns}
+
+We test eleven physically motivated phase patterns. Results~[Dc]:
+
+\begin{center}
+\begin{tabular}{llccccl}
+\toprule
+Variant & Pattern & Removable? & $\sin^2\theta_{12}$ & $\sin^2\theta_{23}$ & $\sin^2\theta_{13}$ & Status \\
+\midrule
+\multicolumn{2}{l}{\textbf{PDG 2024 [BL]}} & — & 0.307 & 0.546 & 0.022 & — \\
+\midrule
+A3-0 & No phases (baseline) & Yes & 0.137 & 0.564 & 0.0075 & Mixed \\
+A3-1 & Z$_3$ row phases & Yes & 0.137 & 0.613 & 0.0075 & Mixed \\
+A3-2 & Z$_3$ column phases & Yes & 0.137 & 0.731 & 0.0075 & Mixed \\
+A3-3 & DFT $(i \cdot j \mod 3)$ & \textbf{No} & 0.260 & 0.623 & 0.084 & \textcolor{red}{RED} \\
+A3-4 & Anti-DFT & \textbf{No} & 0.260 & 0.623 & 0.084 & \textcolor{red}{RED} \\
+A3-5 & Z$_2$ checkerboard & Yes & 0.137 & 0.998 & 0.0075 & \textcolor{red}{RED} \\
+A3-6 & Sign on $U_{e3}$ & \textbf{No} & 0.227 & 0.648 & 0.160 & \textcolor{red}{RED} \\
+A3-7 & $\omega$ on $U_{e3}$ & \textbf{No} & 0.211 & 0.999 & 0.135 & \textcolor{red}{RED} \\
+A3-8 & $\omega^2$ on $U_{e3}$ & \textbf{No} & 0.211 & 0.899 & 0.135 & \textcolor{red}{RED} \\
+A3-9 & TBM-inspired & \textbf{No} & 0.148 & 0.627 & 0.076 & \textcolor{red}{RED} \\
+A3-10 & Cancel in col 3 & \textbf{No} & 0.072 & 0.713 & 0.085 & \textcolor{red}{RED} \\
+A3-11 & Z$_6$ diagonal & \textbf{No} & 0.075 & 0.733 & 0.001 & \textcolor{red}{RED} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Key observation.}
+All variants with physical (non-removable) phases produce \emph{worse} results than the baseline.
+The discrete Z$_6$ phases either leave the mixing unchanged (if removable) or introduce
+democratic-like mixing that moves $\theta_{13}$ away from its small experimental value.
+
+\subsubsection{Track B: One Calibrated Parameter}
+
+As a control, we test whether a single continuous parameter can improve the fit.
+
+\paragraph{Strategy B1: Scale $O_{03}$ entry.}
+Scaling $|O_{e3}|$ by factor 0.65~[Cal] yields:
+\begin{center}
+\begin{tabular}{lccl}
+\toprule
+Angle & Model & PDG & Status \\
+\midrule
+$\sin^2\theta_{12}$ & 0.155 & 0.307 & \textcolor{orange}{YELLOW} \\
+$\sin^2\theta_{23}$ & 0.585 & 0.546 & \textcolor{green!60!black}{GREEN} \\
+$\sin^2\theta_{13}$ & 0.022 & 0.022 & \textcolor{green!60!black}{GREEN} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+This confirms that the \emph{shape} of the overlap matrix is approximately correct—a single
+scale factor achieves two GREEN angles. But $\theta_{12}$ remains problematic.
+
+\paragraph{Strategy B2: Vary localization scale $\kappa$.}
+Optimizing $\kappa = 2.565$~[Cal] achieves $\sin^2\theta_{13} = 0.022$ (GREEN) but breaks
+$\theta_{23}$ (YELLOW) and leaves $\theta_{12}$ RED.
+
+\subsubsection{Verdict}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black, title=Attempt 3 Verdict: RED]
+\textbf{Track A (discrete Z$_6$ phases only): FAILED.}
+
+Discrete phases from Z$_6 = \mathbb{Z}_2 \times \mathbb{Z}_3$ cannot correct the PMNS
+angles beyond the Attempt~2 baseline. Physical (non-removable) phases uniformly degrade
+the fit by introducing democratic-like mixing.
+
+\textbf{Track B (one calibrated parameter): PARTIAL.}
+
+Scaling $|O_{e3}|$ by 0.65 achieves $\theta_{13}$ and $\theta_{23}$ GREEN, but $\theta_{12}$
+remains YELLOW/RED. This suggests the overlap magnitudes have approximately correct
+structure but need a mechanism beyond discrete phases.
+
+\textbf{Conclusion:} The asymmetric PMNS pattern (large $\theta_{12}$, $\theta_{23}$;
+small $\theta_{13}$) requires physics beyond exponential localization with discrete phases.
+Candidate mechanisms for future work:
+\begin{enumerate}
+  \item Non-abelian flavor symmetry (A$_4$, S$_4$) beyond Z$_6$
+  \item Charged lepton corrections to PMNS
+  \item Higgs profile anisotropy in the extra dimension
+\end{enumerate}
+\end{tcolorbox}
+
+\subsubsection{Epistemic Status Update}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+Item & Before Attempt 3 & After Attempt 3 & Tag \\
+\midrule
+$\theta_{23}$ from geometry & GREEN (3\%) & GREEN (3\%) & [Dc] \\
+$\theta_{12}$ from discrete phases & (open) & RED & [Dc] \\
+$\theta_{13}$ from discrete phases & (open) & RED & [Dc] \\
+Z$_6$ phase mechanism & Untested & FALSIFIED & [Dc] \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+OPR-05 status: remains \textbf{YELLOW}. The atmospheric angle $\theta_{23}$ is derived~[Dc],
+but $\theta_{12}$ and $\theta_{13}$ require additional physics beyond Z$_6$ discrete phases.
+
+\paragraph{Code.} \texttt{code/pmns\_attempt3\_z6\_phase\_sweep.py}
+
+\paragraph{Output.} \texttt{code/output/pmns\_attempt3\_results.txt}

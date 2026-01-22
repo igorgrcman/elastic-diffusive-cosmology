@@ -48,7 +48,7 @@ with hidden assumptions.
 | ID | Item | Status | Established | Missing | Priority | Next Action |
 |----|------|--------|-------------|---------|----------|-------------|
 | OPR-04 | Absolute neutrino masses | RED (open) | Suppression mechanism | First-principles m_νi values | P2 | Solve edge-mode BVP with Higgs profile |
-| OPR-05 | PMNS mixing angles | **YELLOW [Dc]** | **θ₂₃ derived (3%)** | θ₁₂, θ₁₃ require additional physics | P2 | Attempt 2 DONE; future: non-abelian extension |
+| OPR-05 | PMNS mixing angles | **YELLOW [Dc]** | **θ₂₃ derived (3%)** | θ₁₂, θ₁₃ require additional physics | P2 | Attempt 2/3 DONE; discrete Z₆ phases insufficient; need non-abelian extension |
 | OPR-06 | PMNS CP phase δ | RED (open) | Not addressed | Rephasing-invariant phase | P2 | Apply Z₃ phase mechanism (cf. Ch7) |
 | OPR-07 | Dirac vs Majorana | RED (open) | Both compatible | Discrimination criterion | P3 | Investigate Majorana mass term in 5D |
 | OPR-08 | Z₃ breaking for PMNS | YELLOW [P] | Mechanism postulated | Explicit calculation | P2 | Quantify breaking perturbations |
@@ -165,6 +165,30 @@ Based on the analysis, these are the research directions with maximum payoff:
 
 ---
 
+### Completed: PMNS Attempt 3 (OPR-05)
+
+**Target:** Fix θ₁₂ and θ₁₃ using discrete Z₆ phases on A3 overlap magnitudes
+**Result:** FAILED
+
+| Track | Method | sin²θ₁₂ | sin²θ₂₃ | sin²θ₁₃ | Status |
+|-------|--------|---------|---------|---------|--------|
+| PDG 2024 | — | 0.307 | 0.546 | 0.022 | — |
+| A (baseline) | No phases | 0.137 | 0.564 | 0.008 | θ₂₃ GREEN, others RED |
+| A (best phys.) | Z₆ diagonal | 0.075 | 0.733 | 0.001 | ALL WORSE |
+| B1 | Scale O[0,2] ×0.65 | 0.155 | 0.585 | 0.022 | θ₂₃, θ₁₃ GREEN; θ₁₂ YELLOW |
+
+**Key finding:** Discrete Z₆ phases are either removable by rephasing (gauge artifacts) or make the fit worse. The asymmetric PMNS pattern (large θ₁₂, θ₂₃; small θ₁₃) cannot emerge from exponential localization with discrete phases alone.
+
+**Conclusion:** Additional physics required:
+1. Non-abelian flavor symmetry (A₄, S₄)
+2. Higgs profile anisotropy
+3. Charged lepton corrections
+
+**Code:** `code/pmns_attempt3_z6_phase_sweep.py`
+**LaTeX:** `sections/ch6_pmns_attempt3_z6_refinement.tex`
+
+---
+
 ### Pending: Attempt 4 (CKM δ Refinement)
 
 **Target:** Improve δ from 120° (Z₃ minimal) to ~65° (PDG)
@@ -186,3 +210,4 @@ Based on the analysis, these are the research directions with maximum payoff:
 |---------|------|---------|
 | 1.0 | 2026-01-22 | Initial register from Part II scan |
 | 1.1 | 2026-01-22 | OPR-05 upgraded to YELLOW (PMNS Attempt 2: θ₂₃ derived) |
+| 1.2 | 2026-01-22 | PMNS Attempt 3: Z₆ discrete phases failed to fix θ₁₂, θ₁₃ |
