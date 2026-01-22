@@ -341,6 +341,39 @@ U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
 
 ---
 
+### Completed: OPR-19/20 Value Closure Attempt
+
+**Target:** Derive numeric values of $g_5$ and $\ell$ from membrane parameters $(\sigma, r_e)$ without SM input
+**Result:** FAILED — No SM-free closure achieved; status remains RED-C [OPEN]
+
+**Candidates surveyed:**
+
+| Candidate | Formula | Value | Target | Status | SM-Free? |
+|-----------|---------|-------|--------|--------|----------|
+| G1 | $g^2 = 4\pi\sigma r_e^3/\hbar c$ | 0.37 | ~0.42 (SM) | YELLOW [P] | YES |
+| G2 | $g_5^2 = (\hbar c)^2/\sigma r_e^2$ | 6650 | — | RED (too large) | YES |
+| L1 | $\ell = \pi/M_W$ | 0.04 fm | 0.04 fm | [I] | **NO** |
+| L2 | $\ell = (\hbar c/\sigma r_e^2) \times f$ | 34×f fm | 0.04 fm | [P] | YES (f open) |
+
+**Key findings:**
+1. **G1 promising:** $g^2 = 4\pi\sigma r_e^3/\hbar c \approx 0.37$ is 11% from SM $g_2^2$. Uses only membrane params.
+2. **G2 fails numerically:** Dimensionally correct for $g_5^2$ but gives coupling too large for $G_F$ consistency.
+3. **L1 forbidden:** Uses $M_W$ as input—violates no-smuggling guardrails.
+4. **L2 requires tuning:** SM-free form but $f_{\text{geom}} \sim 10^{-3}$ is unexplained.
+5. **No SM-free $\ell$:** The weak scale does not emerge naturally from $(\sigma, r_e)$ alone.
+
+**What would close:**
+- Derive the $4\pi$ coefficient in G1 from loop integral or geometric normalization
+- Derive $\ell$ from membrane geometry without importing $M_W$
+- OR derive $M_W$ itself from $(\sigma, r_e)$ first
+
+**Code:** `tools/check_g5_ell_dimensions.py`, `tools/scan_ell_candidates.py`
+**LaTeX:** `sections/ch11_g5_ell_value_closure_attempt.tex`
+
+**Status:** RED-C [OPEN] — Value closure attempt documented; no upgrade achieved.
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
@@ -354,3 +387,4 @@ U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
 | 1.6 | 2026-01-22 | **BVP Work Package: OPR-02/21 → RED-C; solver skeleton + acceptance criteria documented** |
 | 1.7 | 2026-01-22 | **OPR-11 Z₂ Parity Origin: RED → YELLOW [Dc]+[P]**; Sign-flip rule [Dc], brane-reflection parity [P] |
 | 1.8 | 2026-01-22 | **OPR-22 G_F Full Closure Plan: RED-C → YELLOW [Dc]+[OPEN]**; Closure spine + no-smuggling guardrails |
+| 1.9 | 2026-01-22 | **OPR-19/20 Value Closure Attempt**: G1 ($g^2 = 4\pi\sigma r_e^3/\hbar c$) promising (11% from SM); L1/L2 for $\ell$ surveyed—no SM-free closure achieved. Status unchanged: RED-C [OPEN] |
