@@ -20,7 +20,10 @@
 \usepackage{tcolorbox}
 \usepackage{hyperref}
 \usepackage{tikz}
-\usetikzlibrary{decorations.pathmorphing,shapes,arrows,arrows.meta,positioning,calc,shapes.geometric,fit,backgrounds}
+% TikZ libraries required by shared style (tikz_style_edc.tex)
+\usetikzlibrary{calc,angles,quotes,decorations.markings,decorations.pathmorphing,positioning}
+% Additional libraries for Part II diagrams
+\usetikzlibrary{shapes,arrows,arrows.meta,shapes.geometric,fit,backgrounds}
 \usepackage{multirow}
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -72,17 +75,34 @@
 \newcommand{\vscan}{v_{\text{scan}}}
 \newcommand{\Rxi}{R_\xi}
 
-% Epistemic tags
-\newcommand{\tagDer}{\textcolor{blue!70!black}{\textsc{[Der]}}}
-\newcommand{\tagDc}{\textcolor{blue!70!black}{\textsc{[Dc]}}}
-\newcommand{\tagP}{\textcolor{orange!80!black}{\textsc{[P]}}}
-\newcommand{\tagBL}{\textcolor{gray}{\textsc{[BL]}}}
-\newcommand{\tagI}{\textcolor{purple!70!black}{\textsc{[I]}}}
-\newcommand{\tagCal}{\textcolor{red!70!black}{\textsc{[Cal]}}}
-\newcommand{\tagOpen}{\textcolor{red!70!black}{\textsc{[OPEN]}}}
-\newcommand{\tagDef}{\textcolor{teal!70!black}{\textsc{[Def]}}}
-\newcommand{\tagV}{\textcolor{cyan!70!black}{\textsc{[V]}}}  % Vision - aspiration
-\newcommand{\tagM}{\textcolor{gray}{\textsc{[M]}}}  % Mathematics
+% ═══════════════════════════════════════════════════════════════════════════════
+% EPISTEMIC TAGS (Framework v2.0 canonical standard — DOI 10.5281/zenodo.18299085)
+% ═══════════════════════════════════════════════════════════════════════════════
+% Evidence Status (one per claim) — Framework v2.0 canonical:
+%   [BL]  Baseline — External facts (PDG/CODATA), used as inputs or benchmarks
+%   [Der] Derived — Derived explicitly from postulates with stated regime
+%   [Dc]  Derived conditional — Follows from postulates under additional assumptions
+%   [I]   Identified — Structural mapping (not unique) within EDC framework
+%   [Cal] Calibrated — Parameter fixed using external data (fit/anchor)
+%   [P]   Proposed — Hypothesis, ansatz, or mechanism not yet uniquely fixed
+%   [M]   Mathematics — Pure mathematical result (not EDC-specific)
+%
+% NOTE: [D] is NOT a valid tag. Use [Der] or [Dc].
+% NOTE: [Def], [OPEN], [Role] are NOT evidence tags. Use plain text for definitions.
+
+% Colors matching Framework v2.0
+\definecolor{derivedColor}{RGB}{0,100,0}
+\definecolor{postulatedColor}{RGB}{150,0,0}
+\definecolor{calibratedColor}{RGB}{0,0,150}
+
+% Canonical evidence tags (Framework v2.0)
+\newcommand{\tagBL}{\textcolor{brown}{\textbf{[BL]}}}
+\newcommand{\tagDer}{\textcolor{derivedColor}{\textbf{[Der]}}}
+\newcommand{\tagDc}{\textcolor{calibratedColor}{\textbf{[Dc]}}}
+\newcommand{\tagI}{\textcolor{gray}{\textbf{[I]}}}
+\newcommand{\tagCal}{\textcolor{postulatedColor}{\textbf{[Cal]}}}
+\newcommand{\tagP}{\textcolor{postulatedColor}{\textbf{[P]}}}
+\newcommand{\tagM}{\textcolor{gray}{\textbf{[M]}}}
 
 % Degree symbol
 \newcommand{\degree}{°}
@@ -166,6 +186,121 @@
 }
 
 % ═══════════════════════════════════════════════════════════════════════════════
+% CASE STUDY AT-A-GLANCE BOX (KB-CANON-002)
+% ═══════════════════════════════════════════════════════════════════════════════
+\newtcolorbox{edcAtAGlance}[1]{
+    colback=blue!3,
+    colframe=blue!50!black,
+    fonttitle=\bfseries,
+    title={At a Glance: #1},
+    before upper={\parskip=0.3em},
+    boxrule=1pt,
+    arc=3pt
+}
+
+\newcommand{\edcBaseline}[1]{%
+    \textbf{\textcolor{gray!70!black}{Standard Model \tagBL{}:}}\\
+    #1\par\medskip
+}
+
+\newcommand{\edcEDCView}[1]{%
+    \textbf{\textcolor{purple!70!black}{EDC Interpretation \tagP{}/\tagDc{}:}}\\
+    #1\par\medskip
+}
+
+\newcommand{\edcKeyInsight}[1]{%
+    \textbf{\textcolor{green!50!black}{Key Insight:}}\\
+    \textit{#1}\par\medskip
+}
+
+\newcommand{\edcFalsifiable}[1]{%
+    \textbf{\textcolor{red!60!black}{Falsifiable If:}}\\
+    #1
+}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% ADDITIONAL BOX STYLES (for integrated companion content)
+% ═══════════════════════════════════════════════════════════════════════════════
+\tcbset{
+    edcCornerstone/.style={
+        colback=blue!5,
+        colframe=blue!40!black,
+        fonttitle=\bfseries
+    },
+    edcGuardrail/.style={
+        colback=gray!5!white,
+        colframe=gray!60!black,
+        fonttitle=\bfseries
+    },
+    edcPPN/.style={
+        colback=blue!5,
+        colframe=blue!50!black,
+        fonttitle=\bfseries
+    },
+    edcCanonical/.style={
+        colback=yellow!5,
+        colframe=orange!60!black,
+        fonttitle=\bfseries
+    },
+    edcConcept/.style={
+        colback=yellow!5,
+        colframe=orange!50!black,
+        fonttitle=\bfseries
+    },
+    edcPathway/.style={
+        colback=purple!5,
+        colframe=purple!40!black,
+        fonttitle=\bfseries
+    },
+    edcModel/.style={
+        colback=green!5,
+        colframe=green!40!black,
+        fonttitle=\bfseries
+    },
+    edcWarning/.style={
+        colback=red!5,
+        colframe=red!40!black,
+        fonttitle=\bfseries
+    },
+    edcMechanism/.style={
+        colback=teal!5,
+        colframe=teal!50!black,
+        fonttitle=\bfseries,
+        title={Mechanistic Dimension Note (Canon)}
+    }
+}
+
+% Mechanism helper macro
+\newcommand{\edcMechanismNote}[3]{%
+\begin{tcolorbox}[edcMechanism]
+\begin{itemize}[nosep,leftmargin=*]
+    \item \textbf{5D cause (bulk):} #1
+    \item \textbf{Brane-layer process:} #2
+    \item \textbf{3D observation (output):} #3
+\end{itemize}
+\vspace{0.3em}
+\footnotesize\textit{Ledger closure must hold: bulk + brane + 3D outputs conserve energy/quantum numbers.}
+\end{tcolorbox}
+}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% TIKZ STYLES FOR PROCESS DIAGRAMS (shared across EDC papers)
+% Canonical source: edc_papers/_shared/style/tikz_style_edc.tex (Version 1.0)
+% ═══════════════════════════════════════════════════════════════════════════════
+\input{../../../_shared/style/tikz_style_edc.tex}
+
+% Part II specific TikZ styles (extend shared styles)
+\tikzset{
+    % Gate box for frozen projection (Part II specific)
+    gate box/.style={
+        edc box,
+        fill=orange!15,
+        draw=orange!70!black,
+        text=black,
+    },
+}
+
+% ═══════════════════════════════════════════════════════════════════════════════
 % HYPERREF SETUP
 % ═══════════════════════════════════════════════════════════════════════════════
 \hypersetup{
@@ -230,11 +365,48 @@ They are coarse-grained residues of thick-brane dynamics.''}
 \tableofcontents
 
 % -----------------------------------------------------------------------
-% BOOK-LEVEL READER CONTRACT
+% BOOK-LEVEL READER CONTRACT AND EPISTEMIC STANDARD
 % -----------------------------------------------------------------------
-\chapter*{Reader Contract: Scope of This Book}
+\chapter*{Reader Contract}
 \addcontentsline{toc}{chapter}{Reader Contract}
-\vspace{-0.5cm}
+
+% ─────────────────────────────────────────────────────────────────────────────
+% EPISTEMIC STANDARD (same as Book I)
+% ─────────────────────────────────────────────────────────────────────────────
+
+\section*{Epistemic Standard (Framework v2.0)}
+
+All claims in this Part follow the EDC Epistemic Standard defined in Framework v2.0
+(DOI 10.5281/zenodo.18299085). Each substantive statement is labeled with exactly
+one \textbf{evidence status}, indicating how it is supported (not how ``important'' it is).
+
+\begin{center}
+\begin{tabular}{@{}lp{10cm}@{}}
+\toprule
+\textbf{Tag} & \textbf{Meaning} \\
+\midrule
+\tagBL{}  & \textbf{Baseline} — Accepted external facts (PDG/CODATA), used as inputs or benchmarks. \\
+\tagDer{} & \textbf{Derived} — Derived explicitly from postulates with stated regime of validity. \\
+\tagDc{}  & \textbf{Derived conditional} — Follows from postulates under additional assumptions. \\
+\tagI{}   & \textbf{Identified} — Structural mapping within EDC (e.g., observable $\to$ geometric object). \\
+\tagCal{} & \textbf{Calibrated} — Parameter fixed using external data (fit/anchor). \\
+\tagP{}   & \textbf{Proposed} — Hypothesis, ansatz, or mechanism not yet uniquely fixed. \\
+\tagM{}   & \textbf{Mathematics} — Pure mathematical result (not EDC-specific). \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Upgrade rule:} A claim is not upgraded by rhetoric. It advances only by
+moving \tagP{} $\to$ \tagCal{}/\tagI{} $\to$ \tagDc{} $\to$ \tagDer{} under explicitly
+stated assumptions and reproducible steps.
+
+\vspace{0.5cm}
+
+% ─────────────────────────────────────────────────────────────────────────────
+% SCOPE
+% ─────────────────────────────────────────────────────────────────────────────
+
+\section*{Scope of This Part}
 
 \begin{tcolorbox}[colback=blue!5, colframe=blue!50!black, title={What This Book Delivers}]
 \small
@@ -247,9 +419,23 @@ weak interactions within Elastic Diffusive Cosmology (EDC). Three chapters:
 \end{itemize}
 \end{tcolorbox}
 
+\begin{tcolorbox}[colback=yellow!5, colframe=orange!60!black, title={What This Book Does NOT Claim}]
+\small
+\begin{itemize}[itemsep=1pt, topsep=3pt]
+\item We do not ``derive'' the Standard Model---we provide a geometric interpretation.
+\item Not all parameters are from first principles---some are calibrated (marked \tagCal{}).
+\item We do not claim completeness---open problems are collected in \S\ref{sec:epistemic_map}.
+\item We do not fit parameters to data---predictions use only geometric inputs.
+\end{itemize}
+\end{tcolorbox}
+
 \vspace{0.3cm}
-\noindent\textbf{Epistemic Classification of Results:}
-\vspace{0.2cm}
+
+% ─────────────────────────────────────────────────────────────────────────────
+% RESULTS SUMMARY
+% ─────────────────────────────────────────────────────────────────────────────
+
+\section*{Summary of Results by Epistemic Status}
 
 \begin{center}
 \footnotesize
@@ -257,43 +443,31 @@ weak interactions within Elastic Diffusive Cosmology (EDC). Three chapters:
 \toprule
 \textbf{Result} & \textbf{Status} & \textbf{Ch} \\
 \midrule
-\multicolumn{3}{@{}l}{\textbf{Derived from geometry (\tagDc{})}} \\
-$\sin^2\theta_W = 1/4$ (bare) & $\mathbb{Z}_6$ subgroup counting & 2, 3 \\
-$\sin^2\theta_W(M_Z) = 0.2314$ & + Standard RG running & 3 \\
-$g^2 = 0.4246$ (1.1\% err) & Electroweak relation & 3 \\
-$M_W = 80.2$ GeV (0.2\% err) & From $g$ and $v$ & 3 \\
-$G_F$ (exact) & Self-consistent & 3 \\
-$\tau_n \approx 830$ s (6\% err) & WKB tunneling & 2, 3 \\
-Proton stability & $\mathbb{Z}_3$ fixed point & 2 \\
-120° Steiner angles & $\mathbb{Z}_6 \Rightarrow$ equal tensions & 2 \\
+\multicolumn{3}{@{}l}{\textbf{Derived \tagDer{}/\tagDc{}}} \\
+$\sin^2\theta_W = 1/4$ (bare) \tagDer{} & $\mathbb{Z}_6$ subgroup counting & 2, 3 \\
+$\sin^2\theta_W(M_Z) = 0.2314$ \tagDc{} & + Standard RG running & 3 \\
+$g^2 = 0.4246$ (1.1\% err) \tagDc{} & Electroweak relation & 3 \\
+$M_W = 80.2$ GeV (0.2\% err) \tagDc{} & From $g$ and $v$ & 3 \\
+$G_F$ (exact) \tagDc{} & Self-consistent & 3 \\
+$\tau_n \approx 830$ s (6\% err) \tagDc{} & WKB tunneling & 2, 3 \\
+Proton stability \tagDer{} & $\mathbb{Z}_3$ fixed point & 2 \\
+120° Steiner angles \tagDer{} & $\mathbb{Z}_6 \Rightarrow$ equal tensions & 2 \\
 \midrule
-\multicolumn{3}{@{}l}{\textbf{Postulated (\tagP{})}} \\
+\multicolumn{3}{@{}l}{\textbf{Postulated \tagP{}}} \\
 $\mathbb{Z}_6$ boundary conditions & Hexagonal lattice & 2 \\
 Flux tube interactions & Repulsion + confinement & 2 \\
 Proton = Y-junction & Topological ID & 2 \\
 Neutron = proton + dislocation & Structural ID & 2 \\
 \midrule
-\multicolumn{3}{@{}l}{\textbf{Identified/Calibrated (\tagI{})}} \\
+\multicolumn{3}{@{}l}{\textbf{Identified/Calibrated \tagI{}/\tagCal{}}} \\
 $E_{\text{disl}} = 1.293$ MeV & Mass diff.\ from defect & 2 \\
 $r_e \approx 1$ fm, $\sigma r_e^2 = 5.86$ MeV & Lattice params & 2, 3 \\
 \midrule
-\multicolumn{3}{@{}l}{\textbf{Open (\tagOpen{})}} \\
-Lepton masses, neutrinos, Koide, V$-$A & Future work & --- \\
+\multicolumn{3}{@{}l}{\textbf{Open (future work)}} \\
+Lepton masses, neutrinos, Koide, V$-$A & See \S\ref{sec:epistemic_map} & --- \\
 \bottomrule
 \end{tabular}
 \end{center}
-
-\vspace{0.3cm}
-
-\begin{tcolorbox}[colback=yellow!5, colframe=orange!60!black, title={What This Book Does NOT Claim}]
-\small
-\begin{itemize}[itemsep=1pt, topsep=3pt]
-\item We do not ``derive'' the Standard Model---we provide a geometric interpretation.
-\item Not all parameters are from first principles---some are calibrated (marked).
-\item We do not claim completeness---open problems are listed.
-\item We do not fit parameters to data---predictions use only geometric inputs.
-\end{itemize}
-\end{tcolorbox}
 
 \vspace{0.3cm}
 
@@ -354,22 +528,49 @@ processes within the thick-brane framework. Claims are marked with epistemic tag
 proofs are deferred to Chapter~2.}
 \end{quote}
 
+% ─────────────────────────────────────────────────────────────────────────────
+% Chapter 1 Sections (restructured Jan 2026)
+% Now uses proper \section{} hierarchy: 12 main sections instead of 65+ micro-sections
+% ─────────────────────────────────────────────────────────────────────────────
+
+% Section 1.1: Reader Contract and Epistemic Framework
 \input{sections/00_reader_contract}
+
+% Section 1.2: From 5D Relaxation to Brane Mechanics
 \input{sections/01_how_we_got_here}
+
+% Section 1.3: Geometry of the Brane Interface
 \input{sections/02_geometry_interface}
+
+% Section 1.4: The Unified Pipeline (includes master figure and gates)
 \input{sections/03_unified_pipeline}
+\input{sections/04a_unified_master_figure}
+
+% Section 1.5: Particle Ontology (includes proton anchor)
 \input{sections/04_ontology}
 \input{sections/04b_proton_anchor}
-\input{sections/05_neutron_story}
-\input{sections/04a_unified_master_figure}
+
+% Section 1.6: Case Study — Neutron
 \input{sections/05_case_neutron}
+
+% Section 1.7: Case Study — Charged Leptons (muon, tau, electron together)
 \input{sections/06_case_muon}
 \input{sections/07_case_tau}
-\input{sections/08_case_pion}
 \input{sections/09_case_electron}
+
+% Section 1.8: Case Study — Pion
+\input{sections/08_case_pion}
+
+% Section 1.9: Case Study — Neutrino
 \input{sections/10_case_neutrino}
+
+% Section 1.10: Structural Pathway to G_F
 \input{sections/11_gf_pathway}
+
+% Section 1.11: Epistemic Landscape and Consolidated Open Problems
 \input{sections/12_epistemic_map}
+
+% Section 1.12: Chapter Summary
 \input{sections/13_summary}
 
 % ═══════════════════════════════════════════════════════════════════════════════
@@ -463,9 +664,9 @@ $M_W$ & Computed from $g$, $v$ & 80.2 GeV (0.2\% error) \\
 \multicolumn{3}{l}{\textbf{Open Problems}} \\
 \midrule
 Mass hierarchy & No explanation & $\mathbb{Z}_3$ phases (partial) \\
-CP violation & CKM matrix (fitted) & Bulk-brane interference (\tagOpen{}) \\
-Neutrino masses & See-saw mechanism (ad hoc) & Bulk propagation (\tagOpen{}) \\
-Dark matter & Unknown (WIMPs? axions?) & Plenum excitations (\tagOpen{}) \\
+CP violation & CKM matrix (fitted) & Bulk-brane interference ((open)) \\
+Neutrino masses & See-saw mechanism (ad hoc) & Bulk propagation ((open)) \\
+Dark matter & Unknown (WIMPs? axions?) & Plenum excitations ((open)) \\
 
 \end{longtable}
 \end{center}
@@ -633,7 +834,7 @@ revisiting the work, it was unclear \emph{why} certain choices were made.
 2025 Q1--Q4 & Mode profiles, V-A structure & \checkmark \\
 2026 Jan & RG running insight (0.08\% for $\sin^2\theta_W$) & \checkmark \\
 2026 Jan & Systematic documentation (this book) & \checkmark \\
-Future & Koide phase, CP violation, neutrino masses & \tagOpen{} \\
+Future & Koide phase, CP violation, neutrino masses & (open) \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -709,7 +910,7 @@ $m_n - m_p$ & Neutron-proton mass difference & 1.293 MeV \\
 \tagP{} & Postulated & Assumed, not derived \\
 \tagI{} & Identified / Calibrated & Matched to data \\
 \tagBL{} & Baseline / External & From PDG/CODATA \\
-\tagOpen{} & Open / Unresolved & Future work needed \\
+(open) & Open / Unresolved & Future work needed \\
 \bottomrule
 \end{tabular}
 \end{center}
