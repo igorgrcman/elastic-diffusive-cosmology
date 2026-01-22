@@ -48,7 +48,9 @@ with hidden assumptions.
 | ID | Item | Status | Established | Missing | Priority | Next Action |
 |----|------|--------|-------------|---------|----------|-------------|
 | OPR-04 | Absolute neutrino masses | RED (open) | Suppression mechanism | First-principles m_νi values | P2 | Solve edge-mode BVP with Higgs profile |
-| OPR-05 | PMNS mixing angles | **YELLOW [Dc/I]** | **θ₂₃ derived (3%); structure identified** | θ₁₂⁰, ε geometric origins | P2 | **Attempt 4: Rank-2 + ε achieves GREEN numerically; θ₁₂, θ₁₃ [I] not [Dc]** |
+| OPR-05a | PMNS θ₂₃ | **GREEN [Dc]** | sin²θ₂₃ = 0.564 from Z₆ geometry | — | P2 | Closed (Attempt 2) |
+| OPR-05b | PMNS θ₁₃ / ε | **YELLOW [BL→Dc]** | ε = λ/√2 predicts sin²θ₁₃ = 0.025 (15% off) | √2 formal derivation | P2 | Attempt 4.1: no PDG-smuggling |
+| OPR-05c | PMNS θ₁₂ | **YELLOW [I]** | 35° discrete or 33.7° identified | Geometric origin | P2 | Best discrete: 35° |
 | OPR-06 | PMNS CP phase δ | RED (open) | Not addressed | Rephasing-invariant phase | P2 | Apply Z₃ phase mechanism (cf. Ch7) |
 | OPR-07 | Dirac vs Majorana | RED (open) | Both compatible | Discrimination criterion | P3 | Investigate Majorana mass term in 5D |
 | OPR-08 | Z₃ breaking for PMNS | YELLOW [P] | Mechanism postulated | Explicit calculation | P2 | Quantify breaking perturbations |
