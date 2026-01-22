@@ -1,10 +1,15 @@
 % ==============================================================================
 % Chapter 7: CKM Matrix and CP Violation
 % Status: [Dc] baseline computed, FALSIFIED — breaking required
+% Framework v2.0 tags only
 % ==============================================================================
 
 \section{CKM Matrix and CP Violation}
 \label{sec:ch7_ckm}
+
+% ------------------------------------------------------------------------------
+% EPISTEMIC STATUS BOX
+% ------------------------------------------------------------------------------
 
 \begin{tcolorbox}[edcGuardrail, title=\textbf{Epistemic Status}]
 This chapter applies the $\mathbb{Z}_3$ symmetry analysis from Chapter~\ref{ch:neutrinos_edge}
@@ -17,6 +22,35 @@ to quark mixing (CKM matrix):
 \end{itemize}
 \textbf{What is NOT claimed:} CKM angles are not derived. CP violation phase
 is not addressed. Breaking mechanism is postulated, not computed.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+% CHAIN BOX: What is independent vs. what is not
+% ------------------------------------------------------------------------------
+
+\begin{tcolorbox}[colback=green!5, colframe=green!50!black,
+    title=\textbf{Derivation Chain: What Is Computed vs.\ What Fails}]
+\begin{description}[style=nextline, leftmargin=1em, font=\normalfont\bfseries]
+    \item[Identification \tagI{}:]
+        Three quark generations $\leftrightarrow$ $|\mathbb{Z}_3| = 3$
+        (same identification as for leptons in Ch6).
+
+    \item[Computed baseline \tagDc{}:]
+        $\mathbb{Z}_3$ DFT matrix: $V_{ij}^{\text{DFT}} = \omega^{-ij}/\sqrt{3}$
+        with all $|V_{ij}|^2 = 1/3$.
+
+    \item[Falsification result \tagDc{}:]
+        Baseline vs.\ PDG: corner elements off by \textbf{$\times 140$};
+        diagonal elements off by \textbf{$\times 0.6$} (wrong direction).
+
+    \item[Breaking scale \tagI{}:]
+        CKM requires $\varepsilon \lesssim 0.22$ (Cabibbo) to $\varepsilon \lesssim 0.004$
+        ($|V_{ub}|$). This is \textbf{near-complete breaking} of $\mathbb{Z}_3$.
+
+    \item[Open:]
+        Breaking mechanism; CP phase $\delta$; Jarlskog invariant $J$;
+        why quarks break more than leptons.
+\end{description}
 \end{tcolorbox}
 
 % ------------------------------------------------------------------------------
@@ -101,18 +135,69 @@ This strong hierarchy is in stark contrast to PMNS, where mixing angles are larg
 ($\theta_{12} \approx 33°$, $\theta_{23} \approx 45°$).
 
 % ==============================================================================
-\subsection{$\mathbb{Z}_3$ DFT Baseline for CKM}
+\subsection{Attempt 1: $\mathbb{Z}_3$ DFT Baseline for CKM}
 \label{sec:ch7_dft_baseline}
+
+This section parallels the PMNS Attempt~1 (Section~\ref{sec:ch6_pmns_attempt1}):
+we compute what the CKM matrix would be under exact $\mathbb{Z}_3$ symmetry,
+then compare to PDG data to quantify the required breaking.
 
 \subsubsection{Hypothesis: Same $\mathbb{Z}_3$ Structure as Leptons}
 
 If quark generations also arise from $\mathbb{Z}_3$ modes in the hexagonal
 lattice (Chapter~\ref{ch:three_generations}), the same DFT analysis applies.
 
+Define the discrete Fourier transform basis:
+\begin{equation}
+    \omega = e^{2\pi i/3}, \qquad
+    U_{ij}^{\text{DFT}} = \frac{1}{\sqrt{3}} \omega^{-ij}
+    \label{eq:ch7_dft_def}
+\end{equation}
+
+\paragraph{Two minimal options for CKM.}
+The CKM matrix is $V = U_u^\dagger U_d$, where $U_u$ and $U_d$ transform
+up-type and down-type quarks to mass eigenstates. We consider two options
+\tagP{}:
+
+\begin{description}[style=nextline, leftmargin=1em]
+    \item[\textbf{Option A} (aligned sectors):]
+        Both up and down sectors have the same $\mathbb{Z}_3$ DFT basis
+        ($U_u = U_d = U^{\text{DFT}}$). Then:
+        \begin{equation}
+            V^{\text{(A)}} = (U^{\text{DFT}})^\dagger U^{\text{DFT}} = \mathbb{1}
+            \label{eq:ch7_option_a}
+        \end{equation}
+        \textbf{Result:} CKM is the identity---\emph{no mixing}.
+        This is falsified by the observed Cabibbo angle.
+
+    \item[\textbf{Option B} (misaligned sectors):]
+        Up sector is in site basis ($U_u = \mathbb{1}$), down sector is in
+        DFT basis ($U_d = U^{\text{DFT}}$). Then:
+        \begin{equation}
+            V^{\text{(B)}} = \mathbb{1}^\dagger \cdot U^{\text{DFT}} = U^{\text{DFT}}
+            \label{eq:ch7_option_b}
+        \end{equation}
+        \textbf{Result:} CKM equals the DFT matrix---all $|V_{ij}|^2 = 1/3$.
+        This is ``democratic'' mixing.
+\end{description}
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!50!black,
+    title=\textbf{Assessment of Options}]
+\textbf{Option A} (identity) is \emph{more wrong} than Option B: it predicts
+zero mixing, contradicting the observed Cabibbo angle $\theta_C \approx 13°$.
+
+\textbf{Option B} (democratic) predicts $|V_{us}| = 1/\sqrt{3} \approx 0.577$,
+which is $\times 2.6$ larger than PDG ($|V_{us}| \approx 0.225$).
+
+Both options fail, but \textbf{Option B is closer} and serves as the baseline
+for quantifying the required breaking. We adopt Option B for the remainder
+of this chapter.
+\end{tcolorbox}
+
 \begin{postulate}[$\mathbb{Z}_3$ Symmetric Quark Mixing {\normalfont \tagP{}}]
 \label{post:ch7_z3_quarks}
-Under exact $\mathbb{Z}_3$ symmetry, the CKM matrix equals the discrete Fourier
-transform:
+Under the Option B assumption (up sector in site basis, down sector in DFT basis),
+the CKM matrix equals the discrete Fourier transform:
 \begin{equation}
     V_{ij}^{\text{DFT}} = \frac{1}{\sqrt{3}} \omega^{-ij},
     \qquad \omega = e^{2\pi i/3}
@@ -185,24 +270,58 @@ of $\mathbb{Z}_3$ symmetry---much stronger than in the lepton sector.
 \subsection{Quantifying the Breaking Requirement}
 \label{sec:ch7_breaking}
 
+\subsubsection{Breaking Amplitude $\varepsilon$}
+
+We define a breaking amplitude $\varepsilon$ such that the observed off-diagonal
+elements scale as:
+\begin{equation}
+    |V_{ij}|_{\text{obs}} \sim \varepsilon \cdot |V_{ij}|_{\text{DFT}}
+    \quad\text{for } i \neq j
+    \label{eq:ch7_epsilon_def}
+\end{equation}
+
+From the PDG data \tagBL{}:
+\begin{itemize}[nosep]
+    \item \textbf{Cabibbo angle:} $|V_{us}| \approx 0.225$ vs.\ DFT $1/\sqrt{3} \approx 0.577$
+          $\Rightarrow \varepsilon_{us} \approx 0.39$
+    \item \textbf{Second off-diagonal:} $|V_{cb}| \approx 0.041$ vs.\ DFT $0.577$
+          $\Rightarrow \varepsilon_{cb} \approx 0.071$
+    \item \textbf{Corner element:} $|V_{ub}| \approx 0.004$ vs.\ DFT $0.577$
+          $\Rightarrow \varepsilon_{ub} \approx 0.007$
+\end{itemize}
+
+The Wolfenstein parametrization captures this hierarchy \tagBL{}:
+\begin{equation}
+    |V_{us}| \sim \lambda, \quad
+    |V_{cb}| \sim \lambda^2, \quad
+    |V_{ub}| \sim \lambda^3, \qquad
+    \lambda \approx 0.225
+    \label{eq:ch7_wolfenstein}
+\end{equation}
+
+\textbf{Interpretation:} The CKM hierarchy is \emph{not} a small perturbation
+around democratic mixing. It requires \textbf{suppression factors} of $\lambda$,
+$\lambda^2$, $\lambda^3$ relative to the DFT baseline \tagDc{}.
+
 \subsubsection{Lepton vs.\ Quark Breaking Asymmetry}
 
 \begin{table}[ht]
 \centering
 \caption{Breaking required: PMNS vs.\ CKM}
 \label{tab:ch7_breaking_comparison}
-\begin{tabular}{lccc}
+\begin{tabular}{lcccc}
 \toprule
-\textbf{Matrix} & \textbf{Worst DFT error} & \textbf{Breaking scale} & \textbf{Status} \\
+\textbf{Matrix} & \textbf{Worst DFT error} & \textbf{$\varepsilon$ needed} & \textbf{Breaking scale} & \textbf{Status} \\
 \midrule
-PMNS (neutrinos) & $\theta_{13}$: $\times 15$ & $\sim 25\%$ & \tagP{} \\
-CKM (quarks) & $|V_{ub}|$: $\times 144$ & $\sim 99\%$ & \tagP{} \\
+PMNS (neutrinos) & $\theta_{13}$: $\times 15$ & $\varepsilon \sim 0.26$ & $\sim 25\%$ & \tagI{} \\
+CKM (quarks) & $|V_{ub}|$: $\times 144$ & $\varepsilon \sim 0.007$ & $\sim 99\%$ & \tagI{} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 The quark sector requires \textbf{near-complete} breaking of $\mathbb{Z}_3$
-symmetry to achieve the observed hierarchy. This asymmetry is itself a puzzle.
+symmetry to achieve the observed hierarchy. This asymmetry is itself a puzzle
+that EDC must eventually explain.
 
 \subsubsection{Candidate Breaking Mechanisms}
 
@@ -306,4 +425,29 @@ breaking needed). This identifies a key structural question for EDC: why is
 $\mathbb{Z}_3$ nearly preserved in the lepton sector but almost completely
 broken in the quark sector? The answer likely involves different localization
 properties or potential shapes for quarks vs.\ leptons, but this remains (open).
+
+\subsubsection{Falsifiability}
+
+\begin{tcolorbox}[colback=orange!5, colframe=orange!50!black,
+    title=\textbf{What Would Falsify EDC's Flavor Picture?}]
+\begin{enumerate}[nosep]
+    \item \textbf{Fourth generation discovery:}
+          If a fourth quark generation is discovered with mass below the
+          electroweak scale, the $|\mathbb{Z}_3| = 3$ identification fails.
+          (This is consistent with Chapter~\ref{ch:three_generations}.)
+
+    \item \textbf{No geometric breaking mechanism exists:}
+          If no controlled perturbation of $\mathbb{Z}_6$ geometry can produce
+          the CKM hierarchy (with $\varepsilon_{ub} \sim 0.007$), the EDC
+          flavor picture is incomplete.
+
+    \item \textbf{Lepton-quark symmetry found:}
+          If future precision measurements reveal that PMNS and CKM actually
+          have similar hierarchies (contrary to current data), the asymmetry
+          puzzle dissolves but the explanation shifts.
+\end{enumerate}
+\textbf{Current status:} None of these falsifiers are triggered. The framework
+is consistent with $N_g = 3$ and with the observed lepton-quark asymmetry
+being a puzzle requiring explanation.
+\end{tcolorbox}
 
