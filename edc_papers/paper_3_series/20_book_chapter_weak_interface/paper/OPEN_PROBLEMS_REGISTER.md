@@ -1,6 +1,6 @@
 # Open Problems Register (OPR) — Part II: Weak Sector
 
-**Version:** 1.14
+**Version:** 1.15
 **Date:** 2026-01-22
 **Status:** Active research program
 
@@ -478,6 +478,41 @@ U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
 
 ---
 
+### Completed: OPR-20 Attempt C (Geometric Factor-8 Route)
+
+**Target:** Derive factor 8 from EDC geometry/topology without fitting to weak scale
+**Result:** Best derived factor is $2\pi\sqrt{2} \approx 8.89$ [Dc]+[P]; exact 8 not uniquely forced
+
+**Route evaluation:**
+
+| Route | Factor | Status | m_φ (GeV) | Deviation from 8 |
+|-------|--------|--------|-----------|------------------|
+| A: Z₂ orbifold | 2 | [Dc] | 310 | 75% |
+| B: Polarization | 1 | [Dc] (neg) | 620 | 87% |
+| C: Junction | 2 | [Dc] | 310 | 75% |
+| D1: Circumference (2π) | 6.28 | [P] | 99 | 21% |
+| E2: Z₂ × norm | 4 | [Dc] | 155 | 50% |
+| **Combined: 2π√2** | **8.89** | **[Dc]+[P]** | **70** | **11%** |
+| Exact 8 | 8 | [P]/[OPEN] | 77.5 | 0% |
+
+**Key findings:**
+1. **No single derived route gives exactly 8**
+2. **Best combination: $2\pi\sqrt{2} \approx 8.89$** — circumference [P] × normalization [Dc]
+3. **Result: $m_\phi \approx 70$ GeV** — 12% below weak scale (within dimensional analysis uncertainty)
+4. **Exact factor 8 requires:** third Z₂ factor [OPEN] OR $R_\xi$ adjustment
+
+**What would close:**
+- Derive circumference interpretation from Part I membrane dynamics
+- Identify third independent Z₂ symmetry to complete 8 = 2³
+- Refine $R_\xi$ estimate to absorb 12% residual
+
+**Code:** `tools/check_opr20_factor8_routes.py` → `code/output/opr20_factor8_routes_check.txt`
+**LaTeX:** `sections/ch11_opr20_geometric_factor8_attemptC.tex`
+
+**Status:** RED-C [Dc]+[OPEN] — Structural progress ($2\pi\sqrt{2}$ derived); 12% residual and exact-8 origin remain OPEN
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
@@ -497,3 +532,4 @@ U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
 | 1.12 | 2026-01-22 | **OPR-19 Coefficient Provenance (Attempt 2)**: 15 coefficients surveyed for $g^2 = C \cdot \sigma r_e^3/(\hbar c)$; best [Dc] is $4\pi$ giving $g^2 = 0.373$ (6% below SM). No unique derivation. Status: RED-C [OPEN] |
 | 1.13 | 2026-01-22 | **OPR-19 4π Derivation (Attempt 3)**: Dual-route derivation via Gauss's law + isotropy both yield $C = 4\pi$; alternatives require breaking conventions or isotropy. $g^2 = 0.373$ (6% from SM). **Status: RED-C [OPEN] → YELLOW [Dc]+[P]** |
 | 1.14 | 2026-01-22 | **OPR-20 Factor-8 Forensic (BC Sweep)**: BC eigenvalue sweep via `tools/scan_opr20_bc_eigenvalue.py`. **Standard BCs fail** (min $x_1 = \pi/2$, factor 4). Robin BCs can achieve $x_1 \approx \pi/8$ but require specific $(a\ell, b\ell) \sim 0.1$ tuning. Junction/BKT requires large coefficients ($\kappa \sim 20$). Best geometric factors: $2\pi$ (24% off), $8$ (3% numeric match [P]). **BC route CLOSED [Dc] (negative result)**; junction/geometric routes remain [OPEN]. Status unchanged: RED-C [Dc]+[OPEN] |
+| 1.15 | 2026-01-22 | **OPR-20 Attempt C: Geometric Factor-8 Route**: Systematic evaluation of 5 geometric routes (Z₂ orbifold, polarization, junction, measures, normalization). Best derived factor: $2\pi\sqrt{2} \approx 8.89$ [Dc]+[P] giving $m_\phi \approx 70$ GeV (12% below weak scale). Exact factor 8 not uniquely derived—would require third Z₂ factor or $R_\xi$ adjustment. **Status unchanged: RED-C [Dc]+[OPEN]**; structural progress but 12% residual unexplained |
