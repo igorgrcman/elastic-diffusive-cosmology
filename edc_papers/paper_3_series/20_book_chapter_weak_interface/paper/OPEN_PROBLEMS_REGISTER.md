@@ -63,8 +63,8 @@ with hidden assumptions.
 |----|------|--------|-------------|---------|----------|-------------|
 | OPR-09 | Quark profile ansatz | RED [P] | Exponential postulated | Derive from 5D Dirac BVP | P2 | Solve thick-brane fermion equation |
 | OPR-10 | κ_q/κ_ℓ ≈ 0.4 | YELLOW [I] | Identified from data | First-principles mechanism | P2 | Derive localization asymmetry |
-| OPR-11 | (ρ̄, η̄) derivation | RED (open) | Structure Aλ³ correct | Complex prefactor | P1 | **Attempt 4: Z₆ refinement** |
-| OPR-12 | CP phase δ (120° vs 65°) | YELLOW [I] | J magnitude correct (6%) | Phase angle factor 2 off | P1 | **Attempt 4: Z₆ = Z₂×Z₃ selection** |
+| OPR-11 | (ρ̄, η̄) derivation | RED (open) | Structure Aλ³ correct | Complex prefactor origin | P2 | Requires Z₂ parity derivation (see OPR-12) |
+| OPR-12 | CP phase δ | **YELLOW [Dc]+[I]** | Phase Cancellation Thm [Dc]; Z₂→δ=60° (5° from PDG) | Z₂ parity assignment [I] | P2 | **Attempt 4 DONE**: δ improved from 55° to 5° error |
 | OPR-13 | Jarlskog J | YELLOW [Dc] | J = 2.9×10⁻⁵ (no calibration) | δ refinement | P2 | Already partial success |
 
 ### Chapter 8: Pion Decay
@@ -120,7 +120,7 @@ The following items block major claims and should be prioritized:
 
 1. **OPR-02**: KK tower truncation — needed for N_gen = 3
 2. ~~**OPR-05**: PMNS mixing angles~~ → **PARTIAL SUCCESS (Attempt 2)**: θ₂₃ derived [Dc], θ₁₂/θ₁₃ remain open (downgraded to P2)
-3. **OPR-11/12**: (ρ̄, η̄) and δ — needed for CKM closure → **Attempt 4**
+3. ~~**OPR-11/12**: (ρ̄, η̄) and δ~~ → **Attempt 4 DONE**: Phase Cancellation Theorem [Dc], Z₂ selection gives δ=60° (5° from PDG). OPR-11 remains RED, OPR-12 upgraded to YELLOW [Dc]+[I]
 4. ~~**OPR-17**: SU(2)_L embedding~~ → **PARTIAL (YELLOW [P])**: where/how fixed; origin+masses remain OPEN
 5. **OPR-19–22**: G_F chain — sanity skeleton complete; first-principles derivation still RED-C
 
