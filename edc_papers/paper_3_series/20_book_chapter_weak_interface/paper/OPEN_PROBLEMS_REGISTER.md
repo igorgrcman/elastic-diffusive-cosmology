@@ -513,6 +513,69 @@ U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
 
 ---
 
+### Completed: OPR-20 Attempt D (Interpretation + Robin + Overcounting Audit)
+
+**Target:** Three-part comprehensive audit:
+- (A) $R_\xi$ interpretation (radius vs circumference vs diffusion length)
+- (B) Robin BC derivation from junction physics
+- (C) Overcounting audit for composite factors
+
+**Part A: $R_\xi$ Interpretation Audit**
+
+| Interpretation | Factor | $\ell$ | $m_\phi$ (GeV) | vs $M_W$ | Status |
+|---------------|--------|--------|----------------|----------|--------|
+| A1: Radius | 1 | $R_\xi$ | 310 | +290% | [P] |
+| A2: Circumference | $2\pi$ | $2\pi R_\xi$ | 49 | -39% | [P] |
+| A3: Diffusion (4π) | $4\pi$ | $4\pi R_\xi$ | 25 | -69% | [P] |
+| Target factor | ~3.9 | — | 80 | 0% | — |
+
+**Finding:** No canonical interpretation uniquely yields $m_\phi \approx 80$ GeV. Interpretation remains [P].
+
+**Part B: Robin from Junction Physics**
+
+From boundary action: $S_{\text{brane}} = \int d^4x \left[ -\frac{\kappa}{2}\phi^2 + \lambda \phi \partial_y \phi \right]$
+
+Variation yields Robin BC: $\phi'(0) + \alpha\phi(0) = 0$ with $\alpha = \kappa/(2-\lambda)$
+
+| $\kappa\ell$ | $\lambda$ | $\alpha\ell$ | Naturalness |
+|--------------|-----------|--------------|-------------|
+| 1.0 | 0 | 0.5 | Natural |
+| 0.2 | 0 | 0.1 | **Mild tuning** |
+| 1.0 | 1.8 | 5.0 | Enhanced |
+
+**Finding:** Robin BC *structure* derived [Dc]; *parameters* for factor-8 ($\alpha\ell \sim 0.1$) require mild tuning [P].
+
+**Part C: Overcounting Audit**
+
+| Candidate | Factor | Independence | Status |
+|-----------|--------|--------------|--------|
+| Z₂ × Israel | 4 | ✗ FAIL | Same Z₂ physics |
+| Z₂ × norm | 2.83 | ✓ PASS | [Dc] |
+| **2π × √2** | **8.89** | **✓ PASS** | **[Dc]+[P]** |
+| Z₂ × Z₂ × Z₂ | 8 | ✗ FAIL | Triple-counts Z₂ |
+| Z₂ × factor4 | 8 | ✗ FAIL | Overcounts normalization |
+
+**Key findings:**
+1. **Z₂ orbifold ≡ Israel junction** — Same underlying physics, cannot multiply (factor 2, not 4)
+2. **$2\pi\sqrt{2} \approx 8.89$ passes independence check** — Best valid candidate
+3. **Factor 8 from naive multiplication is invalid** — Involves overcounting
+
+**What would close OPR-20:**
+- Derive circumference interpretation ($2\pi$ factor) from Part I membrane physics → upgrades [P] to [Dc]
+- Identify third independent geometric factor (~1.14) to close 12% residual
+- OR accept $m_\phi \approx 70$ GeV as EDC prediction (tension with $M_W = 80$ GeV)
+
+**Code:**
+- `tools/scan_opr20_robin_from_junction.py` — Junction → Robin parameter mapping + naturalness
+- `tools/check_opr20_overcounting_audit.py` — Composite factor independence checker
+- `code/output/opr20_attemptD_report.txt` — Combined output
+
+**LaTeX:** `sections/ch11_opr20_attemptD_interpretation_robin_overcount.tex`
+
+**Status:** RED-C [Dc]+[OPEN] — Additional negative closures (overcounting), narrowed viable routes; 12% residual and exact-8 origin remain OPEN
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
@@ -533,3 +596,4 @@ U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
 | 1.13 | 2026-01-22 | **OPR-19 4π Derivation (Attempt 3)**: Dual-route derivation via Gauss's law + isotropy both yield $C = 4\pi$; alternatives require breaking conventions or isotropy. $g^2 = 0.373$ (6% from SM). **Status: RED-C [OPEN] → YELLOW [Dc]+[P]** |
 | 1.14 | 2026-01-22 | **OPR-20 Factor-8 Forensic (BC Sweep)**: BC eigenvalue sweep via `tools/scan_opr20_bc_eigenvalue.py`. **Standard BCs fail** (min $x_1 = \pi/2$, factor 4). Robin BCs can achieve $x_1 \approx \pi/8$ but require specific $(a\ell, b\ell) \sim 0.1$ tuning. Junction/BKT requires large coefficients ($\kappa \sim 20$). Best geometric factors: $2\pi$ (24% off), $8$ (3% numeric match [P]). **BC route CLOSED [Dc] (negative result)**; junction/geometric routes remain [OPEN]. Status unchanged: RED-C [Dc]+[OPEN] |
 | 1.15 | 2026-01-22 | **OPR-20 Attempt C: Geometric Factor-8 Route**: Systematic evaluation of 5 geometric routes (Z₂ orbifold, polarization, junction, measures, normalization). Best derived factor: $2\pi\sqrt{2} \approx 8.89$ [Dc]+[P] giving $m_\phi \approx 70$ GeV (12% below weak scale). Exact factor 8 not uniquely derived—would require third Z₂ factor or $R_\xi$ adjustment. **Status unchanged: RED-C [Dc]+[OPEN]**; structural progress but 12% residual unexplained |
+| 1.16 | 2026-01-22 | **OPR-20 Attempt D: Interpretation + Robin + Overcounting Audit**: Three-part comprehensive audit: (A) $R_\xi$ interpretation (radius vs circumference vs diffusion) all [P], target factor ~3.9 between A1/A2; (B) Robin BC structure derived [Dc] but parameters ($\alpha\ell \sim 0.1$) require mild tuning [P]; (C) Overcounting audit confirms Z₂ ≡ Israel junction (same physics), $2\pi\sqrt{2}$ passes independence check, factor 8 from naive multiplication is INVALID (overcounting). **Status unchanged: RED-C [Dc]+[OPEN]**; additional negative closures, narrowed viable routes |
