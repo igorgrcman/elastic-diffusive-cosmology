@@ -1,6 +1,6 @@
 # Open Problems Register (OPR) — Part II: Weak Sector
 
-**Version:** 1.10
+**Version:** 1.12
 **Date:** 2026-01-22
 **Status:** Active research program
 
@@ -374,6 +374,40 @@ U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
 
 ---
 
+### Completed: OPR-19 Coefficient Provenance (Attempt 2)
+
+**Target:** Derive the 4π coefficient in G1 from first principles (geometric integral, flux quantization, action normalization)
+
+**Result:** Coefficient candidates enumerated; no unique derivation; status remains RED-C [OPEN]
+
+**Coefficient candidates surveyed:**
+
+| Rank | Coefficient | C value | g² | vs SM | Tag | Assessment |
+|------|-------------|---------|-----|-------|-----|------------|
+| 1 | 4π (solid angle) | 12.57 | 0.373 | -6% | [Dc] | **Best derived, closest to SM** |
+| 2 | 12 (Z₆ × Z₂) | 12.00 | 0.356 | -10% | [P] | Group order match |
+| 3 | √3 × 2π | 10.88 | 0.323 | -19% | [P] | If Z₃ contributes |
+| 4 | 2π | 6.28 | 0.187 | -53% | [Dc] | Too small |
+| 5 | 4π/3 | 4.19 | 0.124 | -69% | [Dc] | Too small |
+
+**Key findings:**
+1. **4π is best derived candidate:** g² = 0.373 (6% below SM g₂² ≈ 0.40)
+2. **Geometrically natural:** 4π consistent with solid angle, sphere area, flux quantization
+3. **NOT uniquely selected:** Alternatives (2π, 4π/3, π) are also derivable but give worse g²
+4. **Tension-coupling relation [P]:** The relation g² ∝ σ is postulated, not derived from action
+
+**What would close OPR-19:**
+1. Derive g² = 4π σ r_e³/(ℏc) from 5D action KK reduction
+2. Show flux quantization uniquely gives 4π coefficient
+3. Derive tension-coupling relation from brane action principle
+
+**Code:** `tools/check_g1_coefficient_sensitivity.py` → `code/output/g1_coefficient_sweep.txt`
+**LaTeX:** `sections/ch11_g5_value_closure_attempt2_coefficient.tex`
+
+**Status:** RED-C [OPEN] — Coefficient candidates enumerated; 4π is geometrically natural and numerically best, but not uniquely derived.
+
+---
+
 ### In Progress: OPR-20 Suppression Mechanism (Attempt A2)
 
 **Target:** Derive the dimensionless suppression factor $f_{\text{geom}} \sim 10^{-3}$ that explains why $\ell \ll r_e$ without using SM inputs
@@ -429,3 +463,5 @@ U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
 | 1.8 | 2026-01-22 | **OPR-22 G_F Full Closure Plan: RED-C → YELLOW [Dc]+[OPEN]**; Closure spine + no-smuggling guardrails |
 | 1.9 | 2026-01-22 | **OPR-19/20 Value Closure Attempt**: G1 ($g^2 = 4\pi\sigma r_e^3/\hbar c$) promising (11% from SM); L1/L2 for $\ell$ surveyed—no SM-free closure achieved. Status unchanged: RED-C [OPEN] |
 | 1.10 | 2026-01-22 | **OPR-20 Suppression Mechanism (Attempt A2)**: Candidate A ($f = R_\xi/r_e \sim 10^{-3}$) identified; factor-8 discrepancy ($m_\phi \approx 620$ GeV vs $M_W \approx 80$ GeV). Status: RED-C [OPEN], mechanism [P] |
+| 1.11 | 2026-01-22 | **OPR-20 Factor-8 Forensic Sweep (Attempt A3)**: 19 SM-free mechanisms surveyed; best [Dc] is $2\pi$ (19% off); $C=8$ numeric match (3.7%) but [P]. Status: RED-C [OPEN] |
+| 1.12 | 2026-01-22 | **OPR-19 Coefficient Provenance (Attempt 2)**: 15 coefficients surveyed for $g^2 = C \cdot \sigma r_e^3/(\hbar c)$; best [Dc] is $4\pi$ giving $g^2 = 0.373$ (6% below SM). No unique derivation. Status: RED-C [OPEN] |
