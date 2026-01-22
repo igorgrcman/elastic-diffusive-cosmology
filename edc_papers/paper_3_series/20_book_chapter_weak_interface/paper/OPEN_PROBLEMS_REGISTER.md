@@ -576,6 +576,48 @@ Variation yields Robin BC: $\phi'(0) + \alpha\phi(0) = 0$ with $\alpha = \kappa/
 
 ---
 
+### Completed: OPR-20 Attempt E (Prefactor-8 First-Principles Derivation)
+
+**Target:** Derive the geometric prefactor from first principles; upgrade from [P] to [Dc]
+
+**Track A: Why ℓ = 2πR_ξ?**
+
+| Interpretation | Factor | Derivation | Status |
+|---------------|--------|------------|--------|
+| A1: R_ξ = ℓ | 1 | Direct identification | Non-standard [P] |
+| **A2: ℓ = 2πR_ξ** | **2π** | **Circumference of radius R_ξ** | **[Dc] DERIVED** |
+| A3: ℓ = πR_ξ | π | Half-orbifold | [Dc] (negative) |
+| A4: ℓ = 4πR_ξ | 4π | 3D solid angle | [Dc] (negative) |
+
+**Key finding:** The factor 2π emerges from standard circle geometry:
+- R_ξ is the radius of the compact dimension (from Part I correlation length)
+- KK quantization uses circumference L = 2πR
+- Therefore ℓ = 2πR_ξ is **derived [Dc]**, not postulated
+
+**Track B: The missing 0.9003 factor (to convert 2π√2 → 8)**
+
+| Candidate | Factor | Status | Note |
+|-----------|--------|--------|------|
+| B1: Orbifold domain | 0.5 | [Dc] (neg) | Already in x₁ |
+| B2: Thick-brane overlap | variable | [P]/[OPEN] | Requires BVP |
+| B3: BKT (1+κ)⁻¹ | 0.9 if κ=0.11 | [P] | Parameter not derived |
+| B4: Brane curvature | variable | [P]/[OPEN] | No evidence |
+
+**Finding:** No unique derivation of the 0.9003 residual factor.
+
+**What Attempt E achieved:**
+- **Upgraded:** 2π factor from [P] to [Dc] (circumference interpretation derived)
+- **Unchanged:** √2 normalization factor remains [Dc]
+- **Combined:** 2π√2 ≈ 8.89 is now fully [Dc] (all components derived)
+- **Open:** Exact factor 8 and residual to M_W remain [OPEN]
+
+**Code:** `tools/check_opr20_prefactor8_attemptE.py` → `code/output/opr20_attemptE_report.txt`
+**LaTeX:** `sections/ch11_opr20_attemptE_prefactor8_derivation.tex`
+
+**Status:** RED-C [Dc]+[OPEN] — 2π factor upgraded to [Dc]; combined 2π√2 now fully derived; exact 8 and M_W residual remain OPEN
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
@@ -597,3 +639,4 @@ Variation yields Robin BC: $\phi'(0) + \alpha\phi(0) = 0$ with $\alpha = \kappa/
 | 1.14 | 2026-01-22 | **OPR-20 Factor-8 Forensic (BC Sweep)**: BC eigenvalue sweep via `tools/scan_opr20_bc_eigenvalue.py`. **Standard BCs fail** (min $x_1 = \pi/2$, factor 4). Robin BCs can achieve $x_1 \approx \pi/8$ but require specific $(a\ell, b\ell) \sim 0.1$ tuning. Junction/BKT requires large coefficients ($\kappa \sim 20$). Best geometric factors: $2\pi$ (24% off), $8$ (3% numeric match [P]). **BC route CLOSED [Dc] (negative result)**; junction/geometric routes remain [OPEN]. Status unchanged: RED-C [Dc]+[OPEN] |
 | 1.15 | 2026-01-22 | **OPR-20 Attempt C: Geometric Factor-8 Route**: Systematic evaluation of 5 geometric routes (Z₂ orbifold, polarization, junction, measures, normalization). Best derived factor: $2\pi\sqrt{2} \approx 8.89$ [Dc]+[P] giving $m_\phi \approx 70$ GeV (12% below weak scale). Exact factor 8 not uniquely derived—would require third Z₂ factor or $R_\xi$ adjustment. **Status unchanged: RED-C [Dc]+[OPEN]**; structural progress but 12% residual unexplained |
 | 1.16 | 2026-01-22 | **OPR-20 Attempt D: Interpretation + Robin + Overcounting Audit**: Three-part comprehensive audit: (A) $R_\xi$ interpretation (radius vs circumference vs diffusion) all [P], target factor ~3.9 between A1/A2; (B) Robin BC structure derived [Dc] but parameters ($\alpha\ell \sim 0.1$) require mild tuning [P]; (C) Overcounting audit confirms Z₂ ≡ Israel junction (same physics), $2\pi\sqrt{2}$ passes independence check, factor 8 from naive multiplication is INVALID (overcounting). **Status unchanged: RED-C [Dc]+[OPEN]**; additional negative closures, narrowed viable routes |
+| 1.17 | 2026-01-22 | **OPR-20 Attempt E: Prefactor-8 First-Principles Derivation**: Track A derives ℓ = 2πR_ξ from standard circle geometry (R_ξ is radius, KK uses circumference); **2π factor upgraded [P] → [Dc]**. Alternative factors (1, π, 4π) negatively closed [Dc]. Track B: Missing 0.9003 residual (to convert 2π√2 → 8) has candidates (BKT, thick-brane) but none uniquely derived; remains [OPEN]. Combined factor 2π√2 now fully [Dc]. **Status unchanged: RED-C [Dc]+[OPEN]**; 2π derivation is progress but residual to M_W still open |

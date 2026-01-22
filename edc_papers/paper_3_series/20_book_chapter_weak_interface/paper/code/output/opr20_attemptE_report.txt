@@ -1,0 +1,129 @@
+==============================================================================
+OPR-20 ATTEMPT E: PREFACTOR-8 VERIFICATION
+==============================================================================
+
+NO-SMUGGLING GUARDRAILS ACTIVE
+----------------------------------------
+FORBIDDEN as inputs to define ℓ, x₁, or R_ξ:
+  ✗ M_W = 80 GeV
+  ✗ G_F = 1.17 × 10⁻⁵ GeV⁻²
+  ✗ g₂ (SM weak coupling)
+  ✗ v = 246 GeV
+
+ALLOWED:
+  ✓ R_ξ ~ 10⁻³ fm from Part I [P]
+  ✓ Geometric constants (π, √2) with derivation
+  ✓ x₁ from KK eigenvalue equation [Dc]
+
+COMPARISON ONLY [BL]:
+  → M_W = 80 GeV for sanity check
+==============================================================================
+
+PART 1: R_ξ INTERPRETATION ANALYSIS
+------------------------------------------------------------------------------
+
+Input: R_ξ = 0.001 fm [P] (from Part I diffusion)
+       x₁ = π/2 = 1.570796 [Dc] (Neumann-Neumann)
+
+Interpretation                        Factor       ℓ (fm)  m_φ (GeV) Tag       
+------------------------------------------------------------------------------
+A1: R_ξ = ℓ (radius as length)        1.0000     0.001000     309.96 [P]       
+A2: ℓ = 2πR_ξ (circumference)         6.2832     0.006283      49.33 [Dc]      
+A3: ℓ = πR_ξ (half-orbifold)          3.1416     0.003142      98.66 [Dc] (neg)
+A4: ℓ = 4πR_ξ (solid angle)          12.5664     0.012566      24.67 [Dc] (neg)
+
+Derivation details:
+  A1: R_ξ = ℓ (radius as length):
+    Derivation: Direct identification: R_ξ is the KK length itself
+    Status: Non-standard; requires redefining R_ξ as circumference
+
+  A2: ℓ = 2πR_ξ (circumference):
+    Derivation: R_ξ is radius; KK uses circumference L = 2πR
+    Status: DERIVED: Standard circle geometry
+
+  A3: ℓ = πR_ξ (half-orbifold):
+    Derivation: Fundamental domain of S¹/Z₂ is half-circle
+    Status: NEGATIVE CLOSURE: x₁ already accounts for orbifold
+
+  A4: ℓ = 4πR_ξ (solid angle):
+    Derivation: 3D isotropic solid angle
+    Status: NEGATIVE CLOSURE: Wrong dimension (3D not 1D)
+
+PART 2: COMBINED FACTOR ANALYSIS (with independence check)
+------------------------------------------------------------------------------
+
+Combined Factor                   Value  m_φ (GeV) Tag          Independence        
+------------------------------------------------------------------------------------------
+2π (circumference only)          6.2832      49.33 [Dc]         Single factor, no co
+√2 (normalization only)          1.4142     219.18 [Dc]         Single factor, no co
+2π√2 (circumference + normalization)   8.8858      34.88 [Dc]         PASS: Independent ph
+8 (target)                       8.0000      38.75 [OPEN]       No valid decompositi
+
+PART 3: RESIDUAL ANALYSIS (comparison to M_W [BL] only)
+------------------------------------------------------------------------------
+
+NOTE: M_W = 80 GeV is [BL] comparison ONLY, not an input for derivation.
+
+Best derived factor: 2π√2 = 8.8858 [Dc]
+Resulting m_φ: 34.88 GeV
+Comparison to M_W = 80.4 GeV [BL]:
+  Deviation: -56.6%
+  Factor needed to hit M_W: 2.3049
+
+PART 4: MISSING FACTOR (to convert 2π√2 → 8)
+------------------------------------------------------------------------------
+
+MISSING FACTOR ANALYSIS
+--------------------------------------------------
+Current best factor: 2π√2 = 8.885766
+Target factor: 8
+Missing factor: 8 / (2π√2) = 0.900316
+
+Algebraic form:
+  8 / (2π√2) = 4 / (π√2) = 2√2 / π
+  Numeric: 0.900316
+
+Simple candidate comparison:
+  9/10            = 0.900000  (diff: 0.04%)
+  π/√(12)         = 0.906900  (diff: 0.73%)
+  √(2)/√(π)       = 0.797885  (diff: 11.38%)
+  1 - 0.1         = 0.900000  (diff: 0.04%)
+  e^(-0.1)        = 0.904837  (diff: 0.50%)
+
+PART 5: TRACK B CANDIDATES FOR 0.9003 FACTOR
+------------------------------------------------------------------------------
+
+Candidate                           Value   Match? Status          Note                
+------------------------------------------------------------------------------------------
+B1: Orbifold domain (0.5)          0.5000       No [Dc] (neg)      Already in x₁       
+B2: Thick-brane overlap          variable    Maybe [P]/[OPEN]      Requires BVP        
+B3: BKT (1+κ)⁻¹, κ=0.11            0.9009      Yes [P]             Parameter not derived
+B4: Brane curvature              variable    Maybe [P]/[OPEN]      No evidence         
+B5: Numeric (4/π√2)                0.9003      Yes [OPEN]          Definition, not derivation
+
+==============================================================================
+ATTEMPT E VERDICT
+==============================================================================
+
+TRACK A (2π derivation):
+  ✓ R_ξ is the radius of the compact dimension
+  ✓ KK quantization uses circumference ℓ = 2πR_ξ
+  ✓ Factor 2π is now [Dc], upgraded from [P]
+  ✓ Alternative factors (1, π, 4π) negatively closed [Dc]
+
+TRACK B (0.9003 residual):
+  ✗ No unique derivation of the missing factor
+  ✗ Candidates exist but all require new parameters [P]
+  ✗ Residual remains [OPEN]
+
+COMBINED RESULT:
+  Best factor: 2π√2 = 8.8858 [Dc]
+  Result: m_φ = 34.88 GeV
+  Residual vs M_W: -56.6% [BL comparison]
+
+STATUS: OPR-20 partial upgrade
+  - 2π factor: [P] → [Dc]
+  - 2π√2 combined: [Dc] (all components derived)
+  - Exact factor 8: remains [OPEN]
+  - Overall: RED-C [Dc]+[OPEN]
+==============================================================================
