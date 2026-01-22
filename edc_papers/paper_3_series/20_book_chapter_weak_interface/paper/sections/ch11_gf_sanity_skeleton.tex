@@ -1,0 +1,211 @@
+%!TEX root = ../EDC_Part_II_Weak_Sector.tex
+% ==============================================================================
+% G_F Sanity Skeleton: Chain Map + Dimensional Checks + Attack Surface
+% Status: Audit-ready scaffold for G_F pathway (OPR-19--22)
+% ==============================================================================
+
+\subsection{G$_F$ Sanity Skeleton: Chain, Dimensions, and Open Inputs}
+\label{sec:ch11_sanity_skeleton}
+
+This subsection consolidates the G$_F$ derivation chain into an audit-ready format:
+explicit epistemic tags, dimensional checks, and a map of where circularity could hide.
+The goal is \emph{not} to claim first-principles closure but to make every input
+and open parameter visible.
+
+% ------------------------------------------------------------------------------
+\subsubsection{Chain Map: SM Side vs.\ EDC Side}
+\label{sec:ch11_chain_map}
+
+\begin{table}[ht]
+\centering
+\caption{G$_F$ Chain Map with epistemic tags and circularity notes}
+\label{tab:ch11_chain_map}
+\small
+\begin{tabular}{p{3.8cm}p{3.5cm}cp{3.5cm}}
+\toprule
+\textbf{Step} & \textbf{Equation/Source} & \textbf{Tag} & \textbf{Circularity Risk} \\
+\midrule
+\multicolumn{4}{l}{\textit{SM-side relations (electroweak consistency)}} \\
+\addlinespace
+$G_F$ definition & $G_F = 1.166 \times 10^{-5}$ GeV$^{-2}$ & \tagBL{} & Reference target \\
+$G_F$ from $W$ exchange & $G_F = g^2/(4\sqrt{2}M_W^2)$ & \tagBL{} & SM relation \\
+$g^2$ from $\alpha$, $\theta_W$ & $g^2 = 4\pi\alpha/\sin^2\theta_W$ & \tagBL{} & Uses measured $\alpha$ \\
+$M_W$ from Higgs & $M_W = gv/2$ & \tagBL{} & Uses $v = (\sqrt{2}G_F)^{-1/2}$ \\
+\addlinespace
+\rowcolor{yellow!20}
+\textbf{Circularity:} & \multicolumn{3}{l}{$v$ depends on $G_F$ $\Rightarrow$ ``$G_F$ exact'' is consistency, not prediction} \\
+\midrule
+\multicolumn{4}{l}{\textit{EDC-side structural mapping}} \\
+\addlinespace
+$\sin^2\theta_W = 1/4$ & $\mathbb{Z}_6$ subgroup counting & \tagDer{} & \textbf{Independent prediction} \\
+RG running to $M_Z$ & Standard $\beta$-functions & \tagBL{} & None (physics) \\
+Structural form & $G_{\text{EDC}} \sim g_{\text{eff}}^2/m_\phi^2$ & \tagDc{} & Structure, not value \\
+Effective coupling & $g_{\text{eff}} \simeq g_5 \cdot \mathcal{O}_{\text{overlap}}$ & \tagP{} & Overlap not computed \\
+\midrule
+\multicolumn{4}{l}{\textit{Open inputs (first-principles derivation)}} \\
+\addlinespace
+5D gauge coupling $g_5$ & Canonical normalization & (open) & OPR-19: not derived \\
+Mediator mass $m_\phi$ & KK reduction & (open) & OPR-20: not computed \\
+Mode profiles $f_L(z)$ & Thick-brane BVP & (open) & OPR-21: not solved \\
+Overlap integral $I_4$ & $\int |f_L|^4 dz$ & (open) & Requires OPR-21 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Dimensional Consistency Check}
+\label{sec:ch11_dimensions}
+
+The Fermi constant has dimension $[G_F] = [E]^{-2}$ in natural units.
+Any EDC effective operator must reproduce this scaling.
+
+\paragraph{4-Fermi operator structure.}
+The effective Lagrangian from mediator integration (Eq.~\ref{eq:ch11_Leff}) has the form:
+\begin{equation}
+    \mathcal{L}_{\text{eff}} \sim \frac{g_{\text{eff}}^2}{m_\phi^2}
+    (\bar\psi_L \gamma^\mu \psi_L)(\bar\psi_L \gamma_\mu \psi_L)
+    \label{eq:ch11_dim_check}
+\end{equation}
+
+\paragraph{Dimensional analysis.}
+\begin{align}
+    [g_{\text{eff}}] &= [E]^0 \quad \text{(dimensionless 4D coupling)} \\
+    [m_\phi] &= [E]^1 \quad \text{(mediator mass)} \\
+    [g_{\text{eff}}^2/m_\phi^2] &= [E]^{-2} \quad \checkmark
+\end{align}
+
+\paragraph{What plays the role of $M$?}
+In the SM, $G_F \sim 1/v^2 \sim 1/M_W^2$. In EDC:
+\begin{itemize}[nosep]
+    \item The \emph{mediator mass} $m_\phi$ sets the scale (not $M_W$ directly)
+    \item For consistency: $m_\phi \sim M_W \sim 80$ GeV
+    \item This is \emph{identified} \tagI{}, not \emph{derived}
+\end{itemize}
+
+\begin{tcolorbox}[colback=green!5, colframe=green!50!black,
+    title=\textbf{Dimensional Check: PASS}]
+The EDC effective operator $\mathcal{L}_{\text{eff}} \sim g_{\text{eff}}^2/m_\phi^2$
+has the correct dimension $[E]^{-2}$ for matching $G_F$.
+\\[0.5em]
+\textbf{Note:} This is a consistency check, not a derivation. The numerical value
+requires computing $g_{\text{eff}}$ and $m_\phi$ from first principles.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Circularity Attack-Surface Analysis}
+\label{sec:ch11_attack_surface}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black,
+    title=\textbf{No-Smuggling Guardrail: Where Circularity Could Hide}]
+
+\textbf{Potential attack points:}
+\begin{enumerate}[nosep]
+    \item \textbf{$v = 246$ GeV input:} The Higgs VEV is experimentally determined
+          \emph{from} $G_F$. Using $v$ to compute $M_W$, then $G_F$ from $M_W$,
+          is circular. \textbf{Status:} Acknowledged in Remark~\ref{rem:ch11_firewall}.
+
+    \item \textbf{$\alpha$ input:} The fine-structure constant is an independent
+          measurement (QED, not weak). \textbf{Status:} Legitimate baseline \tagBL{}.
+
+    \item \textbf{$m_\phi \sim M_W$ identification:} If we \emph{choose} $m_\phi = M_W$
+          to match $G_F$, that is calibration, not derivation.
+          \textbf{Status:} Explicitly marked \tagI{} (OPR-20).
+
+    \item \textbf{Overlap normalization:} If $\mathcal{O}_{\text{overlap}}$ is tuned
+          to give the right $G_F$, that is smuggling.
+          \textbf{Status:} Not tuned; left as (open) (OPR-21).
+
+    \item \textbf{$g_5$ choice:} If $g_5 \sim 4\pi$ is assumed without derivation,
+          the ``geometric suppression'' claim is weakened.
+          \textbf{Status:} Explicitly postulated \tagP{} (OPR-19).
+\end{enumerate}
+
+\textbf{What the skeleton prevents:}
+\begin{itemize}[nosep]
+    \item Unlabeled tuning of parameters
+    \item Implicit use of $G_F$ to ``derive'' $G_F$
+    \item Conflating SM consistency with EDC prediction
+\end{itemize}
+
+\textbf{What remains for true derivation:}
+\begin{itemize}[nosep]
+    \item Derive $g_5$ from 5D gauge action normalization (OPR-19)
+    \item Compute $m_\phi$ from KK reduction of throat geometry (OPR-20)
+    \item Solve fermion BVP for explicit mode profiles (OPR-21)
+    \item Assemble all factors without calibration (OPR-22)
+\end{itemize}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Minimal Closure Plan}
+\label{sec:ch11_closure_plan}
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!60!black,
+    title=\textbf{G$_F$ Chain Stoplight: OPR-19--22}]
+
+\textbf{\textcolor{OliveGreen}{GREEN} --- Already closed:}
+\begin{itemize}[nosep]
+    \item Dimensional consistency of effective operator \tagDc{}
+    \item Structural form $G_{\text{EDC}} \sim g_{\text{eff}}^2/m_\phi^2$ \tagDc{}
+    \item Numerical closure via SM relations (with $v$ caveat) \tagDc{}
+    \item $\sin^2\theta_W = 1/4$ independent prediction (0.08\% after RG) \tagDer{}
+\end{itemize}
+
+\textbf{\textcolor{YellowOrange}{YELLOW} --- Structurally identified:}
+\begin{itemize}[nosep]
+    \item Mode overlap mechanism for ``why weak is weak'' \tagP{}
+    \item Mediator integration picture \tagP{}
+    \item Brane-localized gauge embedding (Ch.~\ref{sec:ch9_su2_embedding}) \tagP{}
+    \item Effective coupling $g_{\text{eff}} \simeq g_2$ (up to brane terms) \tagP{}
+\end{itemize}
+
+\textbf{\textcolor{BrickRed}{RED} --- First-principles open:}
+\begin{itemize}[nosep]
+    \item OPR-19: $g_5$ from canonical 5D gauge action normalization
+    \item OPR-20: $m_\phi$ from KK spectrum of throat geometry
+    \item OPR-21: Mode profiles $f_L(z)$ from solved thick-brane BVP
+    \item OPR-22: Complete $G_F$ derivation without SM circularity
+\end{itemize}
+
+\medskip
+\noindent\fbox{\parbox{0.94\textwidth}{\small
+\textbf{G$_F$ sanity skeleton:} Chain map + dimensions + attack-surface explicit.
+The true independent prediction is $\sin^2\theta_W = 1/4$; numerical $G_F$ closure
+uses SM relations (consistency, not derivation). First-principles $G_F$ requires
+solving OPR-19--21 without calibration.}}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{What Would Close Each OPR?}
+\label{sec:ch11_closure_targets}
+
+\begin{table}[ht]
+\centering
+\caption{OPR-19--22 closure targets}
+\label{tab:ch11_opr_closure}
+\small
+\begin{tabular}{clll}
+\toprule
+\textbf{OPR} & \textbf{Item} & \textbf{Closure Requirement} & \textbf{Would Yield} \\
+\midrule
+19 & $g_5$ & Derive from $\int d^5x \, (-\frac{1}{4}F_{MN}F^{MN})$ & $g_5^2$ in terms of $L_5$ \\
+20 & $m_\phi$ & KK reduction: $m_\phi^2 = (n\pi/L_\xi)^2 + \ldots$ & $m_\phi$ from geometry \\
+21 & $f_L(z)$ & Solve $[\partial_z^2 - m(z)^2]f = \lambda f$ with BCs & Normalized profiles \\
+22 & $G_F$ & Combine 19--21: $G_F = g_5^2 I_4 / m_\phi^2$ & First-principles value \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Upgrade path.}
+Once OPR-19--21 are closed, OPR-22 follows automatically. The chain is:
+\begin{equation}
+    \boxed{
+    g_5 \text{ (OPR-19)} + m_\phi \text{ (OPR-20)} + I_4 \text{ (OPR-21)}
+    \quad\Rightarrow\quad
+    G_F = \frac{g_5^2 \, I_4}{m_\phi^2} \text{ (OPR-22)}
+    }
+    \label{eq:ch11_upgrade_path}
+\end{equation}
+
+Until then, $G_F$ numerical closure relies on SM electroweak relations,
+which is a \emph{consistency check}, not an independent EDC derivation.
