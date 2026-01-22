@@ -1,6 +1,6 @@
 # Open Problems Register (OPR) — Part II: Weak Sector
 
-**Version:** 1.13
+**Version:** 1.14
 **Date:** 2026-01-22
 **Status:** Active research program
 
@@ -90,7 +90,7 @@ with hidden assumptions.
 | ID | Item | Status | Established | Missing | Priority | Next Action |
 |----|------|--------|-------------|---------|----------|-------------|
 | OPR-19 | 5D gauge coupling g₅ | **YELLOW [Dc]+[P]** | $g^2 = 4\pi \sigma r_e^3/(\hbar c)$ derived via Gauss+isotropy [Dc] | Isotropy postulate [P]; 6% from SM | P2 | Derive isotropy from action |
-| OPR-20 | Mediator mass m_φ | **RED-C** [Dc]+[OPEN] | $m_\phi = x_1/\ell$ from KK eigenvalue [Dc] | $\ell$ from membrane; BCs from physics | P2 | Derive $\ell$ from $(\sigma, r_e)$ |
+| OPR-20 | Mediator mass m_φ | **RED-C** [Dc]+[OPEN] | $m_\phi = x_1/\ell$ from KK [Dc]; BC route closed [Dc] (negative: standard BCs fail factor-8) | $\ell$ from membrane; geometric prefactor $(2\pi, 8)$ or Robin BCs | P2 | Derive $\ell$ via $R_\xi$ rescale or BC derivation |
 | OPR-21 | Mode profiles f_L(z) | **RED-C** [P] | BVP Work Package + solver skeleton; I₄ computed | Physical BCs; potential from membrane params | P1 | See §12 BVP Work Package |
 | OPR-22 | G_F first-principles | **YELLOW [Dc]+[OPEN]** | Closure spine: $G_F = g_5^2 \ell^2 I_4 / x_1^2$ [Dc]; no-smuggling guardrails; attack-surface map | Numeric values: $g_5$ (OPR-19), $\ell$ (OPR-20), $I_4$ (OPR-21) | P1 | See §11 Full Closure Plan |
 
@@ -438,13 +438,43 @@ U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
 
 **What would close OPR-20:**
 - Derive $R_\xi$ from membrane dynamics (e.g., diffusion length in frozen-regime)
-- OR derive the factor-of-8 correction from boundary condition analysis
-- OR find alternative suppression mechanism with smaller residual
+- OR derive geometric prefactor ($2\pi$, $8$) from first principles
+- OR derive Robin BC parameters from brane physics
 
 **Code:** `tools/check_dimensionless_fgeom.py`
 **LaTeX:** `sections/ch11_g5_ell_suppression_attempt2.tex`
 
 **Status:** RED-C [OPEN] — Suppression mechanism candidate exists [P]; factor-8 discrepancy unresolved.
+
+---
+
+### Completed: OPR-20 Factor-8 Forensic (BC Sweep)
+
+**Target:** Determine if BC eigenvalue shift, junction/BKT, or $R_\xi$ rescale can explain factor-8 discrepancy
+**Result:** BC route CLOSED [Dc] (negative); junction/geometric routes remain [OPEN]
+
+**BC eigenvalue sweep results:**
+
+| Route | Can explain 8×? | Natural? | Status |
+|-------|-----------------|----------|--------|
+| Standard BCs (D-D, D-N, N-D, N-N) | NO (max factor-2) | YES | CLOSED [Dc] |
+| Robin BCs ($a\ell \sim b\ell \sim 0.1$) | YES ($x_1 \approx 0.44$) | Borderline | Conditional [P] |
+| Junction/BKT ($\kappa \sim 20$) | Requires large coeff | NO | Unlikely [P] |
+| $R_\xi$ rescale ($2\pi$) | 24% off | YES | Plausible [P] |
+| $R_\xi$ rescale ($8$) | 3% match | Unknown | Numeric match [P] |
+
+**Key findings:**
+1. **Standard BCs fail:** Min eigenvalue $x_1 = \pi/2$ (D-N) gives factor-4, not factor-8
+2. **Robin BCs work mathematically:** $a\ell \sim b\ell \sim 0.1$ gives $x_1 \approx 0.44 \approx \pi/8$
+3. **Junction/BKT unlikely:** Would need $\kappa g_5^2 \sim 7$ (moderately unnatural)
+4. **Geometric prefactors plausible:** $2\pi$ (24% off) or $8$ (3% match) could rescale $\ell$
+
+**Composite scenario:** $\ell = 2\pi R_\xi$ + mild Robin BC shift → $m_\phi \approx 79$ GeV (speculative)
+
+**Code:** `tools/scan_opr20_bc_eigenvalue.py` → `code/output/opr20_bc_eigenvalue_sweep.txt`
+**LaTeX:** `sections/ch11_opr20_factor8_forensic.tex`
+
+**Status:** RED-C [Dc]+[OPEN] — BC route negative closure [Dc]; junction/geometric routes remain [OPEN].
 
 ---
 
@@ -466,3 +496,4 @@ U_PMNS = R₂₃(θ₂₃⁰) · R₁₃(ε) · R₁₂(θ₁₂⁰)
 | 1.11 | 2026-01-22 | **OPR-20 Factor-8 Forensic Sweep (Attempt A3)**: 19 SM-free mechanisms surveyed; best [Dc] is $2\pi$ (19% off); $C=8$ numeric match (3.7%) but [P]. Status: RED-C [OPEN] |
 | 1.12 | 2026-01-22 | **OPR-19 Coefficient Provenance (Attempt 2)**: 15 coefficients surveyed for $g^2 = C \cdot \sigma r_e^3/(\hbar c)$; best [Dc] is $4\pi$ giving $g^2 = 0.373$ (6% below SM). No unique derivation. Status: RED-C [OPEN] |
 | 1.13 | 2026-01-22 | **OPR-19 4π Derivation (Attempt 3)**: Dual-route derivation via Gauss's law + isotropy both yield $C = 4\pi$; alternatives require breaking conventions or isotropy. $g^2 = 0.373$ (6% from SM). **Status: RED-C [OPEN] → YELLOW [Dc]+[P]** |
+| 1.14 | 2026-01-22 | **OPR-20 Factor-8 Forensic (BC Sweep)**: BC eigenvalue sweep via `tools/scan_opr20_bc_eigenvalue.py`. **Standard BCs fail** (min $x_1 = \pi/2$, factor 4). Robin BCs can achieve $x_1 \approx \pi/8$ but require specific $(a\ell, b\ell) \sim 0.1$ tuning. Junction/BKT requires large coefficients ($\kappa \sim 20$). Best geometric factors: $2\pi$ (24% off), $8$ (3% numeric match [P]). **BC route CLOSED [Dc] (negative result)**; junction/geometric routes remain [OPEN]. Status unchanged: RED-C [Dc]+[OPEN] |
