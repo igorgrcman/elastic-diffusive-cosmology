@@ -4,9 +4,41 @@ All notable changes to the Part II book are documented here.
 
 ---
 
+## [2026-01-23] References Backbone (25d4103)
+
+**Commit:** 25d4103
+
+### Added
+- **New `bib/part2_backbone.bib`** with 25 reference entries:
+  - CODATA 2022, PDG 2024 (empirical baseline)
+  - Weinberg, Peskin, Schwartz, Zee (standard EW/QFT)
+  - ADD, RS1/RS2, Rubakov-Shaposhnikov, Jackiw-Rebbi (brane physics)
+  - Zettl, Teschl, Evans, Reed-Simon (BVP/spectral theory)
+  - Nakahara (topology)
+  - Tinkham, de Gennes, Manton-Sutcliffe (GL/vortices)
+  - Osserman, Hwang-Richards-Winter (geometric theorems)
+  - Landau-Lifshitz, Coleman (WKB/tunneling)
+  - CC BY-NC-SA 4.0 legal code (license)
+- **Citations at 4 key locations:**
+  - Copyright page: CC BY-NC-SA 4.0
+  - Preface: CODATA + PDG for \tagBL{} values
+  - Ch2 §2.4: Tinkham/de Gennes for GL profile
+  - Z6 ground mode lemma: Zettl/Teschl for BVP theory
+
+### Build
+- 367 pages (+2 from bibliography)
+- 0 undefined refs
+- 7 bibliography entries
+
+### Guarantee
+- No equations or numeric constants modified
+- Framework 2.0 language intact
+
+---
+
 ## [2026-01-23] Ch2 Baseline Boxes + Changelog
 
-**Commit:** (pending)
+**Commit:** bd8689a
 
 ### Added
 - **3D Baseline (empirical) boxes** in Ch2 (Frozen Regime Foundations):
