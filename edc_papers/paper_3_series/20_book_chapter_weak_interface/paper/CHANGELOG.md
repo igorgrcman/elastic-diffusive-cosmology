@@ -6,7 +6,7 @@ All notable changes to the Part II book are documented here.
 
 ## [2026-01-23] OPR-02 Ngen Robustness Upgrade
 
-**Commit:** (pending)
+**Commit:** 0071bb5
 
 ### Added
 - **Expanded OPR-02 section** in `sections/ch14_bvp_closure_pack.tex`:
