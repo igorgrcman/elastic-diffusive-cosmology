@@ -4,6 +4,37 @@ All notable changes to the Part II book are documented here.
 
 ---
 
+## [2026-01-23] OPR-21 BVP Closure Pack
+
+**Commit:** (pending)
+
+### Added
+- **New `sections/ch14_bvp_closure_pack.tex`** (~6 pages):
+  - §14.X: "OPR-21: The BVP as Master Key"
+  - Precise BVP statement (operator, domain, BCs, self-adjointness)
+  - Output object definitions: $\psi_n$, $x_1$, $I_4$, $N_{\text{bound}}$, $R_{\text{LR}}$
+  - Acceptance criteria + closure conditions table
+  - Failure modes (F1–F6)
+  - Integration pointers to Ch9, Ch12, Ch13
+- **28 new labels** (namespace: `bvp:*`, `def:bvp:*`, `eq:bvp:*`, `thm:bvp:*`)
+
+### Changed (pointer-only)
+- Ch12 (OPR Register): Added reference to closure pack in P1-C section
+- Ch13 ($G_F$ closure plan): Added pointer after $x_1$, $I_4$ definitions
+
+### Build
+- 373 pages (+6 from closure pack)
+- 0 undefined refs
+- 14 bibliography entries (unchanged)
+
+### Guarantee
+- No equations or numeric constants modified
+- No calibration to PDG values (explicitly forbidden in closure pack)
+- Framework 2.0 language intact
+- Existing chapters unchanged except minimal cross-reference pointers
+
+---
+
 ## [2026-01-23] References Backbone (25d4103)
 
 **Commit:** 25d4103
