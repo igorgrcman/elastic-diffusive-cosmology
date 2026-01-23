@@ -76,7 +76,7 @@ Internal EDC constructs (postulates, OPR register, claim ledger) do not need ext
 
 | Section | Claim | Category | Bibkey | Status |
 |---------|-------|----------|--------|--------|
-| All | sin²θ_W, M_W, M_Z measured values | [EMP] | `PDG2024` | TODO |
+| All | sin²θ_W, M_W, M_Z, G_F measured values | [EMP] | `PDG2024` | DONE |
 | All | Electroweak mixing historical context | [QFT] | `Weinberg1996` | Optional |
 
 ---
@@ -113,8 +113,8 @@ Internal EDC constructs (postulates, OPR register, claim ledger) do not need ext
 
 | Section | Claim | Category | Bibkey | Status |
 |---------|-------|----------|--------|--------|
-| All | Domain-wall chirality localization | [CHI] | `JackiwRebbi1976, RubakovShaposhnikov1983` | TODO |
-| All | 5D Dirac fermion setup | [CHI] | `RubakovShaposhnikov1983` | TODO |
+| All | Domain-wall chirality localization | [CHI] | `JackiwRebbi1976, Kaplan1992` | DONE |
+| All | 5D Dirac fermion setup | [CHI] | `JackiwRebbi1976, Kaplan1992` | DONE |
 
 ---
 
@@ -154,11 +154,12 @@ Internal EDC constructs (postulates, OPR register, claim ledger) do not need ext
 - **Chapter 2**: GL (Tinkham, de Gennes), WKB (Landau-Lifshitz, Coleman),
   Topology (Nakahara), Isoperimetric (Osserman), Steiner (Hwang)
 - **Chapter 3 (Z6)**: BVP theory (Zettl, Teschl)
+- **Chapter 4 (EW)**: PDG for sin²θ_W, M_W, M_Z, G_F
+- **Chapter 9 (V-A)**: Jackiw-Rebbi, Kaplan for chirality localization
 
-### High-Priority TODO
-1. **Chapter 1**: PDG for SM parameter values
-2. **Chapter 4+**: PDG throughout for empirical values
-3. **Chapter 9**: Jackiw-Rebbi, Rubakov-Shaposhnikov for chirality
+### Remaining TODO (lower priority)
+1. **Chapter 5-8**: PDG for lepton/quark masses (optional, many are internal)
+2. **Chapter 10**: PDG for τ_n (if not already in Ch4 table)
 
 ---
 
@@ -168,7 +169,7 @@ Internal EDC constructs (postulates, OPR register, claim ledger) do not need ext
 CODATA2022          PDG2024
 Weinberg1996        PeskinSchroeder1995     Schwartz2014        Zee2010
 ArkaniHamed1998     RandallSundrum1999a     RandallSundrum1999b
-RubakovShaposhnikov1983                     JackiwRebbi1976
+RubakovShaposhnikov1983                     JackiwRebbi1976     Kaplan1992
 Zettl2005           Teschl2012              Evans2010           ReedSimon1978
 Nakahara2003
 Tinkham2004         deGennes1999            MantonSutcliffe2004
@@ -200,4 +201,4 @@ EDCPartI            EDCPaper2
 ---
 
 *Last updated: 2026-01-23*
-*Status: Ch2 + Z6 citations complete; remaining chapters need PDG + chirality refs*
+*Status: Core chapters (Ch2, Z6, Ch4 EW, Ch9 V-A) complete. Remaining chapters optional.*
