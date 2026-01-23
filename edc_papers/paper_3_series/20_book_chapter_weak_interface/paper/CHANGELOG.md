@@ -1,0 +1,103 @@
+# CHANGELOG — EDC Part II: Weak Sector
+
+All notable changes to the Part II book are documented here.
+
+---
+
+## [2026-01-23] Ch2 Baseline Boxes + Changelog
+
+**Commit:** (pending)
+
+### Added
+- **3D Baseline (empirical) boxes** in Ch2 (Frozen Regime Foundations):
+  - §2.8: Mass ratio $m_p/m_e$ baseline (CODATA 2022)
+  - §2.9: Fine-structure constant $\alpha$ baseline (CODATA 2022)
+- This CHANGELOG file
+
+### Changed
+- None
+
+### Guarantee
+- No equations or numeric constants modified
+- Framework 2.0 language intact
+
+---
+
+## [2026-01-23] Paper 2 Integration (c48120d)
+
+**Commit:** c48120d
+
+### Added
+- **New Chapter 2: Frozen Regime Foundations** (+972 lines)
+  - Ported verbatim from Paper 2 (DOI: 10.5281/zenodo.18211854)
+  - 11 sections covering: EDC framework, Ice Wall analogy, Frozen vs GL comparison,
+    electron/proton structure, mass ratio, fine-structure constant, numerical verification
+  - Framework 2.0 "5D cause → 3D shadow" wrapper boxes in each section
+  - Label namespace: `ch2:*` prefix
+
+### Changed
+- **Chapter renumbering:**
+  | Old | New | Title |
+  |-----|-----|-------|
+  | Ch2 | Ch3 | The Z6 Program |
+  | Ch3 | Ch4 | Electroweak Parameters |
+  | Ch4+ | Ch5+ | (all shifted +1) |
+
+- **Cross-reference updates:**
+  - `CH3_electroweak_parameters.tex`: 4× "Chapter~2" → "Chapter~3"
+  - `Z6_content.tex`: 2× self-ref → "this chapter"
+  - `Z6_content_full.tex`: 1× self-ref → "this chapter"
+
+### Build
+- 365 pages (+16 from Paper 2 content)
+- 0 errors
+- 0 undefined refs
+
+### Guarantee
+- Z6 chapter content unchanged (only ref fixes)
+- No existing equations or numeric constants modified
+
+---
+
+## [2026-01-23] Copyright + License + Preface (5e27e3c)
+
+**Commit:** 5e27e3c
+
+### Added
+- Copyright page (Page 2) with CC BY-NC-SA 4.0 license
+- DOI: 10.5281/zenodo.18328508 (clickable)
+- Preface with Framework 2.0 reading convention
+- "First edition: January 2026"
+
+### Changed
+- Title page: removed "REBUILD" language, set Version 1.0
+
+---
+
+## [2026-01-23] Electron Stability Bridge (b2e17aa)
+
+**Commit:** b2e17aa
+
+### Added
+- **§1.5.4 bridge paragraph**: "Why is there no lower-energy charged state?"
+- **Z6 Lemma**: Charged-sector ground mode (formal anchor)
+
+### Guarantee
+- No equations modified
+
+---
+
+## [2026-01-23] Framework 2.0 Language Compliance (908d3e9)
+
+**Commit:** 908d3e9
+
+### Added
+- Framework 2.0 Language Compliance boxes in CH3, CH5–CH12
+- EDC Projection Principle section in Reader Contract
+
+### Changed
+- CH3: Hexagonal angle claim corrected from [Dc] to [P] (mnemonic, not derivation)
+- CH9: Clarified "zero-mode limit" context
+
+### Guarantee
+- No equation content changed
