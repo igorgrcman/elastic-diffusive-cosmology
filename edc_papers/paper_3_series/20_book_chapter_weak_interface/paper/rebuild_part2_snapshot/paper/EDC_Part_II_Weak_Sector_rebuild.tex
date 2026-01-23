@@ -1,0 +1,520 @@
+% ==============================================================================
+% ELASTIC DIFFUSIVE COSMOLOGY — PART II: THE WEAK SECTOR (REBUILD)
+% ==============================================================================
+% Rebuild snapshot with chapters 10-12 properly integrated
+% Created: 2026-01-22
+% Branch: part2-rebuild-snapshot-ch10-12
+% ==============================================================================
+
+\documentclass[11pt,a4paper]{book}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% PACKAGES
+% ═══════════════════════════════════════════════════════════════════════════════
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{physics}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{calc,angles,quotes,decorations.markings,decorations.pathmorphing,positioning}
+\usetikzlibrary{shapes,arrows,arrows.meta,shapes.geometric,fit,backgrounds}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{epigraph}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{pifont}
+\usepackage[normalem]{ulem}
+
+\tcbuselibrary{breakable,skins}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% META DOCUMENTATION SWITCH
+% ═══════════════════════════════════════════════════════════════════════════════
+\newif\ifMetaPartII
+\MetaPartIIfalse
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% PAGE SETUP
+% ═══════════════════════════════════════════════════════════════════════════════
+\geometry{margin=1in}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% PAGE STYLE
+% ═══════════════════════════════════════════════════════════════════════════════
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% THEOREM ENVIRONMENTS
+% ═══════════════════════════════════════════════════════════════════════════════
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{postulate}[theorem]{Postulate}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{axiom}[theorem]{Axiom}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% CUSTOM COMMANDS
+% ═══════════════════════════════════════════════════════════════════════════════
+\newcommand{\Membrane}{\Sigma}
+\newcommand{\Bulk}{\mathcal{M}_5}
+\newcommand{\vscan}{v_{\text{scan}}}
+\newcommand{\Rxi}{R_\xi}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% EPISTEMIC TAGS (Framework v2.0 canonical)
+% ═══════════════════════════════════════════════════════════════════════════════
+\definecolor{derivedColor}{RGB}{0,100,0}
+\definecolor{postulatedColor}{RGB}{150,0,0}
+\definecolor{calibratedColor}{RGB}{0,0,150}
+
+\newcommand{\tagBL}{\textcolor{brown}{\textbf{[BL]}}}
+\newcommand{\tagDer}{\textcolor{derivedColor}{\textbf{[Der]}}}
+\newcommand{\tagDc}{\textcolor{calibratedColor}{\textbf{[Dc]}}}
+\newcommand{\tagI}{\textcolor{gray}{\textbf{[I]}}}
+\newcommand{\tagCal}{\textcolor{postulatedColor}{\textbf{[Cal]}}}
+\newcommand{\tagP}{\textcolor{postulatedColor}{\textbf{[P]}}}
+\newcommand{\tagM}{\textcolor{gray}{\textbf{[M]}}}
+
+\newcommand{\degree}{°}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% TCOLORBOX STYLES
+% ═══════════════════════════════════════════════════════════════════════════════
+\tcbset{
+  readerContract/.style={colback=blue!5, colframe=blue!50!black, fonttitle=\bfseries, title={Reader Contract}},
+  guardrail/.style={colback=yellow!5, colframe=orange!60!black, fonttitle=\bfseries},
+  falsifiability/.style={colback=red!5, colframe=red!40!black, fonttitle=\bfseries, title={Falsifiability Hooks}},
+  mechanism/.style={colback=teal!5, colframe=teal!50!black, fonttitle=\bfseries}
+}
+
+\newtcolorbox{edcPostulateBox}[2]{colback=orange!5, colframe=orange!60!black, fonttitle=\bfseries, title={#1 \hfill {\small #2}}, breakable}
+\newtcolorbox{edcDefinitionBox}[2]{colback=green!5, colframe=green!50!black, fonttitle=\bfseries, title={Definition: #1 \hfill {\small #2}}, breakable}
+\newtcolorbox{edcPropositionBox}[2]{colback=purple!5, colframe=purple!50!black, fonttitle=\bfseries, title={Proposition: #1 \hfill {\small #2}}, breakable}
+\newtcolorbox{edcLedgerBox}[2]{colback=blue!5, colframe=blue!50!black, fonttitle=\bfseries, title={Ledger: #1 \hfill {\small #2}}, breakable}
+\newtcolorbox{edcConsequenceBox}[2]{colback=teal!5, colframe=teal!50!black, fonttitle=\bfseries, title={#1 \hfill {\small #2}}, breakable}
+\newtcolorbox{edcWarningBox}[2]{colback=yellow!10, colframe=orange!70!black, fonttitle=\bfseries, title={Guardrail: #1}, breakable}
+
+\newtcolorbox{stepbox}[2]{colback=blue!5, colframe=blue!50!black, fonttitle=\bfseries, title={Step #1: #2}, breakable}
+\newtcolorbox{questionbox}[1]{colback=yellow!10, colframe=orange!70!black, fonttitle=\bfseries, title={Question: #1}, breakable}
+\newtcolorbox{answerbox}[1]{colback=green!5, colframe=green!50!black, fonttitle=\bfseries, title={Answer: #1}, breakable}
+\newtcolorbox{gapbox}[1]{colback=red!5, colframe=red!50!black, fonttitle=\bfseries, title={Gap Identified: #1}, breakable}
+\newtcolorbox{resolutionbox}[1]{colback=teal!5, colframe=teal!50!black, fonttitle=\bfseries, title={Resolution: #1}, breakable}
+
+\newtcolorbox{edcAtAGlance}[1]{colback=blue!3, colframe=blue!50!black, fonttitle=\bfseries, title={At a Glance: #1}, before upper={\parskip=0.3em}, boxrule=1pt, arc=3pt}
+
+\newcommand{\edcBaseline}[1]{\textbf{\textcolor{gray!70!black}{Standard Model \tagBL{}:}}\\#1\par\medskip}
+\newcommand{\edcEDCView}[1]{\textbf{\textcolor{purple!70!black}{EDC Interpretation \tagP{}/\tagDc{}:}}\\#1\par\medskip}
+\newcommand{\edcKeyInsight}[1]{\textbf{\textcolor{green!50!black}{Key Insight:}}\\\textit{#1}\par\medskip}
+\newcommand{\edcFalsifiable}[1]{\textbf{\textcolor{red!60!black}{Falsifiable If:}}\\#1}
+
+\tcbset{
+    edcCornerstone/.style={colback=blue!5, colframe=blue!40!black, fonttitle=\bfseries},
+    edcGuardrail/.style={colback=gray!5!white, colframe=gray!60!black, fonttitle=\bfseries},
+    edcPPN/.style={colback=blue!5, colframe=blue!50!black, fonttitle=\bfseries},
+    edcCanonical/.style={colback=yellow!5, colframe=orange!60!black, fonttitle=\bfseries},
+    edcConcept/.style={colback=yellow!5, colframe=orange!50!black, fonttitle=\bfseries},
+    edcPathway/.style={colback=purple!5, colframe=purple!40!black, fonttitle=\bfseries},
+    edcModel/.style={colback=green!5, colframe=green!40!black, fonttitle=\bfseries},
+    edcWarning/.style={colback=red!5, colframe=red!40!black, fonttitle=\bfseries},
+    edcMechanism/.style={colback=teal!5, colframe=teal!50!black, fonttitle=\bfseries, title={Mechanistic Dimension Note (Canon)}}
+}
+
+\newcommand{\edcMechanismNote}[3]{%
+\begin{tcolorbox}[edcMechanism]
+\begin{itemize}[nosep,leftmargin=*]
+    \item \textbf{5D cause (bulk):} #1
+    \item \textbf{Brane-layer process:} #2
+    \item \textbf{3D observation (output):} #3
+\end{itemize}
+\vspace{0.3em}
+\footnotesize\textit{Ledger closure must hold: bulk + brane + 3D outputs conserve energy/quantum numbers.}
+\end{tcolorbox}
+}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% TIKZ STYLES (inline to avoid path issues in snapshot)
+% ═══════════════════════════════════════════════════════════════════════════════
+\tikzset{
+    edc box/.style={rectangle, draw, rounded corners=3pt, minimum width=2cm, minimum height=0.8cm, align=center, font=\small},
+    edc arrow/.style={->, >=stealth, thick},
+    gate box/.style={edc box, fill=orange!15, draw=orange!70!black, text=black},
+}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% HYPERREF SETUP
+% ═══════════════════════════════════════════════════════════════════════════════
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=green!50!black,
+  urlcolor=blue!70!black,
+  pdftitle={Elastic Diffusive Cosmology - Part II: The Weak Sector (Rebuild)},
+  pdfauthor={Igor Grcman}
+}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% DOCUMENT
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\begin{document}
+
+% -----------------------------------------------------------------------
+% FRONT MATTER
+% -----------------------------------------------------------------------
+\frontmatter
+
+% Title Page
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+{\Huge\bfseries ELASTIC DIFFUSIVE COSMOLOGY}\\[1.5cm]
+{\Large The Weak Sector}\\[0.3cm]
+{\Large Geometric Origin of Weak Interactions}\\[2cm]
+{\large PART II (REBUILD)}\\[2cm]
+{\Large Igor Gr\v{c}man}\\[1cm]
+{\large January 2026}\\[0.5cm]
+{\small Version 2.0 --- Chapters 1--12 integrated}\\[2cm]
+\vfill
+{\large\itshape ``Weak interactions are not fundamental gauge vertices.\\
+They are coarse-grained residues of thick-brane dynamics.''}
+\end{titlepage}
+
+% Copyright Page
+\newpage
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+\textcopyright{} 2026 Igor Gr\v{c}man. All rights reserved.\\[0.5cm]
+This document is part of the Elastic Diffusive Cosmology project.\\
+Rebuild snapshot created for chapter integration work.
+\end{center}
+\vspace*{\fill}
+
+% Table of Contents
+\tableofcontents
+
+% -----------------------------------------------------------------------
+% READER CONTRACT
+% -----------------------------------------------------------------------
+\chapter*{Reader Contract}
+\addcontentsline{toc}{chapter}{Reader Contract}
+
+\section*{Epistemic Standard (Framework v2.0)}
+
+All claims in this Part follow the EDC Epistemic Standard defined in Framework v2.0.
+Each substantive statement is labeled with exactly one \textbf{evidence status}.
+
+\begin{center}
+\begin{tabular}{@{}lp{10cm}@{}}
+\toprule
+\textbf{Tag} & \textbf{Meaning} \\
+\midrule
+\tagBL{}  & \textbf{Baseline} --- Accepted external facts (PDG/CODATA). \\
+\tagDer{} & \textbf{Derived} --- Derived explicitly from postulates. \\
+\tagDc{}  & \textbf{Derived conditional} --- Follows under additional assumptions. \\
+\tagI{}   & \textbf{Identified} --- Structural mapping within EDC. \\
+\tagCal{} & \textbf{Calibrated} --- Parameter fixed using external data. \\
+\tagP{}   & \textbf{Proposed} --- Hypothesis not yet uniquely fixed. \\
+\tagM{}   & \textbf{Mathematics} --- Pure mathematical result. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{Chapter Map (Rebuild v2.0)}
+
+This rebuild integrates all 12 chapters:
+
+\begin{center}
+\begin{tabular}{clll}
+\toprule
+\textbf{Ch} & \textbf{Title} & \textbf{Content} & \textbf{Status} \\
+\midrule
+1 & The Weak Interface & Physical mechanism, pipeline & Integrated \\
+2 & The $\mathbb{Z}_6$ Program & Proofs, Steiner angles & Integrated \\
+3 & Electroweak Parameters & $\sin^2\theta_W$, $g^2$, $M_W$ & Integrated \\
+4 & Lepton Mass Candidates & Provisional formulas & Integrated \\
+5 & Three Generations & $\mathbb{Z}_3$ connection & Integrated \\
+6 & Neutrinos as Edge Modes & Mass suppression & Integrated \\
+7 & CKM and CP Violation & Quark mixing & Integrated \\
+8 & V--A Structure & Chiral localization & Integrated \\
+9 & The Fermi Constant & $G_F$ pathway & Integrated \\
+10 & Epistemic Landscape & OPR consolidation & \textbf{NEW} \\
+11 & $G_F$ Closure Attempts & OPR-19/20 work & \textbf{NEW} \\
+12 & BVP Work Package & Solver specification & \textbf{NEW} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% -----------------------------------------------------------------------
+% MAIN MATTER
+% -----------------------------------------------------------------------
+\mainmatter
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% CHAPTER 1: THE WEAK INTERFACE
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter{The Weak Interface}
+\label{ch:weak_interface}
+
+\begin{quote}
+\textit{This chapter establishes the physical mechanism and pipeline for weak-sector
+processes within the thick-brane framework.}
+\end{quote}
+
+\input{sections/00_reader_contract}
+\input{sections/01_how_we_got_here}
+\input{sections/02_geometry_interface}
+\input{sections/03_unified_pipeline}
+\input{sections/04a_unified_master_figure}
+\input{sections/04_ontology}
+\input{sections/04b_proton_anchor}
+\input{sections/05_case_neutron}
+\input{sections/06_case_muon}
+\input{sections/07_case_tau}
+\input{sections/09_case_electron}
+\input{sections/08_case_pion}
+\input{sections/10_case_neutrino}
+\input{sections/11_gf_pathway}
+\input{sections/13_summary}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% CHAPTER 2: THE Z₆ PROGRAM
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter{The $\mathbb{Z}_6$ Program}
+\label{ch:z6_program}
+
+\begin{quote}
+\textit{Mathematical proofs for claims in Chapter~1: proton stability, Steiner angles,
+and color confinement from hexagonal symmetry.}
+\end{quote}
+
+\input{Z6_content_full}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% CHAPTER 3: ELECTROWEAK PARAMETERS
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter{Electroweak Parameters from Geometry}
+\label{ch:electroweak}
+
+\begin{quote}
+\textit{Derivation of $g^2$, $\sin^2\theta_W$, $G_F$, and $\tau_n$ from EDC first principles.}
+\end{quote}
+
+\input{CH3_electroweak_parameters}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% CHAPTER 4: LEPTON MASS CANDIDATES
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter{Candidate Lepton Mass Relations}
+\label{ch:lepton_candidates}
+
+\begin{quote}
+\textit{Provisional candidate formulas for charged-lepton masses, all tagged [P].}
+\end{quote}
+
+\input{CH4_lepton_mass_candidates}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% CHAPTER 5: THREE GENERATIONS
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter{Why Exactly Three Generations?}
+\label{ch:three_generations}
+
+\begin{quote}
+\textit{EDC identifies a connection between $\mathbb{Z}_3$ and generation count.}
+\end{quote}
+
+\input{sections/05_three_generations}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% CHAPTER 6: NEUTRINOS AS EDGE MODES
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter{Neutrinos as Edge Modes}
+\label{ch:neutrinos_edge}
+
+\begin{quote}
+\textit{Geometric origin for neutrino mass suppression via overlap integrals.}
+\end{quote}
+
+\input{sections/06_neutrinos_edge_modes}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% CHAPTER 7: CKM AND CP VIOLATION
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter{CKM Matrix and CP Violation}
+\label{ch:ckm_cp}
+
+\begin{quote}
+\textit{Application of $\mathbb{Z}_3$ analysis to quark mixing.}
+\end{quote}
+
+\input{sections/07_ckm_cp}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% CHAPTER 8: V–A STRUCTURE
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter{V--A Structure from 5D Chiral Localization}
+\label{ch:va_structure}
+
+\begin{quote}
+\textit{Derivation of V--A weak current structure from EDC 5D geometry.}
+\end{quote}
+
+\input{sections/09_va_structure}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% CHAPTER 9: THE FERMI CONSTANT
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter{The Fermi Constant from Geometry}
+\label{ch:gf_derivation}
+
+\begin{quote}
+\textit{Structural pathway and numerical closure for $G_F$.}
+\end{quote}
+
+\input{sections/11_gf_derivation}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% CHAPTER 10: EPISTEMIC LANDSCAPE (NEW)
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter{Epistemic Landscape and Open Problems}
+\label{ch:epistemic_map}
+
+\begin{quote}
+\textit{Consolidated epistemic status of all claims and open problems register.}
+\end{quote}
+
+\input{sections/12_epistemic_map}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% CHAPTER 11: G_F CLOSURE ATTEMPTS (NEW)
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter{$G_F$ Chain Closure Attempts}
+\label{ch:gf_closure}
+
+\begin{quote}
+\textit{Detailed record of OPR-19/20 derivation attempts for the $G_F$ chain:
+$g_5$, $\ell$, $x_1$, $I_4$, and mediator mass $m_\phi$.}
+\end{quote}
+
+% --- OPR-19: g5 value ---
+\section{OPR-19: The $g_5$ Value}
+\input{sections/ch11_g5_canonical_and_kk}
+\input{sections/ch11_g5_value_closure_attempt3_derive_4pi}
+
+% --- OPR-20: Mediator Mass ---
+\section{OPR-20: Mediator Mass Derivation}
+\input{sections/ch11_opr20_factor8_forensic}
+\input{sections/ch11_opr20_geometric_factor8_attemptC}
+\input{sections/ch11_opr20_attemptD_interpretation_robin_overcount}
+\input{sections/ch11_opr20_attemptE_prefactor8_derivation}
+\input{sections/ch11_opr20_attemptF_mediator_bvp_junction}
+\input{sections/ch11_opr20_attemptG_derive_alpha_from_action}
+\input{sections/ch11_opr20_attemptG_BC_provenance}
+\input{sections/ch11_opr20_attemptH_delta_equals_Rxi}
+\input{sections/ch11_opr20_attemptH1_mediator_identity}
+\input{sections/ch11_opr20_attemptH2plus_delta_Rxi_stricter_audit}
+
+% --- Sanity Skeleton ---
+\section{Sanity Skeleton and Closure Plan}
+\input{sections/ch11_gf_sanity_skeleton}
+\input{sections/ch11_gf_full_closure_plan}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% CHAPTER 12: BVP WORK PACKAGE (NEW)
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter{BVP Work Package: Thick-Brane Solver}
+\label{ch:bvp_workpackage}
+
+\begin{quote}
+\textit{Infrastructure specification for the thick-brane boundary value problem
+that underlies OPR-02/21. This is a work package, not a closure claim.}
+\end{quote}
+
+\input{sections/ch12_bvp_workpackage}
+
+% -----------------------------------------------------------------------
+% BACK MATTER
+% -----------------------------------------------------------------------
+\backmatter
+
+\chapter*{Appendix: Notation and Symbols}
+\addcontentsline{toc}{chapter}{Appendix: Notation}
+
+\section*{Fundamental EDC Parameters}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Symbol} & \textbf{Meaning} & \textbf{Typical Value} \\
+\midrule
+$\sigma$ & Membrane tension & $5.86 \times 10^{6}$ MeV/fm$^2$ \\
+$r_e$ & Lattice spacing & 2.82 fm \\
+$R_\xi$ & Membrane thickness & $\sim 10^{-3}$ fm \\
+$\lambda$ & Brane thickness & $\sim 1$ fm \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{Epistemic Tags}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Tag} & \textbf{Meaning} & \textbf{Use} \\
+\midrule
+\tagDc{} & Derived conditional & Follows from axioms \\
+\tagP{} & Postulated & Assumed, not derived \\
+\tagI{} & Identified & Matched to data \\
+\tagBL{} & Baseline & From PDG/CODATA \\
+(open) & Open & Future work needed \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% QUARANTINE REFERENCE
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter*{Appendix: Quarantined Content}
+\addcontentsline{toc}{chapter}{Appendix: Quarantined Content}
+
+During the rebuild process, certain draft content was identified as requiring
+review before inclusion in the canonical text. This content has been moved to:
+
+\begin{center}
+\texttt{quarantine/ch09\_quarantine.tex}
+\end{center}
+
+\textbf{Quarantine criteria:}
+\begin{itemize}
+    \item Content without proper epistemic tags
+    \item Claims presented as derived but lacking derivation chain
+    \item Material that may have been auto-inserted without context review
+    \item Sections requiring dimensional consistency verification
+\end{itemize}
+
+See the quarantine file for the specific content and review notes.
+Status: \textbf{[OPEN]} --- requires human review before re-integration.
+
+\end{document}

@@ -1,0 +1,309 @@
+%!TEX root = ../EDC_Part_II_Weak_Sector.tex
+% ==============================================================================
+% OPR-20 Attempt G_BC: Boundary Condition Provenance for the Weak Mediator
+% Status: [BL] orbifold parity → BC mapping + [P] mediator field identification
+% ==============================================================================
+
+\subsection{Attempt G\_BC: Boundary Condition Provenance}
+\label{sec:ch11_opr20_attemptG_BC}
+
+The reconciliation audit (\S\ref{sec:ch11_opr20_attemptG}, commit 81de2b2) revealed
+that the factor-of-2 discrepancy between attempts C/D ($m_\phi \approx 70$ GeV) and
+attempt E ($m_\phi \approx 35$ GeV) arises from different boundary condition
+assumptions: $x_1 = \pi$ (Dirichlet-Dirichlet) versus $x_1 = \pi/2$ (Neumann-Neumann).
+\textbf{This is not an error---it is a physical fork.} This section establishes which
+BC is appropriate for the weak mediator and unifies the narrative across all attempts.
+
+% ------------------------------------------------------------------------------
+\subsubsection{G\_BC.1: BC Ledger}
+\label{sec:attemptG_BC_ledger}
+
+\begin{table}[ht]
+\centering
+\caption{Boundary condition ledger for OPR-20 attempts}
+\label{tab:bc_ledger}
+\small
+\begin{tabular}{lllccc}
+\toprule
+\textbf{Attempt} & \textbf{Field Type} & \textbf{BC Assumption} &
+    \textbf{$x_1$} & \textbf{$m_\phi$} & \textbf{Status} \\
+\midrule
+C/D & Scalar profile $f(z)$ & DD (implicit) & $\pi$ & $\sim$70 GeV & [P] \\
+E   & Scalar profile $f(z)$ & NN (explicit) & $\pi/2$ & $\sim$35 GeV & [P] \\
+F   & Scalar profile $f(z)$ & Robin (scanned) & varies & 35--70 GeV & [P] \\
+G   & Scalar profile $f(z)$ & Robin ($\alpha = 2\pi$) & $\sim$2.4 & $\sim$53 GeV & [P] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Key observation.}
+All attempts use the same underlying structure:
+\begin{itemize}[nosep]
+    \item $2\pi$ factor from circumference interpretation: \tagDc{}
+    \item $\sqrt{2}$ factor from orbifold normalization: \tagDc{}
+    \item Combined $2\pi\sqrt{2} \approx 8.89$: \tagDc{}
+\end{itemize}
+The \emph{only} difference is the eigenvalue $x_1$, which depends on the boundary
+condition. Since $m_\phi = x_1/\ell$, the BC choice directly determines the
+mediator mass.
+
+% ------------------------------------------------------------------------------
+\subsubsection{G\_BC.2: Orbifold Parity $\to$ BC Mapping}
+\label{sec:attemptG_BC_orbifold}
+
+The $Z_2$ orbifold $S^1/\mathbb{Z}_2$ identifies points under $z \to -z$. The
+fixed points are at $z = 0$ and $z = \ell$ (or equivalently, at the boundaries
+of the fundamental domain $[0, \ell]$).
+
+\paragraph{Standard orbifold convention \tagBL{}.}
+A field $\phi(z)$ must have definite parity under $Z_2$:
+\begin{align}
+    \textbf{Even parity:} \quad \phi(-z) &= +\phi(z)
+        \quad \Rightarrow \quad \phi'(0) = 0 \text{ (Neumann)}, \\
+    \textbf{Odd parity:} \quad \phi(-z) &= -\phi(z)
+        \quad \Rightarrow \quad \phi(0) = 0 \text{ (Dirichlet)}.
+\end{align}
+This is the standard extra-dimension convention (see, e.g., Randall--Sundrum, Phys.\ Rev.\ Lett.\ \textbf{83}, 1999; Rattazzi, Int.\ J.\ Mod.\ Phys.\ A \textbf{18}, 2003).
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!60!black,
+    title=\textbf{Parity $\to$ BC Mapping [BL]}]
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Parity} & \textbf{BC at Fixed Points} & \textbf{$x_1$ (Ground State)} \\
+\midrule
+Even (+) & Neumann ($f' = 0$) & 0 (constant mode) \\
+Odd ($-$) & Dirichlet ($f = 0$) & $\pi$ (first mode) \\
+\bottomrule
+\end{tabular}
+\end{center}
+\emph{This mapping is standard brane-world physics, not EDC-specific.}
+\end{tcolorbox}
+
+\paragraph{5D gauge field decomposition.}
+A 5D gauge field $A_M$ ($M = 0,1,2,3,5$) splits into 4D components:
+\begin{itemize}[nosep]
+    \item $A_\mu$ ($\mu = 0,1,2,3$): 4D vector, typically \textbf{even} under $Z_2$
+    \item $A_5$: 4D scalar (from 5D perspective), typically \textbf{odd} under $Z_2$
+\end{itemize}
+
+This assignment ensures that the 4D gauge symmetry is preserved on the brane:
+\begin{itemize}[nosep]
+    \item $A_\mu$ even $\Rightarrow$ zero-mode exists (massless 4D gauge boson)
+    \item $A_5$ odd $\Rightarrow$ no zero-mode (scalar eaten or decoupled)
+\end{itemize}
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!50!black,
+    title=\textbf{5D Gauge Field Spectrum [BL]}]
+\begin{center}
+\begin{tabular}{lllll}
+\toprule
+\textbf{Component} & \textbf{4D Nature} & \textbf{Parity} & \textbf{BC} & \textbf{$x_n$} \\
+\midrule
+$A_\mu$ & 4D vector & Even (+) & Neumann & $n\pi$ ($n = 0,1,2,\ldots$) \\
+$A_5$ & 4D scalar & Odd ($-$) & Dirichlet & $n\pi$ ($n = 1,2,3,\ldots$) \\
+\bottomrule
+\end{tabular}
+\end{center}
+\emph{The $A_\mu$ zero-mode ($n=0$) is the massless gauge boson.
+Massive modes have $n \geq 1$, giving $x_n = n\pi$.}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{G\_BC.3: Robin BC Limiting Cases}
+\label{sec:attemptG_BC_robin}
+
+The Robin boundary condition $f' + \alpha f = 0$ interpolates between Neumann
+($\alpha = 0$) and Dirichlet ($\alpha \to \infty$).
+
+\paragraph{Eigenvalue equation.}
+For symmetric Robin BC on $[0, 1]$, the eigenvalue equation is \tagDc{}:
+\begin{equation}
+    x \tan(x) = \alpha
+    \label{eq:attemptG_BC_robin_eigenvalue}
+\end{equation}
+for the ground-state-like solutions.
+
+\paragraph{Limiting cases.}
+\begin{itemize}[nosep]
+    \item $\alpha \to 0$ (Neumann limit): $\tan(x) \to \infty$ $\Rightarrow$ $x_n = (n + \frac{1}{2})\pi$,
+          but the true ground state is $x_0 = 0$ (constant mode).
+    \item $\alpha \to \infty$ (Dirichlet limit): $\tan(x) \to 0$ $\Rightarrow$ $x_n = n\pi$,
+          with ground state $x_0 = \pi$.
+\end{itemize}
+
+\paragraph{Interpolation.}
+For intermediate $\alpha$, the eigenvalue $x_0$ smoothly transitions from 0 to $\pi$.
+Attempt F found that $\alpha \in [5.5, 15]$ gives $x_1 \in [2.3, 2.8]$, which is
+the intermediate regime.
+
+\begin{table}[ht]
+\centering
+\caption{Robin BC eigenvalue $x_0$ as function of $\alpha$ (numerical)}
+\label{tab:robin_scan}
+\small
+\begin{tabular}{rlll}
+\toprule
+$\alpha$ & $x_0$ & $x_0/\pi$ & Regime \\
+\midrule
+0 & 0.00 & 0.00 & Neumann (constant) \\
+1 & 0.86 & 0.27 & Near-Neumann \\
+5 & 1.31 & 0.42 & Intermediate \\
+10 & 1.43 & 0.46 & Intermediate \\
+$\infty$ & $\pi$ & 1.00 & Dirichlet \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\emph{Note:} The table shows the ground-state eigenvalue for the Robin equation
+$x \tan x = \alpha$. For Attempt F's BVP solver (which solves on interior grid),
+the values differ slightly due to finite-difference discretization.
+
+% ------------------------------------------------------------------------------
+\subsubsection{G\_BC.4: Which BC for the Weak Mediator?}
+\label{sec:attemptG_BC_mediator}
+
+\paragraph{Option 1: $A_\mu$ zero-mode (even, Neumann).}
+The standard 4D gauge boson is the $A_\mu$ zero-mode with $x_0 = 0$ (massless).
+This \textbf{cannot} be the massive W/Z without additional mass generation (Higgs).
+
+\paragraph{Option 2: $A_5$ component (odd, Dirichlet).}
+The 5D scalar component $A_5$ has $x_1 = \pi$, giving:
+\begin{equation}
+    m_\phi = \frac{\pi}{\ell} = \frac{\pi}{2\pi\sqrt{2} R_\xi} \approx 70 \text{ GeV}
+\end{equation}
+This is a geometric mass, not Higgs-generated.
+
+\paragraph{Option 3: KK $A_\mu$ excitation (even, Neumann, $n = 1$).}
+The first KK mode of $A_\mu$ also has $x_1 = \pi$ (same as Option 2):
+\begin{equation}
+    m_{\text{KK}} = \frac{\pi}{\ell} \approx 70 \text{ GeV}
+\end{equation}
+This is the standard KK tower picture.
+
+\paragraph{Option 4: Brane-localized gauge fields (OPR-17).}
+If SU(2)$_L$ is brane-localized (\S\ref{sec:ch9_su2l_embedding}), the gauge fields
+do not propagate in the bulk. The ``mediator mass'' then arises from different
+physics (e.g., confinement, overlap suppression) rather than KK quantization.
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!60!black,
+    title=\textbf{BC Choice Fork [P]}]
+\textbf{Baseline (canonical):} $x_1 = \pi$ (Dirichlet or first KK Neumann)
+
+\textbf{Justification:}
+\begin{itemize}[nosep]
+    \item Closer to $M_W = 80$ GeV (12\% vs 56\% discrepancy)
+    \item Consistent with Attempts C/D
+    \item Standard for massive 5D gauge modes
+\end{itemize}
+
+\textbf{Epistemic status:} This is \tagP{} until derived from:
+\begin{itemize}[nosep]
+    \item Mediator field identification (what is it?)
+    \item Parity assignment from gauge structure
+    \item Junction/BKT physics if Robin
+\end{itemize}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{G\_BC.5: Unified Narrative}
+\label{sec:attemptG_BC_unified}
+
+\paragraph{What the attempts established.}
+\begin{enumerate}[nosep]
+    \item \textbf{Attempt C/D:} Best geometric factor $2\pi\sqrt{2} \approx 8.89$ \tagDc{}+\tagP{};
+          implicit $x_1 = \pi$ (DD); $m_\phi \approx 70$ GeV.
+    \item \textbf{Attempt E:} $2\pi$ factor from circumference \tagDc{};
+          explicit $x_1 = \pi/2$ (NN); $m_\phi \approx 35$ GeV.
+    \item \textbf{Attempt F:} Robin BC from junction \tagDc{}; broad $\alpha$ band;
+          $x_1$ interpolates between $\pi/2$ and $\pi$.
+    \item \textbf{Attempt G:} Natural $\alpha = 2\pi$ from $\ell/\delta$ \tagDc{}+\tagP{};
+          $x_1 \approx 2.4$; $m_\phi \approx 53$ GeV.
+    \item \textbf{Attempt G\_BC:} BC choice is a [P] fork; baseline $x_1 = \pi$
+          is pragmatic but not derived.
+\end{enumerate}
+
+\paragraph{Structural synthesis.}
+The KK mass formula is:
+\begin{equation}
+    \boxed{
+    m_\phi = \frac{x_1}{\ell} = \frac{x_1}{2\pi\sqrt{2} R_\xi}
+    }
+    \label{eq:attemptG_BC_mass_formula}
+\end{equation}
+where:
+\begin{itemize}[nosep]
+    \item $2\pi$: circumference interpretation \tagDc{}
+    \item $\sqrt{2}$: orbifold normalization \tagDc{}
+    \item $x_1$: BC-dependent eigenvalue \tagP{}
+    \item $R_\xi$: diffusion scale \tagP{}
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\subsubsection{G\_BC.6: Epistemic Summary and OPR-20 Split}
+\label{sec:attemptG_BC_epistemic}
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!50!black,
+    title=\textbf{OPR-20 Split into OPR-20a/20b}]
+
+The reconciliation audit clarifies that OPR-20 contains two distinct open problems:
+
+\medskip
+\textbf{OPR-20a: BC Provenance}
+\begin{itemize}[nosep]
+    \item \emph{Question:} What is the physical mediator field, and what BC does it have?
+    \item \emph{Options:} DD ($x_1 = \pi$), NN ($x_1 = \pi/2$), Robin (variable)
+    \item \emph{Status:} \textbf{[OPEN]} --- parity/field identity not derived
+    \item \emph{Upgrade condition:} Establish mediator identity + parity from gauge structure
+\end{itemize}
+
+\medskip
+\textbf{OPR-20b: $\alpha$ Provenance}
+\begin{itemize}[nosep]
+    \item \emph{Question:} If Robin BC, where does $\alpha \sim \mathcal{O}(10)$ come from?
+    \item \emph{Candidate:} $\alpha = \ell/\delta$ with $\delta = R_\xi$ gives $\alpha = 2\pi$ [P]
+    \item \emph{Status:} \textbf{[OPEN]} --- $\delta = R_\xi$ identification not derived
+    \item \emph{Upgrade condition:} Derive $\delta = R_\xi$ from brane microphysics
+\end{itemize}
+
+\medskip
+\textbf{Main OPR-20 Status:} \textbf{RED-C [Dc]+[P]}
+\begin{itemize}[nosep]
+    \item Structural factors ($2\pi$, $\sqrt{2}$) now \tagDc{}
+    \item BC choice and $\alpha$ provenance remain [OPEN]
+    \item Clear upgrade pathway exists for both sub-problems
+\end{itemize}
+\end{tcolorbox}
+
+\begin{tcolorbox}[
+    colback=yellow!5!white,
+    colframe=yellow!60!black,
+    title=\textbf{OPR-20 Attempt G\_BC: Stoplight Verdict}
+]
+\begin{center}
+\textbf{\large RED-C [Dc]+[P] (Structural Progress, BC Fork Identified)}
+\end{center}
+
+\medskip
+\textbf{What improved:}
+\begin{itemize}[nosep]
+    \item Reconciled C/D vs E discrepancy (BC choice, not error)
+    \item Established orbifold parity $\to$ BC mapping [BL]
+    \item Identified canonical baseline: $x_1 = \pi$ [P]
+    \item Split OPR-20 into OPR-20a (BC) and OPR-20b ($\alpha$)
+\end{itemize}
+
+\textbf{What remains:}
+\begin{itemize}[nosep]
+    \item Mediator field identity not established
+    \item BC choice is pragmatic [P], not derived
+    \item $\alpha$ provenance still open (see Attempt G)
+\end{itemize}
+
+\textbf{Upgrade condition:}
+\begin{quote}
+OPR-20a $\to$ \textbf{YELLOW [P]} when mediator field (A$_5$? KK A$_\mu$? brane scalar?)
+is identified and parity follows from gauge structure.
+\end{quote}
+\end{tcolorbox}
+

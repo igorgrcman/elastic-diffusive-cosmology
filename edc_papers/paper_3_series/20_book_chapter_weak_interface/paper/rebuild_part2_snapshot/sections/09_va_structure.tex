@@ -1,0 +1,438 @@
+% ==============================================================================
+% Chapter 9: V–A Structure from 5D Chiral Localization
+% Status: [Dc] — Derived from 5D Dirac + EDC postulates
+% ==============================================================================
+
+\section{V–A Structure from 5D Chiral Localization}
+\label{sec:ch9_va_structure}
+
+\begin{tcolorbox}[edcGuardrail, title=\textbf{Epistemic Status}]
+This section derives the effective 4D V–A (left-chiral) current structure
+from the EDC 5D$\to$4D reduction. The derivation uses:
+\begin{itemize}[nosep]
+    \item Standard 5D Dirac equation with position-dependent mass \tagBL{}
+    \item Domain-wall zero mode localization (Jackiw--Rebbi, Kaplan) \tagBL{}
+    \item EDC postulate: Plenum inflow determines mass profile sign \tagP{}
+\end{itemize}
+The result---that only left-handed modes couple at the interface---is
+\textbf{derived} \tagDc{}, not assumed.
+\end{tcolorbox}
+
+% ==============================================================================
+\subsection{Purpose and Scope}
+\label{sec:ch9_purpose}
+
+The weak interaction in 4D couples exclusively to left-handed fermions,
+producing the $V{-}A$ current structure:
+\begin{equation}
+    \mathcal{L}_{\text{weak}} \propto \bar\psi \gamma^\mu (1 - \gamma^5) \psi \, W_\mu
+    \label{eq:ch9_va_current}
+\end{equation}
+This is an observed fact \tagBL{}. The question is: \emph{why}?
+
+In the Standard Model, left-right asymmetry is \emph{imposed} by assigning
+different gauge quantum numbers to $\psi_L$ and $\psi_R$. In EDC, we seek
+a \emph{geometric origin}: chirality selection as a consequence of the 5D
+structure, not an input.
+
+\paragraph{Minimal assumptions.}
+We use only:
+\begin{enumerate}[nosep]
+    \item The 5D Dirac equation with $z$-dependent mass $m(z)$ \tagBL{}
+    \item The EDC postulate that Plenum flows toward the observer boundary \tagP{}
+    \item The physical coupling of fermion mass to Plenum stress \tagP{}
+\end{enumerate}
+
+\paragraph{Scope and limitations.}
+\begin{itemize}[nosep]
+    \item This chapter addresses chirality selection, not SU(2)$_L$ gauge unification.
+    \item CKM/PMNS mixing is not derived here; it remains (open).
+    \item The numerical value of $G_F$ is not computed; see Ch.~11 for the pathway.
+\end{itemize}
+
+% ==============================================================================
+\subsection{5D Dirac Field and Chiral Decomposition}
+\label{sec:ch9_dirac}
+
+\subsubsection{The 5D Dirac Equation}
+
+Consider a fermion field $\Psi(x^\mu, z)$ in the 5D EDC geometry.
+The coordinates are $x^M = (x^\mu, z)$ where $\mu = 0,1,2,3$ and $z$ is
+the fifth dimension (perpendicular to the brane).
+
+The 5D Dirac equation with position-dependent mass is \tagBL{}:
+\begin{equation}
+    \left( i\gamma^\mu \partial_\mu + i\gamma^5 \partial_z - m(z) \right) \Psi = 0
+    \label{eq:ch9_5d_dirac}
+\end{equation}
+where:
+\begin{itemize}[nosep]
+    \item $\gamma^\mu$ are the standard 4D Dirac matrices, $\{\gamma^\mu, \gamma^\nu\} = 2\eta^{\mu\nu}$
+    \item $\gamma^5 = i\gamma^0\gamma^1\gamma^2\gamma^3$ is the chirality operator
+    \item $m(z)$ is the position-dependent fermion mass (to be determined by EDC physics)
+\end{itemize}
+
+\subsubsection{Chiral Projection Operators}
+
+Define the 4D chiral projectors \tagBL{}:
+\begin{equation}
+    P_L = \frac{1}{2}(1 - \gamma^5), \qquad P_R = \frac{1}{2}(1 + \gamma^5)
+    \label{eq:ch9_projectors}
+\end{equation}
+satisfying $P_L + P_R = 1$, $P_L P_R = 0$, and $\gamma^5 P_{L/R} = \mp P_{L/R}$.
+
+The spinor decomposes as:
+\begin{equation}
+    \Psi(x,z) = \Psi_L(x,z) + \Psi_R(x,z), \qquad \Psi_{L/R} = P_{L/R} \Psi
+    \label{eq:ch9_decomposition}
+\end{equation}
+
+\subsubsection{Mode Expansion}
+
+For a massive 4D mode with momentum $p_\mu$, write:
+\begin{equation}
+    \Psi(x,z) = \psi_L(x) f_L(z) + \psi_R(x) f_R(z)
+    \label{eq:ch9_mode_expansion}
+\end{equation}
+where $\psi_{L/R}(x)$ are 4D spinor fields and $f_{L/R}(z)$ are $z$-profiles.
+
+Substituting into Eq.~\eqref{eq:ch9_5d_dirac} and separating chiralities gives
+the coupled first-order equations \tagBL{}:
+\begin{align}
+    \partial_z f_L &= -m(z) f_L \label{eq:ch9_fL_eq} \\
+    \partial_z f_R &= +m(z) f_R \label{eq:ch9_fR_eq}
+\end{align}
+These have the formal solutions:
+\begin{align}
+    f_L(z) &= f_L(0) \exp\left(-\int_0^z m(z') \, dz'\right) \label{eq:ch9_fL_sol} \\
+    f_R(z) &= f_R(0) \exp\left(+\int_0^z m(z') \, dz'\right) \label{eq:ch9_fR_sol}
+\end{align}
+
+% ==============================================================================
+\subsection{Interface Mass Profile and Localization}
+\label{sec:ch9_localization}
+
+\subsubsection{The Domain Wall Mechanism (Baseline)}
+
+The localization of chiral fermions at domain walls is a well-known result
+(Jackiw--Rebbi 1976, Kaplan 1992) \tagBL{}:
+\begin{itemize}[nosep]
+    \item If $m(z)$ increases from negative to positive values (e.g., $m(z) = m_0 \tanh(z/L)$),
+          then the \textbf{left-handed} zero mode is localized at $z=0$.
+    \item If $m(z)$ decreases from positive to negative, the \textbf{right-handed}
+          mode is localized.
+\end{itemize}
+The sign of the mass profile determines chirality selection.
+
+\subsubsection{EDC Postulate: Plenum Inflow Determines Mass Sign}
+
+In EDC, the Plenum (5D energy fluid) flows toward the observer boundary:
+\begin{equation}
+    J^z_{\text{Plenum}} > 0 \qquad \text{(inflow toward $z=0$)}
+    \label{eq:ch9_inflow}
+\end{equation}
+This is the fundamental EDC mechanism (see Framework v2.0, Remark~4.5) \tagP{}.
+
+\begin{tcolorbox}[colback=orange!5, colframe=orange!50!black,
+    title=\textbf{Physical Hypothesis [P]}]
+The fermion mass $m(z)$ is induced by coupling to the Plenum stress tensor:
+\begin{equation}
+    m(z) \sim \kappa \left( T^{zz}(z) - T^{zz}(0) \right)
+    \label{eq:ch9_mass_from_stress}
+\end{equation}
+where $\kappa > 0$ is a coupling constant.
+\end{tcolorbox}
+
+Since Plenum flows inward, the stress $T^{zz}$ is larger in the bulk than at
+the boundary:
+\begin{equation}
+    T^{zz}(z) > T^{zz}(0) \quad \text{for } z > 0
+    \qquad\Longrightarrow\qquad
+    m(z) > 0 \quad \text{for } z > 0
+    \label{eq:ch9_mass_positive}
+\end{equation}
+
+The resulting profile is a ``half-domain wall'':
+\begin{equation}
+    m(z) = m_0 \left(1 - e^{-z/\lambda}\right) \approx m_0 \frac{z}{\lambda}
+    \quad \text{for small } z
+    \label{eq:ch9_mass_profile}
+\end{equation}
+where $\lambda$ is the characteristic length scale (related to thick-brane thickness $\Delta$).
+
+\subsubsection{Chiral Mode Profiles}
+
+With $m(z) > 0$ for $z > 0$, the profile equations~\eqref{eq:ch9_fL_sol}--\eqref{eq:ch9_fR_sol} give:
+
+\paragraph{Left-handed mode:}
+\begin{equation}
+    f_L(z) = N_L \exp\left(-\int_0^z m(z') \, dz'\right)
+    \label{eq:ch9_fL_profile}
+\end{equation}
+Since $m(z') > 0$, the integral is positive and grows with $z$.
+Therefore $f_L(z)$ \textbf{decreases} as $z$ increases:
+the left-handed mode is \textbf{localized at the boundary} $z=0$ \tagDc{}.
+
+\paragraph{Right-handed mode:}
+\begin{equation}
+    f_R(z) = N_R \exp\left(+\int_0^z m(z') \, dz'\right)
+    \label{eq:ch9_fR_profile}
+\end{equation}
+The positive sign causes $f_R(z)$ to \textbf{grow} as $z$ increases.
+This mode is \textbf{not normalizable}; it is expelled into the bulk \tagDc{}.
+
+\begin{center}
+\fbox{\parbox{0.9\textwidth}{
+\textbf{Key result:} With the EDC mass profile (positive, rising into bulk),
+only left-handed modes are localized at the observer boundary.
+Right-handed modes delocalize into the bulk and do not participate in
+brane-localized interactions.
+}}
+\end{center}
+
+% ==============================================================================
+\subsection{Effective 4D Coupling and V–A Emergence}
+\label{sec:ch9_va_emergence}
+
+\subsubsection{Effective 4D Interaction}
+
+If a weak mediator field $W_\mu$ couples to fermions at the brane interface,
+the effective 4D coupling is proportional to the overlap integral:
+\begin{equation}
+    g_{\text{eff}}^{(L)} \propto \int_0^L |f_L(z)|^2 \, dz
+    \qquad
+    g_{\text{eff}}^{(R)} \propto \int_0^L |f_R(z)|^2 \, dz
+    \label{eq:ch9_overlap}
+\end{equation}
+
+Since $f_L$ is localized near $z=0$ and normalizable, $g_{\text{eff}}^{(L)} = O(1)$.
+
+Since $f_R$ grows into the bulk and is not normalizable, $g_{\text{eff}}^{(R)} \to 0$
+(or is exponentially suppressed).
+
+\subsubsection{The V–A Current Structure}
+
+The effective 4D weak interaction takes the form:
+\begin{equation}
+    \mathcal{L}_{\text{eff}} \propto g_{\text{eff}}^{(L)} \bar\psi_L \gamma^\mu \psi_L \, W_\mu
+    + g_{\text{eff}}^{(R)} \bar\psi_R \gamma^\mu \psi_R \, W_\mu
+    \label{eq:ch9_L_eff}
+\end{equation}
+
+With $g_{\text{eff}}^{(R)} \approx 0$:
+\begin{equation}
+    \mathcal{L}_{\text{eff}} \propto \bar\psi_L \gamma^\mu \psi_L \, W_\mu
+    = \bar\psi \gamma^\mu P_L \psi \, W_\mu
+    = \frac{1}{2} \bar\psi \gamma^\mu (1 - \gamma^5) \psi \, W_\mu
+    \label{eq:ch9_va_derived}
+\end{equation}
+
+\begin{tcolorbox}[edcCanonical, title=\textbf{V–A Structure Emergence [Dc]}]
+The characteristic $V{-}A$ weak current structure:
+\begin{equation}
+    J^\mu_{\text{weak}} = \bar\psi \gamma^\mu (1 - \gamma^5) \psi
+\end{equation}
+emerges from the 5D geometry without being imposed. The only left-right
+asymmetry input is the \textbf{sign} of the Plenum inflow, which determines
+the sign of the mass profile.
+
+\textbf{No chirality smuggling:} The chirality selection is a \emph{consequence}
+of the inflow direction, not an assumption about gauge quantum numbers.
+\end{tcolorbox}
+
+% ==============================================================================
+\subsection{Boundary Condition Interpretation}
+\label{sec:ch9_boundary}
+
+The chiral localization can equivalently be viewed through boundary conditions.
+At the observer boundary $z = 0$, the EDC ``frozen regime'' imposes constraints
+on fermion fields.
+
+\paragraph{EDC boundary condition (interpretation).}
+The condition that only left-handed modes couple to observer physics is
+equivalent to a boundary projection:
+\begin{equation}
+    P_R \psi\big|_{\text{boundary}} = 0
+    \qquad \text{or} \qquad
+    (1 + \gamma^5) \psi\big|_{z \to 0} \to 0
+    \label{eq:ch9_bc}
+\end{equation}
+This is \emph{not} imposed by hand; it emerges from the normalizability
+requirement for modes in the domain-wall background.
+
+\paragraph{Comparison with MIT bag.}
+The MIT bag boundary condition for quark confinement has the form
+$(1 - i\gamma^5 \hat{n} \cdot \gamma)\psi|_{\text{surface}} = 0$.
+While structurally similar, the EDC mechanism is distinct: it arises from
+mode localization in an asymmetric mass background, not from imposing
+confinement on a bag surface. We note the analogy but do not claim equivalence \tagI{}.
+
+% ==============================================================================
+\subsection{Dimensional and Consistency Checks}
+\label{sec:ch9_consistency}
+
+\paragraph{Dimension check.}
+\begin{itemize}[nosep]
+    \item $[\Psi] = [\text{mass}]^2$ in 5D (for canonically normalized action)
+    \item $[f_{L/R}(z)] = [\text{mass}]^{1/2}$ (profile function)
+    \item $[\psi_{L/R}(x)] = [\text{mass}]^{3/2}$ in 4D (standard 4D spinor)
+    \item $[m(z)] = [\text{mass}]$ (5D mass profile)
+    \item $[\lambda] = [\text{length}]$ (localization scale)
+\end{itemize}
+The mode expansion~\eqref{eq:ch9_mode_expansion} and solutions~\eqref{eq:ch9_fL_sol}--\eqref{eq:ch9_fR_sol} are dimensionally consistent.
+
+\paragraph{Convention independence.}
+The V–A result depends only on:
+\begin{enumerate}[nosep]
+    \item The \emph{sign} of $m(z)$ for $z > 0$, determined by inflow direction
+    \item The standard definition of $\gamma^5$ and chiral projectors
+\end{enumerate}
+There is no dependence on factors of $4\pi$ or electromagnetic coupling $\alpha$.
+
+\paragraph{Open problems (status: open).}
+\begin{enumerate}[nosep]
+    \item SU(2)$_L$ gauge symmetry origin and W$^\pm$, Z$^0$ mass generation (OPR-17, partial)
+    \item CKM/PMNS mixing from generational mode overlaps (OPR-18)
+    \item Quantitative $G_F$ from thick-brane profile (see Ch.~11) (OPR-22)
+    \item Neutrino mass and Majorana vs.\ Dirac structure (OPR-07)
+    \item Explicit $\mathbb{Z}_2 \subset \mathbb{Z}_6$ action on chirality
+\end{enumerate}
+
+% ==============================================================================
+\subsection{Minimal SU(2)$_L$ Gauge Embedding}
+\label{sec:ch9_su2_embedding}
+
+In this chapter we derived the $V{-}A$ structure from 5D chiral localization:
+left-handed modes remain boundary-supported while right-handed modes are displaced
+into the bulk. What is still missing is a minimal statement of \emph{where} the
+SU(2)$_L$ gauge fields live and \emph{how} they couple to these localized fermions.
+
+We therefore adopt the simplest consistent embedding \tagP{}:
+\begin{quote}
+\textbf{Postulate:} The SU(2)$_L$ gauge fields $W_\mu^a$ are \emph{brane-localized}
+at the observer boundary.
+\end{quote}
+
+\subsubsection{Coupling from Brane-Localized Action}
+
+The brane-localized gauge action takes the form:
+\begin{equation}
+    S \supset \int d^4x\,dz\,\delta(z)\,\Big(-\tfrac{1}{4} W^a_{\mu\nu}W^{a\mu\nu}
+    + \bar{g}_2\,W^a_\mu J_L^{a\mu}\Big)
+    \label{eq:ch9_brane_gauge_action}
+\end{equation}
+where $J_L^{a\mu} = \bar\Psi_L \gamma^\mu T^a \Psi_L$ is the left-handed current.
+Integrating over $z$ with normalized fermion profiles $f_L(z)$ gives the effective coupling:
+\begin{equation}
+    g_{\text{eff}} \propto \bar{g}_2 \int dz\,|f_L(z)|^2\,\delta(z)
+    \quad\Rightarrow\quad
+    g_{\text{eff}} \simeq g_2 \quad \text{(up to brane kinetic terms)}
+    \label{eq:ch9_geff}
+\end{equation}
+
+For \textbf{left-handed modes} (boundary-supported), the overlap is $\mathcal{O}(1)$,
+giving full gauge coupling. For \textbf{right-handed modes} (bulk-displaced), the
+overlap is exponentially suppressed by their displacement from the boundary. This
+immediately aligns the gauge interaction with the chirality filter derived earlier:
+SU(2)$_L$ couples strongly to left-handed doublets and negligibly to right-handed singlets.
+
+\subsubsection{Alternative: Bulk Gauge Fields}
+
+An alternative embedding would have gauge fields propagate in the full 5D bulk,
+coupling to fermions everywhere. This would require:
+\begin{itemize}[nosep]
+    \item Kaluza--Klein reduction of 5D gauge fields
+    \item A separate localization mechanism for gauge zero modes
+    \item Additional assumptions about bulk gauge dynamics
+\end{itemize}
+We do not pursue this here; the brane-localized ansatz is \emph{minimal} \tagP{}.
+If future work requires bulk gauge propagation (e.g., for gauge unification or
+KK tower signatures), the brane-localized limit is recoverable as the leading-order term.
+
+\subsubsection{No-Smuggling Guardrail}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black, title=Epistemic Status: SU(2)$_L$ Embedding]
+\small
+\begin{tabular}{lll}
+\toprule
+\textbf{Item} & \textbf{Status} & \textbf{Note} \\
+\midrule
+SU(2)$_L$ brane-localization & \tagP{} & Postulated, not derived \\
+Overlap coupling $g_{\text{eff}} \simeq g_2$ & \tagP{} & From brane action ansatz \\
+Consistency with V--A & \tagDc{} & Follows from Ch.9 chirality mechanism \\
+Origin of gauge symmetry & (open) & Why SU(2)$_L$? Not addressed \\
+W$^\pm$/Z$^0$ mass generation & (open) & Higgs mechanism not derived \\
+Gauge coupling $g_2$ value & \tagBL{} & Input from SM \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\subsubsection{Verdict}
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!60!black,
+    title=OPR-17: Minimal SU(2)$_L$ Embedding]
+\textbf{Status: YELLOW [P]} --- where/how fixed; origin + masses remain OPEN.
+
+\begin{itemize}[nosep]
+    \item \textcolor{OliveGreen}{\textbf{GREEN:}} Consistent with existing V--A chirality filter \tagDc{}
+    \item \textcolor{YellowOrange}{\textbf{YELLOW:}} Brane-localized SU(2)$_L$ + overlap coupling \tagP{}
+    \item \textcolor{BrickRed}{\textbf{RED/OPEN:}} Gauge symmetry origin; W$^\pm$/Z$^0$ mass generation
+\end{itemize}
+
+\medskip
+\noindent\fbox{\parbox{0.94\textwidth}{\small
+\textbf{SU(2)$_L$ embedding (OPR-17):} Brane-localized gauge fields couple to
+boundary-supported left-handed modes with $g_{\text{eff}} \simeq g_2$; right-handed
+modes decouple by bulk displacement. This fixes ``where/how'' without deriving
+gauge symmetry origin or mass generation.}}
+\end{tcolorbox}
+
+% ==============================================================================
+\subsection{Summary}
+\label{sec:ch9_summary}
+
+\begin{enumerate}
+    \item \textbf{Input:} 5D Dirac equation with position-dependent mass \tagBL{},
+          plus EDC postulate that Plenum inflow determines mass profile sign \tagP{}.
+
+    \item \textbf{Mechanism:} Domain-wall chiral localization (Jackiw--Rebbi/Kaplan) \tagBL{}
+          applied to the EDC half-domain-wall geometry.
+
+    \item \textbf{Result:} Left-handed modes localize at the observer boundary;
+          right-handed modes are expelled into bulk \tagDc{}.
+
+    \item \textbf{Consequence:} Effective 4D weak coupling is purely left-handed,
+          giving the $V{-}A$ structure $\bar\psi\gamma^\mu(1-\gamma^5)\psi$ \tagDc{}.
+
+    \item \textbf{No smuggling:} Chirality selection follows from inflow direction,
+          not from assigning different gauge charges to $\psi_L$ and $\psi_R$.
+
+    \item \textbf{Boundary interpretation:} The result is equivalent to a boundary
+          projection $P_R\psi|_{\text{bdy}} = 0$, but this is derived, not imposed \tagI{}.
+
+    \item \textbf{Open:} SU(2)$_L$ gauge structure, CKM/PMNS, $G_F$ value, neutrino mass.
+\end{enumerate}
+
+\begin{tcolorbox}[colback=green!5, colframe=green!50!black,
+    title=\textbf{Epistemic Audit}]
+\begin{center}
+\small
+\begin{tabular}{lll}
+\toprule
+\textbf{Element} & \textbf{Source} & \textbf{Status} \\
+\midrule
+5D Dirac equation & Standard QFT & \tagBL{} \\
+Chiral projectors $P_{L/R}$ & Standard QFT & \tagBL{} \\
+Domain wall localization & Jackiw--Rebbi/Kaplan & \tagBL{} \\
+Plenum inflow direction & EDC Framework v2.0 & \tagP{} \\
+Fermion-stress coupling $m(z) \sim \kappa T^{zz}$ & Physical hypothesis & \tagP{} \\
+$m(z) > 0$ for $z > 0$ & From inflow direction & \tagDc{} \\
+$f_L$ localized at boundary & Mathematical consequence & \tagDc{} \\
+$f_R$ expelled into bulk & Mathematical consequence & \tagDc{} \\
+V–A current structure & Emerges from above & \tagDc{} \\
+MIT bag analogy & Structural comparison & \tagI{} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+

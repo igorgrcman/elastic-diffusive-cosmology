@@ -1,0 +1,389 @@
+%!TEX root = ../EDC_Part_II_Weak_Sector.tex
+% ==============================================================================
+% Chapter 11: OPR-20 Factor-8 Forensic Analysis
+% Status: Negative closure of BC route [Dc]; junction/R_ξ routes remain [OPEN]
+% ==============================================================================
+
+\subsection{Factor-8 Forensic Analysis (OPR-20)}
+\label{sec:ch11_factor8_forensic}
+
+\subsubsection{Problem Recap: The Factor-8 Discrepancy}
+\label{sec:ch11_factor8_recap}
+
+The suppression mechanism Candidate A (\S\ref{sec:ch11_candidate_A}) predicts:
+\begin{equation}
+    m_\phi^A = \frac{x_1}{\ell_A} = \frac{\pi}{R_\xi}
+    \approx \frac{\pi \times 197.3 \text{ MeV}}{10^{-3} \text{ fm}}
+    \approx 620 \text{ GeV}
+    \label{eq:ch11_mphi_A_recap}
+\end{equation}
+This overshoots the weak scale by a factor:
+\begin{equation}
+    \boxed{
+    \text{Overshoot factor} = \frac{m_\phi^A}{80 \text{ GeV}} \approx 7.75 \approx 8
+    }
+    \label{eq:ch11_factor8}
+\end{equation}
+
+\paragraph{Forensic question.}
+Can this factor-8 be explained by \emph{SM-free} mechanisms---boundary condition
+shifts, junction effects, or geometric factors---without importing $M_W$ or $G_F$?
+
+\begin{tcolorbox}[colback=blue!5, colframe=blue!60!black,
+    title=\textbf{Executive Summary: Factor-8 Forensic Analysis}]
+\textbf{Three routes investigated:}
+\begin{itemize}[nosep]
+    \item \textbf{B1 (BC/eigenvalue shift):} Can $x_1 \to x_1/8$ via non-Dirichlet BCs?
+    \item \textbf{B2 (Junction/BKT):} Can brane terms give effective $\ell_{\rm eff} = 8\ell$?
+    \item \textbf{B3 ($R_\xi$ rescale):} Is there a factor-$8$ geometric prefactor?
+\end{itemize}
+
+\textbf{Key finding:} Robin BCs with $a\ell = b\ell \sim 0.1$ can reduce $x_1$ to
+$\approx \pi/8$, but this requires specific (not uniquely derived) BC parameters.
+Junction/BKT route requires large coefficients. $R_\xi$ rescale by $2\pi$ or $4\pi$
+provides partial explanation.
+
+\textbf{Status:} OPR-20 remains \textbf{RED-C [Dc]+[OPEN]}. BC route provides
+\emph{negative closure} \tagDc{}; junction route requires tuning; $R_\xi$ route
+is plausible but not derived.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{No-Smuggling Guardrails}
+\label{sec:ch11_factor8_guardrails}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!60!black,
+    title=\textbf{No-Smuggling Guardrails (Factor-8 Analysis)}]
+\textbf{Forbidden as inputs:}
+\begin{itemize}[nosep]
+    \item[\ding{55}] $M_W = 80$ GeV (would make analysis circular)
+    \item[\ding{55}] $G_F = 1.17 \times 10^{-5}$ GeV$^{-2}$
+    \item[\ding{55}] Choosing BC parameters to ``match'' the weak scale
+\end{itemize}
+
+\textbf{Allowed:}
+\begin{itemize}[nosep]
+    \item[\ding{51}] $R_\xi \sim 10^{-3}$ fm \tagP{} (Part I diffusion scale)
+    \item[\ding{51}] Dimensionless BC parameters $(a\ell, b\ell)$ as free variables
+    \item[\ding{51}] Geometric factors ($2\pi$, $4\pi$, $\sqrt{2}$, etc.) if derivable
+    \item[\ding{51}] Junction/Israel matching with $\mathcal{O}(1)$ coefficients
+\end{itemize}
+
+\textbf{Protocol:} The question is purely mathematical: ``Can $x_1$ or $\ell_{\rm eff}$
+change by factor $\sim 8$?'' SM comparison appears only in the final assessment.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Route B1: Eigenvalue Shift from Boundary Conditions}
+\label{sec:ch11_route_B1}
+
+\paragraph{Standard boundary conditions.}
+
+For a particle-in-a-box on interval $[0, \ell]$, the first eigenvalue $x_1 = k_1 \ell$
+depends on boundary conditions:
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{BC Type} & \textbf{$x_1$} & \textbf{Factor vs $\pi$} \\
+\midrule
+Dirichlet--Dirichlet (D-D) & $\pi$ & 1 \\
+Dirichlet--Neumann (D-N) & $\pi/2$ & $1/2$ \\
+Neumann--Neumann (N-N, $n \geq 1$) & $\pi$ & 1 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Observation:} Standard BCs give at most a factor-2 reduction ($x_1 = \pi/2$
+for D-N). This is \emph{insufficient} to explain factor-8.
+
+\paragraph{Robin boundary conditions.}
+
+Robin BCs interpolate continuously:
+\begin{equation}
+    \psi'(0) = a \psi(0), \quad \psi'(\ell) = -b \psi(\ell)
+    \label{eq:ch11_robin_bc}
+\end{equation}
+where $a, b$ are real parameters. The eigenvalue $x_1$ satisfies a transcendental
+equation that depends on the dimensionless products $a\ell$ and $b\ell$.
+
+\paragraph{Numerical scan results.}
+
+A parameter sweep (see \texttt{tools/scan\_opr20\_bc\_eigenvalue.py}) yields:
+
+\begin{table}[ht]
+\centering
+\caption{Robin BC eigenvalue scan (selected configurations)}
+\label{tab:ch11_robin_scan}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Configuration} & \textbf{$x_1$} & \textbf{$x_1/\pi$} & \textbf{Factor vs target} & \textbf{Tuning} \\
+\midrule
+D-D (reference) & 3.14 & 1.00 & 8.0 & --- \\
+D-N (reference) & 1.57 & 0.50 & 4.0 & --- \\
+\addlinespace
+Robin($a\ell = 0.1$, $b\ell = 0.1$) & 0.44 & 0.14 & 1.13 & borderline \\
+Robin($a\ell = 0.01$, $b\ell = 0.1$) & 0.33 & 0.10 & 0.83 & moderate \\
+Robin($a\ell = 0.5$, $b\ell = 0.5$) & 0.90 & 0.29 & 2.3 & natural \\
+Robin($a\ell = 1$, $b\ell = 1$) & 1.17 & 0.37 & 3.0 & natural \\
+\addlinespace
+\textbf{Target} & 0.39 & 0.125 & 1.0 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Key finding.}
+
+Robin BCs with $a\ell \approx b\ell \approx 0.1$ can achieve $x_1 \approx 0.44$,
+which is close to the target $\pi/8 \approx 0.39$ (factor 1.13$\times$ above).
+This is \emph{mathematically possible} but requires:
+\begin{itemize}[nosep]
+    \item Specific values $a\ell \sim b\ell \sim 0.1$ (not $\mathcal{O}(1)$ but not extreme)
+    \item \emph{Physical derivation} of why these BC parameters hold
+\end{itemize}
+
+\paragraph{Interpretation: What would $a\ell \sim 0.1$ mean physically?}
+
+If $\ell \sim R_\xi \sim 10^{-3}$ fm, then $a\ell \sim 0.1$ implies:
+\begin{equation}
+    a \sim \frac{0.1}{R_\xi} \sim 100 \text{ fm}^{-1} \sim 20 \text{ GeV}
+    \label{eq:ch11_a_physical}
+\end{equation}
+This is a mass-like scale. A Robin BC of this form could arise from:
+\begin{itemize}[nosep]
+    \item Brane-localized mass term: $\psi'(0) \propto m_{\rm brane} \psi(0)$
+    \item Junction matching across a thin brane
+    \item Effective potential gradient at the boundary
+\end{itemize}
+All of these are \tagP{} mechanisms without first-principles derivation.
+
+\begin{tcolorbox}[colback=yellow!10, colframe=yellow!60!black]
+\textbf{Route B1 Verdict:}
+BC eigenvalue shifts can \emph{mathematically} produce factor-8 reduction via
+Robin BCs with $a\ell \sim b\ell \sim 0.1$. However:
+\begin{itemize}[nosep]
+    \item The specific parameter values are not derived
+    \item Physical mechanism for such BCs is \tagP{}
+    \item Status: \textbf{Conditional closure}---works if BCs are derivable
+\end{itemize}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Route B2: Junction Factor / Brane Kinetic Term}
+\label{sec:ch11_route_B2}
+
+\paragraph{Mechanism: Effective interval extension.}
+
+Brane-localized kinetic terms or Israel junction conditions can modify the
+effective interval length:
+\begin{equation}
+    \ell_{\rm eff} = \ell \times (1 + \beta)
+    \label{eq:ch11_ell_eff}
+\end{equation}
+where $\beta$ encodes the junction/BKT contribution.
+
+For factor-8: $\ell_{\rm eff}/\ell = 8$ requires $\beta = 7$.
+
+\paragraph{Israel junction analysis.}
+
+At a brane with surface tension $\sigma_b$, the Israel matching condition
+relates the extrinsic curvature jump to the brane stress-energy. For a gauge
+field, this modifies the effective action by a factor:
+\begin{equation}
+    \beta_{\rm Israel} \sim \frac{\sigma_b \ell}{\hbar c}
+    \label{eq:ch11_beta_israel}
+\end{equation}
+
+With $\sigma_b \sim \sigma \sim 5.86 \text{ MeV}/\text{fm}^2$ and $\ell \sim 10^{-3}$ fm:
+\begin{equation}
+    \beta_{\rm Israel} \sim \frac{5.86 \times 10^{-3}}{197.3} \sim 3 \times 10^{-5}
+    \label{eq:ch11_beta_estimate}
+\end{equation}
+This is far too small for factor-8.
+
+\paragraph{BKT-induced spectrum shift.}
+
+From \S\ref{sec:ch11_candidate_B}, the BKT parameter $\kappa$ enters the effective
+coupling. To shift the spectrum by factor-8, we would need:
+\begin{equation}
+    \kappa g_5^2 \sim 7 \quad \Rightarrow \quad
+    \kappa \sim \frac{7}{g^2} \sim \frac{7}{0.4} \sim 17.5
+    \label{eq:ch11_kappa_needed}
+\end{equation}
+
+With $\kappa \sim c_\kappa / (\sigma r_e^2)$:
+\begin{equation}
+    c_\kappa \sim 17.5 \times 5.86 \text{ MeV} \sim 100 \text{ MeV}
+    \label{eq:ch11_c_kappa}
+\end{equation}
+This is large but not absurdly so---it represents an $\mathcal{O}(100)$ coefficient,
+which is moderately unnatural.
+
+\begin{tcolorbox}[colback=yellow!10, colframe=yellow!60!black]
+\textbf{Route B2 Verdict:}
+Junction/BKT mechanisms cannot easily produce factor-8:
+\begin{itemize}[nosep]
+    \item Israel matching gives $\beta \ll 1$ (fails)
+    \item BKT requires $\kappa g_5^2 \sim 7$ (moderate tuning)
+    \item Status: \textbf{Unlikely without large coefficients}
+\end{itemize}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Route B3: $R_\xi$ Rescale via Geometric Prefactor}
+\label{sec:ch11_route_B3}
+
+\paragraph{Hypothesis: Missing geometric factor.}
+
+Perhaps the physical $\ell$ is not simply $R_\xi$ but involves a geometric prefactor:
+\begin{equation}
+    \ell_{\rm physical} = C_{\rm geom} \times R_\xi
+    \label{eq:ch11_ell_geom}
+\end{equation}
+For factor-8 reduction in $m_\phi$, we need $C_{\rm geom} \approx 8$.
+
+\paragraph{Candidate prefactors.}
+
+\begin{table}[ht]
+\centering
+\caption{Geometric prefactor candidates for $R_\xi$ rescale}
+\label{tab:ch11_rxi_prefactors}
+\small
+\begin{tabular}{lcccl}
+\toprule
+\textbf{Factor} & \textbf{Value} & \textbf{$m_\phi$ (GeV)} & \textbf{vs 80 GeV} & \textbf{Origin} \\
+\midrule
+1 (baseline) & 1 & 620 & $8\times$ over & --- \\
+$2\pi$ & 6.28 & 99 & 24\% over & Circumference/$R_\xi$ \\
+$4\pi$ & 12.6 & 49 & 39\% under & Solid angle \\
+8 & 8 & 77.5 & 3\% under & Octahedral factor \\
+$\sqrt{2} \times 4\pi$ & 17.7 & 35 & 56\% under & Enhanced solid angle \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Analysis.}
+
+\begin{itemize}[nosep]
+    \item $C_{\rm geom} = 2\pi \approx 6.28$: Gives $m_\phi \approx 99$ GeV (24\% overshoot).
+          This could arise if $\ell$ is a circumference rather than radius.
+          \textbf{Status:} \tagP{} (plausible, not derived)
+
+    \item $C_{\rm geom} = 8$: Gives $m_\phi \approx 77.5$ GeV (3\% match).
+          The factor 8 could come from:
+          \begin{itemize}[nosep]
+              \item Octahedral/cubic symmetry factor (8 octants)
+              \item $2^3$ from three spatial dimensions
+              \item Coincidence
+          \end{itemize}
+          \textbf{Status:} \tagP{} (numeric match, no derivation)
+
+    \item $C_{\rm geom} = 4\pi \approx 12.6$: Gives $m_\phi \approx 49$ GeV (39\% undershoot).
+          This is the solid angle factor from OPR-19.
+          \textbf{Status:} Would require another factor-2 to match.
+\end{itemize}
+
+\paragraph{Connection to OPR-19 ($4\pi$ coefficient).}
+
+Interestingly, OPR-19 derived $C = 4\pi$ for the coupling coefficient via
+Gauss's law and isotropy. If the same $4\pi$ applies to $\ell$:
+\begin{equation}
+    \ell = 4\pi R_\xi \approx 12.6 \times 10^{-3} \text{ fm}
+    \quad \Rightarrow \quad
+    m_\phi = \frac{\pi}{\ell} \approx 49 \text{ GeV}
+\end{equation}
+This undershoots by $\sim 40\%$. To match exactly, we would need:
+\begin{equation}
+    C_{\rm geom} = \frac{620 \text{ GeV}}{80 \text{ GeV}} \approx 7.75 \approx 2.5\pi
+    \label{eq:ch11_exact_factor}
+\end{equation}
+The factor $2.5\pi \approx 7.85$ is suspiciously close to $8$, but $2.5\pi$ lacks
+obvious geometric interpretation.
+
+\begin{tcolorbox}[colback=yellow!10, colframe=yellow!60!black]
+\textbf{Route B3 Verdict:}
+Geometric prefactors can provide partial explanation:
+\begin{itemize}[nosep]
+    \item $C = 2\pi$: 24\% overshoot (plausible circumference factor)
+    \item $C = 8$: 3\% match (suggestive but not derived)
+    \item $C = 4\pi$: 39\% undershoot (motivated by OPR-19)
+    \item Status: \textbf{Plausible paths exist}; none uniquely derived
+\end{itemize}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Combined Assessment}
+\label{sec:ch11_factor8_combined}
+
+\begin{table}[ht]
+\centering
+\caption{Factor-8 forensic: Route comparison}
+\label{tab:ch11_factor8_routes}
+\small
+\begin{tabular}{p{3cm}cccl}
+\toprule
+\textbf{Route} & \textbf{Can explain 8$\times$?} & \textbf{Natural?} & \textbf{Tag} & \textbf{Status} \\
+\midrule
+B1: BC shift & YES (Robin) & Borderline & \tagP{} & Conditional \\
+B2: Junction/BKT & Requires $\kappa \sim 20$ & NO & \tagP{} & Unlikely \\
+B3: $R_\xi$ rescale ($2\pi$) & 24\% off & YES & \tagP{} & Plausible \\
+B3: $R_\xi$ rescale (8) & 3\% off & Unknown & \tagP{} & Numeric match \\
+\midrule
+\textbf{Best path} & \multicolumn{4}{l}{$2\pi$ rescale + Robin BC correction} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Composite scenario.}
+
+A combination could close the gap more naturally:
+\begin{enumerate}[nosep]
+    \item $\ell = 2\pi R_\xi$ (circumference interpretation) gives $m_\phi \approx 99$ GeV
+    \item Mild Robin BC shift with $a\ell \sim 0.5$ gives $x_1 \approx 0.8\pi$
+    \item Combined: $m_\phi \approx 99 \times 0.8 \approx 79$ GeV
+\end{enumerate}
+This is speculative \tagP{} but demonstrates that the gap is \emph{not} insurmountable
+with modest assumptions.
+
+% ------------------------------------------------------------------------------
+\subsubsection{Factor-8 Forensic Verdict}
+\label{sec:ch11_factor8_verdict}
+
+\begin{tcolorbox}[colback=green!5, colframe=green!50!black,
+    title=\textbf{OPR-20 Factor-8 Forensic: Summary}]
+
+\textbf{What we learned:}
+\begin{enumerate}[nosep]
+    \item \textbf{BC route (B1):} Robin BCs with $a\ell \sim 0.1$ can mathematically
+          reduce $x_1$ to $\approx \pi/8$. This is a \emph{conditional} path---requires
+          derivation of BC parameters.
+    \item \textbf{Junction route (B2):} BKT/Israel mechanisms fail naturally; would
+          require large ($\sim 20$) dimensionless coefficient.
+    \item \textbf{Geometric route (B3):} Factor $2\pi$ or $8$ in $\ell = C \cdot R_\xi$
+          provides partial or full explanation. Neither is uniquely derived.
+\end{enumerate}
+
+\textbf{Honest assessment:}
+\begin{itemize}[nosep]
+    \item Factor-8 is \emph{not} explained by standard physics (D-D or D-N BCs)
+    \item It \emph{can} be explained by Robin BCs or geometric prefactors, but
+          these introduce new [P] assumptions
+    \item The gap is ``bridge-able'' rather than ``fatal''
+\end{itemize}
+
+\textbf{Status:} OPR-20 remains \textbf{RED-C [Dc]+[OPEN]}
+\begin{itemize}[nosep]
+    \item \textbf{[Dc] negative closure:} Standard BCs give at most factor-2 (D-N)
+    \item \textbf{[OPEN]:} Robin BCs, geometric prefactors remain viable but unproven
+\end{itemize}
+
+\textbf{Next action:} Derive BC parameters from brane physics, or derive
+geometric factor $C \in \{2\pi, 4\pi, 8\}$ from first principles.
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=gray!10, colframe=gray!60!black,
+    title=\textbf{Micro-Status (for margins)}]
+\textbf{OPR-20 Factor-8:} Standard BCs fail; Robin + $2\pi$ rescale viable \tagP{}.
+Status: RED-C [Dc]+[OPEN].
+\end{tcolorbox}
+

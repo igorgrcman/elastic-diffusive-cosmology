@@ -1,0 +1,241 @@
+%!TEX root = ../EDC_Part_II_Weak_Sector.tex
+% ==============================================================================
+% BVP Work Package: Thick-Brane Solver Specification (OPR-02/21)
+% Status: Infrastructure definition — NOT claiming closure
+% ==============================================================================
+
+\subsection{BVP Work Package: Thick-Brane Solver Specification}
+\label{sec:ch12_bvp_workpackage}
+
+This subsection defines a \textbf{Work Package} for the thick-brane boundary value
+problem (BVP) that appears in multiple OPR items. The goal is infrastructure, not
+closure: define the problem precisely, establish acceptance criteria, and provide
+a minimal solver skeleton for future development.
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!60!black,
+    title=\textbf{Scope Limitation}]
+This work package does \textbf{not} claim to:
+\begin{itemize}[nosep]
+    \item Derive generation counting (OPR-02)
+    \item Close CKM/PMNS from first principles
+    \item Provide complete $G_F$ derivation
+\end{itemize}
+It \textbf{does} provide:
+\begin{itemize}[nosep]
+    \item Precise mathematical specification of the BVP
+    \item Acceptance criteria for ``success''
+    \item Failure modes and their implications
+    \item Minimal numerical skeleton for testing
+\end{itemize}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{WP-BVP-0: Problem Definition}
+\label{sec:bvp_definition}
+
+\paragraph{The fermion localization equation.}
+In a thick-brane scenario, fermion profiles $f(z)$ in the extra dimension satisfy
+a Schr\"odinger-like equation \tagP{}:
+\begin{equation}
+    \boxed{
+    \left[ -\frac{d^2}{dz^2} + V(z) \right] f(z) = m^2 f(z)
+    }
+    \label{eq:bvp_schrodinger}
+\end{equation}
+where:
+\begin{itemize}[nosep]
+    \item $z \in [0, \ell]$ is the extra-dimensional coordinate
+    \item $V(z)$ is an effective potential from the brane geometry
+    \item $m^2$ is the 4D mass-squared eigenvalue
+    \item $f(z)$ is the fermion profile (to be normalized)
+\end{itemize}
+
+\paragraph{Potential ansatz.}
+The simplest thick-brane potential is a symmetric well \tagP{}:
+\begin{equation}
+    V(z) = V_0 \left[ 1 - \operatorname{sech}^2\left(\frac{z - \ell/2}{w}\right) \right]
+    \label{eq:bvp_potential}
+\end{equation}
+where $V_0$ is the barrier height and $w$ is the wall width. Alternative potentials
+(square well, linear, exponential) are also valid test cases.
+
+\paragraph{Boundary conditions.}
+Three physically motivated BC choices:
+\begin{enumerate}[nosep]
+    \item \textbf{Dirichlet:} $f(0) = f(\ell) = 0$ (hard walls)
+    \item \textbf{Neumann:} $f'(0) = f'(\ell) = 0$ (no flux)
+    \item \textbf{Mixed:} $f(0) = 0$, $f'(\ell) = 0$ (or vice versa)
+\end{enumerate}
+The physical BC depends on brane microphysics and is currently \textbf{[OPEN]}.
+
+% ------------------------------------------------------------------------------
+\subsubsection{WP-BVP-1: Dimensionless Reduction}
+\label{sec:bvp_dimensionless}
+
+\paragraph{Rescaling.}
+Define dimensionless variables \tagDc{}:
+\begin{align}
+    \xi &= z/\ell \in [0,1] \label{eq:bvp_xi} \\
+    \tilde{V}(\xi) &= \ell^2 V(\ell\xi) \label{eq:bvp_vtilde} \\
+    \tilde{m}^2 &= \ell^2 m^2 \label{eq:bvp_mtilde}
+\end{align}
+
+\paragraph{Dimensionless BVP.}
+The eigenvalue equation becomes:
+\begin{equation}
+    \left[ -\frac{d^2}{d\xi^2} + \tilde{V}(\xi) \right] \tilde{f}(\xi) = \tilde{m}^2 \tilde{f}(\xi)
+    \label{eq:bvp_dimensionless}
+\end{equation}
+This is pure mathematics; no physics assumptions enter the rescaling.
+
+\paragraph{Normalization.}
+The profile must satisfy:
+\begin{equation}
+    \int_0^1 |\tilde{f}(\xi)|^2 \, d\xi = 1
+    \label{eq:bvp_normalization}
+\end{equation}
+
+% ------------------------------------------------------------------------------
+\subsubsection{WP-BVP-2: Numerical Method}
+\label{sec:bvp_numerics}
+
+\paragraph{Method choice.}
+For the skeleton implementation, we use finite differences with shooting \tagP{}:
+\begin{enumerate}[nosep]
+    \item Discretize $\xi_i = i/N$ for $i = 0, \ldots, N$
+    \item Approximate $d^2f/d\xi^2 \approx (f_{i+1} - 2f_i + f_{i-1})/h^2$
+    \item Solve the resulting matrix eigenvalue problem
+    \item Or: use shooting method with scipy \texttt{solve\_bvp}
+\end{enumerate}
+
+\paragraph{Alternative methods.}
+More sophisticated approaches (spectral, collocation, WKB) are valid but not
+required for the skeleton. The goal is demonstrating that solutions exist,
+not optimal numerics.
+
+% ------------------------------------------------------------------------------
+\subsubsection{WP-BVP-3: Acceptance Criteria}
+\label{sec:bvp_acceptance}
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
+    title=\textbf{Acceptance Criteria for BVP Skeleton}]
+A successful BVP demonstration must show:
+\begin{enumerate}
+    \item \textbf{Existence:} At least one bound state exists for reasonable $\tilde{V}$
+    \item \textbf{Normalization:} Profile satisfies $\int |\tilde{f}|^2 d\xi = 1$
+    \item \textbf{Convergence:} Eigenvalue stable under grid refinement
+          ($N = 100, 200, 400$ give consistent $\tilde{m}^2$)
+    \item \textbf{Reproducibility:} Different initial conditions converge to same solution
+\end{enumerate}
+
+\textbf{What this does NOT require:}
+\begin{itemize}[nosep]
+    \item Matching to physical particle masses
+    \item Deriving the potential from first principles
+    \item Computing overlap integrals with specific CKM/PMNS values
+\end{itemize}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{WP-BVP-4: Failure Modes}
+\label{sec:bvp_failure}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black,
+    title=\textbf{Failure Modes and Implications}]
+\begin{description}[nosep, font=\normalfont\bfseries]
+    \item[F1: No bound states]
+        If $\tilde{V}$ is too shallow, no localized modes exist.
+        \emph{Implication:} Potential ansatz inadequate; need deeper well or different form.
+
+    \item[F2: Non-convergence]
+        Eigenvalue changes significantly with grid refinement.
+        \emph{Implication:} Numerical method unstable; need higher order or different approach.
+
+    \item[F3: Multiple degenerate modes]
+        Unexpected degeneracy in spectrum.
+        \emph{Implication:} May indicate symmetry; check BC consistency.
+
+    \item[F4: Profile not localized]
+        Solution extends uniformly across domain (not peaked).
+        \emph{Implication:} Potential wrong sign or parameters; check physics.
+\end{description}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{WP-BVP-5: Overlap Integral Definition}
+\label{sec:bvp_overlap}
+
+\paragraph{The overlap integral.}
+Once profiles $\tilde{f}_i(\xi)$ are obtained, the overlap integral is:
+\begin{equation}
+    \mathcal{O}_{ij} = \int_0^1 \tilde{f}_i(\xi) \, \tilde{f}_j(\xi) \, w(\xi) \, d\xi
+    \label{eq:bvp_overlap}
+\end{equation}
+where $w(\xi)$ is an optional weight function (often $w = 1$).
+
+\paragraph{Four-point overlap for $G_F$.}
+The Fermi constant involves a four-fermion contact term:
+\begin{equation}
+    I_4 = \int_0^1 |\tilde{f}_L(\xi)|^4 \, d\xi
+    \label{eq:bvp_I4}
+\end{equation}
+This integral measures how ``localized'' the profile is. For a delta-function,
+$I_4 \to \infty$; for a uniform distribution, $I_4 = 1$.
+
+\paragraph{What the skeleton computes.}
+The minimal skeleton will compute:
+\begin{itemize}[nosep]
+    \item One profile $\tilde{f}_0(\xi)$ (ground state)
+    \item Normalization check: $\int |\tilde{f}_0|^2 = 1$
+    \item $I_4$ value for the ground state
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Summary: BVP Work Package Status}
+\label{sec:bvp_summary}
+
+\begin{table}[ht]
+\centering
+\caption{BVP Work Package: components and status}
+\label{tab:bvp_wp_status}
+\small
+\begin{tabular}{clcl}
+\toprule
+\textbf{WP} & \textbf{Component} & \textbf{Status} & \textbf{Notes} \\
+\midrule
+0 & Problem definition & \textcolor{OliveGreen}{\textbf{DONE}} & Eq.~\eqref{eq:bvp_schrodinger}, potential ansatz, BCs \\
+1 & Dimensionless reduction & \textcolor{OliveGreen}{\textbf{DONE}} & Eq.~\eqref{eq:bvp_dimensionless}, pure math \\
+2 & Numerical method & \textcolor{YellowOrange}{\textbf{SKELETON}} & Finite differences; see \texttt{code/} \\
+3 & Acceptance criteria & \textcolor{OliveGreen}{\textbf{DEFINED}} & Existence, normalization, convergence \\
+4 & Failure modes & \textcolor{OliveGreen}{\textbf{DOCUMENTED}} & F1--F4 identified \\
+5 & Overlap outputs & \textcolor{YellowOrange}{\textbf{DEFINED}} & $\mathcal{O}_{ij}$, $I_4$; to be computed \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!50!black,
+    title=\textbf{BVP Work Package: Bottom Line}]
+\textbf{What is established:}
+\begin{itemize}[nosep]
+    \item Mathematical specification of thick-brane BVP (Eq.~\eqref{eq:bvp_schrodinger})
+    \item Dimensionless formulation for numerical work
+    \item Clear acceptance criteria and failure modes
+    \item Overlap integral definitions for downstream use
+\end{itemize}
+
+\textbf{What remains for OPR-02/21 closure:}
+\begin{itemize}[nosep]
+    \item Derive potential $V(z)$ from membrane parameters $(\sigma, r_e)$
+    \item Determine boundary conditions from physical consistency
+    \item Solve BVP numerically with physical parameters
+    \item Show spectrum matches generation counting (OPR-02)
+    \item Compute overlaps for CKM/PMNS structure (OPR-21)
+\end{itemize}
+
+\medskip
+\noindent\fbox{\parbox{0.92\textwidth}{\small
+\textbf{Status:} BVP Work Package defined; solver skeleton exists; closure requires
+physical EOM derivation + BC justification + verified profile computation.
+OPR-02/21 remain RED but with concrete path forward.}}
+\end{tcolorbox}
+

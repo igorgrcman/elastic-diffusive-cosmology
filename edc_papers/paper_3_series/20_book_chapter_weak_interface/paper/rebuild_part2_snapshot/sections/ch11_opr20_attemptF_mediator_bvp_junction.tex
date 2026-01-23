@@ -1,0 +1,347 @@
+%!TEX root = ../EDC_Part_II_Weak_Sector.tex
+% ==============================================================================
+% OPR-20 Attempt F: Mediator BVP with Junction-Derived Robin BC
+% Status: [Dc] structure + [P] parameter + [OPEN] unique derivation
+% ==============================================================================
+
+\subsection{Attempt F: Mediator BVP with Junction-Derived Boundary Conditions}
+\label{sec:ch11_opr20_attemptF}
+
+Previous attempts established that the factor-8 suppression cannot come from standard
+boundary condition combinations (Attempt C: max factor-4) and that naive multiplication
+of $Z_2$ and Israel factors is invalid (Attempt D: overcounting audit). Attempt E showed
+that the $2\pi$ factor from circumference interpretation is derivable \tagDc{} but a
+residual $\sim 0.9$ factor remains unexplained. This attempt takes a different route:
+\textbf{can the eigenvalue $x_1$ itself be shifted from the naive $\pi/2$ (Neumann) or
+$\pi$ (Dirichlet) toward a value that naturally produces the correct suppression?}
+
+% ------------------------------------------------------------------------------
+\subsubsection{F1: Sturm--Liouville Setup}
+\label{sec:attemptF_setup}
+
+\paragraph{The mediator mode equation.}
+Consider a scalar or gauge mediator $\phi(x^\mu, z)$ propagating in the thick-brane
+background. Separating variables $\phi(x,z) = \varphi(x) f(z)$, the extra-dimensional
+profile $f(z)$ satisfies a Schr\"odinger-type equation \tagP{}:
+\begin{equation}
+    \boxed{
+    -\frac{d^2 f}{dz^2} + V(z) f(z) = m^2 f(z)
+    }
+    \label{eq:attemptF_SL}
+\end{equation}
+where $m^2$ is the 4D mass-squared eigenvalue and $V(z)$ encodes the brane geometry.
+The domain is $z \in [0, \ell]$ with boundary conditions to be specified.
+
+\paragraph{Dimensionless formulation \tagDc{}.}
+Define dimensionless coordinate $\xi = z/\ell \in [0,1]$ and rescaled quantities:
+\begin{align}
+    \tilde{V}(\xi) &= \ell^2 V(\ell\xi), \label{eq:attemptF_Vtilde} \\
+    \lambda &= \ell^2 m^2, \quad x = \sqrt{\lambda}. \label{eq:attemptF_lambda}
+\end{align}
+The eigenvalue equation becomes:
+\begin{equation}
+    \left[ -\frac{d^2}{d\xi^2} + \tilde{V}(\xi) \right] \tilde{f}(\xi) = \lambda \tilde{f}(\xi),
+    \label{eq:attemptF_dimensionless}
+\end{equation}
+which is a standard Sturm--Liouville problem. The physical mass is $m = x/\ell$.
+
+\paragraph{Connection to $G_F$ chain.}
+From the closure spine (\S\ref{sec:ch11_full_closure}):
+\begin{equation}
+    G_F = \frac{g_5^2 \ell^2 I_4}{x_1^2},
+\end{equation}
+where $x_1 = \sqrt{\lambda_1}$ is the ground-state eigenvalue. If we can show that
+$x_1 \neq \pi/2$ or $\pi$ but rather some intermediate value (e.g., $x_1 \approx 2.5$),
+this provides an alternative route to the weak-scale suppression without invoking
+additional geometric factors.
+
+% ------------------------------------------------------------------------------
+\subsubsection{F2: Potential Menu (EDC-Motivated)}
+\label{sec:attemptF_potentials}
+
+We consider three physically motivated potential shapes, all postulated \tagP{}
+but consistent with thick-brane language in the literature:
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!60!black,
+    title=\textbf{Potential Models [P]}]
+
+\textbf{V1: Square well (top-hat brane core)}
+\begin{equation}
+    V(\xi) = \begin{cases}
+        0 & \text{if } |\xi - 1/2| < w/2 \\
+        V_0 & \text{otherwise}
+    \end{cases}
+    \label{eq:attemptF_V1}
+\end{equation}
+Represents a localized brane with sharp boundaries. Parameters: $V_0$ (shoulder height),
+$w$ (core width).
+
+\medskip
+
+\textbf{V2: Smooth sech$^2$ profile (domain wall)}
+\begin{equation}
+    V(\xi) = V_0 \left[ 1 - \operatorname{sech}^2\left(\frac{\xi - 1/2}{w}\right) \right]
+    \label{eq:attemptF_V2}
+\end{equation}
+Standard kink/domain-wall potential. The mode is localized in the well at $\xi = 1/2$.
+
+\medskip
+
+\textbf{V3: Gaussian core}
+\begin{equation}
+    V(\xi) = V_0 \left[ 1 - \exp\left(-\frac{(\xi - 1/2)^2}{2w^2}\right) \right]
+    \label{eq:attemptF_V3}
+\end{equation}
+Smooth Gaussian localization. Common in braneworld phenomenology.
+
+\medskip
+
+\emph{All parameters are dimensionless $\mathcal{O}(1)$ and are \textbf{not} tuned to SM values.}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{F3: Junction $\to$ Robin BC Derivation}
+\label{sec:attemptF_junction_robin}
+
+\paragraph{The Israel junction condition.}
+At a thin brane located at $z = z_*$, the Israel junction condition relates the
+discontinuity in extrinsic curvature $K_{ab}$ to the brane stress-energy $T_{ab}$ \tagDc{}:
+\begin{equation}
+    [K_{ab}] - h_{ab} [K] = -\kappa_5^2 T_{ab},
+    \label{eq:attemptF_Israel}
+\end{equation}
+where $h_{ab}$ is the induced metric and brackets denote the jump across the brane.
+
+\paragraph{Scalar field with brane kinetic term (BKT).}
+For a scalar mediator $\phi$ with bulk action and a brane-localized kinetic term:
+\begin{align}
+    S_{\text{bulk}} &= -\frac{1}{2} \int d^5x \sqrt{-g} \, (\partial_M \phi)^2, \\
+    S_{\text{brane}} &= -\frac{\lambda}{2} \int d^4x \sqrt{-h} \, (\partial_\mu \phi)^2 \quad \text{[P]},
+    \label{eq:attemptF_BKT}
+\end{align}
+where $\lambda$ is the BKT coefficient (dimensionless). Variation of the total action
+yields the matching condition at the brane \tagDc{}:
+\begin{equation}
+    \left. \partial_z \phi \right|_{z_*^+} - \left. \partial_z \phi \right|_{z_*^-}
+    = \lambda \, \Box_4 \phi \big|_{z_*},
+    \label{eq:attemptF_matching}
+\end{equation}
+where $\Box_4$ is the 4D d'Alembertian.
+
+\paragraph{Derivation of Robin BC.}
+For a mode with 4D momentum $p^\mu$ (so $\Box_4 \phi \to -p^2 \phi$), and using the
+orbifold/$Z_2$ symmetry (which identifies the two sides of the brane):
+\begin{equation}
+    2 f'(z_*) = -\lambda p^2 f(z_*).
+\end{equation}
+At the boundary $z = 0$ (or $z = \ell$), this becomes a Robin condition \tagDc{}:
+\begin{equation}
+    \boxed{
+    f'(\text{boundary}) + \alpha \, f(\text{boundary}) = 0,
+    }
+    \label{eq:attemptF_Robin}
+\end{equation}
+where the Robin parameter is:
+\begin{equation}
+    \alpha = \frac{\lambda p^2}{2} \quad \text{(from BKT variation)}.
+    \label{eq:attemptF_alpha_BKT}
+\end{equation}
+For the ground-state mediator with $m^2 = p^2 \ll 1/\ell^2$, this gives $\alpha \to 0$
+(Neumann-like). For excited modes or if there are additional brane contributions,
+$\alpha$ can be $\mathcal{O}(1)$ or larger.
+
+\paragraph{Alternative: tension-dominated Robin parameter.}
+If the brane tension $\sigma$ contributes directly (rather than through BKT), the
+Robin parameter takes the form \tagP{}:
+\begin{equation}
+    \alpha = \frac{\kappa_5^2 \sigma}{2} \sim \mathcal{O}(1\text{--}10),
+    \label{eq:attemptF_alpha_tension}
+\end{equation}
+where the last estimate uses $\kappa_5^2 \sigma \ell \sim \mathcal{O}(1)$ from
+gravitational self-consistency. This is the regime explored numerically below.
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!60!black,
+    title=\textbf{Epistemic Status: Junction $\to$ Robin}]
+\begin{itemize}[nosep]
+    \item \textbf{Structure} (Robin form $f' + \alpha f = 0$): \tagDc{} from variation
+    \item \textbf{$\alpha$ coefficient}: \tagP{} --- depends on BKT/tension parameters
+          not uniquely fixed by EDC action
+    \item \textbf{Unique derivation of $\alpha$}: \textbf{[OPEN]}
+\end{itemize}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{F4: Numerical Experiment Protocol}
+\label{sec:attemptF_numerics}
+
+\paragraph{Acceptance criteria.}
+We seek \emph{robust} regions in parameter space where:
+\begin{enumerate}[nosep]
+    \item The ground-state eigenvalue $x_1 = \sqrt{\lambda_1}$ falls in a target range
+          (e.g., $x_1 \in [2.3, 2.8]$, which would provide the needed shift from $\pi/2$).
+    \item The region is \textbf{broad}, not needle-tuned: at least 20\% of scanned
+          parameter volume should hit the target.
+    \item Results are grid-converged and numerically stable.
+\end{enumerate}
+
+\paragraph{Scan protocol.}
+Using the solver \texttt{tools/solve\_opr20\_mediator\_bvp.py}:
+\begin{itemize}[nosep]
+    \item \textbf{Model:} V1 (square well) with $V_0 = 0$ (empty box, Robin BC only)
+    \item \textbf{Robin parameter:} $\alpha \in [0, 10]$ with 21 grid points
+    \item \textbf{Target range:} $x_1 \in [2.3, 2.8]$
+    \item \textbf{Grid:} $N = 400$ interior points (convergence verified)
+\end{itemize}
+
+\paragraph{Key results.}
+The scan produces the following eigenvalue dependence on $\alpha$:
+
+\begin{center}
+\small
+\begin{tabular}{r|ccc}
+\toprule
+$\alpha$ & $x_1$ & $x_1/\pi$ & In target? \\
+\midrule
+0.0  & 0.00 & 0.00 & No (Neumann, constant mode) \\
+1.0  & 1.31 & 0.42 & No \\
+2.0  & 1.72 & 0.55 & No \\
+3.0  & 1.98 & 0.63 & No \\
+4.0  & 2.15 & 0.69 & No \\
+5.0  & 2.29 & 0.73 & Borderline \\
+6.0  & 2.39 & 0.76 & \textbf{Yes} \\
+7.0  & 2.47 & 0.79 & \textbf{Yes} \\
+8.0  & 2.53 & 0.81 & \textbf{Yes} \\
+9.0  & 2.58 & 0.82 & \textbf{Yes} \\
+10.0 & 2.63 & 0.84 & \textbf{Yes} \\
+15.0 & 2.78 & 0.88 & \textbf{Yes} \\
+20.0 & 2.86 & 0.91 & No (above target) \\
+$\to\infty$ & $\pi$ & 1.00 & No (Dirichlet limit) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Robustness metric.}
+Of 21 scanned $\alpha$ values from 0 to 10, \textbf{10 points (47.6\%)} fall in the
+target range $x_1 \in [2.3, 2.8]$. This is a \textbf{broad region}, spanning
+$\alpha \approx 5.5$ to $\alpha \approx 15$.
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
+    title=\textbf{Robustness Finding}]
+The target eigenvalue range is achieved for a \textbf{continuous band} of Robin
+parameters $\alpha \in [5.5, 15]$, representing $\sim$50\% of the ``natural''
+$\mathcal{O}(1)$--$\mathcal{O}(10)$ regime.
+
+\medskip
+\textbf{This is NOT needle-tuned.} The structure provides a mechanism; the
+parameter $\alpha$ must come from EDC brane physics \tagP{}.
+\end{tcolorbox}
+
+\paragraph{Overcounting guard.}
+The Robin BC already encodes the $Z_2$ orbifold symmetry through the matching
+condition~\eqref{eq:attemptF_matching}. The Israel junction is the same physics
+as the $Z_2$ reflection---one must \textbf{not} multiply these factors. This was
+established in Attempt~D (\S\ref{sec:ch11_attemptD}).
+
+% ------------------------------------------------------------------------------
+\subsubsection{F5: Attempt F Verdict}
+\label{sec:attemptF_verdict}
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!50!black,
+    title=\textbf{Attempt F: What Became [Dc], [P], [OPEN]}]
+
+\textbf{Derived [Dc]:}
+\begin{itemize}[nosep]
+    \item Sturm--Liouville BVP structure (Eq.~\ref{eq:attemptF_SL})
+    \item Junction/BKT $\to$ Robin BC form: $f' + \alpha f = 0$ (Eq.~\ref{eq:attemptF_Robin})
+    \item Eigenvalue $x_1$ shifts continuously from 0 (Neumann) to $\pi$ (Dirichlet)
+          as $\alpha$ increases
+    \item Overcounting guard: $Z_2 \equiv$ Israel junction (no multiplication)
+\end{itemize}
+
+\textbf{Postulated [P]:}
+\begin{itemize}[nosep]
+    \item Potential shape $V(\xi)$ (V1/V2/V3 menu)
+    \item Robin parameter $\alpha \sim 5$--$15$ for target $x_1$ (from scan)
+    \item BKT coefficient $\lambda$ or tension contribution
+\end{itemize}
+
+\textbf{Open [OPEN]:}
+\begin{itemize}[nosep]
+    \item Unique derivation of $\alpha$ from EDC action
+    \item Why $\alpha \sim \mathcal{O}(10)$ rather than $\mathcal{O}(1)$
+    \item Connection to Part~I diffusion parameters $(\sigma, r_e, R_\xi)$
+\end{itemize}
+\end{tcolorbox}
+
+\begin{tcolorbox}[
+    colback=red!5!white,
+    colframe=red!60!black,
+    title=\textbf{OPR-20 Attempt F: Stoplight Verdict}
+]
+\begin{center}
+\textbf{\large RED-C $\to$ RED-C [Dc]+[OPEN] (No Status Change)}
+\end{center}
+
+\medskip
+\textbf{What improved:}
+\begin{itemize}[nosep]
+    \item Junction $\to$ Robin structure is now \textbf{[Dc]}
+    \item Broad parameter region exists (not needle-tuned)
+    \item Clear upgrade path: derive $\alpha$ from EDC $\Rightarrow$ YELLOW
+\end{itemize}
+
+\textbf{What remains:}
+\begin{itemize}[nosep]
+    \item $\alpha$ value is postulated, not derived
+    \item No unique EDC prediction for $\alpha \sim 5$--$15$
+    \item Weak-scale suppression requires this specific range
+\end{itemize}
+
+\textbf{Upgrade condition:}
+OPR-20 upgrades to \textbf{YELLOW [P]} if and when $\alpha$ is derived from the
+5D action (brane tension, BKT, or diffusion parameters) without SM input.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Comparison to Earlier Attempts}
+\label{sec:attemptF_comparison}
+
+\begin{table}[ht]
+\centering
+\caption{OPR-20 closure attempts comparison}
+\label{tab:attemptF_comparison}
+\small
+\begin{tabular}{clccl}
+\toprule
+\textbf{Attempt} & \textbf{Route} & \textbf{Best Factor} & \textbf{Status} & \textbf{Key Finding} \\
+\midrule
+C & BC combinations & $2\pi\sqrt{2} \approx 8.89$ & [Dc]+[P] & Max factor-4 from BCs \\
+D & Interpretation + Robin & same & [Dc]+[P] & $Z_2 \equiv$ Israel, no multiply \\
+E & Prefactor-8 from $\ell$ & $2\pi$ & [Dc] & $\ell = 2\pi R_\xi$ derivable \\
+\textbf{F} & \textbf{BVP + junction Robin} & \textbf{$x_1 \approx 2.5$} & \textbf{[Dc]+[P]} & \textbf{Broad region, $\alpha \sim 6$--$15$} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Complementarity.}
+Attempts C--E focused on the geometric factor in $\ell$ or $m_\phi = x_1/\ell$.
+Attempt~F focuses on the eigenvalue $x_1$ itself. Together, they establish:
+\begin{itemize}[nosep]
+    \item The naive box model ($x_1 = \pi/2$ or $\pi$) is not required
+    \item Junction physics naturally provides Robin BCs
+    \item A broad parameter region can shift $x_1$ to the needed value
+    \item \textbf{But:} no single attempt uniquely derives all parameters
+\end{itemize}
+
+\paragraph{Path forward.}
+The remaining gap is the value of $\alpha$. Candidate derivations:
+\begin{enumerate}[nosep]
+    \item \textbf{BKT from membrane stiffness:} $\lambda \sim \sigma r_e^2 / \hbar c$, giving
+          $\alpha \sim \lambda m^2 / 2$. Requires knowing $m^2$ independently.
+    \item \textbf{Tension-dominated:} $\alpha \sim \kappa_5^2 \sigma \ell$. Requires
+          gravitational coupling $\kappa_5$ from Part~I.
+    \item \textbf{Thick-brane profile matching:} $\alpha$ emerges from matching interior
+          solution to exponential tails. Requires full BVP with non-zero $V(\xi)$.
+\end{enumerate}
+Each path is explored in the BVP Work Package (\S\ref{sec:ch12_bvp_workpackage}).
+
