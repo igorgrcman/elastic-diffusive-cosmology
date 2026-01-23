@@ -4,9 +4,39 @@ All notable changes to the Part II book are documented here.
 
 ---
 
-## [2026-01-23] OPR-21 BVP Closure Pack
+## [2026-01-23] OPR-02 Ngen Robustness Upgrade
 
 **Commit:** (pending)
+
+### Added
+- **Expanded OPR-02 section** in `sections/ch14_bvp_closure_pack.tex`:
+  - Essential spectrum threshold definition (intrinsic, no PDG input)
+  - Gap criterion for finite-interval case
+  - Admissible BC family definition (Robin/Dirichlet/Neumann)
+  - Spectral Stability Lemma: $N_{\text{bound}}$ locally constant under BC deformation
+  - OPR-02 Closure Condition box (5-point checklist)
+  - Attack Surface box: "Why not 2 or 4?" + reviewer defense
+- **7 new labels**: `def:bvp:threshold`, `eq:bvp:threshold_def`, `def:bvp:admissible_bc`,
+  `eq:bvp:admissible_bc`, `lem:bvp:spectral_stability`, `box:opr02_closure`, `box:opr02_attack`
+
+### Changed (pointer-only)
+- Ch12 OPR Register: Updated OPR-02 "Next Action" to point to new closure criteria
+
+### Build
+- 373 pages (unchanged)
+- 0 undefined refs
+- 14 bibliography entries
+
+### Guarantee
+- No equations calibrated to PDG
+- No claim that $N_{\text{bound}} = 3$ (explicitly marked OPEN)
+- Framework 2.0 language intact
+
+---
+
+## [2026-01-23] OPR-21 BVP Closure Pack (57a93e8)
+
+**Commit:** 57a93e8
 
 ### Added
 - **New `sections/ch14_bvp_closure_pack.tex`** (~6 pages):

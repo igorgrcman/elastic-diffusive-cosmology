@@ -319,11 +319,15 @@ Effective 4D couplings scale as $g_{\text{eff}} \propto g_5 \cdot \sqrt{I_4}$ wh
 $g_5$ is the 5D coupling. Stronger localization $\to$ larger effective coupling.
 
 % ------------------------------------------------------------------------------
-% GENERATION COUNT
+% GENERATION COUNT (OPR-02 DETAILED)
 % ------------------------------------------------------------------------------
 
-\subsubsection{Generation Count $N_{\text{bound}}$}
+\subsubsection{Generation Count $N_{\text{bound}}$ (OPR-02)}
 \label{subsubsec:bvp_ngen}
+
+This subsubsection provides the \textbf{precise criterion} for generation counting
+from BVP spectral theory, moving beyond the heuristic ``$\mathbb{Z}_6/\mathbb{Z}_2 = \mathbb{Z}_3$''
+to a rigorous bound-state count.
 
 \begin{definition}[Bound State Count]
 \label{def:bvp:nbound}
@@ -337,18 +341,147 @@ bound states} below a threshold $\lambda_{\text{th}}$:
 \end{equation}
 \end{definition}
 
-\paragraph{Threshold definition.}
-The threshold $\lambda_{\text{th}}$ separates ``light'' bound states (generations)
-from ``heavy'' KK modes or continuum. Possible definitions:
+% --- THRESHOLD DEFINITION ---
+
+\paragraph{Threshold definition (essential spectrum onset).}
+The threshold $\lambda_{\text{th}}$ must be defined \emph{intrinsically} from the BVP,
+not from observed particle masses. The canonical choice is:
+
+\begin{definition}[Essential Spectrum Threshold]
+\label{def:bvp:threshold}
+\tagDef{}
+For a Schr\"odinger operator $\hat{L} = -d^2/dz^2 + V(z)$ on domain $\Omega$:
+\begin{equation}
+    \lambda_{\text{th}} = \inf \sigma_{\text{ess}}(\hat{L})
+    \label{eq:bvp:threshold_def}
+\end{equation}
+where $\sigma_{\text{ess}}$ is the essential spectrum. For:
 \begin{itemize}[nosep]
-    \item \textbf{Potential barrier:} $\lambda_{\text{th}} = V(\ell)$ (top of confining well)
-    \item \textbf{Scale separation:} $\lambda_{\text{th}} = (\ell^{-1})^2$ (inverse thickness squared)
-    \item \textbf{Physical mass:} $\lambda_{\text{th}} = m_{\text{heavy}}^2$ (but this uses 3D input!)
+    \item \textbf{Finite interval} $[0, \ell]$: $\sigma_{\text{ess}} = \emptyset$
+          (pure point spectrum); use $\lambda_{\text{th}} = V_{\max}$ or gap criterion.
+    \item \textbf{Half-line} $[0, \infty)$: $\sigma_{\text{ess}} = [V_\infty, \infty)$
+          where $V_\infty = \lim_{z\to\infty} V(z)$.
+\end{itemize}
+\end{definition}
+
+\paragraph{Gap criterion (finite interval).}
+On a finite interval, all eigenvalues are discrete. The ``generation threshold''
+is then defined by a \textbf{spectral gap}:
+\begin{equation}
+    \lambda_{\text{th}} = \lambda_k \quad \text{where} \quad
+    \frac{\lambda_{k+1} - \lambda_k}{\lambda_k - \lambda_{k-1}} \gg 1
+    \label{eq:bvp:gap_criterion}
+\end{equation}
+This identifies a natural separation scale without using 3D mass inputs.
+
+% --- ROBUSTNESS UNDER BC CLASS ---
+
+\paragraph{Robustness under BC class.}
+\label{para:bvp_bc_robustness}
+
+A key requirement for OPR-02 closure is that $N_{\text{bound}}$ be \emph{robust}---not
+sensitive to precise BC parameter choices within a physically admissible family.
+
+\begin{definition}[Admissible BC Family]
+\label{def:bvp:admissible_bc}
+\tagDef{}
+The \textbf{admissible BC family} $\mathcal{B}$ consists of all Robin-type BCs
+\begin{equation}
+    \alpha_0 f(0) + \beta_0 f'(0) = 0, \quad
+    \alpha_\ell f(\ell) + \beta_\ell f'(\ell) = 0
+    \label{eq:bvp:admissible_bc}
+\end{equation}
+satisfying:
+\begin{enumerate}[nosep]
+    \item \textbf{Self-adjointness:} $\alpha_j, \beta_j \in \mathbb{R}$, separated
+    \item \textbf{Non-degeneracy:} $(\alpha_j, \beta_j) \neq (0, 0)$ at each endpoint
+    \item \textbf{Physical bounds:} $|\alpha_j/\beta_j| \in [0, \infty]$
+          (includes Dirichlet $\beta = 0$ and Neumann $\alpha = 0$)
+\end{enumerate}
+\end{definition}
+
+\begin{lemma}[Spectral Stability under BC Deformation]
+\label{lem:bvp:spectral_stability}
+\tagM{}
+Let $\hat{L}$ be a Sturm--Liouville operator with potential $V(z)$ on $[0, \ell]$.
+For BCs in the admissible family $\mathcal{B}$:
+\begin{enumerate}[nosep]
+    \item Eigenvalues $\lambda_n$ depend \textbf{continuously} on BC parameters
+          $(\alpha_0, \beta_0, \alpha_\ell, \beta_\ell)$.
+    \item The count $N_{\text{bound}}$ is \textbf{locally constant} in $\mathcal{B}$
+          except at \emph{critical points} where an eigenvalue crosses the threshold.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+Eigenvalue continuity follows from standard perturbation theory for self-adjoint
+operators~\cite{Zettl2005}. The count $N_{\text{bound}}$ changes only when an eigenvalue
+crosses $\lambda_{\text{th}}$; between crossings, eigenvalue ordering is preserved
+(no level crossing for simple spectra). \qed
+\end{proof}
+
+\paragraph{Consequence for OPR-02.}
+If $N_{\text{bound}} = 3$ for \emph{some} BC in the admissible family $\mathcal{B}$,
+and no eigenvalue sits exactly at the threshold $\lambda_{\text{th}}$, then
+$N_{\text{bound}} = 3$ persists under small BC deformations. This is the sense in which
+the generation count can be ``robust.''
+
+% --- OPR-02 CLOSURE CONDITION ---
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
+    title=\textbf{OPR-02 Closure Condition}]
+\label{box:opr02_closure}
+OPR-02 (``Why exactly 3 generations?'') is \textbf{closed} when:
+\begin{enumerate}[nosep]
+    \item The potential $V(z)$ is \textbf{derived} from membrane parameters $(\sigma, r_e)$
+    \item The admissible BC family $\mathcal{B}$ is specified from brane physics
+    \item The threshold $\lambda_{\text{th}}$ is defined intrinsically (gap or essential spectrum)
+    \item Numerical computation shows $N_{\text{bound}} = 3$ for the derived $V(z)$
+    \item Robustness: $N_{\text{bound}} = 3$ persists over a \emph{finite measure}
+          subset of $\mathcal{B}$, not just a single fine-tuned BC choice
+\end{enumerate}
+
+\textbf{Status:} \tagOPEN{} --- Conditions 1--2 require deriving $V(z)$ and BCs from
+the 5D action (not yet done). Conditions 4--5 require numerical implementation.
+\end{tcolorbox}
+
+% --- ATTACK SURFACE BOX ---
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black,
+    title=\textbf{OPR-02 Attack Surface: ``Why Not 2 or 4?''}]
+\label{box:opr02_attack}
+
+\textbf{What a reviewer will ask:}
+\begin{itemize}[nosep]
+    \item ``Your $\mathbb{Z}_6/\mathbb{Z}_2 = \mathbb{Z}_3$ is a slogan. Where is the proof that
+          exactly 3 bound states exist?''
+    \item ``What if $V(z)$ or BCs are slightly different? Does $N_{\text{bound}}$ jump to 2 or 4?''
+    \item ``Is this tuned to give 3, or does 3 emerge generically?''
 \end{itemize}
 
-\paragraph{OPR-02 closure condition.}
-OPR-02 is closed if $N_{\text{bound}} = 3$ emerges \emph{robustly} from derived $V(z)$
-and BCs, without tuning to get this number.
+\textbf{What must be demonstrated to answer:}
+\begin{enumerate}[nosep]
+    \item \textbf{Spectral count:} Solve BVP with derived $V(z)$; count eigenvalues below
+          threshold. Show $N_{\text{bound}} = 3$.
+    \item \textbf{Robustness scan:} Vary BC parameters over admissible family $\mathcal{B}$;
+          show $N_{\text{bound}} = 3$ persists over a finite (non-measure-zero) region.
+    \item \textbf{No fine-tuning:} Demonstrate that the ``$N_{\text{bound}} = 3$ region''
+          includes the physically motivated BC point, not just its boundary.
+\end{enumerate}
+
+\textbf{Current status:} \tagOPEN{}
+
+The $\mathbb{Z}_6$ symmetry argument (Chapter~3) provides a \emph{structural reason}
+why 3 is preferred, but does \emph{not} constitute a spectral proof. BVP computation
+is required to close this gap.
+
+\textbf{Failure modes:}
+\begin{itemize}[nosep]
+    \item $N_{\text{bound}} \neq 3$ for physically motivated $V(z)$ $\to$ model falsified
+    \item $N_{\text{bound}} = 3$ only at a single BC point $\to$ fine-tuning criticism valid
+    \item Threshold ambiguity $\to$ multiple ``generation counts'' possible
+\end{itemize}
+\end{tcolorbox}
 
 % ------------------------------------------------------------------------------
 % CHIRALITY CRITERION
