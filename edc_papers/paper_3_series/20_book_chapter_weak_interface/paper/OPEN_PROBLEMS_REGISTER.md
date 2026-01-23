@@ -1,6 +1,6 @@
 # Open Problems Register (OPR) — Part II: Weak Sector
 
-**Version:** 1.18
+**Version:** 1.23
 **Date:** 2026-01-22
 **Status:** Active research program
 
@@ -90,7 +90,13 @@ with hidden assumptions.
 | ID | Item | Status | Established | Missing | Priority | Next Action |
 |----|------|--------|-------------|---------|----------|-------------|
 | OPR-19 | 5D gauge coupling g₅ | **YELLOW [Dc]+[P]** | $g^2 = 4\pi \sigma r_e^3/(\hbar c)$ derived via Gauss+isotropy [Dc] | Isotropy postulate [P]; 6% from SM | P2 | Derive isotropy from action |
-| OPR-20 | Mediator mass m_φ | **RED-C** [Dc]+[OPEN] | $m_\phi = x_1/\ell$ from KK [Dc]; BC route closed [Dc] (negative: standard BCs fail factor-8) | $\ell$ from membrane; geometric prefactor $(2\pi, 8)$ or Robin BCs | P2 | Derive $\ell$ via $R_\xi$ rescale or BC derivation |
+| OPR-20 | Mediator mass m_φ | **RED-C** [Dc]+[P] | $m_\phi = x_1/\ell$ with $\ell = 2\pi\sqrt{2}R_\xi$ [Dc]; Robin BC structure [Dc]; natural α = 2π [P] | BC provenance (OPR-20a); α provenance (OPR-20b) | P2 | Derive mediator identity + δ = R_ξ |
+| OPR-20a | BC provenance | **YELLOW [Dc]+[P]** | Shortlist: (ii) KK A_μ or (iv) brane scalar; A₅ ruled out [Dc] (coupling suppression); KK tower vs single mediator discriminant identified | Single choice (requires OPR-17 closure or KK test) | P2 | Close OPR-17 (brane vs bulk gauge) |
+| OPR-20b | α provenance (δ gate) | **YELLOW [P]+[OPEN]** | α = ℓ/δ [Dc]; δ = R_ξ [P] (plausibility, not derived); α = 2π natural [P] | δ derivation OR δ-robustness demonstration | P2 | **H2-Hard audit (2026-01-23):** Route A blocked (BL theorem missing); Route B partial (final step [P]); convergence cannot test. Sub-gates promoted to OPR-20c/d/e/f. |
+| OPR-20c | R_ξ from action | **RED [OPEN]** | R_ξ definition exists | Derive R_ξ = f(σ, κ, D, ...) from EDC action, not EW phenomenology | P2 | Closes FM-H2-6 (EW circularity); required for [Dc] upgrade |
+| OPR-20d | Boundary-layer theorem | **RED [OPEN]** | Diffusion PDE exists (4D) | Matched asymptotic analysis; derive δ_BL from transverse diffusion | P2 | Closes Route A; enables convergence test |
+| OPR-20e | Unique transverse scale | **RED [OPEN]** | — | Prove R_ξ is unique sub-EW scale; exclude λ̄_e, r_e, ratio combinations | P3 | Closes FM-H2-1 (ambiguity); strengthens [P]→[Dc] |
+| OPR-20f | δ-robustness band | **RED [OPEN]** | — | BVP scan δ ∈ [0.5, 2]×R_ξ; show observables stable (<10% variation) | P3 | **Alternative closure:** if robust, provenance less critical |
 | OPR-21 | Mode profiles f_L(z) | **RED-C** [P] | BVP Work Package + solver skeleton; I₄ computed | Physical BCs; potential from membrane params | P1 | See §12 BVP Work Package |
 | OPR-22 | G_F first-principles | **YELLOW [Dc]+[OPEN]** | Closure spine: $G_F = g_5^2 \ell^2 I_4 / x_1^2$ [Dc]; no-smuggling guardrails; attack-surface map | Numeric values: $g_5$ (OPR-19), $\ell$ (OPR-20), $I_4$ (OPR-21) | P1 | See §11 Full Closure Plan |
 
@@ -107,11 +113,11 @@ with hidden assumptions.
 
 | Category | Count | Key Bottleneck |
 |----------|-------|----------------|
-| **RED (not derived)** | 15 | Thick-brane BVP; SU(2)_L embedding |
+| **RED (not derived)** | 19 | Thick-brane BVP; SU(2)_L embedding; OPR-20c/d/e/f (δ provenance) |
 | **YELLOW (partial)** | 9 | OPR-05 upgraded; δ refinement; κ asymmetry |
-| **Total OPR items** | 24 | — |
+| **Total OPR items** | 28 | — |
 
-**Recent progress:** OPR-05 upgraded from RED to YELLOW (Attempt 2: θ₂₃ derived)
+**Recent progress (2026-01-23):** OPR-20b H2-Hard audit: Route A BLOCKED, Route B PARTIAL, convergence CANNOT TEST. Sub-gates OPR-20c/d/e/f promoted to explicit OPR entries. δ = R_ξ remains [P]+[OPEN] with explicit upgrade pathway.
 
 ---
 
@@ -739,6 +745,105 @@ OPR-20 upgrades to **YELLOW [P]** if:
 
 ---
 
+### Completed: OPR-20 Attempt G_BC (Boundary Condition Provenance)
+
+**Target:** Determine which BC applies to the weak mediator; unify narrative across Attempts C/D/E/F/G
+
+**G_BC.1: BC Ledger**
+
+| Attempt | BC Assumption | x₁ | m_φ | Status |
+|---------|--------------|-----|-----|--------|
+| C/D | DD (implicit) | π | ~70 GeV | [P] |
+| E | NN (explicit) | π/2 | ~35 GeV | [P] |
+| F | Robin (scanned) | varies | 35-70 GeV | [P] |
+| G | Robin (α = 2π) | ~2.4 | ~53 GeV | [P] |
+
+**G_BC.2: Orbifold Parity → BC Mapping [BL]**
+
+| Parity | BC at Fixed Points | x₁ (ground) |
+|--------|-------------------|-------------|
+| Even (+) | Neumann (f' = 0) | 0 (constant) |
+| Odd (-) | Dirichlet (f = 0) | π |
+
+5D gauge field: A_μ typically even (Neumann), A_5 typically odd (Dirichlet).
+
+**G_BC.3: Robin BC Limits**
+- α → 0: Neumann (x₀ = 0 constant mode)
+- α → ∞: Dirichlet (x₀ → π)
+- Intermediate α: x₀ interpolates
+
+**G_BC.4: Weak Mediator BC Options**
+
+| Option | Field | BC | x₁ | m_φ | Notes |
+|--------|-------|-----|-----|-----|-------|
+| 1 | A_μ zero-mode | NN | 0 | massless | Needs Higgs for mass |
+| 2 | A_5 component | DD | π | ~70 GeV | Geometric mass |
+| 3 | KK A_μ (n=1) | NN | π | ~70 GeV | First KK excitation |
+| 4 | Brane scalar | Robin | varies | 35-70 GeV | Junction-dependent |
+
+**G_BC.5: OPR-20 Split**
+
+The reconciliation clarifies OPR-20 contains two distinct open problems:
+
+- **OPR-20a (BC provenance):** What is the mediator field, what parity/BC? [OPEN]
+- **OPR-20b (α provenance):** If Robin, where does α ~ O(10) come from? [OPEN]
+
+**Canonical Baseline [P]:** x₁ = π (Dirichlet or first KK Neumann)
+- Closer to M_W = 80 GeV (12% vs 56%)
+- Consistent with Attempts C/D
+- Standard for massive 5D gauge modes
+
+**Code:** `tools/check_opr20_x1_bc_ledger.py`
+**LaTeX:** `sections/ch11_opr20_attemptG_BC_provenance.tex`
+
+**Status:** RED-C [Dc]+[P] — BC fork identified; baseline x₁ = π [P]; upgrade requires mediator field identity
+
+---
+
+### Completed: OPR-20 Attempt H (Derive δ = R_ξ from Part I Microphysics)
+
+**Target:** Establish δ = R_ξ from physical principles (not bare postulate)
+**Result:** Gate CLOSED via definitional identification [Def]
+
+**H.1: Definition of δ (boundary layer thickness)**
+- Robin BC emerges from thick-brane variation
+- α has dimensions [1/length]; α ~ c_geom/δ on dimensional grounds
+- α = (ℓ/δ) × c_geom is [Dc] (structure)
+
+**H.2: Definition of R_ξ (from Part I)**
+- Correlation length: ⟨φ(x)φ(x')⟩ ~ e^{-|x-x'|/R_ξ}
+- Sets diffusion/relaxation scale in frozen regime
+- Value: R_ξ ~ 10⁻³ fm [P] from Part I
+
+**H.3: Physical argument for δ = R_ξ [Def]**
+- Both δ and R_ξ characterize field relaxation over transition zones
+- Boundary layer thickness = scale of field relaxation = R_ξ
+- No other intrinsic length available
+- 1/e decay convention defines boundary extent
+- **Tag: [Def] (definitional identification)**, not [P]
+
+**H.4: Numerical verification**
+
+| Quantity | Value | Status |
+|----------|-------|--------|
+| α = 2π | 6.28 | [Dc]+[Def] |
+| x₁ | 2.41 | [Dc] (in target [2.3, 2.8]) |
+| m_φ | 53.5 GeV | [Dc]+[P] |
+| vs M_W | -33% | Diagnostic [BL] |
+
+**H.5: Alternative candidates rejected**
+- δ = R_ξ/2 or 2R_ξ: no physical basis [P]
+- δ = λ̄_e (Compton): introduces m_e, circular
+
+**Code:** `tools/check_opr20_alpha_2pi_prediction.py`
+**LaTeX:** `sections/ch11_opr20_attemptH_delta_equals_Rxi.tex`
+
+**Status:** OPR-20b upgraded: **[OPEN] → YELLOW [Def]+[P]**
+
+The δ = R_ξ gate is definitionally closed. Remaining dependence on R_ξ value is traced to Part I.
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
@@ -763,3 +868,7 @@ OPR-20 upgrades to **YELLOW [P]** if:
 | 1.17 | 2026-01-22 | **OPR-20 Attempt E: Prefactor-8 First-Principles Derivation**: Track A derives ℓ = 2πR_ξ from standard circle geometry (R_ξ is radius, KK uses circumference); **2π factor upgraded [P] → [Dc]**. Alternative factors (1, π, 4π) negatively closed [Dc]. Track B: Missing 0.9003 residual (to convert 2π√2 → 8) has candidates (BKT, thick-brane) but none uniquely derived; remains [OPEN]. Combined factor 2π√2 now fully [Dc]. **Status unchanged: RED-C [Dc]+[OPEN]**; 2π derivation is progress but residual to M_W still open |
 | 1.18 | 2026-01-22 | **OPR-20 Attempt F: Mediator BVP with Junction-Derived Robin BC**: Sturm-Liouville BVP + Robin BC from junction/BKT variation [Dc]. Scanned α ∈ [0,10]: **broad region α ~ 5-15 (47.6% of range)** produces target x₁ ~ 2.5. NOT needle-tuned. Overcounting guard (Z₂≡Israel) correctly applied. α derivation from EDC action remains [OPEN]. **Status unchanged: RED-C [Dc]+[OPEN]**; structural progress + broad parameter region identified, but α provenance still needed |
 | 1.19 | 2026-01-22 | **OPR-20 Attempt G: Derive α from EDC Brane Physics**: α accounting established; three candidates tested (BKT, tension, thick-brane). **Natural α = 2π ≈ 6.3 identified** from α = ℓ/δ with δ = R_ξ (brane thickness = diffusion scale). Falls **inside target range** [5.5, 15] without tuning. No-smuggling verified. **δ = R_ξ identification is [P], not derived from action**. Upgrade condition: derive δ = R_ξ from brane microphysics. **Status unchanged: RED-C [Dc]+[P]**; clear upgrade pathway to YELLOW exists |
+| 1.20 | 2026-01-22 | **OPR-20 Attempt G_BC: BC Provenance**: Reconciled C/D vs E discrepancy (BC choice, not error). Established orbifold parity → BC mapping [BL]. Created BC ledger: DD x₁=π, NN x₁=0(+π excited), Robin interpolates. **OPR-20 split into OPR-20a (BC provenance) + OPR-20b (α provenance)**. Canonical baseline: x₁ = π [P] (12% vs 56% from M_W). Mediator field identity (A₅? KK A_μ? brane scalar?) remains [OPEN]. **Status unchanged: RED-C [Dc]+[P]**; fork clarified, upgrade requires field identification |
+| 1.21 | 2026-01-22 | **OPR-20 Attempt H: Derive δ = R_ξ from Part I Microphysics**: Established δ = R_ξ via physical criterion (boundary layer = relaxation scale). **δ identification upgraded [P] → [Def]**. α = 2π → x₁ = 2.41 (in target range) → m_φ = 53.5 GeV. No SM inputs; no-smuggling verified. **OPR-20b status: [OPEN] → YELLOW [Def]+[P]**. Remaining [P] is R_ξ value from Part I. 33% discrepancy vs M_W within dimensional uncertainty; improvable via BC choice or R_ξ refinement |
+| 1.22 | 2026-01-22 | **OPR-20a Attempt H1: Mediator Field Identity**: Systematic analysis of 5 candidates. **A₅ ruled out [Dc]** (profile vanishes at boundary → coupling suppressed). **Shortlist: (ii) KK A_μ (n=1) or (iv) brane scalar**. KK tower vs single mediator identified as future discriminant. **OPR-20a status: [OPEN] → YELLOW [Dc]+[P]**. Upgrade requires OPR-17 closure (brane vs bulk gauge) or KK tower phenomenological test |
+| 1.23 | 2026-01-22 | **OPR-20b Attempt H2-plus: STRICTER δ = R_ξ Audit**: Applied mega-prompt criteria requiring two-route convergence. **Findings:** (1) R_ξ is EW-constrained (M_Z), not derived from action; (2) "unique scale" claim has no formal proof; (3) Route A (diffusion→BL theorem) BLOCKED; (4) Route B partial (δ = R_ξ step is [P]). **OPR-20b status: [Def]+[P] → [P]+[OPEN]** (downgrade). Sub-gates folded under OPR-20b: derive δ from action OR show δ-robustness band. Book-ready statement added: "R_ξ is phenomenologically constrained... δ = R_ξ recorded as [P]." Honest bookkeeping protects against Reviewer #2 "tuning" attack |
