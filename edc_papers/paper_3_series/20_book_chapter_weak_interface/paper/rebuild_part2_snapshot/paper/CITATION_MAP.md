@@ -49,11 +49,13 @@ Internal EDC constructs (postulates, OPR register, claim ledger) do not need ext
 | Section | Claim | Category | Bibkey | Status |
 |---------|-------|----------|--------|--------|
 | §2.2 | Brane-world as established framework | [BRN] | `RandallSundrum1999a` | TODO |
+| §2.3 | Semiclassical tunneling suppression | [WKB] | `LandauLifshitz1977, Coleman1977` | DONE |
+| §2.3 | Topological sectors / superselection | [TOP] | `Nakahara2003` | DONE |
 | §2.4 | GL tanh profile for vortices | [GL] | `Tinkham2004, deGennes1999` | DONE |
 | §2.4 | GL coherence length ξ | [GL] | `Tinkham2004` | DONE |
-| §2.6 | Isoperimetric theorem (sphere minimizes) | [GEO] | `Osserman1978` | TODO |
+| §2.6 | Isoperimetric theorem (sphere minimizes) | [GEO] | `Osserman1978` | DONE |
 | §2.6 | Second variation / stability | [GEO] | `Evans2010` | TODO |
-| §2.7 | Steiner tree / Y-junction minimality | [GEO] | `HwangRichardsWinter1992` | TODO |
+| §2.7 | Steiner tree / Y-junction minimality | [GEO] | `HwangRichardsWinter1992` | DONE |
 | §2.8 | m_p/m_e measured value | [EMP] | `CODATA2022` | In BL box |
 | §2.9 | α measured value | [EMP] | `CODATA2022` | In BL box |
 | §2.10 | Numerical BVP methods | [BVP] | `Teschl2012` | TODO |
@@ -145,15 +147,18 @@ Internal EDC constructs (postulates, OPR register, claim ledger) do not need ext
 
 ---
 
-## Summary: High-Priority Citations (TODO)
+## Summary: Citation Status
 
-These are the most important missing citations that should be added:
+### Completed
+- **Front matter**: CC license, CODATA, PDG
+- **Chapter 2**: GL (Tinkham, de Gennes), WKB (Landau-Lifshitz, Coleman),
+  Topology (Nakahara), Isoperimetric (Osserman), Steiner (Hwang)
+- **Chapter 3 (Z6)**: BVP theory (Zettl, Teschl)
 
+### High-Priority TODO
 1. **Chapter 1**: PDG for SM parameter values
-2. **Chapter 2 §2.6-2.7**: Osserman (isoperimetric), Hwang (Steiner)
-3. **Chapter 3**: Nakahara (superselection/topology)
-4. **Chapter 4+**: PDG throughout for empirical values
-5. **Chapter 9**: Jackiw-Rebbi, Rubakov-Shaposhnikov for chirality
+2. **Chapter 4+**: PDG throughout for empirical values
+3. **Chapter 9**: Jackiw-Rebbi, Rubakov-Shaposhnikov for chirality
 
 ---
 
@@ -195,4 +200,4 @@ EDCPartI            EDCPaper2
 ---
 
 *Last updated: 2026-01-23*
-*Status: Backbone created, high-priority citations identified*
+*Status: Ch2 + Z6 citations complete; remaining chapters need PDG + chirality refs*
