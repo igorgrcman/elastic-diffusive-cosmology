@@ -44,6 +44,13 @@ All notable changes to the Part II book are documented here.
 - Inequality chain states closure TARGET, not achievement
 - No claim that μ ≳ 3.5 is derived from membrane physics (OPEN)
 
+### Parametric Hardening (follow-up patch)
+- **Why:** Original μ > 3.45 looked like "hidden calibration" (implicit C=2)
+- **Fix:** Replaced with μ > ln(10³)/C → μ = O(5–10) for C = O(1)
+- **Moved:** 3.45 to footnote as "Illustration only (Toy)"
+- **Added:** "We do not assume C; determining C is delegated to OPR-21"
+- **Result:** 100% parametric, no fixed numbers, recenzent-proof
+
 ---
 
 ## [2026-01-24] V(z) Derivation Skeleton + OPR-20 Hardening
