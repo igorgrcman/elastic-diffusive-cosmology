@@ -1,0 +1,85 @@
+% figures/fig_master_weak_pipeline.tex
+% Master unified weak-sector pipeline diagram
+\begin{tikzpicture}[scale=0.90, transform shape]
+
+% Load styles
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Background regions
+% ─────────────────────────────────────────────────────────────────────────────
+\fill[gray!12] (0,0) rectangle (12.5,-2.6);
+\fill[blue!8] (0,-2.6) rectangle (12.5,-5.8);
+\fill[green!8] (0,-5.8) rectangle (12.5,-8.6);
+
+% Region labels
+\node[font=\scriptsize, gray!70!black] at (0.8,-0.3) {5D Bulk};
+\node[font=\scriptsize, blue!50!black] at (0.8,-2.9) {Thick Brane};
+\node[font=\scriptsize, green!50!black] at (0.8,-6.1) {3D Outputs};
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Ontology sources (top row)
+% ─────────────────────────────────────────────────────────────────────────────
+\node[bulk box, text width=2.4cm] (Nsrc) at (2.0,-1.3)
+  {Neutron\\{\tiny bulk-core}};
+\node[process box, text width=2.4cm] (Msrc) at (5.0,-1.3)
+  {Muon/Tau\\{\tiny brane-dominant}};
+\node[process box, text width=2.4cm] (Psrc) at (8.0,-1.3)
+  {Pion\\{\tiny junction-pair}};
+\node[output box, text width=2.4cm] (Vsrc) at (11.0,-1.3)
+  {Neutrino\\{\tiny edge mode}};
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Pipeline stages (middle row)
+% ─────────────────────────────────────────────────────────────────────────────
+\node[brane box, text width=2.8cm] (Abs) at (2.5,-4.0)
+  {Absorption\\{\tiny $E_{\text{brane}}$}};
+\node[brane box, text width=2.8cm] (Dis) at (6.0,-4.0)
+  {Dissipation\\{\tiny $\{\phi_k\}$}};
+\node[gate box, text width=3.2cm, minimum height=1.0cm] (Rel) at (9.8,-4.0)
+  {Release\\$\mathcal{P}_{\text{frozen}}$};
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Connect sources to pipeline
+% ─────────────────────────────────────────────────────────────────────────────
+\draw[edc flow] (Nsrc.south) -- ++(0,-0.4) -| (Abs.north);
+\draw[edc flow] (Msrc.south) -- ++(0,-0.4) -| (Abs.north);
+\draw[edc flow] (Psrc.south) -- ++(0,-0.6) -| (Dis.north);
+
+% Pipeline flow
+\draw[edc flow] (Abs.east) -- (Dis.west);
+\draw[edc flow] (Dis.east) -- (Rel.west);
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Outputs (bottom row)
+% ─────────────────────────────────────────────────────────────────────────────
+\node[output box, text width=2.2cm] (eout) at (3.5,-7.2)
+  {$e^-$\\{\tiny charged}};
+\node[output box, text width=2.2cm] (nuout) at (6.5,-7.2)
+  {$\nu,\bar\nu$\\{\tiny ledger}};
+\node[output box, text width=2.2cm] (pout) at (9.5,-7.2)
+  {$p$\\{\tiny anchor}};
+
+% Dashed for rare/composite
+\node[rectangle, draw=gray!50, dashed, rounded corners=2pt,
+      fill=gray!5, text width=2.0cm, font=\tiny, align=center] (hadout) at (12.0,-7.2)
+  {hadrons\\(rare)};
+
+% Connect release to outputs
+\draw[edc arrow] (Rel.south) -- ++(0,-0.5) -| (eout.north);
+\draw[edc arrow] (Rel.south) -- ++(0,-0.5) -| (nuout.north);
+\draw[edc arrow] (Rel.south) -- ++(0,-0.5) -| (pout.north);
+\draw[edc dashed] (Rel.south) -- ++(0,-0.5) -| (hadout.north);
+
+% Neutrino direct connection (edge mode → output)
+\draw[edc dashed, purple!50] (Vsrc.south) -- ++(0,-3.0) -| (nuout.north east);
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Q-gate annotation
+% ─────────────────────────────────────────────────────────────────────────────
+\node[rectangle, draw=red!40, fill=red!5, rounded corners=2pt,
+      text width=5.0cm, font=\tiny, align=left] at (2.5,-5.4)
+  {\textbf{Energy gate:} $Q > m_{\text{products}}$\\
+   Neutron: $Q = 0.78$ MeV $\Rightarrow$ $e$ only\\
+   ($\mu$ forbidden: $m_\mu = 106$ MeV $\gg Q$)};
+
+\end{tikzpicture}

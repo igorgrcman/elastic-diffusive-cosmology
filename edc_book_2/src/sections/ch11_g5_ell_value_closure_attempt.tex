@@ -1,0 +1,383 @@
+%!TEX root = ../EDC_Part_II_Weak_Sector.tex
+% ==============================================================================
+% Chapter 11: g_5 and ell Value Closure Attempt (OPR-19 + OPR-20)
+% Status: RED-C [OPEN] — Candidate formulas presented; no closure achieved
+% ==============================================================================
+
+\subsection{Value Closure Attempt: \texorpdfstring{$g_5$}{g5} and \texorpdfstring{$\ell$}{l} from Membrane Parameters}
+\label{sec:ch11_value_closure_attempt}
+
+This subsection attempts to close the \emph{numeric values} of $g_5$ and $\ell$
+from membrane parameters $(\sigma, r_e)$. We present two candidate paths for each,
+analyze their consistency, and give an honest verdict on closure status.
+
+\begin{tcolorbox}[edcGuardrail, title=\textbf{Scope and Guardrails}]
+\textbf{Does:}
+\begin{itemize}[nosep]
+    \item Survey candidate formulas for $g_5$ and $\ell$ from existing EDC derivations
+    \item Check dimensional consistency for each candidate
+    \item Compute numeric predictions and compare to required values
+\end{itemize}
+
+\textbf{Does NOT:}
+\begin{itemize}[nosep]
+    \item Claim closure where none exists
+    \item Use $M_W$, $G_F$, or $v = 246$ GeV to fix parameters (forbidden)
+    \item Introduce new postulates without explicit tagging
+\end{itemize}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Normalization Audit: Current State}
+\label{sec:ch11_norm_audit}
+
+\paragraph{Forensic summary.}
+A codebase audit of existing $g_5$, $g_4$, and $\ell$ definitions reveals:
+
+\begin{table}[ht]
+\centering
+\caption{Normalization conventions in current documentation}
+\label{tab:ch11_norm_audit}
+\small
+\begin{tabular}{lll}
+\toprule
+\textbf{Symbol} & \textbf{Convention} & \textbf{Reference} \\
+\midrule
+$g_5$ & 5D coupling, $[g_5] = [E]^{-1/2}$ & Eq.~\eqref{eq:ch11_5d_gauge_action} \\
+$g_4 = g_5$ & With orthonormal KK modes $\int \chi^2 d\xi = 1$ & Eq.~\eqref{eq:ch11_g4_g5_relation} \\
+$g_4 = g_5/\sqrt{\ell}$ & Alternative: if $\int \chi^2 d\xi = \ell$ & \S\ref{sec:ch11_g5_canonical} \\
+\addlinespace
+$\ell$ & Brane layer thickness, $[\ell] = [E]^{-1}$ & \S\ref{sec:ch11_kk_spectrum} \\
+$m_\phi = x_1/\ell$ & Mediator mass from KK eigenvalue & Eq.~\eqref{eq:ch11_mphi_scale} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Key finding.}
+With orthonormal modes, $g_4 = g_5$ \emph{numerically}. This is \tagDc{} from the
+5D action. However, the \emph{value} of $g_5$ remains \textbf{[OPEN]}: we have the
+coupling's dimension but not its magnitude from first principles.
+
+% ------------------------------------------------------------------------------
+\subsubsection{Candidate L1: Brane Thickness from Weak Scale Matching}
+\label{sec:ch11_ell_L1}
+
+\paragraph{The identification.}
+If the mediator mass is to match the $W$ boson mass scale \tagI{}:
+\begin{equation}
+    m_\phi \sim M_W \quad\Rightarrow\quad
+    \ell_{\text{L1}} = \frac{x_1}{M_W} \sim \frac{\pi}{80\text{ GeV}} \approx 0.04 \text{ fm}
+    \label{eq:ch11_ell_L1}
+\end{equation}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!60!black,
+    title=\textbf{L1 Verdict: Identification, Not Derivation}]
+\textbf{Status:} \tagI{} (calibration)
+
+\textbf{Problem:} Using $M_W = 80$ GeV as input \emph{imports the weak scale}.
+This is explicitly forbidden by the no-smuggling guardrails.
+
+\textbf{Would be [Dc] if:} We could derive $M_W$ from $(\sigma, r_e)$ independently.
+Currently, that derivation does not exist.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Candidate L2: Brane Thickness from Membrane Parameters}
+\label{sec:ch11_ell_L2}
+
+\paragraph{Dimensional analysis.}
+From EDC membrane parameters, the available length scales are:
+\begin{itemize}[nosep]
+    \item $r_e \approx 1$ fm (lattice spacing) \tagP{}
+    \item $\lambda_\sigma \equiv \hbar c / (\sigma r_e^2) = 197.3 / 5.856 \approx 34$ fm
+          (energy-to-length conversion)
+    \item $R_\xi \sim 10^{-3}$ fm (diffusion correlation length from Part I) \tagP{}
+\end{itemize}
+
+\paragraph{Candidate formula.}
+A natural ansatz for brane thickness from membrane tension \tagP{}:
+\begin{equation}
+    \ell_{\text{L2}} = \frac{\hbar c}{\sigma r_e^2} \times f_{\text{geom}}
+    \label{eq:ch11_ell_L2}
+\end{equation}
+where $f_{\text{geom}}$ is a dimensionless geometric factor.
+
+\paragraph{Numeric requirement.}
+To match the weak scale ($m_\phi \sim 80$ GeV with $x_1 \sim \pi$):
+\begin{equation}
+    \ell_{\text{required}} \sim \frac{\pi}{80 \text{ GeV}} \approx 0.04 \text{ fm}
+    \quad\Rightarrow\quad
+    f_{\text{geom}} \approx \frac{0.04}{34} \approx 1.2 \times 10^{-3}
+    \label{eq:ch11_f_geom_required}
+\end{equation}
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!60!black,
+    title=\textbf{L2 Verdict: Plausible Form, Open Coefficient}]
+\textbf{Status:} \tagP{} (postulated form)
+
+\textbf{What is closed:}
+\begin{itemize}[nosep]
+    \item Dimensional structure: $[\ell] = [\hbar c / (\sigma r_e^2)] = [E]^{-1}$ \checkmark
+    \item Membrane origin: uses only $(\sigma, r_e)$, no weak-sector input
+\end{itemize}
+
+\textbf{What is open:}
+\begin{itemize}[nosep]
+    \item The geometric factor $f_{\text{geom}} \approx 10^{-3}$ is unexplained
+    \item Without deriving $f_{\text{geom}}$, this is calibration in disguise
+\end{itemize}
+
+\textbf{Would be [Dc] if:} $f_{\text{geom}}$ were derived from brane geometry
+(e.g., ratio of curvature scales, topological factors).
+\end{tcolorbox}
+
+\paragraph{\texorpdfstring{Alternative: Direct $R_\xi$ identification.}{Alternative: Direct R-xi identification.}}
+Another candidate sets $\ell \sim R_\xi$ directly, where $R_\xi \sim 10^{-3}$ fm
+is the diffusion correlation length from Part I. This gives:
+\begin{equation}
+    \ell \sim R_\xi \sim 10^{-3} \text{ fm}
+    \quad\Rightarrow\quad
+    m_\phi \sim \frac{\pi}{\ell} \sim 600 \text{ GeV}
+    \label{eq:ch11_ell_Rxi}
+\end{equation}
+This overshoots $M_W$ by a factor $\sim 8$. The discrepancy suggests either
+(a) $R_\xi$ is not the correct scale, or (b) additional geometric factors apply.
+
+% ------------------------------------------------------------------------------
+\subsubsection{Candidate G1: $g^2$ from Membrane Tension (Existing Derivation)}
+\label{sec:ch11_g5_G1}
+
+\paragraph{The formula.}
+An existing derivation in Part II (\S\ref{sec:ch3_weak_coupling}) proposes:
+\begin{equation}
+    \boxed{
+    g^2 = 4\pi \times \frac{\sigma r_e^3}{\hbar c} \approx 0.37
+    }
+    \label{eq:ch11_g2_membrane}
+\end{equation}
+
+\paragraph{Numeric evaluation.}
+\begin{align}
+    \sigma r_e^2 &= 5.856 \text{ MeV} \tagDc{} \\
+    r_e &= 1 \text{ fm} \tagP{} \\
+    \hbar c &= 197.3 \text{ MeV}\cdot\text{fm} \tagBL{} \\
+    \frac{\sigma r_e^3}{\hbar c} &= \frac{5.856 \times 1}{197.3} \approx 0.0297
+\end{align}
+Therefore:
+\begin{equation}
+    g^2_{\text{G1}} = 4\pi \times 0.0297 \approx 0.373
+    \label{eq:ch11_g2_G1_value}
+\end{equation}
+
+\paragraph{Comparison to SM.}
+The SM weak coupling at low energy: $g_2^2 = 4\pi\alpha/\sin^2\theta_W \approx 0.42$.
+The G1 prediction is 11\% below SM.
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
+    title=\textbf{G1 Verdict: Promising but Requires Justification}]
+\textbf{Status:} \tagP{} (postulated, pending derivation audit)
+
+\textbf{What is closed:}
+\begin{itemize}[nosep]
+    \item Dimensional consistency: $[g^2] = [\sigma r_e^3 / \hbar c] = [E]^0$ \checkmark
+    \item No weak-sector input: uses only $(\sigma, r_e)$
+    \item Numeric proximity: 11\% from SM value
+\end{itemize}
+
+\textbf{What is open:}
+\begin{itemize}[nosep]
+    \item Why $4\pi$? The coefficient needs derivation from first principles
+    \item Is this $g_4^2$ or $g_5^2$? With orthonormal modes, $g_4 = g_5$
+    \item RG running: does this predict bare or renormalized coupling?
+\end{itemize}
+
+\textbf{Would be [Dc] if:} The $4\pi$ factor were derived from loop integration
+or geometric normalization.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Candidate G2: $g_5^2$ from Inverse Tension}
+\label{sec:ch11_g5_G2}
+
+\paragraph{Alternative dimensional ansatz.}
+Another candidate from exploratory notes:
+\begin{equation}
+    g_5^2 \sim \frac{(\hbar c)^2}{\sigma r_e^2}
+    \label{eq:ch11_g5_G2}
+\end{equation}
+
+\paragraph{Numeric evaluation.}
+\begin{equation}
+    g_5^2 \sim \frac{(197.3)^2}{5.856} \approx 6650 \text{ MeV}\cdot\text{fm}^2
+    = 6650 \text{ (MeV)}^{-1} \times (\hbar c)^2
+\end{equation}
+
+\paragraph{Dimensional check.}
+$[g_5^2] = [(\hbar c)^2 / E] = [E]^{-1}$, which matches $[g_5]^2 = [E]^{-1}$. \checkmark
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!60!black,
+    title=\textbf{G2 Verdict: Dimensional Match, Numeric Mismatch}]
+\textbf{Status:} \tagP{} (exploratory, not closed)
+
+\textbf{Problem:} The G2 formula gives a very large coupling strength. When
+combined with the $G_F$ closure spine:
+\begin{equation}
+    G_F \sim \frac{g_5^2 \ell^2 I_4}{x_1^2}
+    \sim \frac{6650 \times (0.04)^2 \times I_4}{\pi^2}
+    \sim 1.1 \times I_4 \text{ GeV}^{-2}
+\end{equation}
+To get $G_F \sim 10^{-5}$ GeV$^{-2}$, we would need $I_4 \sim 10^{-5}$ GeV,
+which is unrealistically small (sub-eV localization scale).
+
+\textbf{Verdict:} G2 is dimensionally valid but numerically inconsistent.
+Not pursued further.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Combined Closure Test: G1 + L1}
+\label{sec:ch11_closure_test}
+
+Using the most promising candidates (G1 for $g^2$, L1 for $\ell$):
+
+\paragraph{Input values.}
+\begin{align}
+    g^2 &= 0.373 \quad \text{(G1)} \\
+    \ell &= 0.04 \text{ fm} \approx 0.2 \text{ GeV}^{-1} \quad \text{(L1, via $M_W$)} \\
+    x_1 &= \pi \quad \text{(Dirichlet BC)} \\
+    I_4 &= ? \quad \text{(requires BVP solution)}
+\end{align}
+
+\paragraph{Required overlap integral.}
+From the closure spine Eq.~\eqref{eq:ch11_closure_spine}:
+\begin{equation}
+    G_F = \frac{g^2 \ell^2 I_4}{x_1^2}
+    \quad\Rightarrow\quad
+    I_4 = \frac{G_F \, x_1^2}{g^2 \ell^2}
+\end{equation}
+With $G_F = 1.17 \times 10^{-5}$ GeV$^{-2}$:
+\begin{equation}
+    I_4 = \frac{1.17 \times 10^{-5} \times \pi^2}{0.373 \times (0.2)^2}
+    \approx \frac{1.15 \times 10^{-4}}{0.015}
+    \approx 7.7 \times 10^{-3} \text{ GeV}
+    \label{eq:ch11_I4_required}
+\end{equation}
+
+\paragraph{Physical interpretation.}
+The required $I_4 \approx 8$ MeV corresponds to a localization scale:
+\begin{equation}
+    \sigma_L^{-1} \sim I_4^{1/4} \sim (8 \text{ MeV})^{1/4}
+    \sim 1.7 \text{ MeV}^{1/4} \cdot \text{(GeV)}^{-1/4}
+\end{equation}
+This is consistent with tight localization on the brane layer.
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!60!black,
+    title=\textbf{Combined Test Verdict: Consistency Check Passes}]
+\textbf{Status:} Numerically consistent \emph{but} relies on L1 (identification).
+
+The required $I_4 \approx 8$ MeV is physically reasonable for tightly
+localized fermion modes. However:
+\begin{itemize}[nosep]
+    \item L1 uses $M_W$ as input (forbidden for first-principles claim)
+    \item $I_4$ is not computed, only back-solved
+    \item This is a \emph{consistency check}, not a derivation
+\end{itemize}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{No-Smuggling Audit}
+\label{sec:ch11_no_smuggling_value}
+
+\begin{table}[ht]
+\centering
+\caption{No-smuggling audit for value closure candidates}
+\label{tab:ch11_no_smuggling_value}
+\small
+\begin{tabular}{lcl}
+\toprule
+\textbf{Candidate} & \textbf{SM-Free?} & \textbf{Issue} \\
+\midrule
+L1: $\ell = \pi/M_W$ & \textcolor{red}{\ding{55}} & Uses $M_W$ as input \\
+L2: $\ell = (\hbar c/\sigma r_e^2) \times f_{\text{geom}}$ & \textcolor{yellow!80!black}{$\sim$} & $f_{\text{geom}}$ undetermined \\
+G1: $g^2 = 4\pi \sigma r_e^3/\hbar c$ & \textcolor{green!60!black}{\ding{51}} & No SM input; $4\pi$ unexplained \\
+G2: $g_5^2 = (\hbar c)^2/\sigma r_e^2$ & \textcolor{green!60!black}{\ding{51}} & No SM input; but numerically fails \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Honest assessment.}
+Only G1 passes the no-smuggling test \emph{and} gives a plausible numeric value.
+For $\ell$, no SM-free candidate currently yields the weak scale without
+additional unexplained factors.
+
+% ------------------------------------------------------------------------------
+\subsubsection{OPR-19/20 Value Closure: Summary}
+\label{sec:ch11_value_closure_summary}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!60!black,
+    title=\textbf{OPR-19/20 Value Closure Status: RED-C [OPEN]}]
+
+\textbf{Before this section:}
+\begin{quote}
+OPR-19/20: RED-C --- Forms derived ($g_4 = g_5$, $m_\phi = x_1/\ell$); values open.
+\end{quote}
+
+\textbf{After this section:}
+\begin{quote}
+OPR-19/20: \textbf{RED-C} [OPEN] --- Value candidates surveyed; no closure achieved.
+\begin{itemize}[nosep]
+    \item \textbf{G1 ($g^2 = 4\pi\sigma r_e^3/\hbar c$):} Promising; 11\% from SM;
+          coefficient $4\pi$ needs derivation. Status: \tagP{}.
+    \item \textbf{L1 ($\ell = \pi/M_W$):} Uses SM input; forbidden for first-principles.
+          Status: \tagI{}.
+    \item \textbf{L2 ($\ell \sim \hbar c/\sigma r_e^2 \times f$):} SM-free form but
+          coefficient $f \sim 10^{-3}$ unexplained. Status: \tagP{}.
+\end{itemize}
+\end{quote}
+
+\medskip
+\noindent\fbox{\parbox{0.94\textwidth}{\small
+\textbf{Honest verdict:} The value closure attempt has not succeeded. G1 provides
+a plausible membrane-based coupling, but $\ell$ remains tied to SM identification
+or unexplained geometric factors. Full closure requires:
+\begin{enumerate}[nosep]
+    \item Derive the $4\pi$ coefficient in G1 from first principles
+    \item Derive $\ell$ from membrane geometry without importing $M_W$
+    \item Or: derive $M_W$ itself from $(\sigma, r_e)$
+\end{enumerate}}}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{What Would Constitute Closure}
+\label{sec:ch11_what_would_close}
+
+\begin{table}[ht]
+\centering
+\caption{Closure requirements for OPR-19/20 values}
+\label{tab:ch11_closure_requirements}
+\begin{tabular}{lll}
+\toprule
+\textbf{Item} & \textbf{Currently} & \textbf{To Close} \\
+\midrule
+$g^2$ value & $4\pi\sigma r_e^3/\hbar c$ \tagP{} & Derive $4\pi$ from loop/geometry \\
+$\ell$ value & $\pi/M_W$ \tagI{} & Derive from $(\sigma, r_e)$ only \\
+$f_{\text{geom}}$ & Fitted $\approx 10^{-3}$ & Derive from brane curvature \\
+BCs (N/D/mixed) & Assumed & Derive from consistency \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Critical path.}
+The most promising route to closure is:
+\begin{enumerate}[nosep]
+    \item Use G1 as the $g^2$ formula (already close to SM)
+    \item Derive $f_{\text{geom}}$ from the ratio $R_\xi / r_e$ or similar
+    \item Alternatively: solve the full BVP (OPR-21) and extract $I_4$, then
+          back-check consistency without using $M_W$
+\end{enumerate}
+
+\paragraph{Failure mode.}
+If the geometric factor $f_{\text{geom}}$ turns out to require fine-tuning
+(i.e., no natural origin from brane parameters), then the weak scale would
+remain an \emph{environmental} feature of EDC rather than a derived prediction.
+This would be an honest limitation, not a flaw in methodology.
+

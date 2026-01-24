@@ -1,0 +1,1252 @@
+%!TEX root = ../EDC_Part_II_Weak_Sector_rebuild.tex
+% ==============================================================================
+% OPR-21 BVP CLOSURE PACK
+% The master key: precise specification + closure criteria + failure modes
+% Status: Infrastructure specification (no numerical claims)
+% ==============================================================================
+
+\section{OPR-21: The BVP as Master Key}
+\label{sec:bvp_master_key}
+
+% ------------------------------------------------------------------------------
+% EPISTEMIC STATUS
+% ------------------------------------------------------------------------------
+
+\begin{tcolorbox}[edcGuardrail, title=\textbf{Epistemic Status: Closure Pack}]
+This section defines \textbf{closure criteria} for OPR-21 (the thick-brane BVP).
+It does \emph{not} claim closure---it specifies what closure \emph{would mean}.
+
+\textbf{Content type:}
+\begin{itemize}[nosep]
+    \item Mathematical specification: \tagM{} (pure mathematics, no physics input)
+    \item Physical interpretation: \tagP{} (postulated connection to observables)
+    \item Acceptance criteria: \tagDef{} (definitions, not derivations)
+\end{itemize}
+
+\textbf{NOT included:}
+\begin{itemize}[nosep]
+    \item Numerical solutions (deferred to implementation)
+    \item Calibration to PDG values (forbidden by design)
+    \item Claims about $N_{\text{gen}} = 3$ or specific $G_F$ values
+\end{itemize}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+% FRAMEWORK 2.0 COMPLIANCE
+% ------------------------------------------------------------------------------
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=blue!50!black,
+    title=\textbf{Framework 2.0 Language Compliance}]
+\small
+\textbf{Why the BVP is the ``master key'':}
+\begin{itemize}[nosep]
+    \item \textbf{5D cause:} Thick-brane geometry creates an effective potential $V(\xi)$.
+    \item \textbf{Brane process:} Schr\"odinger-like BVP determines bound states + spectrum.
+    \item \textbf{3D shadow:} Eigenvalues $\to$ masses; eigenfunctions $\to$ couplings;
+          bound state count $\to$ generations.
+\end{itemize}
+
+The BVP is the \emph{mathematical engine} that converts 5D postulates into 3D predictions
+\emph{without} using 3D observables as input. Solving it is prerequisite for non-circular
+closure of OPR-02 (generations), OPR-22 ($G_F$ spine), and CKM/PMNS overlaps.
+\end{tcolorbox}
+
+% ==============================================================================
+\subsection{Why BVP is the Master Key}
+\label{subsec:bvp_why_master}
+
+Multiple open problems in Part II reduce to a single mathematical structure:
+the thick-brane boundary value problem. This subsection maps the dependencies.
+
+\paragraph{The central claim.}
+If the BVP can be solved with \emph{independently fixed} parameters (from $\sigma$, $r_e$,
+and membrane geometry alone), then the following become \emph{predictable}:
+
+\begin{enumerate}[nosep]
+    \item \textbf{Generation count} $N_{\text{bound}}$: number of normalizable bound states
+    \item \textbf{Mass spectrum}: eigenvalue ratios (not absolute masses without scale)
+    \item \textbf{Overlap integrals} $I_4$: coupling strengths from wavefunction products
+    \item \textbf{Chirality suppression}: L/R asymmetry from mode localization
+\end{enumerate}
+
+\paragraph{Dependency map.}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Input (5D)} & \textbf{BVP Output} & \textbf{Downstream Claim} \\
+\midrule
+Potential $V(\xi)$ & Bound state count $N_{\text{bound}}$ & OPR-02: Why 3 generations? \\
+Boundary conditions & Eigenvalue $x_1$ (first root) & OPR-22: $G_F$ spine scale \\
+Domain $[0, \ell]$ or $[0, \infty)$ & Eigenfunctions $\psi_n(\xi)$ & CKM/PMNS: overlap integrals \\
+Self-adjointness & Discrete spectrum guarantee & Quantization of masses \\
+L/R coupling to $m(\xi)$ & Mode localization profiles & Ch9: V--A structure \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{What closure means.}
+The BVP is ``closed'' when:
+\begin{enumerate}[nosep]
+    \item The potential $V(\xi)$ is derived (not fitted) from membrane parameters
+    \item The boundary conditions are derived from junction physics (not chosen ad hoc)
+    \item The spectrum is computed without calibrating to PDG masses
+    \item Downstream predictions match observations within stated tolerances
+\end{enumerate}
+
+% ==============================================================================
+\subsection{Precise BVP Statement}
+\label{subsec:bvp_precise}
+
+% ------------------------------------------------------------------------------
+% OPERATOR DEFINITION
+% ------------------------------------------------------------------------------
+
+\subsubsection{The Operator}
+
+The thick-brane profile $f(\xi)$ satisfies a Schr\"odinger-type equation:
+\begin{equation}
+    \boxed{
+    \hat{L} f \;=\; -\frac{d^2 f}{d\xi^2} + V(\xi) f \;=\; \lambda f
+    }
+    \label{eq:bvp:operator}
+\end{equation}
+where:
+\begin{itemize}[nosep]
+    \item $\xi \in \Omega$ is the extra-dimensional coordinate (domain specified below)
+    \item $V(\xi)$ is the effective potential from membrane geometry \tagP{}
+    \item $\lambda$ is the eigenvalue (related to 4D mass: $\lambda \sim m^2$)
+    \item $f(\xi)$ is the profile function (wavefunction in extra dimension)
+\end{itemize}
+
+\paragraph{Dimensionless form.}
+With $\zeta = \xi/\ell$ (where $\ell$ is the brane thickness scale), and
+$\tilde{V}(\zeta) = \ell^2 V(\ell\zeta)$, $\tilde{\lambda} = \ell^2 \lambda$:
+\begin{equation}
+    -\frac{d^2 f}{d\zeta^2} + \tilde{V}(\zeta) f = \tilde{\lambda} f
+    \label{eq:bvp:dimensionless}
+\end{equation}
+All numerical work should use this dimensionless form \tagM{}.
+
+% ------------------------------------------------------------------------------
+% DOMAIN AND INNER PRODUCT
+% ------------------------------------------------------------------------------
+
+\subsubsection{Domain and Inner Product}
+
+\paragraph{Domain options.}
+The physical domain $\Omega$ depends on brane topology:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Domain} & \textbf{Physical Interpretation} & \textbf{Spectrum Type} \\
+\midrule
+$[0, \ell]$ (finite interval) & Finite brane thickness & Pure discrete \\
+$[0, \infty)$ (half-line) & Semi-infinite bulk & Discrete + continuous \\
+$(-\infty, \infty)$ (full line) & Symmetric domain wall & Depends on $V$ asymptotics \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+For Part II, the \textbf{finite interval} $\Omega = [0, \ell]$ is the primary focus
+(thick brane with defined boundaries). The half-line appears in Ch9 (chirality).
+
+\paragraph{Inner product and normalization.}
+The standard $L^2$ inner product:
+\begin{equation}
+    \langle f, g \rangle = \int_\Omega f(\xi)^* g(\xi) \, d\xi
+    \label{eq:bvp:inner_product}
+\end{equation}
+Eigenfunctions are normalized: $\langle \psi_n, \psi_n \rangle = 1$.
+
+For weighted problems (e.g., curved extra dimension), use $\langle f, g \rangle_w =
+\int_\Omega w(\xi) f^* g \, d\xi$ with positive weight $w(\xi) > 0$.
+
+% ------------------------------------------------------------------------------
+% BOUNDARY CONDITIONS
+% ------------------------------------------------------------------------------
+
+\subsubsection{Boundary Conditions}
+\label{subsubsec:bvp_bc}
+
+The BVP requires boundary conditions at each endpoint. The general \textbf{Robin form}
+encompasses Dirichlet and Neumann as special cases:
+
+\begin{equation}
+    \boxed{
+    \alpha_0 f(0) + \beta_0 f'(0) = 0, \qquad
+    \alpha_\ell f(\ell) + \beta_\ell f'(\ell) = 0
+    }
+    \label{eq:bvp:robin_bc}
+\end{equation}
+where $(\alpha_0, \beta_0)$ and $(\alpha_\ell, \beta_\ell)$ are BC parameters
+(not both zero at each endpoint).
+
+\paragraph{Special cases.}
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Name} & \textbf{Condition} & \textbf{Physical Interpretation} \\
+\midrule
+Dirichlet & $f = 0$ at boundary & Hard wall / infinite barrier \\
+Neumann & $f' = 0$ at boundary & Reflection symmetry / no flux \\
+Robin & $\alpha f + \beta f' = 0$ & Finite barrier / junction matching \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Open problem.}
+The BC parameters $(\alpha, \beta)$ should be \emph{derived} from Israel junction
+conditions or brane microphysics, not chosen to fit outputs. This is part of OPR-21.
+
+% ------------------------------------------------------------------------------
+% SELF-ADJOINTNESS
+% ------------------------------------------------------------------------------
+
+\subsubsection{Self-Adjointness Conditions}
+\label{subsubsec:bvp_selfadjoint}
+
+For the operator $\hat{L}$ to have real eigenvalues and orthogonal eigenfunctions,
+it must be self-adjoint on the chosen domain with the chosen BCs.
+
+\begin{theorem}[Self-Adjointness Criterion]
+\label{thm:bvp:selfadjoint}
+\tagM{}
+The Sturm--Liouville operator $\hat{L} = -d^2/d\xi^2 + V(\xi)$ on $[0, \ell]$ with
+Robin BCs~\eqref{eq:bvp:robin_bc} is self-adjoint if and only if:
+\begin{enumerate}[nosep]
+    \item $V(\xi)$ is real-valued and locally integrable on $(0, \ell)$
+    \item The BC parameters are real: $\alpha_0, \beta_0, \alpha_\ell, \beta_\ell \in \mathbb{R}$
+    \item The BCs are \emph{separated} (each endpoint has its own condition)
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Standard Sturm--Liouville theory~\cite{Zettl2005,Teschl2012}. Integration by parts
+shows $\langle \hat{L}f, g \rangle - \langle f, \hat{L}g \rangle = [f^*g' - f'^*g]_0^\ell$,
+which vanishes under separated real Robin BCs. \qed
+\end{proof}
+
+\paragraph{Consequence.}
+Under self-adjointness:
+\begin{itemize}[nosep]
+    \item Eigenvalues $\lambda_n$ are real and form a discrete sequence (if $V$ confining)
+    \item Eigenfunctions $\psi_n$ are orthogonal: $\langle \psi_m, \psi_n \rangle = \delta_{mn}$
+    \item The spectrum is bounded below: $\exists \lambda_0 = \min_n \lambda_n$
+\end{itemize}
+
+% ==============================================================================
+\subsection{From 5D Action to Effective Potential: What Must Be Derived}
+\label{subsec:bvp_5d_skeleton}
+
+This subsection provides a formal \textbf{skeleton} for deriving the effective
+potential $V(\xi)$ and boundary conditions from the 5D action. This is the key
+\tagOPEN{} step required for OPR-21 closure.
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!60!black,
+    title=\textbf{Epistemic Status: Derivation Skeleton}]
+\label{box:vz_skeleton_status}
+
+\textbf{Classification:} \tagOPEN{} (roadmap, not completed derivation)
+
+\textbf{What this section provides:}
+\begin{itemize}[nosep]
+    \item Identification of required inputs from 5D physics
+    \item Formal pipeline: action $\to$ variation $\to$ operator $\to$ $V(\xi)$
+    \item Specification of what closure would require
+\end{itemize}
+
+\textbf{What this section does NOT provide:}
+\begin{itemize}[nosep]
+    \item Explicit form of $V(\xi)$ (requires completing the pipeline)
+    \item Numerical values (deferred to implementation)
+    \item Claims about spectrum or generation count
+\end{itemize}
+\end{tcolorbox}
+
+\subsubsection{Required Inputs from 5D Physics}
+
+The derivation of $V(\xi)$ requires combining several contributions from the 5D theory:
+
+\paragraph{Bulk action.}
+The bulk contribution includes the 5D Einstein--Hilbert term and any matter fields
+propagating in the bulk:
+\begin{equation}
+    S_{\text{bulk}} = \int d^5x \sqrt{-g_5} \left[
+        \frac{M_5^3}{2} R_5 + \mathcal{L}_{\text{bulk matter}}
+    \right]
+    \label{eq:bvp:bulk_action_skeleton}
+\end{equation}
+where $M_5$ is the 5D Planck mass and $R_5$ is the 5D Ricci scalar. \tagP{}
+
+\paragraph{Brane action.}
+The 3-brane (membrane) contributes tension and localized matter terms:
+\begin{equation}
+    S_{\text{brane}} = -\int d^4x \sqrt{-g_4} \left[
+        \sigma + \mathcal{L}_{\text{brane matter}}
+    \right]
+    \label{eq:bvp:brane_action_skeleton}
+\end{equation}
+where $\sigma$ is the brane tension and $g_4$ is the induced metric. The brane
+tension is related to the membrane surface tension from Part~I. \tagP{}
+
+\paragraph{Junction terms (Gibbons--Hawking--York + Israel).}
+For a brane at position $\xi = \xi_0$, the Israel junction conditions
+relate the jump in extrinsic curvature $K_{ab}$ to the brane stress-energy:
+\begin{equation}
+    [K_{ab}] - g_{ab}[K] = -\frac{1}{M_5^3} S_{ab}
+    \label{eq:bvp:israel_junction}
+\end{equation}
+where $S_{ab}$ is the brane stress-energy tensor and $[X] \equiv X^+ - X^-$ denotes
+the jump across the brane~\cite{RandallSundrum1999a,RubakovShaposhnikov1983}.
+
+The Gibbons--Hawking--York boundary term ensures a well-posed variational problem:
+\begin{equation}
+    S_{\text{GHY}} = M_5^3 \int_{\partial\mathcal{M}} d^4x \sqrt{-h}\, K
+    \label{eq:bvp:ghy_term}
+\end{equation}
+These junction terms are essential for deriving BCs from the action. \tagM{}
+
+\subsubsection{The Derivation Pipeline}
+\label{subsubsec:vz_pipeline}
+
+The formal pipeline from 5D action to effective 1D BVP:
+
+\begin{enumerate}
+    \item \textbf{Background solution:} Solve the Einstein equations with brane
+          sources to obtain the warped metric $ds^2 = e^{2A(\xi)}\eta_{\mu\nu}dx^\mu dx^\nu + d\xi^2$.
+          The warp factor $A(\xi)$ encodes the brane structure.
+
+    \item \textbf{Perturbation ansatz:} Expand bulk fields around the background,
+          separating 4D and extra-dimensional dependence:
+          $\phi(x^\mu, \xi) = \sum_n \phi_n(x^\mu) f_n(\xi)$.
+
+    \item \textbf{Dimensional reduction:} Integrate over the extra dimension to
+          obtain an effective 4D theory. The profile functions $f_n(\xi)$ satisfy
+          a Sturm--Liouville equation.
+
+    \item \textbf{Identify operator and potential:} The resulting equation takes
+          the form of Eq.~(\ref{eq:bvp:operator}) with:
+          \begin{equation}
+              V(\xi) = V_{\text{warp}}(z) + V_{\text{mass}}(z) + V_{\text{coupling}}(z)
+              \label{eq:bvp:vz_structure}
+          \end{equation}
+          where each term derives from specific physics:
+          \begin{itemize}[nosep]
+              \item $V_{\text{warp}}$: from warp factor derivatives ($A''$, $(A')^2$)
+              \item $V_{\text{mass}}$: from bulk mass terms
+              \item $V_{\text{coupling}}$: from brane-localized couplings
+          \end{itemize}
+
+    \item \textbf{Derive boundary conditions:} The Israel junction conditions
+          and variational principle at the brane yield Robin-type BCs with
+          parameters determined by brane microphysics (not chosen ad hoc).
+\end{enumerate}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black,
+    title=\textbf{OPR-21 Closure Condition: $V(\xi)$ Derivation}]
+\label{box:opr21_vz_closure}
+
+\textbf{Status:} \tagOPEN{}
+
+\textbf{Closure requires:}
+\begin{enumerate}[nosep]
+    \item Complete steps 1--5 above with explicit calculations
+    \item Express $V(\xi)$ in terms of membrane parameters $(\sigma, r_e, R_\xi)$
+    \item Derive BC parameters from Israel conditions (not fit to output)
+    \item Show result is self-adjoint (Theorem~\ref{thm:bvp:selfadjoint})
+\end{enumerate}
+
+\textbf{Downstream unlocks (if completed):}
+\begin{itemize}[nosep]
+    \item OPR-02: Can compute $N_{\text{bound}}$ for physical potential
+    \item OPR-22: Can compute $x_1$ for $G_F$ spine
+    \item CKM/PMNS: Can compute overlap integrals from eigenfunctions
+\end{itemize}
+
+\textbf{Without this derivation:} BVP analysis remains at the ``toy potential''
+level (cf.\ \S\ref{subsec:bvp_numerical_demo}).
+\end{tcolorbox}
+
+\subsubsection{Connection to Part I Membrane Physics}
+
+The membrane parameters from Part~I provide the physical inputs:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Part I Parameter} & \textbf{Role in $V(\xi)$} & \textbf{Status} \\
+\midrule
+$\sigma$ (surface tension) & Sets energy scale of brane & \tagDc{} (Part I) \\
+$r_e$ (electron radius) & Characteristic length scale & \tagDc{} (Part I) \\
+$R_\xi$ (diffusion scale) & Boundary layer thickness & \tagP{} (Part I) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Key constraint.}
+The derivation must \emph{not} use 3D observables (PDG masses, $M_W$, $G_F$) to
+fix $V(\xi)$. All parameters must trace to membrane physics. This is the
+``no-smuggling'' requirement of Framework~2.0.
+
+% ==============================================================================
+\subsection{\texorpdfstring{$V(\xi)$}{V(xi)} Candidates Catalogue (Toy Shapes, Not Derived)}
+\label{subsec:bvp_vz_catalogue}
+
+Before deriving $V(\xi)$ from the 5D action, it is useful to survey candidate
+potential shapes that commonly arise in thick-brane, domain-wall, and localization
+problems. These are \emph{toy ansätze} for intuition and future numerical testing;
+none constitutes a derived EDC potential.
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!60!black,
+    title=\textbf{Epistemic Status: Toy Catalogue}]
+\label{box:bvp_vz_catalogue_status}
+
+\textbf{Classification:} \tagP{}/[Toy]
+
+\textbf{Purpose:}
+\begin{itemize}[nosep]
+    \item Provide physically motivated candidate shapes for testing
+    \item Build intuition for how potential features map to $N_{\text{bound}}$
+    \item Prepare numerical infrastructure for eventual derived $V(\xi)$
+\end{itemize}
+
+\textbf{NOT claimed:}
+\begin{itemize}[nosep]
+    \item These are NOT derived from the 5D action
+    \item Using any of these does NOT close OPR-21 or OPR-02
+    \item No calibration to PDG values
+\end{itemize}
+\end{tcolorbox}
+
+\subsubsection{Candidate 1: Volcano (Warp Localization)}
+\label{subsubsec:vz_volcano}
+
+\paragraph{Formula (schematic).}
+\begin{equation}
+    V_{\text{volcano}}(\zeta) = V_0 \left[ \frac{\zeta^2}{\zeta^2 + a^2} - 1 \right]
+    \label{eq:bvp:vz_volcano}
+\end{equation}
+where $\zeta = \xi/\ell$ is dimensionless, $V_0 > 0$ is the well depth, and $a > 0$
+sets the core width.
+
+\paragraph{Spectral behavior.}
+Deep central well with asymptotic approach to $V = 0$. The number of bound states
+$N_{\text{bound}}$ increases stepwise with $V_0$ and $a$. Typical in RS-type
+warped geometries where the warp factor derivatives create a volcano-shaped
+effective potential.
+
+\paragraph{5D origin.}
+Could arise from $V_{\text{warp}} \sim (A')^2 - A''$ where $A(\xi)$ is the warp
+factor in $ds^2 = e^{2A(\xi)}\eta_{\mu\nu}dx^\mu dx^\nu + d\xi^2$.
+\emph{Status: \tagP{} (toy ansatz).}
+
+\subsubsection{Candidate 2: Kink / Domain Wall (tanh)}
+\label{subsubsec:vz_kink}
+
+\paragraph{Formula (schematic).}
+\begin{equation}
+    V_{\text{kink}}(\zeta) = -V_0 \operatorname{sech}^2(\zeta/a)
+    \label{eq:bvp:vz_kink}
+\end{equation}
+This is the reflectionless Pöschl--Teller potential, arising from a $\tanh$
+kink background in scalar-field domain walls.
+
+\paragraph{Spectral behavior.}
+Exactly solvable~\cite{Teschl2012}. For integer $s = \sqrt{V_0 a^2 + 1/4} - 1/2$,
+the potential supports exactly $\lfloor s \rfloor + 1$ bound states. The bound
+state count increases discretely as $V_0$ crosses thresholds.
+
+\paragraph{5D origin.}
+The Pöschl--Teller potential arises when fermion modes couple to a scalar kink
+$\phi(\xi) = \phi_0 \tanh(\xi/a)$ via Yukawa coupling $m(\xi) = y\phi(\xi)$.
+The numerical demo (Sec.~\ref{subsec:bvp_numerical_demo}) uses this family.
+\emph{Status: \tagM{} (mathematical; standard physics).}
+
+\subsubsection{Candidate 3: Compact Well (Finite Interval)}
+\label{subsubsec:vz_compact}
+
+\paragraph{Formula (schematic).}
+\begin{equation}
+    V_{\text{box}}(\zeta) =
+    \begin{cases}
+        -V_0 & 0 < \zeta < 1 \\
+        0    & \text{otherwise}
+    \end{cases}
+    \label{eq:bvp:vz_box}
+\end{equation}
+with Dirichlet or Robin BCs at $\zeta = 0$ and $\zeta = 1$.
+
+\paragraph{Spectral behavior.}
+Pure discrete spectrum. The count $N_{\text{bound}}$ scales roughly as
+$\propto \sqrt{V_0}$ for a square well. Gaps between eigenvalues can be computed
+analytically.
+
+\paragraph{5D origin.}
+Represents a brane with sharp boundaries---a finite-thickness ``slab'' embedded
+in the bulk. Simpler than smooth profiles but may not capture junction physics.
+\emph{Status: \tagP{} (toy geometry).}
+
+\subsubsection{Candidate 4: Double-Well (Two-Lump Brane)}
+\label{subsubsec:vz_double}
+
+\paragraph{Formula (schematic).}
+\begin{equation}
+    V_{\text{double}}(\zeta) = -V_0 \left[ \operatorname{sech}^2(\zeta - d) +
+        \operatorname{sech}^2(\zeta + d) \right]
+    \label{eq:bvp:vz_double}
+\end{equation}
+where $2d$ is the separation between wells.
+
+\paragraph{Spectral behavior.}
+Two degenerate wells can produce near-degenerate eigenvalue pairs (bonding/antibonding).
+If the wells are far apart ($d \gg a$), each contributes independently to
+$N_{\text{bound}}$; if close, tunnel coupling lifts degeneracy.
+
+\paragraph{5D origin.}
+Could model a brane with two localized regions (e.g., matter and antimatter
+sectors, or warped throats). Exotic in minimal EDC but relevant for extended models.
+\emph{Status: \tagP{} (speculative).}
+
+\subsubsection{Candidate 5: Exponential Tail (Asymptotically Decaying)}
+\label{subsubsec:vz_exp}
+
+\paragraph{Formula (schematic).}
+\begin{equation}
+    V_{\text{exp}}(\zeta) = -V_0 e^{-\zeta/a}
+    \label{eq:bvp:vz_exp}
+\end{equation}
+This decays monotonically into the bulk.
+
+\paragraph{Spectral behavior.}
+Supports finitely many bound states if $V_0$ is large enough. The threshold
+$\lambda_{\text{th}} = 0$ (essential spectrum onset). Weaker localization than
+Pöschl--Teller for same $V_0$.
+
+\paragraph{5D origin.}
+Arises when the warp factor $A(\xi)$ decays exponentially (e.g., linear dilaton
+backgrounds). The monotonic decay may be relevant for half-line domains with
+natural bulk cutoff.
+\emph{Status: \tagP{} (toy ansatz).}
+
+\subsubsection{Summary Table}
+
+\begin{center}
+\small
+\begin{tabular}{llll}
+\toprule
+\textbf{Candidate} & \textbf{Shape} & \textbf{$N_{\text{bound}}$ Scaling} & \textbf{Status} \\
+\midrule
+Volcano & Central well + asymptote & $\uparrow$ with depth/width & \tagP{} \\
+Kink (PT) & $-\operatorname{sech}^2$ & $\propto \sqrt{V_0}$ (discrete steps) & \tagM{} \\
+Compact well & Box potential & $\propto \sqrt{V_0}$ & \tagP{} \\
+Double-well & Two lumps & Pair structure & \tagP{} \\
+Exponential & Monotonic decay & Finitely many & \tagP{} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black,
+    title=\textbf{No-Smuggling Guardrail}]
+\label{box:bvp_vz_guardrail}
+
+\textbf{These candidates are for intuition and future numerical testing only.}
+
+\begin{itemize}[nosep]
+    \item \textbf{Closure requires:} Deriving $V(\xi)$ and BCs from the 5D action
+          (Sec.~\ref{subsubsec:vz_pipeline})
+    \item \textbf{No calibration:} Do not tune $V_0$, $a$, or shape parameters to
+          match $N_{\text{bound}} = 3$ or any PDG value
+    \item \textbf{OPR-21/OPR-02 remain OPEN:} Using a toy potential does not close
+          these items
+\end{itemize}
+
+\textbf{Cross-references:}
+\begin{itemize}[nosep]
+    \item $V(\xi)$ derivation pipeline: Sec.~\ref{subsubsec:vz_pipeline}
+    \item Numerical demo (Pöschl--Teller): Sec.~\ref{subsec:bvp_numerical_demo}
+    \item Closure conditions: Sec.~\ref{subsec:bvp_acceptance}
+\end{itemize}
+\end{tcolorbox}
+
+% ==============================================================================
+\subsection{Output Objects: What We Need}
+\label{subsec:bvp_outputs}
+
+The BVP solution provides specific mathematical objects used by downstream chapters.
+
+% ------------------------------------------------------------------------------
+% EIGENFUNCTIONS
+% ------------------------------------------------------------------------------
+
+\subsubsection{Eigenfunctions $\psi_n(\xi)$}
+\label{subsubsec:bvp_eigenfunctions}
+
+\begin{definition}[Normalized Eigenfunctions]
+\label{def:bvp:eigenfunction}
+\tagDef{}
+The $n$-th eigenfunction $\psi_n(\xi)$ satisfies:
+\begin{enumerate}[nosep]
+    \item $\hat{L}\psi_n = \lambda_n \psi_n$ (eigenvalue equation)
+    \item $\langle \psi_n, \psi_n \rangle = 1$ (unit normalization)
+    \item BCs~\eqref{eq:bvp:robin_bc} at both endpoints
+\end{enumerate}
+Ordering convention: $\lambda_0 < \lambda_1 < \lambda_2 < \cdots$ (ground state first).
+\end{definition}
+
+\paragraph{Physical interpretation \tagP{}.}
+$|\psi_n(\xi)|^2$ gives the probability density for finding the $n$-th mode at depth $\xi$.
+Modes localized near $\xi = 0$ couple strongly to brane-localized interactions.
+
+% ------------------------------------------------------------------------------
+% FIRST EIGENVALUE
+% ------------------------------------------------------------------------------
+
+\subsubsection{First Eigenvalue $x_1$}
+\label{subsubsec:bvp_x1}
+
+\begin{definition}[First Root / Ground State Eigenvalue]
+\label{def:bvp:x1}
+\tagDef{}
+The quantity $x_1$ is defined as the \textbf{lowest positive eigenvalue} of the
+dimensionless BVP~\eqref{eq:bvp:dimensionless}:
+\begin{equation}
+    x_1 = \min\{\tilde{\lambda}_n : \tilde{\lambda}_n > 0\}
+    \label{eq:bvp:x1_def}
+\end{equation}
+If the ground state has $\tilde{\lambda}_0 \leq 0$, then $x_1 = \tilde{\lambda}_1$.
+\end{definition}
+
+\paragraph{Role in $G_F$ spine.}
+In Ch13, $x_1$ sets the scale for effective couplings: $G_F \propto 1/(x_1 \cdot \text{scale}^2)$.
+The value of $x_1$ depends on $V(\zeta)$ and BCs---it is \emph{output}, not input.
+
+% ------------------------------------------------------------------------------
+% OVERLAP INTEGRALS
+% ------------------------------------------------------------------------------
+
+\subsubsection{Overlap Integrals $I_4$}
+\label{subsubsec:bvp_overlap}
+
+\begin{definition}[Four-Point Overlap Integral]
+\label{def:bvp:I4}
+\tagDef{}
+The overlap integral $I_4$ for modes $(i, j, k, l)$ is:
+\begin{equation}
+    I_4^{(ijkl)} = \int_\Omega \psi_i(\xi) \psi_j(\xi) \psi_k(\xi) \psi_l(\xi) \, d\xi
+    \label{eq:bvp:I4_def}
+\end{equation}
+For the dominant (ground state) contribution:
+\begin{equation}
+    I_4 \equiv I_4^{(0000)} = \int_\Omega |\psi_0(\xi)|^4 \, d\xi
+    \label{eq:bvp:I4_ground}
+\end{equation}
+\end{definition}
+
+\paragraph{Physical interpretation \tagP{}.}
+$I_4$ measures the ``concentration'' of the ground state profile. For a mode spread
+uniformly over $[0, \ell]$, $I_4 \sim 1/\ell$. For a strongly localized mode
+(width $w \ll \ell$), $I_4 \sim 1/w \gg 1/\ell$.
+
+\paragraph{Role in couplings.}
+Effective 4D couplings scale as $g_{\text{eff}} \propto g_5 \cdot \sqrt{I_4}$ where
+$g_5$ is the 5D coupling. Stronger localization $\to$ larger effective coupling.
+
+% ------------------------------------------------------------------------------
+% GENERATION COUNT (OPR-02 DETAILED)
+% ------------------------------------------------------------------------------
+
+\subsubsection{Generation Count $N_{\text{bound}}$ (OPR-02)}
+\label{subsubsec:bvp_ngen}
+
+This subsubsection provides the \textbf{precise criterion} for generation counting
+from BVP spectral theory, moving beyond the heuristic ``$\mathbb{Z}_6/\mathbb{Z}_2 = \mathbb{Z}_3$''
+to a rigorous bound-state count.
+
+\begin{definition}[Bound State Count]
+\label{def:bvp:nbound}
+\tagDef{}
+The generation count $N_{\text{bound}}$ is defined as the number of \textbf{normalizable
+bound states} below a threshold $\lambda_{\text{th}}$:
+\begin{equation}
+    N_{\text{bound}} = \#\{n : \lambda_n < \lambda_{\text{th}} \text{ and }
+    \psi_n \in L^2(\Omega)\}
+    \label{eq:bvp:nbound_def}
+\end{equation}
+\end{definition}
+
+% --- THRESHOLD DEFINITION ---
+
+\paragraph{Threshold definition (essential spectrum onset).}
+The threshold $\lambda_{\text{th}}$ must be defined \emph{intrinsically} from the BVP,
+not from observed particle masses. The canonical choice is:
+
+\begin{definition}[Essential Spectrum Threshold]
+\label{def:bvp:threshold}
+\tagDef{}
+For a Schr\"odinger operator $\hat{L} = -d^2/d\xi^2 + V(\xi)$ on domain $\Omega$:
+\begin{equation}
+    \lambda_{\text{th}} = \inf \sigma_{\text{ess}}(\hat{L})
+    \label{eq:bvp:threshold_def}
+\end{equation}
+where $\sigma_{\text{ess}}$ is the essential spectrum. For:
+\begin{itemize}[nosep]
+    \item \textbf{Finite interval} $[0, \ell]$: $\sigma_{\text{ess}} = \emptyset$
+          (pure point spectrum); use $\lambda_{\text{th}} = V_{\max}$ or gap criterion.
+    \item \textbf{Half-line} $[0, \infty)$: $\sigma_{\text{ess}} = [V_\infty, \infty)$
+          where $V_\infty = \lim_{\xi \to \infty} V(\xi)$.
+\end{itemize}
+\end{definition}
+
+\paragraph{Gap criterion (finite interval).}
+On a finite interval, all eigenvalues are discrete. The ``generation threshold''
+is then defined by a \textbf{spectral gap}:
+\begin{equation}
+    \lambda_{\text{th}} = \lambda_k \quad \text{where} \quad
+    \frac{\lambda_{k+1} - \lambda_k}{\lambda_k - \lambda_{k-1}} \gg 1
+    \label{eq:bvp:gap_criterion}
+\end{equation}
+This identifies a natural separation scale without using 3D mass inputs.
+
+% --- ROBUSTNESS UNDER BC CLASS ---
+
+\paragraph{Robustness under BC class.}
+\label{para:bvp_bc_robustness}
+
+A key requirement for OPR-02 closure is that $N_{\text{bound}}$ be \emph{robust}---not
+sensitive to precise BC parameter choices within a physically admissible family.
+
+\begin{definition}[Admissible BC Family]
+\label{def:bvp:admissible_bc}
+\tagDef{}
+The \textbf{admissible BC family} $\mathcal{B}$ consists of all Robin-type BCs
+\begin{equation}
+    \alpha_0 f(0) + \beta_0 f'(0) = 0, \quad
+    \alpha_\ell f(\ell) + \beta_\ell f'(\ell) = 0
+    \label{eq:bvp:admissible_bc}
+\end{equation}
+satisfying:
+\begin{enumerate}[nosep]
+    \item \textbf{Self-adjointness:} $\alpha_j, \beta_j \in \mathbb{R}$, separated
+    \item \textbf{Non-degeneracy:} $(\alpha_j, \beta_j) \neq (0, 0)$ at each endpoint
+    \item \textbf{Physical bounds:} $|\alpha_j/\beta_j| \in [0, \infty]$
+          (includes Dirichlet $\beta = 0$ and Neumann $\alpha = 0$)
+\end{enumerate}
+\end{definition}
+
+\begin{lemma}[Spectral Stability under BC Deformation]
+\label{lem:bvp:spectral_stability}
+\tagM{}
+Let $\hat{L}$ be a Sturm--Liouville operator with potential $V(\xi)$ on $[0, \ell]$.
+For BCs in the admissible family $\mathcal{B}$:
+\begin{enumerate}[nosep]
+    \item Eigenvalues $\lambda_n$ depend \textbf{continuously} on BC parameters
+          $(\alpha_0, \beta_0, \alpha_\ell, \beta_\ell)$.
+    \item The count $N_{\text{bound}}$ is \textbf{locally constant} in $\mathcal{B}$
+          except at \emph{critical points} where an eigenvalue crosses the threshold.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+Eigenvalue continuity follows from standard perturbation theory for self-adjoint
+operators~\cite{Zettl2005}. The count $N_{\text{bound}}$ changes only when an eigenvalue
+crosses $\lambda_{\text{th}}$; between crossings, eigenvalue ordering is preserved
+(no level crossing for simple spectra). \qed
+\end{proof}
+
+\paragraph{Consequence for OPR-02.}
+If $N_{\text{bound}} = 3$ for \emph{some} BC in the admissible family $\mathcal{B}$,
+and no eigenvalue sits exactly at the threshold $\lambda_{\text{th}}$, then
+$N_{\text{bound}} = 3$ persists under small BC deformations. This is the sense in which
+the generation count can be ``robust.''
+
+% --- OPR-02 CLOSURE CONDITION ---
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
+    title=\textbf{OPR-02 Closure Condition}]
+\label{box:opr02_closure}
+OPR-02 (``Why exactly 3 generations?'') is \textbf{closed} when:
+\begin{enumerate}[nosep]
+    \item The potential $V(\xi)$ is \textbf{derived} from membrane parameters $(\sigma, r_e)$
+    \item The admissible BC family $\mathcal{B}$ is specified from brane physics
+    \item The threshold $\lambda_{\text{th}}$ is defined intrinsically (gap or essential spectrum)
+    \item Numerical computation shows $N_{\text{bound}} = 3$ for the derived $V(\xi)$
+    \item Robustness: $N_{\text{bound}} = 3$ persists over a \emph{finite measure}
+          subset of $\mathcal{B}$, not just a single fine-tuned BC choice
+\end{enumerate}
+
+\textbf{Status:} \tagOPEN{} --- Conditions 1--2 require deriving $V(\xi)$ and BCs from
+the 5D action (not yet done). Conditions 4--5 require numerical implementation.
+\end{tcolorbox}
+
+% --- ATTACK SURFACE BOX ---
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black,
+    title=\textbf{OPR-02 Attack Surface: ``Why Not 2 or 4?''}]
+\label{box:opr02_attack}
+
+\textbf{What a reviewer will ask:}
+\begin{itemize}[nosep]
+    \item ``Your $\mathbb{Z}_6/\mathbb{Z}_2 = \mathbb{Z}_3$ is a slogan. Where is the proof that
+          exactly 3 bound states exist?''
+    \item ``What if $V(\xi)$ or BCs are slightly different? Does $N_{\text{bound}}$ jump to 2 or 4?''
+    \item ``Is this tuned to give 3, or does 3 emerge generically?''
+\end{itemize}
+
+\textbf{What must be demonstrated to answer:}
+\begin{enumerate}[nosep]
+    \item \textbf{Spectral count:} Solve BVP with derived $V(\xi)$; count eigenvalues below
+          threshold. Show $N_{\text{bound}} = 3$.
+    \item \textbf{Robustness scan:} Vary BC parameters over admissible family $\mathcal{B}$;
+          show $N_{\text{bound}} = 3$ persists over a finite (non-measure-zero) region.
+    \item \textbf{No fine-tuning:} Demonstrate that the ``$N_{\text{bound}} = 3$ region''
+          includes the physically motivated BC point, not just its boundary.
+\end{enumerate}
+
+\textbf{Current status:} \tagOPEN{}
+
+The $\mathbb{Z}_6$ symmetry argument (Chapter~3) provides a \emph{structural reason}
+why 3 is preferred, but does \emph{not} constitute a spectral proof. BVP computation
+is required to close this gap.
+
+\textbf{Failure modes:}
+\begin{itemize}[nosep]
+    \item $N_{\text{bound}} \neq 3$ for physically motivated $V(\xi)$ $\to$ model falsified
+    \item $N_{\text{bound}} = 3$ only at a single BC point $\to$ fine-tuning criticism valid
+    \item Threshold ambiguity $\to$ multiple ``generation counts'' possible
+\end{itemize}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+% CHIRALITY CRITERION
+% ------------------------------------------------------------------------------
+
+\subsubsection{Chirality Suppression}
+\label{subsubsec:bvp_chirality}
+
+\begin{definition}[Chirality Asymmetry Ratio]
+\label{def:bvp:chirality}
+\tagDef{}
+For left-handed ($f_L$) and right-handed ($f_R$) mode profiles (from Ch9), define:
+\begin{equation}
+    R_{\text{LR}} = \frac{|f_R(0)|^2}{|f_L(0)|^2}
+    \label{eq:bvp:chirality_ratio}
+\end{equation}
+This measures the relative coupling of R-modes to the boundary.
+\end{definition}
+
+\paragraph{V--A criterion.}
+Ch9 derived $R_{\text{LR}} \ll 1$ for the half-line domain with $m(\xi) > 0$.
+On a finite interval, the suppression depends on $\ell$ and BCs.
+A consistent picture requires $R_{\text{LR}} < 10^{-3}$ (experimental limit on
+right-handed currents).
+
+% ==============================================================================
+\subsection{Acceptance Criteria and Closure Conditions}
+\label{subsec:bvp_acceptance}
+
+% ------------------------------------------------------------------------------
+% CLOSURE TABLE
+% ------------------------------------------------------------------------------
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
+    title=\textbf{Closure Conditions by OPR Item}]
+\small
+\begin{center}
+\begin{tabular}{p{2cm}p{5cm}p{5cm}}
+\toprule
+\textbf{OPR} & \textbf{Closure Criterion} & \textbf{What Must Be True} \\
+\midrule
+OPR-02 & $N_{\text{bound}} = 3$ & Robust under BC variations; derived $V(\xi)$ \\
+OPR-21 & BVP fully specified & $V(\xi)$, BCs derived from $(\sigma, r_e)$; no fit \\
+OPR-22 & $I_4$ converges & Eigenfunctions normalizable; overlap finite \\
+Ch13 & $G_F$ spine predictive & $x_1$ computed; scale from membrane only \\
+Ch9 & $R_{\text{LR}} < 10^{-3}$ & Chirality suppression from BVP (consistent) \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+% NUMERICAL CRITERIA
+% ------------------------------------------------------------------------------
+
+\paragraph{Numerical analysis criteria.}
+For computational implementation (deferred):
+\begin{enumerate}[nosep]
+    \item \textbf{Convergence:} Eigenvalues stable under grid refinement ($< 0.1\%$ change
+          when grid doubled)
+    \item \textbf{Normalization:} $|\langle \psi_n, \psi_n \rangle - 1| < 10^{-6}$
+    \item \textbf{Orthogonality:} $|\langle \psi_m, \psi_n \rangle| < 10^{-6}$ for $m \neq n$
+    \item \textbf{Boundary residual:} BC satisfaction $< 10^{-8}$ (relative)
+\end{enumerate}
+
+% ==============================================================================
+\subsection{Failure Modes}
+\label{subsec:bvp_failure}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black,
+    title=\textbf{Failure Modes (F1--F6)}]
+\small
+
+\textbf{F1: Non-self-adjoint BCs.}
+If BCs are not separated or real, eigenvalues may be complex $\to$ no physical spectrum.
+\emph{Next step:} Derive BCs from junction physics ensuring self-adjointness.
+
+\textbf{F2: Non-normalizable modes.}
+If $V(\xi) \to 0$ too fast at boundaries, modes may not be $L^2$ $\to$ no bound states.
+\emph{Next step:} Check potential asymptotics; confining $V$ required.
+
+\textbf{F3: Numerical instability.}
+Shooting methods can fail for stiff potentials or near-degenerate eigenvalues.
+\emph{Next step:} Use stable algorithms (finite element, spectral methods); validate
+against known analytic solutions.
+
+\textbf{F4: Parameter sensitivity.}
+If $N_{\text{bound}}$ changes drastically with small BC variations $\to$ no robust prediction.
+\emph{Next step:} Map sensitivity; identify ``natural'' BC class from physics.
+
+\textbf{F5: Threshold ambiguity.}
+Different threshold definitions give different $N_{\text{bound}}$ $\to$ no unique count.
+\emph{Next step:} Derive threshold from scale separation (gap in spectrum).
+
+\textbf{F6: Circular calibration.}
+If $V(\xi)$ or BCs are tuned to reproduce PDG masses $\to$ no predictive power.
+\emph{Next step:} Derive parameters from membrane physics only; compare to PDG \emph{after}.
+
+\end{tcolorbox}
+
+% ==============================================================================
+\subsection{Integration Pointers}
+\label{subsec:bvp_pointers}
+
+% ------------------------------------------------------------------------------
+% POINTER BOXES
+% ------------------------------------------------------------------------------
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!50!black,
+    title=\textbf{Used by: Ch12 OPR Register}]
+\small
+The BVP closure pack (this section) provides formal definitions for:
+\begin{itemize}[nosep]
+    \item OPR-02 closure criterion: $N_{\text{bound}} = 3$ (Definition~\ref{def:bvp:nbound})
+    \item OPR-21 closure criterion: BVP fully derived (Sec.~\ref{subsec:bvp_precise})
+    \item OPR-22 closure criterion: $I_4$ convergent (Definition~\ref{def:bvp:I4})
+\end{itemize}
+See Ch12 (Epistemic Landscape) for full OPR register.
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!50!black,
+    title=\textbf{Feeds: Ch13 $G_F$ Spine}]
+\small
+The $G_F$ derivation pathway requires:
+\begin{itemize}[nosep]
+    \item First eigenvalue $x_1$ (Definition~\ref{def:bvp:x1})
+    \item Overlap integral $I_4$ (Definition~\ref{def:bvp:I4})
+    \item Scale from membrane: $\ell \sim r_e$ (thickness)
+\end{itemize}
+The spine becomes predictive when these are computed from derived $V(\xi)$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!50!black,
+    title=\textbf{Feeds: Ch9 Chirality}]
+\small
+The V--A structure (Ch9) uses:
+\begin{itemize}[nosep]
+    \item Chirality ratio $R_{\text{LR}}$ (Definition~\ref{def:bvp:chirality})
+    \item Mode localization profiles $f_{L/R}(z)$
+    \item Half-line vs finite-interval consistency
+\end{itemize}
+Ch9 establishes V--A qualitatively; the closure pack provides quantitative criterion.
+\end{tcolorbox}
+
+% ==============================================================================
+% SUMMARY BOX
+% ==============================================================================
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!60!black,
+    title=\textbf{Summary: What This Closure Pack Provides}]
+\begin{enumerate}[nosep]
+    \item \textbf{Precise BVP statement:} Operator, domain, BCs, self-adjointness (Sec.~\ref{subsec:bvp_precise})
+    \item \textbf{Output definitions:} $\psi_n$, $x_1$, $I_4$, $N_{\text{bound}}$, $R_{\text{LR}}$ (Sec.~\ref{subsec:bvp_outputs})
+    \item \textbf{Closure criteria:} What each OPR needs to be ``closed'' (Sec.~\ref{subsec:bvp_acceptance})
+    \item \textbf{Failure modes:} What can go wrong and what to do next (Sec.~\ref{subsec:bvp_failure})
+    \item \textbf{Integration map:} How this feeds Ch9, Ch12, Ch13 (Sec.~\ref{subsec:bvp_pointers})
+\end{enumerate}
+
+\textbf{What it does NOT provide:}
+\begin{itemize}[nosep]
+    \item Derived $V(\xi)$ from membrane parameters (OPR-21 remains open)
+    \item Derived BCs from junction physics (part of OPR-21)
+    \item Claims that $N_{\text{bound}} = 3$ (requires physical $V(\xi)$)
+\end{itemize}
+\end{tcolorbox}
+
+% ==============================================================================
+% NUMERICAL PIPELINE DEMONSTRATION [M]/[Toy]
+% ==============================================================================
+
+\subsection{Numerical Pipeline Demo: Why $N_{\text{bound}}$ is a Closure Target, Not a Slogan}
+\label{subsec:bvp_numerical_demo}
+
+\noindent
+\textbf{Purpose (what this demo is and is not).}
+This section is a \emph{numerical sanity demonstration} of the BVP closure pipeline.
+It is \emph{not} a claim that the toy potential below is the physical EDC potential $V(\xi)$.
+Rather, it shows:
+\begin{enumerate}[nosep]
+    \item[(i)] how bound-state counting is performed computationally, and
+    \item[(ii)] why the statement ``$N_{\text{gen}} = 3$'' must be treated as a
+          \emph{spectral closure condition} tied to the \emph{derived} physical
+          $V(\xi)$ and admissible BCs---not as an automatic consequence of
+          group-quotient slogans like $Z_6/Z_2 = Z_3$.
+\end{enumerate}
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!50!black,
+    title=\textbf{Epistemic Status: Toy Demonstration}]
+\label{box:bvp_toy_demo}
+\textbf{Classification:} \tagM{}/[Toy]
+
+\textbf{What this is:}
+\begin{itemize}[nosep]
+    \item A \emph{pipeline test} showing that bound states can be counted numerically
+    \item Uses a placeholder potential $V(\xi) = -V_0 \operatorname{sech}^2(\xi/a)$ (Pöschl--Teller)
+    \item Demonstrates stability of $N_{\text{bound}}$ under truncation and BC variations
+\end{itemize}
+
+\textbf{What this is NOT:}
+\begin{itemize}[nosep]
+    \item NOT a derivation of $V(\xi)$ from 5D membrane action
+    \item NOT a claim that $N_{\text{bound}} = 3$ (toy potential gives $N_{\text{bound}} = 2$)
+    \item NOT OPR-21 closure
+\end{itemize}
+
+\textbf{Status:} OPR-21 remains \tagOPEN{} until $V(\xi)$ and BCs are derived from
+membrane physics.
+\end{tcolorbox}
+
+\subsubsection{Setup: Half-Line Pöschl--Teller Potential}
+
+We solve the dimensionless Schrödinger-type BVP on the half-line $\xi \in [0, \infty)$:
+\begin{equation}
+    -\frac{d^2\psi}{d\xi^2} + V(\xi)\psi = E\psi
+    \label{eq:bvp:toy_schrodinger}
+\end{equation}
+with toy potential:
+\begin{equation}
+    V(\xi) = -V_0 \operatorname{sech}^2(z/a), \qquad V_0 = 10, \quad a = 1
+    \label{eq:bvp:toy_potential}
+\end{equation}
+These parameters are chosen \emph{a priori} (no fitting to any physical data).
+
+\paragraph{Boundary conditions.}
+At $\xi = 0$: Robin BC $\psi'(0) + \kappa\psi(0) = 0$ with $\kappa \in \{0, 0.1, 0.5\}$.
+At $\xi = \xi_{\max}$: Dirichlet $\psi(\xi_{\max}) = 0$ (truncation of half-line).
+
+\paragraph{Essential spectrum threshold.}
+Since $V(\xi) \to 0$ as $\xi \to \infty$, the threshold is $\lambda_{\text{th}} = 0$
+(Definition~\ref{def:bvp:threshold}). Bound states satisfy $E < 0$.
+
+\subsubsection{Robustness Demonstration}
+
+Table~\ref{tab:bvp_toy_demo} shows the BVP outputs for varying truncation
+$\xi_{\max}$ and Robin parameter $\kappa$.
+
+% Include generated table
+\begin{table}[htbp]
+\centering
+\caption{Half-line BVP toy outputs (\tagM{}/[Toy], dimensionless units).
+$N_{\text{bound}} = 2$ is stable across all tested $(\xi_{\max}, \kappa)$ pairs,
+demonstrating robustness per Lemma~\ref{lem:bvp:spectral_stability}.
+Parameters: $V_0 = 10$, $a = 1$ (a priori, no calibration).}
+\label{tab:bvp_toy_demo}
+\small
+\begin{tabular}{cccccc}
+\toprule
+$\xi_{\max}$ & $\kappa$ & $N_{\text{bound}}$ & $E_0$ & $x_1 = |E_0|$ & $I_4^{(0)}$ \\
+\midrule
+10.0 & 0.0 & 2 & $-7.35$ & 7.35 & 1.23 \\
+10.0 & 0.1 & 2 & $-7.01$ & 7.01 & 1.17 \\
+10.0 & 0.5 & 2 & $-5.96$ & 5.96 & 0.99 \\
+12.0 & 0.0 & 2 & $-7.36$ & 7.36 & 1.23 \\
+12.0 & 0.1 & 2 & $-7.02$ & 7.02 & 1.17 \\
+12.0 & 0.5 & 2 & $-5.97$ & 5.97 & 0.99 \\
+14.0 & 0.0 & 2 & $-7.36$ & 7.36 & 1.24 \\
+14.0 & 0.1 & 2 & $-7.03$ & 7.03 & 1.17 \\
+14.0 & 0.5 & 2 & $-5.98$ & 5.98 & 1.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Key observations.}
+\begin{enumerate}[nosep]
+    \item \textbf{$N_{\text{bound}}$ is stable:} All $(\xi_{\max}, \kappa)$ combinations
+          yield $N_{\text{bound}} = 2$, confirming Lemma~\ref{lem:bvp:spectral_stability}.
+    \item \textbf{Eigenvalues converge:} $E_0$ varies by $< 0.3\%$ across $\xi_{\max}$ values.
+    \item \textbf{$I_4$ is computable:} Ground-state overlap integral well-defined.
+    \item \textbf{NOT three generations:} The toy potential gives 2 bound states,
+          not 3. This is expected---the physical $V(\xi)$ (derived from membrane) may
+          yield a different count.
+\end{enumerate}
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!60!black,
+    title=\textbf{Interpretation: Pipeline Works, Physics Open}]
+\label{box:bvp_pipeline_status}
+
+This demonstration shows that:
+\begin{itemize}[nosep]
+    \item The BVP infrastructure (grid, solver, threshold, count) is operational
+    \item $N_{\text{bound}}$ can be extracted robustly from the spectrum
+    \item Output quantities ($x_1$, $I_4$) can be computed once profiles exist
+\end{itemize}
+
+\textbf{What remains for OPR-21 closure:}
+\begin{itemize}[nosep]
+    \item Derive $V(\xi)$ from membrane parameters $(\sigma, r_e)$
+    \item Derive Robin BC parameter $\kappa$ from junction physics
+    \item Compute $N_{\text{bound}}$ for the \emph{physical} potential
+    \item If $N_{\text{bound}} = 3$ robustly $\Rightarrow$ OPR-02 upgrades to YELLOW
+\end{itemize}
+
+\textbf{Status:} OPR-21 and OPR-02 remain \tagOPEN{}.
+\end{tcolorbox}
+
+\subsubsection{Phase Diagram: Stepwise Spectral Counting}
+
+The count $N_{\text{bound}}$ is an \emph{output} of the BVP, not a calibrated input.
+To illustrate this, we sweep the well depth $V_0$ while keeping other parameters
+fixed ($a=1$, $\xi_{\max}=14$, $\kappa=0$). Table~\ref{tab:bvp_phase_diagram} shows
+the result.
+
+\begin{table}[htbp]
+\centering
+\caption{Stepwise bound-state counting: $N_{\text{bound}}(V_0)$ for the Pöschl--Teller toy.
+As the well depth increases, $N_{\text{bound}}$ grows in discrete steps.
+This is generic Sturm--Liouville behavior, \emph{not} an EDC prediction.
+OPR-02 closure requires deriving $V(\xi)$ from 5D membrane physics.}
+\label{tab:bvp_phase_diagram}
+\small
+\begin{tabular}{cccc}
+\toprule
+$V_0$ & $N_{\text{bound}}$ & $E_0$ & $x_1 = |E_0|$ \\
+\midrule
+1.0 & 1 & $-0.39$ & 0.39 \\
+3.0 & 1 & $-1.72$ & 1.72 \\
+5.0 & 1 & $-3.24$ & 3.24 \\
+7.0 & 2 & $-4.86$ & 4.86 \\
+10.0 & 2 & $-7.36$ & 7.36 \\
+15.0 & 2 & $-11.69$ & 11.69 \\
+20.0 & 2 & $-16.12$ & 16.12 \\
+30.0 & 3 & $-25.17$ & 25.17 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Interpretation.}
+For this toy family, $N_{\text{bound}}$ takes values $\{1, 2, 3\}$ as $V_0$ increases.
+The transition points are approximately $V_0 \approx 6$ (1$\to$2) and $V_0 \approx 25$
+(2$\to$3). This demonstrates the key point: \emph{three generations is not automatic}.
+A specific potential depth is required.
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!50!black,
+    title=\textbf{Why $N_{\text{bound}} = 3$ is Non-Trivial}]
+\label{box:why_three_nontrivial}
+
+The phase diagram shows that obtaining exactly three bound states requires the
+potential to lie in a specific window. For the toy Pöschl--Teller:
+\[
+N_{\text{bound}} = 3 \quad \Leftrightarrow \quad V_0 \gtrsim 25 \text{ (with } a=1\text{)}.
+\]
+The \emph{physical} membrane potential may have a completely different shape and
+parameter regime. OPR-02 closure requires:
+\begin{enumerate}[nosep]
+    \item Derive $V(\xi)$ from membrane parameters $(\sigma, r_e, \ldots)$
+    \item Compute $N_{\text{bound}}$ for that potential
+    \item Show robustness under admissible BC deformations
+\end{enumerate}
+\end{tcolorbox}
+
+\subsubsection{Visualization: Potential and Ground State}
+
+Figure~\ref{fig:bvp_toy_profile} shows the toy potential $V(\xi)$ and the ground-state
+wavefunction $\psi_0(\xi)$ for $V_0 = 10$, $a = 1$. The wavefunction is localized near
+$\xi = 0$ where the potential well is deepest, and decays exponentially for $\xi \gg a$.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\textwidth]{code/output/bvp_halfline_toy_figure.pdf}
+\caption{Toy BVP profiles: potential $V(\xi) = -V_0 \operatorname{sech}^2(\xi/a)$ (blue)
+and normalized ground-state wavefunction $\psi_0(\xi)$ (red) for $V_0 = 10$, $a = 1$.
+The dashed line shows the essential spectrum threshold ($E = 0$); the dotted line
+shows the ground-state energy $E_0 \approx -7.35$. Classification: \tagM{}/[Toy].}
+\label{fig:bvp_toy_profile}
+\end{figure}
+
+\subsubsection{Reproducibility Box}
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!70!black,
+    title=\textbf{How to Reproduce}]
+\label{box:bvp_reproducibility}
+
+\textbf{Command:}
+\begin{verbatim}
+python3 code/bvp_halfline_toy_demo.py
+\end{verbatim}
+
+\textbf{Generated files:}
+\begin{itemize}[nosep]
+    \item \texttt{code/output/bvp\_halfline\_toy\_table.tex} --- robustness table
+    \item \texttt{code/output/bvp\_halfline\_phase\_table.tex} --- phase diagram table
+    \item \texttt{code/output/bvp\_halfline\_toy\_figure.pdf} --- $V(\xi)$ and $\psi_0$ plot
+\end{itemize}
+
+\textbf{Requirements:}
+\begin{itemize}[nosep]
+    \item Python 3.8+
+    \item \texttt{numpy}, \texttt{scipy} (required)
+    \item \texttt{matplotlib} (optional; for figure generation)
+\end{itemize}
+
+\textbf{Epistemic note:}
+All parameters are chosen \emph{a priori}. No fitting to PDG, $M_W$, $G_F$, or
+$v = 246$~GeV. The toy potential does NOT close OPR-21 or OPR-02.
+\end{tcolorbox}
+
+\subsubsection{Reader Takeaway: Why This Strengthens the Epistemic Contract}
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!60!black,
+    title=\textbf{Takeaway: $N_{\text{gen}} = 3$ is a Closure Target, Not a Slogan}]
+\label{box:reader_takeaway}
+
+This numerical demonstration makes one operational point:
+
+\begin{itemize}[nosep]
+    \item \textbf{Generation count is spectral:} $N_{\text{gen}}$ corresponds to
+          $N_{\text{bound}}$ for a self-adjoint BVP with an intrinsic threshold.
+    \item \textbf{Three is not automatic:} The toy phase diagram shows $N_{\text{bound}} \in \{1, 2, 3\}$
+          depending on potential depth. Obtaining $N_{\text{bound}} = 3$ requires being in a
+          \emph{specific parameter regime}.
+    \item \textbf{Closure is conditional:} The statement ``$N_{\text{gen}} = 3$'' is a
+          \emph{closure condition} that constrains the physically derived $V(\xi)$ and
+          admissible BC family, not an automatic consequence of group-quotient arguments.
+\end{itemize}
+
+\medskip
+\textbf{Consequently:} OPR-02 remains \tagOPEN{} until the physical $V(\xi)$ is derived from
+the 5D membrane action and numerical BVP computation confirms $N_{\text{bound}} = 3$ under
+admissible BCs.
+\end{tcolorbox}
+
+\paragraph{No-Calibration Guardrail.}
+This demo does \emph{not} tune $V_0$ to match a desired outcome (e.g., ``force $N = 3$''),
+nor does it use PDG inputs to define thresholds or counts. It is included to illustrate
+the \emph{method} and \emph{logical structure} of closure:
+\begin{equation}
+    \text{derive } V(\xi) \text{ \& BCs from 5D action}
+    \quad\Longrightarrow\quad
+    \text{solve BVP}
+    \quad\Longrightarrow\quad
+    N_{\text{bound}} \stackrel{?}{=} 3.
+    \label{eq:bvp:closure_chain}
+\end{equation}
+Until the first implication is completed, the final implication is not a prediction but
+an \emph{explicitly tracked target} (OPR-02, OPR-21).

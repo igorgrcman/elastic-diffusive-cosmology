@@ -1,0 +1,89 @@
+% figures/fig_tau_process_pipeline.tex
+% Tau decay process pipeline diagram (brane-dominant, multiple channels)
+\begin{tikzpicture}[scale=0.85, transform shape]
+
+% Load styles
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Background regions (brane-dominant, no bulk trigger)
+% ─────────────────────────────────────────────────────────────────────────────
+\fill[blue!8] (-5.5,0.6) rectangle (6.2,2.2);
+\fill[green!8] (-5.5,-1.8) rectangle (6.2,0.6);
+
+% Region labels
+\node[font=\scriptsize, blue!50!black] at (-4.8,1.9) {Thick brane layer};
+\node[font=\scriptsize, green!50!black] at (-4.8,0.3) {3D outputs};
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Brane layer nodes
+% ─────────────────────────────────────────────────────────────────────────────
+\node[brane box, text width=2.6cm] (tau) at (-3.5,1.4)
+  {Tau $\Psi_\tau$\\{\tiny higher-mode brane}};
+
+\node[brane box, text width=2.6cm] (diss) at (0,1.4)
+  {Dissipation\\{\tiny $\Gamma_{\mathrm{eff}} E_{\mathrm{brane}}$}};
+
+\node[gate box, text width=2.4cm, minimum height=0.8cm] (frozen) at (3.8,1.4)
+  {$\mathcal{P}_{\mathrm{frozen}}$\\{\tiny release gate}};
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Output layer nodes - multiple channels
+% ─────────────────────────────────────────────────────────────────────────────
+% Leptonic channel (e)
+\node[output box, text width=1.4cm, font=\scriptsize] (eout) at (-0.5,-0.5)
+  {$e^-$};
+\node[output box, text width=1.4cm, font=\scriptsize] (nue) at (0.9,-0.5)
+  {$\bar\nu_e$};
+\node[output box, text width=1.4cm, font=\scriptsize] (nutau1) at (2.3,-0.5)
+  {$\nu_\tau$};
+
+% Leptonic channel (mu)
+\node[output box, text width=1.4cm, font=\scriptsize] (muout) at (-0.5,-1.3)
+  {$\mu^-$};
+\node[output box, text width=1.4cm, font=\scriptsize] (numu) at (0.9,-1.3)
+  {$\bar\nu_\mu$};
+\node[output box, text width=1.4cm, font=\scriptsize] (nutau2) at (2.3,-1.3)
+  {$\nu_\tau$};
+
+% Hadronic channel
+\node[output box, text width=1.8cm, font=\scriptsize, fill=orange!10] (had) at (4.5,-0.9)
+  {hadrons\\{\tiny $\pi,\rho,...$}};
+\node[output box, text width=1.4cm, font=\scriptsize] (nutau3) at (5.8,-0.9)
+  {$\nu_\tau$};
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Arrows
+% ─────────────────────────────────────────────────────────────────────────────
+\draw[edc flow] (tau) -- (diss);
+\draw[edc flow] (diss) -- (frozen);
+
+% Release to outputs - branching
+\draw[edc arrow] (frozen.south) -- ++(0,-0.2) -| (1.4,-0.1) -- (1.4,-0.3);
+\draw[edc arrow] (frozen.south) -- ++(0,-0.2) -| (1.4,-1.1);
+\draw[edc arrow] (frozen.south) -- ++(0,-0.2) -| (had.north);
+
+% Connect outputs within channels
+\draw[edc dashed, gray] (eout.east) -- (nue.west);
+\draw[edc dashed, gray] (nue.east) -- (nutau1.west);
+\draw[edc dashed, gray] (muout.east) -- (numu.west);
+\draw[edc dashed, gray] (numu.east) -- (nutau2.west);
+\draw[edc dashed, gray] (had.east) -- (nutau3.west);
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Annotations
+% ─────────────────────────────────────────────────────────────────────────────
+
+% Channel branching note
+\node[rectangle, draw=purple!40, fill=purple!5, rounded corners=2pt,
+      font=\tiny, align=center, text width=3.8cm] at (-2.0,-0.9)
+  {Multiple channels open:\\
+   $m_\tau \gg m_\mu, m_\pi, m_\rho$\\
+   \textbf{BR}: 17.8\% $e$, 17.4\% $\mu$, 64.8\% had};
+
+% Universality note
+\node[rectangle, draw=green!40, fill=green!5, rounded corners=2pt,
+      font=\tiny, align=center, text width=2.8cm] at (5.2,0.3)
+  {Same pipeline as $\mu$\\
+   (universality test)};
+
+\end{tikzpicture}
