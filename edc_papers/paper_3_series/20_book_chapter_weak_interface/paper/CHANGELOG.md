@@ -4,39 +4,49 @@ All notable changes to the Part II book are documented here.
 
 ---
 
-## [2026-01-23] Half-Line BVP Numerical Pipeline Demo
+## [2026-01-23] Half-Line BVP Numerical Pipeline Demo + Phase Diagram
 
-**Commit:** 1c49324
+**Commit:** dfd8f15
 
 ### Added
-- **New `code/bvp_halfline_toy_demo.py`** (~360 lines):
+- **`code/bvp_halfline_toy_demo.py`** (~450 lines):
   - Half-line BVP solver with Pöschl-Teller toy potential
   - Robin/Neumann BC implementation at z=0
   - Robustness scan over (z_max, κ) parameter space
-  - LaTeX table generator
-- **New `code/output/bvp_halfline_toy_table.tex`**:
-  - Auto-generated robustness table
-  - N_bound = 2 stable across all tested (z_max, κ) combinations
-- **New subsection** in `sections/ch14_bvp_closure_pack.tex`:
+  - Phase diagram sweep over V0 (stepwise N_bound counting)
+  - Figure generator (V(z) and ψ_0 plot)
+  - LaTeX table generators (robustness + phase diagram)
+- **Generated outputs**:
+  - `code/output/bvp_halfline_toy_table.tex` — robustness table
+  - `code/output/bvp_halfline_phase_table.tex` — phase diagram table
+  - `code/output/bvp_halfline_toy_figure.pdf` — V(z) and ψ_0 visualization
+- **Expanded subsection** in `sections/ch14_bvp_closure_pack.tex`:
   - §14.X.Y: "Numerical Pipeline Demonstration"
   - Epistemic status box (Toy, no calibration)
-  - Table~\ref{tab:bvp_toy_demo} with robustness results
-  - Reproducibility instructions
+  - Robustness table (Table~\ref{tab:bvp_toy_demo})
+  - Phase diagram table (Table~\ref{tab:bvp_phase_diagram})
+  - Figure~\ref{fig:bvp_toy_profile}: V(z) and ψ_0 plot
+  - "Why N=3 is non-trivial" box
+  - Reproducibility box with run instructions
+- **Symlink** `rebuild_part2_snapshot/paper/code -> ../../code`
 
 ### Build
-- 375 pages (+2 from numerical demo)
+- 377 pages (+4 from phase diagram + figure)
 - 0 undefined refs
 - 14 bibliography entries (unchanged)
 
-### Key Results (Toy potential V₀=10, a=1)
-- $N_{\text{bound}} = 2$ (STABLE under z_max ∈ {10, 12, 14}, κ ∈ {0, 0.1, 0.5})
-- $x_1 \approx 7.35$ (ground state binding energy, κ=0)
-- $I_4 \approx 1.23$ (ground state concentration, κ=0)
+### Key Results (Toy potential, NO calibration)
+- **Robustness table**: $N_{\text{bound}} = 2$ STABLE under $(z_{\max}, \kappa)$ variations
+- **Phase diagram**: $N_{\text{bound}} \in \{1, 2, 3\}$ as $V_0$ increases
+  - $V_0 \lesssim 6$: $N_{\text{bound}} = 1$
+  - $V_0 \in [7, 20]$: $N_{\text{bound}} = 2$
+  - $V_0 \gtrsim 25$: $N_{\text{bound}} = 3$
+- This demonstrates **stepwise spectral counting** — N_bound is OUTPUT of BVP
 
 ### Guarantee
 - **No calibration** to PDG, MW, GF, v=246 GeV
-- Parameters chosen a priori (V0=10, a=1)
-- **OPR-21 remains OPEN** (toy potential, not derived from 5D action)
+- Parameters chosen a priori
+- **OPR-21 and OPR-02 remain OPEN** (toy potential, not derived from 5D action)
 - Framework 2.0 language intact
 
 ---
