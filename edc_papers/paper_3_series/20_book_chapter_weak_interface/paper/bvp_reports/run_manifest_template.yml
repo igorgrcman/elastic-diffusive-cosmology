@@ -1,0 +1,131 @@
+# BVP Run Manifest Template
+# Copy this file and fill in values before each run
+
+# === Identification ===
+run_id: ""  # Short description, e.g., "phase_atlas_v1"
+date: ""    # YYYY-MM-DD HH:MM
+operator: "" # Who ran this
+
+# === Environment ===
+git_commit: ""       # git rev-parse --short HEAD
+git_branch: ""       # git branch --show-current
+git_dirty: false     # true if uncommitted changes
+
+machine:
+  hostname: ""
+  os: ""             # e.g., "macOS 14.2" or "Ubuntu 22.04"
+  cpu: ""            # e.g., "Apple M1 Pro"
+  ram_gb: 0
+
+python:
+  version: ""        # python --version
+  numpy: ""          # pip show numpy | grep Version
+  scipy: ""          # pip show scipy | grep Version
+  matplotlib: ""     # pip show matplotlib | grep Version
+
+# === Solver Configuration ===
+solver:
+  method_A: "FD_sparse_eigen"  # Primary method
+  method_B: "shooting"          # Cross-validation method
+
+  grid:
+    N_default: 500
+    N_refinement: [100, 200, 400, 800]
+    z_max_default: 15.0
+    z_max_range: [10.0, 12.0, 15.0, 20.0]
+
+  tolerances:
+    eigenvalue_relative: 1.0e-10
+    normalization: 1.0e-8
+    orthogonality: 1.0e-8
+    bc_satisfaction: 1.0e-8
+    cross_method_agreement: 1.0e-4
+
+# === Potential Candidates ===
+potentials:
+  poschl_teller:
+    enabled: true
+    V0_range: [1.0, 30.0]
+    V0_steps: 30
+    a_range: [0.5, 2.0]
+    a_steps: 16
+
+  volcano:
+    enabled: true
+    V0_range: [1.0, 50.0]
+    V0_steps: 25
+    a_range: [0.5, 3.0]
+    a_steps: 20
+
+  box:
+    enabled: true
+    V0_range: [1.0, 100.0]
+    V0_steps: 50
+    L_range: [0.5, 2.0]
+    L_steps: 16
+
+  double_well:
+    enabled: true
+    V0_range: [1.0, 30.0]
+    V0_steps: 30
+    d_range: [0.5, 3.0]
+    d_steps: 20
+
+  exponential:
+    enabled: true
+    V0_range: [1.0, 50.0]
+    V0_steps: 25
+    a_range: [0.5, 3.0]
+    a_steps: 20
+
+# === Boundary Conditions ===
+boundary_conditions:
+  alpha_L_range: [0.0, 20.0]  # 0 = Neumann, large = ~Dirichlet
+  alpha_R_range: [0.0, 20.0]
+  alpha_steps: 21
+  natural_alpha: 6.283185307  # 2π
+
+# === Verification Ladder ===
+verification:
+  V0_benchmarks:
+    infinite_well: true
+    harmonic_oscillator: true
+    poschl_teller: true
+
+  V1_cross_method: true
+
+  V2_stability:
+    grid_refinement: true
+    z_max_cutoff: true
+    operator_symmetry: true
+    normalization: true
+    orthogonality: true
+    bc_satisfaction: true
+
+# === Output Configuration ===
+output:
+  directory: "bvp_reports/"
+  figures_format: "png"
+  figures_dpi: 300
+  tables_format: "csv"  # or "tex"
+
+  save_eigenvalues: true
+  save_eigenfunctions: true
+  save_phase_diagrams: true
+
+# === Checksums (fill after run) ===
+checksums:
+  # SHA256 of key output files for reproducibility
+  eigenvalues_all.csv: ""
+  phase_table_poschl_teller.csv: ""
+  # Add more as needed
+
+# === Notes ===
+notes: |
+  [Add any special notes about this run]
+
+# === Run Duration ===
+timing:
+  start: ""
+  end: ""
+  total_seconds: 0
