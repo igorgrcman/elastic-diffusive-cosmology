@@ -642,9 +642,136 @@ Ch9 establishes V--A qualitatively; the closure pack provides quantitative crite
 
 \textbf{What it does NOT provide:}
 \begin{itemize}[nosep]
-    \item Numerical solutions (implementation deferred)
     \item Derived $V(z)$ from membrane parameters (OPR-21 remains open)
     \item Derived BCs from junction physics (part of OPR-21)
-    \item Claims that $N_{\text{bound}} = 3$ (requires computation)
+    \item Claims that $N_{\text{bound}} = 3$ (requires physical $V(z)$)
 \end{itemize}
 \end{tcolorbox}
+
+% ==============================================================================
+% NUMERICAL PIPELINE DEMONSTRATION [M]/[Toy]
+% ==============================================================================
+
+\subsection{Numerical Pipeline Demonstration}
+\label{subsec:bvp_numerical_demo}
+
+This subsection provides a \textbf{minimal numerical demonstration} of the BVP
+pipeline. The purpose is to show that the computational infrastructure works,
+\emph{not} to claim physical closure.
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!50!black,
+    title=\textbf{Epistemic Status: Toy Demonstration}]
+\label{box:bvp_toy_demo}
+\textbf{Classification:} \tagM{}/[Toy]
+
+\textbf{What this is:}
+\begin{itemize}[nosep]
+    \item A \emph{pipeline test} showing that bound states can be counted numerically
+    \item Uses a placeholder potential $V(z) = -V_0 \operatorname{sech}^2(z/a)$ (Pöschl--Teller)
+    \item Demonstrates stability of $N_{\text{bound}}$ under truncation and BC variations
+\end{itemize}
+
+\textbf{What this is NOT:}
+\begin{itemize}[nosep]
+    \item NOT a derivation of $V(z)$ from 5D membrane action
+    \item NOT a claim that $N_{\text{bound}} = 3$ (toy potential gives $N_{\text{bound}} = 2$)
+    \item NOT OPR-21 closure
+\end{itemize}
+
+\textbf{Status:} OPR-21 remains \tagOPEN{} until $V(z)$ and BCs are derived from
+membrane physics.
+\end{tcolorbox}
+
+\subsubsection{Setup: Half-Line Pöschl--Teller Potential}
+
+We solve the dimensionless Schrödinger-type BVP on the half-line $z \in [0, \infty)$:
+\begin{equation}
+    -\frac{d^2\psi}{dz^2} + V(z)\psi = E\psi
+    \label{eq:bvp:toy_schrodinger}
+\end{equation}
+with toy potential:
+\begin{equation}
+    V(z) = -V_0 \operatorname{sech}^2(z/a), \qquad V_0 = 10, \quad a = 1
+    \label{eq:bvp:toy_potential}
+\end{equation}
+These parameters are chosen \emph{a priori} (no fitting to any physical data).
+
+\paragraph{Boundary conditions.}
+At $z = 0$: Robin BC $\psi'(0) + \kappa\psi(0) = 0$ with $\kappa \in \{0, 0.1, 0.5\}$.
+At $z = z_{\max}$: Dirichlet $\psi(z_{\max}) = 0$ (truncation of half-line).
+
+\paragraph{Essential spectrum threshold.}
+Since $V(z) \to 0$ as $z \to \infty$, the threshold is $\lambda_{\text{th}} = 0$
+(Definition~\ref{def:bvp:threshold}). Bound states satisfy $E < 0$.
+
+\subsubsection{Robustness Demonstration}
+
+Table~\ref{tab:bvp_toy_demo} shows the BVP outputs for varying truncation
+$z_{\max}$ and Robin parameter $\kappa$.
+
+% Include generated table
+\begin{table}[htbp]
+\centering
+\caption{Half-line BVP toy outputs (\tagM{}/[Toy], dimensionless units).
+$N_{\text{bound}} = 2$ is stable across all tested $(z_{\max}, \kappa)$ pairs,
+demonstrating robustness per Lemma~\ref{lem:bvp:spectral_stability}.
+Parameters: $V_0 = 10$, $a = 1$ (a priori, no calibration).}
+\label{tab:bvp_toy_demo}
+\small
+\begin{tabular}{cccccc}
+\toprule
+$z_{\max}$ & $\kappa$ & $N_{\text{bound}}$ & $E_0$ & $x_1 = |E_0|$ & $I_4^{(0)}$ \\
+\midrule
+10.0 & 0.0 & 2 & $-7.35$ & 7.35 & 1.23 \\
+10.0 & 0.1 & 2 & $-7.01$ & 7.01 & 1.17 \\
+10.0 & 0.5 & 2 & $-5.96$ & 5.96 & 0.99 \\
+12.0 & 0.0 & 2 & $-7.36$ & 7.36 & 1.23 \\
+12.0 & 0.1 & 2 & $-7.02$ & 7.02 & 1.17 \\
+12.0 & 0.5 & 2 & $-5.97$ & 5.97 & 0.99 \\
+14.0 & 0.0 & 2 & $-7.36$ & 7.36 & 1.24 \\
+14.0 & 0.1 & 2 & $-7.03$ & 7.03 & 1.17 \\
+14.0 & 0.5 & 2 & $-5.98$ & 5.98 & 1.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Key observations.}
+\begin{enumerate}[nosep]
+    \item \textbf{$N_{\text{bound}}$ is stable:} All $(z_{\max}, \kappa)$ combinations
+          yield $N_{\text{bound}} = 2$, confirming Lemma~\ref{lem:bvp:spectral_stability}.
+    \item \textbf{Eigenvalues converge:} $E_0$ varies by $< 0.3\%$ across $z_{\max}$ values.
+    \item \textbf{$I_4$ is computable:} Ground-state overlap integral well-defined.
+    \item \textbf{NOT three generations:} The toy potential gives 2 bound states,
+          not 3. This is expected---the physical $V(z)$ (derived from membrane) may
+          yield a different count.
+\end{enumerate}
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!60!black,
+    title=\textbf{Interpretation: Pipeline Works, Physics Open}]
+\label{box:bvp_pipeline_status}
+
+This demonstration shows that:
+\begin{itemize}[nosep]
+    \item The BVP infrastructure (grid, solver, threshold, count) is operational
+    \item $N_{\text{bound}}$ can be extracted robustly from the spectrum
+    \item Output quantities ($x_1$, $I_4$) can be computed once profiles exist
+\end{itemize}
+
+\textbf{What remains for OPR-21 closure:}
+\begin{itemize}[nosep]
+    \item Derive $V(z)$ from membrane parameters $(\sigma, r_e)$
+    \item Derive Robin BC parameter $\kappa$ from junction physics
+    \item Compute $N_{\text{bound}}$ for the \emph{physical} potential
+    \item If $N_{\text{bound}} = 3$ robustly $\Rightarrow$ OPR-02 upgrades to YELLOW
+\end{itemize}
+
+\textbf{Status:} OPR-21 and OPR-02 remain \tagOPEN{}.
+\end{tcolorbox}
+
+\paragraph{Reproducibility.}
+The results in Table~\ref{tab:bvp_toy_demo} can be regenerated by running:
+\begin{verbatim}
+python3 code/bvp_halfline_toy_demo.py
+\end{verbatim}
+from the paper root directory. The script uses \texttt{scipy} for sparse
+eigenvalue computation and requires no external calibration data.

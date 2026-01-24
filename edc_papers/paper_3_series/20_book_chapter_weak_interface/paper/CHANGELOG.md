@@ -4,6 +4,43 @@ All notable changes to the Part II book are documented here.
 
 ---
 
+## [2026-01-23] Half-Line BVP Numerical Pipeline Demo
+
+**Commit:** 1c49324
+
+### Added
+- **New `code/bvp_halfline_toy_demo.py`** (~360 lines):
+  - Half-line BVP solver with Pöschl-Teller toy potential
+  - Robin/Neumann BC implementation at z=0
+  - Robustness scan over (z_max, κ) parameter space
+  - LaTeX table generator
+- **New `code/output/bvp_halfline_toy_table.tex`**:
+  - Auto-generated robustness table
+  - N_bound = 2 stable across all tested (z_max, κ) combinations
+- **New subsection** in `sections/ch14_bvp_closure_pack.tex`:
+  - §14.X.Y: "Numerical Pipeline Demonstration"
+  - Epistemic status box (Toy, no calibration)
+  - Table~\ref{tab:bvp_toy_demo} with robustness results
+  - Reproducibility instructions
+
+### Build
+- 375 pages (+2 from numerical demo)
+- 0 undefined refs
+- 14 bibliography entries (unchanged)
+
+### Key Results (Toy potential V₀=10, a=1)
+- $N_{\text{bound}} = 2$ (STABLE under z_max ∈ {10, 12, 14}, κ ∈ {0, 0.1, 0.5})
+- $x_1 \approx 7.35$ (ground state binding energy, κ=0)
+- $I_4 \approx 1.23$ (ground state concentration, κ=0)
+
+### Guarantee
+- **No calibration** to PDG, MW, GF, v=246 GeV
+- Parameters chosen a priori (V0=10, a=1)
+- **OPR-21 remains OPEN** (toy potential, not derived from 5D action)
+- Framework 2.0 language intact
+
+---
+
 ## [2026-01-23] OPR-02 Ngen Robustness Upgrade
 
 **Commit:** 0071bb5
