@@ -4,6 +4,47 @@ All notable changes to the Part II book are documented here.
 
 ---
 
+## [2026-01-24] V(z) Derivation Skeleton + OPR-20 Hardening
+
+**Commit:** f3d0b1c
+
+### Added (Task A: V(z) Skeleton in ch14)
+- **New subsection** `§14.X: From 5D Action to Effective Potential: What Must Be Derived`
+  - Required inputs: bulk action, brane action, GHY+Israel junction terms
+  - 5-step derivation pipeline: background → perturbation → reduction → V(z) → BCs
+  - V(z) structure equation: $V = V_{\text{warp}} + V_{\text{mass}} + V_{\text{coupling}}$
+  - OPR-21 closure condition box with downstream unlocks
+  - Connection to Part I membrane parameters table
+- **3 new equations**: bulk action skeleton, brane action skeleton, V(z) structure
+- **2 new boxes**: Epistemic Status (OPEN), OPR-21 Closure Condition
+
+### Added (Task B: OPR-20 Hardening in ch11)
+- **New subsubsection** `H.8: What Mathematical Result is Missing`
+  - Lemma stub for $\delta = R_\xi$ from matched asymptotic analysis
+  - 4-step path to [Dc] upgrade: inner expansion → outer → matching → identification
+  - Explicit "Required mathematical ingredients" list
+- **New subsubsection** `H.9: Fail-Safe Narrative`
+  - "Even without $\delta = R_\xi$, the structure remains valid"
+  - What survives vs what changes
+  - Bottom line: microphysical identification, not structural postulate
+
+### Build
+- 381 pages (+4 from skeleton + hardening)
+- 0 undefined refs
+- 14 bibliography entries (unchanged)
+
+### Epistemic Audit
+- OPEN tags: 8 in ch14 (increased), 2 in ch11 (added)
+- No forbidden fits/calibration language
+- Framework 2.0 compliance maintained
+
+### Guarantee
+- No numerical claims about V(z), spectrum, or masses
+- All new content explicitly tagged [OPEN] or [P]
+- Fail-safe narrative isolates OPR-20 risk
+
+---
+
 ## [2026-01-23] Half-Line BVP Numerical Pipeline Demo + Phase Diagram
 
 **Commit:** dfd8f15

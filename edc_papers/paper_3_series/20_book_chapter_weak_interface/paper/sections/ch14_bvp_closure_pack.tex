@@ -236,6 +236,159 @@ Under self-adjointness:
 \end{itemize}
 
 % ==============================================================================
+\subsection{From 5D Action to Effective Potential: What Must Be Derived}
+\label{subsec:bvp_5d_skeleton}
+
+This subsection provides a formal \textbf{skeleton} for deriving the effective
+potential $V(z)$ and boundary conditions from the 5D action. This is the key
+\tagOPEN{} step required for OPR-21 closure.
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!60!black,
+    title=\textbf{Epistemic Status: Derivation Skeleton}]
+\label{box:vz_skeleton_status}
+
+\textbf{Classification:} \tagOPEN{} (roadmap, not completed derivation)
+
+\textbf{What this section provides:}
+\begin{itemize}[nosep]
+    \item Identification of required inputs from 5D physics
+    \item Formal pipeline: action $\to$ variation $\to$ operator $\to$ V(z)
+    \item Specification of what closure would require
+\end{itemize}
+
+\textbf{What this section does NOT provide:}
+\begin{itemize}[nosep]
+    \item Explicit form of $V(z)$ (requires completing the pipeline)
+    \item Numerical values (deferred to implementation)
+    \item Claims about spectrum or generation count
+\end{itemize}
+\end{tcolorbox}
+
+\subsubsection{Required Inputs from 5D Physics}
+
+The derivation of $V(z)$ requires combining several contributions from the 5D theory:
+
+\paragraph{Bulk action.}
+The bulk contribution includes the 5D Einstein--Hilbert term and any matter fields
+propagating in the bulk:
+\begin{equation}
+    S_{\text{bulk}} = \int d^5x \sqrt{-g_5} \left[
+        \frac{M_5^3}{2} R_5 + \mathcal{L}_{\text{bulk matter}}
+    \right]
+    \label{eq:bvp:bulk_action_skeleton}
+\end{equation}
+where $M_5$ is the 5D Planck mass and $R_5$ is the 5D Ricci scalar. \tagP{}
+
+\paragraph{Brane action.}
+The 3-brane (membrane) contributes tension and localized matter terms:
+\begin{equation}
+    S_{\text{brane}} = -\int d^4x \sqrt{-g_4} \left[
+        \sigma + \mathcal{L}_{\text{brane matter}}
+    \right]
+    \label{eq:bvp:brane_action_skeleton}
+\end{equation}
+where $\sigma$ is the brane tension and $g_4$ is the induced metric. The brane
+tension is related to the membrane surface tension from Part~I. \tagP{}
+
+\paragraph{Junction terms (Gibbons--Hawking--York + Israel).}
+For a brane at position $z = z_0$, the Israel junction conditions
+relate the jump in extrinsic curvature $K_{ab}$ to the brane stress-energy:
+\begin{equation}
+    [K_{ab}] - g_{ab}[K] = -\frac{1}{M_5^3} S_{ab}
+    \label{eq:bvp:israel_junction}
+\end{equation}
+where $S_{ab}$ is the brane stress-energy tensor and $[X] \equiv X^+ - X^-$ denotes
+the jump across the brane~\cite{RandallSundrum1999a,RubakovShaposhnikov1983}.
+
+The Gibbons--Hawking--York boundary term ensures a well-posed variational problem:
+\begin{equation}
+    S_{\text{GHY}} = M_5^3 \int_{\partial\mathcal{M}} d^4x \sqrt{-h}\, K
+    \label{eq:bvp:ghy_term}
+\end{equation}
+These junction terms are essential for deriving BCs from the action. \tagM{}
+
+\subsubsection{The Derivation Pipeline}
+\label{subsubsec:vz_pipeline}
+
+The formal pipeline from 5D action to effective 1D BVP:
+
+\begin{enumerate}
+    \item \textbf{Background solution:} Solve the Einstein equations with brane
+          sources to obtain the warped metric $ds^2 = e^{2A(z)}\eta_{\mu\nu}dx^\mu dx^\nu + dz^2$.
+          The warp factor $A(z)$ encodes the brane structure.
+
+    \item \textbf{Perturbation ansatz:} Expand bulk fields around the background,
+          separating 4D and extra-dimensional dependence:
+          $\phi(x^\mu, z) = \sum_n \phi_n(x^\mu) f_n(z)$.
+
+    \item \textbf{Dimensional reduction:} Integrate over the extra dimension to
+          obtain an effective 4D theory. The profile functions $f_n(z)$ satisfy
+          a Sturm--Liouville equation.
+
+    \item \textbf{Identify operator and potential:} The resulting equation takes
+          the form of Eq.~(\ref{eq:bvp:operator}) with:
+          \begin{equation}
+              V(z) = V_{\text{warp}}(z) + V_{\text{mass}}(z) + V_{\text{coupling}}(z)
+              \label{eq:bvp:vz_structure}
+          \end{equation}
+          where each term derives from specific physics:
+          \begin{itemize}[nosep]
+              \item $V_{\text{warp}}$: from warp factor derivatives ($A''$, $(A')^2$)
+              \item $V_{\text{mass}}$: from bulk mass terms
+              \item $V_{\text{coupling}}$: from brane-localized couplings
+          \end{itemize}
+
+    \item \textbf{Derive boundary conditions:} The Israel junction conditions
+          and variational principle at the brane yield Robin-type BCs with
+          parameters determined by brane microphysics (not chosen ad hoc).
+\end{enumerate}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black,
+    title=\textbf{OPR-21 Closure Condition: V(z) Derivation}]
+\label{box:opr21_vz_closure}
+
+\textbf{Status:} \tagOPEN{}
+
+\textbf{Closure requires:}
+\begin{enumerate}[nosep]
+    \item Complete steps 1--5 above with explicit calculations
+    \item Express $V(z)$ in terms of membrane parameters $(\sigma, r_e, R_\xi)$
+    \item Derive BC parameters from Israel conditions (not fit to output)
+    \item Show result is self-adjoint (Theorem~\ref{thm:bvp:selfadjoint})
+\end{enumerate}
+
+\textbf{Downstream unlocks (if completed):}
+\begin{itemize}[nosep]
+    \item OPR-02: Can compute $N_{\text{bound}}$ for physical potential
+    \item OPR-22: Can compute $x_1$ for $G_F$ spine
+    \item CKM/PMNS: Can compute overlap integrals from eigenfunctions
+\end{itemize}
+
+\textbf{Without this derivation:} BVP analysis remains at the ``toy potential''
+level (cf.\ \S\ref{subsec:bvp_numerical_demo}).
+\end{tcolorbox}
+
+\subsubsection{Connection to Part I Membrane Physics}
+
+The membrane parameters from Part~I provide the physical inputs:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Part I Parameter} & \textbf{Role in V(z)} & \textbf{Status} \\
+\midrule
+$\sigma$ (surface tension) & Sets energy scale of brane & \tagDc{} (Part I) \\
+$r_e$ (electron radius) & Characteristic length scale & \tagDc{} (Part I) \\
+$R_\xi$ (diffusion scale) & Boundary layer thickness & \tagP{} (Part I) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Key constraint.}
+The derivation must \emph{not} use 3D observables (PDG masses, $M_W$, $G_F$) to
+fix $V(z)$. All parameters must trace to membrane physics. This is the
+``no-smuggling'' requirement of Framework~2.0.
+
+% ==============================================================================
 \subsection{Output Objects: What We Need}
 \label{subsec:bvp_outputs}
 
