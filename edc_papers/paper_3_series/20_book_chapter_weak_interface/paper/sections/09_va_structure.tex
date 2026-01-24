@@ -581,6 +581,174 @@ be displaced far enough that its tail at the boundary is negligible.
 \textbf{This is exactly what the EDC mass profile achieves:} the growing mass
 $m(z)$ pushes the right-handed mode deep into the bulk, making $z_0$ large.
 
+% ==============================================================================
+\subsection{Quantitative Suppression Target (Inequality Chain, No Calibration)}
+\label{subsec:va_inequality_chain}
+
+The previous subsection gave qualitative suppression. Here we state the
+\emph{quantitative closure target}: what suppression level is required for
+consistency with experiment, and what parameter regime must hold.
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!60!black,
+    title=\textbf{Epistemic Status: Closure Target, Not Calibration}]
+\label{box:va_inequality_status}
+
+\textbf{What this section provides:}
+\begin{itemize}[nosep]
+    \item The empirical bound on RH current admixture (3D baseline)
+    \item The inequality chain that constrains the dimensionless barrier parameter
+    \item The closure target: what must be derived, not assumed
+\end{itemize}
+
+\textbf{What this section does NOT do:}
+\begin{itemize}[nosep]
+    \item Derive the barrier parameter from membrane physics (remains OPEN)
+    \item Tune parameters to match the bound (no calibration)
+    \item Claim closure of the V--A mechanism quantitatively
+\end{itemize}
+\end{tcolorbox}
+
+\subsubsection{The Chirality Ratio (Definition)}
+
+\begin{definition}[Chirality Asymmetry Ratio]
+\label{def:va:RLR}
+\tagDef{}
+The \textbf{chirality asymmetry ratio} $R_{\text{LR}}$ quantifies the relative
+coupling of right-handed modes to the brane:
+\begin{equation}
+    R_{\text{LR}} \equiv \frac{|f_R(0)|^2}{|f_L(0)|^2}
+    = \frac{g_{\text{eff}}^{(R)}}{g_{\text{eff}}^{(L)}}
+    \label{eq:va:RLR_def}
+\end{equation}
+where $f_{L/R}(0)$ are the chiral mode profiles evaluated at the brane boundary.
+\end{definition}
+
+For the exact solutions~\eqref{eq:ch9_fL_sol}--\eqref{eq:ch9_fR_sol}, if we set
+boundary normalizations $f_L(0) = f_R(0)$, then:
+\begin{equation}
+    R_{\text{LR}} = \exp\left(-2\int_0^{z_*} m(z')\,dz'\right)
+    \label{eq:va:RLR_exact}
+\end{equation}
+where $z_*$ is a characteristic depth (e.g., where the RH mode peaks, or the
+domain cutoff).
+
+\subsubsection{The 3D Empirical Baseline}
+
+Experiments constrain right-handed currents in weak decays. The Standard Model
+is built on purely left-handed charged currents; any RH admixture is tightly
+bounded~\cite{PDG2024}:
+\begin{equation}
+    R_{\text{LR}}^{\text{(exp)}} < 10^{-3}
+    \qquad \text{(3D empirical baseline \tagBL{})}
+    \label{eq:va:empirical_bound}
+\end{equation}
+This bound comes from precision measurements of parity violation in nuclear
+and particle physics. The weak interaction is \emph{almost purely} V$-$A;
+any V$+$A component is suppressed by at least three orders of magnitude.
+
+\subsubsection{The Inequality Chain}
+
+From the exponential form~\eqref{eq:va:RLR_exact}, define a dimensionless
+\textbf{barrier parameter}:
+\begin{equation}
+    \mu \equiv \int_0^{z_*} \frac{m(z')}{\Lambda}\,dz'
+    \label{eq:va:mu_def}
+\end{equation}
+where $\Lambda$ is a characteristic mass scale (e.g., $m_0$ or $1/\lambda$ from
+the profile). Then:
+\begin{equation}
+    R_{\text{LR}} = e^{-2\mu}
+    \label{eq:va:RLR_mu}
+\end{equation}
+
+\paragraph{The suppression inequality.}
+Requiring $R_{\text{LR}} < 10^{-3}$ gives:
+\begin{equation}
+    \boxed{
+    e^{-2\mu} < 10^{-3}
+    \quad\Longrightarrow\quad
+    \mu > \frac{1}{2}\ln(10^3) \approx 3.45
+    }
+    \label{eq:va:mu_bound}
+\end{equation}
+
+This is the \textbf{closure target}: the barrier parameter must satisfy $\mu \gtrsim 3.5$.
+
+\paragraph{Interpretation.}
+\begin{itemize}[nosep]
+    \item $\mu$ measures the ``cumulative mass barrier'' the RH mode must cross
+          to reach the brane.
+    \item $\mu \sim 3.5$ is a modest requirement---roughly 3--4 $e$-foldings in
+          the wavefunction before it becomes negligible.
+    \item For a linear mass profile $m(z) = m_0 z/\lambda$, this requires
+          $m_0 z_*/\lambda \gtrsim 3.5$, i.e., the characteristic depth must be
+          several times the localization scale.
+\end{itemize}
+
+\subsubsection{What Must Be Derived (OPEN)}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black,
+    title=\textbf{Closure Condition: Derive $\mu$ from Membrane Parameters}]
+\label{box:va_mu_closure}
+
+\textbf{Status:} \tagOPEN{}
+
+The barrier parameter $\mu$ depends on:
+\begin{enumerate}[nosep]
+    \item The mass profile $m(z)$, which must be derived from Plenum-fermion
+          coupling (Sec.~\ref{sec:ch9_localization})
+    \item The integration cutoff $z_*$, which depends on domain geometry
+          (half-line vs finite interval)
+    \item The scale $\Lambda$, which must connect to membrane parameters
+          $(\sigma, r_e, R_\xi)$
+\end{enumerate}
+
+\textbf{Closure requires:}
+\begin{itemize}[nosep]
+    \item Express $\mu$ in terms of $(\sigma, r_e)$ from Part~I
+    \item Show $\mu \gtrsim 3.5$ follows from membrane physics, not from tuning
+    \item Verify robustness under domain and BC variations
+\end{itemize}
+
+\textbf{Without this derivation:} V--A is qualitatively established but
+quantitative suppression remains a postulated regime \tagP{}.
+\end{tcolorbox}
+
+\subsubsection{Connection to BVP Closure Pack}
+
+The chirality asymmetry ratio $R_{\text{LR}}$ is defined in the BVP closure
+pack (Ch.~14, Definition~\ref{def:bvp:chirality}). The overlap integrals
+$I_4$ and related quantities can be computed once the BVP is solved with
+a derived $V(z)$.
+
+\paragraph{Cross-references.}
+\begin{itemize}[nosep]
+    \item BVP closure pack: Ch.~14, Sec.~\ref{subsec:bvp_outputs}
+    \item Chirality suppression criterion: Ch.~14, Sec.~\ref{subsubsec:bvp_chirality}
+    \item V(z) candidates catalogue: Ch.~14, Sec.~\ref{subsec:bvp_vz_catalogue}
+\end{itemize}
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!60!black,
+    title=\textbf{Reader Takeaway: Not a Fit, but a Closure Target}]
+\label{box:va_takeaway}
+
+This subsection does \emph{not} fit parameters to achieve $R_{\text{LR}} < 10^{-3}$.
+Instead, it states:
+\begin{enumerate}[nosep]
+    \item The empirical baseline: $R_{\text{LR}} < 10^{-3}$ from experiment \tagBL{}
+    \item The mathematical consequence: $\mu \gtrsim 3.5$ (barrier parameter)
+    \item The closure target: derive $\mu$ from membrane physics \tagOPEN{}
+\end{enumerate}
+
+\textbf{This is the required regime for the mechanism to match the empirical
+baseline.} If the derived membrane parameters yield $\mu < 3.5$, the model
+would be in tension with experiment. If $\mu \gg 3.5$, the suppression is
+stronger than required (consistent, but not a prediction).
+
+The goal is to show that membrane physics \emph{naturally} produces $\mu \gtrsim 3.5$,
+not to choose $\mu$ to make V--A work.
+\end{tcolorbox}
+
 % --- FIGURE PLACEHOLDER ---
 
 \subsection{Schematic Visualization}

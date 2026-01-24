@@ -4,6 +4,48 @@ All notable changes to the Part II book are documented here.
 
 ---
 
+## [2026-01-24] V(z) Toy Catalogue + V–A Suppression Inequality Chain
+
+### Added (Task A: V(z) Candidates Catalogue in ch14)
+- **New subsection** `§14.X: V(z) Candidates Catalogue (Toy Shapes, Not Derived)`
+  - 5 candidate potentials: Volcano, Kink/PT, Compact well, Double-well, Exponential
+  - Each with formula, spectral behavior, 5D origin, epistemic status
+  - Summary table mapping shape → N_bound scaling → status
+  - No-Smuggling Guardrail box with cross-references
+- **9 new labels**: `subsec:bvp_vz_catalogue`, `box:bvp_vz_catalogue_status`,
+  `eq:bvp:vz_volcano`, `eq:bvp:vz_kink`, `eq:bvp:vz_box`, `eq:bvp:vz_double`,
+  `eq:bvp:vz_exp`, `box:bvp_vz_guardrail`, plus subsubsection labels
+
+### Added (Task B: V–A Suppression Inequality Chain in ch9)
+- **New subsection** `§9.X: Quantitative Suppression Target (Inequality Chain, No Calibration)`
+  - Definition: Chirality asymmetry ratio $R_{\text{LR}}$
+  - 3D empirical baseline: $R_{\text{LR}} < 10^{-3}$ (from PDG)
+  - Inequality chain: $\mu > \frac{1}{2}\ln(10^3) \approx 3.45$ (barrier parameter)
+  - Closure condition box: derive μ from membrane parameters (OPEN)
+  - Reader Takeaway box: "Not a fit, but a closure target"
+  - Cross-references to BVP closure pack
+- **10 new labels**: `subsec:va_inequality_chain`, `box:va_inequality_status`,
+  `def:va:RLR`, `eq:va:RLR_def`, `eq:va:RLR_exact`, `eq:va:empirical_bound`,
+  `eq:va:mu_def`, `eq:va:RLR_mu`, `eq:va:mu_bound`, `box:va_mu_closure`, `box:va_takeaway`
+
+### Build
+- 385 pages (+4 from catalogue + inequality chain)
+- 0 undefined refs
+- 14 bibliography entries (unchanged)
+
+### Epistemic Audit
+- OPEN tags: 8 in ch14 (unchanged), 2 in ch9 (added for μ derivation)
+- No calibration to PDG/MW/GF (only empirical baseline cited)
+- No parameter tuning to achieve N_bound=3 or R_LR<10^{-3}
+- Framework 2.0 compliance maintained
+
+### Guarantee
+- V(z) candidates are explicitly marked toy/[P]/[M]
+- Inequality chain states closure TARGET, not achievement
+- No claim that μ ≳ 3.5 is derived from membrane physics (OPEN)
+
+---
+
 ## [2026-01-24] V(z) Derivation Skeleton + OPR-20 Hardening
 
 **Commit:** f3d0b1c

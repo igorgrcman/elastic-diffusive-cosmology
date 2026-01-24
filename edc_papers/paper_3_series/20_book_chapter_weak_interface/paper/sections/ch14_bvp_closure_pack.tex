@@ -389,6 +389,186 @@ fix $V(z)$. All parameters must trace to membrane physics. This is the
 ``no-smuggling'' requirement of Framework~2.0.
 
 % ==============================================================================
+\subsection{V(z) Candidates Catalogue (Toy Shapes, Not Derived)}
+\label{subsec:bvp_vz_catalogue}
+
+Before deriving $V(z)$ from the 5D action, it is useful to survey candidate
+potential shapes that commonly arise in thick-brane, domain-wall, and localization
+problems. These are \emph{toy ansätze} for intuition and future numerical testing;
+none constitutes a derived EDC potential.
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!60!black,
+    title=\textbf{Epistemic Status: Toy Catalogue}]
+\label{box:bvp_vz_catalogue_status}
+
+\textbf{Classification:} \tagP{}/[Toy]
+
+\textbf{Purpose:}
+\begin{itemize}[nosep]
+    \item Provide physically motivated candidate shapes for testing
+    \item Build intuition for how potential features map to $N_{\text{bound}}$
+    \item Prepare numerical infrastructure for eventual derived $V(z)$
+\end{itemize}
+
+\textbf{NOT claimed:}
+\begin{itemize}[nosep]
+    \item These are NOT derived from the 5D action
+    \item Using any of these does NOT close OPR-21 or OPR-02
+    \item No calibration to PDG values
+\end{itemize}
+\end{tcolorbox}
+
+\subsubsection{Candidate 1: Volcano (Warp Localization)}
+\label{subsubsec:vz_volcano}
+
+\paragraph{Formula (schematic).}
+\begin{equation}
+    V_{\text{volcano}}(\zeta) = V_0 \left[ \frac{\zeta^2}{\zeta^2 + a^2} - 1 \right]
+    \label{eq:bvp:vz_volcano}
+\end{equation}
+where $\zeta = z/\ell$ is dimensionless, $V_0 > 0$ is the well depth, and $a > 0$
+sets the core width.
+
+\paragraph{Spectral behavior.}
+Deep central well with asymptotic approach to $V = 0$. The number of bound states
+$N_{\text{bound}}$ increases stepwise with $V_0$ and $a$. Typical in RS-type
+warped geometries where the warp factor derivatives create a volcano-shaped
+effective potential.
+
+\paragraph{5D origin.}
+Could arise from $V_{\text{warp}} \sim (A')^2 - A''$ where $A(z)$ is the warp
+factor in $ds^2 = e^{2A(z)}\eta_{\mu\nu}dx^\mu dx^\nu + dz^2$.
+\emph{Status: \tagP{} (toy ansatz).}
+
+\subsubsection{Candidate 2: Kink / Domain Wall (tanh)}
+\label{subsubsec:vz_kink}
+
+\paragraph{Formula (schematic).}
+\begin{equation}
+    V_{\text{kink}}(\zeta) = -V_0 \operatorname{sech}^2(\zeta/a)
+    \label{eq:bvp:vz_kink}
+\end{equation}
+This is the reflectionless Pöschl--Teller potential, arising from a $\tanh$
+kink background in scalar-field domain walls.
+
+\paragraph{Spectral behavior.}
+Exactly solvable~\cite{Teschl2012}. For integer $s = \sqrt{V_0 a^2 + 1/4} - 1/2$,
+the potential supports exactly $\lfloor s \rfloor + 1$ bound states. The bound
+state count increases discretely as $V_0$ crosses thresholds.
+
+\paragraph{5D origin.}
+The Pöschl--Teller potential arises when fermion modes couple to a scalar kink
+$\phi(z) = \phi_0 \tanh(z/a)$ via Yukawa coupling $m(z) = y\phi(z)$.
+The numerical demo (Sec.~\ref{subsec:bvp_numerical_demo}) uses this family.
+\emph{Status: \tagM{} (mathematical; standard physics).}
+
+\subsubsection{Candidate 3: Compact Well (Finite Interval)}
+\label{subsubsec:vz_compact}
+
+\paragraph{Formula (schematic).}
+\begin{equation}
+    V_{\text{box}}(\zeta) =
+    \begin{cases}
+        -V_0 & 0 < \zeta < 1 \\
+        0    & \text{otherwise}
+    \end{cases}
+    \label{eq:bvp:vz_box}
+\end{equation}
+with Dirichlet or Robin BCs at $\zeta = 0$ and $\zeta = 1$.
+
+\paragraph{Spectral behavior.}
+Pure discrete spectrum. The count $N_{\text{bound}}$ scales roughly as
+$\propto \sqrt{V_0}$ for a square well. Gaps between eigenvalues can be computed
+analytically.
+
+\paragraph{5D origin.}
+Represents a brane with sharp boundaries---a finite-thickness ``slab'' embedded
+in the bulk. Simpler than smooth profiles but may not capture junction physics.
+\emph{Status: \tagP{} (toy geometry).}
+
+\subsubsection{Candidate 4: Double-Well (Two-Lump Brane)}
+\label{subsubsec:vz_double}
+
+\paragraph{Formula (schematic).}
+\begin{equation}
+    V_{\text{double}}(\zeta) = -V_0 \left[ \operatorname{sech}^2(\zeta - d) +
+        \operatorname{sech}^2(\zeta + d) \right]
+    \label{eq:bvp:vz_double}
+\end{equation}
+where $2d$ is the separation between wells.
+
+\paragraph{Spectral behavior.}
+Two degenerate wells can produce near-degenerate eigenvalue pairs (bonding/antibonding).
+If the wells are far apart ($d \gg a$), each contributes independently to
+$N_{\text{bound}}$; if close, tunnel coupling lifts degeneracy.
+
+\paragraph{5D origin.}
+Could model a brane with two localized regions (e.g., matter and antimatter
+sectors, or warped throats). Exotic in minimal EDC but relevant for extended models.
+\emph{Status: \tagP{} (speculative).}
+
+\subsubsection{Candidate 5: Exponential Tail (Asymptotically Decaying)}
+\label{subsubsec:vz_exp}
+
+\paragraph{Formula (schematic).}
+\begin{equation}
+    V_{\text{exp}}(\zeta) = -V_0 e^{-\zeta/a}
+    \label{eq:bvp:vz_exp}
+\end{equation}
+This decays monotonically into the bulk.
+
+\paragraph{Spectral behavior.}
+Supports finitely many bound states if $V_0$ is large enough. The threshold
+$\lambda_{\text{th}} = 0$ (essential spectrum onset). Weaker localization than
+Pöschl--Teller for same $V_0$.
+
+\paragraph{5D origin.}
+Arises when the warp factor $A(z)$ decays exponentially (e.g., linear dilaton
+backgrounds). The monotonic decay may be relevant for half-line domains with
+natural bulk cutoff.
+\emph{Status: \tagP{} (toy ansatz).}
+
+\subsubsection{Summary Table}
+
+\begin{center}
+\small
+\begin{tabular}{llll}
+\toprule
+\textbf{Candidate} & \textbf{Shape} & \textbf{$N_{\text{bound}}$ Scaling} & \textbf{Status} \\
+\midrule
+Volcano & Central well + asymptote & $\uparrow$ with depth/width & \tagP{} \\
+Kink (PT) & $-\operatorname{sech}^2$ & $\propto \sqrt{V_0}$ (discrete steps) & \tagM{} \\
+Compact well & Box potential & $\propto \sqrt{V_0}$ & \tagP{} \\
+Double-well & Two lumps & Pair structure & \tagP{} \\
+Exponential & Monotonic decay & Finitely many & \tagP{} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black,
+    title=\textbf{No-Smuggling Guardrail}]
+\label{box:bvp_vz_guardrail}
+
+\textbf{These candidates are for intuition and future numerical testing only.}
+
+\begin{itemize}[nosep]
+    \item \textbf{Closure requires:} Deriving $V(z)$ and BCs from the 5D action
+          (Sec.~\ref{subsubsec:vz_pipeline})
+    \item \textbf{No calibration:} Do not tune $V_0$, $a$, or shape parameters to
+          match $N_{\text{bound}} = 3$ or any PDG value
+    \item \textbf{OPR-21/OPR-02 remain OPEN:} Using a toy potential does not close
+          these items
+\end{itemize}
+
+\textbf{Cross-references:}
+\begin{itemize}[nosep]
+    \item V(z) derivation pipeline: Sec.~\ref{subsubsec:vz_pipeline}
+    \item Numerical demo (Pöschl--Teller): Sec.~\ref{subsec:bvp_numerical_demo}
+    \item Closure conditions: Sec.~\ref{subsec:bvp_acceptance}
+\end{itemize}
+\end{tcolorbox}
+
+% ==============================================================================
 \subsection{Output Objects: What We Need}
 \label{subsec:bvp_outputs}
 
