@@ -9,7 +9,7 @@ Baseline: 387 pages (tag: `book2-baseline-387p`)
 
 | Chapter | Title | Files | Equations | Claims | Code Refs | Status |
 |---------|-------|-------|-----------|--------|-----------|--------|
-| CH1 | The Weak Interface | 14 | 40 labeled | 260 tagged | 2 figs | **IN_PROGRESS** |
+| CH1 | The Weak Interface | 14 | 53 labeled | 260 tagged | 2 figs | **MECHANICAL_DONE** |
 | CH2 | Frozen Regime Foundations | 1 | - | - | - | UNVERIFIED |
 | CH3 | The Z6 Program | 1 | - | - | - | UNVERIFIED |
 | CH4 | Electroweak Parameters | 1 | - | - | - | UNVERIFIED |
@@ -30,6 +30,7 @@ Baseline: 387 pages (tag: `book2-baseline-387p`)
 |--------|---------|
 | UNVERIFIED | No audit performed yet |
 | IN_PROGRESS | Audit pack created, verification ongoing |
+| MECHANICAL_DONE | All mechanical fixes complete, evidence TODOs remain |
 | VERIFIED | All checks passed, sign-off complete |
 | BLOCKED | Waiting on dependency resolution |
 
@@ -44,7 +45,7 @@ Remaining: 13
 
 ## CH1 Details
 
-- **Equations**: 40 labeled, ~19 unlabeled
+- **Equations**: 53 labeled (+13 from remediation), ~6 unlabeled
 - **Claims by tag**:
   - [BL]: 92
   - [P]: 99
@@ -52,8 +53,12 @@ Remaining: 13
   - [I]: 5
   - [Cal]: 3
   - [Der]: 2
-- **Gates**: All PASS
-- **Status**: IN_PROGRESS
+- **Gates**: All PASS (notation, canon, build, assets)
+- **Status**: MECHANICAL_DONE
+- **Remaining TODOs**: See `audit/ch1/CH1_TODO.md`
+  - TODO-001: PDG 2024 verification (evidence needed)
+  - TODO-002: Derivation chain documentation (evidence needed)
+  - TODO-003: Dimensional analysis pass (evidence needed)
 
 ## Next Steps
 
@@ -66,3 +71,5 @@ Remaining: 13
 | Date | Chapter | Action | By |
 |------|---------|--------|-----|
 | 2026-01-24 | CH1 | Audit pack created | Claude |
+| 2026-01-24 | CH1 | Asset inventory + paranoid mode gate | Claude |
+| 2026-01-24 | CH1 | Remediation sprint: +13 equation labels | Claude |
