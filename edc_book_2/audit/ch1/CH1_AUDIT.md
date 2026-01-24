@@ -29,13 +29,13 @@ sections/13_summary.tex
 
 ## Equation Inventory Summary
 
-| Metric | Count |
-|--------|-------|
-| equation environments | 54 |
-| align environments | 5 |
-| Total equation blocks | ~59 |
-| Labeled equations | 40 |
-| Unlabeled equations | ~19 |
+| Metric | Count | Notes |
+|--------|-------|-------|
+| equation environments | 54 | |
+| align environments | 5 | |
+| Total equation blocks | ~59 | |
+| Labeled equations | 53 | +13 from remediation sprint |
+| Unlabeled equations | ~6 | reduced from ~19 |
 
 **Key equations:**
 - `eq:brane_energy_balance` - Fundamental energy balance
@@ -83,10 +83,10 @@ See: `CH1_CODE_REFERENCES.md` for details.
 
 ### [OPEN] Items
 
-1. **Missing full derivations**: 99 [P] claims need derivation path or explicit postulate status
-2. **Low [Der] count**: Only 2 fully derived results in entire chapter
-3. **Unlabeled equations**: ~19 equations without labels (harder to reference)
-4. **Cross-chapter figure**: `fig:n_potential` referenced but may be defined elsewhere
+1. **Missing full derivations**: 99 [P] claims need derivation path or explicit postulate status (TODO: evidence trail)
+2. **Low [Der] count**: Only 2 fully derived results in entire chapter (TODO: identify derivable claims)
+3. ~~**Unlabeled equations**: ~19 equations without labels~~ → FIXED: 13 labels added, ~6 remain in non-critical inline contexts
+4. ~~**Cross-chapter figure**: `fig:n_potential` referenced but may be defined elsewhere~~ → RESOLVED: defined in 05_case_neutron.tex:220
 
 ### Dependencies on Other Chapters
 
@@ -111,11 +111,11 @@ gate_build.sh: PASS (387 pages)
 ## Action Items
 
 - [ ] Verify all equations have consistent notation
-- [ ] Add labels to 19 unlabeled equations
-- [ ] Document derivation chain for key [Dc] claims
-- [ ] Check all [BL] values against PDG 2024
-- [ ] Resolve `fig:n_potential` reference
-- [ ] Dimensional analysis pass on all equations
+- [x] Add labels to unlabeled equations (13 labels added, ~6 remain in non-critical contexts)
+- [ ] Document derivation chain for key [Dc] claims (TODO: evidence needed)
+- [ ] Check all [BL] values against PDG 2024 (TODO: evidence needed)
+- [x] Resolve `fig:n_potential` reference — RESOLVED: defined in 05_case_neutron.tex:220
+- [ ] Dimensional analysis pass on all equations (TODO: evidence needed)
 
 ## Sign-off
 

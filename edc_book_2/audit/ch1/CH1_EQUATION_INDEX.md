@@ -1,6 +1,7 @@
 # CH1 Equation Index
 
 Generated: 2026-01-24
+Updated: 2026-01-24 (remediation sprint: +13 labels)
 
 ## Summary
 
@@ -9,8 +10,26 @@ Generated: 2026-01-24
 | equation environments | 54 |
 | align environments | 5 |
 | Total equation blocks | ~59 |
-| Labeled equations | 40 |
-| Unlabeled equations | ~19 |
+| Labeled equations | 53 |
+| Unlabeled equations | ~6 |
+
+## Remediation Sprint Changes
+
+Labels added (mechanical fix):
+- `eq:n_Qbeta_electron` - neutron Q-value for electron channel
+- `eq:n_Qbeta_muon` - neutron Q-value for muon channel (negative)
+- `eq:tau_pipeline` - tau decay pipeline overview
+- `eq:tau_ledger` - tau energy ledger closure
+- `eq:pion_pipeline` - pion decay pipeline overview
+- `eq:pion_allowed_outputs` - allowed output set for pion decay
+- `eq:pion_ledger` - pion energy ledger closure
+- `eq:e_stability` - electron stability claim
+- `eq:e_mode_gate` - electron no-lower-mode gate
+- `eq:e_chiral_projection` - electron chiral projection
+- `eq:e_ledger_closure` - electron ledger closure
+- `eq:nu_effective_coupling` - neutrino effective coupling (overlap integral)
+- `eq:nu_VA_current` - V-A weak current
+- `eq:nu_mass_scaling` - neutrino mass scaling relation
 
 ## Equation Labels by File
 
