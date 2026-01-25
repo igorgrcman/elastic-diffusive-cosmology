@@ -186,7 +186,7 @@ After making any symbol replacement:
 1. Run `tools/symbol_audit.py` — check violation count decreased
 2. Run `tools/gate_notation.sh` — check forbidden patterns
 3. Run full build — verify 0 errors, 0 undefined refs
-4. Confirm page count unchanged (387)
+4. Confirm page count matches current baseline (393 as of 2026-01-25)
 
 ---
 
