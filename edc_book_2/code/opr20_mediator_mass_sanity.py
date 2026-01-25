@@ -193,26 +193,32 @@ print("\nConclusion: m₁ ∝ 1/ℓ (smaller domain → larger mass)")
 # 3. EFFECTIVE CONTACT STRENGTH
 # =============================================================================
 print("\n" + "=" * 70)
-print("3. EFFECTIVE CONTACT STRENGTH: C_eff = g₅² ℓ² / x₁²")
+print("3. EFFECTIVE CONTACT STRENGTH: C_eff = g₄² / m₁² = g₅² ℓ / x₁²")
 print("=" * 70)
 
 # Example with postulated g_5² = 1 GeV⁻¹
 g5_sq_gev_inv = 1.0  # [P] postulated
 
+print(f"\nNormalization convention: ∫|f|²dξ = ℓ, so g₄² = g₅²/ℓ")
 print(f"\nFor g₅² = {g5_sq_gev_inv} GeV⁻¹ [P] and x₁ = π:")
-print(f"{'ℓ (fm)':<12} {'C_eff (GeV⁻²)':<20}")
-print("-" * 32)
+print(f"{'ℓ (fm)':<12} {'g₄² (dimless)':<18} {'C_eff (GeV⁻²)':<20}")
+print("-" * 50)
 
 contact_results = []
 for ell_fm in ell_values_fm:
     ell_gev_inv = ell_fm * FM_TO_GEV_INV
-    c_eff = g5_sq_gev_inv * ell_gev_inv**2 / x1_nn**2
-    print(f"{ell_fm:<12.4f} {c_eff:<20.6e}")
+    g4_sq = g5_sq_gev_inv / ell_gev_inv  # g₄² = g₅²/ℓ
+    m1_gev = x1_nn / ell_gev_inv
+    c_eff = g4_sq / m1_gev**2  # C_eff = g₄²/m₁² = g₅²ℓ/x₁²
+    # Equivalent: c_eff = g5_sq_gev_inv * ell_gev_inv / x1_nn**2
+    print(f"{ell_fm:<12.4f} {g4_sq:<18.6e} {c_eff:<20.6e}")
     contact_results.append({
         "ell_fm": ell_fm,
+        "g4_squared": g4_sq,
         "c_eff_gev_sq_inv": c_eff,
     })
 
+print(f"\nDimensional check: [g₅²ℓ/x₁²] = GeV⁻¹ · GeV⁻¹ / 1 = GeV⁻² ✓")
 print(f"\nFor comparison: G_F [BL] ≈ 1.166 × 10⁻⁵ GeV⁻²")
 print("(No claim that C_eff = G_F; this is just a format check)")
 
@@ -256,28 +262,22 @@ Quantities and dimensions (natural units ℏ = c = 1):
 | Quantity | Dimension | Natural units |
 |----------|-----------|---------------|
 | g_5      | L^(1/2)   | GeV^(-1/2)    |
+| g_5²     | L         | GeV^(-1)      |
+| g_4      | 1         | dimensionless |
 | ℓ        | L         | GeV^(-1)      |
 | x_n      | 1         | dimensionless |
 | m_n      | L^(-1)    | GeV           |
 | V(ξ)     | L^(-2)    | GeV^2         |
 | C_eff    | L^2       | GeV^(-2)      |
 
-Verification:
-[C_eff] = [g_5²][ℓ²]/[x₁²]
-        = L · L² / 1
-        = L³  ← This is WRONG for G_F!
-
-Wait... let me recalculate:
-[g_5²] = [L^(1/2)]² = L
-[ℓ²] = L²
+Verification of C_eff = g₅² ℓ / x₁²:
+[g_5²] = L
+[ℓ] = L
 [x₁²] = 1
 
-So [C_eff] = L · L² = L³
+So [C_eff] = [g_5²][ℓ]/[x₁²] = L · L / 1 = L² = GeV^(-2)  ✓
 
-But [G_F] = L² (in natural units where E has dimension L^(-1))
-
-Resolution: The full G_F includes an overlap integral I_4 with [I_4] = L^(-1)
-Then: [G_F] = [C_eff] × [I_4] = L³ × L^(-1) = L²  ✓
+This matches the expected dimension for a 4-fermion contact strength.
 """)
 
 # =============================================================================
@@ -357,10 +357,10 @@ OPR-20 SANITY CHECK: PASS
 
 Key results verified:
 ✓ Eigenvalue equation for flat potential with various BC
-✓ Mass scaling: m_n = x_n / ℓ (inverse proportionality)
-✓ Effective contact strength: C_eff = g_5² ℓ² / x_1²
-✓ Robustness: x_1 varies from ~π/2 to ~π depending on κ
-✓ Dimensional analysis: consistent (with caveat about overlap factor)
+✓ Dimensionless eigenvalue: x_n := m_n ℓ (definition, value from BVP)
+✓ Effective contact strength: C_eff = g₄²/m₁² = g₅² ℓ / x₁²
+✓ Robustness: x_1 = x_1(κ,V) varies depending on BC and potential
+✓ Dimensional analysis: [C_eff] = [g₅² ℓ / x₁²] = L² = GeV⁻² ✓
 
 No SM observables used in this check.
 All parameters tagged [P] or [BL] as appropriate.

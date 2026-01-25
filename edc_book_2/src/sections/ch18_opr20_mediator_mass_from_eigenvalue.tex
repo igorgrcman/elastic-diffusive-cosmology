@@ -19,9 +19,10 @@
 \begin{itemize}[nosep]
     \item The mediator mass $m_{\text{med}}$ is the first nonzero eigenvalue of a
           Sturm--Liouville problem on the ξ-domain
-    \item The scaling relation $m_n = x_n / \ell$ connects eigenvalue spectrum to physical masses
-    \item The effective contact strength combines with OPR-19 to give
-          $C_{\text{eff}} = g_5^2 \ell^2 / x_1^2$
+    \item The dimensionless eigenvalue $x_n := m_n \ell$ is determined by the BVP
+          (depends on $\kappa$, $V(\xi)$)
+    \item The effective contact strength has the invariant form
+          $C_{\text{eff}} = g_{4,1}^2 / m_1^2$
 \end{itemize}
 
 \textbf{What this chapter does NOT prove:}
@@ -242,14 +243,26 @@ where $\tilde{\kappa} = \kappa \ell$ (dimensionless).
 \label{subsec:ch18_mass_recovery}
 
 \begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
-    title=\textbf{Key Result: Mass from Eigenvalue}]
+    title=\textbf{Key Definition: Dimensionless Eigenvalue}]
+\textbf{Definition.} The \emph{dimensionless eigenvalue} $x_n$ is defined by:
 \begin{equation}
-    \boxed{m_n = \frac{x_n}{\ell}}
+    \boxed{x_n := m_n \ell \quad \Leftrightarrow \quad m_n = \frac{x_n}{\ell}}
     \label{eq:ch18:mass_formula}
 \end{equation}
+
 \textbf{Dimensional check:} $[x_n] = 1$, $[\ell] = L$, $[m_n] = L^{-1} = \text{mass}$ \checkmark
 
-\textbf{Epistemic status:} \tagDc{} --- pure coordinate transformation.
+\textbf{Critical point:} The value of $x_n$ is \emph{not universal}---it is the output of solving
+the Sturm--Liouville BVP with given $V(\xi)$ and BC parameters $\kappa_0, \kappa_\ell$:
+\begin{equation}
+    x_n = x_n(\kappa_0, \kappa_\ell, \tilde{V})
+    \label{eq:ch18:xn_dependence}
+\end{equation}
+
+\textbf{Toy limit (V = 0, Neumann BC):} For $\tilde{V} = 0$ and $\kappa = 0$, we recover
+the familiar result $x_n = n\pi$ (see eigenvalue table in \S\ref{subsec:ch18_eigenvalue_table}).
+
+\textbf{Epistemic status:} Definition \tagM{}; value $x_n(\kappa, V)$ is \tagDc{} given BVP inputs.
 \end{tcolorbox}
 
 % ==============================================================================
@@ -325,11 +338,33 @@ From Chapter~\ref{ch:opr19_g5_from_action}, Eq.~(\ref{eq:ch17:g4_formula}):
     \label{eq:ch18:g4_formula}
 \end{equation}
 
-For normalized modes with $\int_0^\ell d\xi \, |f_n|^2 = 1$:
+\begin{tcolorbox}[colback=orange!5!white, colframe=orange!50!black,
+    title=\textbf{Normalization Convention and Dimensions}]
+
+\textbf{Dimensions} (natural units $\hbar = c = 1$):
+\begin{itemize}[nosep]
+    \item $[g_5^2] = L$ \quad (5D coupling squared has dimension of length)
+    \item $[g_4^2] = 1$ \quad (4D coupling squared is dimensionless)
+    \item $[\ell] = L$ \quad (domain size)
+    \item $[f_n(\xi)] = L^{-1/2}$ \quad (for $\int |f_n|^2 d\xi$ to be dimensionless)
+\end{itemize}
+
+\textbf{Natural normalization.} For a mode profile on domain $[0,\ell]$, the natural
+normalization is:
 \begin{equation}
-    g_{4,n}^2 = g_5^2
-    \label{eq:ch18:g4_normalized}
+    \int_0^\ell d\xi \, |f_n(\xi)|^2 = \ell
+    \label{eq:ch18:natural_norm}
 \end{equation}
+This gives a flat profile $f_0 = 1$ for the zero mode (Neumann BC).
+
+\textbf{Resulting 4D coupling:}
+\begin{equation}
+    g_{4,n}^2 = \frac{g_5^2}{\ell}
+    \label{eq:ch18:g4_from_g5}
+\end{equation}
+
+\textbf{Dimensional check:} $[g_5^2/\ell] = L / L = 1$ \checkmark
+\end{tcolorbox}
 
 \subsection{Effective Contact Strength}
 \label{subsec:ch18_contact}
@@ -340,21 +375,33 @@ A 4D contact interaction (Fermi-like) has the structure:
     \label{eq:ch18:contact_lagrangian}
 \end{equation}
 
-From exchange of the massive mediator:
-\begin{equation}
-    C_{\text{eff}} \sim \frac{g_{4,1}^2}{m_1^2}
-    \label{eq:ch18:contact_exchange}
-\end{equation}
-
 \begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
     title=\textbf{Key Result: Effective Contact Strength}]
-Combining OPR-19 coupling formula with the eigenvalue result:
+
+\textbf{Step 1: Invariant structure.} From exchange of the massive mediator:
 \begin{equation}
-    \boxed{C_{\text{eff}} = \frac{g_5^2 \ell^2}{x_1^2}}
+    \boxed{C_{\text{eff}} = \frac{g_{4,1}^2}{m_1^2} \times (\text{overlap factors})}
+    \label{eq:ch18:contact_exchange}
+\end{equation}
+This structure is \emph{universal}---it does not depend on normalization conventions.
+
+\textbf{Step 2: Express in 5D parameters.} Using $g_{4,1}^2 = g_5^2/\ell$ and $m_1 = x_1/\ell$:
+\begin{align}
+    C_{\text{eff}} &= \frac{g_5^2/\ell}{(x_1/\ell)^2} = \frac{g_5^2/\ell}{x_1^2/\ell^2}
+                   = \frac{g_5^2 \ell}{x_1^2}
+    \label{eq:ch18:contact_derivation}
+\end{align}
+
+\textbf{Final form:}
+\begin{equation}
+    \boxed{C_{\text{eff}} = \frac{g_5^2 \ell}{x_1^2}}
     \label{eq:ch18:contact_final}
 \end{equation}
-\textbf{Epistemic status:} \tagDc{} (structure); $g_5$, $\ell$, $x_1$ depend on
-underlying parameters.
+
+\textbf{Dimensional check:} $[g_5^2 \ell / x_1^2] = L \cdot L / 1 = L^2 = \text{GeV}^{-2}$ \checkmark
+
+\textbf{Epistemic status:} \tagDc{} (structure); $g_5$, $\ell$, $x_1(\kappa, V)$ depend on
+underlying postulated parameters.
 \end{tcolorbox}
 
 \textbf{Note:} The full $G_F$ expression includes additional fermion overlap factors
@@ -391,10 +438,11 @@ $A(\xi)$ & Warp factor & \tagP{} \\
 \toprule
 \textbf{Symbol} & \textbf{Formula} & \textbf{Status} \\
 \midrule
-$x_n$ & eigenvalue of SL problem & \tagDc{} (given inputs) \\
-$m_n$ & $x_n / \ell$ & \tagDc{} \\
+$x_n$ & BVP eigenvalue $x_n(\kappa, V)$ & \tagDc{} (given inputs) \\
+$m_n$ & $x_n / \ell$ (by definition) & \tagDc{} \\
 $m_{\text{med}}$ & $m_1 = x_1 / \ell$ & \tagDc{} \\
-$C_{\text{eff}}$ & $g_5^2 \ell^2 / x_1^2$ & \tagDc{} \\
+$g_{4,n}$ & $\sqrt{g_5^2 / \ell}$ & \tagDc{} \\
+$C_{\text{eff}}$ & $g_{4,1}^2 / m_1^2 = g_5^2 \ell / x_1^2$ & \tagDc{} \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -438,14 +486,15 @@ of postulated inputs.
     \item \textbf{Sturm--Liouville equation} (Eq.~\ref{eq:ch18:schrodinger}):
           The gauge mode profiles satisfy a Schrödinger-type equation on $[0,\ell]$.
 
-    \item \textbf{Mass formula} (Eq.~\ref{eq:ch18:mass_formula}):
-          $m_n = x_n / \ell$, connecting eigenvalue spectrum to physical masses.
+    \item \textbf{Dimensionless eigenvalue} (Eq.~\ref{eq:ch18:mass_formula}):
+          $x_n := m_n \ell$ is defined as output of the BVP; $x_n = x_n(\kappa, V)$.
 
     \item \textbf{Mediator definition} (Eq.~\ref{eq:ch18:mediator_def}):
           $m_{\text{med}} = m_1 = x_1 / \ell$ (first massive mode).
 
     \item \textbf{Effective contact strength} (Eq.~\ref{eq:ch18:contact_final}):
-          $C_{\text{eff}} = g_5^2 \ell^2 / x_1^2$, combining OPR-19 and eigenvalue.
+          $C_{\text{eff}} = g_{4,1}^2 / m_1^2 = g_5^2 \ell / x_1^2$
+          (invariant structure + OPR-19 normalization).
 \end{enumerate}
 
 \subsection{Closure Status}

@@ -85,16 +85,18 @@ where $\kappa_0, \kappa_\ell$ are BC parameters.
 
 Define dimensionless coordinate $\tilde{\xi} := \xi/\ell \in [0,1]$ and:
 
-$$\lambda_n := \ell^2 m_n^2, \quad x_n := \sqrt{\lambda_n}, \quad \tilde{V}(\tilde{\xi}) := \ell^2 V(\ell\tilde{\xi})$$
+$$\lambda_n := \ell^2 m_n^2, \quad x_n := \sqrt{\lambda_n} = m_n \ell, \quad \tilde{V}(\tilde{\xi}) := \ell^2 V(\ell\tilde{\xi})$$
 
 The eigenvalue equation becomes:
 
 $$\left[ -\frac{d^2}{d\tilde{\xi}^2} + \tilde{V}(\tilde{\xi}) \right] \tilde{f}_n(\tilde{\xi}) = \lambda_n \tilde{f}_n(\tilde{\xi})$$
 
-**Physical mass recovery**:
-$$\boxed{m_n = \frac{x_n}{\ell}}$$
+**Definition**: The dimensionless eigenvalue $x_n$ is defined by:
+$$\boxed{x_n := m_n \ell \quad \Leftrightarrow \quad m_n = \frac{x_n}{\ell}}$$
 
-**Status**: [Dc] — coordinate rescaling (pure mathematics)
+**Critical point**: The value $x_n = x_n(\kappa_0, \kappa_\ell, \tilde{V})$ is NOT universal—it is the output of solving the BVP with given potential and BC parameters. The toy limit ($\tilde{V} = 0$, Neumann BC) gives $x_n = n\pi$.
+
+**Status**: [Dc] — definition + BVP solution structure
 
 ---
 
@@ -138,15 +140,25 @@ Combining with OPR-19 (Eq. 19.8), the effective 4D gauge coupling for mode n:
 
 $$\frac{1}{g_{4,n}^2} = \frac{1}{g_5^2} \int_0^\ell d\xi \, |f_n(\xi)|^2$$
 
-The 4D effective contact interaction strength (before overlap factors):
+**Normalization convention**: For the natural normalization $\int_0^\ell |f_n|^2 d\xi = \ell$ (flat zero mode has $f_0 = 1$):
 
-$$C_{\text{eff}} \sim \frac{g_{4,1}^2}{m_1^2} = \frac{g_5^2 \ell^2}{x_1^2 \int_0^\ell d\xi \, |f_1(\xi)|^2}$$
+$$g_{4,n}^2 = \frac{g_5^2}{\ell}$$
 
-For normalized modes ($\int |f_1|^2 d\xi = 1$):
+**Dimensional check**: $[g_5^2/\ell] = L/L = 1$ ✓
 
-$$\boxed{C_{\text{eff}} = \frac{g_5^2 \ell^2}{x_1^2}}$$
+**Invariant structure** (contact interaction from mediator exchange):
 
-**Status**: [Dc] — combination of OPR-19 and L7
+$$\boxed{C_{\text{eff}} = \frac{g_{4,1}^2}{m_1^2} \times (\text{overlap factors})}$$
+
+**In 5D parameters**: Using $g_{4,1}^2 = g_5^2/\ell$ and $m_1 = x_1/\ell$:
+
+$$C_{\text{eff}} = \frac{g_5^2/\ell}{x_1^2/\ell^2} = \frac{g_5^2 \ell}{x_1^2}$$
+
+$$\boxed{C_{\text{eff}} = \frac{g_5^2 \ell}{x_1^2}}$$
+
+**Dimensional check**: $[g_5^2 \ell / x_1^2] = L \cdot L / 1 = L^2 = \text{GeV}^{-2}$ ✓
+
+**Status**: [Dc] — combination of OPR-19 normalization and L7
 
 ---
 

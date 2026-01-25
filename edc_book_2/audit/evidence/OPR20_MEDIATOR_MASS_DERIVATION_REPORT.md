@@ -188,21 +188,35 @@ From OPR-19, Eq. 19.8:
 
 $$\frac{1}{g_{4,n}^2} = \frac{1}{g_5^2} \int_0^\ell d\xi \, |f_n(\xi)|^2$$
 
+### Normalization Convention
+
+For the natural normalization $\int_0^\ell |f_n|^2 d\xi = \ell$ (flat zero mode has $f_0 = 1$):
+
+$$g_{4,n}^2 = \frac{g_5^2}{\ell}$$
+
+**Dimensional check**: $[g_5^2/\ell] = L/L = 1$ ✓
+
 ### Effective Contact Strength (Eq. 20.10)
 
 The 4D effective Fermi-like coupling structure (before fermion overlaps):
 
-$$C_{\text{eff}} \sim \frac{g_{4,1}^2}{m_1^2}$$
+$$\boxed{C_{\text{eff}} = \frac{g_{4,1}^2}{m_1^2} \times (\text{overlap factors})}$$
 
-Substituting the OPR-19 result with normalized modes ($\int |f_1|^2 d\xi = 1$):
+This invariant structure does not depend on normalization conventions.
 
-$$C_{\text{eff}} = \frac{g_5^2}{m_1^2} = \frac{g_5^2 \ell^2}{x_1^2}$$
+### Derivation in 5D Parameters
+
+Using $g_{4,1}^2 = g_5^2/\ell$ and $m_1 = x_1/\ell$:
+
+$$C_{\text{eff}} = \frac{g_5^2/\ell}{(x_1/\ell)^2} = \frac{g_5^2/\ell}{x_1^2/\ell^2} = \frac{g_5^2 \ell}{x_1^2}$$
 
 ### Final Form (Eq. 20.11)
 
-$$\boxed{C_{\text{eff}} = \frac{g_5^2 \ell^2}{x_1^2}}$$
+$$\boxed{C_{\text{eff}} = \frac{g_5^2 \ell}{x_1^2}}$$
 
-**Epistemic status**: [Dc] — combination of OPR-19 + eigenvalue structure.
+**Dimensional check**: $[g_5^2 \ell / x_1^2] = L \cdot L / 1 = L^2 = \text{GeV}^{-2}$ ✓
+
+**Epistemic status**: [Dc] — combination of OPR-19 normalization + eigenvalue structure.
 
 ---
 
@@ -231,6 +245,7 @@ For $x_1 \approx 2.5$: $m_{\text{med}} \approx (2.5/\pi) \cdot 286 \approx 228$ 
 | Quantity | Dimension | Natural units |
 |----------|-----------|---------------|
 | $g_5$ | $L^{1/2}$ | $\text{GeV}^{-1/2}$ |
+| $g_5^2$ | $L$ | $\text{GeV}^{-1}$ |
 | $g_4$ | 1 | dimensionless |
 | $\ell$ | $L$ | $\text{GeV}^{-1}$ |
 | $m_n$ | $L^{-1}$ | GeV |
@@ -240,19 +255,14 @@ For $x_1 \approx 2.5$: $m_{\text{med}} \approx (2.5/\pi) \cdot 286 \approx 228$ 
 
 **Unit conversion**: 1 fm = 5.0677 GeV⁻¹
 
-**Consistency check**:
-$$[C_{\text{eff}}] = [g_5^2 \ell^2 / x_1^2] = L \cdot L^2 / 1 = L^3$$
+**Consistency check for $C_{\text{eff}} = g_5^2 \ell / x_1^2$**:
+$$[C_{\text{eff}}] = [g_5^2] \cdot [\ell] / [x_1^2] = L \cdot L / 1 = L^2 = \text{GeV}^{-2} \checkmark$$
 
-Wait — this doesn't match! Let me recalculate...
+This matches the required dimension for a 4-fermion contact strength.
 
-**Correction**: From Eq. 20.11 with proper normalization:
-$$[C_{\text{eff}}] = [g_5^2] / [m_1^2] = L / L^{-2} = L^3$$
+**Note**: The full $G_F$ expression will include additional fermion overlap factors from OPR-22 (also of dimension $L^2$ or dimensionless, depending on formulation).
 
-But $[G_F] = L^2$ (energy)$^{-2}$, so we need an additional factor of $[\text{overlap}]$...
-
-This is correct: the full G_F expression includes an overlap integral I₄ that contributes an additional factor of dimension $L^{-1}$ to make $[G_F] = L^2$.
-
-**Epistemic status**: [M] — dimensional analysis verified with care.
+**Epistemic status**: [M] — dimensional analysis verified.
 
 ---
 
@@ -280,14 +290,16 @@ This is correct: the full G_F expression includes an overlap integral I₄ that 
 **Eq. (20.3)**: Sturm-Liouville eigenvalue equation
 $$-\frac{d^2 f_n}{d\xi^2} + V(\xi) f_n = m_n^2 f_n$$
 
-**Eq. (20.7)**: Physical mass from eigenvalue
-$$m_n = \frac{x_n}{\ell}$$
+**Eq. (20.7)**: Dimensionless eigenvalue definition
+$$x_n := m_n \ell \quad \Leftrightarrow \quad m_n = \frac{x_n}{\ell}$$
+
+**Critical**: $x_n = x_n(\kappa, V)$ depends on BVP parameters, NOT universal.
 
 **Eq. (20.8)**: Mediator mass definition
 $$m_{\text{med}} = m_1 = \frac{x_1}{\ell}$$
 
-**Eq. (20.11)**: Effective contact strength
-$$C_{\text{eff}} = \frac{g_5^2 \ell^2}{x_1^2}$$
+**Eq. (20.11)**: Effective contact strength (invariant + 5D form)
+$$C_{\text{eff}} = \frac{g_{4,1}^2}{m_1^2} = \frac{g_5^2 \ell}{x_1^2}$$
 
 ### Epistemic Status
 
@@ -295,8 +307,8 @@ $$C_{\text{eff}} = \frac{g_5^2 \ell^2}{x_1^2}$$
 |------|--------|
 | SL equation form | [Dc] |
 | Mode expansion | [Dc] |
-| Dimensionless formulation | [Dc] |
-| Mass formula $m_n = x_n/\ell$ | [Dc] |
+| Dimensionless eigenvalue definition | [M] |
+| Eigenvalue value $x_n(\kappa, V)$ | [Dc] given BVP inputs |
 | Connection to OPR-19 | [Dc] |
 | Potential V(ξ) | [P] |
 | BC parameters κ | [P] |
