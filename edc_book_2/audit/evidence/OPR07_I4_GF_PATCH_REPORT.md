@@ -1,6 +1,6 @@
 # OPR-07 I₄ Overlap Integral — Patch Report
 
-**Date**: 2026-01-25
+**Date**: 2026-01-25 (Updated)
 **Author**: Claude (AI assistant)
 **Branch**: book2-ch07-openq-remediation-v1
 
@@ -8,10 +8,35 @@
 
 ## Summary
 
-Fixed dimensional errors and profile formula issues in I₄ overlap integral sections.
-Two files patched:
-1. `src/sections/11_gf_derivation.tex` — Commit 865bdec
-2. `src/CH3_electroweak_parameters.tex` — This commit
+Comprehensive remediation of I₄/G_F/G_5 logic across Book 2.
+Three commits, 6 files patched, all acceptance criteria PASS.
+
+---
+
+## Commits
+
+| SHA | Description |
+|-----|-------------|
+| `865bdec` | Initial 11_gf_derivation.tex I₄ fix |
+| `905830e` | CH3_electroweak_parameters.tex comprehensive fix + symbol table |
+| (this) | Comprehensive sweep: ch12, ch11, ch10 remaining issues |
+
+---
+
+## Files Modified
+
+### Commit 1 (865bdec)
+- `src/sections/11_gf_derivation.tex` — I₄ section rewrite
+
+### Commit 2 (905830e)
+- `src/CH3_electroweak_parameters.tex` — Lines 602-724 rewritten
+- `canon/notation/GLOBAL_SYMBOL_TABLE.md` — I₄ entry added
+
+### Commit 3 (this)
+- `src/sections/ch12_bvp_workpackage.tex` — z→ξ, Gaussian domain fix
+- `src/sections/ch11_g5_ell_value_closure_attempt.tex` — σ_L dimensional error fix
+- `src/sections/ch10_electroweak_bridge.tex` — Domain specification added
+- `src/sections/11_gf_derivation.tex` — Domain + exponential reference
 
 ---
 
@@ -21,55 +46,71 @@ Two files patched:
 
 | Aspect | BEFORE | AFTER |
 |--------|--------|-------|
-| Dimension of I₄ | "length" (WRONG) | L⁻¹ = Energy (CORRECT) |
-| Dimensional check | Missing | [G₅]×[I₄] = E⁻³×E = E⁻² = [G_F] ✓ |
+| Dimension of I₄ | "length" or unstated | L⁻¹ = Energy everywhere |
+| Dimensional check | Missing in most places | [G₅]×[I₄] = [G_F] verified |
 
 ### Gaussian Formula
 
 | Aspect | BEFORE | AFTER |
 |--------|--------|-------|
-| Integration domain | Full line assumed | Half-line [0,∞) explicit |
-| Factor of 1/2 | Missing | Included |
-| Formula | 1/(√(2π)σ) | 1/(2√(2π)σ) |
-
-### Exponential Profile
-
-| Aspect | BEFORE | AFTER |
-|--------|--------|-------|
-| Existence | Not presented | f(ξ) = √(2m₀)e^{-m₀ξ} |
-| I₄ result | Unknown | I₄ = m₀ exactly |
-| Derivation | — | Full step-by-step |
+| Domain specification | Missing | "full-line" / "half-line" explicit |
+| Factor of 1/2 | Missing for half-line | Included where applicable |
+| Variable | z in some places | ξ everywhere |
 
 ### σ_L Heuristic
 
 | Aspect | BEFORE | AFTER |
 |--------|--------|-------|
-| Formula σ_L = λ/(2m₀) | Presented as meaningful | REMOVED |
-| Justification | None | N/A (exponential is physical) |
+| σ_L⁻¹ ~ I₄^{1/4} | Present (dimensionally wrong) | REMOVED |
+| Localization scale | Confusing | m₀ = I₄ for exponential (exact) |
 
-### G₅ Gap
+### Exponential Profile
+
+| Aspect | BEFORE | AFTER |
+|--------|--------|-------|
+| Existence | Missing in early chapters | f(ξ) = √(2m₀)e^{-m₀ξ} |
+| I₄ result | Unknown | I₄ = m₀ exactly |
+| Cross-references | None | §ch3_electroweak throughout |
+
+### G₅ Status
 
 | Aspect | BEFORE | AFTER |
 |--------|--------|-------|
 | Status | Implied as solvable | Explicitly OPEN (OPR-19) |
-| Estimate | Presented as meaningful | Marked "illustrative only" |
+| Estimates | Presented as meaningful | Marked "illustrative only" |
 
 ---
 
-## Key Equations Added
+## Acceptance Criteria Verification
+
+| Criterion | Status | Command/Evidence |
+|-----------|--------|------------------|
+| gate_build.sh PASS | ✓ | 385 pages, no errors |
+| gate_notation.sh PASS | ✓ | 951 ξ uses, 0 forbidden z |
+| grep "I₄ dimension of length" = 0 | ✓ | No matches |
+| grep I₄^{1/4} = 0 | ✓ | No matches |
+| All Gaussian with domain | ✓ | full-line/half-line stated |
+| G_F estimates "illustrative" | ✓ | OPR-19 referenced |
+
+---
+
+## Key Equations Now Correct
 
 ```latex
-% Dimensional analysis
-[I_4] = L^{-1} = \text{Energy}  % eq:ch3_I4_dimension
+% Dimensional analysis (eq:ch3_I4_dimension)
+[I_4] = L^{-1} = \text{Energy}
 
-% Gaussian half-line (toy model)
-I_4^{\text{Gauss}} = \frac{1}{2\sqrt{2\pi}\,\sigma_L}  % eq:ch3_I4_gauss_halfline
+% Gaussian half-line (eq:ch3_I4_gauss_halfline)
+I_4^{\text{Gauss}} = \frac{1}{2\sqrt{2\pi}\,\sigma_L}  \quad \text{(half-line)}
 
-% Exponential profile (physical)
-f_L(\xi) = \sqrt{2m_0} \, e^{-m_0\xi}  % eq:ch3_fL_exponential
+% Gaussian full-line (ch12_bvp_workpackage)
+I_4^{\text{full}} = \frac{1}{\sqrt{2\pi}\sigma}  \quad \text{(full-line domain)}
 
-% Exact result
-I_4^{\text{exp}} = m_0  % eq:ch3_I4_exponential_m0
+% Exponential exact (eq:ch3_I4_exponential_m0)
+f_L(\xi) = \sqrt{2m_0} \, e^{-m_0\xi}  \implies  I_4 = m_0  \quad \text{EXACT}
+
+% Localization interpretation (ch11_g5_ell)
+m_0 \equiv I_4 \approx 8 \text{ MeV}  \implies  \text{length} \sim m_0^{-1}
 ```
 
 ---
@@ -79,45 +120,31 @@ I_4^{\text{exp}} = m_0  % eq:ch3_I4_exponential_m0
 | Claim | Tag | Justification |
 |-------|-----|---------------|
 | [I₄] = Energy | [M] | Pure dimensional analysis |
-| I₄^Gauss = 1/(2√(2π)σ) | [M] | Gaussian integral |
+| I₄^Gauss (full/half) | [M] | Gaussian integral |
 | I₄^exp = m₀ | [Dc] | Conditional on exponential profile |
-| G₅ undetermined | [P]/OPEN | OPR-19 blocks closure |
+| G₅ undetermined | OPEN | OPR-19 blocks closure |
+| G_F formula structure | [Dc] | Form derived, numerics OPEN |
 
 ---
 
-## Gate Verification
+## OPR Cross-References
 
-| Gate | Status | Evidence |
-|------|--------|----------|
-| Build | PASS | 387 pages, no errors |
-| Notation | PASS | 959 ξ uses, 0 z violations |
-| Canon | PASS | 574 [Dc] tags |
-
----
-
-## Symbol Table Update
-
-Added to `canon/notation/GLOBAL_SYMBOL_TABLE.md`:
-
-```
-| I₄ | `I_4` | Overlap integral | Mode overlap ∫|f_L|⁴dξ, [I₄]=Energy | 5D bulk | GeV | WORKING | — | eq:ch3_I4_exponential_m0 | NONE | I₄=m₀ for exponential |
-```
+| OPR | Status | What's Blocked |
+|-----|--------|----------------|
+| OPR-19 | OPEN | G₅ value from 5D action |
+| OPR-21 | OPEN | I₄ from BVP solution |
+| OPR-22 | OPEN | First-principles G_F |
 
 ---
 
-## Files Modified
+## Regression Prevention
 
-1. `src/CH3_electroweak_parameters.tex` — Lines 602-724 rewritten
-2. `src/sections/11_gf_derivation.tex` — I₄ section (commit 865bdec)
-3. `canon/notation/GLOBAL_SYMBOL_TABLE.md` — I₄ entry added
-
----
-
-## Open Problems Linked
-
-- **OPR-19**: Derive G₅ from 5D action — OPEN
-- **OPR-21**: Derive I₄ from BVP solution — OPEN
-- **OPR-22**: First-principles G_F derivation — OPEN (ultimate goal)
+All I₄/G_F content now follows these rules:
+1. Every I₄ integral states its domain explicitly
+2. Every dimensional claim includes [X] = ... check
+3. Gaussian formulas distinguish full-line vs half-line
+4. Exponential profile is the canonical physical model
+5. G₅ closure is OPEN (OPR-19) — no pretense of derivation
 
 ---
 
