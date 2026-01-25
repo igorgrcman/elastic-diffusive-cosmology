@@ -11,9 +11,9 @@
 
 | Chapter | Title | Files | Equations | Claims | Violations | MECHANICAL | CONTEXT | NARRATIVE | EVIDENCE |
 |---------|-------|-------|-----------|--------|------------|------------|---------|-----------|----------|
-| CH01 | The Weak Interface | 15 | 54 | 29 | 0 | ✅ DONE | ⏳ | ⏳ | ⏳ |
-| CH02 | Frozen Regime Foundations | 1 | 27 | 0 | 0* | ✅ DONE | ⏳ | ⏳ | ⏳ |
-| CH03 | The Z6 Program | 1 | 21 | 28 | 0 | ✅ DONE | ⏳ | ⏳ | ⏳ |
+| CH01 | The Weak Interface | 15 | 54 | 29 | 0 | ✅ DONE | ✅ DONE | ⏳ | ⏳ |
+| CH02 | Frozen Regime Foundations | 1 | 27 | 0 | 0* | ✅ DONE | ⚠️ TODO | ⏳ | ⏳ |
+| CH03 | The Z6 Program | 1 | 21 | 28 | 0 | ✅ DONE | ✅ DONE | ⏳ | ⏳ |
 | CH04 | Electroweak Parameters | 1 | — | — | — | ⏳ | — | — | — |
 | CH05 | Lepton Mass Relations | 1 | — | — | — | ⏳ | — | — | — |
 | CH06 | Three Generations | 1 | — | — | — | ⏳ | — | — | — |
@@ -116,14 +116,45 @@
 
 ---
 
-## Next Steps (CONTEXT Audit)
+## CONTEXT Audit Results (CH01-CH03)
 
-For each chapter, the following CONTEXT-level checks are pending:
+**Completed**: 2026-01-24
+**Status**: CH01 ✅, CH02 ⚠️ (1 TODO), CH03 ✅
 
-1. **Symbol-to-canon mapping**: Verify every symbol has GLOBAL_SYMBOL_TABLE anchor
-2. **Equation verification**: Check each labeled equation for correctness
-3. **Claim chain**: Verify [Der] and [Dc] claims have proper derivation sources
-4. **Cross-references**: Verify all `\ref{}` and `\label{}` pairs are valid
+### Summary
+
+| Chapter | Context Issues | Collisions | Status |
+|---------|----------------|------------|--------|
+| CH01 | 0 | 0 | CONTEXT_DONE |
+| CH02 | 1 (CTX-001) | 1 (ξ dual meaning) | TODO pending |
+| CH03 | 0 | 0 | CONTEXT_DONE |
+
+### CTX-001: ξ Collision in CH02
+
+**Issue**: ξ used for both 5D coordinate (canon) and GL coherence length (non-canon)
+- Canon: Line 136 — "ξ is the physical 5D depth coordinate"
+- GL: Lines 237, 240, 311 — coherence length in superconductor analogy
+
+**Resolution**: Requires human decision (see `audit/notation/CONTEXT_VIOLATIONS_TODO_CH01_CH03.md`)
+
+### Reports Created
+
+- `audit/chapters/CH01_CONTEXT.md`
+- `audit/chapters/CH02_CONTEXT.md`
+- `audit/chapters/CH03_CONTEXT.md`
+- `audit/notation/CH01_CH03_SYMBOL_CONTEXT_LEDGER.md`
+- `audit/notation/CONTEXT_VIOLATIONS_TODO_CH01_CH03.md`
+
+---
+
+## Next Steps (NARRATIVE Audit)
+
+For each chapter, the following NARRATIVE-level checks are pending:
+
+1. **Claim flow**: Verify logical progression of claims
+2. **Evidence chains**: Verify [Der] and [Dc] claims have proper derivation sources
+3. **Cross-references**: Verify all `\ref{}` and `\label{}` pairs are valid
+4. **Epistemic consistency**: Verify tags match actual status
 
 ---
 
@@ -145,6 +176,8 @@ For each chapter, the following CONTEXT-level checks are pending:
 | 2026-01-24 | CH01-CH03 | Mechanical audit extraction | Claude |
 | 2026-01-24 | CH03 | Fixed 5 M_5 → \mathcal{M}^5 violations | Claude |
 | 2026-01-24 | CH03 | Build verification PASS (387 pages) | Claude |
+| 2026-01-24 | CH01-CH03 | Context semantics audit | Claude |
+| 2026-01-24 | CH02 | Identified CTX-001 (ξ collision) — TODO | Claude |
 
 ---
 
