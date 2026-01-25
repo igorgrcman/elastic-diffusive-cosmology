@@ -9,7 +9,9 @@
 ## Summary
 
 Comprehensive remediation of I₄/G_F/G_5 logic across Book 2.
-Three commits, 6 files patched, all acceptance criteria PASS.
+Four commits, 7 files patched, all acceptance criteria PASS.
+
+**Additional fix (9a5a6ef):** Over-strong claim correction + label reference fixes.
 
 ---
 
@@ -19,7 +21,8 @@ Three commits, 6 files patched, all acceptance criteria PASS.
 |-----|-------------|
 | `865bdec` | Initial 11_gf_derivation.tex I₄ fix |
 | `905830e` | CH3_electroweak_parameters.tex comprehensive fix + symbol table |
-| (this) | Comprehensive sweep: ch12, ch11, ch10 remaining issues |
+| `30ba865` | Comprehensive sweep: ch12, ch11, ch10 remaining issues |
+| `9a5a6ef` | Over-strong claim fix + label reference corrections |
 
 ---
 
@@ -32,11 +35,17 @@ Three commits, 6 files patched, all acceptance criteria PASS.
 - `src/CH3_electroweak_parameters.tex` — Lines 602-724 rewritten
 - `canon/notation/GLOBAL_SYMBOL_TABLE.md` — I₄ entry added
 
-### Commit 3 (this)
+### Commit 3 (30ba865)
 - `src/sections/ch12_bvp_workpackage.tex` — z→ξ, Gaussian domain fix
 - `src/sections/ch11_g5_ell_value_closure_attempt.tex` — σ_L dimensional error fix
 - `src/sections/ch10_electroweak_bridge.tex` — Domain specification added
 - `src/sections/11_gf_derivation.tex` — Domain + exponential reference
+
+### Commit 4 (9a5a6ef)
+- `src/CH3_electroweak_parameters.tex` — Over-strong claim fix: "entire electroweak sector" → "mixing structure"
+- `src/sections/11_gf_derivation.tex` — Label fix: sec:ch3_electroweak → sec:ch3_fermi
+- `src/sections/ch11_g5_ell_value_closure_attempt.tex` — Label fix
+- `src/sections/ch12_bvp_workpackage.tex` — Label fix
 
 ---
 
@@ -70,7 +79,15 @@ Three commits, 6 files patched, all acceptance criteria PASS.
 |--------|--------|-------|
 | Existence | Missing in early chapters | f(ξ) = √(2m₀)e^{-m₀ξ} |
 | I₄ result | Unknown | I₄ = m₀ exactly |
-| Cross-references | None | §ch3_electroweak throughout |
+| Cross-references | None | §ch3_fermi throughout (label corrected) |
+
+### Over-Strong Claim (Commit 4)
+
+| Aspect | BEFORE | AFTER |
+|--------|--------|-------|
+| Claim | "entire electroweak sector from geometry" | "mixing structure from geometry" |
+| G_F attribution | Implied from geometry | Explicitly from [BL] v: G_F = 1/(√2 v²) |
+| Scale vs structure | Not distinguished | Clear separation with [BL] tags |
 
 ### G₅ Status
 
@@ -85,7 +102,7 @@ Three commits, 6 files patched, all acceptance criteria PASS.
 
 | Criterion | Status | Command/Evidence |
 |-----------|--------|------------------|
-| gate_build.sh PASS | ✓ | 385 pages, no errors |
+| gate_build.sh PASS | ✓ | 387 pages, no errors |
 | gate_notation.sh PASS | ✓ | 951 ξ uses, 0 forbidden z |
 | grep "I₄ dimension of length" = 0 | ✓ | No matches |
 | grep I₄^{1/4} = 0 | ✓ | No matches |
