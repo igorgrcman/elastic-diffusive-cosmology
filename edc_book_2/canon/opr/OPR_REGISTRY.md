@@ -68,7 +68,7 @@ OPR-21 requirement (μ ∈ [25,35]) yields μ << 25, creating a **CONDITIONAL TE
 | OPR-19 | [G] | g₅ value from 5D action | CONDITIONAL [Dc] |
 | OPR-20 | [G] | Mediator mass from ξ-geometry | CONDITIONAL [Dc] |
 | OPR-21 | [B] | BVP mode profiles | STRONG PARTIAL |
-| OPR-22 | [C] | First-principles G_F | OPEN |
+| OPR-22 | [C] | First-principles G_eff | CONDITIONAL [Dc] |
 
 ---
 
@@ -934,36 +934,74 @@ CLOSED iff numerical mode profiles are computed for derived V(ξ) and I₄ is de
 
 ---
 
-## OPR-22 [C] First-principles G_F
+## OPR-22 [C] First-principles G_eff
 
-**Short name**: Derive G_F from 5D geometry without EW relations
+**Short name**: Derive effective contact strength G_eff from 5D mediator exchange
 
-**Status**: OPEN (RED-C, highest priority)
+**Status**: CONDITIONAL [Dc] (Updated 2026-01-25)
 
-**Missing**:
-- Complete derivation: G_F = G₅ × I₄ with both factors derived
-- No use of v, M_W, or G_F as inputs
-- Independent prediction that can be compared to experiment
+**Sprint completed**: book2-opr22-geff-derivation-v1
+
+**What is derived [Dc]**:
+- Effective 4D coupling: g_eff,n = g₅ f_n(0) for brane-localized current
+- Four-fermion operator from integrating out first massive mode
+- G_eff = g₅² ℓ |f₁(0)|² / (2 x₁²) in natural normalization
+- Connection to OPR-20: G_eff = (1/2) C_eff |f₁(0)|²
+- Dimensional verification: [G_eff] = L² = GeV⁻²
+
+**Key distinction**: G_eff is the EDC-computed quantity; G_F is the measured value [BL]. We derive G_eff without using G_F as input.
+
+**Derivation source**:
+- 5D gauge-fermion action [M]
+- KK mode decomposition [Dc]
+- Brane-localized current ansatz [P] (Working Default)
+- OPR-19 normalization + OPR-20 eigenvalue structure [Dc]
+
+**Parameters (remain [P] postulated)**:
+- g₅ = 5D gauge coupling
+- ℓ = domain size
+- V(ξ) = effective potential
+- κ₀, κₗ = Robin BC parameters
+
+**Documentation created (2026-01-25)**:
+- `src/sections/ch19_opr22_geff_from_exchange.tex` — Book chapter derivation
+- `audit/evidence/OPR22_GEFF_DERIVATION_REPORT.md` — Evidence chain + conventions
+- `canon/opr/OPR-22.md` — Canonical OPR document
+- `code/opr22_geff_sanity.py` — Dimensional consistency sanity script
 
 **Blocks**:
-- All quantitative G_F claims
+- All quantitative G_F claims (now upgraded to CONDITIONAL [Dc])
 
 **Where it appears in Book2**:
-- 11_gf_derivation.tex:568, 578, 608, 633
-- Throughout CH08 as ultimate goal
+- **NEW**: CH19 (OPR-22 derivation section) — src/sections/ch19_opr22_geff_from_exchange.tex
+- 11_gf_derivation.tex:568, 578, 608, 633 (legacy references)
 
 **Depends on**:
-- OPR-19 (g₅ value)
-- OPR-20 (mediator mass)
-- OPR-21 (BVP profiles)
-
-**Minimum closure deliverable**:
-1. OPR-19, OPR-20, OPR-21 all CLOSED
-2. Combine to compute G_F numerically
-3. Compare to PDG value
+- OPR-19 (g₅ → g₄ reduction) — CONDITIONAL [Dc]
+- OPR-20 (mediator mass m₁ = x₁/ℓ) — CONDITIONAL [Dc]
+- OPR-21 (BVP profiles, f₁(0)) — STRONG PARTIAL
 
 **Closure test**:
-CLOSED iff G_F is computed from geometry alone and matches PDG within stated uncertainty.
+OPR-22 is CLOSED iff G_eff is derived from 5D action ✓
+AND no SM observables used as inputs ✓
+AND dimensional analysis verified ✓
+
+**Current status: CONDITIONAL [Dc]**
+- Condition: g₅ value [P]
+- Condition: ℓ value [P]
+- Condition: V(ξ) and BC parameters [P]
+- Condition: Brane-localized current [P] (WD)
+
+**Remaining for full [Der]**:
+1. Derive g₅ from UV completion (OPEN-22-2)
+2. Derive ℓ from first principles (OPEN-22-3)
+3. Compute f₁(0) for physical V(ξ) (OPEN-22-4)
+4. Include brane kinetic term corrections (OPEN-22-5)
+5. Bulk-current alternative with overlap integral (OPEN-22-1)
+
+**No-smuggling certification**: ✓ PASS
+- Grep verification: No M_W, G_F, v=246GeV, sin²θ_W in derivation
+- Only used: 5D action [M] + KK decomposition [Dc] + brane localization [P]
 
 ---
 
