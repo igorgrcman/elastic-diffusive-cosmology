@@ -11,7 +11,7 @@
 | OPR | Category | Short Name | Status |
 |-----|----------|------------|--------|
 | OPR-01 | [C] | σ anchor | OPEN |
-| OPR-02 | [A/B] | Robin α from action | OPEN |
+| OPR-02 | [A/B] | Robin α from action | PARTIAL |
 | OPR-03 | [T] | π₁(M⁵) topology closure | OPEN |
 | OPR-04 | [B] | δ ≡ R_ξ teleport | OPEN |
 | OPR-05 | [B/C] | m_φ teleport | OPEN |
@@ -58,33 +58,46 @@ OPR-01 is CLOSED iff σ is fixed or bounded WITHOUT using any downstream derived
 
 **Short name**: Derive Robin BC parameter α from 5D action/junction conditions
 
-**Status**: OPEN
+**Status**: PARTIAL [Dc]+[P] (Updated 2026-01-25)
 
-**Missing**:
-- α appears in Robin BC: f'(0) + αf(0) = 0
-- CH13 shows Robin structure emerges from junction, but α value not derived
-- Connection to Israel junction conditions incomplete
+**What is derived [Dc]**:
+- Robin BC **form** f' + αf = 0 follows from 5D action variation
+- Robin BC **structure** emerges from BKT (brane kinetic term) junction matching
+- Three structural expressions for α are derived:
+  - α = λ̃m²/2 (from BKT variation) — eq:attemptF_alpha_BKT
+  - α ~ κ₅²σℓ (from Israel junction) — eq:attemptG_alpha_tension
+  - α = ℓ/δ (from thick-brane matching) — eq:attemptG_alpha_thick
+
+**What requires [P] (one choice needed)**:
+- Route A: BKT coefficient λ̃ ~ 2-4 (gives α ~ 8)
+- Route B: Junction parameters κ₅, σ (requires Part I)
+- Route C: δ = R_ξ identification (gives α = 2π ≈ 6.3) **RECOMMENDED**
+
+**Documentation created**:
+- `audit/notation/OPR02_ROBIN_OCCURRENCES.md` — occurrence table
+- `audit/evidence/OPR02_DERIVATION_CHAIN.md` — full derivation chain
 
 **Blocks**:
 - E-CH10-Dc-* (BC-dependent claims)
-- E-CH13-Der-004 to E-CH13-Der-010 (partial — structure proven, value not)
+- E-CH13-Der-004 to E-CH13-Der-010 (partial — structure proven, value conditional)
 - E-CH14-Dc-* (BVP eigenvalue claims)
 
 **Where it appears in Book2**:
 - CH10:99 (first use, teleported)
-- CH13: OPR-20 closure attempts
+- CH11: G_F derivation
+- CH13: OPR-20 closure attempts (F, G, H, H2)
 - CH14: BVP work package
 
-**Minimum closure deliverable**:
-1. Derive α from variation of 5D action with GHY boundary term
-2. Show how Israel junction conditions constrain α
-3. Express α in terms of known/postulated quantities with explicit tags
+**Upgrade condition to CLOSED**:
+1. Derive δ = R_ξ from brane microphysics (Part I connection)
+2. OR derive BKT coefficient λ̃ from membrane stiffness/conductivity
+3. Either route removes the remaining [P]
 
 **Closure test**:
-CLOSED iff α appears as boundary term coefficient in δS = 0 variation AND matches the BC used in BVP chapter with consistent numerical value.
+CLOSED iff α appears as boundary term coefficient in δS = 0 variation WITHOUT any postulated parameter, i.e., purely [Der].
 
 **No-smuggling note**:
-α cannot be fitted to match a desired eigenvalue; must emerge from action principle.
+α cannot be fitted to match a desired eigenvalue; must emerge from action principle. Current status is no-smuggling compliant: no SM values (M_W, G_F, etc.) used to determine α.
 
 ---
 
@@ -272,7 +285,7 @@ REPRO scripts must use inputs tagged [BL]/[P]/[I], not fitted parameters disguis
 
 **Short name**: Ensure first introduction + dependency chain is documented
 
-**Status**: OPEN
+**Status**: CLOSED (Updated 2026-01-25)
 
 **Missing**:
 - sin²θ_W = 1/4 appears in CH11 as [Der] from Z₆ counting
