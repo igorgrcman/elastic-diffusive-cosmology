@@ -13,7 +13,9 @@
 | **[Der] (Fully Derived)** | 12 |
 | **[Dc] (Derived-Conditional)** | 184 |
 | **[M]/[Def] (Mathematical/Definition)** | 5 |
-| **TOTAL Claims** | **201** |
+| **TOTAL Claims** | **205** |
+
+*Note: CH05 claims marked with 5* are [P] (provisional candidates), not [Der] or [Dc].*
 
 ### By Chapter
 
@@ -23,7 +25,7 @@
 | CH02 | 0 | 8 | 0 | 8 |
 | CH03 | 0 | 33 | 0 | 33 |
 | CH04 | 0 | 24 | 0 | 24 |
-| CH05 | 0 | 3 | 0 | 3 |
+| CH05 | 0 | 2 | 5* | 7 |
 | CH06 | 0 | 13 | 0 | 13 |
 | CH07 | 0 | 24 | 0 | 24 |
 | CH08 | — | — | — | — |
@@ -73,7 +75,19 @@
 | E-CH04-Dc-012 | sin²θ_W(M_Z) = 0.2314 via RG | IF bare value 1/4 + SM RG | CONDITIONAL |
 | E-CH04-Dc-017 | τ_n ≈ 830s (6% from exp) | IF WKB + barrier params | CONDITIONAL |
 
-### Flavor Structure (CH05-CH07)
+### Lepton Mass Candidates (CH05)
+
+| ID | Statement | Condition | Status |
+|----|-----------|-----------|--------|
+| E-CH05-P-001 | m_e = π√(ασΔℏc) | IF π derived [OPR-09] | [P] |
+| E-CH05-P-002 | σ = 5.86 MeV/fm² | IF σ anchored [OPR-01] | [Dc] |
+| E-CH05-P-003 | Δ = 3.121×10⁻³ fm | IF Δ = R_ξ [OPR-04] | [Dc] |
+| E-CH05-P-004 | m_μ/m_e = (3/2)/α | IF (3/2) derived [OPR-10] | [P] |
+| E-CH05-P-005 | Q = 2/3 (Koide) | IF Q from Z₆ [OPR-11] | [P] |
+| E-CH05-P-006 | Q = \|Z₂\|/\|Z₃\| | IF energetics proven [OPR-11] | [P] |
+| E-CH05-P-007 | m_τ from Koide | Not independent (constraint) | [P] |
+
+### Flavor Structure (CH06-CH07)
 
 | ID | Statement | Condition | Status |
 |----|-----------|-----------|--------|
@@ -94,7 +108,13 @@
 
 | OPR | Description | Blocking Claims |
 |-----|-------------|-----------------|
+| OPR-01 | σ anchor | E-CH05-P-002 |
 | OPR-02 | KK truncation → N_gen=3 | E-CH05-Dc-*, E-CH14-* |
+| OPR-03 | π₁(M⁵) topology | E-CH05-P-007 (N_gen) |
+| OPR-04 | δ ≡ R_ξ teleport | E-CH05-P-003 |
+| OPR-09 | π prefactor derivation | E-CH05-P-001 |
+| OPR-10 | (3/2) factor from Z₆ | E-CH05-P-004 |
+| OPR-11 | Koide Q = 2/3 energetics | E-CH05-P-005, E-CH05-P-006 |
 | OPR-17 | Coupling map from 5D action | E-CH03-Dc-*, E-CH04-Dc-* |
 | OPR-19 | g₅ value derivation | E-CH11-Dc-* |
 | OPR-20 | ℓ and BC from membrane | E-CH10-Dc-*, E-CH13-* |

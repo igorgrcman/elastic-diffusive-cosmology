@@ -18,6 +18,9 @@
 | OPR-06 | [C] | P_bulk anchor | OPEN |
 | OPR-07 | [N] | Physics-grade numerics | STRONG PARTIAL |
 | OPR-08 | [X] | sin²θ_W chain/notation | CLOSED |
+| OPR-09 | [L] | π prefactor derivation | OPEN |
+| OPR-10 | [L] | (3/2) factor from Z₆ | OPEN |
+| OPR-11 | [L] | Koide Q = 2/3 energetics | OPEN |
 
 ---
 
@@ -342,6 +345,97 @@ sin²θ_W = 0.25 (bare) vs 0.2314 (running) must be distinguished; cannot claim 
 
 ---
 
+## OPR-09 [L] π prefactor derivation
+
+**Short name**: Derive the π prefactor in candidate electron mass formula
+
+**Status**: OPEN
+
+**Missing**:
+- The candidate formula m_e = π√(ασΔℏc) uses π as a geometric prefactor
+- This π is postulated, not derived from action or boundary conditions
+- Possible routes: WKB phase quantization, defect geometry, mode normalization
+
+**Blocks**:
+- E-CH05-P-001 (electron mass candidate)
+
+**Where it appears in Book2**:
+- CH05 §5.1 (eq:electron_candidate)
+
+**Minimum closure deliverable**:
+1. Explicit integral or phase calculation producing π
+2. Connection to thick-brane potential V(z) or WKB ground state
+3. Derivation without fitting to m_e value
+
+**Closure test**:
+CLOSED iff π appears as output of a definite integral (e.g., ∫₀^∞ ... dz = π) or quantization condition with explicit assumptions.
+
+**No-smuggling note**:
+π cannot be chosen to make m_e come out right; must emerge from geometry.
+
+---
+
+## OPR-10 [L] (3/2) factor from Z₆
+
+**Short name**: Derive the (3/2) = |Z₃|/|Z₂| factor in muon/electron ratio
+
+**Status**: OPEN
+
+**Missing**:
+- The candidate ratio m_μ/m_e = (3/2)/α uses (3/2) as group-theoretic input
+- This is suggestive (Z₆ ≃ Z₂×Z₃ structure) but not derived from energetics
+- No action-level or oscillator-spectrum derivation exists
+
+**Blocks**:
+- E-CH05-P-004 (muon/electron ratio candidate)
+
+**Where it appears in Book2**:
+- CH05 §5.2 (eq:muon_ratio_candidate)
+
+**Minimum closure deliverable**:
+1. Show that Z₆ mode spectrum gives (3/2) mass ratio factor
+2. OR derive from oscillator harmonic structure in ξ-dimension
+3. Connection to group representation theory energetics
+
+**Closure test**:
+CLOSED iff (3/2) = |Z₃|/|Z₂| emerges from mode-counting or energy-level theorem with explicit Z₆ structure.
+
+**No-smuggling note**:
+(3/2) cannot be fitted from observed masses; must come from Z₆ mathematics.
+
+---
+
+## OPR-11 [L] Koide Q = 2/3 energetics
+
+**Short name**: Derive the Koide constraint Q = 2/3 from Z₆ energy minimization
+
+**Status**: OPEN
+
+**Missing**:
+- Koide relation Q = (m_e+m_μ+m_τ)/(√m_e+√m_μ+√m_τ)² = 2/3 holds empirically
+- Identification Q = |Z₂|/|Z₃| is suggestive but not derived
+- No energetic argument shows why D/A = √2 ratio is forced
+
+**Blocks**:
+- E-CH05-P-005 (Koide constraint)
+- E-CH05-P-006 (Z₆ identification)
+
+**Where it appears in Book2**:
+- CH05 §5.3 (eq:koide_ch4, eq:koide_z6)
+
+**Minimum closure deliverable**:
+1. Show Z₆ energy functional has minimum at Q = 2/3
+2. Derive D/A = √2 from mode degeneracy or symmetry
+3. Prove Q = |Z₂|/|Z₃| is not coincidence but structural
+
+**Closure test**:
+CLOSED iff Q = 2/3 emerges from energy minimization with Z₆ symmetry constraint.
+
+**No-smuggling note**:
+Q value cannot be imposed; must be output of variational principle.
+
+---
+
 ## Appendix: OPR → Claim Count Estimates
 
 | OPR | Estimated Blocked Claims |
@@ -354,6 +448,9 @@ sin²θ_W = 0.25 (bare) vs 0.2314 (running) must be distinguished; cannot claim 
 | OPR-06 | ~10 (P_bulk-dependent) |
 | OPR-07 | ~5 (numerics-cited) |
 | OPR-08 | ~4 (sin²θ_W-dependent) |
+| OPR-09 | ~3 (π-dependent in CH05) |
+| OPR-10 | ~3 ((3/2)-dependent in CH05) |
+| OPR-11 | ~3 (Koide-dependent in CH05) |
 
 *Note: Claims may be blocked by multiple OPRs. Exact crosswalk in OPR_CLAIM_CROSSWALK.md*
 
