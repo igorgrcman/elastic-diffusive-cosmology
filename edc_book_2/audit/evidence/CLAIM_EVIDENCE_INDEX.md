@@ -28,7 +28,7 @@
 | CH05 | 0 | 2 | 5* | 7 |
 | CH06 | 0 | 1 | 9* | 10 |
 | CH07 | 0 | 24 | 0 | 24 |
-| CH08 | — | — | — | — |
+| CH08 | 0 | 3 | 1 | 4 |
 | CH09 | 0 | 2 | 0 | 2 |
 | CH10 | 0 | 8 | 0 | 8 |
 | CH11 | 2 | 22 | 0 | 24 |
@@ -119,7 +119,19 @@
 
 *CH07 Remediation: 32 OPEN-IDs catalogued; 12 DONE, 20 OPEN with OPR links. See `audit/chapters/CH07_OPEN_QUESTIONS_LEDGER.md`.*
 
-### Fermi Constant (CH11)
+### The Fermi Constant from Geometry (CH08) — *Audited 2026-01-25*
+
+| ID | Statement | Condition | Status | OPR |
+|----|-----------|-----------|--------|-----|
+| E-CH08-Dc-001 | G_F = 1.166×10⁻⁵ GeV⁻² from EW relations | IF sin²θ_W + v known | [Dc] ✓ | — |
+| E-CH08-Dc-002 | L_eff = -g₅²/(2m_φ²) × O_overlap × JJ | IF g₅, m_φ known | [Dc] OPEN | OPR-19,20 |
+| E-CH08-Dc-003 | I₄ = m₀ (for exponential profile) | Exact for toy model | [Dc] ✓ | — |
+| E-CH08-P-001 | Mode overlap mechanism | Qualitative only | [P] YELLOW | OPR-21 |
+
+*Note: File is 11_gf_derivation.tex but this is Chapter 8 in main.tex structure.*
+*CH08 Audit: 8 OPEN-IDs catalogued. See `audit/chapters/CH08_OPEN_QUESTIONS_LEDGER.md`.*
+
+### Fermi Constant Closure Attempts (CH11-closure)
 
 | ID | Statement | Condition | Status |
 |----|-----------|-----------|--------|
@@ -147,7 +159,9 @@
 | OPR-19 | g₅ value derivation | E-CH11-Dc-* |
 | OPR-20 | ℓ and BC from membrane | E-CH10-Dc-*, E-CH13-* |
 | OPR-21 | I₄ overlap from BVP | E-CH11-Dc-014, E-CH14-* |
-| OPR-22 | First-principles G_F | E-CH11-Dc-012 |
+| OPR-16 | Pion mass/lifetime | E-CH-case-pion |
+| OPR-18 | CKM/PMNS from overlaps | E-CH07-*, E-CH08-* |
+| OPR-22 | First-principles G_F | E-CH08-Dc-001, E-CH11-Dc-012 |
 
 ---
 
