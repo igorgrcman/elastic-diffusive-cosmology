@@ -35,9 +35,51 @@ For each changed instance:
 
 ## Pending Replacements (Approved but not yet executed)
 
-| ID | File | Line(s) | Old Symbol | New Symbol | Classification | Canon Anchor | Reason | Approved |
-|----|------|---------|------------|------------|----------------|--------------|--------|----------|
-| — | — | — | — | — | — | — | — | — |
+### Category A: M_5 → \mathcal{M}^5 (Manifold Context)
+
+| ID | File | Line(s) | Old | New | Class | Canon | Reason | Decision |
+|----|------|---------|-----|-----|-------|-------|--------|----------|
+| VR-001 | 05_three_generations.tex | 334 | `$\pi_1(M_5)$` | `$\pi_1(\mathcal{M}^5)$` | (E) Manifold | Fwk v2.0 Eq.(1) | Homotopy group of manifold | MUST-FIX |
+| VR-002 | 05_three_generations.tex | 339 | `$M_5$` | `$\mathcal{M}^5$` | (E) Manifold | Fwk v2.0 Eq.(1) | "5D bulk manifold" context | MUST-FIX |
+| VR-003 | 05_three_generations.tex | 341 | `$\pi_1(M_5)$` | `$\pi_1(\mathcal{M}^5)$` | (E) Manifold | Fwk v2.0 Eq.(1) | Fundamental group | MUST-FIX |
+| VR-004 | 05_three_generations.tex | 369-370 | `$M_5$` | `$\mathcal{M}^5$` | (E) Manifold | Fwk v2.0 Eq.(1) | Topology table entries | MUST-FIX |
+| VR-005 | 05_three_generations.tex | 378,385 | `$M_5$` | `$\mathcal{M}^5$` | (E) Manifold | Fwk v2.0 Eq.(1) | "global topology of M_5" | MUST-FIX |
+| VR-006 | 05_three_generations.tex | 402 | `$\pi_1(M_5)$` | `$\pi_1(\mathcal{M}^5)$` | (E) Manifold | Fwk v2.0 Eq.(1) | Table entry | MUST-FIX |
+| VR-007 | 05_three_generations.tex | 501,605 | `$\pi_1(M_5)$` | `$\pi_1(\mathcal{M}^5)$` | (E) Manifold | Fwk v2.0 Eq.(1) | Summary/table | MUST-FIX |
+
+### Category B: M_5 → M_{5,Pl} (Mass Context)
+
+| ID | File | Line(s) | Old | New | Class | Canon | Reason | Decision |
+|----|------|---------|-----|-----|-------|-------|--------|----------|
+| VR-008 | 11_gf_derivation.tex | 404,406 | `$M_5$` | `$M_{5,\mathrm{Pl}}$` | (D) Mass | Derived | G_5 ~ g²/M² is mass formula | MUST-FIX |
+| VR-009 | ch11_opr20_attemptD*.tex | 248 | `$M_5$` | `$M_{5,\mathrm{Pl}}$` | (D) Mass | Derived | "5D Planck scale" explicit | MUST-FIX |
+| VR-010 | ch11_opr20_attemptD*.tex | 259,261 | `$M_5$` | `$M_{5,\mathrm{Pl}}$` | (D) Mass | Derived | σ/M³ mass formula | MUST-FIX |
+| VR-011 | ch14_bvp_closure_pack.tex | 276,280 | `$M_5$` | `$M_{5,\mathrm{Pl}}$` | (D) Mass | Derived | "5D Planck mass" explicit | MUST-FIX |
+| VR-012 | ch14_bvp_closure_pack.tex | 297,305 | `$M_5$` | `$M_{5,\mathrm{Pl}}$` | (D) Mass | Derived | Junction/GHY action | MUST-FIX |
+
+### Category C: z/Δz → ξ/Δξ (5D Depth Context)
+
+| ID | File | Line(s) | Old | New | Class | Canon | Reason | Decision |
+|----|------|---------|-----|-----|-------|-------|--------|----------|
+| VR-013 | 06_neutrinos_edge_modes.tex | 70-71 | `$\Delta z$` | `$\Delta\xi$` | (A) 5D depth | Fwk v2.0 Eq.(3) | "separation" in 5D | MUST-FIX |
+| VR-014 | 06_neutrinos_edge_modes.tex | 93 | `$\Delta z$` | `$\Delta\xi$` | (A) 5D depth | Fwk v2.0 Eq.(3) | Same context | MUST-FIX |
+| VR-015 | 06_neutrinos_edge_modes.tex | 434-437 | `$\Delta z$` | `$\Delta\xi$` | (A) 5D depth | Fwk v2.0 Eq.(3) | Neutrino mass suppression | MUST-FIX |
+| VR-016 | 06_neutrinos_edge_modes.tex | 457-458 | `$z_H$`, `$\Delta z$` | `$\xi_H$`, `$\Delta\xi$` | (A) 5D depth | Fwk v2.0 Eq.(3) | Horizon and separation | MUST-FIX |
+| VR-017 | 06_neutrinos_edge_modes.tex | 465-467,485 | `$\Delta z$` | `$\Delta\xi$` | (A) 5D depth | Fwk v2.0 Eq.(3) | Mass ratio formula | MUST-FIX |
+| VR-018 | 06_neutrinos_edge_modes.tex | 530,536 | `$\Delta z$` | `$\Delta\xi$` | (A) 5D depth | Fwk v2.0 Eq.(3) | Mode-dependent separation | MUST-FIX |
+| VR-019 | 06_neutrinos_edge_modes.tex | 701,757 | `$\Delta z$` | `$\Delta\xi$` | (A) 5D depth | Fwk v2.0 Eq.(3) | Constraint discussion | MUST-FIX |
+| VR-020 | 07_ckm_cp.tex | 66 | `$\Delta z$` | `$\Delta\xi$` | (A) 5D depth | Fwk v2.0 Eq.(3) | Generation separation | MUST-FIX |
+| VR-021 | 07_ckm_cp.tex | 97,102 | `$\Delta z$` | `$\Delta\xi$` | (A) 5D depth | Fwk v2.0 Eq.(3) | Wolfenstein parameter | MUST-FIX |
+| VR-022 | 07_ckm_cp.tex | 446 | `$\Delta z$` | `$\Delta\xi$` | (A) 5D depth | Fwk v2.0 Eq.(3) | CKM diagonal structure | MUST-FIX |
+| VR-023 | 07_ckm_cp.tex | 505,511 | `$\Delta z$` | `$\Delta\xi$` | (A) 5D depth | Fwk v2.0 Eq.(3) | Figure caption | MUST-FIX |
+| VR-024 | 09_va_structure.tex | 275-276 | `$\Psi(x^\mu, z)$` | `$\Psi(x^\mu, \xi)$` | (A) 5D depth | Fwk v2.0 Eq.(3) | 5D field coordinate | MUST-FIX |
+| VR-025 | ch11_opr20_attemptF*.tex | 23 | `$\phi(x^\mu, z)$` | `$\phi(x^\mu, \xi)$` | (A) 5D depth | Fwk v2.0 Eq.(3) | Mediator in 5D bulk | MUST-FIX |
+
+### Category D: Notation Comment (Documentation)
+
+| ID | File | Line(s) | Old | New | Class | Canon | Reason | Decision |
+|----|------|---------|-----|-----|-------|-------|--------|----------|
+| VR-026 | 02_frozen_regime_foundations.tex | 133 | Comment about M_5 | Update comment | (H) Other | Fwk v2.0 Eq.(1) | Documentation consistency | TODO |
 
 ---
 
