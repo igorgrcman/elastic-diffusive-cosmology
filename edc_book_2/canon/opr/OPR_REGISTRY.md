@@ -30,7 +30,7 @@
 | OPR-18 | [M] | CKM/PMNS from overlaps | OPEN |
 | OPR-19 | [G] | g₅ value from 5D action | OPEN |
 | OPR-20 | [G] | Mediator mass from ξ-geometry | OPEN |
-| OPR-21 | [B] | BVP mode profiles | OPEN |
+| OPR-21 | [B] | BVP mode profiles | STRONG PARTIAL |
 | OPR-22 | [C] | First-principles G_F | OPEN |
 
 ---
@@ -729,13 +729,19 @@ CLOSED iff m_φ is computed from geometry without using M_W as input.
 
 **Short name**: Solve boundary value problem for fermion localization
 
-**Status**: OPEN
+**Status**: STRONG PARTIAL (infrastructure complete, physics inputs OPEN)
 
-**Missing**:
-- Explicit thick-brane potential V(ξ)
-- Fermion BVP with Robin/Dirichlet boundary conditions
-- Normalized mode profiles f_L(ξ), f_R(ξ)
-- Overlap integral I₄ = ∫|f_L|⁴dξ from actual solution
+**Completed (2026-01-25)**:
+- L1: Domain definition — ESTABLISHED [M]
+- L3: Robin BC form — ESTABLISHED [M]
+- L4: Sturm-Liouville self-adjointness — ESTABLISHED [M]
+- L5: Toy model validation — ESTABLISHED [M]
+- Infrastructure: `code/opr21_bvp_demo.py` validated
+
+**Still missing**:
+- L2: V(ξ) derivation from 5D action — OPEN
+- L3.2: BC parameter derivation from Israel junction — OPEN
+- Physical N_bound computation — OPEN (blocked by L2)
 
 **Blocks**:
 - E-CH08-OPEN-003 (mode profiles)
@@ -746,14 +752,21 @@ CLOSED iff m_φ is computed from geometry without using M_W as input.
 - 11_gf_derivation.tex:501-519, 577, 607
 - ch12_bvp_workpackage.tex (setup)
 - ch14_bvp_closure_pack.tex (detailed work)
+- canon/opr/OPR-21.md (lemma chain)
+
+**Deliverables created (2026-01-25)**:
+1. `canon/opr/OPR-21.md` — Lemma chain document
+2. `code/opr21_bvp_demo.py` — Infrastructure validation script
+3. `audit/evidence/OPR21_BVP_FOUNDATION_REPORT.md` — Sprint report
 
 **Minimum closure deliverable**:
-1. Derive V(ξ) from EDC action
-2. Solve Schrödinger-like BVP numerically
-3. Compute I₄ with error bounds
+1. Derive V(ξ) from EDC action (complete L2)
+2. Derive BC parameters from Israel junction (complete L3.2)
+3. Solve BVP numerically with physical inputs
+4. Show N_bound = 3 robustly
 
 **Closure test**:
-CLOSED iff numerical mode profiles are computed and I₄ is determined.
+CLOSED iff numerical mode profiles are computed for derived V(ξ) and I₄ is determined.
 
 ---
 
