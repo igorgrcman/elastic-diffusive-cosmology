@@ -52,27 +52,50 @@ DO NOT cite this figure as evidence for any physics claims.
 
 ---
 
-## REPRO Artifacts (2)
+## REPRO Artifacts (3)
 
-**Status**: 1 complete, 1 stub (blocked by OPR-21)
+**Status**: 2 complete, 1 stub (blocked by OPR-21)
 
-### code/repro/repro_sin2_z6_verify.py — COMPLETE
+**Location**: `repro/` directory (primary), `code/repro/` (legacy)
+
+### repro/scripts/repro_sin2_z6_verify.py — COMPLETE
 
 | Field | Value |
 |-------|-------|
 | **Classification** | REPRO (Complete) |
-| **SHA256** | `3d3a76ac1a9173104932bcf56ee9655b16d61220dc5cdaad0391580e442c2653` |
 | **Purpose** | Verify sin²θ_W = 1/4 from Z₆ subgroup counting |
 | **Dependencies** | Python 3.8+ (standard library only) |
-| **Output** | `code/output/repro_sin2_z6_result.txt` |
-| **Output SHA256** | `afb13677d8e2fd22564da90eb701c340a4994b8dd8dc0f08ba199462ad1ae472` |
+| **Output** | `repro/output/sin2_z6_verify.json` |
 | **Supports claims** | E-CH11-Der-005, E-CH11-Der-013 |
+
+**What it verifies**:
+- Z₆ subgroup structure (Z₂ = {0,3}, Z₃ = {0,2,4})
+- Coupling ratio g'²/g² = |Z₂|/|Z₆| = 1/3
+- sin²θ_W = (1/3)/(1+1/3) = 1/4
 
 **Regeneration Command:**
 ```bash
-cd edc_book_2
-python code/repro/repro_sin2_z6_verify.py
+cd edc_book_2/repro
+bash run_all.sh
 ```
+
+### repro/scripts/repro_sin2_rg_running.py — COMPLETE (SUPPORTING)
+
+| Field | Value |
+|-------|-------|
+| **Classification** | REPRO (Supporting) |
+| **Purpose** | Verify sin²θ_W RG running from lattice scale to M_Z |
+| **Dependencies** | Python 3.8+ (standard library only) |
+| **Output** | `repro/output/sin2_rg_running.json` |
+| **Supports claims** | E-CH04-Dc-012 (CONDITIONAL) |
+
+**What it verifies**:
+- RG shift Δsin²θ_W ≈ -0.019 is consistent with SM
+- sin²θ_W(M_Z) = 0.232 matches PDG to 0.18%
+
+**Caveats**:
+- Uses phenomenological RG coefficient (not first-principles)
+- Lattice scale is [P] postulated
 
 ### code/repro/repro_i4_overlap_stub.py — BLOCKED (OPR-21)
 

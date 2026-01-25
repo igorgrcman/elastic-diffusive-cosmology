@@ -16,7 +16,7 @@
 | OPR-04 | [B] | δ ≡ R_ξ teleport | OPEN |
 | OPR-05 | [B/C] | m_φ teleport | OPEN |
 | OPR-06 | [C] | P_bulk anchor | OPEN |
-| OPR-07 | [N] | Physics-grade numerics | PARTIAL |
+| OPR-07 | [N] | Physics-grade numerics | STRONG PARTIAL |
 | OPR-08 | [X] | sin²θ_W chain/notation | CLOSED |
 
 ---
@@ -224,14 +224,23 @@ P_bulk cannot be adjusted to balance equations; must have independent thermodyna
 
 **Short name**: At least one REPRO script with hashed outputs supporting a physics claim
 
-**Status**: PARTIAL (Updated 2026-01-25)
+**Status**: STRONG PARTIAL (Updated 2026-01-25)
 
 **Progress**:
-- 1 REPRO script complete: `repro_sin2_z6_verify.py` (sin²θ_W = 1/4)
-- 1 REPRO stub: `repro_i4_overlap_stub.py` (blocked by OPR-21)
-- Output hash recorded: `afb13677d8e2fd22564da90eb701c340a4994b8dd8dc0f08ba199462ad1ae472`
+- 2 REPRO scripts complete in `repro/scripts/`:
+  - `repro_sin2_z6_verify.py` → E-CH11-Der-005, E-CH11-Der-013
+  - `repro_sin2_rg_running.py` → E-CH04-Dc-012 (SUPPORTING)
+- 1 REPRO stub: `code/repro/repro_i4_overlap_stub.py` (blocked by OPR-21)
+- Verification infrastructure: `run_all.sh`, `tools/repro_gate.py`
+- Checksums recorded in `repro/output/checksums.sha256`
 
-**Remaining**:
+**Closure criteria met**:
+- ✅ At least 1 REPRO script with claim mapping
+- ✅ Deterministic outputs with SHA256 hashes
+- ✅ Gate script for verification
+- ✅ Manifest documenting script → claim → output
+
+**Remaining for CLOSED**:
 - I₄ overlap integral (blocked by OPR-21)
 - τ_n WKB barrier calculation
 - Lepton mass BVP eigenvalues
