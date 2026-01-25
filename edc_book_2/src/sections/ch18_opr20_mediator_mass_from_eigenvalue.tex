@@ -1,0 +1,495 @@
+%!TEX root = ../EDC_Part_II_Weak_Sector_rebuild.tex
+% ==============================================================================
+% CHAPTER 18: OPR-20 Mediator Mass from ξ-Geometry
+% Sprint: book2-opr20-mediator-mass-v1
+% Status: CONDITIONAL [Dc] — eigenvalue structure derived, V(ξ)/ℓ/κ remain [P]
+% ==============================================================================
+
+\chapter{Mediator Mass from the ξ-Eigenvalue Problem (OPR-20)}
+\label{ch:opr20_mediator_mass}
+
+% ==============================================================================
+% READER'S MAP
+% ==============================================================================
+
+\begin{tcolorbox}[colback=yellow!10!white, colframe=yellow!60!black,
+    title=\textbf{Reader's Map}]
+
+\textbf{What this chapter proves:}
+\begin{itemize}[nosep]
+    \item The mediator mass $m_{\text{med}}$ is the first nonzero eigenvalue of a
+          Sturm--Liouville problem on the ξ-domain
+    \item The scaling relation $m_n = x_n / \ell$ connects eigenvalue spectrum to physical masses
+    \item The effective contact strength combines with OPR-19 to give
+          $C_{\text{eff}} = g_5^2 \ell^2 / x_1^2$
+\end{itemize}
+
+\textbf{What this chapter does NOT prove:}
+\begin{itemize}[nosep]
+    \item The effective potential $V(\xi)$ (remains \tagP{})
+    \item The domain size $\ell$ (remains \tagP{})
+    \item The BC parameters $\kappa_0, \kappa_\ell$ (structure \tagDc{}, values \tagP{})
+    \item Why $m_{\text{med}} \approx M_W$ numerically (not attempted)
+\end{itemize}
+
+\textbf{Prerequisites:}
+\begin{itemize}[nosep]
+    \item Chapter~\ref{ch:opr19_g5_from_action} (OPR-19): $g_5 \to g_4$ dimensional reduction
+    \item Chapter~\ref{sec:ch14_opr21} (OPR-21): BVP framework and Robin BC structure
+    \item Chapter~\ref{sec:ch16_reader_map} (OPR-04): Scale Taxonomy ($\Delta, \delta, \ell, R_\xi$)
+\end{itemize}
+
+\textbf{Status:} CONDITIONAL \tagDc{} --- eigenvalue structure derived; parameters \tagP{}.
+
+\end{tcolorbox}
+
+% ==============================================================================
+% SECTION 1: INTRODUCTION
+% ==============================================================================
+
+\section{The Problem: What Sets the Mediator Mass?}
+\label{sec:ch18_intro}
+
+In the Standard Model, the $W$ and $Z$ boson masses arise from the Higgs mechanism:
+$M_W = g v / 2$, where $v = 246$~GeV is the vacuum expectation value. In EDC, we seek
+an alternative: \textbf{the mediator mass emerges from the geometry of the extra dimension}.
+
+The key insight (already developed in Chapter~11 closure attempts) is that a gauge field
+propagating in 5D, when decomposed into 4D modes, yields a \emph{spectrum} of masses
+determined by a Sturm--Liouville eigenvalue problem on the ξ-coordinate.
+
+This chapter provides the \textbf{systematic derivation} of that eigenvalue problem,
+connecting it to OPR-19 (coupling normalization) and OPR-21 (boundary conditions).
+
+% ==============================================================================
+% SECTION 2: FROM 5D ACTION TO 1D EIGENVALUE PROBLEM
+% ==============================================================================
+
+\section{From 5D Gauge Action to 1D Eigenvalue Problem}
+\label{sec:ch18_action_to_sl}
+
+\subsection{Starting Point: The 5D Gauge Action}
+\label{subsec:ch18_5d_action}
+
+We begin with the same 5D gauge action as in OPR-19:
+\begin{equation}
+    S_{\text{gauge}}^{(5D)} = -\frac{1}{4g_5^2} \int d^5x \sqrt{-G} \,
+    G^{MA} G^{NB} F_{MN} F_{AB}
+    \label{eq:ch18:5D_action}
+\end{equation}
+
+with warped metric:
+\begin{equation}
+    ds^2 = e^{2A(\xi)} \eta_{\mu\nu} dx^\mu dx^\nu + d\xi^2
+    \label{eq:ch18:metric}
+\end{equation}
+
+From OPR-19, we know that:
+\begin{itemize}[nosep]
+    \item $\sqrt{-G} = e^{4A(\xi)}$
+    \item $G^{\mu\nu} = e^{-2A(\xi)} \eta^{\mu\nu}$, \quad $G^{55} = 1$
+    \item For the $F_{\mu\nu}F^{\mu\nu}$ term, warp factors \emph{cancel}
+    \item For the $F_{\mu 5}F^{\mu 5}$ term, the weight is $e^{2A(\xi)}$
+\end{itemize}
+
+\subsection{Mode Expansion}
+\label{subsec:ch18_mode_expansion}
+
+Decompose the gauge field into 4D modes:
+\begin{equation}
+    A_\mu(x,\xi) = \sum_n a_\mu^{(n)}(x) f_n(\xi)
+    \label{eq:ch18:mode_decomposition}
+\end{equation}
+
+where:
+\begin{itemize}[nosep]
+    \item $a_\mu^{(n)}(x)$ are 4D gauge fields satisfying $(\Box + m_n^2) a_\mu^{(n)} = 0$
+    \item $f_n(\xi)$ are mode profiles on $\xi \in [0, \ell]$
+    \item $m_n$ are the 4D mass eigenvalues to be determined
+\end{itemize}
+
+\subsection{The Mass Term Structure}
+\label{subsec:ch18_mass_term}
+
+The $F_{\mu 5}F^{\mu 5}$ term provides the mass structure. After mode substitution:
+\begin{equation}
+    F_{\mu 5} = -\partial_\xi A_\mu = -\sum_n a_\mu^{(n)}(x) f_n'(\xi)
+    \label{eq:ch18:Fmu5}
+\end{equation}
+
+The 5D action becomes (after integrating over 4D and using $\int d^4x$ conventions):
+\begin{align}
+    S &\supset -\frac{1}{2g_5^2} \sum_{n,m} \int d^4x \, a_\mu^{(n)} a^{(m)\mu}
+        \int_0^\ell d\xi \, e^{2A(\xi)} f_n'(\xi) f_m'(\xi)
+    \label{eq:ch18:mass_action}
+\end{align}
+
+Integration by parts yields:
+\begin{align}
+    \int_0^\ell d\xi \, e^{2A} f_n' f_m'
+    &= \left[ e^{2A} f_n' f_m \right]_0^\ell
+       - \int_0^\ell d\xi \, f_m \frac{d}{d\xi}(e^{2A} f_n')
+    \label{eq:ch18:ibp}
+\end{align}
+
+\subsection{The Sturm--Liouville Operator}
+\label{subsec:ch18_sl_operator}
+
+Requiring orthogonality of modes and vanishing boundary terms (via appropriate BC),
+we obtain the eigenvalue equation:
+\begin{equation}
+    -\frac{d}{d\xi}\left( e^{2A(\xi)} \frac{df_n}{d\xi} \right) = m_n^2 \, w(\xi) \, f_n(\xi)
+    \label{eq:ch18:sl_general}
+\end{equation}
+
+where $w(\xi)$ is the weight function from the kinetic term normalization.
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!50!black,
+    title=\textbf{Key Simplification: Flat Warp Limit}]
+For $A(\xi) = 0$ (flat extra dimension) or after appropriate coordinate redefinition,
+the Sturm--Liouville equation simplifies to \textbf{Schrödinger form}:
+\begin{equation}
+    \boxed{-\frac{d^2 f_n}{d\xi^2} + V(\xi) f_n(\xi) = m_n^2 f_n(\xi)}
+    \label{eq:ch18:schrodinger}
+\end{equation}
+where $V(\xi)$ is an effective potential arising from:
+\begin{itemize}[nosep]
+    \item Bulk mass terms (if present)
+    \item Warp factor derivatives: $V_{\text{warp}} = 2A'' + 2(A')^2$
+    \item Brane-localized contributions
+\end{itemize}
+\textbf{Epistemic status:} \tagDc{} (structure); V(ξ) shape \tagP{}.
+\end{tcolorbox}
+
+% ==============================================================================
+% SECTION 3: BOUNDARY CONDITIONS
+% ==============================================================================
+
+\section{Boundary Conditions}
+\label{sec:ch18_bc}
+
+\subsection{Robin BC from Variational Principle}
+\label{subsec:ch18_robin_bc}
+
+The boundary terms from $\delta S = 0$ yield Robin conditions (cf.\ OPR-21, L3):
+\begin{align}
+    f'(0) + \kappa_0 f(0) &= 0 \label{eq:ch18:bc_left} \\
+    f'(\ell) - \kappa_\ell f(\ell) &= 0 \label{eq:ch18:bc_right}
+\end{align}
+
+where $\kappa_0, \kappa_\ell \geq 0$ are BC parameters.
+
+\subsection{Physical Interpretation}
+\label{subsec:ch18_bc_physics}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Parameter} & \textbf{Condition} & \textbf{Physical Meaning} \\
+\midrule
+$\kappa = 0$ & $f' = 0$ (Neumann) & No flux across boundary \\
+$\kappa \to \infty$ & $f = 0$ (Dirichlet) & Field vanishes at boundary \\
+$\kappa \in (0,\infty)$ & Robin (mixed) & Partial reflection/transmission \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Epistemic status:} BC structure \tagDc{} from variational principle;
+parameter values \tagP{} until derived from Israel junction.
+
+% ==============================================================================
+% SECTION 4: DIMENSIONLESS FORMULATION
+% ==============================================================================
+
+\section{Dimensionless Formulation}
+\label{sec:ch18_dimensionless}
+
+\subsection{Rescaling}
+\label{subsec:ch18_rescaling}
+
+Define dimensionless coordinate:
+\begin{equation}
+    \tilde{\xi} := \frac{\xi}{\ell} \in [0,1]
+    \label{eq:ch18:xi_tilde}
+\end{equation}
+
+and dimensionless quantities:
+\begin{align}
+    \lambda_n &:= \ell^2 m_n^2 \label{eq:ch18:lambda_def} \\
+    x_n &:= \sqrt{\lambda_n} = \ell \, m_n \label{eq:ch18:x_def} \\
+    \tilde{V}(\tilde{\xi}) &:= \ell^2 V(\ell \tilde{\xi}) \label{eq:ch18:V_tilde}
+\end{align}
+
+\subsection{Dimensionless Eigenvalue Equation}
+\label{subsec:ch18_dimensionless_eq}
+
+The eigenvalue equation becomes:
+\begin{equation}
+    \boxed{\left[ -\frac{d^2}{d\tilde{\xi}^2} + \tilde{V}(\tilde{\xi}) \right]
+           \tilde{f}_n(\tilde{\xi}) = \lambda_n \tilde{f}_n(\tilde{\xi})}
+    \label{eq:ch18:dimensionless_sl}
+\end{equation}
+
+with BC:
+\begin{align}
+    \tilde{f}'(0) + \tilde{\kappa}_0 \tilde{f}(0) &= 0 \\
+    \tilde{f}'(1) - \tilde{\kappa}_1 \tilde{f}(1) &= 0
+\end{align}
+
+where $\tilde{\kappa} = \kappa \ell$ (dimensionless).
+
+\subsection{Physical Mass Recovery}
+\label{subsec:ch18_mass_recovery}
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
+    title=\textbf{Key Result: Mass from Eigenvalue}]
+\begin{equation}
+    \boxed{m_n = \frac{x_n}{\ell}}
+    \label{eq:ch18:mass_formula}
+\end{equation}
+\textbf{Dimensional check:} $[x_n] = 1$, $[\ell] = L$, $[m_n] = L^{-1} = \text{mass}$ \checkmark
+
+\textbf{Epistemic status:} \tagDc{} --- pure coordinate transformation.
+\end{tcolorbox}
+
+% ==============================================================================
+% SECTION 5: ZERO MODE AND FIRST MASSIVE MODE
+% ==============================================================================
+
+\section{Zero Mode and Mediator Definition}
+\label{sec:ch18_modes}
+
+\subsection{Zero Mode ($n = 0$)}
+\label{subsec:ch18_zero_mode}
+
+For flat potential ($\tilde{V} = 0$) with Neumann BC ($\tilde{\kappa} = 0$):
+\begin{equation}
+    \tilde{f}_0'' = 0 \quad \Rightarrow \quad \tilde{f}_0 = \text{const}
+    \label{eq:ch18:zero_mode}
+\end{equation}
+
+This is the \textbf{massless zero mode} ($m_0 = 0$, $\lambda_0 = 0$).
+
+\textbf{Physical interpretation:}
+\begin{itemize}[nosep]
+    \item For U(1): The photon (remains massless)
+    \item For SU(2)$_L$: The would-be Goldstone / eaten by Higgs
+\end{itemize}
+
+\subsection{Mediator Definition}
+\label{subsec:ch18_mediator_def}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black,
+    title=\textbf{Definition: Mediator Mass}]
+The \textbf{mediator mass} is identified with the \textbf{first nonzero eigenvalue}:
+\begin{equation}
+    \boxed{m_{\text{med}} := m_1 = \frac{x_1}{\ell}}
+    \label{eq:ch18:mediator_def}
+\end{equation}
+\textbf{Note:} This is a \emph{physics identification} \tagP{}, not a derivation.
+The mediator is the lowest massive KK mode.
+\end{tcolorbox}
+
+\subsection{Eigenvalue Table (Flat Potential)}
+\label{subsec:ch18_eigenvalue_table}
+
+For $\tilde{V} = 0$, the eigenvalues depend only on boundary conditions:
+
+\begin{center}
+\begin{tabular}{llcc}
+\toprule
+\textbf{BC at $\xi = 0$} & \textbf{BC at $\xi = \ell$} & $x_1$ & $m_1$ \\
+\midrule
+Neumann ($\kappa = 0$) & Neumann ($\kappa = 0$) & $\pi$ & $\pi/\ell$ \\
+Dirichlet ($\kappa \to \infty$) & Dirichlet & $\pi$ & $\pi/\ell$ \\
+Neumann & Dirichlet & $\pi/2$ & $\pi/(2\ell)$ \\
+Dirichlet & Neumann & $\pi/2$ & $\pi/(2\ell)$ \\
+Robin ($\kappa$) & Robin ($\kappa$) & $x_1(\kappa)$ & $x_1(\kappa)/\ell$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ==============================================================================
+% SECTION 6: CONNECTION TO OPR-19
+% ==============================================================================
+
+\section{Connection to OPR-19: Effective Contact Strength}
+\label{sec:ch18_opr19_connection}
+
+\subsection{Effective 4D Coupling (from OPR-19)}
+\label{subsec:ch18_g4_from_opr19}
+
+From Chapter~\ref{ch:opr19_g5_from_action}, Eq.~(\ref{eq:ch17:g4_formula}):
+\begin{equation}
+    \frac{1}{g_{4,n}^2} = \frac{1}{g_5^2} \int_0^\ell d\xi \, |f_n(\xi)|^2
+    \label{eq:ch18:g4_formula}
+\end{equation}
+
+For normalized modes with $\int_0^\ell d\xi \, |f_n|^2 = 1$:
+\begin{equation}
+    g_{4,n}^2 = g_5^2
+    \label{eq:ch18:g4_normalized}
+\end{equation}
+
+\subsection{Effective Contact Strength}
+\label{subsec:ch18_contact}
+
+A 4D contact interaction (Fermi-like) has the structure:
+\begin{equation}
+    \mathcal{L}_{\text{contact}} \sim C_{\text{eff}} \, (\bar{\psi} \gamma^\mu \psi)^2
+    \label{eq:ch18:contact_lagrangian}
+\end{equation}
+
+From exchange of the massive mediator:
+\begin{equation}
+    C_{\text{eff}} \sim \frac{g_{4,1}^2}{m_1^2}
+    \label{eq:ch18:contact_exchange}
+\end{equation}
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
+    title=\textbf{Key Result: Effective Contact Strength}]
+Combining OPR-19 coupling formula with the eigenvalue result:
+\begin{equation}
+    \boxed{C_{\text{eff}} = \frac{g_5^2 \ell^2}{x_1^2}}
+    \label{eq:ch18:contact_final}
+\end{equation}
+\textbf{Epistemic status:} \tagDc{} (structure); $g_5$, $\ell$, $x_1$ depend on
+underlying parameters.
+\end{tcolorbox}
+
+\textbf{Note:} The full $G_F$ expression includes additional fermion overlap factors
+(cf.\ OPR-22). This section establishes the gauge-sector contribution only.
+
+% ==============================================================================
+% SECTION 7: PARAMETER LEDGER
+% ==============================================================================
+
+\section{Parameter Ledger}
+\label{sec:ch18_parameter_ledger}
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!60!black,
+    title=\textbf{Parameter Ledger: Inputs and Outputs}]
+
+\textbf{Inputs:}
+\begin{center}
+\begin{tabular}{llc}
+\toprule
+\textbf{Symbol} & \textbf{Description} & \textbf{Status} \\
+\midrule
+$g_5$ & 5D gauge coupling & \tagP{} \\
+$\ell$ & Domain size & \tagP{} \\
+$V(\xi)$ & Effective potential & \tagP{} \\
+$\kappa_0, \kappa_\ell$ & BC parameters & \tagP{} \\
+$A(\xi)$ & Warp factor & \tagP{} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Outputs:}
+\begin{center}
+\begin{tabular}{llc}
+\toprule
+\textbf{Symbol} & \textbf{Formula} & \textbf{Status} \\
+\midrule
+$x_n$ & eigenvalue of SL problem & \tagDc{} (given inputs) \\
+$m_n$ & $x_n / \ell$ & \tagDc{} \\
+$m_{\text{med}}$ & $m_1 = x_1 / \ell$ & \tagDc{} \\
+$C_{\text{eff}}$ & $g_5^2 \ell^2 / x_1^2$ & \tagDc{} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Overall status:} CONDITIONAL \tagDc{} --- outputs are derived functions
+of postulated inputs.
+\end{tcolorbox}
+
+% ==============================================================================
+% SECTION 8: NO-SMUGGLING CHECKLIST
+% ==============================================================================
+
+\section{No-Smuggling Checklist}
+\label{sec:ch18_no_smuggling}
+
+\begin{tcolorbox}[colback=white, colframe=black,
+    title=\textbf{No-Smuggling Checklist}]
+\begin{itemize}
+    \item[\ding{51}] No $M_W$ used as input
+    \item[\ding{51}] No $M_Z$ used as input (except in $R_\xi$ if declared \tagBL{})
+    \item[\ding{51}] No $G_F$ used as input
+    \item[\ding{51}] No $v = 246$~GeV used as input
+    \item[\ding{51}] No $\sin^2\theta_W$ used as input
+    \item[\ding{51}] Scale Taxonomy respected: $\ell$ is NOT identified with $\Delta$, $\delta$, or $R_\xi$ without explicit assumption tag
+    \item[\ding{51}] All parameters with \tagP{} status explicitly declared
+    \item[\ding{51}] Eigenvalue structure is mathematical (\tagM{}), not fitted
+\end{itemize}
+\end{tcolorbox}
+
+% ==============================================================================
+% SECTION 9: SUMMARY AND CLOSURE STATUS
+% ==============================================================================
+
+\section{Summary and Closure Status}
+\label{sec:ch18_summary}
+
+\subsection{Main Results}
+\label{subsec:ch18_main_results}
+
+\begin{enumerate}
+    \item \textbf{Sturm--Liouville equation} (Eq.~\ref{eq:ch18:schrodinger}):
+          The gauge mode profiles satisfy a Schrödinger-type equation on $[0,\ell]$.
+
+    \item \textbf{Mass formula} (Eq.~\ref{eq:ch18:mass_formula}):
+          $m_n = x_n / \ell$, connecting eigenvalue spectrum to physical masses.
+
+    \item \textbf{Mediator definition} (Eq.~\ref{eq:ch18:mediator_def}):
+          $m_{\text{med}} = m_1 = x_1 / \ell$ (first massive mode).
+
+    \item \textbf{Effective contact strength} (Eq.~\ref{eq:ch18:contact_final}):
+          $C_{\text{eff}} = g_5^2 \ell^2 / x_1^2$, combining OPR-19 and eigenvalue.
+\end{enumerate}
+
+\subsection{Closure Status}
+\label{subsec:ch18_closure_status}
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Component} & \textbf{Status} & \textbf{Evidence} \\
+\midrule
+5D action to SL form & \tagDc{} & \S\ref{sec:ch18_action_to_sl} \\
+Mode expansion & \tagDc{} & Eq.~(\ref{eq:ch18:mode_decomposition}) \\
+Dimensionless formulation & \tagDc{} & \S\ref{sec:ch18_dimensionless} \\
+Mass formula & \tagDc{} & Eq.~(\ref{eq:ch18:mass_formula}) \\
+Connection to OPR-19 & \tagDc{} & \S\ref{sec:ch18_opr19_connection} \\
+Effective potential $V(\xi)$ & \tagP{} & Not derived \\
+BC parameters $\kappa$ & \tagP{} & Structure \tagDc{}, value \tagP{} \\
+Domain size $\ell$ & \tagP{} & Not derived \\
+\midrule
+\textbf{Overall OPR-20} & \textbf{CONDITIONAL \tagDc{}} & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Open Problems}
+\label{subsec:ch18_open_problems}
+
+\begin{itemize}[nosep]
+    \item \textbf{OPEN-20-1}: Derive $V(\xi)$ from 5D gauge action (gauge analog of OPR-21 L2)
+    \item \textbf{OPEN-20-2}: Derive BC parameter $\kappa$ from Israel junction for gauge field
+    \item \textbf{OPEN-20-3}: Derive $\ell$ from first principles (shared with OPR-19)
+    \item \textbf{OPEN-20-4}: Numerical eigenvalue computation for realistic $V(\xi)$
+    \item \textbf{OPEN-20-5}: Zero mode interpretation (massless photon vs.\ eaten Goldstone)
+\end{itemize}
+
+\subsection{Cross-References}
+\label{subsec:ch18_cross_refs}
+
+\begin{itemize}[nosep]
+    \item \textbf{OPR-19} (Chapter~\ref{ch:opr19_g5_from_action}): $g_5 \to g_4$ reduction,
+          warp factor cancellation
+    \item \textbf{OPR-21} (Chapter~\ref{sec:ch14_opr21}): BVP framework, Robin BC structure,
+          $V_{\text{eff}}$ derivation
+    \item \textbf{OPR-04} (Chapter~\ref{sec:ch16_reader_map}): Scale Taxonomy
+          ($\Delta$, $\delta$, $\ell$, $R_\xi$)
+    \item \textbf{OPR-22}: First-principles $G_F$ (will use $m_{\text{med}}$ from here)
+\end{itemize}
