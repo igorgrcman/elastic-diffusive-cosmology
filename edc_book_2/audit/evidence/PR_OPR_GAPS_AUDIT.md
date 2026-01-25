@@ -50,8 +50,8 @@ The OPR Registry contains **all** numbers from OPR-01 through OPR-15 with no gap
 | OPR-06 | EXISTS — P_bulk anchor (OPEN) |
 | OPR-07 | EXISTS — Physics-grade numerics (STRONG PARTIAL) |
 | OPR-08 | EXISTS — sin²θ_W chain/notation (CLOSED) |
-| OPR-17 | NEVER EXISTED — Registry ends at OPR-15 |
-| OPR-18 | NEVER EXISTED — Registry ends at OPR-15 |
+| OPR-17 | NOW EXISTS — Added 2026-01-25 (SU(2)_L gauge embedding) |
+| OPR-18 | NOW EXISTS — Added 2026-01-25 (CKM/PMNS from overlaps) |
 
 ### Possible Explanation for Reviewer Confusion
 
@@ -76,4 +76,4 @@ The OPR Registry contains **all** numbers from OPR-01 through OPR-15 with no gap
 
 The Open Problem Registry is complete with consecutive numbering OPR-01 through OPR-15. The reviewer's claim of "missing" OPRs is factually incorrect.
 
-**Note:** OPR-17 and OPR-18 were never defined because the registry intentionally ends at OPR-15. If future work requires additional OPRs, they would be added as OPR-16, OPR-17, etc.
+**Update (2026-01-25):** OPR-16 through OPR-22 have been added to the registry during CH08 audit. These OPRs were referenced in the codebase but missing from the registry. Registry now extends to OPR-22.

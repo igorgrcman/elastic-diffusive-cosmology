@@ -25,6 +25,13 @@
 | OPR-13 | [N] | PMNS mixing angles | YELLOW PARTIAL |
 | OPR-14 | [N] | CP phase δ derivation | OPEN |
 | OPR-15 | [N] | Dirac/Majorana determination | OPEN |
+| OPR-16 | [H] | Pion mass/lifetime | OPEN |
+| OPR-17 | [G] | SU(2)_L gauge embedding | OPEN |
+| OPR-18 | [M] | CKM/PMNS from overlaps | OPEN |
+| OPR-19 | [G] | g₅ value from 5D action | OPEN |
+| OPR-20 | [G] | Mediator mass from ξ-geometry | OPEN |
+| OPR-21 | [B] | BVP mode profiles | OPEN |
+| OPR-22 | [C] | First-principles G_F | OPEN |
 
 ---
 
@@ -569,6 +576,220 @@ Cannot claim both compatible as "prediction"; must commit to one or derive disti
 
 ---
 
+## OPR-16 [H] Pion mass/lifetime
+
+**Short name**: Derive pion mass and lifetime from EDC geometry
+
+**Status**: OPEN
+
+**Missing**:
+- No EDC mechanism for pion as bound quark state
+- m_π and τ_π not addressed in current framework
+- Requires quark confinement mechanism from 5D
+
+**Blocks**:
+- E-CH08-case-pion claims
+
+**Where it appears in Book2**:
+- 08_case_pion.tex:101 (mentioned as not attempted)
+
+**Minimum closure deliverable**:
+1. EDC model for quark confinement
+2. Pion as qq̄ bound state in 5D
+3. Derive m_π, τ_π from geometry
+
+**Closure test**:
+CLOSED iff pion properties emerge from EDC geometry without QCD input.
+
+---
+
+## OPR-17 [G] SU(2)_L gauge embedding
+
+**Short name**: Derive or postulate SU(2)_L as brane-localized vs bulk gauge
+
+**Status**: OPEN
+
+**Missing**:
+- Where/how SU(2)_L is embedded in 5D geometry
+- Brane-localized vs bulk gauge choice
+- Origin of gauge coupling from 5D action
+
+**Blocks**:
+- E-CH09-Dc-* (V-A structure depends on gauge ontology)
+- E-CH10-Dc-* (electroweak bridge)
+- OPR-20a (mediator identity)
+
+**Where it appears in Book2**:
+- 09_va_structure.tex:1050-1127 (main discussion)
+- ch10_electroweak_bridge.tex:43, 309, 483
+- ch11_opr20_attemptH1_mediator_identity.tex (extensive references)
+
+**Minimum closure deliverable**:
+1. Decide: brane-localized SU(2)_L or bulk gauge
+2. Derive coupling normalization from 5D action
+3. Connect to W/Z mass generation
+
+**Closure test**:
+CLOSED iff SU(2)_L embedding is derived from manifold structure.
+
+---
+
+## OPR-18 [M] CKM/PMNS from overlaps
+
+**Short name**: Derive mixing matrices from generational mode overlaps
+
+**Status**: OPEN
+
+**Missing**:
+- CKM matrix from quark mode overlaps
+- PMNS matrix from lepton mode overlaps
+- Phase origins (CP violation)
+
+**Blocks**:
+- E-CH07-Dc-* (CKM claims)
+- OPR-13 (PMNS angles - related)
+
+**Where it appears in Book2**:
+- 09_va_structure.tex:1130
+- 07_ckm_cp.tex (implicit dependency)
+
+**Minimum closure deliverable**:
+1. Overlap integral calculation for 3 generations
+2. Derive CKM angles from geometry
+3. Connect to CP phases
+
+**Closure test**:
+CLOSED iff CKM/PMNS elements emerge from mode overlap integrals.
+
+---
+
+## OPR-19 [G] g₅ value from 5D action
+
+**Short name**: Derive the 5D gauge coupling g₅ from action normalization
+
+**Status**: OPEN
+
+**Missing**:
+- Canonical normalization of 5D gauge kinetic term
+- Numerical value of g₅ from first principles
+- Dimensional analysis alone insufficient
+
+**Blocks**:
+- E-CH08-P-004 (G₅ coupling)
+- E-CH11-Dc-* (G_F mode overlap pathway)
+- OPR-22 (first-principles G_F)
+
+**Where it appears in Book2**:
+- 11_gf_derivation.tex:438-468 (main discussion)
+- CH3_electroweak_parameters.tex:704, 726
+- ch11_g5_* files (closure attempts)
+
+**Minimum closure deliverable**:
+1. Specify 5D gauge action with canonical normalization
+2. Derive g₅ from action principle
+3. Connect to 4D coupling via KK reduction
+
+**Closure test**:
+CLOSED iff g₅ has definite value from 5D action without fitting.
+
+---
+
+## OPR-20 [G] Mediator mass from ξ-geometry
+
+**Short name**: Derive mediator mass m_φ from KK reduction along ξ
+
+**Status**: OPEN (split: 20a mediator identity, 20b mass value)
+
+**Missing**:
+- KK spectrum from throat/ξ geometry
+- Identification of lowest massive mode as W/Z mediator
+- Numerical mass from geometric parameters
+
+**Blocks**:
+- E-CH08-Dc-002 (L_eff structure)
+- E-CH10-Dc-* (electroweak bridge)
+- OPR-22 (first-principles G_F)
+
+**Where it appears in Book2**:
+- 11_gf_derivation.tex:495-499, 606
+- ch10_electroweak_bridge.tex (main discussion)
+- ch11_opr20_* files (closure attempts)
+
+**Minimum closure deliverable**:
+1. Specify ξ-geometry (throat shape, boundary conditions)
+2. Solve KK reduction for massive modes
+3. Express m_φ in terms of R_ξ, δ, or other EDC parameters
+
+**Closure test**:
+CLOSED iff m_φ is computed from geometry without using M_W as input.
+
+---
+
+## OPR-21 [B] BVP mode profiles
+
+**Short name**: Solve boundary value problem for fermion localization
+
+**Status**: OPEN
+
+**Missing**:
+- Explicit thick-brane potential V(ξ)
+- Fermion BVP with Robin/Dirichlet boundary conditions
+- Normalized mode profiles f_L(ξ), f_R(ξ)
+- Overlap integral I₄ = ∫|f_L|⁴dξ from actual solution
+
+**Blocks**:
+- E-CH08-OPEN-003 (mode profiles)
+- E-CH08-P-003 (mode overlap mechanism)
+- OPR-22 (first-principles G_F)
+
+**Where it appears in Book2**:
+- 11_gf_derivation.tex:501-519, 577, 607
+- ch12_bvp_workpackage.tex (setup)
+- ch14_bvp_closure_pack.tex (detailed work)
+
+**Minimum closure deliverable**:
+1. Derive V(ξ) from EDC action
+2. Solve Schrödinger-like BVP numerically
+3. Compute I₄ with error bounds
+
+**Closure test**:
+CLOSED iff numerical mode profiles are computed and I₄ is determined.
+
+---
+
+## OPR-22 [C] First-principles G_F
+
+**Short name**: Derive G_F from 5D geometry without EW relations
+
+**Status**: OPEN (RED-C, highest priority)
+
+**Missing**:
+- Complete derivation: G_F = G₅ × I₄ with both factors derived
+- No use of v, M_W, or G_F as inputs
+- Independent prediction that can be compared to experiment
+
+**Blocks**:
+- All quantitative G_F claims
+
+**Where it appears in Book2**:
+- 11_gf_derivation.tex:568, 578, 608, 633
+- Throughout CH08 as ultimate goal
+
+**Depends on**:
+- OPR-19 (g₅ value)
+- OPR-20 (mediator mass)
+- OPR-21 (BVP profiles)
+
+**Minimum closure deliverable**:
+1. OPR-19, OPR-20, OPR-21 all CLOSED
+2. Combine to compute G_F numerically
+3. Compare to PDG value
+
+**Closure test**:
+CLOSED iff G_F is computed from geometry alone and matches PDG within stated uncertainty.
+
+---
+
 ## Appendix: OPR → Claim Count Estimates
 
 | OPR | Estimated Blocked Claims |
@@ -588,6 +809,13 @@ Cannot claim both compatible as "prediction"; must commit to one or derive disti
 | OPR-13 | ~10 (PMNS angles in CH07) |
 | OPR-14 | ~3 (CP phase in CH07) |
 | OPR-15 | ~2 (Dirac/Majorana in CH07) |
+| OPR-16 | ~3 (pion properties) |
+| OPR-17 | ~57 (gauge embedding) |
+| OPR-18 | ~15 (mixing matrices) |
+| OPR-19 | ~20 (g₅ coupling) |
+| OPR-20 | ~25 (mediator mass) |
+| OPR-21 | ~30 (BVP profiles) |
+| OPR-22 | ~10 (first-principles G_F) |
 
 *Note: Claims may be blocked by multiple OPRs. Exact crosswalk in OPR_CLAIM_CROSSWALK.md*
 
