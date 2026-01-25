@@ -1,0 +1,101 @@
+% ==============================================================================
+% Figure: Mediator integration schematic
+% Shows how integrating out the mediator gives effective 4-Fermi
+% ==============================================================================
+
+\begin{tikzpicture}[scale=0.92, transform shape]
+
+% === Panel (a): Full theory with mediator ===
+\begin{scope}[shift={(0,0)}]
+  \node[font=\small\bfseries] at (2.5,3.2) {(a) Full theory: mediator $\phi$};
+
+  % Incoming fermions
+  \draw[thick, -{Stealth}] (0,2) -- (1.5,1.5);
+  \draw[thick, -{Stealth}] (0,0.5) -- (1.5,1);
+  \node[font=\scriptsize] at (-0.3,2) {$f_1$};
+  \node[font=\scriptsize] at (-0.3,0.5) {$f_2$};
+
+  % Mediator (wavy line)
+  \draw[thick, decorate, decoration={snake, amplitude=2pt, segment length=6pt}]
+    (1.5,1.25) -- (3.5,1.25);
+  \node[font=\scriptsize] at (2.5,1.7) {$\phi$};
+  \node[font=\scriptsize] at (2.5,0.8) {$m_\phi$};
+
+  % Outgoing fermions
+  \draw[thick, -{Stealth}] (3.5,1.5) -- (5,2);
+  \draw[thick, -{Stealth}] (3.5,1) -- (5,0.5);
+  \node[font=\scriptsize] at (5.3,2) {$f_3$};
+  \node[font=\scriptsize] at (5.3,0.5) {$f_4$};
+
+  % Vertices
+  \fill[blue!60] (1.5,1.25) circle (4pt);
+  \fill[blue!60] (3.5,1.25) circle (4pt);
+  \node[font=\scriptsize, blue!70!black] at (1.5,0.5) {$g$};
+  \node[font=\scriptsize, blue!70!black] at (3.5,0.5) {$g$};
+
+  % Propagator label
+  \node[draw, rounded corners, fill=gray!10, font=\scriptsize] at (2.5,-0.3)
+    {$\displaystyle\frac{1}{q^2 - m_\phi^2}$};
+\end{scope}
+
+% === Arrow showing integration ===
+\begin{scope}[shift={(5.5,1)}]
+  \draw[-{Stealth}, very thick, gray] (0,0.25) -- (1.5,0.25);
+  \node[font=\scriptsize, gray, align=center] at (0.75,0.9) {integrate out\\$\phi$ at low $E$};
+  \node[font=\scriptsize, gray] at (0.75,-0.3) {$q^2 \ll m_\phi^2$};
+\end{scope}
+
+% === Panel (b): Effective 4-Fermi ===
+\begin{scope}[shift={(8,0)}]
+  \node[font=\small\bfseries] at (2.5,3.2) {(b) Effective 4-Fermi};
+
+  % Incoming fermions
+  \draw[thick, -{Stealth}] (0,2) -- (2.2,1.25);
+  \draw[thick, -{Stealth}] (0,0.5) -- (2.2,1.25);
+  \node[font=\scriptsize] at (-0.3,2) {$f_1$};
+  \node[font=\scriptsize] at (-0.3,0.5) {$f_2$};
+
+  % Central vertex (point interaction)
+  \fill[red!60] (2.5,1.25) circle (6pt);
+
+  % Outgoing fermions
+  \draw[thick, -{Stealth}] (2.8,1.25) -- (5,2);
+  \draw[thick, -{Stealth}] (2.8,1.25) -- (5,0.5);
+  \node[font=\scriptsize] at (5.3,2) {$f_3$};
+  \node[font=\scriptsize] at (5.3,0.5) {$f_4$};
+
+  % Effective coupling
+  \node[draw, rounded corners, fill=red!10, font=\scriptsize] at (2.5,-0.3)
+    {$G_{\text{eff}} = \displaystyle\frac{g^2}{m_\phi^2}$};
+\end{scope}
+
+% === Panel (c): In EDC context ===
+\begin{scope}[shift={(4,-4)}]
+  \node[font=\small\bfseries] at (4,1.8) {(c) EDC: $\xi$-dependent coupling};
+
+  % Background regions
+  \fill[blue!8] (0,0) rectangle (8,1.2);
+  \fill[green!8] (0,-0.8) rectangle (8,0);
+  \node[font=\scriptsize, blue!50!black] at (0.6,0.9) {Brane};
+  \node[font=\scriptsize, green!50!black] at (0.6,-0.5) {3D};
+
+  % Profiles
+  \draw[thick, blue!70, domain=0.5:3, samples=40]
+    plot (\x, {0.8*exp(-2*(\x-1.5)*(\x-1.5)) + 0.1});
+  \draw[thick, red!70, domain=5:7.5, samples=40]
+    plot (\x, {0.8*exp(-2*(\x-6.5)*(\x-6.5)) + 0.1});
+
+  \node[font=\scriptsize, blue!70!black] at (1.5,1.1) {$f_L(\xi)$};
+  \node[font=\scriptsize, red!70!black] at (6.5,1.1) {$f_R(\xi)$};
+
+  % Mediator connecting them
+  \draw[thick, decorate, decoration={snake, amplitude=1.5pt, segment length=5pt}, orange!70]
+    (2.5,0.4) -- (5.5,0.4);
+  \node[font=\scriptsize, orange!70!black] at (4,0.7) {$\phi(\xi)$};
+
+  % Overlap integral
+  \node[draw, rounded corners, fill=yellow!15, font=\scriptsize] at (4,-1.3)
+    {$G_F \propto \displaystyle\int |f_L|^2 |f_R|^2 \, d\xi = I_4$};
+\end{scope}
+
+\end{tikzpicture}

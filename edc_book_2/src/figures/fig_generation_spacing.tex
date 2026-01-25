@@ -1,0 +1,124 @@
+% ==============================================================================
+% Figure: Generation spacing determines CKM hierarchy
+% Three profiles for (u,c,t) and (d,s,b) with overlap regions
+% ==============================================================================
+
+\begin{tikzpicture}[scale=0.92, transform shape]
+
+% === Up-type quarks (solid lines) ===
+\begin{scope}[shift={(0,0)}]
+  % Axes
+  \draw[-{Stealth}, thick] (-0.5,0) -- (10,0) node[right, font=\small] {$\xi$};
+  \draw[-{Stealth}, thick] (0,-0.3) -- (0,3.2) node[above, font=\small] {$|f|^2$};
+
+  % Up-type profiles (u, c, t) - solid blue shades
+  % u quark
+  \draw[thick, blue!80, domain=0:3.5, samples=60]
+    plot (\x, {2.5*exp(-1.5*(\x-1.5)*(\x-1.5))});
+  \fill[blue!20, opacity=0.6, domain=0:3.5, samples=60]
+    plot (\x, {2.5*exp(-1.5*(\x-1.5)*(\x-1.5))}) -- (3.5,0) -- (0,0) -- cycle;
+
+  % c quark
+  \draw[thick, green!70!black, domain=2.5:6.5, samples=60]
+    plot (\x, {2.5*exp(-1.5*(\x-4.5)*(\x-4.5))});
+  \fill[green!20, opacity=0.6, domain=2.5:6.5, samples=60]
+    plot (\x, {2.5*exp(-1.5*(\x-4.5)*(\x-4.5))}) -- (6.5,0) -- (2.5,0) -- cycle;
+
+  % t quark
+  \draw[thick, red!80, domain=5.5:9.5, samples=60]
+    plot (\x, {2.5*exp(-1.5*(\x-7.5)*(\x-7.5))});
+  \fill[red!20, opacity=0.6, domain=5.5:9.5, samples=60]
+    plot (\x, {2.5*exp(-1.5*(\x-7.5)*(\x-7.5))}) -- (9.5,0) -- (5.5,0) -- cycle;
+
+  % Down-type profiles (d, s, b) - dashed, slightly offset
+  % d quark (offset from u)
+  \draw[thick, blue!60, dashed, domain=0:4, samples=60]
+    plot (\x, {2.2*exp(-1.4*(\x-1.8)*(\x-1.8))});
+
+  % s quark (offset from c)
+  \draw[thick, green!60!black, dashed, domain=2:7, samples=60]
+    plot (\x, {2.2*exp(-1.4*(\x-4.8)*(\x-4.8))});
+
+  % b quark (offset from t)
+  \draw[thick, red!60, dashed, domain=5:9.5, samples=60]
+    plot (\x, {2.2*exp(-1.4*(\x-7.8)*(\x-7.8))});
+
+  % Position labels
+  \node[font=\small, blue!80!black] at (1.5,2.8) {$u$};
+  \node[font=\small, green!70!black] at (4.5,2.8) {$c$};
+  \node[font=\small, red!80!black] at (7.5,2.8) {$t$};
+
+  \node[font=\scriptsize, blue!60!black] at (1.8,2.0) {$d$};
+  \node[font=\scriptsize, green!50!black] at (4.8,2.0) {$s$};
+  \node[font=\scriptsize, red!60!black] at (7.8,2.0) {$b$};
+
+  % Position markers
+  \node[font=\scriptsize] at (1.5,-0.35) {$\xi_1$};
+  \node[font=\scriptsize] at (4.5,-0.35) {$\xi_2$};
+  \node[font=\scriptsize] at (7.5,-0.35) {$\xi_3$};
+
+  % Separation arrows
+  \draw[<->, thick, gray] (1.5,3.4) -- (4.5,3.4);
+  \node[font=\scriptsize, gray] at (3.0,3.65) {$\Delta\xi_{12}$};
+
+  \draw[<->, thick, gray] (4.5,3.4) -- (7.5,3.4);
+  \node[font=\scriptsize, gray] at (6.0,3.65) {$\Delta\xi_{23}$};
+\end{scope}
+
+% === Overlap regions and CKM elements ===
+\begin{scope}[shift={(0,-4.5)}]
+  % Overlap diagram
+  \draw[thick] (0,0) rectangle (9,2.5);
+  \node[font=\small\bfseries] at (4.5,2.8) {Overlap $\Rightarrow$ CKM element};
+
+  % Large diagonal overlap (u-d)
+  \fill[green!40] (0.5,1.8) circle (0.35);
+  \node[font=\scriptsize] at (0.5,1.8) {$V_{ud}$};
+  \node[font=\scriptsize] at (0.5,1.2) {$\approx 1$};
+
+  % Moderate overlap (u-s, c-d)
+  \fill[yellow!50] (2.5,1.8) circle (0.35);
+  \node[font=\scriptsize] at (2.5,1.8) {$V_{us}$};
+  \node[font=\scriptsize] at (2.5,1.2) {$\sim\lambda$};
+
+  \fill[yellow!50] (2.5,0.5) circle (0.35);
+  \node[font=\scriptsize] at (2.5,0.5) {$V_{cd}$};
+
+  % Small overlap (c-b, t-s)
+  \fill[orange!40] (5.0,1.8) circle (0.35);
+  \node[font=\scriptsize] at (5.0,1.8) {$V_{cb}$};
+  \node[font=\scriptsize] at (5.0,1.2) {$\sim\lambda^2$};
+
+  \fill[orange!40] (5.0,0.5) circle (0.35);
+  \node[font=\scriptsize] at (5.0,0.5) {$V_{ts}$};
+
+  % Very small overlap (u-b, t-d)
+  \fill[red!30] (7.5,1.8) circle (0.35);
+  \node[font=\scriptsize] at (7.5,1.8) {$V_{ub}$};
+  \node[font=\scriptsize] at (7.5,1.2) {$\sim\lambda^3$};
+
+  \fill[red!30] (7.5,0.5) circle (0.35);
+  \node[font=\scriptsize] at (7.5,0.5) {$V_{td}$};
+
+  % Arrow showing hierarchy
+  \draw[-{Stealth}, thick, gray] (1.2,0.3) -- (7.0,0.3);
+  \node[font=\scriptsize, gray] at (4.0,0.05) {increasing separation $\Rightarrow$ suppression};
+\end{scope}
+
+% Legend
+\begin{scope}[shift={(10,0)}]
+  \node[font=\scriptsize, anchor=west] at (0,2.5) {\textbf{Legend:}};
+  \draw[thick, blue!80] (0,2.0) -- (0.6,2.0);
+  \node[font=\scriptsize, anchor=west] at (0.7,2.0) {up-type (solid)};
+  \draw[thick, blue!60, dashed] (0,1.5) -- (0.6,1.5);
+  \node[font=\scriptsize, anchor=west] at (0.7,1.5) {down-type (dashed)};
+
+  \fill[green!40] (0.3,0.8) circle (0.2);
+  \node[font=\scriptsize, anchor=west] at (0.7,0.8) {large overlap};
+  \fill[yellow!50] (0.3,0.3) circle (0.2);
+  \node[font=\scriptsize, anchor=west] at (0.7,0.3) {moderate};
+  \fill[red!30] (0.3,-0.2) circle (0.2);
+  \node[font=\scriptsize, anchor=west] at (0.7,-0.2) {suppressed};
+\end{scope}
+
+\end{tikzpicture}

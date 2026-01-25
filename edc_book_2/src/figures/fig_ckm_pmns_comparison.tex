@@ -1,0 +1,115 @@
+% ==============================================================================
+% Figure: CKM vs PMNS localization comparison
+% Shows why CKM is hierarchical but PMNS has large mixing
+% ==============================================================================
+
+\begin{tikzpicture}[scale=0.88, transform shape]
+
+% === Panel (a): CKM - quarks well-separated ===
+\begin{scope}[shift={(0,0)}]
+  \node[font=\small\bfseries] at (3.5,3.5) {(a) CKM: Quarks well-separated};
+
+  % Axes
+  \draw[-{Stealth}, thick] (-0.3,0) -- (7.5,0) node[right, font=\small] {$\xi$};
+  \draw[-{Stealth}, thick] (0,-0.3) -- (0,2.8) node[above, font=\small] {$|f|^2$};
+
+  % Up-type (solid)
+  \draw[thick, blue!70, domain=0:2.5, samples=50]
+    plot (\x, {2.2*exp(-2.5*(\x-1)*(\x-1))});
+  \draw[thick, green!60!black, domain=2:5, samples=50]
+    plot (\x, {2.2*exp(-2.5*(\x-3.5)*(\x-3.5))});
+  \draw[thick, red!70, domain=4.5:7.2, samples=50]
+    plot (\x, {2.2*exp(-2.5*(\x-6)*(\x-6))});
+
+  % Down-type (dashed, small offset)
+  \draw[thick, blue!50, dashed, domain=0:2.8, samples=50]
+    plot (\x, {1.9*exp(-2.3*(\x-1.2)*(\x-1.2))});
+  \draw[thick, green!50!black, dashed, domain=1.8:5.2, samples=50]
+    plot (\x, {1.9*exp(-2.3*(\x-3.7)*(\x-3.7))});
+  \draw[thick, red!50, dashed, domain=4.3:7.2, samples=50]
+    plot (\x, {1.9*exp(-2.3*(\x-6.2)*(\x-6.2))});
+
+  % Labels
+  \node[font=\scriptsize, blue!70!black] at (1,2.5) {$u$};
+  \node[font=\scriptsize, green!60!black] at (3.5,2.5) {$c$};
+  \node[font=\scriptsize, red!70!black] at (6,2.5) {$t$};
+  \node[font=\scriptsize, blue!50!black] at (1.2,1.6) {$d$};
+  \node[font=\scriptsize, green!50!black] at (3.7,1.6) {$s$};
+  \node[font=\scriptsize, red!50!black] at (6.2,1.6) {$b$};
+
+  % Separation annotation
+  \draw[<->, thick, gray!60] (1,2.9) -- (3.5,2.9);
+  \node[font=\scriptsize, gray] at (2.25,3.15) {large $\Delta\xi$};
+
+  % Result box
+  \node[draw, rounded corners, fill=yellow!15, font=\scriptsize, text width=2.5cm, align=center]
+    at (3.5,-1.0) {Small off-diagonal\\$|V_{ij}| \sim \lambda^{|i-j|}$};
+\end{scope}
+
+% === Panel (b): PMNS - leptons less separated ===
+\begin{scope}[shift={(9,0)}]
+  \node[font=\small\bfseries] at (3.5,3.5) {(b) PMNS: Leptons overlapping};
+
+  % Axes
+  \draw[-{Stealth}, thick] (-0.3,0) -- (7.5,0) node[right, font=\small] {$\xi$};
+  \draw[-{Stealth}, thick] (0,-0.3) -- (0,2.8) node[above, font=\small] {$|f|^2$};
+
+  % Charged leptons (solid) - closer together
+  \draw[thick, blue!70, domain=0.5:4, samples=50]
+    plot (\x, {2.0*exp(-1.2*(\x-2)*(\x-2))});
+  \draw[thick, green!60!black, domain=1.5:5.5, samples=50]
+    plot (\x, {2.0*exp(-1.2*(\x-3.5)*(\x-3.5))});
+  \draw[thick, red!70, domain=3:7, samples=50]
+    plot (\x, {2.0*exp(-1.2*(\x-5)*(\x-5))});
+
+  % Neutrinos (dashed) - broad, overlapping
+  \draw[thick, blue!50, dashed, domain=0:5, samples=50]
+    plot (\x, {1.5*exp(-0.5*(\x-2.2)*(\x-2.2))});
+  \draw[thick, green!50!black, dashed, domain=0.5:6, samples=50]
+    plot (\x, {1.5*exp(-0.5*(\x-3.3)*(\x-3.3))});
+  \draw[thick, red!50, dashed, domain=1.5:7, samples=50]
+    plot (\x, {1.5*exp(-0.5*(\x-4.8)*(\x-4.8))});
+
+  % Labels
+  \node[font=\scriptsize, blue!70!black] at (2,2.3) {$e$};
+  \node[font=\scriptsize, green!60!black] at (3.5,2.3) {$\mu$};
+  \node[font=\scriptsize, red!70!black] at (5,2.3) {$\tau$};
+  \node[font=\scriptsize, blue!50!black] at (2.2,1.2) {$\nu_1$};
+  \node[font=\scriptsize, green!50!black] at (3.3,1.0) {$\nu_2$};
+  \node[font=\scriptsize, red!50!black] at (4.8,1.2) {$\nu_3$};
+
+  % Overlap region highlighted
+  \fill[purple!15, opacity=0.5] (2.5,0) -- (2.5,1.8) -- (4.5,1.8) -- (4.5,0) -- cycle;
+  \node[font=\scriptsize, purple!60!black] at (3.5,0.5) {overlap};
+
+  % Separation annotation
+  \draw[<->, thick, gray!60] (2,2.9) -- (3.5,2.9);
+  \node[font=\scriptsize, gray] at (2.75,3.15) {small $\Delta\xi$};
+
+  % Result box
+  \node[draw, rounded corners, fill=green!15, font=\scriptsize, text width=2.5cm, align=center]
+    at (3.5,-1.0) {Large off-diagonal\\$|U_{ij}| \sim \mathcal{O}(1)$};
+\end{scope}
+
+% === Bottom comparison table ===
+\begin{scope}[shift={(4.5,-4)}]
+  \node[font=\small\bfseries] at (4.5,1.0) {Comparison};
+
+  % Table
+  \draw[thick] (0,0) rectangle (9,0.7);
+  \draw[thick] (0,-0.7) rectangle (9,0);
+  \draw[thick] (3,0.7) -- (3,-0.7);
+  \draw[thick] (6,0.7) -- (6,-0.7);
+
+  % Headers
+  \node[font=\scriptsize\bfseries] at (1.5,0.35) {Property};
+  \node[font=\scriptsize\bfseries] at (4.5,0.35) {CKM (quarks)};
+  \node[font=\scriptsize\bfseries] at (7.5,0.35) {PMNS (leptons)};
+
+  % Row 1
+  \node[font=\scriptsize] at (1.5,-0.35) {Separation $\Delta\xi$};
+  \node[font=\scriptsize] at (4.5,-0.35) {Large};
+  \node[font=\scriptsize] at (7.5,-0.35) {Small};
+\end{scope}
+
+\end{tikzpicture}
