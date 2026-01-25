@@ -182,6 +182,23 @@ Paper 2 uses ξ for BOTH:
 
 **Resolution**: ✅ RESOLVED in CTX-001. In EDC canon, ξ = 5D depth. For GL coherence length, use `\xi_{\mathrm{GL}}`.
 
+### Category E: z → ξ (5D Depth in CH04) — CTX-002
+
+| VR-ID | File | Lines | Old Pattern | New Pattern | Class | Canon | Reason |
+|-------|------|-------|-------------|-------------|-------|-------|--------|
+| CTX-002a | CH3_electroweak_parameters.tex | 546-555 | m(z), z/λ, z=0 | m(ξ), ξ/λ, ξ=0 | 5D depth | Fwk v2.0 Eq.(3) | Mass profile definition |
+| CTX-002b | CH3_electroweak_parameters.tex | 605-653 | f_L(z), dz, χ(z), z² | f_L(ξ), dξ, χ(ξ), ξ² | 5D depth | Fwk v2.0 Eq.(3) | Mode overlap integrals |
+| CTX-002c | CH3_electroweak_parameters.tex | 674-675 | χ(z), "large z" | χ(ξ), "large ξ" | 5D depth | Fwk v2.0 Eq.(3) | Asymptotic behavior |
+| CTX-002d | CH3_electroweak_parameters.tex | 728-741 | m(z), ∂_z, ψ_{L,R}(z), dz' | m(ξ), ∂_ξ, ψ_{L,R}(ξ), dξ' | 5D depth | Fwk v2.0 Eq.(3) | V-A chirality selection |
+| CTX-002e | CH3_electroweak_parameters.tex | 760-803 | χ(z), ψ_{L,R}(z), z→∞, z=0 | χ(ξ), ψ_{L,R}(ξ), ξ→∞, ξ=0 | 5D depth | Fwk v2.0 Eq.(3) | Mode localization analysis |
+| CTX-002f | CH3_electroweak_parameters.tex | 851 | m(z) | m(ξ) | 5D depth | Fwk v2.0 Eq.(3) | Open problem statement |
+
+**Total occurrences**: 52 (all BUCKET 1: 5D depth)
+**Z6 complex z₁,z₂ in file**: 0 (nothing to preserve)
+**3D spatial (x,y,z) in file**: 0 (nothing to preserve)
+
+**Rollback note**: If needed, restore from commit prior to CTX-002 fix.
+
 ### M_5 ambiguity
 
 M_5 can mean:
