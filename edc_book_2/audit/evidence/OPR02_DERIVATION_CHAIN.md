@@ -1,8 +1,44 @@
 # OPR-02: Robin α Derivation Chain
 
 **OPR**: OPR-02 (Robin α from action)
-**Date**: 2026-01-25
-**Branch**: book2-opr02-robin-alpha-from-action-v1
+**Date**: 2026-01-25 (Updated with OPR-04 verdict)
+**Branch**: book2-opr04-delta-equals-Rxi-v1
+
+---
+
+## Dependency Statement
+
+**Critical dependency on OPR-04**: Route C (the recommended path) depends on the
+identification δ ≡ R_ξ, which is **[P]** and remains **OPEN** per OPR-04.
+
+**OPR-02 cannot be CLOSED unless one of the following is satisfied:**
+1. **OPR-04 is CLOSED** — derivation of δ = R_ξ from brane microphysics, OR
+2. **λ̃ is derived** — BKT coefficient from membrane physics (removes Route C dependency)
+
+See: `audit/evidence/OPR04_CLOSURE_REPORT.md` for full OPR-04 verdict.
+
+---
+
+## Closure Gates (from OPR-04)
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│  CLOSURE GATES FOR δ = R_ξ IDENTIFICATION                   │
+│  (All must be satisfied OR alternative route found)          │
+├──────────────────────────────────────────────────────────────┤
+│  (i)   Derive R_ξ from 5D action without SM inputs   [OPEN] │
+│  (ii)  Formal boundary-layer theorem: δ = f(R_ξ)     [OPEN] │
+│  (iii) Unique-scale proof: R_ξ is only sub-EW scale  [OPEN] │
+│  (iv)  δ-robustness: outputs insensitive to ±2×     [OPEN] │
+├──────────────────────────────────────────────────────────────┤
+│  Cross-reference: audit/evidence/OPR04_CLOSURE_REPORT.md    │
+│  Cross-reference: audit/evidence/OPR04_DERIVATION_CHAIN.md  │
+└──────────────────────────────────────────────────────────────┘
+```
+
+**Note**: Gate (iv) is a robustness test, not a derivation. If satisfied, it
+demonstrates that the physics is insensitive to the exact δ/R_ξ ratio, reducing
+the criticality of the identification without proving it.
 
 ---
 
@@ -118,6 +154,11 @@ where λ̃ is the dimensionless BKT coefficient and x₁ = mℓ.
 - [Dc]: α formula follows from variation
 - [P]: λ̃ value is postulated (λ̃ ~ 2-4 needed for target α ~ 8)
 
+**Requires one [P] input**: λ̃ (BKT coefficient)
+
+**Note**: If λ̃ can be derived from membrane stiffness/conductivity, this route
+would close OPR-02 WITHOUT requiring OPR-04 closure.
+
 ### Route B: Israel Junction [Dc]+[P]
 
 From tension-dominated junction:
@@ -130,7 +171,9 @@ where κ₅² = 8πG₅ and σ is brane tension.
 - [Dc]: Structure from Israel matching
 - [P]: κ₅, σ values require Part I closure
 
-### Route C: Thick-Brane Smoothing [Dc]+[P]
+**Requires σ/κ₅ anchor from Part I** (OPR-01 related)
+
+### Route C: Thick-Brane Smoothing — RECOMMENDED [P]
 
 When delta-function brane is smoothed to width δ:
 ```
@@ -143,9 +186,12 @@ With identification **δ = R_ξ** (brane thickness = diffusion scale):
 α = ℓ/δ = (2π R_ξ)/R_ξ = 2π ≈ 6.3
 ```
 
-**Status**: [Dc]+[P]
+**Status**: [Dc]+[P] — **RECOMMENDED but cannot upgrade to [Dc] until OPR-04 CLOSED**
 - [Dc]: α ~ ℓ/δ from inner/outer matching
-- [P]: δ = R_ξ identification is postulated
+- [P]: δ = R_ξ identification is postulated (OPR-04 verdict: OPEN)
+
+**Blocking dependency**: OPR-04 (δ ≡ R_ξ teleport) — all four closure gates OPEN.
+See `audit/evidence/OPR04_CLOSURE_REPORT.md`.
 
 ---
 
@@ -213,6 +259,49 @@ With identification **δ = R_ξ** (brane thickness = diffusion scale):
 
 ---
 
+## δ-Robustness Plan (Closure Gate iv) [OPEN]
+
+This section outlines a robustness test that, if passed, would demonstrate that
+key physics outputs are insensitive to the exact δ/R_ξ identification.
+
+**Status**: [OPEN] — Plan only, no computations performed.
+
+### 1. Formulas Sensitive to δ
+
+The following equations in Book 2 depend on δ (directly or via α = ℓ/δ):
+
+| Equation | Location | Dependence |
+|----------|----------|------------|
+| eq:attemptH_alpha_ell_delta | CH13 §13.2.8 | α = C_geom · ℓ/δ |
+| eq:attemptH_alpha_2pi | CH13 §13.2.8 | α = 2π (assumes δ = R_ξ) |
+| Robin eigenvalue equation | CH13 §13.2.3 | tan(x) = 2αx/(x²−α²) |
+| Ground state x₁ | BVP solution | x₁(α) monotonic in α |
+
+### 2. Parameter Sweep Specification
+
+**Sweep**: δ → δ × {1/2, 1, 2} (i.e., α → {2α, α, α/2})
+
+**Invariants to monitor**:
+- Ground state eigenvalue x₁
+- Mediator mass m_φ = x₁/ℓ
+- Overlap integral I₄ (if computed)
+- Derived G_F (if chain complete)
+
+### 3. Robustness Criterion
+
+**Definition**: δ-robust iff key observables change by **< 5%** when δ varies by
+factor of 2 in either direction.
+
+**Acceptance**:
+- If x₁ varies < 5%: PARTIAL robustness (eigenvalue stable)
+- If G_F varies < 5%: STRONG robustness (observable stable)
+- If variation > 20%: NOT robust — δ = R_ξ is critical and must be derived
+
+**Note**: This test does NOT derive δ = R_ξ; it only quantifies sensitivity.
+Passing Gate (iv) reduces urgency of OPR-04 closure but does not eliminate it.
+
+---
+
 ## OPR-02 VERDICT
 
 ```
@@ -223,9 +312,14 @@ With identification **δ = R_ξ** (brane thickness = diffusion scale):
 │  Robin BC PARAMETER α requires ONE postulate:                │
 │    • Route C (recommended): δ = R_ξ → α = 2π                 │
 │                                                              │
-│  Upgrade condition:                                          │
-│    Derive δ = R_ξ from Part I brane physics                  │
-│    OR derive λ̃ from membrane properties                     │
+│  Route C status: recommended [P]                             │
+│    Cannot upgrade to [Dc] until OPR-04 CLOSED               │
+│                                                              │
+│  CLOSURE REQUIRES:                                           │
+│    (a) OPR-04 CLOSED (derive δ = R_ξ), OR                   │
+│    (b) λ̃ derivation (BKT route, bypasses δ = R_ξ)          │
+│                                                              │
+│  Cross-ref: audit/evidence/OPR04_CLOSURE_REPORT.md          │
 └──────────────────────────────────────────────────────────────┘
 ```
 

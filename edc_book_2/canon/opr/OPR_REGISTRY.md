@@ -60,6 +60,8 @@ OPR-01 is CLOSED iff σ is fixed or bounded WITHOUT using any downstream derived
 
 **Status**: PARTIAL [Dc]+[P] (Updated 2026-01-25)
 
+**CLOSED requires: OPR-04 CLOSED OR λ̃ derivation (BKT route)**
+
 **What is derived [Dc]**:
 - Robin BC **form** f' + αf = 0 follows from 5D action variation
 - Robin BC **structure** emerges from BKT (brane kinetic term) junction matching
@@ -69,13 +71,15 @@ OPR-01 is CLOSED iff σ is fixed or bounded WITHOUT using any downstream derived
   - α = ℓ/δ (from thick-brane matching) — eq:attemptG_alpha_thick
 
 **What requires [P] (one choice needed)**:
-- Route A: BKT coefficient λ̃ ~ 2-4 (gives α ~ 8)
-- Route B: Junction parameters κ₅, σ (requires Part I)
-- Route C: δ = R_ξ identification (gives α = 2π ≈ 6.3) **RECOMMENDED**
+- Route A: BKT coefficient λ̃ ~ 2-4 (gives α ~ 8) — requires λ̃ derivation
+- Route B: Junction parameters κ₅, σ (requires Part I) — requires σ/κ₅ anchor
+- Route C: δ = R_ξ identification (gives α = 2π ≈ 6.3) — **RECOMMENDED [P]**
+  - Cannot upgrade to [Dc] until OPR-04 CLOSED (see OPR-04 entry)
 
 **Documentation created**:
 - `audit/notation/OPR02_ROBIN_OCCURRENCES.md` — occurrence table
-- `audit/evidence/OPR02_DERIVATION_CHAIN.md` — full derivation chain
+- `audit/evidence/OPR02_DERIVATION_CHAIN.md` — full derivation chain + closure gates
+- `audit/evidence/OPR02_CLOSURE_REPORT.md` — closure verdict
 
 **Blocks**:
 - E-CH10-Dc-* (BC-dependent claims)
@@ -89,9 +93,9 @@ OPR-01 is CLOSED iff σ is fixed or bounded WITHOUT using any downstream derived
 - CH14: BVP work package
 
 **Upgrade condition to CLOSED**:
-1. Derive δ = R_ξ from brane microphysics (Part I connection)
-2. OR derive BKT coefficient λ̃ from membrane stiffness/conductivity
-3. Either route removes the remaining [P]
+1. OPR-04 CLOSED — derive δ = R_ξ from brane microphysics, OR
+2. λ̃ derivation — BKT coefficient from membrane stiffness/conductivity
+Either route removes the remaining [P] dependency.
 
 **Closure test**:
 CLOSED iff α appears as boundary term coefficient in δS = 0 variation WITHOUT any postulated parameter, i.e., purely [Der].
@@ -139,6 +143,8 @@ Cannot assume N_gen = 3 and reverse-engineer topology. Must go topology → mode
 **Short name**: Define δ precisely and connect to R_ξ with location + conditions
 
 **Status**: OPEN (Forensic audit complete 2026-01-25)
+
+**Blocks OPR-02 Route C upgrade**: δ = R_ξ is [P], cannot upgrade until this OPR closes.
 
 **Definitions** (exist but teleported):
 - **δ**: Boundary-layer / brane thickness — scale over which Robin BC smooths sharp junction
