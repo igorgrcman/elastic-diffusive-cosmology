@@ -12,7 +12,7 @@
 | Chapter | Title | Files | Equations | Claims | Violations | MECHANICAL | CONTEXT | NARRATIVE | EVIDENCE |
 |---------|-------|-------|-----------|--------|------------|------------|---------|-----------|----------|
 | CH01 | The Weak Interface | 15 | 54 | 29 | 0 | ✅ DONE | ✅ DONE | ⏳ | ⏳ |
-| CH02 | Frozen Regime Foundations | 1 | 27 | 0 | 0* | ✅ DONE | ⚠️ TODO | ⏳ | ⏳ |
+| CH02 | Frozen Regime Foundations | 1 | 27 | 0 | 0* | ✅ DONE | ✅ DONE | ⏳ | ⏳ |
 | CH03 | The Z6 Program | 1 | 21 | 28 | 0 | ✅ DONE | ✅ DONE | ⏳ | ⏳ |
 | CH04 | Electroweak Parameters | 1 | — | — | — | ⏳ | — | — | — |
 | CH05 | Lepton Mass Relations | 1 | — | — | — | ⏳ | — | — | — |
@@ -119,23 +119,23 @@
 ## CONTEXT Audit Results (CH01-CH03)
 
 **Completed**: 2026-01-24
-**Status**: CH01 ✅, CH02 ⚠️ (1 TODO), CH03 ✅
+**Status**: CH01 ✅, CH02 ✅, CH03 ✅ — ALL DONE
 
 ### Summary
 
 | Chapter | Context Issues | Collisions | Status |
 |---------|----------------|------------|--------|
-| CH01 | 0 | 0 | CONTEXT_DONE |
-| CH02 | 1 (CTX-001) | 1 (ξ dual meaning) | TODO pending |
-| CH03 | 0 | 0 | CONTEXT_DONE |
+| CH01 | 0 | 0 | ✅ CONTEXT_DONE |
+| CH02 | 1 (CTX-001) | 1 (ξ dual meaning) | ✅ RESOLVED |
+| CH03 | 0 | 0 | ✅ CONTEXT_DONE |
 
-### CTX-001: ξ Collision in CH02
+### CTX-001: ξ Collision in CH02 — ✅ RESOLVED
 
 **Issue**: ξ used for both 5D coordinate (canon) and GL coherence length (non-canon)
 - Canon: Line 136 — "ξ is the physical 5D depth coordinate"
-- GL: Lines 237, 240, 311 — coherence length in superconductor analogy
+- GL: Lines 226, 237, 240, 267, 311, 317 — coherence length in superconductor analogy
 
-**Resolution**: Requires human decision (see `audit/notation/CONTEXT_VIOLATIONS_TODO_CH01_CH03.md`)
+**Resolution**: Option A applied — `\xi_{\mathrm{GL}}` for GL coherence length (6 instances changed)
 
 ### Reports Created
 

@@ -50,6 +50,19 @@ Commit 7014cbd (2026-01-24): Phase D notation remediation complete.
 | VR-024 | 09_va_structure.tex | 275-276,309 | ✅ DONE |
 | VR-025 | ch11_opr20_attemptF*.tex | 23-24 | ✅ DONE |
 
+### Category D: ξ → ξ_GL (GL Coherence Length Context) — COMPLETED (CTX-001)
+
+| VR-ID | File | Line | Old | New | Class | Canon | Reason |
+|-------|------|------|-----|-----|-------|-------|--------|
+| CTX-001a | 02_frozen_regime_foundations.tex | 226 | `\tanh(r/\xi)` | `\tanh(r/\xi_{\mathrm{GL}})` | GL coherence | New (Book 2) | GL profile context |
+| CTX-001b | 02_frozen_regime_foundations.tex | 237 | `\frac{r}{\sqrt{2}\xi}` | `\frac{r}{\sqrt{2}\xi_{\mathrm{GL}}}` | GL coherence | New (Book 2) | GL equation |
+| CTX-001c | 02_frozen_regime_foundations.tex | 240 | `$\xi$ is the coherence length` | `$\xi_{\mathrm{GL}}$ is the GL coherence length` + footnote | GL coherence | New (Book 2) | Definition with clarification |
+| CTX-001d | 02_frozen_regime_foundations.tex | 267 | `$\tanh(r/\xi)$` | `$\tanh(r/\xi_{\mathrm{GL}})$` | GL coherence | New (Book 2) | Table entry |
+| CTX-001e | 02_frozen_regime_foundations.tex | 311 | `coherence length $\xi$` | `coherence length $\xi_{\mathrm{GL}}$` | GL coherence | New (Book 2) | Stability argument |
+| CTX-001f | 02_frozen_regime_foundations.tex | 317 | `depends on $\xi$` | `depends on $\xi_{\mathrm{GL}}$` | GL coherence | New (Book 2) | Quantization argument |
+
+**Resolution**: ξ alone = 5D depth coordinate (Fwk v2.0 Eq.3); ξ_GL = GL coherence length (new symbol).
+
 ---
 
 ## Pending Replacements (Approved but not yet executed)
@@ -161,13 +174,13 @@ Commit 7014cbd (2026-01-24): Phase D notation remediation complete.
 
 ## Collision Warnings
 
-### ξ collision (Paper 2 legacy)
+### ξ collision (Paper 2 legacy) — ✅ RESOLVED
 
 Paper 2 uses ξ for BOTH:
 1. 5D compact coordinate (canonical)
 2. GL coherence length (collision)
 
-**Resolution**: In EDC canon, ξ = 5D depth. If coherence length appears, use ξ_GL or λ.
+**Resolution**: ✅ RESOLVED in CTX-001. In EDC canon, ξ = 5D depth. For GL coherence length, use `\xi_{\mathrm{GL}}`.
 
 ### M_5 ambiguity
 
@@ -185,6 +198,7 @@ Topology (π₁(M_5)) → \mathcal{M}^5.
 | Date | Action | Files Affected | By |
 |------|--------|----------------|-----|
 | 2026-01-24 | Ledger created | (none yet) | Claude |
+| 2026-01-24 | CTX-001 resolved: ξ → ξ_GL (6 instances) | 02_frozen_regime_foundations.tex | Claude |
 
 ---
 
@@ -193,4 +207,5 @@ Topology (π₁(M_5)) → \mathcal{M}^5.
 | Date | Change | By |
 |------|--------|-----|
 | 2026-01-24 | Initial creation | Claude |
+| 2026-01-24 | Added Category D: CTX-001 GL coherence length | Claude |
 

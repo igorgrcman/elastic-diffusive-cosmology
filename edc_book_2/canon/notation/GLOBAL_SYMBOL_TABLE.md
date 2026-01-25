@@ -98,6 +98,7 @@ No notation changes are permitted without updating this table first.
 | κ | `\kappa` | Penetration depth⁻¹ | Inverse localization scale | BVP | m⁻¹ | WORKING | — | 06_neutrinos:* | LOW | — |
 | σ | `\sigma` | Brane tension | Membrane surface tension | brane | MeV/fm² | CANON-PRIMARY | Fwk v2.0 Eq.(10), "σ ~ 8.8 MeV/fm²" | — | NONE | — |
 | η | `\eta` | Bulk viscosity | 5D fluid viscosity | 5D bulk | — | CANON | Fwk v2.0 §3.2 | — | LOW | Context: η_bulk vs η_metric |
+| ξ_GL | `\xi_{\mathrm{GL}}` | GL coherence length | Ginzburg-Landau coherence length (condensed matter analogy) | brane | m | WORKING | — | 02_frozen_regime:237,240,267,311,317 | NONE | Distinct from 5D coord ξ |
 
 **Hierarchy (CANON)**: ℓ_P ≪ R_ξ ≪ r_e (Framework v2.0 Eq.(7))
 
@@ -221,6 +222,7 @@ These symbols MUST have canon anchors:
 | Date | Change | By |
 |------|--------|-----|
 | 2026-01-24 | Initial creation — comprehensive cross-document extraction | Claude |
+| 2026-01-24 | Added ξ_GL for GL coherence length (CTX-001 resolution) | Claude |
 
 ---
 

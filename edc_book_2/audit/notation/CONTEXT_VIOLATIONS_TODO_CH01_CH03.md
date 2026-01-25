@@ -1,8 +1,9 @@
 # CONTEXT VIOLATIONS TODO: CH01-CH03
 
 **Generated**: 2026-01-24
+**Updated**: 2026-01-24
 **Branch**: book2-chapter-audit-v1
-**Status**: PENDING HUMAN DECISION
+**Status**: ✅ ALL RESOLVED
 
 ---
 
@@ -10,17 +11,19 @@
 
 | ID | Symbol | Chapter | Type | Severity | Status |
 |----|--------|---------|------|----------|--------|
-| CTX-001 | ξ | CH02 | Dual meaning collision | MEDIUM | TODO |
+| CTX-001 | ξ | CH02 | Dual meaning collision | MEDIUM | ✅ RESOLVED |
 
-**Total**: 1 TODO requiring human decision
+**Total**: 0 TODO remaining (was 1, resolved with Option A)
 
 ---
 
-## CTX-001: ξ Symbol Collision in CH02
+## CTX-001: ξ Symbol Collision in CH02 — ✅ RESOLVED
 
-### Description
+**Resolution Applied**: Option A — `\xi_{\mathrm{GL}}` for GL coherence length
 
-The symbol ξ (xi) is used for two physically distinct quantities within CH02:
+### Description (Historical)
+
+The symbol ξ (xi) was used for two physically distinct quantities within CH02:
 
 1. **Canon usage** (5D depth coordinate):
    - Location: `sections/02_frozen_regime_foundations.tex:136`
@@ -82,11 +85,22 @@ Con: Deviates from standard GL literature
 | 02_frozen_regime_foundations.tex | 240 | `\xi` | `\xi_{\mathrm{GL}}` |
 | 02_frozen_regime_foundations.tex | 311 | `\xi` | `\xi_{\mathrm{GL}}` |
 
-### Decision Required
+### Resolution Applied ✅
 
-**Igor**: Please choose one of the resolution options (A, B, or C) or propose an alternative.
+**Decision**: Igor chose **Option A** — subscript distinction.
 
-Once decided, the fix will be applied and the build will be verified.
+**Changes made** (6 instances):
+- Line 226: `\tanh(r/\xi)` → `\tanh(r/\xi_{\mathrm{GL}})`
+- Line 237: `\frac{r}{\sqrt{2}\xi}` → `\frac{r}{\sqrt{2}\xi_{\mathrm{GL}}}`
+- Line 240: Added footnote clarifying notation
+- Line 267: Table entry updated
+- Line 311: Stability argument updated
+- Line 317: Quantization argument updated
+
+**Canon updates**:
+- GLOBAL_SYMBOL_TABLE.md/csv: Added ξ_GL row
+- COLLISIONS_AND_AMBIGUITIES_GLOBAL.md: Marked resolved
+- REPLACEMENT_RISK_LEDGER.md: Category D added
 
 ---
 

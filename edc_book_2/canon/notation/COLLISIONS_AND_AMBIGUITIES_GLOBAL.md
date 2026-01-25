@@ -14,7 +14,7 @@ This document tracks all symbol collisions and ambiguities across:
 
 | Category | Count | Status |
 |----------|-------|--------|
-| **RESOLVED Collisions** | 2 | ✅ Fixed |
+| **RESOLVED Collisions** | 3 | ✅ Fixed |
 | **Remaining Ambiguities** | 3 | NEEDS HUMAN DECISION |
 | **Context-Sensitive Symbols** | 2 | Classified (z, η) |
 
@@ -60,6 +60,29 @@ This document tracks all symbol collisions and ambiguities across:
 - Z6 complex roots: z₁, z₂ — Remains z₁, z₂
 
 **Canon Rule**: Framework v2.0 Eq.(3) defines ξ as the 5D compact coordinate.
+
+---
+
+### CTX-001: ξ (5D Depth vs GL Coherence Length)
+
+**Status**: ✅ RESOLVED
+
+**Issue**: In CH02 (Frozen Regime Foundations), ξ was used for both:
+1. Canon 5D depth coordinate (line 136)
+2. Ginzburg-Landau coherence length (lines 237, 240, 267, 311, 317)
+
+**Resolution**: Introduced `\xi_{\mathrm{GL}}` for GL coherence length.
+
+| Context | Old Symbol | Correct Symbol | Action |
+|---------|------------|----------------|--------|
+| 5D depth coordinate | ξ | ξ | PRESERVED (canon) |
+| GL coherence length | ξ | ξ_GL | CHANGED |
+
+**Files Remediated**:
+- 02_frozen_regime_foundations.tex: 6 occurrences changed to `\xi_{\mathrm{GL}}`
+- Clarifying footnote added at first occurrence (line 240)
+
+**Canon Rule**: ξ = 5D depth coordinate (Fwk v2.0 Eq.3); ξ_GL = GL coherence length (new Book 2 symbol).
 
 ---
 
@@ -181,6 +204,7 @@ All drift cases resolved in Phase D remediation.
 |------|--------|--------|
 | 2026-01-24 | Initial creation from extraction | — |
 | 2026-01-24 | Phase D remediation completed | 7014cbd, ed8006f, cbbba70 |
+| 2026-01-24 | CTX-001 resolved: ξ → ξ_GL for GL coherence | — |
 
 ---
 
