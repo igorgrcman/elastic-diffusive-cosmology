@@ -72,6 +72,14 @@ OPR-21 requirement (μ ∈ [25,35]) yields μ << 25, creating a **CONDITIONAL TE
 
 ---
 
+## Cleanup Items
+
+| ID | Description | Priority | Status |
+|----|-------------|----------|--------|
+| CLEANUP-20-LEGACY | Replace deprecated `g₅²ℓ²/x₁²` in ch11/ch12 legacy sections with canonical `g₅²ℓ/x₁²` + forward pointer to OPR-20 | LOW | OPEN |
+
+---
+
 ## OPR-01 [C] σ anchor → M₀ derivation
 
 **Short name**: Derive bulk mass amplitude M₀ from membrane tension σ
