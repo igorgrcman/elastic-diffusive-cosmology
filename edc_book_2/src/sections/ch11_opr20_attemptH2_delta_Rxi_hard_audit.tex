@@ -520,39 +520,114 @@ Each gate specifies: required input, expected artifact, and what it unlocks. \ta
 \subsubsection{Figures}
 \label{sec:H2hard_figures}
 
-\begin{tcolorbox}[colback=yellow!10!white, colframe=yellow!50!black,
-    title=\textbf{Figure H2-1: What $\delta$ Is (Placeholder)}]
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.0, >=stealth]
+    % Coordinate axis
+    \draw[->, thick] (-0.5,0) -- (7,0) node[right] {$\xi$};
+    \draw[->, thick] (0,-0.5) -- (0,4) node[above] {$f(\xi)$};
 
-\textit{[FIGURE PLACEHOLDER]} \tagP{}
+    % Brane surface (thick line at xi=0)
+    \draw[line width=3pt, blue!70!black] (0,-0.3) -- (0,3.8);
+    \node[left, blue!70!black, font=\small] at (-0.1,3.5) {Brane};
+    \node[left, font=\footnotesize] at (-0.1,0.3) {$\xi=0$};
 
-\textbf{Content:} Schematic showing the boundary-layer structure:
-\begin{itemize}[nosep]
-    \item $\xi$-axis (transverse dimension) with brane at $\xi = 0$
-    \item Bulk region ($\xi > \delta$): field in bulk-dominated regime
-    \item Boundary layer ($0 < \xi < \delta$): field transitions to brane mode
-    \item Brane surface ($\xi = 0$): Robin BC applies
-    \item Annotation showing $\delta = R_\xi$ identification
-\end{itemize}
+    % Boundary layer region (shaded)
+    \fill[yellow!30, opacity=0.7] (0,0) rectangle (2,3.5);
+    \draw[dashed, orange!70!black, thick] (2,-0.2) -- (2,3.5);
+    \node[below, font=\small] at (2,-0.2) {$\xi = \delta$};
 
-\textbf{Purpose:} Clarify the geometric meaning of $\delta$ for the reader.
-\end{tcolorbox}
+    % Bulk region label
+    \node[font=\small, align=center] at (4.5,3) {Bulk region\\($\xi > \delta$)};
 
-\begin{tcolorbox}[colback=yellow!10!white, colframe=yellow!50!black,
-    title=\textbf{Figure H2-2: Two-Route Convergence Map (Placeholder)}]
+    % Boundary layer label
+    \node[font=\small, align=center, text=orange!70!black] at (1,2.8) {Boundary\\layer};
 
-\textit{[FIGURE PLACEHOLDER]} \tagP{}
+    % Field profile (exponential decay from bulk to brane)
+    \draw[thick, red!70!black, domain=0:6, samples=100]
+        plot (\x, {2.5*(1 - exp(-\x/1.5))});
+    \node[right, red!70!black, font=\small] at (5.5,2.3) {$f(\xi)$};
 
-\textbf{Content:} Flowchart showing:
-\begin{itemize}[nosep]
-    \item \textbf{Route A:} Diffusion PDE $\to$ [BLOCKED] $\to$ BL theorem $\to$ $\delta_{\text{BL}}$
-    \item \textbf{Route B:} Junction $\to$ Robin BC $\to$ $\alpha \sim \ell/\delta$
-          $\to$ [P] $\delta = R_\xi$
-    \item \textbf{Convergence:} Both routes $\to$ [CANNOT TEST]
-    \item Color-coding: Green = [Dc], Yellow = [P], Red = [OPEN]
-\end{itemize}
+    % Robin BC annotation
+    \draw[<-, thick, green!50!black] (0.1,0.4) -- (1.2,1.2);
+    \node[right, green!50!black, font=\footnotesize, align=left] at (1.2,1.4)
+        {Robin BC:\\$f' + \alpha f = 0$};
 
-\textbf{Purpose:} Visual summary of the audit findings for reviewers.
-\end{tcolorbox}
+    % Delta = R_xi annotation box
+    \draw[thick, blue!50!black, rounded corners] (3.5,0.3) rectangle (6.5,1.5);
+    \node[font=\small, align=center] at (5,0.9) {%
+        $\delta = R_\xi = \dfrac{\hbar c}{M_Z}$\\[2pt]
+        {\footnotesize (assumption (A2)) \tagP{}}};
+
+    % Scale bar for delta
+    \draw[<->, thick] (0,-0.7) -- (2,-0.7);
+    \node[below, font=\footnotesize] at (1,-0.7) {$\delta \approx 2.2 \times 10^{-3}$ fm};
+\end{tikzpicture}
+\caption{\textbf{Figure H2-1: Boundary-layer structure.} The brane surface at $\xi=0$
+imposes a Robin BC. The boundary layer (yellow, width $\delta$) is where the field
+transitions from bulk-dominated to brane-localized behavior. The identification
+$\delta = R_\xi$ (assumption (A2)) sets this scale to the EDC correlation length.}
+\label{fig:H2_boundary_layer}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    node distance=1.2cm and 1.5cm,
+    box/.style={rectangle, draw, rounded corners, minimum width=2.2cm,
+                minimum height=0.8cm, align=center, font=\small},
+    greenbox/.style={box, fill=green!20, draw=green!50!black},
+    yellowbox/.style={box, fill=yellow!30, draw=orange!70!black},
+    redbox/.style={box, fill=red!20, draw=red!50!black},
+    graybox/.style={box, fill=gray!20, draw=gray!50!black},
+    arrow/.style={->, thick, >=stealth},
+    blockedlabel/.style={font=\footnotesize, red!70!black}
+]
+    % Route A (top row)
+    \node[font=\bfseries] at (-4.5,2) {Route A:};
+    \node[greenbox] (diffusion) at (-2,2) {Diffusion\\PDE};
+    \node[redbox] (blocked) at (1,2) {BLOCKED};
+    \node[graybox] (bltheorem) at (4,2) {BL theorem};
+    \node[graybox] (deltabl) at (7,2) {$\delta_{\text{BL}}$};
+
+    \draw[arrow] (diffusion) -- (blocked) node[midway, above, blockedlabel] {missing};
+    \draw[arrow, dashed, gray] (blocked) -- (bltheorem);
+    \draw[arrow, dashed, gray] (bltheorem) -- (deltabl);
+
+    % Route B (bottom row)
+    \node[font=\bfseries] at (-4.5,-0.5) {Route B:};
+    \node[greenbox] (junction) at (-2,-0.5) {Junction\\condition};
+    \node[greenbox] (robin) at (1,-0.5) {Robin BC\\$f'+\alpha f=0$};
+    \node[greenbox] (alpha) at (4,-0.5) {$\alpha \sim \ell/\delta$};
+    \node[yellowbox] (deltarxi) at (7,-0.5) {$\delta = R_\xi$};
+
+    \draw[arrow] (junction) -- (robin) node[midway, above, font=\footnotesize] {[Dc]};
+    \draw[arrow] (robin) -- (alpha) node[midway, above, font=\footnotesize] {[Dc]};
+    \draw[arrow] (alpha) -- (deltarxi) node[midway, above, font=\footnotesize] {[P]};
+
+    % Convergence attempt (center)
+    \node[redbox, minimum width=3cm] (converge) at (2.5,-2.5) {Convergence:\\CANNOT TEST};
+
+    \draw[arrow, dashed, gray] (deltabl.south) -- ++(0,-0.8) -| (converge.north);
+    \draw[arrow] (deltarxi.south) -- ++(0,-0.5) -| (converge.north);
+
+    % Legend
+    \node[font=\bfseries\footnotesize] at (-3.5,-4) {Legend:};
+    \node[greenbox, minimum width=1.2cm, minimum height=0.5cm] at (-1.5,-4) {};
+    \node[font=\footnotesize] at (-0.2,-4) {[Dc]};
+    \node[yellowbox, minimum width=1.2cm, minimum height=0.5cm] at (1.5,-4) {};
+    \node[font=\footnotesize] at (2.7,-4) {[P]};
+    \node[redbox, minimum width=1.2cm, minimum height=0.5cm] at (4.5,-4) {};
+    \node[font=\footnotesize] at (5.9,-4) {[OPEN]};
+    \node[graybox, minimum width=1.2cm, minimum height=0.5cm] at (7.5,-4) {};
+    \node[font=\footnotesize] at (8.9,-4) {unreached};
+\end{tikzpicture}
+\caption{\textbf{Figure H2-2: Two-Route Convergence Map.} Route A (diffusion-based)
+is BLOCKED due to missing transverse diffusion analysis. Route B (junction-based)
+reaches $\delta = R_\xi$ but the final step is [P] (postulate), not [Dc] (derived).
+Convergence cannot be tested with only one partial route.}
+\label{fig:H2_two_route_map}
+\end{figure}
 
 % ------------------------------------------------------------------------------
 % (11) INTEGRATION NOTE
