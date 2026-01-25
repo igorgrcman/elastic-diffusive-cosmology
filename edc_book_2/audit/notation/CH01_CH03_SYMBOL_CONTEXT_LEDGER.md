@@ -1,0 +1,169 @@
+# SYMBOL CONTEXT LEDGER: CH01-CH03
+
+**Generated**: 2026-01-24
+**Branch**: book2-chapter-audit-v1
+**Scope**: CH01 (The Weak Interface), CH02 (Frozen Regime Foundations), CH03 (The Z6 Program)
+
+---
+
+## Summary
+
+| Symbol | CH01 | CH02 | CH03 | Canon | Collision? |
+|--------|------|------|------|-------|------------|
+| ξ | OK (5D coord) | 🔴 COLLISION | NOT USED | 5D coordinate | CH02: ξ_GL |
+| z | NOT USED | NOT USED (5D) | OK (transverse) | Context-sensitive | None |
+| z_ℓ | NOT USED | NOT USED | OK (Z₃ phase) | Z6 complex | None |
+| M^5 | NOT USED | OK (𝓜⁵) | OK (𝓜⁵) | \mathcal{M}^5 | None |
+| η | NOT USED | OK (viscosity) | NOT USED | Bulk viscosity | None |
+| σ | NOT USED | OK | OK (28×) | Brane tension | None |
+| Ξ | OK (regime) | NOT USED | NOT USED | — | None |
+| δ | OK (thickness) | NOT USED | NOT USED | Brane thickness | None |
+| κ | NOT USED | NOT USED | NOT USED | — | None |
+| Q_β | OK (energy) | NOT USED | NOT USED | Energy budget | None |
+| ω | NOT USED | NOT USED | OK (freq/phase) | — | None |
+
+---
+
+## Per-Symbol Cards
+
+### ξ (Xi) — 5D Depth Coordinate
+
+**Canon**: Framework v2.0 Eq.(3) — "compact coordinate ξ"
+
+| Chapter | Status | Context | Anchor |
+|---------|--------|---------|--------|
+| CH01 | ✅ OK | 5D depth, properly introduced | 02_geometry_interface:14 |
+| CH02 | 🔴 COLLISION | 5D depth (line 136) + GL coherence (lines 237,240,311) | See CTX-001 |
+| CH03 | — | Not used | — |
+
+**CH02 Issue (CTX-001)**:
+- Line 136: "ξ is the physical 5D depth coordinate" [Canon]
+- Line 237: "f(r) = tanh(r/√2ξ)" where ξ is GL coherence length [Non-canon]
+
+---
+
+### z — Transverse/Spatial Coordinate
+
+**Canon**: Context-sensitive (3D spatial in tuples, forbidden as 5D depth)
+
+| Chapter | Status | Context | Anchor |
+|---------|--------|---------|--------|
+| CH01 | — | Not used for 5D | — |
+| CH02 | — | Not used for 5D | — |
+| CH03 | ✅ OK | Transverse field profile Φ(z) | Z6_content_full:265 |
+
+---
+
+### z_ℓ — Z₃ Complex Phase
+
+**Canon**: Z6 complex roots (allowed per GLOBAL_SYMBOL_TABLE)
+
+| Chapter | Status | Context | Anchor |
+|---------|--------|---------|--------|
+| CH01 | — | Not used | — |
+| CH02 | — | Not used | — |
+| CH03 | ✅ OK | z_ℓ = ω^(m_ℓ) ∈ Z₃ | Z6_content_full:1460 |
+
+---
+
+### M^5 / 𝓜⁵ — 5D Manifold
+
+**Canon**: \mathcal{M}^5 (calligraphic, never M_5 for manifold)
+
+| Chapter | Status | Context | Anchor |
+|---------|--------|---------|--------|
+| CH01 | — | Not used | — |
+| CH02 | ✅ OK | "5D manifold 𝓜⁵" | 02_frozen_regime:88,114 |
+| CH03 | ✅ OK | Fixed in mechanical audit | Z6_content_full:27,50,66,67,1954 |
+
+---
+
+### η (Eta) — Bulk Viscosity
+
+**Canon**: Framework v2.0 §3.2 — "bulk viscosity η"
+
+| Chapter | Status | Context | Anchor |
+|---------|--------|---------|--------|
+| CH01 | — | Clean avoidance | — |
+| CH02 | ✅ OK | "viscosity η [Pa·s]" | 02_frozen_regime:107 |
+| CH03 | — | Not used | — |
+
+---
+
+### σ (Sigma) — Brane Tension
+
+**Canon**: Framework v2.0 Eq.(10) — "σ ~ 8.8 MeV/fm²"
+
+| Chapter | Status | Context | Anchor |
+|---------|--------|---------|--------|
+| CH01 | — | Not used | — |
+| CH02 | ✅ OK | Postulate 4 | — |
+| CH03 | ✅ OK | 28 usages, all tension | Z6_content_full:270,789,... |
+
+---
+
+### Ξ (Capital Xi) — Regime Parameter
+
+**Canon**: NOT IN CANON (Book 2 introduction)
+
+| Chapter | Status | Context | Anchor |
+|---------|--------|---------|--------|
+| CH01 | ✅ OK | Ξ = Π_pump/Π_release | 03_unified_pipeline:88-98 |
+| CH02 | — | Not used | — |
+| CH03 | — | Not used | — |
+
+**Note**: Distinct from lowercase ξ (case sensitivity maintained).
+
+---
+
+### δ (Delta) — Brane Thickness
+
+**Canon**: Framework v2.0 §2.3
+
+| Chapter | Status | Context | Anchor |
+|---------|--------|---------|--------|
+| CH01 | ✅ OK | "δ > 0 brane thickness" | 05_case_neutron:56-68 |
+| CH02 | — | Not used explicitly | — |
+| CH03 | — | Not used | — |
+
+---
+
+### Q_β — Energy Budget
+
+**Canon**: Standard nuclear physics (Q-value)
+
+| Chapter | Status | Context | Anchor |
+|---------|--------|---------|--------|
+| CH01 | ✅ OK | "Q_n ≈ 0.782 MeV" (decay Q-value) | 04a_unified_master:73-76 |
+| CH02 | — | Not used | — |
+| CH03 | — | Not used | — |
+
+**Note**: Never used for electric charge in CH01-CH03.
+
+---
+
+### ω (Omega) — Frequency/Phase
+
+**Canon**: Context-sensitive
+
+| Chapter | Status | Context | Anchor |
+|---------|--------|---------|--------|
+| CH01 | — | Not used | — |
+| CH02 | — | Not used | — |
+| CH03 | ✅ OK | ω₀ = frequency, ω = e^(2πi/3) phase | Z6_content_full:928,1391 |
+
+**Note**: Subscript ₀ clearly distinguishes frequency from bare phase.
+
+---
+
+## Action Summary
+
+| ID | Symbol | Chapter | Issue | Action | Status |
+|----|--------|---------|-------|--------|--------|
+| CTX-001 | ξ | CH02 | Dual meaning (5D vs GL coherence) | TODO | PENDING |
+
+All other symbols: **NO ACTION REQUIRED**
+
+---
+
+*Generated by context audit process*

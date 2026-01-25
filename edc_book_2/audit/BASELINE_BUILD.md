@@ -1,40 +1,21 @@
-# Book 2 Baseline Build Record
+# Baseline Build Record
 
-Generated: 2026-01-24
-Purpose: Anchor point for symbol table and context-aware audit
+## Audit Session: book2-chapter-audit-v1
 
-## Build Verification
+| Date | Branch | Commit | Pages | SHA256 | Status |
+|------|--------|--------|-------|--------|--------|
+| 2026-01-24 | book2-chapter-audit-v1 | e8f55f8 (base) | 387 | 23aee0d7c31520c4dee53299ab45c219a50372bdaa1126f53c553ac2c7e731b9 | PASS |
+| 2026-01-24 | book2-chapter-audit-v1 | 6e1a2af (CTX-001) | 387 | 02922e3dbb5200b8dd4885e35b1217ae8edae6925537d3115455ee47a06a3625 | PASS |
+| 2026-01-24 | book2-chapter-audit-v1 | CH04 pre-audit | 387 | dfc39cd35ecf750b8a522046def8195d52273143faf679c422d698dfa1ea1bf7 | PASS |
+| 2026-01-25 | book2-opr04-delta-equals-Rxi-v1 | 9d2621c (CH05 pre-audit) | 387 | ff207df0ec3f690f84991cf89955ef7453dcc48c93e67cd2a60c260a9f2e94c8 | PASS |
+| 2026-01-25 | book2-ch07-openq-remediation-v1 | 6796707 (baseline) | 387 | a32ff75178db20e105864809d5fb5d6c084c6e7bd6e0fae86d7521f279129ef2 | PASS |
 
-| Metric | Value |
-|--------|-------|
-| PDF path | `edc_book_2/src/main.pdf` |
-| Page count | 387 |
-| SHA256 | `1827705110b355474ef9f57e5c9922efe5a17747ab9b3597c06c87b826a9b0e0` |
-| Git commit | `7efd642fb466ef9d5cd876f952cedd30996e8701` |
-| Branch | `book2-ch1-asset-inventory-v1` |
-| Build command | `latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex` |
-| Build status | PASS |
-
-## Canon Sources Verified
-
-All canon PDFs verified against `EDC_Research_PRIVATE/canon/checksums.sha256`:
-
-| Artifact | DOI | SHA256 (first 16) |
-|----------|-----|-------------------|
-| EDC_Book_v17.49 (Part I) | - | `035e97497c0086d9` |
-| EDC_Paper2 | - | `7250b74cdec8f38b` |
-| Framework_v2.0 | 10.5281/zenodo.18299085 | `34d235c318fd401b` |
-| Paper3_NJSR_Journal | 10.5281/zenodo.18262721 | `aa2dba0fbde18386` |
-| CompanionA_Effective_Lagrangian | 10.5281/zenodo.18292841 | `3204d7f36aa9339c` |
-| CompanionB_WKB_Prefactor | 10.5281/zenodo.18299637 | `b7914331d5a9cb46` |
-| CompanionC_5D_KK_Reduction | 10.5281/zenodo.18299751 | `105c4cede1a38933` |
-| CompanionD_Selection_Rules | 10.5281/zenodo.18299855 | `75ddb9b512f61775` |
-| CompanionE_Symmetry_Operations | 10.5281/zenodo.18300199 | `83a28a6dfeaeee09` |
-| CompanionF_Proton_Junction_Model | 10.5281/zenodo.18302953 | `3bde2d69315329e8` |
-| CompanionG_Neutron_Proton_Mass | 10.5281/zenodo.18303494 | `7fa70b29fd4b153a` |
-| CompanionH_Weak_Interactions | 10.5281/zenodo.18307539 | `8bdf960877158b57` |
+## Build Command
+```bash
+./tools/gate_build.sh
+```
 
 ## Notes
-
-This baseline is the anchor for the canonical symbol table audit.
-Any changes to Book 2 during this audit must maintain build PASS status.
+- Baseline established from book2-global-symbol-table-v1
+- All chapter audits must maintain 387 pages
+- Build verification required after each chapter's mechanical fixes

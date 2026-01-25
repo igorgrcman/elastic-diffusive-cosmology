@@ -111,7 +111,8 @@ Combined with standard RG running to $M_Z = 91.2$ GeV~\cite{PDG2024}, this yield
   \item Neutron lifetime $\tau_n \approx 830$ s (6\% from experiment)
 \end{itemize}
 
-The entire electroweak sector follows from one geometric input: $\mathbb{Z}_6 = \mathbb{Z}_2 \times \mathbb{Z}_3$.
+The electroweak \emph{mixing structure} follows from one geometric input: $\sin^2\theta_W = 1/4$ from $\mathbb{Z}_6 = \mathbb{Z}_2 \times \mathbb{Z}_3$.
+The absolute scale requires baseline inputs \tagBL{}: $\alpha(M_Z)$ and Higgs VEV $v$.
 
 % ==============================================================================
 \section{The Electroweak Sector Challenge}
@@ -543,16 +544,16 @@ $\tau_n \approx 830$ s & \textbf{Derived (6\% from exp)} & \tagDc{} \\
 \tagDc{}
 The asymmetric mass profile from Plenum inflow is:
 \begin{equation}
-m(z) = m_0 \left(1 - e^{-z/\lambda}\right)
+m(\xi) = m_0 \left(1 - e^{-\xi/\lambda}\right)
 \end{equation}
-where $z$ is the coordinate into the bulk, $m_0$ is the bulk mass scale,
+where $\xi$ is the coordinate into the bulk, $m_0$ is the bulk mass scale,
 and $\lambda \sim \Delta$ is the brane thickness.
 
 Properties:
 \begin{itemize}
   \item $m(0) = 0$ at the boundary (massless at interface)
-  \item $m(z) \to m_0$ as $z \to \infty$ (bulk mass restored)
-  \item Left-handed modes localize at $z = 0$; right-handed modes escape to bulk
+  \item $m(\xi) \to m_0$ as $\xi \to \infty$ (bulk mass restored)
+  \item Left-handed modes localize at $\xi = 0$; right-handed modes escape to bulk
 \end{itemize}
 \end{definition}
 
@@ -600,20 +601,21 @@ Everything else ($g^2$, $M_W$, $G_F$) follows from:
 \end{remark}
 
 \begin{remark}[Mode Overlap Interpretation]
-The Fermi constant receives contributions from the overlap integral:
+The Fermi constant arises from the overlap integral:
 \begin{equation}
-G_F \propto \int_0^\infty |f_L(z)|^4 \, dz = I_4
+G_F = G_5 \int_0^\infty |f_L(\xi)|^4 \, d\xi = G_5 \times I_4
 \end{equation}
 
-where $f_L(z)$ is the left-handed fermion mode profile. For the asymmetric profile:
+where $f_L(\xi)$ is the left-handed fermion mode profile and $I_4$ has dimension
+of \emph{energy} (not length). For the normalized exponential profile
+$f_L = \sqrt{2m_0}\,e^{-m_0\xi}$, the overlap integral is exactly:
 \begin{equation}
-f_L(z) = N_L \exp\left(-m_0 \chi(z)\right), \quad \chi(z) = z - \lambda\left(1 - e^{-z/\lambda}\right)
+I_4 = m_0 \sim 200 \text{ MeV}
+\label{eq:ch3_I4_remark}
 \end{equation}
 
-The mode is localized at $z = 0$ with width $\sigma_L = \sqrt{\lambda/(2m_0)}$.
-
-Numerical integration gives $I_4 \sim 100$ GeV, providing the geometric suppression
-factor that yields the correct order of magnitude for $G_F$.
+The mode overlap provides the \emph{geometric mechanism} for weak interaction
+suppression. Quantitative closure requires the full electroweak relations.
 \end{remark}
 
 \begin{tcolorbox}[colback=cyan!5, colframe=cyan!50!black,
@@ -631,89 +633,107 @@ on the brane interact via a bulk field. The effective 4D coupling is suppressed 
 The 5D Fermi coupling has dimension $[G_5] = [\text{Energy}]^{-3}$. To get the 4D
 coupling $[G_F] = [\text{Energy}]^{-2}$, we integrate over the 5th dimension:
 \begin{equation}
-G_F = G_5 \int_0^\infty dz \, |f_L(z)|^4 = G_5 \times I_4
+G_F = G_5 \int_0^\infty d\xi \, |f_L(\xi)|^4 = G_5 \times I_4
 \end{equation}
 
-where $I_4$ has dimension of length (or inverse energy in natural units).
-
-\textbf{3. Estimating $I_4$:}
-
-For a Gaussian mode localized at $z = 0$ with width $\sigma_L$:
+\textbf{Dimension of $I_4$:} If $f_L$ is normalized ($\int |f_L|^2 d\xi = 1$),
+then $[f_L] = L^{-1/2}$, so $[|f_L|^4] = L^{-2}$ and $[d\xi] = L$. Therefore:
 \begin{equation}
-f_L(z) = \left(\frac{1}{\pi \sigma_L^2}\right)^{1/4} \exp\left(-\frac{z^2}{2\sigma_L^2}\right)
+[I_4] = L^{-1} = \text{Energy} \quad \text{(in natural units)}
+\label{eq:ch3_I4_dimension}
 \end{equation}
+This is correct: $[G_5] \times [I_4] = E^{-3} \times E = E^{-2} = [G_F]$ \tagM{}.
 
-The fourth power is:
+\textbf{3. Toy model: Gaussian profile (pedagogical only)}
+
+For a Gaussian mode normalized on the \emph{full line} but integrated on the
+\emph{half-line} $[0,\infty)$:
 \begin{equation}
-|f_L(z)|^4 = \left(\frac{1}{\pi \sigma_L^2}\right) \exp\left(-\frac{2z^2}{\sigma_L^2}\right)
+f_L(\xi) = \left(\frac{1}{\pi \sigma_L^2}\right)^{1/4} \exp\left(-\frac{\xi^2}{2\sigma_L^2}\right)
+\quad \text{(full-line normalization)}
 \end{equation}
 
-Integrating:
+The fourth power integrated on the half-line includes a factor of $\frac{1}{2}$:
 \begin{equation}
-I_4 = \int_0^\infty |f_L(z)|^4 \, dz = \frac{1}{\sqrt{2\pi}\sigma_L}
+\boxed{
+I_4^{\text{Gauss}} = \int_0^\infty |f_L(\xi)|^4 \, d\xi = \frac{1}{2\sqrt{2\pi}\,\sigma_L}
+}
+\label{eq:ch3_I4_gauss_halfline}
 \end{equation}
 
-\textbf{4. Numerical evaluation:}
+\textbf{Note:} The Gaussian is a \emph{toy model}. The physical profile is asymmetric
+(exponential decay into the bulk), which we treat next.
 
-With the EDC mode width $\sigma_L = \sqrt{\lambda/(2m_0)}$:
-\begin{itemize}
-  \item $\lambda \sim 1$ fm (brane thickness)
-  \item $m_0 \sim 200$ MeV (bulk fermion mass scale)
-  \item $\sigma_L \sim \sqrt{1 \text{ fm} / (2 \times 200 \text{ MeV})} \sim \sqrt{0.0025 \text{ fm}^2} \sim 0.05$ fm
-\end{itemize}
+\textbf{4. Physical model: Exponential profile}
 
-Therefore:
+The asymmetric mass profile from Chapter~\ref{ch:va_structure} produces an
+\emph{exponential} mode, not Gaussian. For the normalized half-line exponential:
 \begin{equation}
-I_4 \sim \frac{1}{\sqrt{2\pi} \times 0.05 \text{ fm}} \sim 8 \text{ fm}^{-1} \sim 8 \times 197 \text{ MeV} \sim 1.5 \text{ GeV}
+f_L(\xi) = \sqrt{2m_0} \, e^{-m_0\xi}, \qquad \xi \geq 0
+\label{eq:ch3_fL_exponential}
 \end{equation}
 
-Wait---this gives $I_4 \sim 1.5$ GeV, not $\sim 100$ GeV. Let me re-examine.
-
-\textbf{5. Correction---the asymmetric profile:}
-
-The asymmetric profile $f_L \propto \exp(-m_0 \chi(z))$ is \emph{not} Gaussian.
-For large $z$: $\chi(z) \approx z - \lambda$, so $f_L \propto e^{-m_0(z-\lambda)}$.
-
-The effective localization length is:
+This satisfies $\int_0^\infty |f_L|^2 d\xi = 1$. The overlap integral is:
 \begin{equation}
-\sigma_{\text{eff}} = \frac{1}{m_0} = \frac{\hbar c}{m_0 c^2} = \frac{197 \text{ MeV}\cdot\text{fm}}{200 \text{ MeV}} \approx 1 \text{ fm}
+\boxed{
+I_4^{\text{exp}} = \int_0^\infty |f_L(\xi)|^4 \, d\xi
+= \int_0^\infty (2m_0)^2 e^{-4m_0\xi} \, d\xi
+= 4m_0^2 \times \frac{1}{4m_0} = m_0
+}
+\label{eq:ch3_I4_exponential_m0}
 \end{equation}
 
-This gives $I_4 \sim 1/\sigma_{\text{eff}} \sim 1$ fm$^{-1} \sim 200$ MeV.
+\textbf{Key result:} For an exponential profile, $I_4 = m_0$ \emph{exactly} \tagDc{}.
 
-\textbf{6. Full $G_F$ estimate:}
+\textbf{5. Numerical estimate:}
 
-Combining $G_5 \sim g_5^2/M_5^2$ with $I_4$:
+With $m_0 \sim 200$ MeV (typical localization scale):
 \begin{equation}
-G_F \sim \frac{g_5^2}{M_5^2} \times I_4 \sim \frac{(4\pi)^2}{(200 \text{ GeV})^2} \times (200 \text{ MeV})
+I_4 = m_0 \sim 200 \text{ MeV} = 0.2 \text{ GeV}
+\label{eq:ch3_I4_numerical}
 \end{equation}
 
-Order of magnitude:
+\textbf{Comparison:} The Gaussian toy model with $\sigma_L \sim 0.05$ fm gives
+$I_4 \sim 1.5$ GeV, which is $\sim 8\times$ larger than the physical exponential
+result. This illustrates why the correct profile matters for quantitative work.
+
+\textbf{6. The open question: What is $G_5$?}
+
+The overlap mechanism gives $G_F = G_5 \times I_4$ with $I_4 = m_0 \sim 0.2$ GeV
+established. However, the 5D coupling $G_5$ is \textbf{not derived} from first
+principles \tagP{}. Until $G_5$ is computed from the 5D action (OPR-19), the
+overlap pathway provides only qualitative understanding.
+
+\textbf{Naive estimate (illustrative only):}
 \begin{equation}
-G_F \sim \frac{150}{4 \times 10^4 \text{ GeV}^2} \times 0.2 \text{ GeV} \sim \frac{150 \times 0.2}{4 \times 10^4} \text{ GeV}^{-2}
-\sim 10^{-3} \text{ GeV}^{-2}
+G_F \sim \frac{g_5^2}{M_{5,\mathrm{Pl}}^3} \times I_4 \sim \frac{(4\pi)^2}{(200 \text{ GeV})^3} \times 0.2 \text{ GeV}
+\sim 4 \times 10^{-6} \text{ GeV}^{-2}
 \end{equation}
 
-This is $\sim 100\times$ larger than observed! The discrepancy suggests:
-\begin{itemize}
-  \item Additional suppression from wave function normalization
-  \item Factor of $1/4\pi$ from proper treatment of angular integrals
-  \item The relation $G_F = g^2/(4\sqrt{2}M_W^2)$ captures the correct physics
-\end{itemize}
+This is within an order of magnitude of $G_F^{\text{exp}} = 1.17 \times 10^{-5}$
+GeV$^{-2}$, but the agreement is \textbf{not meaningful} without deriving $g_5$
+and $M_{5,\mathrm{Pl}}$.
 
-\textbf{7. Conclusion:}
+\textbf{7. Summary: Mechanism vs.\ Closure}
 
-The mode overlap integral provides the \emph{geometric mechanism} for $G_F$, but the
-precise numerical value comes from the electroweak relations. The key insight is that
-$G_F$ is \textbf{small} because:
-\begin{itemize}
-  \item Fermions are tightly localized ($\sigma_L \ll$ brane thickness)
-  \item The overlap of four mode functions is highly suppressed
-  \item This is the geometric origin of weak interaction ``weakness''
-\end{itemize}
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Component} & \textbf{Status} & \textbf{Tag} \\
+\midrule
+$I_4 = m_0$ (exponential profile) & Exact result & \tagDc{} \\
+$I_4^{\text{Gauss}} = 1/(2\sqrt{2\pi}\sigma)$ & Half-line corrected & \tagM{} \\
+$G_5$ (5D coupling) & Not derived & \tagP{} (OPR-19) \\
+Qualitative ``why weak is weak'' & Mechanism established & \tagI{} \\
+Quantitative $G_F = 1.17 \times 10^{-5}$ & Via EW relations & \tagDc{} \\
+\bottomrule
+\end{tabular}
+\end{center}
 
-\textbf{Status:} Mode overlap provides qualitative understanding; quantitative precision
-requires the full electroweak machinery (which EDC reproduces via $\sin^2\theta_W = 1/4$).
+\textbf{Bottom line:} The mode overlap mechanism explains \emph{why} $G_F$ is small
+(geometric suppression from fermion localization). The \emph{numerical value} comes
+from electroweak relations + $\sin^2\theta_W = 1/4$ (Chapter~\ref{ch:z6_program}), not
+from the overlap integral alone.
 \end{tcolorbox}
 
 % ==============================================================================
@@ -725,19 +745,19 @@ requires the full electroweak machinery (which EDC reproduces via $\sin^2\theta_
 \label{prop:ch3_va}
 \tagDc{} (qualitative)
 
-The asymmetric mass profile $m(z) = m_0(1 - e^{-z/\lambda})$ selects chirality:
+The asymmetric mass profile $m(\xi) = m_0(1 - e^{-\xi/\lambda})$ selects chirality:
 
 \textbf{Left-handed modes} ($\psi_L$):
 \begin{itemize}
-  \item Zero mode equation: $(\partial_z + m(z))\psi_L = 0$
-  \item Solution: $\psi_L \propto \exp\left(-\int_0^z m(z')\,dz'\right)$
-  \item \textbf{Normalizable} at $z = 0$ (localized on brane)
+  \item Zero mode equation: $(\partial_\xi + m(\xi))\psi_L = 0$
+  \item Solution: $\psi_L \propto \exp\left(-\int_0^\xi m(\xi')\,d\xi'\right)$
+  \item \textbf{Normalizable} at $\xi = 0$ (localized on brane)
 \end{itemize}
 
 \textbf{Right-handed modes} ($\psi_R$):
 \begin{itemize}
-  \item Zero mode equation: $(\partial_z - m(z))\psi_R = 0$
-  \item Solution: $\psi_R \propto \exp\left(+\int_0^z m(z')\,dz'\right)$
+  \item Zero mode equation: $(\partial_\xi - m(\xi))\psi_R = 0$
+  \item Solution: $\psi_R \propto \exp\left(+\int_0^\xi m(\xi')\,d\xi'\right)$
   \item \textbf{Non-normalizable} (escapes to bulk)
 \end{itemize}
 
@@ -757,50 +777,50 @@ But \emph{how suppressed} is the right-handed mode? Is it $10^{-2}$? $10^{-10}$?
 
 \textbf{2. Quantitative comparison of mode amplitudes:}
 
-For the asymmetric profile $m(z) = m_0(1 - e^{-z/\lambda})$, the integrated mass is:
+For the asymmetric profile $m(\xi) = m_0(1 - e^{-\xi/\lambda})$, the integrated mass is:
 \begin{equation}
-\chi(z) = \int_0^z m(z')\,dz' = m_0\left(z - \lambda(1 - e^{-z/\lambda})\right)
+\chi(\xi) = \int_0^\xi m(\xi')\,d\xi' = m_0\left(\xi - \lambda(1 - e^{-\xi/\lambda})\right)
 \end{equation}
 
 The mode profiles are:
 \begin{align}
-\psi_L(z) &= N_L \exp\left(-\chi(z)\right) = N_L \exp\left(-m_0 z + m_0\lambda(1-e^{-z/\lambda})\right) \\
-\psi_R(z) &= N_R \exp\left(+\chi(z)\right) = N_R \exp\left(+m_0 z - m_0\lambda(1-e^{-z/\lambda})\right)
+\psi_L(\xi) &= N_L \exp\left(-\chi(\xi)\right) = N_L \exp\left(-m_0 \xi + m_0\lambda(1-e^{-\xi/\lambda})\right) \\
+\psi_R(\xi) &= N_R \exp\left(+\chi(\xi)\right) = N_R \exp\left(+m_0 \xi - m_0\lambda(1-e^{-\xi/\lambda})\right)
 \end{align}
 
-\textbf{3. Behavior at large $z$:}
+\textbf{3. Behavior at large $\xi$:}
 
-For $z \gg \lambda$:
+For $\xi \gg \lambda$:
 \begin{align}
-\psi_L(z) &\approx N_L e^{m_0\lambda} \cdot e^{-m_0 z} \to 0 \quad \text{(normalizable)} \\
-\psi_R(z) &\approx N_R e^{-m_0\lambda} \cdot e^{+m_0 z} \to \infty \quad \text{(non-normalizable)}
+\psi_L(\xi) &\approx N_L e^{m_0\lambda} \cdot e^{-m_0 \xi} \to 0 \quad \text{(normalizable)} \\
+\psi_R(\xi) &\approx N_R e^{-m_0\lambda} \cdot e^{+m_0 \xi} \to \infty \quad \text{(non-normalizable)}
 \end{align}
 
-\textbf{4. Suppression factor at the brane ($z = 0$):}
+\textbf{4. Suppression factor at the brane ($\xi = 0$):}
 
-At $z = 0$: $\psi_L(0) = N_L$ and $\psi_R(0) = N_R$.
+At $\xi = 0$: $\psi_L(0) = N_L$ and $\psi_R(0) = N_R$.
 
 But the \emph{effective} amplitude for weak interactions depends on the overlap with
-the $W$-boson profile. If the $W$ is also localized near $z = 0$, the ratio of
+the $W$-boson profile. If the $W$ is also localized near $\xi = 0$, the ratio of
 left-to-right contributions scales as:
 \begin{equation}
-\frac{\mathcal{A}_R}{\mathcal{A}_L} \sim \frac{\int_0^\infty |\psi_R(z)|^2 W(z) \, dz}{\int_0^\infty |\psi_L(z)|^2 W(z) \, dz}
+\frac{\mathcal{A}_R}{\mathcal{A}_L} \sim \frac{\int_0^\infty |\psi_R(\xi)|^2 W(\xi) \, d\xi}{\int_0^\infty |\psi_L(\xi)|^2 W(\xi) \, d\xi}
 \end{equation}
 
-For $W(z)$ localized within $\sim \lambda$ of the brane, only the $z < \lambda$ region
+For $W(\xi)$ localized within $\sim \lambda$ of the brane, only the $\xi < \lambda$ region
 contributes. In this region, $\psi_R$ is \emph{not} exponentially enhanced (because
-$e^{-z/\lambda} \approx 1$).
+$e^{-\xi/\lambda} \approx 1$).
 
 \textbf{5. The crucial asymmetry:}
 
 The asymmetric profile creates a ``trap'' for left-handed modes:
 \begin{itemize}
-  \item Near $z = 0$: $m(z) \approx m_0 z/\lambda \to 0$, so modes can penetrate
-  \item Far from brane: $m(z) \to m_0$, creating a mass gap
+  \item Near $\xi = 0$: $m(\xi) \approx m_0 \xi/\lambda \to 0$, so modes can penetrate
+  \item Far from brane: $m(\xi) \to m_0$, creating a mass gap
 \end{itemize}
 
-Left-handed modes see $-m(z)$ in the exponent: they are \textbf{attracted} to $z = 0$.
-Right-handed modes see $+m(z)$: they are \textbf{repelled} from $z = 0$.
+Left-handed modes see $-m(\xi)$ in the exponent: they are \textbf{attracted} to $\xi = 0$.
+Right-handed modes see $+m(\xi)$: they are \textbf{repelled} from $\xi = 0$.
 
 \textbf{6. Effective V$-$A coupling strength:}
 
@@ -848,7 +868,7 @@ Pure V$-$A (zero right-handed) & (open) Need to derive sharp profile \\
 \end{tabular}
 \end{center}
 
-\textbf{Open problem:} Derive the mass profile $m(z)$ from the bulk action to verify
+\textbf{Open problem:} Derive the mass profile $m(\xi)$ from the bulk action to verify
 that $m_0\lambda$ is large enough for pure V$-$A structure.
 \end{tcolorbox}
 
@@ -981,7 +1001,8 @@ The error dropped from 8\% to \textbf{0.08\%}---a factor of 100 improvement!
 
 \item \textbf{Unification:} Once $\sin^2\theta_W$ is known, the electroweak
       relations $g^2 = 4\pi\alpha/\sin^2\theta_W$ and $M_W = gv/2$ determine
-      everything else. One geometric input gives the entire electroweak sector!
+      everything else. \emph{Geometry fixes the mixing angle; baseline inputs
+      \tagBL{} ($\alpha$, $v$) fix the absolute scale.}
 
 \item \textbf{The lattice scale is physical:} The scale $\mu \approx 200$ MeV
       corresponds to $r_e \approx 1$ fm, the characteristic size of hadronic
@@ -1015,7 +1036,7 @@ $\tau_n$ & WKB tunneling & 830 s & 879 s & 6\% & \checkmark \\
 \end{tabular}
 \end{center}
 
-\textbf{Key achievement:} The entire electroweak sector follows from \textbf{one geometric input}:
+\textbf{Key achievement:} The electroweak \emph{mixing structure} follows from \textbf{one geometric input}:
 \begin{equation}
 \boxed{\sin^2\theta_W = \frac{1}{4} \quad \text{from } \mathbb{Z}_6 = \mathbb{Z}_2 \times \mathbb{Z}_3 \text{ symmetry}}
 \end{equation}
@@ -1024,10 +1045,15 @@ Combined with:
 \begin{itemize}
   \item Standard RG running from lattice scale ($\sim 200$ MeV) to $M_Z$
   \item Standard electroweak unification relations
-  \item Measured values of $\alpha(M_Z)$ and Higgs VEV $v$
+  \item Measured values of $\alpha(M_Z)$ \tagBL{} and Higgs VEV $v$ \tagBL{}
 \end{itemize}
 
-No free parameters were adjusted to fit electroweak data!
+\textbf{Scale vs.\ structure:} Geometry fixes the mixing angle $\sin^2\theta_W$.
+The absolute normalization (e.g., $G_F = 1/\sqrt{2}v^2$) requires baseline scale
+input $v$ \tagBL{}.
+
+No \emph{new EDC-specific} free parameters were fitted; the only numerical inputs
+are \tagBL{} $\alpha(M_Z)$ and \tagBL{} $v$, plus standard RG/electroweak relations.
 
 % ------------------------------------------------------------------------------
 % CONSISTENCY / CLOSURE CHECK BOX

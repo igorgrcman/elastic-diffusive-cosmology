@@ -1,0 +1,86 @@
+# REPRO MANIFEST — Book 2 Reproducibility Pack
+# OPR: OPR-07 (Physics-grade numerics)
+# Date: 2026-01-25
+# Branch: book2-opr07-repropack-v1
+
+metadata:
+  version: "1.0"
+  opr_link: OPR-07
+  python_version: ">=3.8"
+  deterministic: true
+
+scripts:
+  - id: repro_sin2_z6_verify
+    path: scripts/repro_sin2_z6_verify.py
+    classification: REPRO
+    description: "Verify sin²θ_W = 1/4 from Z₆ subgroup counting"
+
+    supports_claims:
+      - claim_id: E-CH11-Der-005
+        chapter: src/sections/11_gf_derivation.tex
+        lines: "110-112"
+        equation: eq:ch11_sin2_input
+        what_it_proves: "Algebraic identity |Z₂|/(|Z₂|+|Z₆|) = 2/8 = 1/4 is correct"
+
+      - claim_id: E-CH11-Der-013
+        chapter: src/sections/11_gf_derivation.tex
+        lines: "322-323"
+        equation: eq:ch11_sin2_input
+        what_it_proves: "sin²θ_W(μ_lattice) = 1/4 follows from Z₆ structure"
+
+    inputs:
+      - name: Z6_ORDER
+        value: 6
+        source: "[M] Group theory"
+      - name: Z2_ORDER
+        value: 2
+        source: "[M] Group theory"
+
+    outputs:
+      - file: output/sin2_z6_verify.json
+        format: JSON
+        fields: [Z6_ORDER, Z2_ORDER, coupling_ratio, sin2_theta_w_bare, verification]
+
+    determinism_notes: "Pure algebraic calculation, no randomness"
+
+  - id: repro_sin2_rg_running
+    path: scripts/repro_sin2_rg_running.py
+    classification: REPRO
+    description: "Verify sin²θ_W RG running from lattice scale to M_Z"
+
+    supports_claims:
+      - claim_id: E-CH04-Dc-012
+        chapter: src/CH3_electroweak_parameters.tex
+        what_it_proves: "RG evolution from bare 1/4 to ~0.231 at M_Z is consistent with SM"
+        supporting_only: true  # Does not PROVE EDC, supports conditional claim
+
+    inputs:
+      - name: sin2_bare
+        value: 0.25
+        source: "[Der] from E-CH11-Der-005"
+      - name: mu_lattice
+        value: 0.2  # GeV, approximate
+        source: "[P] EDC lattice scale hypothesis"
+      - name: mu_Z
+        value: 91.1876  # GeV
+        source: "[BL] PDG M_Z"
+      - name: alpha_em_MZ
+        value: 0.007816
+        source: "[BL] PDG α(M_Z)"
+
+    outputs:
+      - file: output/sin2_rg_running.json
+        format: JSON
+        fields: [sin2_bare, sin2_at_MZ, pdg_value, deviation_percent, rg_method]
+
+    determinism_notes: "Numerical ODE integration with fixed tolerances (rtol=1e-10)"
+
+    caveats:
+      - "Uses 1-loop SM beta functions"
+      - "Lattice scale μ_lattice is [P] postulated"
+      - "Result is CONDITIONAL on bare value hypothesis"
+
+validation:
+  gate_script: tools/repro_gate.py
+  expected_exit_code: 0
+  checksum_file: output/checksums.sha256

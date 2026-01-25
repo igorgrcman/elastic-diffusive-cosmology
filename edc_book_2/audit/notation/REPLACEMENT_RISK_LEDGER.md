@@ -50,6 +50,19 @@ Commit 7014cbd (2026-01-24): Phase D notation remediation complete.
 | VR-024 | 09_va_structure.tex | 275-276,309 | ✅ DONE |
 | VR-025 | ch11_opr20_attemptF*.tex | 23-24 | ✅ DONE |
 
+### Category D: ξ → ξ_GL (GL Coherence Length Context) — COMPLETED (CTX-001)
+
+| VR-ID | File | Line | Old | New | Class | Canon | Reason |
+|-------|------|------|-----|-----|-------|-------|--------|
+| CTX-001a | 02_frozen_regime_foundations.tex | 226 | `\tanh(r/\xi)` | `\tanh(r/\xi_{\mathrm{GL}})` | GL coherence | New (Book 2) | GL profile context |
+| CTX-001b | 02_frozen_regime_foundations.tex | 237 | `\frac{r}{\sqrt{2}\xi}` | `\frac{r}{\sqrt{2}\xi_{\mathrm{GL}}}` | GL coherence | New (Book 2) | GL equation |
+| CTX-001c | 02_frozen_regime_foundations.tex | 240 | `$\xi$ is the coherence length` | `$\xi_{\mathrm{GL}}$ is the GL coherence length` + footnote | GL coherence | New (Book 2) | Definition with clarification |
+| CTX-001d | 02_frozen_regime_foundations.tex | 267 | `$\tanh(r/\xi)$` | `$\tanh(r/\xi_{\mathrm{GL}})$` | GL coherence | New (Book 2) | Table entry |
+| CTX-001e | 02_frozen_regime_foundations.tex | 311 | `coherence length $\xi$` | `coherence length $\xi_{\mathrm{GL}}$` | GL coherence | New (Book 2) | Stability argument |
+| CTX-001f | 02_frozen_regime_foundations.tex | 317 | `depends on $\xi$` | `depends on $\xi_{\mathrm{GL}}$` | GL coherence | New (Book 2) | Quantization argument |
+
+**Resolution**: ξ alone = 5D depth coordinate (Fwk v2.0 Eq.3); ξ_GL = GL coherence length (new symbol).
+
 ---
 
 ## Pending Replacements (Approved but not yet executed)
@@ -161,13 +174,30 @@ Commit 7014cbd (2026-01-24): Phase D notation remediation complete.
 
 ## Collision Warnings
 
-### ξ collision (Paper 2 legacy)
+### ξ collision (Paper 2 legacy) — ✅ RESOLVED
 
 Paper 2 uses ξ for BOTH:
 1. 5D compact coordinate (canonical)
 2. GL coherence length (collision)
 
-**Resolution**: In EDC canon, ξ = 5D depth. If coherence length appears, use ξ_GL or λ.
+**Resolution**: ✅ RESOLVED in CTX-001. In EDC canon, ξ = 5D depth. For GL coherence length, use `\xi_{\mathrm{GL}}`.
+
+### Category E: z → ξ (5D Depth in CH04) — CTX-002
+
+| VR-ID | File | Lines | Old Pattern | New Pattern | Class | Canon | Reason |
+|-------|------|-------|-------------|-------------|-------|-------|--------|
+| CTX-002a | CH3_electroweak_parameters.tex | 546-555 | m(z), z/λ, z=0 | m(ξ), ξ/λ, ξ=0 | 5D depth | Fwk v2.0 Eq.(3) | Mass profile definition |
+| CTX-002b | CH3_electroweak_parameters.tex | 605-653 | f_L(z), dz, χ(z), z² | f_L(ξ), dξ, χ(ξ), ξ² | 5D depth | Fwk v2.0 Eq.(3) | Mode overlap integrals |
+| CTX-002c | CH3_electroweak_parameters.tex | 674-675 | χ(z), "large z" | χ(ξ), "large ξ" | 5D depth | Fwk v2.0 Eq.(3) | Asymptotic behavior |
+| CTX-002d | CH3_electroweak_parameters.tex | 728-741 | m(z), ∂_z, ψ_{L,R}(z), dz' | m(ξ), ∂_ξ, ψ_{L,R}(ξ), dξ' | 5D depth | Fwk v2.0 Eq.(3) | V-A chirality selection |
+| CTX-002e | CH3_electroweak_parameters.tex | 760-803 | χ(z), ψ_{L,R}(z), z→∞, z=0 | χ(ξ), ψ_{L,R}(ξ), ξ→∞, ξ=0 | 5D depth | Fwk v2.0 Eq.(3) | Mode localization analysis |
+| CTX-002f | CH3_electroweak_parameters.tex | 851 | m(z) | m(ξ) | 5D depth | Fwk v2.0 Eq.(3) | Open problem statement |
+
+**Total occurrences**: 52 (all BUCKET 1: 5D depth)
+**Z6 complex z₁,z₂ in file**: 0 (nothing to preserve)
+**3D spatial (x,y,z) in file**: 0 (nothing to preserve)
+
+**Rollback note**: If needed, restore from commit prior to CTX-002 fix.
 
 ### M_5 ambiguity
 
@@ -185,6 +215,7 @@ Topology (π₁(M_5)) → \mathcal{M}^5.
 | Date | Action | Files Affected | By |
 |------|--------|----------------|-----|
 | 2026-01-24 | Ledger created | (none yet) | Claude |
+| 2026-01-24 | CTX-001 resolved: ξ → ξ_GL (6 instances) | 02_frozen_regime_foundations.tex | Claude |
 
 ---
 
@@ -193,4 +224,5 @@ Topology (π₁(M_5)) → \mathcal{M}^5.
 | Date | Change | By |
 |------|--------|-----|
 | 2026-01-24 | Initial creation | Claude |
+| 2026-01-24 | Added Category D: CTX-001 GL coherence length | Claude |
 
