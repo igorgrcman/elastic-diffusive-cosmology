@@ -3,7 +3,7 @@
 **Branch**: book2-chapter-audit-v1
 **Base Commit**: e8f55f8
 **Updated**: 2026-01-24
-**Baseline**: 387 pages
+**Baseline**: 393 pages (updated 2026-01-25: OPR-21 closure chapter added)
 
 ---
 
@@ -115,6 +115,7 @@
 | 2026-01-24 | Baseline | 387 | 23aee0d7c31520c4dee53299ab45c219a50372bdaa1126f53c553ac2c7e731b9 | ✅ |
 | 2026-01-24 | After CH03 fixes | 387 | ebda3c382f20a762e1c079e99cb406e8bbda3ba956d6cf21d76c2f703043b4f5 | ✅ |
 | 2026-01-24 | After CH04 CTX-002 fix | 387 | e15fdf2727bf16ee5ab1de8af0c41e8bc7ca120144931f1c3fb3111fd2dfce3d | ✅ |
+| 2026-01-25 | OPR-21 closure chapter added | 393 | ac6f12b4daa368e929ce0099ce83bc72ff21c57e0bb70c30b12369eb3f5b3a8f | ✅ |
 
 ---
 
