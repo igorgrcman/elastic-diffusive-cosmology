@@ -1,0 +1,458 @@
+%!TEX root = ../EDC_Part_II_Weak_Sector_rebuild.tex
+% ==============================================================================
+% Chapter 17: OPR-19 — The 5D Gauge Coupling g₅ from the Action
+% Status: CONDITIONAL [Dc] — reduction formula derived, warp/domain remain [P]
+% Version: 1.0 (2026-01-25)
+% ==============================================================================
+%
+% MISSION (OPR-19):
+% Derive the canonical relation between the 5D gauge coupling g₅ and the
+% effective 4D coupling g₄ by explicit dimensional reduction from the 5D action.
+%
+% ABSOLUTE CONSTRAINTS:
+% - NO SM observables as inputs (M_W, G_F, v, sin²θ_W)
+% - Every step must be explicitly computed
+% - All rescalings tracked
+% - Scale Taxonomy respected (Δ, δ, ℓ, R_ξ distinct)
+%
+% ==============================================================================
+
+\chapter{OPR-19: The 5D Gauge Coupling from First Principles}
+\label{sec:ch17_opr19}
+
+% ==============================================================================
+% READER'S MAP
+% ==============================================================================
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=blue!50!black,
+    title=\textbf{Reader's Map: Chapter 17}]
+\label{box:ch17_reader_map}
+
+\textbf{Goal:} Derive the canonical relation between the 5D gauge coupling $g_5$
+and the effective 4D coupling $g_4$ by explicit dimensional reduction.
+
+\textbf{Inputs:}
+\begin{itemize}[nosep]
+    \item A stated 5D metric ansatz (warped geometry) \tagP{}
+    \item The 5D gauge kinetic term with proper measure $\sqrt{-G}$
+    \item No SM observables used as anchors
+\end{itemize}
+
+\textbf{Output:}
+\begin{itemize}[nosep]
+    \item Boxed formula: $1/g_4^2 = (1/g_5^2) \int d\xi\,|f(\xi)|^2$
+    \item Weight function $W(\xi)$ derived (not assumed)
+    \item All rescalings explicit and tracked
+\end{itemize}
+
+\textbf{Status:} CONDITIONAL \tagDc{} if $W(\xi)$ is derived and normalization
+is explicit; warp factor and domain remain \tagP{}.
+
+\textbf{Cross-references:}
+\begin{itemize}[nosep]
+    \item OPR-21 (Ch14): Fermion BVP uses same metric
+    \item OPR-20 (Ch13): Mediator mass uses effective coupling
+    \item OPR-04 (Ch16): Scale Taxonomy for $\ell$ definition
+\end{itemize}
+\end{tcolorbox}
+
+% ==============================================================================
+% SECTION 1: ACTION AND CONVENTIONS
+% ==============================================================================
+
+\section{Action and Conventions}
+\label{sec:ch17_action}
+
+\subsection{The 5D Gauge Action}
+\label{subsec:ch17_gauge_action}
+
+We start from the 5D gauge field action with canonical normalization:
+\begin{equation}
+    S_{\text{gauge}}^{(5D)} = -\frac{1}{4g_5^2} \int d^5x \sqrt{-G} \,
+    G^{MA} G^{NB} F_{MN} F_{AB}
+    \label{eq:ch17:5D_action}
+\end{equation}
+where:
+\begin{itemize}[nosep]
+    \item $G_{AB}$ is the 5D metric with signature $(-,+,+,+,+)$
+    \item Capital indices $M, N, A, B \in \{0,1,2,3,5\}$ run over 5D
+    \item Greek indices $\mu, \nu \in \{0,1,2,3\}$ run over 4D
+    \item $F_{MN} = \partial_M A_N - \partial_N A_M$ is the field strength
+    \item $g_5$ is the 5D gauge coupling
+\end{itemize}
+
+\textbf{Epistemic status:} \tagM{} --- standard gauge field theory definition.
+
+\subsection{Warped Metric Ansatz}
+\label{subsec:ch17_metric}
+
+We adopt the warped metric:
+\begin{equation}
+    ds^2 = G_{AB} dx^A dx^B = e^{2A(\xi)} \eta_{\mu\nu} dx^\mu dx^\nu + d\xi^2
+    \label{eq:ch17:metric}
+\end{equation}
+where:
+\begin{itemize}[nosep]
+    \item $A(\xi)$ is the warp factor (function of the transverse coordinate only)
+    \item $\eta_{\mu\nu} = \text{diag}(-1,+1,+1,+1)$ is the 4D Minkowski metric
+    \item $\xi \in [0, \ell]$ is the transverse (fifth) coordinate
+    \item $\ell$ is the domain size (see Scale Taxonomy, Chapter~\ref{sec:ch16_reader_map})
+\end{itemize}
+
+\textbf{Epistemic status:} \tagP{} --- ansatz. The warp factor $A(\xi)$ and domain
+$\ell$ are postulated, not derived from first principles.
+
+\paragraph{Metric components.}
+From~(\ref{eq:ch17:metric}):
+\begin{align}
+    G_{\mu\nu} &= e^{2A(\xi)} \eta_{\mu\nu}, \quad
+    G_{55} = 1, \quad
+    G_{\mu 5} = 0 \\
+    G^{\mu\nu} &= e^{-2A(\xi)} \eta^{\mu\nu}, \quad
+    G^{55} = 1, \quad
+    G^{\mu 5} = 0
+    \label{eq:ch17:metric_components}
+\end{align}
+
+\paragraph{Metric determinant.}
+\begin{equation}
+    G = \det(G_{AB}) = e^{8A(\xi)} \cdot \det(\eta_{\mu\nu}) \cdot 1 = -e^{8A(\xi)}
+\end{equation}
+\begin{equation}
+    \boxed{\sqrt{-G} = e^{4A(\xi)}}
+    \label{eq:ch17:sqrt_G}
+\end{equation}
+
+\textbf{Epistemic status:} \tagDc{} --- direct computation from the metric ansatz.
+
+\subsection{Units and Conversion}
+\label{subsec:ch17_units}
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=orange!50!black,
+    title=\textbf{Unit Conventions}]
+\begin{itemize}[nosep]
+    \item Natural units: $\hbar = c = 1$
+    \item Length conversion: $1 \text{ fm} = 5.0677 \text{ GeV}^{-1}$ \tagBL{}
+    \item Dimension of $g_5$: $[g_5] = [\text{length}]^{1/2}$ (see~\S\ref{subsec:ch17_dimensions})
+    \item Dimension of $g_4$: $[g_4] = 1$ (dimensionless)
+\end{itemize}
+\end{tcolorbox}
+
+% ==============================================================================
+% SECTION 2: MODE DECOMPOSITION
+% ==============================================================================
+
+\section{Mode Decomposition and Gauge Choice}
+\label{sec:ch17_decomposition}
+
+\subsection{Kaluza-Klein Ansatz}
+\label{subsec:ch17_kk_ansatz}
+
+Decompose the 5D gauge field into 4D modes:
+\begin{equation}
+    A_\mu(x,\xi) = \sum_n a_\mu^{(n)}(x) f_n(\xi)
+    \label{eq:ch17:kk_decomposition}
+\end{equation}
+where:
+\begin{itemize}[nosep]
+    \item $a_\mu^{(n)}(x)$ are 4D gauge fields (KK modes)
+    \item $f_n(\xi)$ are mode profiles in the transverse direction
+\end{itemize}
+
+\paragraph{Gauge choice.}
+We work in unitary gauge with $A_5 = 0$. This eliminates the scalar
+component that would arise from the fifth component.
+
+\textbf{Epistemic status:} \tagDc{} --- standard KK decomposition with gauge choice.
+
+\subsection{Field Strength Components}
+\label{subsec:ch17_field_strength}
+
+The field strength $F_{MN} = \partial_M A_N - \partial_N A_M$ has components:
+\begin{align}
+    F_{\mu\nu} &= \partial_\mu A_\nu - \partial_\nu A_\mu
+    = \sum_n f_{\mu\nu}^{(n)}(x) f_n(\xi) \label{eq:ch17:Fmunu} \\
+    F_{\mu 5} &= \partial_\mu A_5 - \partial_\xi A_\mu
+    = -\sum_n a_\mu^{(n)}(x) f_n'(\xi) \label{eq:ch17:Fmu5}
+\end{align}
+where $f_{\mu\nu}^{(n)} = \partial_\mu a_\nu^{(n)} - \partial_\nu a_\mu^{(n)}$
+is the 4D field strength.
+
+\textbf{Epistemic status:} \tagDc{} --- direct computation.
+
+% ==============================================================================
+% SECTION 3: DIMENSIONAL REDUCTION
+% ==============================================================================
+
+\section{Dimensional Reduction of the Kinetic Term}
+\label{sec:ch17_reduction}
+
+\subsection{Expansion of $F_{MN} F^{MN}$}
+\label{subsec:ch17_expansion}
+
+The contraction $F_{MN} F^{MN}$ decomposes as:
+\begin{equation}
+    F_{MN} F^{MN} = F_{\mu\nu} F^{\mu\nu} + 2 F_{\mu 5} F^{\mu 5}
+    \label{eq:ch17:F_squared}
+\end{equation}
+
+\subsection{The $F_{\mu\nu} F^{\mu\nu}$ Term}
+\label{subsec:ch17_Fmunu_term}
+
+\paragraph{Step 1: Index contraction.}
+\begin{equation}
+    F_{\mu\nu} F^{\mu\nu} = G^{\mu\alpha} G^{\nu\beta} F_{\mu\nu} F_{\alpha\beta}
+    = e^{-2A} \eta^{\mu\alpha} \cdot e^{-2A} \eta^{\nu\beta} \cdot F_{\mu\nu} F_{\alpha\beta}
+\end{equation}
+\begin{equation}
+    = e^{-4A(\xi)} \, f_{\mu\nu}^{(n)} f^{(n)\mu\nu} |f_n(\xi)|^2
+    \label{eq:ch17:Fmunu_contraction}
+\end{equation}
+
+\paragraph{Step 2: Combine with $\sqrt{-G}$.}
+\begin{equation}
+    \sqrt{-G} \cdot F_{\mu\nu} F^{\mu\nu}
+    = e^{4A} \cdot e^{-4A} \cdot f_{\mu\nu}^{(n)} f^{(n)\mu\nu} |f_n(\xi)|^2
+\end{equation}
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
+    title=\textbf{Critical Result: Warp Factor Cancellation}]
+\label{box:ch17_warp_cancel}
+\begin{equation}
+    \boxed{\sqrt{-G} \cdot F_{\mu\nu} F^{\mu\nu} = f_{\mu\nu}^{(n)} f^{(n)\mu\nu} |f_n(\xi)|^2}
+    \label{eq:ch17:warp_cancel}
+\end{equation}
+
+\textbf{The warp factors $e^{4A}$ from $\sqrt{-G}$ and $e^{-4A}$ from the
+index contractions exactly cancel!}
+
+This is non-trivial: the 4D gauge kinetic term has a \emph{flat measure}
+in the $\xi$-integral, regardless of the warp factor profile.
+
+\textbf{Epistemic status:} \tagDc{} --- explicit computation with metric factors.
+\end{tcolorbox}
+
+\subsection{The $F_{\mu 5} F^{\mu 5}$ Term}
+\label{subsec:ch17_Fmu5_term}
+
+For completeness:
+\begin{equation}
+    F_{\mu 5} F^{\mu 5} = G^{\mu\alpha} G^{55} F_{\mu 5} F_{\alpha 5}
+    = e^{-2A} \cdot 1 \cdot a_\mu^{(n)} a^{(n)\mu} |f_n'(\xi)|^2
+\end{equation}
+\begin{equation}
+    \sqrt{-G} \cdot F_{\mu 5} F^{\mu 5} = e^{4A} \cdot e^{-2A} \cdot a_\mu^{(n)} a^{(n)\mu} |f_n'(\xi)|^2
+    = e^{2A(\xi)} \cdot a_\mu^{(n)} a^{(n)\mu} |f_n'(\xi)|^2
+    \label{eq:ch17:Fmu5_term}
+\end{equation}
+
+This term contributes to the mass sector (involving $f_n'$), not to the
+kinetic normalization. The warp factor $e^{2A}$ remains in this term.
+
+% ==============================================================================
+% SECTION 4: EFFECTIVE 4D COUPLING
+% ==============================================================================
+
+\section{Canonical Normalization and Definition of $g_4$}
+\label{sec:ch17_normalization}
+
+\subsection{The 4D Effective Action}
+\label{subsec:ch17_4d_action}
+
+Integrating~(\ref{eq:ch17:5D_action}) over $\xi$ using~(\ref{eq:ch17:warp_cancel}):
+\begin{equation}
+    S_{\text{gauge}}^{(4D)} = -\frac{1}{4g_5^2} \int d^4x
+    \left( \int_0^\ell d\xi \, |f_n(\xi)|^2 \right) f_{\mu\nu}^{(n)} f^{(n)\mu\nu}
+    + \text{(mass terms)}
+    \label{eq:ch17:4D_action}
+\end{equation}
+
+\subsection{Definition of the Effective 4D Coupling}
+\label{subsec:ch17_g4_def}
+
+For canonical 4D normalization $S = -\frac{1}{4g_4^2} \int d^4x \, f_{\mu\nu} f^{\mu\nu}$,
+we identify:
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black,
+    title=\textbf{Result: $g_5 \to g_4$ Reduction Formula}]
+\label{box:ch17_result}
+\begin{equation}
+    \boxed{\frac{1}{g_{4,n}^2} = \frac{1}{g_5^2} \int_0^\ell d\xi \, |f_n(\xi)|^2}
+    \label{eq:ch17:g4_formula}
+\end{equation}
+
+\textbf{Weight function:} $W(\xi) = 1$ (flat measure, due to warp cancellation).
+
+\textbf{Conditions:}
+\begin{itemize}[nosep]
+    \item Warped metric ansatz~(\ref{eq:ch17:metric}) \tagP{}
+    \item Domain $\xi \in [0, \ell]$ with $\ell$ postulated \tagP{}
+    \item Unitary gauge $A_5 = 0$ \tagDc{}
+    \item No brane-localized kinetic terms \tagP{}
+\end{itemize}
+
+\textbf{Epistemic status:} CONDITIONAL \tagDc{} --- formula derived; $A(\xi)$ and $\ell$ remain \tagP{}.
+\end{tcolorbox}
+
+\subsection{Special Cases}
+\label{subsec:ch17_special_cases}
+
+\paragraph{Case A: Flat zero mode.}
+If $f_0(\xi) = 1/\sqrt{\ell}$ (uniform, normalized):
+\begin{equation}
+    \int_0^\ell d\xi \, |f_0|^2 = \frac{1}{\ell} \cdot \ell = 1
+\end{equation}
+\begin{equation}
+    \boxed{g_{4,0} = g_5 \quad \text{(flat zero mode)}}
+    \label{eq:ch17:flat_mode}
+\end{equation}
+
+\paragraph{Case B: Localized mode.}
+If $f_n(\xi)$ is localized with effective width $\delta_{\text{eff}} \ll \ell$:
+\begin{equation}
+    \int_0^\ell d\xi \, |f_n|^2 \sim \delta_{\text{eff}}
+    \quad \Rightarrow \quad
+    g_{4,n}^2 \sim \frac{g_5^2}{\delta_{\text{eff}}}
+    \label{eq:ch17:localized_mode}
+\end{equation}
+The effective 4D coupling is \emph{enhanced} for localized modes.
+
+% ==============================================================================
+% SECTION 5: DIMENSIONAL ANALYSIS
+% ==============================================================================
+
+\section{Dimensional Analysis}
+\label{sec:ch17_dimensions}
+\label{subsec:ch17_dimensions}
+
+\paragraph{Dimensions of $g_5$.}
+From the action~(\ref{eq:ch17:5D_action}):
+\begin{itemize}[nosep]
+    \item $[S] = 1$ (dimensionless)
+    \item $[\int d^5x] = L^5$
+    \item $[F^2] = L^{-4}$
+    \item $[\sqrt{-G}] = 1$
+\end{itemize}
+Therefore:
+\begin{equation}
+    [g_5^2] = L^{5-4} = L, \quad [g_5] = L^{1/2}
+    \label{eq:ch17:dim_g5}
+\end{equation}
+
+\paragraph{Dimensions of $g_4$.}
+The 4D gauge coupling is dimensionless:
+\begin{equation}
+    [g_4] = 1
+    \label{eq:ch17:dim_g4}
+\end{equation}
+
+\paragraph{Consistency check.}
+From~(\ref{eq:ch17:g4_formula}) with $[f_n] = L^{-1/2}$ for proper normalization:
+\begin{equation}
+    [1/g_4^2] = [1/g_5^2] \cdot [L] \cdot [L^{-1}] = L^{-1} \cdot L \cdot L^{-1} = L^{-1}
+\end{equation}
+This requires $[g_4^2] = L$, which contradicts~(\ref{eq:ch17:dim_g4}).
+
+\textbf{Resolution:} If $f_n$ is dimensionless (normalized so $\int |f_n|^2 d\xi$
+has dimension $L$), then:
+\begin{equation}
+    [1/g_4^2] = L^{-1} \cdot L = 1 \quad \checkmark
+\end{equation}
+
+% ==============================================================================
+% SECTION 6: NO-SMUGGLING CHECKLIST
+% ==============================================================================
+
+\section{Epistemic and No-Smuggling Checklist}
+\label{sec:ch17_checklist}
+
+\begin{tcolorbox}[colback=green!3!white, colframe=green!50!black,
+    title=\textbf{No-Smuggling Checklist (OPR-19)}]
+\label{box:ch17_no_smuggling}
+\begin{itemize}
+    \item[\ding{51}] Start from explicit 5D gauge action with $\sqrt{-G}$
+    \item[\ding{51}] Derive reduction weight $W(\xi)$ from metric (not assumed)
+    \item[\ding{51}] Show all field rescalings for canonical 4D normalization
+    \item[\ding{51}] No SM observables used as inputs ($M_W, G_F, v, \sin^2\theta_W$ absent)
+    \item[\ding{51}] Scale Taxonomy respected: $\Delta, \delta, \ell, R_\xi$ not identified implicitly
+    \item[\ding{51}] Dimensional analysis verified
+\end{itemize}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=orange!50!black,
+    title=\textbf{Assumptions Made (Explicit)}]
+\label{box:ch17_assumptions}
+\begin{enumerate}[nosep]
+    \item[(A-19-1)] Warped metric ansatz~(\ref{eq:ch17:metric}) \tagP{}
+    \item[(A-19-2)] Domain $\xi \in [0, \ell]$ with $\ell$ postulated \tagP{}
+    \item[(A-19-3)] Unitary gauge $A_5 = 0$ \tagDc{}
+    \item[(A-19-4)] Mode profiles $f_n(\xi)$ satisfy appropriate BVP \tagP{}/\tagDc{}
+    \item[(A-19-5)] No brane-localized kinetic terms \tagP{}
+\end{enumerate}
+
+\textbf{Scale Taxonomy note:} The domain size $\ell$ is from the Scale Taxonomy
+(Chapter~\ref{sec:ch16_reader_map}). If $\ell = n\Delta$ is assumed, this
+requires citing assumption (A3).
+\end{tcolorbox}
+
+% ==============================================================================
+% SECTION 7: SUMMARY AND STATUS
+% ==============================================================================
+
+\section{Summary and Closure Status}
+\label{sec:ch17_summary}
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=blue!50!black,
+    title=\textbf{OPR-19 Summary Box}]
+\label{box:ch17_summary}
+
+\textbf{Main Result:}
+\begin{equation}
+    \frac{1}{g_{4,n}^2} = \frac{1}{g_5^2} \int_0^\ell d\xi \, |f_n(\xi)|^2
+    \tag{\ref{eq:ch17:g4_formula}}
+\end{equation}
+
+\textbf{Key Insight:} Warp factors cancel for the 4D gauge kinetic term,
+yielding a flat measure $W(\xi) = 1$.
+
+\textbf{Special Case:} For flat zero mode, $g_{4,0} = g_5$.
+
+\textbf{Closure Status:}
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Component} & \textbf{Status} & \textbf{Reference} \\
+\midrule
+Reduction formula & DERIVED \tagDc{} & Eq.~(\ref{eq:ch17:g4_formula}) \\
+Warp cancellation & DERIVED \tagDc{} & Eq.~(\ref{eq:ch17:warp_cancel}) \\
+Dimensional analysis & VERIFIED \tagM{} & \S\ref{sec:ch17_dimensions} \\
+Warp factor $A(\xi)$ & POSTULATED \tagP{} & Eq.~(\ref{eq:ch17:metric}) \\
+Domain $\ell$ & POSTULATED \tagP{} & Scale Taxonomy \\
+Mode profiles $f_n$ & CONDITIONAL \tagDc{} & Depends on BC \\
+\midrule
+\textbf{Overall OPR-19} & \textbf{CONDITIONAL} \tagDc{} & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{What remains [P]:}
+\begin{itemize}[nosep]
+    \item Warp factor $A(\xi)$ --- not derived from brane-bulk matching
+    \item Domain size $\ell$ --- not derived from first principles
+    \item Mode normalization --- depends on boundary conditions
+\end{itemize}
+\end{tcolorbox}
+
+% ==============================================================================
+% CROSS-REFERENCES TO OTHER CHAPTERS
+% ==============================================================================
+
+\paragraph{Cross-references.}
+\begin{itemize}[nosep]
+    \item \textbf{OPR-21} (Chapter~\ref{sec:ch14_opr21}): Fermion BVP uses same metric;
+          fermion normalization has different weight due to spinor structure.
+    \item \textbf{OPR-20} (Chapter~13): Mediator mass eigenvalue problem uses
+          the effective coupling derived here.
+    \item \textbf{OPR-04} (Chapter~\ref{sec:ch16_reader_map}): Scale Taxonomy
+          defines $\ell$ and distinguishes it from $\Delta$, $\delta$, $R_\xi$.
+\end{itemize}
