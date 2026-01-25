@@ -84,4 +84,20 @@ Script `tools/symbol_audit.py` provides context-aware symbol audit:
 
 ---
 
+## PERMANENT RULE: Global Symbol Table Authority
+
+> **Global Symbol Table is authoritative; no notation changes without updating:**
+> 1. `canon/notation/GLOBAL_SYMBOL_TABLE.md` — Main table
+> 2. `canon/notation/GLOBAL_SYMBOL_TABLE.csv` — Machine-readable
+> 3. `canon/notation/COLLISIONS_AND_AMBIGUITIES_GLOBAL.md` — Collision report
+> 4. `canon/notation/GLOBAL_SYMBOL_INDEX_BY_CHAPTER.md` — Chapter anchors
+
+This rule is **non-negotiable**. Any proposed notation change must:
+- Have a canon anchor (Framework v2.0, Paper 2, Book Part I, or Companion A–H)
+- Update all four documents above
+- Pass gate_notation.sh verification
+- Be approved by project owner before merge
+
+---
+
 Last updated: 2026-01-24
