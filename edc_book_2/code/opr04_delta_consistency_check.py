@@ -180,16 +180,28 @@ def analyze_scenario(name: str, sigma: SigmaHypothesis, delta_fm: float,
     print(f"  v = √(3σΔ/4) = {v:.4f} MeV (vacuum expectation value)")
     print(f"  λ = 2/(vΔ)² = {lambda_val:.4e} (self-coupling, dimensionless)")
     print(f"  M₀ = (√3/2)y√(σΔ) = {M0:.4f} MeV")
-    print(f"  ℓ = nΔ = {ell_fm:.4e} fm")
-    print(f"  μ = M₀ℓ = {mu:.4f}" if mu < 1 else f"  μ = M₀ℓ = {mu:.2f}")
+    print(f"  ℓ = nΔ = {ell_fm:.4e} fm (ASSUMES n = {n})")
     print(f"  σΔ³ = {sigma_delta3:.4e} MeV·fm")
+
+    # Detailed μ breakdown
+    M0_gev = M0 / 1000
+    ell_gev_inv = ell_fm * FM_TO_GEV_INV
+    print(f"\n  μ BREAKDOWN (dimensionless = GeV × GeV⁻¹):")
+    print(f"    M₀ = {M0:.4f} MeV = {M0_gev:.6f} GeV")
+    print(f"    ℓ = {ell_fm:.4e} fm = {ell_gev_inv:.4e} GeV⁻¹")
+    print(f"    μ = M₀ × ℓ = {M0_gev:.6f} × {ell_gev_inv:.4e} = {mu:.6f}")
 
     # Check OPR-21 window
     print(f"\nOPR-21 THREE-GENERATION CHECK:")
     if 25 <= mu < 35:
         print(f"  ✓ μ = {mu:.2f} ∈ [25, 35) → N_bound = 3")
     elif mu < 25:
-        print(f"  ✗ μ = {mu:.2f} < 25 → N_bound < 3 (too few generations)")
+        print(f"  ✗ μ = {mu:.6f} < 25 → N_bound < 3 (too few generations)")
+        print(f"  INTERPRETATION: This is a CONDITIONAL tension.")
+        print(f"    - Assumes ℓ = n×Δ with n = {n}")
+        print(f"    - If n ≫ {n}, μ could reach [25,35]")
+        required_n = 30 / mu * n  # n needed to get μ = 30
+        print(f"    - To get μ = 30, would need n ≈ {required_n:.0f}")
     else:
         print(f"  ✗ μ = {mu:.2f} ≥ 35 → N_bound > 3 (too many generations)")
 
@@ -295,6 +307,19 @@ def main():
     print("\nClosure paths:")
     print("  Path A: Set Δ = R_ξ (OPR-04 identification) [P]")
     print("  Path B: Use μ ∈ [25,35] to constrain Δ (phenomenological) [Dc]")
+    print("\n" + "-"*70)
+    print("IMPORTANT: CONDITIONAL TENSION")
+    print("-"*70)
+    print("If Δ = R_ξ ~ 10⁻³ fm AND ℓ = nΔ with small n, then μ << 25.")
+    print("This tension is CONDITIONAL on:")
+    print("  (1) Δ = δ (kink width = boundary-layer scale)")
+    print("  (2) δ = R_ξ (boundary-layer = diffusion scale)")
+    print("  (3) ℓ = nΔ with modest n ~ O(1)")
+    print("\nResolution paths (all remain viable):")
+    print("  - δ ≠ Δ: boundary-layer scale may differ from kink width")
+    print("  - n ≫ 4: domain size may be much larger than kink width")
+    print("  - Derive ℓ independently from 5D action")
+    print("-"*70)
     print("\nNO SM OBSERVABLES USED except M_Z anchor for R_ξ [BL]")
     print("="*70)
 

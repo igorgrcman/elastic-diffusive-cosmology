@@ -23,6 +23,36 @@ expectation value and $\lambda$ is the self-coupling of the domain-wall scalar.
 \end{edcAtAGlance}
 
 % ==============================================================================
+\section{Reader's Map: Three Distinct Length Scales}
+\label{sec:ch16_reader_map}
+
+Before proceeding, the reader should distinguish three length scales that
+appear in EDC weak-sector derivations:
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=blue!40!black,
+    title=\textbf{Symbol Disambiguation}]
+\begin{description}[leftmargin=2em, style=nextline]
+    \item[$\Delta$ — Kink width] The thickness of the domain-wall profile
+    $\phi(\xi) = v \tanh(\xi/\Delta)$. Derived from scalar field theory:
+    $\Delta = 2/(v\sqrt{\lambda})$ \tagM{}.
+
+    \item[$\delta$ — Boundary-layer scale] A regularization/transport scale
+    appearing in Robin boundary conditions as $\alpha \sim \ell/\delta$.
+    May or may not equal $\Delta$.
+
+    \item[$\ell$ — Domain support size] The length scale that enters the
+    OPR-21 eigenvalue problem: $\mu = M_0 \ell$. Related to $\Delta$ via
+    $\ell = n\Delta$ if one \emph{assumes} proportionality; $n$ is then a
+    postulated ratio \tagP{}.
+\end{description}
+
+\medskip
+\textbf{Key insight:} OPR-21 constrains $\mu = M_0 \ell$, \emph{not} $M_0\Delta$
+directly. The ``tension'' reported below is \emph{conditional} on assuming
+$\ell = n\Delta$ with modest $n$.
+\end{tcolorbox}
+
+% ==============================================================================
 \section{Context: The Role of $\Delta$ in the Derivation Chain}
 \label{sec:ch16_context}
 
@@ -39,7 +69,7 @@ The wall thickness $\Delta$ enters three key results:
         \label{eq:ch16:M0_from_opr01}
     \end{equation}
 
-    \item \textbf{OPR-21 dimensionless parameter} (Chapter~\ref{sec:ch14_opr21}):
+    \item \textbf{OPR-21 dimensionless parameter} (Chapter~\ref{subsec:opr21_closure}):
     \begin{equation}
         \mu = M_0 \ell = \frac{\sqrt{3}}{2} \, y \, n \, \sqrt{\sigma \Delta^3}
         \quad \tagDc{}
@@ -323,7 +353,10 @@ With $\sigma = 8.82$ MeV/fm$^2$:
     \item \textbf{Is $\Delta = \delta = R_\xi$?}
     \begin{itemize}[nosep]
         \item Current: Identification is \tagP{} (OPR-04 verdict: OPEN)
-        \item Needed: Proof that kink width = boundary-layer scale
+        \item Note: If true and $\ell = n\Delta$ with $n \sim O(1)$, there is a
+              \emph{conditional tension} with OPR-21 (see \S\ref{sec:ch16_resolution})
+        \item Needed: Proof that kink width = boundary-layer scale, OR
+              independent derivation of $\ell$
     \end{itemize}
 
     \item \textbf{Which $\sigma$ value?}
@@ -369,6 +402,91 @@ $\Delta = R_\xi$ & \tagP{} & OPR-04 identification \\
 \end{tcolorbox}
 
 % ==============================================================================
+\section{Resolution \& Interpretation}
+\label{sec:ch16_resolution}
+
+\subsection{The Conditional Tension}
+\label{subsec:ch16_conditional_tension}
+
+The numeric script \texttt{opr04\_delta\_consistency\_check.py} reports that
+if $\Delta = R_\xi \sim 2 \times 10^{-3}$ fm (the OPR-04 identification) and
+$\ell = n\Delta$ with $n \sim 4$, then $\mu \approx 0.002$, far below the
+OPR-21 three-generation window $\mu \in [25, 35)$.
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!50!black,
+    title=\textbf{Conditional Nature of the Tension}]
+This ``tension'' is \textbf{not a strict incompatibility}. It arises from
+three simultaneous assumptions:
+\begin{enumerate}[nosep]
+    \item $\Delta = \delta$ — kink width equals boundary-layer scale
+    \item $\delta = R_\xi$ — boundary-layer scale equals diffusion scale
+    \item $\ell = n\Delta$ with modest $n \sim O(1)$
+\end{enumerate}
+
+\textbf{If any one of these is relaxed, the tension disappears.}
+\end{tcolorbox}
+
+\subsection{Resolution Paths}
+\label{subsec:ch16_resolution_paths}
+
+Four paths remain viable:
+
+\begin{description}[leftmargin=2em, style=nextline]
+    \item[Path 1: $\delta \neq \Delta$]
+    The boundary-layer scale $\delta$ (which enters Robin BC via
+    $\alpha = \ell/\delta$) may differ from the kink width $\Delta$.
+    These are \emph{a priori} distinct objects: $\Delta$ is a field-theoretic
+    thickness, while $\delta$ is a transport/regularization scale.
+    Status: \tagP{} — requires derivation of $\delta$ from 5D action.
+
+    \item[Path 2: $n \gg 4$]
+    The domain size $\ell$ may be much larger than $\Delta$. If $n = \ell/\Delta
+    \sim 10^4$, then even $\Delta \sim 10^{-3}$ fm yields $\mu \sim 30$.
+    Status: \tagP{} — requires derivation of $\ell$ from domain geometry.
+
+    \item[Path 3: Derive $\ell$ independently]
+    Rather than setting $\ell = n\Delta$, derive $\ell$ from the 5D action
+    (e.g., as the support size of the junction potential).
+    Status: \tagP{} — requires OPR-21 V($\xi$) derivation.
+
+    \item[Path 4: Revisit $\sigma$/$y$ combinations]
+    Different choices of membrane tension $\sigma$ and Yukawa coupling $y$
+    shift the required $\Delta$ for a given $\mu$ window.
+    Status: \tagP{} — requires systematic parameter scan.
+\end{description}
+
+\subsection{Epistemic Summary}
+\label{subsec:ch16_epistemic_summary}
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
+    title=\textbf{No-Smuggling / Epistemic Checklist}]
+\begin{enumerate}[nosep]
+    \item[$\checkmark$] \textbf{$\Delta = 2/(v\sqrt{\lambda})$} — \tagM{}
+    (standard $\lambda\phi^4$ kink, no EDC-specific input)
+
+    \item[$\checkmark$] \textbf{$\sigma\Delta = 4v^2/3$} — \tagM{}
+    (BPS relation, model-independent for this potential)
+
+    \item[$\checkmark$] \textbf{$M_0^2 = (3y^2/4)\sigma\Delta$} — \tagDc{}
+    (OPR-01 result, conditional on Yukawa ansatz \tagP{})
+
+    \item[$\checkmark$] \textbf{$\mu = M_0 \ell$} — \tagDc{}
+    (definition, not derived from SM)
+
+    \item[$\times$] \textbf{$\ell = n\Delta$} — \tagP{}
+    (postulated proportionality, not derived)
+
+    \item[$\times$] \textbf{$\Delta = \delta = R_\xi$} — \tagP{}
+    (OPR-04 identification, not derived)
+\end{enumerate}
+
+\medskip
+\textbf{No SM parameters} ($M_W$, $G_F$, $v = 246$ GeV, $\sin^2\theta_W$)
+\textbf{enter the derivation chain.} The only baseline input is $M_Z$ for
+the $R_\xi$ anchor, which is \tagBL{} (external, not claimed as derived).
+\end{tcolorbox}
+
+% ==============================================================================
 \section{Cross-Reference Box}
 \label{sec:ch16_crossref}
 
@@ -376,22 +494,26 @@ $\Delta = R_\xi$ & \tagP{} & OPR-04 identification \\
     title=\textbf{OPR Chain: How Chapters Connect}]
 \begin{center}
 \begin{tikzpicture}[node distance=2.5cm, auto,
-    every node/.style={rectangle, draw, minimum width=2.5cm, minimum height=0.8cm}]
+    every node/.style={rectangle, draw, minimum width=3cm, minimum height=1.2cm,
+    align=center, text width=3cm}]
 
-    \node (opr01) {OPR-01 (Ch.~\ref{sec:ch15_opr01})\\$M_0 = f(\sigma,\Delta,y)$};
+    \node (opr01) {OPR-01 (Ch.~15)\\$M_0 = f(\sigma,\Delta,y)$};
     \node (opr04) [right of=opr01, xshift=3cm] {OPR-04 (This Ch.)\\$\Delta = 2/(v\sqrt{\lambda})$};
-    \node (opr21) [below of=opr01, yshift=-0.5cm] {OPR-21 (Ch.~\ref{sec:ch14_opr21})\\$N_{\rm bound} = 3$};
+    \node (opr21) [below of=opr01, yshift=-0.5cm] {OPR-21 (Ch.~14)\\$N_{\rm bound} = 3$};
 
-    \draw[->] (opr01) -- node[above] {$\sigma\Delta = 4v^2/3$} (opr04);
-    \draw[->] (opr04) -- node[right] {$\mu = M_0 \ell$} (opr21);
-    \draw[->] (opr01) -- node[left] {$\mu \in [25,35]$} (opr21);
+    \draw[->, thick] (opr01) -- node[above, draw=none, text width=2.5cm, align=center]
+        {\small $\sigma\Delta = 4v^2/3$} (opr04);
+    \draw[->, thick] (opr04) -- node[right, draw=none, text width=2cm, align=center]
+        {\small $\mu = M_0 \ell$} (opr21);
+    \draw[->, thick] (opr01) -- node[left, draw=none, text width=2cm, align=center]
+        {\small $\mu \in [25,35]$} (opr21);
 \end{tikzpicture}
 \end{center}
 
 \textbf{Read next:}
 \begin{itemize}[nosep]
-    \item Chapter~\ref{sec:ch15_opr01}: How $M_0$ emerges from $\sigma$ and $\Delta$
-    \item Chapter~\ref{sec:ch14_opr21}: How the μ-window yields three generations
+    \item Chapter~15 (OPR-01): How $M_0$ emerges from $\sigma$ and $\Delta$
+    \item Chapter~14 (OPR-21): How the $\mu$-window yields three generations
     \item Audit: \texttt{canon/opr/OPR\_REGISTRY.md} for full OPR status
 \end{itemize}
 \end{tcolorbox}
