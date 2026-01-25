@@ -239,6 +239,31 @@ CLOSED iff ONE of Gates (i)-(iv) is satisfied AND δ has explicit definition bef
 - R_ξ value uses M_Z [BL] — this is documented, not hidden
 - Current status is no-smuggling compliant: [P] tag is explicit
 
+### OPR-04 Update: Kink Width Derivation (2026-01-25)
+
+**New content in Chapter 16**:
+- Δ = 2/(v√λ) derived from λφ⁴ kink profile [M]
+- BPS constraint: σΔ = 4v²/3 [M]
+- Connection to OPR-01: M₀² = (3y²/4)σΔ [Dc]
+- Code validation: `code/opr04_delta_consistency_check.py`
+
+**CRITICAL TENSION DISCOVERED**:
+| Source | Δ Value | μ = M₀ℓ | N_bound |
+|--------|---------|---------|---------|
+| δ = R_ξ (OPR-04 ID) | ~2×10⁻³ fm | ~0.002 | << 3 |
+| μ ∈ [25,35] (OPR-21) | ~1-4 fm | 25-35 | = 3 |
+
+The OPR-04 identification Δ = δ = R_ξ ~ 10⁻³ fm is **INCOMPATIBLE** with
+OPR-21 three-generation requirement which needs Δ ~ 1 fm (factor ~600 larger).
+
+**Possible resolutions**:
+1. δ ≠ Δ — boundary-layer scale differs from kink width
+2. n >> 4 — domain size is much larger than assumed
+3. Different σ value — tension parameters differ
+4. Reinterpretation of μ — different scaling relationship
+
+**Status**: OPEN — tension with OPR-21 requires resolution.
+
 ---
 
 ## OPR-05 [B/C] m_φ teleport
