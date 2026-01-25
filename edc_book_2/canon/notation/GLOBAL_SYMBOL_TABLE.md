@@ -119,6 +119,7 @@ No notation changes are permitted without updating this table first.
 | G₅ | `G_5` | 5D Newton | 5D gravitational coupling | 5D bulk | m³/kg/s² | CANON | Fwk v2.0 Eq.(9) | 8 uses | NONE | — |
 | G₄ | `G_4` | 4D Newton | Observed gravitational constant | SM | m³/kg/s² | CANON | Fwk v2.0 | — | NONE | — |
 | G_F | `G_F` | Fermi constant | Weak interaction coupling | SM | GeV⁻² | CANON | Fwk v2.0 §14 | 11_gf_derivation | NONE | — |
+| I₄ | `I_4` | Overlap integral | Mode overlap ∫\|f_L\|⁴dξ, [I₄]=Energy | 5D bulk | GeV | WORKING | — | eq:ch3_I4_exponential_m0 | NONE | I₄=m₀ for exponential |
 | g₅ | `g_5` | 5D gauge | 5D gauge coupling | 5D bulk | — | WORKING | — | 11_gf:* | LOW | — |
 | α | `\alpha` | Fine structure | Electromagnetic coupling | SM | — | CANON | Book I p.57, Fwk v2.0 §6, 11 anchors | — | NONE | — |
 

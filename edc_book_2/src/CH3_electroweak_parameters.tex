@@ -600,20 +600,21 @@ Everything else ($g^2$, $M_W$, $G_F$) follows from:
 \end{remark}
 
 \begin{remark}[Mode Overlap Interpretation]
-The Fermi constant receives contributions from the overlap integral:
+The Fermi constant arises from the overlap integral:
 \begin{equation}
-G_F \propto \int_0^\infty |f_L(\xi)|^4 \, d\xi = I_4
+G_F = G_5 \int_0^\infty |f_L(\xi)|^4 \, d\xi = G_5 \times I_4
 \end{equation}
 
-where $f_L(\xi)$ is the left-handed fermion mode profile. For the asymmetric profile:
+where $f_L(\xi)$ is the left-handed fermion mode profile and $I_4$ has dimension
+of \emph{energy} (not length). For the normalized exponential profile
+$f_L = \sqrt{2m_0}\,e^{-m_0\xi}$, the overlap integral is exactly:
 \begin{equation}
-f_L(\xi) = N_L \exp\left(-m_0 \chi(\xi)\right), \quad \chi(\xi) = \xi - \lambda\left(1 - e^{-\xi/\lambda}\right)
+I_4 = m_0 \sim 200 \text{ MeV}
+\label{eq:ch3_I4_remark}
 \end{equation}
 
-The mode is localized at $\xi = 0$ with width $\sigma_L = \sqrt{\lambda/(2m_0)}$.
-
-Numerical integration gives $I_4 \sim 100$ GeV, providing the geometric suppression
-factor that yields the correct order of magnitude for $G_F$.
+The mode overlap provides the \emph{geometric mechanism} for weak interaction
+suppression. Quantitative closure requires the full electroweak relations.
 \end{remark}
 
 \begin{tcolorbox}[colback=cyan!5, colframe=cyan!50!black,
@@ -634,86 +635,104 @@ coupling $[G_F] = [\text{Energy}]^{-2}$, we integrate over the 5th dimension:
 G_F = G_5 \int_0^\infty d\xi \, |f_L(\xi)|^4 = G_5 \times I_4
 \end{equation}
 
-where $I_4$ has dimension of length (or inverse energy in natural units).
+\textbf{Dimension of $I_4$:} If $f_L$ is normalized ($\int |f_L|^2 d\xi = 1$),
+then $[f_L] = L^{-1/2}$, so $[|f_L|^4] = L^{-2}$ and $[d\xi] = L$. Therefore:
+\begin{equation}
+[I_4] = L^{-1} = \text{Energy} \quad \text{(in natural units)}
+\label{eq:ch3_I4_dimension}
+\end{equation}
+This is correct: $[G_5] \times [I_4] = E^{-3} \times E = E^{-2} = [G_F]$ \tagM{}.
 
-\textbf{3. Estimating $I_4$:}
+\textbf{3. Toy model: Gaussian profile (pedagogical only)}
 
-For a Gaussian mode localized at $\xi = 0$ with width $\sigma_L$:
+For a Gaussian mode normalized on the \emph{full line} but integrated on the
+\emph{half-line} $[0,\infty)$:
 \begin{equation}
 f_L(\xi) = \left(\frac{1}{\pi \sigma_L^2}\right)^{1/4} \exp\left(-\frac{\xi^2}{2\sigma_L^2}\right)
+\quad \text{(full-line normalization)}
 \end{equation}
 
-The fourth power is:
+The fourth power integrated on the half-line includes a factor of $\frac{1}{2}$:
 \begin{equation}
-|f_L(\xi)|^4 = \left(\frac{1}{\pi \sigma_L^2}\right) \exp\left(-\frac{2\xi^2}{\sigma_L^2}\right)
+\boxed{
+I_4^{\text{Gauss}} = \int_0^\infty |f_L(\xi)|^4 \, d\xi = \frac{1}{2\sqrt{2\pi}\,\sigma_L}
+}
+\label{eq:ch3_I4_gauss_halfline}
 \end{equation}
 
-Integrating:
+\textbf{Note:} The Gaussian is a \emph{toy model}. The physical profile is asymmetric
+(exponential decay into the bulk), which we treat next.
+
+\textbf{4. Physical model: Exponential profile}
+
+The asymmetric mass profile from Chapter~\ref{ch:va_structure} produces an
+\emph{exponential} mode, not Gaussian. For the normalized half-line exponential:
 \begin{equation}
-I_4 = \int_0^\infty |f_L(\xi)|^4 \, d\xi = \frac{1}{\sqrt{2\pi}\sigma_L}
+f_L(\xi) = \sqrt{2m_0} \, e^{-m_0\xi}, \qquad \xi \geq 0
+\label{eq:ch3_fL_exponential}
 \end{equation}
 
-\textbf{4. Numerical evaluation:}
-
-With the EDC mode width $\sigma_L = \sqrt{\lambda/(2m_0)}$:
-\begin{itemize}
-  \item $\lambda \sim 1$ fm (brane thickness)
-  \item $m_0 \sim 200$ MeV (bulk fermion mass scale)
-  \item $\sigma_L \sim \sqrt{1 \text{ fm} / (2 \times 200 \text{ MeV})} \sim \sqrt{0.0025 \text{ fm}^2} \sim 0.05$ fm
-\end{itemize}
-
-Therefore:
+This satisfies $\int_0^\infty |f_L|^2 d\xi = 1$. The overlap integral is:
 \begin{equation}
-I_4 \sim \frac{1}{\sqrt{2\pi} \times 0.05 \text{ fm}} \sim 8 \text{ fm}^{-1} \sim 8 \times 197 \text{ MeV} \sim 1.5 \text{ GeV}
+\boxed{
+I_4^{\text{exp}} = \int_0^\infty |f_L(\xi)|^4 \, d\xi
+= \int_0^\infty (2m_0)^2 e^{-4m_0\xi} \, d\xi
+= 4m_0^2 \times \frac{1}{4m_0} = m_0
+}
+\label{eq:ch3_I4_exponential_m0}
 \end{equation}
 
-Wait---this gives $I_4 \sim 1.5$ GeV, not $\sim 100$ GeV. Let me re-examine.
+\textbf{Key result:} For an exponential profile, $I_4 = m_0$ \emph{exactly} \tagDc{}.
 
-\textbf{5. Correction---the asymmetric profile:}
+\textbf{5. Numerical estimate:}
 
-The asymmetric profile $f_L \propto \exp(-m_0 \chi(\xi))$ is \emph{not} Gaussian.
-For large $\xi$: $\chi(\xi) \approx \xi - \lambda$, so $f_L \propto e^{-m_0(\xi-\lambda)}$.
-
-The effective localization length is:
+With $m_0 \sim 200$ MeV (typical localization scale):
 \begin{equation}
-\sigma_{\text{eff}} = \frac{1}{m_0} = \frac{\hbar c}{m_0 c^2} = \frac{197 \text{ MeV}\cdot\text{fm}}{200 \text{ MeV}} \approx 1 \text{ fm}
+I_4 = m_0 \sim 200 \text{ MeV} = 0.2 \text{ GeV}
+\label{eq:ch3_I4_numerical}
 \end{equation}
 
-This gives $I_4 \sim 1/\sigma_{\text{eff}} \sim 1$ fm$^{-1} \sim 200$ MeV.
+\textbf{Comparison:} The Gaussian toy model with $\sigma_L \sim 0.05$ fm gives
+$I_4 \sim 1.5$ GeV, which is $\sim 8\times$ larger than the physical exponential
+result. This illustrates why the correct profile matters for quantitative work.
 
-\textbf{6. Full $G_F$ estimate:}
+\textbf{6. The open question: What is $G_5$?}
 
-Combining $G_5 \sim g_5^2/M_5^2$ with $I_4$:
+The overlap mechanism gives $G_F = G_5 \times I_4$ with $I_4 = m_0 \sim 0.2$ GeV
+established. However, the 5D coupling $G_5$ is \textbf{not derived} from first
+principles \tagP{}. Until $G_5$ is computed from the 5D action (OPR-19), the
+overlap pathway provides only qualitative understanding.
+
+\textbf{Naive estimate (illustrative only):}
 \begin{equation}
-G_F \sim \frac{g_5^2}{M_5^2} \times I_4 \sim \frac{(4\pi)^2}{(200 \text{ GeV})^2} \times (200 \text{ MeV})
+G_F \sim \frac{g_5^2}{M_{5,\mathrm{Pl}}^3} \times I_4 \sim \frac{(4\pi)^2}{(200 \text{ GeV})^3} \times 0.2 \text{ GeV}
+\sim 4 \times 10^{-6} \text{ GeV}^{-2}
 \end{equation}
 
-Order of magnitude:
-\begin{equation}
-G_F \sim \frac{150}{4 \times 10^4 \text{ GeV}^2} \times 0.2 \text{ GeV} \sim \frac{150 \times 0.2}{4 \times 10^4} \text{ GeV}^{-2}
-\sim 10^{-3} \text{ GeV}^{-2}
-\end{equation}
+This is within an order of magnitude of $G_F^{\text{exp}} = 1.17 \times 10^{-5}$
+GeV$^{-2}$, but the agreement is \textbf{not meaningful} without deriving $g_5$
+and $M_{5,\mathrm{Pl}}$.
 
-This is $\sim 100\times$ larger than observed! The discrepancy suggests:
-\begin{itemize}
-  \item Additional suppression from wave function normalization
-  \item Factor of $1/4\pi$ from proper treatment of angular integrals
-  \item The relation $G_F = g^2/(4\sqrt{2}M_W^2)$ captures the correct physics
-\end{itemize}
+\textbf{7. Summary: Mechanism vs.\ Closure}
 
-\textbf{7. Conclusion:}
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Component} & \textbf{Status} & \textbf{Tag} \\
+\midrule
+$I_4 = m_0$ (exponential profile) & Exact result & \tagDc{} \\
+$I_4^{\text{Gauss}} = 1/(2\sqrt{2\pi}\sigma)$ & Half-line corrected & \tagM{} \\
+$G_5$ (5D coupling) & Not derived & \tagP{} (OPR-19) \\
+Qualitative ``why weak is weak'' & Mechanism established & \tagI{} \\
+Quantitative $G_F = 1.17 \times 10^{-5}$ & Via EW relations & \tagDc{} \\
+\bottomrule
+\end{tabular}
+\end{center}
 
-The mode overlap integral provides the \emph{geometric mechanism} for $G_F$, but the
-precise numerical value comes from the electroweak relations. The key insight is that
-$G_F$ is \textbf{small} because:
-\begin{itemize}
-  \item Fermions are tightly localized ($\sigma_L \ll$ brane thickness)
-  \item The overlap of four mode functions is highly suppressed
-  \item This is the geometric origin of weak interaction ``weakness''
-\end{itemize}
-
-\textbf{Status:} Mode overlap provides qualitative understanding; quantitative precision
-requires the full electroweak machinery (which EDC reproduces via $\sin^2\theta_W = 1/4$).
+\textbf{Bottom line:} The mode overlap mechanism explains \emph{why} $G_F$ is small
+(geometric suppression from fermion localization). The \emph{numerical value} comes
+from electroweak relations + $\sin^2\theta_W = 1/4$ (Chapter~\ref{ch:z6_program}), not
+from the overlap integral alone.
 \end{tcolorbox}
 
 % ==============================================================================
