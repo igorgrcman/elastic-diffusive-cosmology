@@ -1,0 +1,80 @@
+% figures/fig_pion_process_pipeline.tex
+% Pion decay process pipeline diagram (composite junction-pair)
+\begin{tikzpicture}[scale=0.88, transform shape]
+
+% Load styles
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Background regions
+% ─────────────────────────────────────────────────────────────────────────────
+\fill[orange!8] (-5.5,1.8) rectangle (5.5,3.2);
+\fill[blue!8] (-5.5,0.4) rectangle (5.5,1.8);
+\fill[green!8] (-5.5,-1.2) rectangle (5.5,0.4);
+
+% Region labels
+\node[font=\scriptsize, orange!60!black] at (-4.5,3.0) {Composite (junction-pair)};
+\node[font=\scriptsize, blue!50!black] at (-4.5,1.5) {Brane interface};
+\node[font=\scriptsize, green!50!black] at (-4.5,0.1) {3D outputs};
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Composite layer nodes
+% ─────────────────────────────────────────────────────────────────────────────
+\node[rectangle, draw=orange!60, fill=orange!10, rounded corners=3pt,
+      text width=2.6cm, align=center, font=\small] (pion) at (-3.2,2.5)
+  {Pion $\pi^+$\\{\tiny $(u\bar{d})$ junction-pair}};
+
+\node[rectangle, draw=orange!60, fill=orange!10, rounded corners=3pt,
+      text width=2.4cm, align=center, font=\small] (annihil) at (0.5,2.5)
+  {Annihilation\\{\tiny $q\bar{q} \to W^*$}};
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Brane layer nodes
+% ─────────────────────────────────────────────────────────────────────────────
+\node[brane box, text width=2.6cm] (diss) at (-1.5,1.1)
+  {Energy release\\{\tiny $m_\pi c^2 \to E_{\mathrm{brane}}$}};
+
+\node[gate box, text width=2.8cm, minimum height=0.9cm] (frozen) at (2.5,1.1)
+  {$\mathcal{P}_{\mathrm{frozen}}$\\{\tiny chiral projection}};
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Output layer nodes
+% ─────────────────────────────────────────────────────────────────────────────
+\node[output box, text width=1.8cm] (muout) at (1.2,-0.4)
+  {$\mu^+$\\{\tiny 99.99\%}};
+
+\node[output box, text width=1.8cm] (nuout) at (3.2,-0.4)
+  {$\nu_\mu$};
+
+\node[output box, text width=1.6cm, dashed, draw=gray!50, fill=gray!5] (eout) at (5.0,-0.4)
+  {$e^+$\\{\tiny $10^{-4}$}};
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Arrows
+% ─────────────────────────────────────────────────────────────────────────────
+\draw[edc flow] (pion) -- (annihil);
+\draw[edc arrow] (annihil.south) -- ++(0,-0.3) -| (diss.north);
+\draw[edc flow] (diss) -- (frozen);
+
+% Release to outputs
+\draw[edc arrow] (frozen.south) -- ++(0,-0.25) -| (muout.north);
+\draw[edc arrow] (frozen.south) -- ++(0,-0.25) -| (nuout.north);
+\draw[edc dashed] (frozen.south) -- ++(0,-0.25) -| (eout.north);
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Annotations
+% ─────────────────────────────────────────────────────────────────────────────
+
+% Helicity suppression box
+\node[rectangle, draw=red!50, fill=red!5, rounded corners=2pt,
+      font=\tiny, align=center, text width=4.8cm] at (-2.5,-0.6)
+  {\textbf{Helicity suppression} [BL]:\\
+   $R_{e/\mu} \approx (m_e/m_\mu)^2 \approx 10^{-4}$\\
+   EDC: from $\mathcal{P}_{\mathrm{chir}}$ boundary conditions (open)};
+
+% Composite note
+\node[rectangle, draw=orange!40, fill=orange!5, rounded corners=2pt,
+      font=\tiny, align=center, text width=3.0cm] at (0.5,3.0)
+  {Hadron$\to$Lepton bridge\\
+   (composite $\to$ fundamental)};
+
+\end{tikzpicture}

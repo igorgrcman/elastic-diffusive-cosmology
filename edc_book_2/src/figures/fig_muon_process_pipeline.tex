@@ -1,0 +1,67 @@
+% figures/fig_muon_process_pipeline.tex
+% Muon decay process pipeline diagram (brane-dominant)
+\begin{tikzpicture}[scale=0.90, transform shape]
+
+% Load styles
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Background regions (no bulk needed for brane-dominant)
+% ─────────────────────────────────────────────────────────────────────────────
+\fill[blue!8] (-5.2,0.4) rectangle (5.5,2.0);
+\fill[green!8] (-5.2,-1.0) rectangle (5.5,0.4);
+
+% Region labels
+\node[font=\scriptsize, blue!50!black] at (-4.5,1.7) {Thick brane layer};
+\node[font=\scriptsize, green!50!black] at (-4.5,0.1) {3D outputs};
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Brane layer nodes
+% ─────────────────────────────────────────────────────────────────────────────
+\node[brane box, text width=2.6cm] (mu) at (-3.2,1.2)
+  {Muon $\Psi_\mu$\\{\tiny brane-dominant}};
+
+\node[brane box, text width=2.6cm] (diss) at (0.3,1.2)
+  {Dissipation\\{\tiny $\Gamma_{\mathrm{eff}} E_{\mathrm{brane}}$}};
+
+\node[gate box, text width=2.4cm, minimum height=0.8cm] (frozen) at (3.5,1.2)
+  {$\mathcal{P}_{\mathrm{frozen}}$\\{\tiny release gate}};
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Output layer nodes
+% ─────────────────────────────────────────────────────────────────────────────
+\node[output box, text width=1.6cm] (eout) at (1.0,-0.3)
+  {$e^-$};
+
+\node[output box, text width=1.6cm] (nue) at (2.8,-0.3)
+  {$\bar\nu_e$};
+
+\node[output box, text width=1.6cm] (numu) at (4.6,-0.3)
+  {$\nu_\mu$};
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Arrows
+% ─────────────────────────────────────────────────────────────────────────────
+\draw[edc flow] (mu) -- (diss);
+\draw[edc flow] (diss) -- (frozen);
+
+% Release to outputs
+\draw[edc arrow] (frozen.south) -- ++(0,-0.25) -| (eout.north);
+\draw[edc arrow] (frozen.south) -- ++(0,-0.25) -| (nue.north);
+\draw[edc arrow] (frozen.south) -- ++(0,-0.25) -| (numu.north);
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Annotations
+% ─────────────────────────────────────────────────────────────────────────────
+
+% Chiral filter annotation
+\node[rectangle, draw=purple!40, fill=purple!5, rounded corners=2pt,
+      font=\tiny, align=center, text width=4.5cm] at (-0.5,0.0)
+  {$\mathcal{P}_{\mathrm{frozen}} = \mathcal{P}_{\mathrm{energy}} \circ \mathcal{P}_{\mathrm{mode}} \circ \mathcal{P}_{\mathrm{chir}}$\\
+   V--A selection via boundary projection};
+
+% No bulk trigger note
+\node[rectangle, draw=gray!40, fill=gray!5, rounded corners=2pt,
+      font=\tiny, align=center, text width=2.8cm] at (-3.2,0.0)
+  {No bulk trigger\\(clean brane test)};
+
+\end{tikzpicture}

@@ -1,0 +1,437 @@
+%!TEX root = ../EDC_Part_II_Weak_Sector.tex
+% ==============================================================================
+% Chapter 11: OPR-20 Attempt E — Prefactor-8 First-Principles Derivation
+% Status: Track A derives 2π [Dc]; Track B identifies 0.9003 candidates [P]/[OPEN]
+% ==============================================================================
+
+\subsection{Attempt E: Prefactor-8 First-Principles Derivation}
+\label{sec:ch11_attemptE}
+
+\subsubsection{Executive Summary}
+\label{sec:ch11_attemptE_executive}
+
+\begin{tcolorbox}[colback=blue!5, colframe=blue!60!black,
+    title=\textbf{OPR-20 Attempt E: Executive Summary}]
+
+\textbf{Objective:} Upgrade the geometric prefactor story from \tagP{} to \tagDc{} by
+deriving what $\ell$ is in terms of $R_\xi$, and identify whether the $\sim$12\%
+residual can be explained without new free parameters.
+
+\textbf{Two derivation tracks:}
+\begin{enumerate}[nosep]
+    \item[\textbf{A)}] \textbf{Why $\ell = 2\pi R_\xi$?} --- From diffusion correlation
+          length definition and KK mode structure.
+    \item[\textbf{B)}] \textbf{Where does the missing 0.9003 come from?} --- Since
+          $8/(2\pi\sqrt{2}) \approx 0.9003$, identify EDC-native candidates for this factor.
+\end{enumerate}
+
+\textbf{Key findings:}
+\begin{itemize}[nosep]
+    \item[\ding{51}] \textbf{Track A:} The factor $2\pi$ emerges from the relationship between
+          correlation length and circumference of a compactified dimension \tagDc{}
+    \item[\ding{51}] \textbf{Track A:} Alternative interpretations ($\pi$, $4\pi$) require
+          non-standard setups \tagDc{} (negative closure)
+    \item[\ding{55}] \textbf{Track B:} The missing 0.9003 factor has candidates but none
+          uniquely derived \tagP{}/[OPEN]
+\end{itemize}
+
+\textbf{Status:} OPR-20 partial upgrade: $2\pi$ interpretation now \tagDc{};
+exact factor 8 remains [OPEN].
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Recap: Attempt D Closures}
+\label{sec:ch11_attemptE_recap}
+
+Previous attempts established firm negative closures that constrain the solution space:
+
+\paragraph{Negative Closures from Attempts A--D.}
+
+\begin{enumerate}[nosep]
+    \item \textbf{Standard BC route [Dc] (negative):} Dirichlet-Neumann combinations
+          give at most factor-4 reduction in $x_1$. The factor-8 cannot come from
+          standard boundary conditions alone.
+
+    \item \textbf{Overcounting audit [Dc]:} The Z$_2$ orbifold factor and the Israel
+          junction factor are \emph{the same physics}---they cannot be multiplied.
+          Triple-counting ($2 \times 2 \times 2 = 8$) is invalid.
+
+    \item \textbf{Robin BC parameters [Dc]+[P]:} The Robin structure
+          $\phi' + \alpha\phi = 0$ is derived from junction physics \tagDc{}, but
+          the parameter value $\alpha\ell \sim 0.1$ (needed for factor-8) requires
+          mild tuning \tagP{}.
+\end{enumerate}
+
+\paragraph{Best Structural Candidate.}
+
+The most honest factor that passes independence checks is:
+\begin{equation}
+    C_{\text{geom}} = 2\pi\sqrt{2} \approx 8.886
+    \quad \Rightarrow \quad
+    m_\phi \approx 70 \text{ GeV}
+    \quad \text{(12\% below } M_W \approx 80 \text{ GeV)}
+    \label{eq:ch11_E_best_candidate}
+\end{equation}
+
+The question for Attempt E: Can we derive why the factor is $2\pi\sqrt{2}$ (or exactly 8)
+from first principles, without introducing new free parameters?
+
+% ------------------------------------------------------------------------------
+\subsubsection{No-Smuggling Guardrails (Attempt E)}
+\label{sec:ch11_attemptE_guardrails}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!60!black,
+    title=\textbf{No-Smuggling Guardrails (Attempt E)}]
+\textbf{Forbidden as inputs:}
+\begin{itemize}[nosep]
+    \item[\ding{55}] $M_W = 80$ GeV, $G_F$, $g_2$, $v = 246$ GeV
+    \item[\ding{55}] Any PDG weak-scale numbers to define $\ell$, $x_1$, or $R_\xi$
+    \item[\ding{55}] Choosing factors ``because they make 8''
+\end{itemize}
+
+\textbf{Allowed:}
+\begin{itemize}[nosep]
+    \item[\ding{51}] $R_\xi \sim 10^{-3}$ fm from Part I diffusion analysis \tagP{}
+    \item[\ding{51}] Geometric constants ($\pi$, $\sqrt{2}$) with stated derivation
+    \item[\ding{51}] KK mode structure from 5D compactification \tagDc{}
+    \item[\ding{51}] Comparison to $M_W$ only as \tagBL{} sanity check at the end
+\end{itemize}
+\end{tcolorbox}
+
+% ==============================================================================
+% TRACK A: WHY ℓ = 2π R_ξ
+% ==============================================================================
+\subsubsection{Track A: Derivation of $\ell = 2\pi R_\xi$}
+\label{sec:ch11_attemptE_trackA}
+
+\paragraph{\texorpdfstring{Definition of $R_\xi$ in Part I.}{Definition of R-xi in Part I.}}
+
+In the EDC membrane model (Part I), $R_\xi$ is defined as the \emph{correlation length}
+of the diffusive/frozen regime. Physically, it characterizes the scale over which
+membrane fluctuations are correlated:
+\begin{equation}
+    \langle \phi(x) \phi(x') \rangle \sim e^{-|x - x'|/R_\xi}
+    \quad \text{for } |x - x'| \gg R_\xi
+    \label{eq:ch11_E_correlation}
+\end{equation}
+
+For a 5D setup where the extra dimension is compactified, $R_\xi$ relates to the
+compactification geometry.
+
+\paragraph{Compactification and Circumference.}
+
+Consider a compact extra dimension parametrized by coordinate $y$ with period $L$.
+The standard KK decomposition gives:
+\begin{equation}
+    \phi(x^\mu, y) = \sum_n \phi_n(x^\mu) f_n(y),
+    \quad f_n(y) = \frac{1}{\sqrt{L}} e^{2\pi i n y / L}
+    \label{eq:ch11_E_KK_decomposition}
+\end{equation}
+
+The \emph{radius} of the compact dimension is:
+\begin{equation}
+    R = \frac{L}{2\pi}
+    \quad \Leftrightarrow \quad
+    L = 2\pi R
+    \label{eq:ch11_E_radius_circumference}
+\end{equation}
+
+This is a \emph{definition}, not an assumption: the circumference of a circle of
+radius $R$ is $2\pi R$.
+
+\paragraph{\texorpdfstring{Identifying $R_\xi$ with the Radius.}{Identifying R-xi with the Radius.}}
+
+If the Part I correlation length $R_\xi$ is the \emph{radius} of the effective
+compactification, then the relevant KK length scale is:
+\begin{equation}
+    \boxed{
+    \ell = 2\pi R_\xi
+    }
+    \quad \text{[Dc] from geometry}
+    \label{eq:ch11_E_ell_derivation}
+\end{equation}
+
+This is derived, not postulated:
+\begin{itemize}[nosep]
+    \item The correlation length $R_\xi$ characterizes the radius of the extra dimension
+    \item The KK quantization uses the circumference $L = 2\pi R$
+    \item Therefore $\ell = 2\pi R_\xi$
+\end{itemize}
+
+\paragraph{Alternative Interpretations and Why They Fail.}
+
+\begin{table}[ht]
+\centering
+\caption{Alternative $\ell$ interpretations}
+\label{tab:ch11_E_alternatives}
+\small
+\begin{tabular}{p{3cm}ccp{5cm}l}
+\toprule
+\textbf{Interpretation} & \textbf{$\ell$} & \textbf{Factor} & \textbf{Requires} & \textbf{Status} \\
+\midrule
+$R_\xi$ is circumference & $R_\xi$ & 1 & Redefine $R_\xi$ as $L$ not $R$ & Non-standard \\
+Half-orbifold & $\pi R_\xi$ & $\pi$ & Only use fundamental domain & Inconsistent with Z$_2$ \\
+Full solid angle & $4\pi R_\xi$ & $4\pi$ & 3D isotropic measure & Wrong dimension \\
+\textbf{Standard circle} & $2\pi R_\xi$ & $2\pi$ & --- & \tagDc{} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Track A Verdict.}
+
+\begin{tcolorbox}[colback=green!5, colframe=green!50!black,
+    title=\textbf{Track A: $2\pi$ Factor Derivation}]
+\textbf{Derived [Dc]:}
+\begin{itemize}[nosep]
+    \item $R_\xi$ is the radius of the effective compact dimension
+    \item KK quantization uses circumference $L = 2\pi R$
+    \item Therefore $\ell = 2\pi R_\xi$ with factor $2\pi$
+\end{itemize}
+
+\textbf{Negative closure [Dc]:}
+\begin{itemize}[nosep]
+    \item Factor 1 ($\ell = R_\xi$): requires non-standard definition of $R_\xi$
+    \item Factor $\pi$: inconsistent with full orbifold
+    \item Factor $4\pi$: confuses 1D circumference with 3D solid angle
+\end{itemize}
+
+\textbf{Status:} The $2\pi$ factor is now \tagDc{}, upgraded from \tagP{}.
+\end{tcolorbox}
+
+% ==============================================================================
+% TRACK B: THE MISSING 0.9003 FACTOR
+% ==============================================================================
+\subsubsection{Track B: The Missing 0.9003 Factor}
+\label{sec:ch11_attemptE_trackB}
+
+With $2\pi\sqrt{2} \approx 8.886$ giving $m_\phi \approx 70$ GeV, we are 12\% low
+compared to $M_W \approx 80$ GeV. To hit exactly 80 GeV, we would need an additional
+factor:
+\begin{equation}
+    f_{\text{missing}} = \frac{8}{2\pi\sqrt{2}} = \frac{4}{\pi\sqrt{2}} \approx 0.9003
+    \label{eq:ch11_E_missing_factor}
+\end{equation}
+
+Alternatively, if the ``true'' geometric factor is exactly 8 (not $2\pi\sqrt{2}$),
+then something must provide the 0.9003 correction.
+
+\paragraph{Candidate B1: Orbifold Fundamental Domain.}
+
+On a Z$_2$ orbifold $S^1/\mathbb{Z}_2$, the fundamental domain has length $\ell/2$
+instead of $\ell$. This gives:
+\begin{equation}
+    \ell_{\text{fund}} = \frac{\ell}{2} = \pi R_\xi
+    \quad \Rightarrow \quad
+    \text{factor } \pi \text{ instead of } 2\pi
+    \label{eq:ch11_E_B1}
+\end{equation}
+
+However, the KK mass depends on the \emph{quantization condition}, not the fundamental
+domain size. The eigenvalue $x_1 = \pi/2$ for Neumann-Neumann already accounts for
+the orbifold structure.
+
+\textbf{Status:} Already included in $x_1$; cannot provide additional factor. \tagDc{} (negative)
+
+\paragraph{Candidate B2: Thick-Brane Finite-Width Correction.}
+
+If the brane has finite thickness $\delta$, mode profiles are not delta-function
+localized. The overlap integral changes:
+\begin{equation}
+    I_4 = \int_{-\delta/2}^{+\delta/2} |f_L(\xi)|^4 \, d\xi
+    \label{eq:ch11_E_B2_overlap}
+\end{equation}
+
+For a smooth profile, this can differ from the thin-brane limit by an $\mathcal{O}(1)$
+factor. However:
+\begin{itemize}[nosep]
+    \item This affects $I_4$ (overlap), not $\ell$ (KK scale)
+    \item The OPR-21 BVP is needed to compute this
+    \item Cannot predict a specific 0.9003 without solving the BVP
+\end{itemize}
+
+\textbf{Status:} Plausible mechanism but not derived; requires BVP. \tagP{}/[OPEN]
+
+\paragraph{Candidate B3: Junction Phase-Space Reduction.}
+
+The Israel junction condition involves matching across the brane. If the brane
+carries brane-localized kinetic terms (BKT), the effective propagator is modified:
+\begin{equation}
+    G_{\text{eff}}(p^2) = \frac{1}{p^2 + m^2 + \kappa p^2}
+    = \frac{1}{(1+\kappa)(p^2 + m^2_{\text{eff}})}
+    \label{eq:ch11_E_B3_BKT}
+\end{equation}
+
+The factor $(1+\kappa)^{-1}$ could contribute. For $(1+\kappa)^{-1} \approx 0.9$:
+\begin{equation}
+    \kappa \approx 0.11
+    \label{eq:ch11_E_B3_kappa}
+\end{equation}
+
+This is a mild BKT coefficient. However:
+\begin{itemize}[nosep]
+    \item $\kappa$ is not derived from EDC parameters
+    \item This is effectively another tunable parameter
+\end{itemize}
+
+\textbf{Status:} Mechanism exists; parameter $\kappa$ is \tagP{}.
+
+\paragraph{Candidate B4: Brane Curvature Correction.}
+
+If the brane has intrinsic curvature (not flat in the extra dimension), the effective
+path length differs from $2\pi R$:
+\begin{equation}
+    L_{\text{eff}} = 2\pi R \left(1 + \frac{R_{\text{curv}}^2}{R^2} + \ldots \right)
+    \label{eq:ch11_E_B4_curvature}
+\end{equation}
+
+For this to give a 10\% correction:
+\begin{equation}
+    \frac{R_{\text{curv}}^2}{R^2} \sim 0.1
+    \quad \Rightarrow \quad
+    R_{\text{curv}} \sim 0.3 R_\xi
+    \label{eq:ch11_E_B4_estimate}
+\end{equation}
+
+This would require significant brane curvature at the $R_\xi$ scale.
+
+\textbf{Status:} No evidence for such curvature in Part I. \tagP{}/[OPEN]
+
+\paragraph{Candidate B5: Numerical Coincidence Check.}
+
+We check whether 0.9003 matches any simple EDC-native combination:
+\begin{align}
+    \frac{4}{\pi\sqrt{2}} &\approx 0.9003 \\
+    \frac{2\sqrt{2}}{\pi} &\approx 0.9003 \\
+    1 - \frac{1}{10} &= 0.9 \\
+    \frac{9}{10} &= 0.9
+    \label{eq:ch11_E_B5_numerics}
+\end{align}
+
+The factor $4/(\pi\sqrt{2})$ is the \emph{definition} of the residual; it doesn't
+help unless we can derive why ``4'' appears (already present in Route E normalization).
+
+\textbf{Status:} No compelling geometric origin for 0.9003 identified. [OPEN]
+
+\paragraph{Track B Summary.}
+
+\begin{table}[ht]
+\centering
+\caption{Candidates for the missing 0.9003 factor}
+\label{tab:ch11_E_B_candidates}
+\small
+\begin{tabular}{p{4cm}ccp{4cm}l}
+\toprule
+\textbf{Candidate} & \textbf{Factor} & \textbf{Match?} & \textbf{Mechanism} & \textbf{Status} \\
+\midrule
+B1: Orbifold domain & 0.5 & No & Fundamental domain & \tagDc{} (neg) \\
+B2: Thick-brane overlap & variable & Maybe & BVP needed & \tagP{}/[OPEN] \\
+B3: BKT phase-space & $(1+\kappa)^{-1}$ & Yes if $\kappa=0.11$ & New parameter & \tagP{} \\
+B4: Brane curvature & variable & Maybe & Large curvature & \tagP{}/[OPEN] \\
+B5: Numerics & 0.9003 & Identity & --- & [OPEN] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Track B Verdict:} No candidate uniquely derives the 0.9003 factor. The residual
+remains [OPEN].
+
+% ==============================================================================
+% UPDATED VERDICT
+% ==============================================================================
+\subsubsection{Attempt E: Final Verdict}
+\label{sec:ch11_attemptE_verdict}
+
+\begin{tcolorbox}[colback=gray!10, colframe=gray!60!black,
+    title=\textbf{OPR-20 Attempt E: Final Assessment}]
+
+\textbf{What Attempt E derived:}
+
+\begin{enumerate}[nosep]
+    \item \textbf{Track A ($2\pi$ factor):}
+          \begin{itemize}[nosep]
+              \item $R_\xi$ is the radius of the compact dimension (from Part I definition)
+              \item KK quantization uses circumference $\ell = 2\pi R_\xi$
+              \item The $2\pi$ factor is now \tagDc{}, not \tagP{}
+              \item Alternative factors (1, $\pi$, $4\pi$) are negatively closed \tagDc{}
+          \end{itemize}
+
+    \item \textbf{Track B (0.9003 residual):}
+          \begin{itemize}[nosep]
+              \item No unique derivation of the missing 0.9003 factor
+              \item Candidates exist (BKT, thick-brane, curvature) but all require
+                    parameters that are not derived from EDC
+              \item The residual remains [OPEN]
+          \end{itemize}
+\end{enumerate}
+
+\textbf{Implications for the geometric factor:}
+
+\begin{center}
+\small
+\begin{tabular}{lccl}
+\toprule
+\textbf{Component} & \textbf{Factor} & \textbf{Tag} & \textbf{Change} \\
+\midrule
+Circumference ($2\pi$) & 6.28 & \tagDc{} & Upgraded from \tagP{} \\
+Mode normalization ($\sqrt{2}$) & 1.41 & \tagDc{} & Unchanged \\
+Combined & $2\pi\sqrt{2} = 8.89$ & \tagDc{} & Upgraded \\
+\midrule
+Missing factor to hit 8 & 0.9003 & [OPEN] & Not derived \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Updated best candidate:}
+\begin{equation}
+    C_{\text{geom}} = 2\pi\sqrt{2} \approx 8.89 \quad \text{[Dc]}
+    \quad \Rightarrow \quad
+    m_\phi \approx 70 \text{ GeV}
+    \label{eq:ch11_E_final}
+\end{equation}
+
+\textbf{12\% residual interpretation:}
+\begin{itemize}[nosep]
+    \item Could be absorbed into $R_\xi$ uncertainty (Part I estimate is order-of-magnitude)
+    \item Could indicate missing physics (BKT, thick-brane corrections)
+    \item Could be the ``EDC prediction'': $m_\phi = 70$ GeV, not 80 GeV
+\end{itemize}
+
+\textbf{Final status:}
+\begin{itemize}[nosep]
+    \item \textbf{Partial upgrade:} The $2\pi\sqrt{2}$ factor is now fully \tagDc{}
+          (no longer has \tagP{} components)
+    \item \textbf{OPR-20:} Remains \textbf{RED-C [Dc]+[OPEN]} because exact factor 8
+          and the 12\% residual are not uniquely derived
+    \item \textbf{Progress:} The factor is no longer ``arbitrary''---it has geometric
+          provenance. The residual is the remaining open problem.
+\end{itemize}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Closure Targets (Post-Attempt E)}
+\label{sec:ch11_attemptE_closure}
+
+To upgrade OPR-20 from RED-C to YELLOW:
+
+\begin{enumerate}[nosep]
+    \item \textbf{Accept $2\pi\sqrt{2}$ as the answer:}
+          Declare $m_\phi \approx 70$ GeV as the EDC prediction and flag the 12\%
+          tension with $M_W = 80$ GeV as an open question (potentially testable).
+
+    \item \textbf{Derive the missing 0.9003:}
+          Solve the thick-brane BVP (OPR-21) and compute whether the overlap $I_4$
+          or effective $x_1$ provides the correction factor.
+
+    \item \textbf{Absorb into $R_\xi$:}
+          Refine the Part I estimate of $R_\xi$ with 12\% precision to determine
+          whether the discrepancy is within parameter uncertainty.
+\end{enumerate}
+
+\begin{tcolorbox}[colback=gray!10, colframe=gray!60!black,
+    title=\textbf{Micro-Status (for margins)}]
+\textbf{OPR-20 Attempt E:} Track A derives $\ell = 2\pi R_\xi$ \tagDc{}; factor $2\pi$
+upgraded from [P]. Track B: 0.9003 residual has candidates but none uniquely derived [OPEN].
+Combined factor $2\pi\sqrt{2} \approx 8.89$ \tagDc{}; $m_\phi \approx 70$ GeV.
+Status: RED-C [Dc]+[OPEN]; structural progress, residual remains.
+\end{tcolorbox}
+

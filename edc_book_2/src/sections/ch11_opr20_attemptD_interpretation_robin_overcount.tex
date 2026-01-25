@@ -1,0 +1,567 @@
+%!TEX root = ../EDC_Part_II_Weak_Sector.tex
+% ==============================================================================
+% Chapter 11: OPR-20 Attempt D — R_ξ Interpretation + Robin from Junction + Overcounting Audit
+% Status: Comprehensive audit; narrows viable routes; factor 8 still not uniquely forced
+% ==============================================================================
+
+\subsection{Attempt D: Interpretation, Robin Derivation, and Overcounting Audit}
+\label{sec:ch11_attemptD}
+
+\subsubsection{Executive Summary}
+\label{sec:ch11_attemptD_executive}
+
+\begin{tcolorbox}[colback=blue!5, colframe=blue!60!black,
+    title=\textbf{OPR-20 Attempt D: Executive Summary}]
+
+\textbf{Objective:} Perform a comprehensive three-part audit to either derive factor 8
+uniquely or establish firm negative closures with narrowed viable routes.
+
+\textbf{Three components:}
+\begin{enumerate}[nosep]
+    \item[\textbf{A)}] \textbf{$R_\xi$ interpretation audit} --- Is $R_\xi$ a radius, circumference,
+          or diffusion length? Impact on the required geometric factor.
+    \item[\textbf{B)}] \textbf{Robin BC from junction physics} --- Can boundary/brane action
+          terms derive the Robin parameters $(a\ell, b\ell)$ rather than postulate them?
+    \item[\textbf{C)}] \textbf{Overcounting audit} --- Are the factors (Z$_2$, junction,
+          normalization, $2\pi$) independent, or is there double-counting?
+\end{enumerate}
+
+\textbf{Outcomes:}
+\begin{itemize}[nosep]
+    \item[\ding{51}] $R_\xi$ interpretation: ``radius'' vs ``circumference'' shifts factor by $2\pi$ \tagP{}
+    \item[\ding{51}] Robin from junction: $\alpha\ell \sim \mathcal{O}(1)$ natural; $\alpha\ell \sim 0.1$ requires tuning \tagP{}
+    \item[\ding{51}] Overcounting audit: $2\pi\sqrt{2}$ passes independence check \tagDc{}
+    \item[\ding{55}] Exact factor 8 still not uniquely forced \textbf{[OPEN]}
+\end{itemize}
+
+\textbf{Status:} OPR-20 remains \textbf{RED-C [Dc]+[OPEN]} with additional negative closures.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{No-Smuggling Guardrails (Attempt D)}
+\label{sec:ch11_attemptD_guardrails}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!60!black,
+    title=\textbf{No-Smuggling Guardrails (Attempt D)}]
+\textbf{Forbidden as inputs:}
+\begin{itemize}[nosep]
+    \item[\ding{55}] $M_W = 80$ GeV or any SM weak scale target
+    \item[\ding{55}] $G_F = 1.17 \times 10^{-5}$ GeV$^{-2}$
+    \item[\ding{55}] PDG mixing angles ($\theta_{13}$, $\theta_W$, etc.)
+    \item[\ding{55}] Fitting $\ell$ to match PDG values
+    \item[\ding{55}] Choosing factor to ``fix'' the 8$\times$ discrepancy
+\end{itemize}
+
+\textbf{Allowed:}
+\begin{itemize}[nosep]
+    \item[\ding{51}] $R_\xi \sim 10^{-3}$ fm \tagP{} (Part I diffusion scale)
+    \item[\ding{51}] Geometric constants ($\pi$, $\sqrt{2}$, $4\pi$) \emph{if origin stated}
+    \item[\ding{51}] Previously derived spine relations ($g_4 = g_5$ normalization, KK eigenvalue) \tagDc{}
+    \item[\ding{51}] Junction/Israel matching from GR \tagDc{}
+    \item[\ding{51}] Boundary action terms with stated assumptions \tagP{}
+\end{itemize}
+
+\textbf{Tagging protocol:} Each claim carries \tagBL{}/\tagDc{}/\tagI{}/\tagP{}/[OPEN].
+\end{tcolorbox}
+
+% ==============================================================================
+% PART A: R_ξ INTERPRETATION AUDIT
+% ==============================================================================
+\subsubsection{Part A: $R_\xi$ Interpretation Audit}
+\label{sec:ch11_attemptD_A}
+
+The Part I diffusion analysis yields a correlation scale $R_\xi \sim 10^{-3}$ fm. However,
+the \emph{geometric interpretation} of this scale in the 5D KK reduction is not uniquely
+fixed. We enumerate three possibilities and their impact on the weak scale.
+
+\paragraph{\texorpdfstring{Interpretation A1: $R_\xi$ as Radius.}{Interpretation A1: R-xi as Radius.}}
+
+If $R_\xi$ is the \emph{radius} of a compact dimension (or the characteristic brane thickness),
+then the KK quantization uses:
+\begin{equation}
+    \ell = R_\xi \quad \Rightarrow \quad
+    m_\phi = \frac{x_1}{\ell} = \frac{x_1}{R_\xi}
+    \label{eq:ch11_A1_radius}
+\end{equation}
+With $x_1 = \pi/2$ (Neumann) and $R_\xi \approx 10^{-3}$ fm:
+\begin{equation}
+    m_\phi^{(A1)} = \frac{\pi/2 \times \hbar c}{R_\xi}
+    = \frac{\pi/2 \times 197.3 \text{ MeV}}{10^{-3}}
+    \approx 310 \text{ GeV}
+    \label{eq:ch11_A1_numeric}
+\end{equation}
+\textbf{Status:} This overshoots $M_W \approx 80$ GeV by factor $\sim 4$. \tagP{}
+
+\paragraph{\texorpdfstring{Interpretation A2: $2\pi R_\xi$ as Circumference.}{Interpretation A2: 2pi R-xi as Circumference.}}
+
+If $R_\xi$ is interpreted as a radius and the KK quantization uses the circumference
+$\ell = 2\pi R_\xi$:
+\begin{equation}
+    m_\phi^{(A2)} = \frac{x_1}{2\pi R_\xi}
+    = \frac{\pi/2}{2\pi R_\xi} \times \hbar c
+    \approx \frac{197.3}{4 \times 10^{-3}} \text{ MeV}
+    \approx 49 \text{ GeV}
+    \label{eq:ch11_A2_numeric}
+\end{equation}
+\textbf{Status:} This undershoots $M_W$ by factor $\sim 1.6$. \tagP{}
+
+\paragraph{\texorpdfstring{Interpretation A3: $R_\xi$ as Diffusion Length (Boundary Layer).}{Interpretation A3: R-xi as Diffusion Length (Boundary Layer).}}
+
+If $R_\xi$ characterizes a diffusion length scale that maps to the effective boundary
+layer thickness via a geometric factor $C_{\text{diff}}$:
+\begin{equation}
+    \ell_{\text{eff}} = C_{\text{diff}} \cdot R_\xi
+    \label{eq:ch11_A3_diffusion}
+\end{equation}
+where $C_{\text{diff}}$ encodes the geometry of how diffusion establishes the boundary.
+
+From Part I membrane dynamics, if the diffusion operates isotropically from a point
+source, the effective ``capture radius'' is related to the diffusion length by
+geometric factors involving the dimensionality. For 3D isotropic diffusion:
+\begin{equation}
+    C_{\text{diff}} \sim 4\pi \quad \text{(surface area of unit sphere)}
+    \label{eq:ch11_A3_factor}
+\end{equation}
+This would give:
+\begin{equation}
+    m_\phi^{(A3)} = \frac{x_1}{4\pi R_\xi} \approx 25 \text{ GeV}
+    \label{eq:ch11_A3_numeric}
+\end{equation}
+\textbf{Status:} This undershoots significantly. \tagP{}
+
+\paragraph{Interpretation Summary.}
+
+\begin{table}[ht]
+\centering
+\caption{$R_\xi$ interpretation impact on $m_\phi$}
+\label{tab:ch11_Rxi_interpretations}
+\small
+\begin{tabular}{lccccl}
+\toprule
+\textbf{Interpretation} & \textbf{$\ell_{\text{eff}}$} & \textbf{Factor} & \textbf{$m_\phi$ (GeV)} & \textbf{vs $M_W$} & \textbf{Status} \\
+\midrule
+A1: Radius & $R_\xi$ & 1 & 310 & $+290\%$ & \tagP{} \\
+A2: Circumference & $2\pi R_\xi$ & $2\pi$ & 49 & $-39\%$ & \tagP{} \\
+A3: Diffusion ($4\pi$) & $4\pi R_\xi$ & $4\pi$ & 25 & $-69\%$ & \tagP{} \\
+\textbf{Target} & --- & $\sim 3.9$ & $\sim 80$ & $0\%$ & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Key finding:} The factor needed to hit $m_\phi = 80$ GeV is $\sim 3.9$, which lies
+between A1 (factor 1) and A2 (factor $2\pi \approx 6.3$). No single ``natural'' interpretation
+gives exactly the right scale.
+
+\textbf{Part A verdict:} The $R_\xi$ interpretation shifts the required geometric factor
+by up to $4\pi$, but none of the three canonical interpretations uniquely yields
+$m_\phi \approx 80$ GeV. The interpretation remains \tagP{} and contributes to the
+overall uncertainty.
+
+% ==============================================================================
+% PART B: ROBIN BC FROM JUNCTION PHYSICS
+% ==============================================================================
+\subsubsection{Part B: Robin BC from Junction Physics}
+\label{sec:ch11_attemptD_B}
+
+Attempt C (\S\ref{sec:ch11_attemptC_routes}) showed that Robin boundary conditions
+can mathematically achieve factor-8 if $(a\ell, b\ell) \sim 0.1$. Here we ask:
+\emph{Can these parameters be derived from junction physics?}
+
+\paragraph{Boundary Action Ansatz.}
+
+Consider a minimal brane-localized action term for a scalar $\phi$:
+\begin{equation}
+    S_{\text{brane}} = \int d^4x \sqrt{-g_{\text{ind}}} \left[
+        -\frac{\kappa}{2} \phi^2(x, y=0) + \lambda \phi(x, y=0) \partial_y \phi(x, y=0)
+    \right]
+    \label{eq:ch11_B_brane_action}
+\end{equation}
+where $\kappa$ has dimension [length]$^{-1}$ and $\lambda$ is dimensionless.
+
+Varying $S_{\text{bulk}} + S_{\text{brane}}$ with respect to $\phi$ at $y=0$ yields:
+\begin{equation}
+    \left. \partial_y \phi \right|_{y=0^+} - \left. \partial_y \phi \right|_{y=0^-}
+    = -\kappa \phi(0) + \lambda \partial_y \phi(0)
+    \label{eq:ch11_B_variation}
+\end{equation}
+
+For a Z$_2$-symmetric setup where $\phi(-y) = \phi(y)$ (even parity), we have
+$\partial_y \phi|_{0^-} = -\partial_y \phi|_{0^+}$, hence:
+\begin{equation}
+    2 \partial_y \phi(0) = -\kappa \phi(0) + \lambda \partial_y \phi(0)
+    \label{eq:ch11_B_jump}
+\end{equation}
+Rearranging:
+\begin{equation}
+    (2 - \lambda) \partial_y \phi(0) = -\kappa \phi(0)
+    \quad \Rightarrow \quad
+    \partial_y \phi(0) + \frac{\kappa}{2-\lambda} \phi(0) = 0
+    \label{eq:ch11_B_robin}
+\end{equation}
+
+This is a Robin BC with:
+\begin{equation}
+    \boxed{
+    \alpha = \frac{\kappa}{2 - \lambda}
+    }
+    \label{eq:ch11_B_alpha}
+\end{equation}
+
+\paragraph{Naturalness of Parameters.}
+
+In terms of the KK length scale $\ell$, the dimensionless Robin parameter is:
+\begin{equation}
+    \alpha \ell = \frac{\kappa \ell}{2 - \lambda}
+    \label{eq:ch11_B_alpha_ell}
+\end{equation}
+
+\textbf{Natural expectations:}
+\begin{itemize}[nosep]
+    \item If $\kappa \sim 1/\ell$ (boundary term of order bulk scale): $\alpha\ell \sim \mathcal{O}(1)$
+    \item If $\lambda \ll 1$ (small derivative coupling): $\alpha\ell \approx \kappa\ell/2$
+    \item To achieve $\alpha\ell \sim 0.1$: requires either $\kappa \ll 1/\ell$ or fine-tuned
+          cancellation with $\lambda \approx 2$
+\end{itemize}
+
+\begin{table}[ht]
+\centering
+\caption{Robin parameter naturalness}
+\label{tab:ch11_B_naturalness}
+\small
+\begin{tabular}{lcccl}
+\toprule
+\textbf{Scenario} & \textbf{$\kappa\ell$} & \textbf{$\lambda$} & \textbf{$\alpha\ell$} & \textbf{Naturalness} \\
+\midrule
+Generic & $\sim 1$ & $\ll 1$ & $\sim 0.5$ & Natural \\
+Small brane term & $\sim 0.2$ & $\ll 1$ & $\sim 0.1$ & Mild tuning \\
+Derivative cancellation & $\sim 1$ & $\approx 1.8$ & $\sim 5$ & Unnatural \\
+Target for factor-8 & --- & --- & $\sim 0.1$ & Requires justification \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{\texorpdfstring{Physical Interpretation of $\kappa$.}{Physical Interpretation of kappa.}}
+
+The boundary mass term $\kappa \phi^2/2$ can arise from:
+\begin{enumerate}[nosep]
+    \item \textbf{Brane tension coupling:} If the brane tension $\sigma$ couples to $\phi$,
+          then $\kappa \sim \sigma/M_{5,\mathrm{Pl}}^3$ where $M_{5,\mathrm{Pl}}$ is the 5D Planck scale.
+    \item \textbf{Induced boundary mass:} Quantum corrections from brane-localized matter
+          can generate $\kappa \sim g^2/(16\pi^2 \ell)$.
+    \item \textbf{Gibbons-Hawking-York analog:} For gravitational modes, $\kappa$ relates
+          to the extrinsic curvature; for scalars, a similar boundary term ensures a
+          well-posed variational principle.
+\end{enumerate}
+
+\textbf{Can we derive $\kappa\ell \approx 0.2$?}
+
+From Part I, the brane tension is $\sigma \sim 10^{14}$ GeV$^4$ and the 5D scale
+$M_{5,\mathrm{Pl}} \sim 10^{16}$ GeV. This gives:
+\begin{equation}
+    \kappa \sim \frac{\sigma}{M_{5,\mathrm{Pl}}^3} \sim \frac{10^{14}}{10^{48}} \text{ GeV}^{-2}
+    \sim 10^{-34} \text{ GeV}^{-2}
+    \label{eq:ch11_B_kappa_estimate}
+\end{equation}
+With $\ell \sim 10^{-3}$ fm $\sim 5 \times 10^{-3}$ GeV$^{-1}$:
+\begin{equation}
+    \kappa \ell \sim 10^{-34} \times 5 \times 10^{-3} \sim 10^{-36}
+    \label{eq:ch11_B_kappa_ell}
+\end{equation}
+
+This is \emph{far} smaller than the $\alpha\ell \sim 0.1$ needed for factor-8.
+
+\paragraph{Part B Verdict.}
+
+\begin{tcolorbox}[colback=yellow!10, colframe=yellow!60!black,
+    title=\textbf{Part B: Robin from Junction Verdict}]
+\textbf{Derived:}
+\begin{itemize}[nosep]
+    \item[\ding{51}] Robin BC structure emerges from boundary action \tagDc{}
+    \item[\ding{51}] Parameter $\alpha = \kappa/(2-\lambda)$ from variation \tagDc{}
+\end{itemize}
+
+\textbf{Not derived:}
+\begin{itemize}[nosep]
+    \item[\ding{55}] The specific value $\alpha\ell \sim 0.1$ needed for factor-8 \tagP{}
+    \item[\ding{55}] Natural estimates give $\kappa\ell \ll 1$ or $\kappa\ell \sim 1$,
+          not the intermediate $\sim 0.1$ \tagP{}
+\end{itemize}
+
+\textbf{Status:} Robin BC \emph{structure} is derived \tagDc{}, but the \emph{parameter values}
+that would explain factor-8 remain postulated \tagP{} with a \textbf{naturalness warning}:
+achieving $\alpha\ell \sim 0.1$ requires either:
+\begin{enumerate}[nosep]
+    \item A boundary term $\kappa \sim 0.2/\ell$ without known origin, or
+    \item Fine-tuned cancellation between $\kappa\ell$ and $\lambda$.
+\end{enumerate}
+\end{tcolorbox}
+
+% ==============================================================================
+% PART C: OVERCOUNTING/NORMALIZATION AUDIT
+% ==============================================================================
+\subsubsection{Part C: Overcounting and Normalization Audit}
+\label{sec:ch11_attemptD_C}
+
+Multiple factor-8 candidates have been proposed by combining geometric/topological
+elements. Here we audit whether these combinations involve independent physics or
+double-counting.
+
+\paragraph{Factor Inventory.}
+
+We catalog all factors that have appeared in OPR-20 attempts:
+
+\begin{table}[ht]
+\centering
+\caption{Factor provenance inventory}
+\label{tab:ch11_C_inventory}
+\small
+\begin{tabular}{p{3.5cm}ccp{5.5cm}l}
+\toprule
+\textbf{Factor} & \textbf{Value} & \textbf{Tag} & \textbf{Physical Origin} & \textbf{Independent?} \\
+\midrule
+Z$_2$ orbifold & 2 & \tagDc{} & Mode parity on $S^1/\mathbb{Z}_2$ & Primary \\
+Israel junction & 2 & \tagDc{} & $[K] = 2K$ for symmetric brane & = Z$_2$ \\
+Mode normalization & $\sqrt{2}$ & \tagDc{} & Orthonormality integral doubling & Yes (independent) \\
+Circumference & $2\pi$ & \tagP{} & $\ell = 2\pi R_\xi$ interpretation & Yes (independent) \\
+Solid angle & $4\pi$ & \tagP{} & 3D isotropic measure & Yes (independent) \\
+DoF counting & 5/4 or 4/3 & \tagDc{} & 5D$\to$4D polarization & No factor-8 \\
+Robin BC & variable & \tagP{} & Boundary term parameters & Independent mechanism \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{\texorpdfstring{Key Redundancy: Z$_2$ $\equiv$ Israel Junction.}{Key Redundancy: Z2 = Israel Junction.}}
+
+The Z$_2$ orbifold identification $y \leftrightarrow -y$ and the Israel junction condition
+are \emph{the same physics}:
+\begin{itemize}[nosep]
+    \item Z$_2$ symmetry forces $\partial_y \phi|_{0^+} = -\partial_y \phi|_{0^-}$
+    \item Israel matching gives $[K] = K^+ - K^- = 2K^+$ for the same reason
+\end{itemize}
+\textbf{Conclusion:} Counting both Z$_2$ (factor 2) and Israel (factor 2) as $2 \times 2 = 4$
+would be \textbf{double-counting}. They contribute factor 2 \emph{once}.
+
+\paragraph{Mode Normalization: Independent.}
+
+The mode orthonormality condition:
+\begin{equation}
+    \int_{-\ell}^{+\ell} |f_n(y)|^2 \, dy = 1
+    \label{eq:ch11_C_norm}
+\end{equation}
+involves an integral over $[-\ell, +\ell]$, which is $2\ell$ in extent. This gives
+a factor $\sqrt{2}$ in the normalization of coupling constants.
+
+This is \emph{independent} of the Z$_2$ parity factor:
+\begin{itemize}[nosep]
+    \item Z$_2$ determines \emph{which modes exist} (even vs odd)
+    \item Normalization determines \emph{how modes couple}
+\end{itemize}
+\textbf{Conclusion:} $2 \times \sqrt{2} = 2\sqrt{2}$ is legitimate (no double-counting).
+
+\paragraph{Circumference Factor: Independent but Postulated.}
+
+The factor $2\pi$ arises if $R_\xi$ is interpreted as a radius and $\ell = 2\pi R_\xi$
+as the circumference. This is:
+\begin{itemize}[nosep]
+    \item \emph{Independent} of Z$_2$ and normalization (different physics)
+    \item \emph{Postulated} \tagP{} because the interpretation of $R_\xi$ is a choice
+\end{itemize}
+\textbf{Conclusion:} $2\pi \times \sqrt{2} \approx 8.89$ is legitimate if the circumference
+interpretation is accepted \tagP{}.
+
+\paragraph{Audit of Composite Factor Candidates.}
+
+\begin{table}[ht]
+\centering
+\caption{Overcounting audit for factor-8 candidates}
+\label{tab:ch11_C_audit}
+\small
+\begin{tabular}{p{3.2cm}ccp{4.5cm}cc}
+\toprule
+\textbf{Candidate} & \textbf{Factor} & \textbf{$m_\phi$} & \textbf{Decomposition} & \textbf{Indep.?} & \textbf{Verdict} \\
+\midrule
+Z$_2$ $\times$ Israel & $2 \times 2 = 4$ & 155 & Same physics twice & \textcolor{BrickRed}{\ding{55}} & FAIL \\
+Z$_2$ $\times$ norm & $2 \times \sqrt{2} = 2.83$ & 110 & Different physics & \textcolor{OliveGreen}{\ding{51}} & PASS \\
+$2\pi \times \sqrt{2}$ & $8.89$ & 70 & Circ + norm & \textcolor{OliveGreen}{\ding{51}} & PASS \\
+$2 \times 2 \times 2$ & 8 & 77.5 & Three Z$_2$'s? & \textcolor{BrickRed}{?} & No 3rd Z$_2$ \\
+$2 \times 4$ (Z$_2 \times$ E) & 8 & 77.5 & Potential overcount\textsuperscript{*} & \textcolor{YellowOrange}{?} & CHECK \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.5em}
+\footnotesize\textsuperscript{*}Route E (factor 4) may already include Z$_2$ from the
+doubled integration range.
+\end{table}
+
+\paragraph{\texorpdfstring{Detailed Check: $2 \times 4$ Overcounting.}{Detailed Check: 2x4 Overcounting.}}
+
+In Attempt C, Route E gave factor 4 from normalization on the full orbifold
+$\int_{-\ell}^{+\ell}$. If we then multiply by Route A (Z$_2$ factor 2), we get:
+\begin{equation}
+    \text{Candidate: } 2 \times 4 = 8
+    \label{eq:ch11_C_check}
+\end{equation}
+
+\textbf{Is this overcounting?}
+
+Route E (factor 4) decomposes as:
+\begin{itemize}[nosep]
+    \item Factor 2 from doubled integration range (= Z$_2$ orbifold range)
+    \item Factor 2 from normalization giving $\sqrt{2}$ in coupling $\Rightarrow$ squared gives 2
+\end{itemize}
+
+Route A (factor 2) is the Z$_2$ orbifold.
+
+\textbf{Verdict:} The ``factor 2 from doubled integration range'' in Route E is
+\emph{the same physics} as Route A. Therefore:
+\begin{equation}
+    \text{Route A} \times \text{Route E} = 2 \times 4 = 8
+    \quad \text{includes \textbf{overcounting}}
+    \label{eq:ch11_C_overcount}
+\end{equation}
+The correct independent combination is:
+\begin{equation}
+    \text{Z}_2 \times \text{(coupling normalization)} = 2 \times 2 = 4
+    \quad \text{(not 8)}
+    \label{eq:ch11_C_correct}
+\end{equation}
+
+\paragraph{Part C Verdict.}
+
+\begin{tcolorbox}[colback=green!5, colframe=green!50!black,
+    title=\textbf{Part C: Overcounting Audit Verdict}]
+
+\textbf{Confirmed independent:}
+\begin{itemize}[nosep]
+    \item Z$_2$ orbifold (factor 2) \tagDc{}
+    \item Mode normalization ($\sqrt{2}$) \tagDc{}
+    \item Circumference interpretation ($2\pi$) \tagP{}
+\end{itemize}
+
+\textbf{Confirmed redundant (same physics):}
+\begin{itemize}[nosep]
+    \item Z$_2$ $\equiv$ Israel junction (factor 2, not 4)
+    \item Route E (factor 4) includes Z$_2$ range doubling
+\end{itemize}
+
+\textbf{Valid composite candidates:}
+\begin{itemize}[nosep]
+    \item $2\sqrt{2} \approx 2.83$ \tagDc{} (Z$_2$ + normalization)
+    \item $2\pi\sqrt{2} \approx 8.89$ \tagDc{}+\tagP{} (adds circumference interpretation)
+\end{itemize}
+
+\textbf{Invalid (overcounting):}
+\begin{itemize}[nosep]
+    \item $2 \times 4 = 8$ (double-counts Z$_2$)
+    \item $2 \times 2 \times 2 = 8$ (no third independent Z$_2$)
+\end{itemize}
+\end{tcolorbox}
+
+% ==============================================================================
+% COMBINED VERDICT
+% ==============================================================================
+\subsubsection{Attempt D: Combined Verdict}
+\label{sec:ch11_attemptD_verdict}
+
+\begin{tcolorbox}[colback=gray!10, colframe=gray!60!black,
+    title=\textbf{OPR-20 Attempt D: Final Assessment}]
+
+\textbf{What Attempt D established:}
+
+\begin{enumerate}[nosep]
+    \item \textbf{Part A ($R_\xi$ interpretation):}
+          \begin{itemize}[nosep]
+              \item Three interpretations span factor range $1 \to 4\pi$
+              \item Target factor $\sim 3.9$ lies between A1 and A2
+              \item \textbf{Status:} Interpretation is \tagP{}, not derived
+          \end{itemize}
+
+    \item \textbf{Part B (Robin from junction):}
+          \begin{itemize}[nosep]
+              \item Robin BC \emph{structure} derived from boundary action \tagDc{}
+              \item Parameter $\alpha\ell \sim 0.1$ for factor-8 requires mild tuning
+              \item Natural estimates give $\alpha\ell \sim 1$ (generic) or $\ll 1$ (tension-suppressed)
+              \item \textbf{Status:} Structure \tagDc{}, parameters \tagP{} with naturalness warning
+          \end{itemize}
+
+    \item \textbf{Part C (overcounting audit):}
+          \begin{itemize}[nosep]
+              \item Z$_2$ and Israel junction are \emph{same physics} (factor 2, not 4)
+              \item $2 \times 4 = 8$ involves overcounting
+              \item $2\pi\sqrt{2} \approx 8.89$ passes independence check
+              \item \textbf{Status:} Best candidate is $2\pi\sqrt{2}$ \tagDc{}+\tagP{}
+          \end{itemize}
+\end{enumerate}
+
+\textbf{Updated factor landscape:}
+
+\begin{center}
+\small
+\begin{tabular}{lcccl}
+\toprule
+\textbf{Candidate} & \textbf{Factor} & \textbf{$m_\phi$ (GeV)} & \textbf{Residual} & \textbf{Status} \\
+\midrule
+Z$_2$ + norm (no circ.) & $2\sqrt{2}$ & 110 & $+37\%$ & \tagDc{} \\
+Circumference + norm & $2\pi\sqrt{2}$ & 70 & $-12\%$ & \tagDc{}+\tagP{} \\
+Exact 8 (from ??) & 8 & 77.5 & $-3\%$ & [OPEN] \\
+Robin tuned & $\sim 8$ & $\sim 78$ & $\sim 0\%$ & \tagP{} (tuned) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Viable routes forward:}
+\begin{enumerate}[nosep]
+    \item Accept $2\pi\sqrt{2}$ and the 12\% residual as ``within dimensional analysis uncertainty''
+    \item Derive the circumference interpretation from Part I membrane physics (upgrade \tagP{}$\to$\tagDc{})
+    \item Find a third independent factor $\sim 1.14$ to close the 12\% gap
+    \item Refine $R_\xi$ estimate by 12\% (absorb residual into parameter uncertainty)
+\end{enumerate}
+
+\textbf{Final status:} OPR-20 remains \textbf{RED-C [Dc]+[OPEN]}
+\begin{itemize}[nosep]
+    \item \textbf{[Dc]:} BC route negative closure confirmed; overcounting audit complete;
+          $2\pi\sqrt{2}$ is structurally the best-motivated factor
+    \item \textbf{[OPEN]:} Exact factor 8 not uniquely derived; 12\% residual unexplained;
+          circumference interpretation and Robin parameters remain \tagP{}
+\end{itemize}
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Closure Targets (Updated)}
+\label{sec:ch11_attemptD_closure}
+
+To upgrade OPR-20 from RED-C to YELLOW:
+
+\begin{enumerate}[nosep]
+    \item \textbf{Derive circumference interpretation:}
+          Show from Part I that $R_\xi$ is genuinely a radius and the relevant KK length
+          is $2\pi R_\xi$. This would upgrade $2\pi$ from \tagP{} to \tagDc{}.
+
+    \item \textbf{Explain the 12\% residual:}
+          Either:
+          \begin{itemize}[nosep]
+              \item Identify a third independent geometric factor $\sim 1.14$
+              \item Show that $R_\xi$ has 12\% systematic uncertainty from Part I
+              \item Accept $m_\phi \approx 70$ GeV as the ``EDC prediction'' and flag the
+                    tension with $M_W = 80$ GeV
+          \end{itemize}
+
+    \item \textbf{Or: Derive Robin parameters from physics:}
+          Find a mechanism that naturally gives $\alpha\ell \sim 0.1$ without tuning.
+\end{enumerate}
+
+\textbf{Negative closures confirmed:}
+\begin{itemize}[nosep]
+    \item Standard BCs (D/N) cannot produce factor $>4$ \tagDc{}
+    \item $2 \times 4 = 8$ involves overcounting \tagDc{}
+    \item Third independent Z$_2$ not identified in current setup \tagDc{} (negative)
+\end{itemize}
+
+\begin{tcolorbox}[colback=gray!10, colframe=gray!60!black,
+    title=\textbf{Micro-Status (for margins)}]
+\textbf{OPR-20 Attempt D:} $R_\xi$ interpretation audit (\tagP{}); Robin from junction
+(structure \tagDc{}, params \tagP{}); overcounting audit ($2\pi\sqrt{2}$ passes, $2\times 4$
+fails). Best factor: $2\pi\sqrt{2} \approx 8.89$ giving $m_\phi \approx 70$ GeV. Status:
+RED-C [Dc]+[OPEN].
+\end{tcolorbox}
+
