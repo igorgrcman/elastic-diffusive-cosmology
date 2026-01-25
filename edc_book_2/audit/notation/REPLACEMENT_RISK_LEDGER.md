@@ -25,11 +25,30 @@ For each changed instance:
 
 ## Completed Replacements
 
-(None yet — this section logs replacements after they are made)
+Commit 7014cbd (2026-01-24): Phase D notation remediation complete.
 
-| File | Line | Old Symbol | New Symbol | Classification | Canon Anchor | Reason |
-|------|------|------------|------------|----------------|--------------|--------|
-| — | — | — | — | — | — | — |
+### Category A: M_5 → \mathcal{M}^5 (Manifold Context) — COMPLETED
+
+| VR-ID | File | Lines | Status |
+|-------|------|-------|--------|
+| VR-001 to VR-007 | 05_three_generations.tex | 334,339,341,369-370,378,385,402,501,605 | ✅ DONE |
+
+### Category B: M_5 → M_{5,Pl} (Mass Context) — COMPLETED
+
+| VR-ID | File | Lines | Status |
+|-------|------|-------|--------|
+| VR-008 | 11_gf_derivation.tex | 404,406 | ✅ DONE |
+| VR-009, VR-010 | ch11_opr20_attemptD*.tex | 248,259,261 | ✅ DONE |
+| VR-011, VR-012 | ch14_bvp_closure_pack.tex | 276,280,297,305 | ✅ DONE |
+
+### Category C: z/Δz → ξ/Δξ (5D Depth Context) — COMPLETED
+
+| VR-ID | File | Lines | Status |
+|-------|------|-------|--------|
+| VR-013 to VR-019 | 06_neutrinos_edge_modes.tex | 70-71,93,434-437,457-458,465-467,485,530,536,701,757 | ✅ DONE |
+| VR-020 to VR-023 | 07_ckm_cp.tex | 66,97,102,446,505,511,521-541,572,693-724,803-808,1012-1047 | ✅ DONE |
+| VR-024 | 09_va_structure.tex | 275-276,309 | ✅ DONE |
+| VR-025 | ch11_opr20_attemptF*.tex | 23-24 | ✅ DONE |
 
 ---
 
