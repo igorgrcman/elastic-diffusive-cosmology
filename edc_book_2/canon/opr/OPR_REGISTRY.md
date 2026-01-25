@@ -21,6 +21,7 @@
 | OPR-09 | [L] | π prefactor derivation | OPEN |
 | OPR-10 | [L] | (3/2) factor from Z₆ | OPEN |
 | OPR-11 | [L] | Koide Q = 2/3 energetics | OPEN |
+| OPR-12 | [L] | KK truncation / V(ξ) potential | OPEN |
 
 ---
 
@@ -436,6 +437,39 @@ Q value cannot be imposed; must be output of variational principle.
 
 ---
 
+## OPR-12 [L] KK tower truncation / V(ξ) potential
+
+**Short name**: Derive thick-brane potential V(ξ) and show n≥3 modes are unstable
+
+**Status**: OPEN
+
+**Missing**:
+- The effective potential V(ξ) that determines mode localization is not derived
+- No WKB action S_n calculation for mode lifetimes exists
+- No proof that modes n=0,1,2 are stable while n≥3 are unstable/non-normalizable
+
+**Blocks**:
+- E-CH06-P-004 (KK truncation mechanism)
+- E-CH06-I-002 (mode indices n=0,1,2)
+- All claims depending on "exactly three generations" from dynamics
+
+**Where it appears in Book2**:
+- CH06 §5.4 Mechanism B (eq:ch5_lifetime, eq:ch5_truncation_cond)
+
+**Minimum closure deliverable**:
+1. Derive V(ξ) from EDC thick-brane action
+2. Compute WKB action S_n for n = 0,1,2,3,4
+3. Show τ₀, τ₁, τ₂ ≫ t_obs while τ₃ < t_Planck
+4. OR show n≥3 modes are non-normalizable (different argument)
+
+**Closure test**:
+CLOSED iff explicit calculation shows exactly 3 stable modes from V(ξ) derived from EDC geometry.
+
+**No-smuggling note**:
+Cannot assume V(ξ) has 3 minima; must derive it. Cannot fit barrier height to make 3 modes stable.
+
+---
+
 ## Appendix: OPR → Claim Count Estimates
 
 | OPR | Estimated Blocked Claims |
@@ -451,6 +485,7 @@ Q value cannot be imposed; must be output of variational principle.
 | OPR-09 | ~3 (π-dependent in CH05) |
 | OPR-10 | ~3 ((3/2)-dependent in CH05) |
 | OPR-11 | ~3 (Koide-dependent in CH05) |
+| OPR-12 | ~8 (KK truncation in CH06) |
 
 *Note: Claims may be blocked by multiple OPRs. Exact crosswalk in OPR_CLAIM_CROSSWALK.md*
 

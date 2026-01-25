@@ -13,7 +13,7 @@
 | **[Der] (Fully Derived)** | 12 |
 | **[Dc] (Derived-Conditional)** | 184 |
 | **[M]/[Def] (Mathematical/Definition)** | 5 |
-| **TOTAL Claims** | **205** |
+| **TOTAL Claims** | **202** |
 
 *Note: CH05 claims marked with 5* are [P] (provisional candidates), not [Der] or [Dc].*
 
@@ -26,7 +26,7 @@
 | CH03 | 0 | 33 | 0 | 33 |
 | CH04 | 0 | 24 | 0 | 24 |
 | CH05 | 0 | 2 | 5* | 7 |
-| CH06 | 0 | 13 | 0 | 13 |
+| CH06 | 0 | 1 | 9* | 10 |
 | CH07 | 0 | 24 | 0 | 24 |
 | CH08 | — | — | — | — |
 | CH09 | 0 | 2 | 0 | 2 |
@@ -87,11 +87,26 @@
 | E-CH05-P-006 | Q = \|Z₂\|/\|Z₃\| | IF energetics proven [OPR-11] | [P] |
 | E-CH05-P-007 | m_τ from Koide | Not independent (constraint) | [P] |
 
-### Flavor Structure (CH06-CH07)
+### Three Generations (CH06)
 
 | ID | Statement | Condition | Status |
 |----|-----------|-----------|--------|
-| E-CH06-Dc-008 | m_ν/m_e ~ exp(-Δξ/κ⁻¹) | IF edge mode profiles | CONDITIONAL |
+| E-CH06-Dc-001 | Hexagonal → Z₆ symmetry | IF energy min packing [Dc] | [Dc]/[P] |
+| E-CH06-M-001 | Z₆ = Z₂ × Z₃ | Pure group theory | [M] |
+| E-CH06-I-001 | \|Z₃\| = 3 ↔ N_gen = 3 | Identification only [OPR-03] | [I] |
+| E-CH06-P-001 | Z₂ → matter/antimatter | Structural interpretation | [P] |
+| E-CH06-P-002 | Z₃ → generation index | Structural interpretation | [P] |
+| E-CH06-P-003 | Three-well V(ξ) toy model | Pedagogical, not derived | [P] |
+| E-CH06-P-004 | KK truncation τ_n ~ exp(S_n/ℏ) | IF V(ξ) derived [OPR-12] | [P] |
+| E-CH06-P-005 | π₁(M⁵) = Z₃ | IF bulk topology computed [OPR-03] | [P] |
+| E-CH06-I-002 | Mode n=0,1,2 → (e,μ,τ) | Numerical match [OPR-03] | [I] |
+| E-CH06-BL-001 | N_gen = 3 (LEP) | Experimental input | [BL] |
+
+### Flavor Structure (CH07)
+
+| ID | Statement | Condition | Status |
+|----|-----------|-----------|--------|
+| E-CH07-Dc-008 | m_ν/m_e ~ exp(-Δξ/κ⁻¹) | IF edge mode profiles | CONDITIONAL |
 | E-CH07-Dc-002 | CKM hierarchy λ,λ²,λ³ | IF overlap model + separation | CONDITIONAL |
 | E-CH07-Dc-007 | δ = 60° from Z₂ selection | IF phase cancellation | CONDITIONAL |
 
@@ -110,7 +125,8 @@
 |-----|-------------|-----------------|
 | OPR-01 | σ anchor | E-CH05-P-002 |
 | OPR-02 | KK truncation → N_gen=3 | E-CH05-Dc-*, E-CH14-* |
-| OPR-03 | π₁(M⁵) topology | E-CH05-P-007 (N_gen) |
+| OPR-03 | π₁(M⁵) topology | E-CH05-P-007, E-CH06-I-001, E-CH06-P-005 |
+| OPR-12 | KK truncation / V(ξ) | E-CH06-P-004, E-CH06-I-002 |
 | OPR-04 | δ ≡ R_ξ teleport | E-CH05-P-003 |
 | OPR-09 | π prefactor derivation | E-CH05-P-001 |
 | OPR-10 | (3/2) factor from Z₆ | E-CH05-P-004 |
