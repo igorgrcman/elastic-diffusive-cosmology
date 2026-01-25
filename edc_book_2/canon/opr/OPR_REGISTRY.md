@@ -835,10 +835,11 @@ AND no SM observables used as inputs ✓
 
 **What is derived [Dc]**:
 - Sturm-Liouville equation from 5D gauge action: -d²f_n/dξ² + V(ξ)f_n = m_n²f_n
-- Mass from eigenvalue: m_n = x_n / ℓ (dimensionless eigenvalue / domain size)
+- Dimensionless eigenvalue **definition**: x_n := m_n·ℓ  ⟺  m_n = x_n/ℓ
+- **Critical**: x_n = x_n(κ, V) depends on BVP solution — NOT a universal formula
 - Mediator mass definition: m_med = m_1 (first massive mode)
-- Effective contact strength: C_eff = g_5² ℓ² / x_1²
-- Connection to OPR-19: g_4² from dimensional reduction feeds into C_eff
+- Effective contact strength: C_eff = g_5² ℓ / x_1² (invariant structure)
+- Connection to OPR-19: g_4² = g_5²/ℓ from mode normalization ∫|f|²dξ = ℓ
 
 **Derivation source**:
 - 5D gauge action [M] (standard field theory)
