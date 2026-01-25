@@ -23,34 +23,63 @@ expectation value and $\lambda$ is the self-coupling of the domain-wall scalar.
 \end{edcAtAGlance}
 
 % ==============================================================================
-\section{Reader's Map: Three Distinct Length Scales}
+\section{Scale Taxonomy (Canonical Reference)}
 \label{sec:ch16_reader_map}
 
-Before proceeding, the reader should distinguish three length scales that
-appear in EDC weak-sector derivations:
+Before proceeding, the reader must distinguish four length scales that
+appear in EDC weak-sector derivations. \textbf{This section is the canonical
+reference; cite it when any scale identification is assumed.}
 
 \begin{tcolorbox}[colback=blue!3!white, colframe=blue!40!black,
-    title=\textbf{Symbol Disambiguation}]
-\begin{description}[leftmargin=2em, style=nextline]
-    \item[$\Delta$ — Kink width] The thickness of the domain-wall profile
-    $\phi(\xi) = v \tanh(\xi/\Delta)$. Derived from scalar field theory:
-    $\Delta = 2/(v\sqrt{\lambda})$ \tagM{}.
+    title=\textbf{EDC Scale Taxonomy — Canonical Table}]
+\label{box:ch16_scale_taxonomy}
 
-    \item[$\delta$ — Boundary-layer scale] A regularization/transport scale
-    appearing in Robin boundary conditions as $\alpha \sim \ell/\delta$.
-    May or may not equal $\Delta$.
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lllc}
+\toprule
+\textbf{Symbol} & \textbf{Name} & \textbf{Physical Role} & \textbf{Status} \\
+\midrule
+$\Delta$ & Kink width & Scalar wall microphysics: $\phi = v\tanh(\xi/\Delta)$ & \tagM{} \\
+$\delta$ & Boundary-layer & Transport/diffusion regularization for Robin BC & \tagP{} \\
+$\ell$ & Domain support & Sturm--Liouville interval for OPR-21: $\mu = M_0\ell$ & \tagP{} \\
+$R_\xi$ & Diffusion scale & Coordinate/correlation length: $R_\xi = \hbar c/M_Z$ & \tagBL{} \\
+\bottomrule
+\end{tabular}
+\end{center}
 
-    \item[$\ell$ — Domain support size] The length scale that enters the
-    OPR-21 eigenvalue problem: $\mu = M_0 \ell$. Related to $\Delta$ via
-    $\ell = n\Delta$ if one \emph{assumes} proportionality; $n$ is then a
-    postulated ratio \tagP{}.
+\medskip
+\textbf{Key formulas:}
+\begin{itemize}[nosep]
+    \item $\Delta = 2/(v\sqrt{\lambda})$ \tagM{} — from $\lambda\phi^4$ kink theory
+    \item $R_\xi \approx 2.16 \times 10^{-3}$ fm \tagBL{} — anchored to $M_Z$
+    \item Unit conversion: $1\,\mathrm{fm} = 5.0677\,\mathrm{GeV}^{-1}$
+\end{itemize}
+\end{tcolorbox}
+
+\subsection{Assumption Labels for Scale Identifications}
+\label{subsec:ch16_assumption_labels}
+
+Throughout EDC derivations, the following identifications may be assumed.
+\textbf{Each must be explicitly labeled when invoked.}
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=orange!50!black,
+    title=\textbf{Scale Identification Assumptions}]
+\begin{description}[leftmargin=3em, style=nextline]
+    \item[\textbf{(A1)}] $\Delta = \delta$ — Kink width equals boundary-layer scale
+    \item[\textbf{(A2)}] $\delta = R_\xi$ — Boundary-layer scale equals diffusion scale
+    \item[\textbf{(A3)}] $\ell = n\Delta$ with $n = \mathcal{O}(1)$ — Domain size proportional to kink width
 \end{description}
 
 \medskip
-\textbf{Key insight:} OPR-21 constrains $\mu = M_0 \ell$, \emph{not} $M_0\Delta$
-directly. The ``tension'' reported below is \emph{conditional} on assuming
-$\ell = n\Delta$ with modest $n$.
+\textbf{Rule:} No derivation may silently assume any of (A1)--(A3). When any
+is used, it must be tagged \tagP{} with explicit label (e.g., ``assuming (A2)'').
 \end{tcolorbox}
+
+\medskip
+\textbf{Key insight:} OPR-21 constrains $\mu = M_0 \ell$, \emph{not} $M_0\Delta$
+directly. The ``tension'' reported in \S\ref{sec:ch16_resolution} is
+\emph{conditional} on assuming (A1)+(A2)+(A3) simultaneously.
 
 % ==============================================================================
 \section{Context: The Role of $\Delta$ in the Derivation Chain}
@@ -413,30 +442,49 @@ if $\Delta = R_\xi \sim 2 \times 10^{-3}$ fm (the OPR-04 identification) and
 $\ell = n\Delta$ with $n \sim 4$, then $\mu \approx 0.002$, far below the
 OPR-21 three-generation window $\mu \in [25, 35)$.
 
-\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!50!black,
-    title=\textbf{Conditional Nature of the Tension}]
-This ``tension'' is \textbf{not a strict incompatibility}. It arises from
-three simultaneous assumptions:
-\begin{enumerate}[nosep]
-    \item $\Delta = \delta$ — kink width equals boundary-layer scale
-    \item $\delta = R_\xi$ — boundary-layer scale equals diffusion scale
-    \item $\ell = n\Delta$ with modest $n \sim O(1)$
-\end{enumerate}
+\begin{tcolorbox}[colback=purple!5!white, colframe=purple!50!black,
+    title=\textbf{Lemma 16.1: Conditional Tension under (A1)--(A3)}]
+\label{lemma:ch16_conditional_tension}
 
-\textbf{If any one of these is relaxed, the tension disappears.}
+\textbf{Assumptions:}
+\begin{itemize}[nosep]
+    \item[(A1)] $\Delta = \delta$ (kink width = boundary-layer scale)
+    \item[(A2)] $\delta = R_\xi$ (boundary-layer scale = diffusion scale)
+    \item[(A3)] $\ell = n\Delta$ with $n = \mathcal{O}(1)$ (domain $\sim$ kink width)
+\end{itemize}
+
+\textbf{Premises:}
+\begin{itemize}[nosep]
+    \item OPR-01: $M_0 = (\sqrt{3}/2)\,y\sqrt{\sigma\Delta}$ \tagDc{}
+    \item OPR-21: $N_{\text{bound}} = 3$ requires $\mu = M_0\ell \in [25, 35)$ \tagDc{}
+    \item $R_\xi = \hbar c/M_Z \approx 2.16 \times 10^{-3}$ fm \tagBL{}
+\end{itemize}
+
+\textbf{Conclusion:}
+Under (A1)+(A2)+(A3), the resulting $\mu \approx 0.002 \ll 25$, hence
+$N_{\text{bound}} < 3$. This is a \textbf{conditional tension}, not a strict
+incompatibility.
+
+\textbf{Resolution:} Relaxing \emph{any one} of (A1)--(A3) removes the tension.
 \end{tcolorbox}
 
 \subsection{Resolution Paths}
 \label{subsec:ch16_resolution_paths}
 
-Four paths remain viable:
+Four paths remain viable. \textbf{Path~1 is adopted as the Working Default (WD)
+for subsequent chapters.}
 
 \begin{description}[leftmargin=2em, style=nextline]
-    \item[Path 1: $\delta \neq \Delta$]
+    \item[Path 1: $\delta \neq \Delta$ \hfill \textcolor{blue}{\textbf{(WD)}}]
     The boundary-layer scale $\delta$ (which enters Robin BC via
     $\alpha = \ell/\delta$) may differ from the kink width $\Delta$.
     These are \emph{a priori} distinct objects: $\Delta$ is a field-theoretic
     thickness, while $\delta$ is a transport/regularization scale.
+
+    \textbf{Physical motivation:} The kink width $\Delta$ characterizes scalar
+    field microphysics ($\lambda\phi^4$ theory), whereas $\delta$ arises from
+    5D fermion transport near the brane—these need not coincide.
+
     Status: \tagP{} — requires derivation of $\delta$ from 5D action.
 
     \item[Path 2: $n \gg 4$]
@@ -454,6 +502,21 @@ Four paths remain viable:
     shift the required $\Delta$ for a given $\mu$ window.
     Status: \tagP{} — requires systematic parameter scan.
 \end{description}
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!50!black,
+    title=\textbf{Working Default (WD): Path 1}]
+In subsequent derivations, we adopt \textbf{Path~1 ($\delta \neq \Delta$)} as
+the working hypothesis. This means:
+\begin{itemize}[nosep]
+    \item Assumption (A1) is \textbf{not} invoked by default
+    \item $\delta$ remains an independent parameter until derived from 5D action
+    \item The conditional tension of Lemma~\ref{lemma:ch16_conditional_tension}
+          does not apply unless (A1) is explicitly assumed
+\end{itemize}
+
+\textbf{This is a narrative choice, not a claim.} Alternative paths remain
+equally viable pending further derivations.
+\end{tcolorbox}
 
 \subsection{Epistemic Summary}
 \label{subsec:ch16_epistemic_summary}
