@@ -6,6 +6,43 @@
 
 ---
 
+## Scale Taxonomy (Canonical Reference)
+
+**Location**: Chapter 16, §16.1 (`\label{sec:ch16_reader_map}`)
+
+| Symbol | Name | Physical Role | Status |
+|--------|------|---------------|--------|
+| Δ | Kink width | Scalar wall microphysics: φ = v tanh(ξ/Δ) | [M] |
+| δ | Boundary-layer | Transport/diffusion regularization for Robin BC | [P] |
+| ℓ | Domain support | Sturm-Liouville interval for OPR-21: μ = M₀ℓ | [P] |
+| R_ξ | Diffusion scale | Coordinate/correlation length: R_ξ = ℏc/M_Z | [BL] |
+
+**Unit conversion**: 1 fm = 5.0677 GeV⁻¹
+
+### Assumption Labels (A1–A3)
+
+| ID | Assumption | Use Case |
+|----|------------|----------|
+| (A1) | Δ = δ | Kink width = boundary-layer scale |
+| (A2) | δ = R_ξ | Boundary-layer = diffusion scale |
+| (A3) | ℓ = nΔ with n = O(1) | Domain size proportional to kink width |
+
+**Rule**: No derivation may silently assume any of (A1)–(A3). Each must be explicitly tagged [P] with assumption label.
+
+### Working Default (WD)
+
+**Path 1 (δ ≠ Δ)** is adopted as the narrative working hypothesis for subsequent chapters.
+This is a narrative choice [P], not a derived claim.
+
+### Conditional Tension (Lemma 16.1)
+
+Under joint assumptions (A1)+(A2)+(A3), the OPR-04 result (Δ ~ R_ξ ~ 10⁻³ fm) combined with
+OPR-21 requirement (μ ∈ [25,35]) yields μ << 25, creating a **CONDITIONAL TENSION**.
+
+**This is NOT an incompatibility** — relaxing ANY of (A1)–(A3) removes the tension.
+
+---
+
 ## Registry Summary
 
 | OPR | Category | Short Name | Status |
