@@ -22,6 +22,9 @@
 | OPR-10 | [L] | (3/2) factor from Z₆ | OPEN |
 | OPR-11 | [L] | Koide Q = 2/3 energetics | OPEN |
 | OPR-12 | [L] | KK truncation / V(ξ) potential | OPEN |
+| OPR-13 | [N] | PMNS mixing angles | YELLOW PARTIAL |
+| OPR-14 | [N] | CP phase δ derivation | OPEN |
+| OPR-15 | [N] | Dirac/Majorana determination | OPEN |
 
 ---
 
@@ -470,6 +473,102 @@ Cannot assume V(ξ) has 3 minima; must derive it. Cannot fit barrier height to m
 
 ---
 
+## OPR-13 [N] PMNS mixing angles derivation
+
+**Short name**: Derive PMNS mixing angles from EDC geometry
+
+**Status**: OPEN (YELLOW partial — θ₂₃ derived, θ₁₂/θ₁₃ identified)
+
+**Missing**:
+- θ₂₃ ≈ 45° derived from Z₆ geometry (Attempt 2) [Dc] ← CLOSED
+- θ₁₂ structure identified (rank-2 baseline) but value not derived [I]
+- θ₁₃ structure identified (reactor perturbation ε = λ/√2) but origin not derived [I]
+- No first-principles calculation of θ₁₂⁰ or ε from EDC action
+
+**Blocks**:
+- E-CH07-Dc-* (PMNS angle claims)
+- All claims depending on PMNS matrix derivation
+
+**Where it appears in Book2**:
+- CH07: Neutrinos as Edge Modes (Attempts 1-4)
+- Attempt 2: Z₆ overlap model (θ₂₃ derivation)
+- Attempt 4: Rank-2 + ε structure (θ₁₂, θ₁₃ identified)
+
+**Minimum closure deliverable**:
+1. Geometric derivation of θ₁₂⁰ from Z₆ structure
+2. Derive ε = λ/√2 from boundary conditions or overlap integrals
+3. Show CP phase δ emerges from Z₂ selection
+
+**Closure test**:
+CLOSED iff all three PMNS angles are derived from EDC geometry without fitting to observed values.
+
+**No-smuggling note**:
+Cannot fit angles to PDG values; must derive from geometry.
+
+---
+
+## OPR-14 [N] CP phase δ derivation
+
+**Short name**: Derive CP-violating phase δ from EDC structure
+
+**Status**: OPEN (RED)
+
+**Missing**:
+- No mechanism for complex phases in PMNS matrix identified
+- δ ≈ 60° (observed) not explained
+- Connection to Z₂ matter/antimatter distinction unclear
+
+**Blocks**:
+- E-CH07-Dc-* (CP phase claims)
+- Any claim about CP violation origin in neutrino sector
+
+**Where it appears in Book2**:
+- CH07: Neutrinos as Edge Modes (line 620)
+- Not addressed in any Attempt (1-4)
+
+**Minimum closure deliverable**:
+1. Identify source of complex phases in overlap integrals
+2. Connect to Z₂ or Z₆ structure
+3. Derive δ value or range
+
+**Closure test**:
+CLOSED iff CP phase δ emerges from EDC geometry with explicit mechanism.
+
+**No-smuggling note**:
+Cannot postulate δ = 60°; must derive from structure.
+
+---
+
+## OPR-15 [N] Dirac/Majorana determination
+
+**Short name**: Determine if EDC neutrinos are Dirac or Majorana
+
+**Status**: OPEN (RED)
+
+**Missing**:
+- Edge-mode ontology accommodates both Dirac and Majorana
+- No mechanism distinguishes between the two
+- No prediction for neutrinoless double-beta decay
+
+**Blocks**:
+- E-CH07-Dc-* (neutrino nature claims)
+
+**Where it appears in Book2**:
+- CH07: Neutrinos as Edge Modes, §6.8 (line 658-686)
+
+**Minimum closure deliverable**:
+1. Determine if edge-mode self-conjugacy is forced or forbidden
+2. Predict Majorana mass scale if applicable
+3. State falsifiable prediction for 0νββ decay
+
+**Closure test**:
+CLOSED iff EDC predicts either Dirac or Majorana with testable consequence.
+
+**No-smuggling note**:
+Cannot claim both compatible as "prediction"; must commit to one or derive distinguishing observable.
+
+---
+
 ## Appendix: OPR → Claim Count Estimates
 
 | OPR | Estimated Blocked Claims |
@@ -486,6 +585,9 @@ Cannot assume V(ξ) has 3 minima; must derive it. Cannot fit barrier height to m
 | OPR-10 | ~3 ((3/2)-dependent in CH05) |
 | OPR-11 | ~3 (Koide-dependent in CH05) |
 | OPR-12 | ~8 (KK truncation in CH06) |
+| OPR-13 | ~10 (PMNS angles in CH07) |
+| OPR-14 | ~3 (CP phase in CH07) |
+| OPR-15 | ~2 (Dirac/Majorana in CH07) |
 
 *Note: Claims may be blocked by multiple OPRs. Exact crosswalk in OPR_CLAIM_CROSSWALK.md*
 

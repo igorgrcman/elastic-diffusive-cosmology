@@ -102,13 +102,20 @@
 | E-CH06-I-002 | Mode n=0,1,2 → (e,μ,τ) | Numerical match [OPR-03] | [I] |
 | E-CH06-BL-001 | N_gen = 3 (LEP) | Experimental input | [BL] |
 
-### Flavor Structure (CH07)
+### Neutrino Edge Modes (CH07)
 
 | ID | Statement | Condition | Status |
 |----|-----------|-----------|--------|
-| E-CH07-Dc-008 | m_ν/m_e ~ exp(-Δξ/κ⁻¹) | IF edge mode profiles | CONDITIONAL |
-| E-CH07-Dc-002 | CKM hierarchy λ,λ²,λ³ | IF overlap model + separation | CONDITIONAL |
-| E-CH07-Dc-007 | δ = 60° from Z₂ selection | IF phase cancellation | CONDITIONAL |
+| E-CH07-P-001 | Neutrino as edge mode (post:ch6_neutrino_edge) | Ontological postulate | [P] |
+| E-CH07-Dc-001 | m_ν/m_e ~ exp(-Δξ/κ⁻¹) (prop:ch6_suppression) | IF edge mode profiles | [Dc] |
+| E-CH07-I-001 | Three flavors ↔ \|Z₃\| = 3 (post:ch6_three_nu) | Identification [OPR-03] | [I] |
+| E-CH07-Dc-002 | Left-handed selection from BC (cor:ch6_left_nu) | IF Ch.9 BC established | [Dc] |
+| E-CH07-P-002 | PMNS from wavefunction overlap (eq:ch6_pmns_overlap) | Mechanism postulate | [P] |
+| E-CH07-Dc-003 | θ₂₃ ≈ 45° from Z₆ geometry (Attempt 2, A3) | From geometry | [Dc] GREEN |
+| E-CH07-Dc-004 | DFT baseline falsified (sin²θ₁₃ = 1/3 vs 0.022) | Negative result | [Dc] |
+| E-CH07-I-002 | Rank-2 + ε structure for PMNS (Attempt 4) | Structure identification [OPR-13] | [I] |
+| E-CH07-Dc-005 | ε = λ/√2 predicts θ₁₃ (Attempt 4.1) | Uses λ [BL], 15% error | [BL→Dc] |
+| E-CH07-Dc-006 | θ₁₂ = arctan(1/√2) (Attempt 4.2) | Pure geometry, 8.6% error | [Dc] |
 
 ### Fermi Constant (CH11)
 
@@ -124,13 +131,16 @@
 | OPR | Description | Blocking Claims |
 |-----|-------------|-----------------|
 | OPR-01 | σ anchor | E-CH05-P-002 |
-| OPR-02 | KK truncation → N_gen=3 | E-CH05-Dc-*, E-CH14-* |
-| OPR-03 | π₁(M⁵) topology | E-CH05-P-007, E-CH06-I-001, E-CH06-P-005 |
-| OPR-12 | KK truncation / V(ξ) | E-CH06-P-004, E-CH06-I-002 |
+| OPR-02 | Robin α from action | E-CH10-Dc-*, E-CH13-Der-*, E-CH14-* |
+| OPR-03 | π₁(M⁵) topology | E-CH05-P-007, E-CH06-I-001, E-CH06-P-005, E-CH07-I-001 |
 | OPR-04 | δ ≡ R_ξ teleport | E-CH05-P-003 |
 | OPR-09 | π prefactor derivation | E-CH05-P-001 |
 | OPR-10 | (3/2) factor from Z₆ | E-CH05-P-004 |
 | OPR-11 | Koide Q = 2/3 energetics | E-CH05-P-005, E-CH05-P-006 |
+| OPR-12 | KK truncation / V(ξ) | E-CH06-P-004, E-CH06-I-002 |
+| OPR-13 | PMNS mixing angles | E-CH07-I-002, E-CH07-Dc-003 to E-CH07-Dc-006 |
+| OPR-14 | CP phase δ derivation | E-CH07-* (CP phase claims) |
+| OPR-15 | Dirac/Majorana determination | E-CH07-* (neutrino nature) |
 | OPR-17 | Coupling map from 5D action | E-CH03-Dc-*, E-CH04-Dc-* |
 | OPR-19 | g₅ value derivation | E-CH11-Dc-* |
 | OPR-20 | ℓ and BC from membrane | E-CH10-Dc-*, E-CH13-* |
