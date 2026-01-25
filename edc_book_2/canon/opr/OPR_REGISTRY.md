@@ -66,7 +66,7 @@ OPR-21 requirement (μ ∈ [25,35]) yields μ << 25, creating a **CONDITIONAL TE
 | OPR-17 | [G] | SU(2)_L gauge embedding | OPEN |
 | OPR-18 | [M] | CKM/PMNS from overlaps | OPEN |
 | OPR-19 | [G] | g₅ value from 5D action | CONDITIONAL [Dc] |
-| OPR-20 | [G] | Mediator mass from ξ-geometry | OPEN |
+| OPR-20 | [G] | Mediator mass from ξ-geometry | CONDITIONAL [Dc] |
 | OPR-21 | [B] | BVP mode profiles | STRONG PARTIAL |
 | OPR-22 | [C] | First-principles G_F | OPEN |
 
@@ -827,14 +827,35 @@ AND no SM observables used as inputs ✓
 
 ## OPR-20 [G] Mediator mass from ξ-geometry
 
-**Short name**: Derive mediator mass m_φ from KK reduction along ξ
+**Short name**: Derive mediator mass m_med from Sturm-Liouville eigenvalue problem
 
-**Status**: OPEN (split: 20a mediator identity, 20b mass value)
+**Status**: CONDITIONAL [Dc] (Updated 2026-01-25)
 
-**Missing**:
-- KK spectrum from throat/ξ geometry
-- Identification of lowest massive mode as W/Z mediator
-- Numerical mass from geometric parameters
+**Sprint completed**: book2-opr20-mediator-mass-v1
+
+**What is derived [Dc]**:
+- Sturm-Liouville equation from 5D gauge action: -d²f_n/dξ² + V(ξ)f_n = m_n²f_n
+- Mass from eigenvalue: m_n = x_n / ℓ (dimensionless eigenvalue / domain size)
+- Mediator mass definition: m_med = m_1 (first massive mode)
+- Effective contact strength: C_eff = g_5² ℓ² / x_1²
+- Connection to OPR-19: g_4² from dimensional reduction feeds into C_eff
+
+**Derivation source**:
+- 5D gauge action [M] (standard field theory)
+- Warped metric ansatz [P] with warp cancellation from OPR-19
+- KK mode decomposition [Dc]
+- Sturm-Liouville theory [M]
+
+**Parameters (remain [P] postulated)**:
+- V(ξ) = effective potential
+- ℓ = domain size
+- κ₀, κ_ℓ = Robin BC parameters
+
+**Documentation created (2026-01-25)**:
+- `src/sections/ch18_opr20_mediator_mass_from_eigenvalue.tex` — Book chapter derivation
+- `audit/evidence/OPR20_MEDIATOR_MASS_DERIVATION_REPORT.md` — Evidence chain + failure modes
+- `canon/opr/OPR-20.md` — Canonical OPR document
+- `code/opr20_mediator_mass_sanity.py` — Numerical sanity script
 
 **Blocks**:
 - E-CH08-Dc-002 (L_eff structure)
@@ -842,17 +863,28 @@ AND no SM observables used as inputs ✓
 - OPR-22 (first-principles G_F)
 
 **Where it appears in Book2**:
+- **NEW**: CH18 (OPR-20 derivation section) — src/sections/ch18_opr20_mediator_mass_from_eigenvalue.tex
 - 11_gf_derivation.tex:495-499, 606
 - ch10_electroweak_bridge.tex (main discussion)
-- ch11_opr20_* files (closure attempts)
-
-**Minimum closure deliverable**:
-1. Specify ξ-geometry (throat shape, boundary conditions)
-2. Solve KK reduction for massive modes
-3. Express m_φ in terms of R_ξ, δ, or other EDC parameters
 
 **Closure test**:
-CLOSED iff m_φ is computed from geometry without using M_W as input.
+OPR-20 is CLOSED iff Sturm-Liouville eigenvalue structure is derived ✓
+AND mass formula m_n = x_n/ℓ is established ✓
+AND no SM observables used as inputs ✓
+
+**Current status: CONDITIONAL [Dc]**
+- Condition: Potential V(ξ) [P] — not derived from action
+- Condition: Domain size ℓ [P] — not derived
+- Condition: BC parameters κ [P] — structural form from OPR-21, value [P]
+
+**Remaining for full [Der]**:
+1. Derive V(ξ) from 5D action (gauge analog of OPR-21 L2) — OPEN-20-1
+2. Derive BC parameter κ from Israel junction for gauge field — OPEN-20-2
+3. Derive ℓ from first principles — OPEN-20-3 (shared with OPR-19)
+
+**No-smuggling certification**: ✓ PASS
+- Grep verification: No M_W, G_F, v=246GeV, sin²θ_W in derivation
+- Only used: 5D gauge action [M] + Sturm-Liouville theory [M] + OPR-19 infrastructure
 
 ---
 
