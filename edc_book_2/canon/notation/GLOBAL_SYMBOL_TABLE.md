@@ -95,6 +95,7 @@ No notation changes are permitted without updating this table first.
 | ℓ_P | `\ell_P` | Planck length | Quantum gravity scale | units | m | CANON | Fwk v2.0 Def.1.1 | — | NONE | — |
 | r_e | `r_e` | Knot radius | Topological knot scale | topology | m | CANON | Fwk v2.0 Def.1.1 | — | NONE | — |
 | δ | `\delta` | Brane thickness | Effective membrane width | brane | m | CANON | Fwk v2.0 §2.3 | — | LOW | — |
+| δ_CP | `\delta_{\text{CP}}` | PMNS CP phase | CP-violating phase in PMNS matrix | PMNS | rad | BASELINE | PDG 2024 | 06_neutrinos:172,620,760 | NONE | Disambiguated from δ (thickness) |
 | κ | `\kappa` | Penetration depth⁻¹ | Inverse localization scale | BVP | m⁻¹ | WORKING | — | 06_neutrinos:* | LOW | — |
 | σ | `\sigma` | Brane tension | Membrane surface tension | brane | MeV/fm² | CANON-PRIMARY | Fwk v2.0 Eq.(10), "σ ~ 8.8 MeV/fm²" | — | NONE | — |
 | η | `\eta` | Bulk viscosity | 5D fluid viscosity | 5D bulk | — | CANON | Fwk v2.0 §3.2 | — | LOW | Context: η_bulk vs η_metric |

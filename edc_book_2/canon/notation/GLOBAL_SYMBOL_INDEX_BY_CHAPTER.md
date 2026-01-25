@@ -102,6 +102,7 @@ Use for quick reference during editing or review.
 - Δξ (`\Delta\xi`) ✅ — 5D separation (remediated from Δz)
 - ξ_H (`\xi_H`) ✅ — Horizon position (remediated from z_H)
 - f(ξ) ✅ — Profile function
+- δ_CP (`\delta_{\text{CP}}`) ✅ — PMNS CP phase (disambiguated from δ thickness)
 
 ### 07_case_tau.tex
 - m_τ (`m_\tau`) ✅ — Tau mass

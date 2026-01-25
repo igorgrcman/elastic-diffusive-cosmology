@@ -1,8 +1,8 @@
 # CLAIM EVIDENCE INDEX — Book 2 Evidence Audit
 
-**Branch**: book2-chapter-audit-v1
+**Branch**: book2-ch07-openq-remediation-v1
 **Date**: 2026-01-25
-**Phase**: E1 (Evidence Index)
+**Phase**: E3 (Post-CH07 Remediation)
 
 ---
 
@@ -102,20 +102,22 @@
 | E-CH06-I-002 | Mode n=0,1,2 → (e,μ,τ) | Numerical match [OPR-03] | [I] |
 | E-CH06-BL-001 | N_gen = 3 (LEP) | Experimental input | [BL] |
 
-### Neutrino Edge Modes (CH07)
+### Neutrino Edge Modes (CH07) — *Remediated 2026-01-25*
 
-| ID | Statement | Condition | Status |
-|----|-----------|-----------|--------|
-| E-CH07-P-001 | Neutrino as edge mode (post:ch6_neutrino_edge) | Ontological postulate | [P] |
-| E-CH07-Dc-001 | m_ν/m_e ~ exp(-Δξ/κ⁻¹) (prop:ch6_suppression) | IF edge mode profiles | [Dc] |
-| E-CH07-I-001 | Three flavors ↔ \|Z₃\| = 3 (post:ch6_three_nu) | Identification [OPR-03] | [I] |
-| E-CH07-Dc-002 | Left-handed selection from BC (cor:ch6_left_nu) | IF Ch.9 BC established | [Dc] |
-| E-CH07-P-002 | PMNS from wavefunction overlap (eq:ch6_pmns_overlap) | Mechanism postulate | [P] |
-| E-CH07-Dc-003 | θ₂₃ ≈ 45° from Z₆ geometry (Attempt 2, A3) | From geometry | [Dc] GREEN |
-| E-CH07-Dc-004 | DFT baseline falsified (sin²θ₁₃ = 1/3 vs 0.022) | Negative result | [Dc] |
-| E-CH07-I-002 | Rank-2 + ε structure for PMNS (Attempt 4) | Structure identification [OPR-13] | [I] |
-| E-CH07-Dc-005 | ε = λ/√2 predicts θ₁₃ (Attempt 4.1) | Uses λ [BL], 15% error | [BL→Dc] |
-| E-CH07-Dc-006 | θ₁₂ = arctan(1/√2) (Attempt 4.2) | Pure geometry, 8.6% error | [Dc] |
+| ID | Statement | Condition | Status | OPEN-ID |
+|----|-----------|-----------|--------|---------|
+| E-CH07-P-001 | Neutrino as edge mode (post:ch6_neutrino_edge) | Ontological postulate (OPR-12) | [P] OPEN | 001, 006 |
+| E-CH07-Dc-001 | m_ν/m_e ~ exp(-Δξ/κ⁻¹) (prop:ch6_suppression) | IF edge mode profiles (OPR-12) | [Dc] OPEN | 008 |
+| E-CH07-I-001 | Three flavors ↔ \|Z₃\| = 3 (post:ch6_three_nu) | Identification (OPR-03) | [I] OPEN | 003, 010 |
+| E-CH07-Dc-002 | Left-handed selection from BC (cor:ch6_left_nu) | IF Ch.9 BC established | [Dc] ✓ | — |
+| E-CH07-P-002 | PMNS from wavefunction overlap (eq:ch6_pmns_overlap) | Mechanism postulate (OPR-13) | [P] OPEN | 016, 029 |
+| E-CH07-Dc-003 | θ₂₃ ≈ 45° from Z₆ geometry (Attempt 2, A3) | From geometry | **[Dc] GREEN ✓** | 013 (DONE) |
+| E-CH07-Dc-004 | DFT baseline falsified (sin²θ₁₃ = 1/3 vs 0.022) | Negative result | **[Dc] ✓** | 028 (DONE) |
+| E-CH07-I-002 | Rank-2 + ε structure for PMNS (Attempt 4) | Structure identification (OPR-13) | [I] YELLOW | 021, 027 |
+| E-CH07-Dc-005 | ε = λ/√2 predicts θ₁₃ (Attempt 4.1) | Uses λ [BL], 15% error (OPR-13) | **[BL→Dc] YELLOW** | 014 |
+| E-CH07-Dc-006 | θ₁₂ = arctan(1/√2) (Attempt 4.2) | Pure geometry, 8.6% error (OPR-13) | **[Dc] YELLOW** | 012, 031 |
+
+*CH07 Remediation: 32 OPEN-IDs catalogued; 12 DONE, 20 OPEN with OPR links. See `audit/chapters/CH07_OPEN_QUESTIONS_LEDGER.md`.*
 
 ### Fermi Constant (CH11)
 
