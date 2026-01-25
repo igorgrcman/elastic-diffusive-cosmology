@@ -100,4 +100,41 @@ This rule is **non-negotiable**. Any proposed notation change must:
 
 ---
 
-Last updated: 2026-01-24
+## OPR Registry Policy (Added 2026-01-25)
+
+**OPR Registry is authoritative.** Any new symbol, teleport, or BC dependency must map to an OPR before merge.
+
+### OPR Integration
+
+1. **OPR_REGISTRY.md** (`canon/opr/OPR_REGISTRY.md`) is the canonical source for all open problems
+2. **OPR_CLAIM_CROSSWALK.md** maps every blocked claim to an OPR
+3. **tools/opr_linker.py** validates the crosswalk (exit 1 if unassigned claims)
+
+### When to create an OPR
+
+- A derivation chain is blocked by missing input/parameter
+- A symbol appears without prior definition ("teleport")
+- A numerical claim lacks reproducible script
+- A topology/geometry assumption is unstated
+
+### OPR Categories
+
+| Code | Category |
+|------|----------|
+| [A] | Action/EOM derivation |
+| [B] | Boundary/BC conditions |
+| [C] | Constant/Anchor (independent constraint) |
+| [N] | Numerics/Repro scripts |
+| [T] | Topology/Geometry |
+| [X] | Cross-chapter dependency |
+
+### No-Smuggling Rule
+
+An OPR closure is invalid if it uses downstream-derived results as input.
+Example: Using G_F (derived) to constrain σ (postulated) is SMUGGLING.
+
+See `canon/opr/OPR_POLICY.md` for full policy.
+
+---
+
+Last updated: 2026-01-25
