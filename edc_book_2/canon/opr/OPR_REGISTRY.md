@@ -138,33 +138,55 @@ Cannot assume N_gen = 3 and reverse-engineer topology. Must go topology → mode
 
 **Short name**: Define δ precisely and connect to R_ξ with location + conditions
 
-**Status**: OPEN
+**Status**: OPEN (Forensic audit complete 2026-01-25)
 
-**Missing**:
-- δ (brane thickness) appears at CH10:112 without prior definition
-- Relation δ = R_ξ is used but not derived
-- R_ξ itself requires BVP solution
+**Definitions** (exist but teleported):
+- **δ**: Boundary-layer / brane thickness — scale over which Robin BC smooths sharp junction
+- **R_ξ**: Diffusion / correlation length — ~10⁻³ fm, anchored to M_Z = ℏc/M_Z
+
+**Symbol collision warning**: δ also denotes CP phase in CKM/PMNS. Context-dependent.
+
+**What exists in Book 2**:
+- R_ξ formal definition: [Dc] in Framework v2.0 (correlation length)
+- R_ξ numerical value: [BL]+[P] (anchored to M_Z phenomenologically)
+- δ = R_ξ identification: [P] in §13.2.8-13.2.11 (Attempts H, H2, H2-plus)
+- Three comprehensive audits already in Book 2
+
+**What is MISSING (all OPEN)**:
+- Gate (i): Derive R_ξ from 5D action (no M_Z input)
+- Gate (ii): Boundary-layer formal theorem (δ = f(R_ξ))
+- Gate (iii): Unique-scale proof (R_ξ is only sub-EW scale)
+- Gate (iv): δ-robustness demonstration (physics insensitive to ±factor 2)
+
+**Documentation created**:
+- `audit/notation/OPR04_DELTA_RXI_OCCURRENCES.md` — occurrence table
+- `audit/evidence/OPR04_DERIVATION_CHAIN.md` — derivation chain + proof obligations
+
+**Derivation routes attempted**:
+- Route A (Diffusion → BL theorem → δ): BLOCKED — no formal theorem
+- Route B (Junction → Robin → scale ID): PARTIAL — final step is [P]
+- Route C (S¹ geometry → δ ~ R): PARTIAL — identification not unique
 
 **Blocks**:
 - E-CH10-Dc-* (claims using brane thickness)
 - E-CH11-Dc-* (G_F derivation uses δ in ℓ/δ ratio)
 - All claims involving Robin parameter α ~ ℓ/δ
+- **OPR-02**: α = ℓ/δ = 2π requires δ = R_ξ
 
 **Where it appears in Book2**:
-- CH10:112 (first use, teleported)
+- CH10:104,112 (first use, teleported)
 - CH11: G_F derivation
-- CH13: ℓ/δ ratio in OPR-20 attempts
-
-**Minimum closure deliverable**:
-1. Add explicit definition: "δ is the brane thickness scale, defined as..."
-2. Derive or state δ = R_ξ relation with conditions
-3. Tag as [P] or [Dc] with required inputs
+- CH13 §13.2.8: Attempt H (introduces δ = R_ξ as [Def])
+- CH13 §13.2.10: Attempt H2-plus (strict audit → [P])
+- CH13 §13.2.11: Attempt H2 Hard (rigorous provenance)
 
 **Closure test**:
-CLOSED iff δ has an explicit definition before first use AND δ = R_ξ is either derived or explicitly postulated with justification.
+CLOSED iff ONE of Gates (i)-(iv) is satisfied AND δ has explicit definition before first use.
 
 **No-smuggling note**:
-δ cannot be chosen to make eigenvalues "come out right"; must have independent definition.
+- δ cannot be chosen to make eigenvalues "come out right"
+- R_ξ value uses M_Z [BL] — this is documented, not hidden
+- Current status is no-smuggling compliant: [P] tag is explicit
 
 ---
 
