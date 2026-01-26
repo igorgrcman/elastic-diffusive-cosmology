@@ -34,38 +34,42 @@ remains open. The goal is not to claim numerical closure but to define the
 \label{sec:ch11_closure_spine}
 
 Combining the results from \S\ref{sec:ch11_g5_canonical}--\ref{sec:ch11_kk_spectrum}
-with the mode overlap integral from \S\ref{sec:ch11_overlap}, the first-principles
-target formula for the Fermi constant is:
+with the mode overlap integral from \S\ref{sec:ch11_overlap}, an early target formula
+for the Fermi constant was:
 
-\begin{tcolorbox}[colback=blue!5, colframe=blue!60!black,
-    title=\textbf{Closure Spine: First-Principles $G_F$ Target (OPR-22)}]
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black,
+    title=\textbf{Deprecation Note: Legacy Overlap Formula}]
+\textbf{Historical formula} (bulk overlap approach):
 \begin{equation}
-    \boxed{
-    G_F = \frac{g_5^2 \, \ell^2}{x_1^2} \cdot I_4
-    }
+    G_F^{\text{(legacy)}} = \frac{g_5^2 \, \ell^2}{x_1^2} \cdot I_4
     \label{eq:ch11_closure_spine}
 \end{equation}
-where:
-\begin{itemize}[nosep]
-    \item $g_5$ = 5D gauge coupling (dimension $[E]^{-1/2}$)
-    \item $\ell$ = brane layer thickness (dimension $[E]^{-1}$)
-    \item $x_1$ = dimensionless KK eigenvalue ($\pi/2$, $\pi$, etc.\ depending on BCs)
-    \item $I_4 = \int_0^\ell d\xi \, |f_L(\xi)|^4$ = mode overlap integral (dimension $[E]$)
-\end{itemize}
-\noindent\emph{For formal definitions of $x_1$, $I_4$, and closure criteria, see the BVP Closure Pack (\S\ref{sec:bvp_master_key}).}
+where $I_4 = \int_0^\ell d\xi \, |f_L(\xi)|^4$ has dimension $[E]$.
 
 \medskip
-\noindent\textbf{Dimensional check:}
-$[g_5^2 \ell^2 / x_1^2] = [E]^{-1} \cdot [E]^{-2} = [E]^{-3}$;
-$[I_4] = [E]$; total $[G_F] = [E]^{-2}$ \checkmark
+\textbf{This approach is superseded.} The canonical derivation is in
+Chapter~\ref{ch:opr22_geff} (OPR-22), which uses the \textbf{invariant EFT formula}:
+\begin{equation}
+    \boxed{G_{\text{eff}} = \frac{g_{4,1}^2}{2 m_1^2}}
+\end{equation}
+with brane-localized current giving $g_{4,1} = g_5 \tilde{f}_1(0)$.
+
+The canonical 5D expression (OPR-20/OPR-22) is:
+\begin{equation}
+    G_{\text{eff}} = \frac{g_5^2 \, \ell}{2 x_1^2} \cdot |f_1(0)|^2, \quad
+    C_{\text{eff}} = \frac{g_5^2 \, \ell}{x_1^2}
+\end{equation}
+Note: one power of $\ell$, not $\ell^2$. The $|f_1(0)|^2$ factor is dimensionless
+(natural normalization), unlike $I_4$ which has dimension $[E]$.
 \end{tcolorbox}
 
-\paragraph{Origin of each factor.}
+\paragraph{Origin of factors (legacy approach).}
 \begin{itemize}[nosep]
     \item $g_5^2/x_1^2$: From mediator propagator $\sim g_5^2/m_\phi^2$ with $m_\phi = x_1/\ell$
-    \item $\ell^2$: Cancels from $m_\phi^{-2} = \ell^2/x_1^2$
-    \item $I_4$: Dimensional reduction factor from 5D $\to$ 4D
+    \item $\ell^2$: Cancels from $m_\phi^{-2} = \ell^2/x_1^2$ (in bulk overlap approach)
+    \item $I_4$: Bulk overlap integral---superseded by brane-localized $|f_1(0)|^2$
 \end{itemize}
+\textbf{For canonical treatment, see OPR-20 (Ch.~\ref{ch:opr20_mediator_mass}) and OPR-22 (Ch.~\ref{ch:opr22_geff}).}
 
 % ------------------------------------------------------------------------------
 \subsubsection{Factor-by-Factor Status Table}
@@ -125,7 +129,7 @@ $G_F$ & Full first-principles value & \textbf{[OPEN]} & Combine all above withou
           tagged and not claimed as derived.
 
     \item \textbf{Using measured $G_F$ to back-solve:} Setting
-          $g_5^2 \ell^2 I_4 / x_1^2 = 1.17 \times 10^{-5}$ GeV$^{-2}$ and
+          $G_{\text{eff}} = 1.17 \times 10^{-5}$ GeV$^{-2}$ and
           solving for any parameter is circular.
 
     \item \textbf{Using $v = 246$ GeV:} The Higgs VEV is defined via $G_F$:
@@ -225,9 +229,9 @@ Solving the BVP unlocks multiple closure paths simultaneously.
 \subsubsection{Numeric Target (For Future Comparison)}
 \label{sec:ch11_numeric_target}
 
-When OPR-19--21 are closed, the prediction will be:
+When OPR-19--21 are closed, the prediction will be (see OPR-22, Ch.~\ref{ch:opr22_geff}):
 \begin{equation}
-    G_F^{\text{pred}} = \frac{g_5^2 \, \ell^2 \, I_4}{x_1^2}
+    G_F^{\text{pred}} = \frac{g_5^2 \, \ell}{2 x_1^2} \cdot |f_1(0)|^2
     \quad\stackrel{?}{=}\quad
     G_F^{\text{PDG}} = 1.1664 \times 10^{-5} \text{ GeV}^{-2}
     \label{eq:ch11_numeric_target}
@@ -287,7 +291,7 @@ OPR-22: RED-C (open) --- ``First-principles $G_F$ requires $g_5$, $m_\phi$, prof
 \begin{quote}
 OPR-22: \textbf{YELLOW} [Dc]+[OPEN] --- Closure spine derived; numeric value open
 \begin{itemize}[nosep]
-    \item Target formula: $G_F = g_5^2 \ell^2 I_4 / x_1^2$ \tagDc{}
+    \item Target formula: $G_{\text{eff}} = g_5^2 \ell |f_1(0)|^2 / (2 x_1^2)$ \tagDc{} (Ch.~\ref{ch:opr22_geff})
     \item Dimensional consistency verified \tagDc{}
     \item No-smuggling guardrails explicit \tagDc{}
     \item Attack-surface mapped \tagDc{}
