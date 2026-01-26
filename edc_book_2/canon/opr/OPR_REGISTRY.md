@@ -37,7 +37,8 @@ This is a narrative choice [P], not a derived claim.
 ### Conditional Tension (Lemma 16.1)
 
 Under joint assumptions (A1)+(A2)+(A3), the OPR-04 result (Δ ~ R_ξ ~ 10⁻³ fm) combined with
-OPR-21 requirement (μ ∈ [25,35]) yields μ << 25, creating a **CONDITIONAL TENSION**.
+OPR-21 requirement (μ ∈ [μ₃⁻, μ₃⁺](V)) yields μ << μ₃⁻, creating a **CONDITIONAL TENSION**.
+**Note (OPR-21R)**: μ₃ is shape-dependent. Physical domain wall: [13,17]. Toy PT: [15,18].
 
 **This is NOT an incompatibility** — relaxing ANY of (A1)–(A3) removes the tension.
 
@@ -299,7 +300,9 @@ CLOSED iff ONE of Gates (i)-(iv) is satisfied AND δ has explicit definition bef
 | Source | Δ Value | μ = M₀ℓ | N_bound |
 |--------|---------|---------|---------|
 | δ = R_ξ (OPR-04 ID) | ~2×10⁻³ fm | ~0.002 (if n~4) | << 3 |
-| μ ∈ [25,35] (OPR-21) | ~1-4 fm | 25-35 | = 3 |
+| μ ∈ [μ₃⁻, μ₃⁺](V) (OPR-21) | shape-dependent | 13-17 (physical) | = 3 |
+
+**DEPRECATION (OPR-21R)**: The old [25,35] was a toy benchmark, NOT universal.
 
 **Important**: This tension appears ONLY under the joint assumptions:
 1. Δ = δ (kink width = boundary-layer scale)
@@ -309,7 +312,8 @@ CLOSED iff ONE of Gates (i)-(iv) is satisfied AND δ has explicit definition bef
 **The OPR-21 constraint is μ = M₀ℓ, NOT M₀Δ directly.**
 
 If ℓ ≫ Δ (i.e., domain size much larger than kink width), then μ can reach
-the [25,35] window even with Δ ~ R_ξ ~ 10⁻³ fm.
+the three-generation window [μ₃⁻, μ₃⁺](V) even with Δ ~ R_ξ ~ 10⁻³ fm.
+(For physical domain wall: [13,17]; old [25,35] was toy benchmark only.)
 
 **Resolution paths** (all remain viable):
 1. δ ≠ Δ — boundary-layer scale may differ from kink width [P]
