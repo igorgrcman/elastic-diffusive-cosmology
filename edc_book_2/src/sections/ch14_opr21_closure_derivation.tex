@@ -744,11 +744,29 @@ $G_{\text{eff}}/(g_5^2\ell)$ & $[1.5 \times 10^{-4}, 7.6 \times 10^{-4}]$ & Comp
 \begin{itemize}[nosep]
     \item \colorbox{green!20}{Convergence PASS}: $<1\%$ drift in $x_1$, $|f_1(0)|^2$, $G_{\text{eff}}$ (canonical slice)
     \item $N_{\text{bound}} = 3$ requires $\rho = 0.2$ \emph{and} $\mu \in [13, 15.5]$ (Neumann)
-    \item Robin BC ($\kappa > 0$): \emph{exploratory} (OPEN-22-4b-R); yields $|f_1(0)|^2 \to 0$, not used in canonical tables
+    \item Robin BC ($\kappa > 0$): \emph{exploratory} (OPEN-22-4b-R); \textbf{ERRATUM:} apparent $|f_1(0)|^2 \to 0$ was FD bug artifact (see below)
 \end{itemize}
 
 \textbf{Evidence}: \texttt{code/open22\_4b1\_slice\_family\_sweep.py},
 \texttt{audit/evidence/OPEN22\_4b\_MU\_SWEEP\_AUDIT.md}
 
 \textbf{No-smuggling}: \checkmark No SM observables ($M_W$, $G_F$, $v$, $\sin^2\theta_W$) used as inputs.
+\end{tcolorbox}
+
+%------------------------------------------------------------------------------
+% CANONICAL INTERPRETATION LOCK (OPEN-22-4b.2)
+%------------------------------------------------------------------------------
+\begin{tcolorbox}[colback=red!5!white, colframe=red!75!black,
+    title={\textbf{Canonical Interpretation: Robin BC Status (OPEN-22-4b.2)}}]
+\textbf{ERRATUM}: The earlier impression that Robin ($\kappa > 0$) boundary conditions
+drive the first mode away from the brane was traced to a finite-difference
+implementation bug; analytic toy verification and \texttt{solve\_bvp} confirm
+nontrivial $\hat{\kappa}$-dependence, while the canonical physical tables in this
+Part remain the \textbf{Neumann ($\kappa = 0$)} path until a corrected FD/\texttt{solve\_bvp}
+sweep is completed.
+
+\medskip
+\textbf{Evidence}: \texttt{audit/evidence/OPEN22\_4bR\_ROBIN\_VERIFICATION\_REPORT.md}
+
+\textbf{Tracking}: OPEN-22-4b-FD (correct FD Robin discretization)
 \end{tcolorbox}
