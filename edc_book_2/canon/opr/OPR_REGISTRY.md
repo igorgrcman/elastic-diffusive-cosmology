@@ -1052,6 +1052,21 @@ AND dimensional analysis verified ✓
 - Evidence: `code/opr22_open22_4_physical_run.py`, `audit/evidence/OPEN22_4_PHYSICAL_VEFF_REPORT.md`
 - Status: CONDITIONAL [Dc] — structure derived, parameters [P]
 
+**OPEN-22-4b Resolution** (2026-01-25):
+- Full μ-sweep for physical domain wall potential V_L = M² - M'
+- Sweep parameters: μ ∈ [13, 17], κ ∈ {0, 0.5, 1, 2}, ρ ∈ {0.05, 0.1, 0.2}
+- N_bound = 3 achieved for ρ ≈ 0.2 across μ-window [13, 17]
+- **Physical results (Neumann BC, ρ = 0.2)**:
+  - x₁ ∈ [10.2, 11.2]
+  - |f₁(0)|² ∈ [0.05, 0.16]
+  - G_eff/(g₅²ℓ) ∈ [2.1×10⁻⁴, 7.6×10⁻⁴]
+  - σΔ³ ∈ [9, 15]
+- Convergence verified: < 1% change at N_grid = 4000
+- Code: `code/open22_4b_mu_sweep_physical.py`
+- Evidence: `audit/evidence/OPEN22_4b_MU_SWEEP_AUDIT.md`
+- Outputs: `code/output/open22_4b_mu_sweep.json`, `code/output/open22_4b_mu_sweep_table.md`
+- Status: CONDITIONAL [Dc] — ranges established, parameters [P]
+
 **No-smuggling certification**: ✓ PASS
 - Grep verification: No M_W, G_F, v=246GeV, sin²θ_W in derivation
 - Only used: 5D action [M] + KK decomposition [Dc] + brane localization [P]
