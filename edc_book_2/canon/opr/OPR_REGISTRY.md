@@ -1184,6 +1184,39 @@ Canonical physical reader path is now locked:
 
 ---
 
+## CH20: Epistemic Summary & Closure Status (META)
+
+**Short name**: Reader's Checkpoint and Zenodo-ready epistemic ledger
+
+**Status**: DONE (META chapter — no new physics claims)
+
+**Date**: 2026-01-26
+
+**What CH20 provides**:
+- §20.1 Reader's Map: Green Path navigation (TikZ flowchart)
+- §20.2 Parameter Ledger: All [P] primitives listed (g₅, σ, Δ, ℓ, ρ, κ̂, y)
+- §20.3 Dependency Graph: OPR chain visualization
+- §20.4 Canonical Results Summary: Green Path family table
+- §20.5 Open Problems Register: Blocking vs non-blocking
+- §20.6 What This Book Claims: Two-column claims/non-claims
+- §20.7 Repro & Audit Pointers: Scripts and evidence files
+
+**Files created**:
+- `src/sections/ch20_epistemic_summary_closure_status.tex`
+- `audit/evidence/CH20_EPISTEMIC_SUMMARY_AUDIT.md`
+
+**Gates**:
+| Gate | Status | Evidence |
+|------|--------|----------|
+| NOTATION | ✓ PASS | Uses `\tagP{}`, `\tagDc{}`, `\tagDer{}` |
+| NO-SMUGGLING | ✓ PASS | No SM observables as derivation inputs |
+| NO-NEW-CLAIMS | ✓ PASS | Pure META chapter |
+| BUILD | ✓ PASS | XeLaTeX: 449 pages, no errors |
+
+**Scope guard**: CH20 summarizes existing content — it does NOT introduce new physics, derive new results, or use SM parameters as inputs.
+
+---
+
 ## Appendix: OPR → Claim Count Estimates
 
 | OPR | Estimated Blocked Claims |
