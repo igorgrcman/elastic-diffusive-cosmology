@@ -461,6 +461,7 @@ The physical μ-window [13, 17] was scanned for all slice combinations:
 | 0.20 | 0.5-2.0 | [14.0, 17.0] | [0.04, 0.10] | ≈ 0 | ✗ NO |
 
 **Key finding**: Only **Neumann (κ=0) + ρ=0.20** gives converged, non-trivial results.
+**⚠ ERRATUM (OPEN-22-4b.2)**: Robin κ>0 results in this table are **FD implementation artifacts**. The FD solver has a bug that gives Neumann-like eigenvalues regardless of κ. See `audit/evidence/OPEN22_4bR_ROBIN_VERIFICATION_REPORT.md`.
 
 ### Convergence Worst-Case
 
@@ -469,7 +470,8 @@ The physical μ-window [13, 17] was scanned for all slice combinations:
 | Neumann, ρ=0.2, μ=15 | 0.0004% | 0.24% | 0.24% |
 | Robin κ=0.5, ρ=0.2, μ=14 | 0.6% | 75% | 75% |
 
-Robin BC cases have exponentially small |f₁(0)|² (10⁻⁸ to 10⁻⁹) which is numerically unstable.
+~~Robin BC cases have exponentially small |f₁(0)|² (10⁻⁸ to 10⁻⁹) which is numerically unstable.~~
+**⚠ RETRACTED (OPEN-22-4b.2)**: This was an artifact of FD Robin implementation bug, NOT physical decoupling. Analytic + scipy.integrate.solve_bvp show Robin BC affects spectrum nontrivially. Canonical Neumann (κ=0) results remain valid.
 
 ### Physical Results (Neumann, ρ=0.2)
 

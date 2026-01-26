@@ -1072,7 +1072,7 @@ AND dimensional analysis verified ✓
 - Extended slice-family sweep: κ ∈ {0, 0.5, 1, 2} × ρ ∈ {0.05, 0.10, 0.20} × μ ∈ [12, 18]
 - **Key finding**: Only **Neumann (κ=0) + ρ=0.20** achieves N_bound = 3 with converged results
 - Thin walls (ρ ≤ 0.10) fail for all κ values tested
-- Robin BC (κ > 0) gives |f₁(0)|² → 0 (numerically unstable, not converged)
+- ~~Robin BC (κ > 0) gives |f₁(0)|² → 0~~ **RETRACTED (OPEN-22-4b.2)**: FD Robin implementation bug; see OPEN-22-4b-R
 - **Canonical Physical Path** (Neumann, ρ=0.2): μ ∈ [13.0, 15.5], x₁ ∈ [10.19, 11.38]
 - Code: `code/open22_4b1_slice_family_sweep.py`
 - Outputs: `code/output/open22_4b1_slices.json`, `code/output/open22_4b1_meta.json`
@@ -1098,6 +1098,16 @@ AND dimensional analysis verified ✓
 - **Resolution path (future)**: Fix FD ghost-point Robin BC OR use scipy.integrate.solve_bvp
 - **Evidence**: `audit/evidence/OPEN22_4bR_ROBIN_VERIFICATION_REPORT.md`
 - **Code**: `code/open22_4bR_robin_toy_verification.py`
+
+**OPEN-22-4b-FD** (NEW — FD Robin Fix):
+- **Status**: OPEN (HIGH priority for Robin exploration; not blocking canonical path)
+- **Description**: Implement correct FD Robin ghost-point / matrix assembly and rerun physical scan
+- **Acceptance criteria**:
+  1. Toy analytic match < 1% for κ̂ ∈ {0, 1, 10, 100}
+  2. Physical rerun for κ̂ > 0 shows stable x₁, |f₁(0)|² at N_grid = 4000
+  3. Convergence test: < 1% drift for canonical observables
+- **Root cause**: Original FD adds +κ/h to wrong diagonal base; see OPEN-22-4b-R
+- **Resolution path**: Ghost-point method OR scipy.integrate.solve_bvp
 
 **No-smuggling certification**: ✓ PASS
 - Grep verification: No M_W, G_F, v=246GeV, sin²θ_W in derivation

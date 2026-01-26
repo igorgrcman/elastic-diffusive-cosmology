@@ -1,10 +1,27 @@
 # OPEN-22-4b μ-Sweep Audit Report
 
-**Status**: COMPLETE (with OPEN-22-4b.1a MICRO-PATCH)
+**Status**: COMPLETE (with OPEN-22-4b.1a MICRO-PATCH + OPEN-22-4b.2 ERRATUM)
 **Date**: 2026-01-26 (updated)
-**Sprint**: OPEN-22-4b + OPEN-22-4b.1 + OPEN-22-4b.1a
+**Sprint**: OPEN-22-4b + OPEN-22-4b.1 + OPEN-22-4b.1a + OPEN-22-4b.2
 **Canonical slice**: (κ=0, ρ=0.20) — CONVERGENCE PASS
-**Robin κ>0**: OPEN-22-4b-R (exploratory, not used in reader path)
+**Robin κ>0**: OPEN-22-4b-R — **RESOLVED (FD bug)**
+
+---
+
+## ⚠ ERRATUM (OPEN-22-4b.2)
+
+**All κ > 0 slice results in this report are INVALID due to FD implementation bug.**
+
+The original finite-difference solver adds +κ/h to the wrong diagonal base, causing eigenvalues to converge to ~π regardless of κ̂. This masked the true Robin BC physics.
+
+**Impact**:
+- Claims that "κ>0 decouples" or "|f₁(0)|² → 0" are **RETRACTED**
+- Analytic + scipy.integrate.solve_bvp show Robin BC affects spectrum nontrivially
+- **Canonical Neumann (κ=0) results remain VALID** (correctly implemented)
+
+**Reference**: `audit/evidence/OPEN22_4bR_ROBIN_VERIFICATION_REPORT.md`
+
+For correct Robin BC eigenvalues, use scipy.integrate.solve_bvp or wait for OPEN-22-4b-FD (FD ghost-point fix).
 
 ---
 
@@ -90,6 +107,7 @@ N_bound = 3 regime identified for **specific slice-family combinations only**.
 | 0.20 | 2.0 | [14.0, 17.0] | [0.04, 0.10] | ≈ 0 | ≈ 10⁻⁶ | ✗ NO |
 
 **KEY FINDING**: Only **Neumann (κ=0) + ρ=0.20** gives converged, non-trivial results.
+**⚠ See ERRATUM above**: κ>0 results are FD artifacts; use scipy BVP solver for Robin exploration.
 
 ---
 
@@ -115,7 +133,8 @@ For κ > 0 and ρ = 0.2, N_bound = 3 is achieved in μ ∈ [14, 17] but:
 - |f₁(0)|² ≈ 10⁻⁸ to 10⁻⁹ (below numerical precision)
 - **NOT converged**: 75% drift when increasing N_grid
 
-**Physical interpretation**: Robin BC with κ > 0 exponentially suppresses f(0), making brane coupling negligible. **Only Neumann (κ=0) is physically relevant for weak interactions.**
+~~**Physical interpretation**: Robin BC with κ > 0 exponentially suppresses f(0), making brane coupling negligible.~~
+**⚠ RETRACTED (OPEN-22-4b.2)**: This was an FD implementation artifact, NOT physical decoupling. See ERRATUM at top of this report. **Only Neumann (κ=0) results are valid; Robin exploration requires FD fix.**
 
 ---
 
@@ -149,7 +168,7 @@ For κ > 0 and ρ = 0.2, N_bound = 3 is achieved in μ ∈ [14, 17] but:
 - Δ|f₁(0)|²: 75% (exponential suppression)
 - ΔG_eff: 75%
 
-**Status**: ✗ NOT CONVERGED — Robin BC makes |f₁(0)|² numerically unstable
+**Status**: ✗ NOT CONVERGED — ~~Robin BC makes |f₁(0)|² numerically unstable~~ **ERRATUM**: FD bug artifact (see top)
 
 ---
 
@@ -182,36 +201,36 @@ All quantities stable within 0.3% — well below the 1% convergence threshold.
 
 ---
 
-## Robin κ>0 Family Status (OPEN)
+## Robin κ>0 Family Status — RESOLVED (FD Bug)
 
-**Status**: OPEN-22-4b-R (Exploratory)
+**Status**: OPEN-22-4b-R — **RESOLVED** (root cause: FD implementation bug)
 
 **NOT used in canonical reader path or G_eff tables.**
 
-### Current Behavior
+### ⚠ ERRATUM: All κ>0 Results Are FD Artifacts
 
-For κ > 0 (Robin BC) with ρ = 0.2 under V_L = M² − M':
-- x₁ ≈ 0.04–0.10 (very small eigenvalue)
-- \|f₁(0)\|² ≈ 10⁻⁸ to 10⁻⁹ (trivial/near-zero brane amplitude)
-- 75% drift in \|f₁(0)\|² when N_grid: 2000→4000 (non-converged)
+**ROOT CAUSE IDENTIFIED (OPEN-22-4b.2)**:
 
-### Plausible Causes (not yet resolved)
+The original FD solver has a bug in Robin BC implementation:
+- Adds +κ/h to the 2/h² diagonal instead of proper ghost-point modification
+- Effect is negligible: κ/h ≈ 0.025% of 1/h²
+- Eigenvalues converge to ~π regardless of κ̂ (Neumann-like behavior)
 
-1. **κ dimensional scaling/normalization ambiguity**: The Robin BC form f'(0) + κf(0) = 0
-   has κ with dimension 1/length; current solver may have incorrect dimensionless mapping.
+**Toy verification** (V=0, analytic: (κ̂²-x²)tan(x) = 2κ̂x):
+- κ̂=0: FD error 0.05% ✓
+- κ̂=1: FD error **34.6%** ✗ (analytic x₁=2.33, FD gives 3.14)
+- κ̂=10: FD error **19.2%** ✗ (analytic x₁=3.88, FD gives 3.14)
 
-2. **Numerical stiffness / boundary layer resolution**: Robin BC may require finer grid
-   near ξ = 0 to resolve the boundary layer; current uniform grid may be insufficient.
-
-3. **Physical decoupling regime**: Robin BC with κ > 0 may genuinely push the first
-   massive mode away from the brane, making brane coupling → 0. This would be a
-   physical effect, not a numerical artifact.
+**Conclusion**: Claims of "physical decoupling" were artifacts. Robin BC affects spectrum nontrivially.
 
 ### Resolution Path
 
-Tracked as **OPEN-22-4b-R**: "Robin κ>0 BC family verification + interpretation"
-- Toy analytic verification required before physical interpretation
-- See `canon/opr/OPR_REGISTRY.md` for tracking
+Tracked as **OPEN-22-4b-FD** (NEW): "Fix FD Robin ghost-point implementation"
+- Acceptance: Toy analytic match < 1% for κ̂ ∈ {0, 1, 10, 100}
+- Physical rerun after FD fix
+- OR use scipy.integrate.solve_bvp for Robin exploration
+
+**Evidence**: `audit/evidence/OPEN22_4bR_ROBIN_VERIFICATION_REPORT.md`
 
 ---
 
