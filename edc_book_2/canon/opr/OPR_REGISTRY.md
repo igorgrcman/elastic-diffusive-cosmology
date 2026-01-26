@@ -1119,20 +1119,40 @@ AND dimensional analysis verified ✓
 - **Evidence**: `audit/evidence/OPEN22_4bFD_ROBIN_FEM_FIX_REPORT.md`
 - **Outputs**: `code/output/open22_4bFD_robin_toy_fem.json`, `code/output/open22_4bFD_physical_robin_scan.json`
 
-**OPEN-22-4b-R-PHYS** (Physical Robin Rerun — OPEN):
-- **Status**: OPEN (HIGH priority, non-blocking)
+**OPEN-22-4b-R-PHYS** (Physical Robin Sweep — DONE):
+- **Status**: DONE (2026-01-26) — ALL 5 GATES PASS
 - **Description**: Full physical domain-wall sweep with correct FEM Robin BC implementation
-- **Motivation**: OPEN-22-4b-FD fixed the toy-limit discretization. Physical potential V(ξ) = M² - M' rerun needed.
-- **Acceptance criteria**:
-  1. Sweep κ̂ ∈ {0, 0.5, 1, 2, 5, 10} for physical V(ξ)
-  2. Verify N_bound = 3 stability across κ̂ range (or document where it breaks)
-  3. Produce |f₁(0)|² and G_eff tables for physical Robin slices
-  4. Convergence gate: < 1% drift at N = 4000
-- **Decision**: Robin remains **NON-CANONICAL** until:
-  - N_bound = 3 proven compatible with κ > 0
-  - Physical Robin tables match or explain deviations from Neumann baseline
-- **Blocks**: None (informational, canonical path is Neumann)
-- **Code target**: `code/open22_4bRP_physical_robin_sweep.py` (not yet created)
+- **Resolution**: Robin BC (κ̂ ≤ 2) is now part of **Green Path** canonical family
+- **Gate Summary**:
+  | Gate | Status | Evidence |
+  |------|--------|----------|
+  | METHOD | ✓ PASS | FEM weak formulation (no FD ghost-point) |
+  | CONVERGENCE | ✓ PASS | Max drift 0.22% < 1% |
+  | SPECTRUM | ✓ PASS | N_bound=3 for κ̂ ∈ {0.5, 1.0, 2.0} |
+  | CONTINUITY | ✓ PASS | κ̂→0 reproduces Neumann within 5% |
+  | NO-SMUGGLING | ✓ PASS | No SM constants used |
+- **N_bound=3 Windows by κ̂**:
+  | κ̂ | N_bound=3 Window | Status |
+  |---|------------------|--------|
+  | 0.0 | [13.0, 15.6] | Green-A CANONICAL |
+  | 0.5 | [13.0, 15.2] | Green-B CANONICAL |
+  | 1.0 | [13.0, 14.8] | Green-B CANONICAL |
+  | 2.0 | [13.0, 13.6] | Green-B CANONICAL (narrow) |
+  | ≥3 | — | FAIL (N_bound ≥ 4) |
+- **Physical Results (μ=14.0, ρ=0.2)**:
+  | κ̂ | |f₁(0)|² | G_eff/(g₅²ℓ) | N_bound |
+  |---|---------|--------------|---------|
+  | 0.0 | 7.12×10⁻⁴ | 7.92×10⁻³ | 3 |
+  | 0.5 | 7.68×10⁻⁴ | 8.93×10⁻³ | 3 |
+  | 1.0 | 8.30×10⁻⁴ | 1.01×10⁻² | 3 |
+  | 2.0 | 9.79×10⁻⁴ | 3.12×10⁻² | 4 |
+- **Key Physics Finding**: Robin BC **DOES NOT** decouple modes from brane
+  - |f₁(0)|² **increases** with κ̂
+  - G_eff **increases** with κ̂
+  - μ-window **narrows** with κ̂
+- **Code**: `code/open22_4bR_phys_robin_sweep.py`
+- **Evidence**: `audit/evidence/OPEN22_4bR_PHYSICAL_ROBIN_AUDIT.md`
+- **Outputs**: `code/output/open22_4bR_phys_robin_*.json`
 - **Depends on**: OPEN-22-4b-FD (DONE)
 
 **No-smuggling certification**: ✓ PASS
