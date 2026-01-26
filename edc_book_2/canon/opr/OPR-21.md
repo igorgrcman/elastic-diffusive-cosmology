@@ -345,6 +345,59 @@ N_bound = 3 at **μ ≈ 10**, reflecting the different spectral properties.
 
 ---
 
+## μ₃(V, κ, ρ) Theorem: Shape-Dependent Three-Generation Condition [Dc]
+
+### OPR-21R Resolution (2026-01-25)
+
+**CRITICAL UPDATE**: The three-generation condition N_bound = 3 is achieved at a
+**shape-dependent** critical value μ₃, NOT at a universal window.
+
+### Definition
+
+For the Sturm-Liouville BVP on [0, ℓ] with potential V(ξ; M₀, Δ) and Robin BC (κ):
+```
+N_bound(μ) := #{n : λ_n < V_asymp}   where μ = M₀ℓ
+μ₃(V, κ, ρ) := inf{μ : N_bound(μ) ≥ 3}
+```
+
+### Numerical Results
+
+| Potential Family | μ₃ | N_bound=3 Window | Status |
+|-----------------|-----|------------------|--------|
+| Toy (Pöschl-Teller) | 15 | [15, 18] | [M] benchmark |
+| Physical (Domain Wall) | 13 | [13, 17] | [Dc] from 5D Dirac |
+
+**Parameters**: ρ = Δ/ℓ = 0.25, κ = 0.0, ℓ = 4.0
+
+### Correct Statement
+
+**WRONG** (old): "Three generations require μ ∈ [25, 35)."
+
+**CORRECT** (updated): "Three generations require μ ∈ [μ₃⁻(V), μ₃⁺(V)] where the
+window is shape-dependent. For toy Pöschl-Teller: [15, 18]. For physical domain
+wall: [13, 17]. The often-quoted [25, 35) is not universal."
+
+### Common Pitfall
+
+| Trap | Correct |
+|------|---------|
+| μ ∈ [25, 35) is universal | μ₃ depends on V(ξ) shape |
+| μ = M₀Δ | μ = M₀ℓ (domain size, not wall width) |
+| All potentials give same μ₃ | Different V → different spectrum |
+
+### Evidence
+
+- `code/opr21r_mu3_scan.py` — unified scan tool
+- `code/output/opr21r_mu3_summary.json` — machine-readable results
+- `audit/evidence/OPR21R_MU_WINDOW_SHAPE_DEPENDENCE_REPORT.md` — full report
+
+### Status: [Dc] CONDITIONAL
+
+- Structure "μ₃ is shape-dependent" is established
+- Numerical values depend on (V, κ, ρ) which remain [P]
+
+---
+
 ## Cross-References
 
 | Item | Status | Location |

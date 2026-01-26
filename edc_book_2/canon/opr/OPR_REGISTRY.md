@@ -105,7 +105,9 @@ OPR-21 requirement (μ ∈ [25,35]) yields μ << 25, creating a **CONDITIONAL TE
 - n = ℓ/Δ domain-size ratio
 
 **Consistency constraint for OPR-21**:
-- For μ ∈ [25, 35) (N_bound = 3 window): σΔ³ ∈ [52, 102] with y=1, n=4
+- μ-window is **shape-dependent** (OPR-21R): μ₃ ∈ [13, 17] for physical DW, [15, 18] for toy PT
+- For toy benchmark μ ∈ [15, 18] (N_bound = 3): σΔ³ scales accordingly with y, n
+- **NOTE**: [25, 35) is NOT universal — see OPR-21R evidence report
 
 **Blocks**:
 - E-CH02-Dc-* (frozen regime conditions depend on σ)
@@ -901,19 +903,27 @@ AND no SM observables used as inputs ✓
 
 **Short name**: Solve boundary value problem for fermion localization
 
-**Status**: STRONG PARTIAL (infrastructure complete, physics inputs OPEN)
+**Status**: CONDITIONAL [Dc] (Updated 2026-01-25 + OPR-21R)
 
 **Completed (2026-01-25)**:
 - L1: Domain definition — ESTABLISHED [M]
+- L2: V(ξ) = M² - M' from 5D Dirac — CONDITIONAL [Dc]
 - L3: Robin BC form — ESTABLISHED [M]
+- L3.2: BC κ = m_b/2 from Israel junction — CONDITIONAL [Dc]
 - L4: Sturm-Liouville self-adjointness — ESTABLISHED [M]
 - L5: Toy model validation — ESTABLISHED [M]
-- Infrastructure: `code/opr21_bvp_demo.py` validated
+- Infrastructure: `code/opr21_bvp_demo.py`, `code/opr21_bvp_physical_run.py` validated
 
-**Still missing**:
-- L2: V(ξ) derivation from 5D action — OPEN
-- L3.2: BC parameter derivation from Israel junction — OPEN
-- Physical N_bound computation — OPEN (blocked by L2)
+**OPR-21R Resolution (2026-01-25)**:
+- μ-window is **SHAPE-DEPENDENT**: μ₃(V, κ, ρ)
+- Toy (Pöschl-Teller): μ₃ = 15, window [15, 18]
+- Physical (Domain Wall): μ₃ = 13, window [13, 17]
+- **[25, 35) is NOT universal** — it was a toy benchmark only
+- Evidence: `audit/evidence/OPR21R_MU_WINDOW_SHAPE_DEPENDENCE_REPORT.md`
+- Code: `code/opr21r_mu3_scan.py`
+
+**Still [P] postulated**:
+- Parameter values (M₀, Δ, ℓ, ρ = Δ/ℓ) from membrane microphysics
 
 **Blocks**:
 - E-CH08-OPEN-003 (mode profiles)
