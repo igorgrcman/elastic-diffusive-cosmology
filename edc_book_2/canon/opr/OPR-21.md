@@ -251,6 +251,36 @@ I₄ = ∫_Ω |ψ₀(ξ)|⁴ dξ
 - Toy model: I₄ = 1.23 (V₀=10, a=1)
 - Physical model: OPEN (requires derived V(ξ))
 
+### O3b: Brane Amplitude |f₁(0)|² (OPR-22 Export)
+
+**Definition** [Def]:
+For the first massive mode (n=1), evaluate the mode profile at the brane location ξ=0:
+```
+|f₁(0)|² = |f_1(ξ=0)|²    [natural normalization]
+|f̃₁(0)|² = |f₁(0)|² / ℓ   [unit normalization]
+```
+
+**Normalization conversion** (CRITICAL):
+- BVP solver typically produces unit-normalized modes: ∫|f̃|²dξ = 1
+- OPR-22 G_eff formula uses natural normalization: ∫|f|²dξ = ℓ
+- Conversion: f = f̃ · √ℓ, so |f(0)|² = |f̃(0)|² · ℓ
+
+**Toy limit** (V=0, Neumann BC):
+```
+f₁(ξ) = √2 cos(πξ/ℓ)    [natural]
+f₁(0) = √2
+|f₁(0)|² = 2.0000        [analytical]
+|f₁(0)|² = 2.0020        [numerical, 0.1% error]
+```
+
+**Role in OPR-22**: G_eff = (g₅²ℓ/2x₁²) · |f₁(0)|² = ½ C_eff · |f₁(0)|²
+
+**Status**: DERIVED [Dc] for extraction procedure; value depends on V(ξ) [P]
+
+**Evidence**: `code/opr22_f1_brane_amplitude_extract.py`, OPEN-22-1 resolution report
+
+---
+
 ### O4: Generation Count N_bound
 
 **Definition** [Def]:
