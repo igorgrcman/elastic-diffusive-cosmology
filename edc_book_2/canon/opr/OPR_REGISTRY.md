@@ -76,7 +76,7 @@ OPR-21 requirement (μ ∈ [25,35]) yields μ << 25, creating a **CONDITIONAL TE
 
 | ID | Description | Priority | Status |
 |----|-------------|----------|--------|
-| CLEANUP-20-LEGACY | Replace deprecated `g₅²ℓ²/x₁²` in ch11/ch12 legacy sections with canonical `g₅²ℓ/x₁²` + forward pointer to OPR-20 | LOW | OPEN |
+| CLEANUP-20-LEGACY | Replace deprecated `g₅²ℓ²/x₁²` in ch11/ch12 legacy sections with canonical `g₅²ℓ/x₁²` + forward pointer to OPR-22 | LOW | **DONE** (2026-01-25) |
 
 ---
 
