@@ -1067,6 +1067,48 @@ AND dimensional analysis verified ✓
 - Outputs: `code/output/open22_4b_mu_sweep.json`, `code/output/open22_4b_mu_sweep_table.md`
 - Status: CONDITIONAL [Dc] — ranges established, parameters [P]
 
+**OPEN-22-4b.1 Resolution** (2026-01-26 — Slice-Family Stabilization):
+- **NON-UNIVERSALITY**: All bands are CONDITIONAL on (V_L, κ, ρ). No universal claims.
+- Extended slice-family sweep: κ ∈ {0, 0.5, 1, 2} × ρ ∈ {0.05, 0.10, 0.20} × μ ∈ [12, 18]
+- **Key finding**: Only **Neumann (κ=0) + ρ=0.20** achieves N_bound = 3 with converged results
+- Thin walls (ρ ≤ 0.10) fail for all κ values tested
+- ~~Robin BC (κ > 0) gives |f₁(0)|² → 0~~ **RETRACTED (OPEN-22-4b.2)**: FD Robin implementation bug; see OPEN-22-4b-R
+- **Canonical Physical Path** (Neumann, ρ=0.2): μ ∈ [13.0, 15.5], x₁ ∈ [10.19, 11.38]
+- Code: `code/open22_4b1_slice_family_sweep.py`
+- Outputs: `code/output/open22_4b1_slices.json`, `code/output/open22_4b1_meta.json`
+- **Status**: DONE for canonical slice (κ=0, ρ=0.2); Robin κ>0 → OPEN-22-4b-R
+
+**OPEN-22-4b.1a Resolution** (2026-01-26 — Canonical Convergence PASS):
+- Canonical slice (κ=0, ρ=0.20) convergence verified: < 1% drift for x₁, |f₁(0)|², G_eff
+- **CONVERGENCE GATE**: ✓ PASS (canonical slice)
+- Robin κ>0 explicitly marked OPEN-22-4b-R (not used in reader path)
+
+**OPEN-22-4b-R** (Robin BC Verification — RESOLVED):
+- **Status**: RESOLVED (FD implementation bug identified; canonical path unaffected)
+- **Description**: Robin κ>0 boundary-condition family verification + interpretation
+- **Finding**: Original FD solver Robin BC implementation is **BROKEN**
+  - Bug: Adds +κ/h to 2/h² diagonal instead of proper ghost-point modification
+  - Effect: κ/h is 0.025% of 1/h², eigenvalues should change 20-35% for κ̂ ∈ [1,10]
+  - Result: FD gives x₁ ≈ π for ALL κ̂, masking Robin physics
+- **Toy verification results** (V=0, analytic eigenvalue equation: (κ̂²-x²)tan(x) = 2κ̂x):
+  - κ̂=0 (Neumann): x₁(analytic)=π, x₁(FD)=3.14 — ✓ 0.05% error (CORRECT)
+  - κ̂=1: x₁(analytic)=2.33, x₁(FD)=3.14 — ✗ 34.6% error (BROKEN)
+  - κ̂=10: x₁(analytic)=3.88, x₁(FD)=3.14 — ✗ 19.2% error (BROKEN)
+- **Impact on canonical results**: NONE — Neumann (κ=0) is correctly implemented
+- **Resolution path (future)**: Fix FD ghost-point Robin BC OR use scipy.integrate.solve_bvp
+- **Evidence**: `audit/evidence/OPEN22_4bR_ROBIN_VERIFICATION_REPORT.md`
+- **Code**: `code/open22_4bR_robin_toy_verification.py`
+
+**OPEN-22-4b-FD** (NEW — FD Robin Fix):
+- **Status**: OPEN (HIGH priority for Robin exploration; not blocking canonical path)
+- **Description**: Implement correct FD Robin ghost-point / matrix assembly and rerun physical scan
+- **Acceptance criteria**:
+  1. Toy analytic match < 1% for κ̂ ∈ {0, 1, 10, 100}
+  2. Physical rerun for κ̂ > 0 shows stable x₁, |f₁(0)|² at N_grid = 4000
+  3. Convergence test: < 1% drift for canonical observables
+- **Root cause**: Original FD adds +κ/h to wrong diagonal base; see OPEN-22-4b-R
+- **Resolution path**: Ghost-point method OR scipy.integrate.solve_bvp
+
 **No-smuggling certification**: ✓ PASS
 - Grep verification: No M_W, G_F, v=246GeV, sin²θ_W in derivation
 - Only used: 5D action [M] + KK decomposition [Dc] + brane localization [P]

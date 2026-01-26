@@ -4,6 +4,18 @@
 **Created**: 2026-01-25
 **Branch**: book2-opr22-geff-derivation-v1
 
+### Status Addendum (2026-01-26, OPEN-22-4b.1a)
+
+**Canonical slice convergence**: ✓ PASS
+- Slice: (κ=0, ρ=0.20) under V_L = M² − M'
+- Convergence: < 1% drift for x₁, |f₁(0)|², G_eff (N_grid: 2000→4000)
+- All canonical G_eff tables use this slice only
+
+**Robin κ>0 family**: OPEN-22-4b-R (exploratory)
+- NOT part of canonical G_eff tables
+- Current solver yields trivial brane amplitude
+- Pending: toy analytic verification + physical interpretation
+
 ---
 
 ## Purpose
@@ -415,6 +427,69 @@ G_eff = (g₅²ℓ) × |f₁(0)|² / (2x₁²)
 - `code/output/open22_4_physical_summary.json` — Machine-readable results
 - `code/output/open22_4_physical_table.md` — Human-readable table
 - `audit/evidence/OPEN22_4_PHYSICAL_VEFF_REPORT.md` — Full evidence report
+
+---
+
+## OPEN-22-4b.1 Resolution: Slice-Family Stabilization
+
+**Status**: CONDITIONAL [Dc] (2026-01-26)
+**Sprint**: OPEN-22-4b.1
+
+### Non-Universality Statement
+
+**CRITICAL**: All band ranges below are **CONDITIONAL** on:
+- Potential family: V_L = M² - M' (domain wall from 5D Dirac) [Dc]
+- Boundary condition: κ (Robin BC parameter)
+- Wall-to-domain ratio: ρ = Δ/ℓ
+
+**Different shapes, BCs, or ρ values give different windows. No universal claims.**
+
+### Slice-Family Sweep Summary
+
+The physical μ-window [13, 17] was scanned for all slice combinations:
+- κ ∈ {0, 0.5, 1, 2}
+- ρ ∈ {0.05, 0.10, 0.20}
+- μ ∈ [12, 18] (extended margin)
+
+### Key Findings
+
+| ρ | κ | N=3 μ-range | x₁ range | |f₁(0)|² range | Converged? |
+|---|---|-------------|----------|---------------|------------|
+| 0.05 | all | NOT achieved | — | — | — |
+| 0.10 | all | NOT achieved | — | — | — |
+| **0.20** | **0.0 (N)** | **[13.0, 15.5]** | **[10.19, 11.38]** | **[0.039, 0.158]** | **✓ YES** |
+| 0.20 | 0.5-2.0 | [14.0, 17.0] | [0.04, 0.10] | ≈ 0 | ✗ NO |
+
+**Key finding**: Only **Neumann (κ=0) + ρ=0.20** gives converged, non-trivial results.
+**⚠ ERRATUM (OPEN-22-4b.2)**: Robin κ>0 results in this table are **FD implementation artifacts**. The FD solver has a bug that gives Neumann-like eigenvalues regardless of κ. See `audit/evidence/OPEN22_4bR_ROBIN_VERIFICATION_REPORT.md`.
+
+### Convergence Worst-Case
+
+| Test Point | rel_x₁ | rel_|f₁|² | rel_G_eff |
+|------------|--------|----------|-----------|
+| Neumann, ρ=0.2, μ=15 | 0.0004% | 0.24% | 0.24% |
+| Robin κ=0.5, ρ=0.2, μ=14 | 0.6% | 75% | 75% |
+
+~~Robin BC cases have exponentially small |f₁(0)|² (10⁻⁸ to 10⁻⁹) which is numerically unstable.~~
+**⚠ RETRACTED (OPEN-22-4b.2)**: This was an artifact of FD Robin implementation bug, NOT physical decoupling. Analytic + scipy.integrate.solve_bvp show Robin BC affects spectrum nontrivially. Canonical Neumann (κ=0) results remain valid.
+
+### Physical Results (Neumann, ρ=0.2)
+
+| μ | x₁ | |f₁(0)|² | G_eff/(g₅²ℓ) |
+|---|-----|---------|--------------|
+| 13.0 | 10.19 | 0.158 | 7.62×10⁻⁴ |
+| 14.0 | 10.69 | 0.093 | 4.05×10⁻⁴ |
+| 15.0 | 11.16 | 0.052 | 2.11×10⁻⁴ |
+| 15.5 | 11.38 | 0.039 | 1.51×10⁻⁴ |
+
+### Evidence Files
+
+- `code/open22_4b1_slice_family_sweep.py` — Slice-family sweep script
+- `code/output/open22_4b1_slices.json` — Full results (SHA256: e9fd569b...)
+- `code/output/open22_4b1_slices_table.md` — Human-readable table (SHA256: e7f4b212...)
+- `code/output/open22_4b1_convergence_worstcase.json` — Convergence data (SHA256: 7a5ed0d1...)
+- `code/output/open22_4b1_meta.json` — Solver settings + file hashes
+- `audit/evidence/OPEN22_4b_MU_SWEEP_AUDIT.md` — Evidence report (updated)
 
 ---
 
