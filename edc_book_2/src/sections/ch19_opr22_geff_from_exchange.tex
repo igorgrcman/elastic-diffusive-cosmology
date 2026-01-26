@@ -1,0 +1,693 @@
+% ch19_opr22_geff_from_exchange.tex
+% OPR-22: First-Principles G_eff from 5D Mediator Exchange
+% Status: CONDITIONAL [Dc]
+% Created: 2026-01-25
+% Branch: book2-opr22-geff-derivation-v1
+
+\chapter{OPR-22: Effective Fermi Coupling from 5D Mediator Exchange}
+\label{ch:opr22_geff}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% READER'S MAP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!50!black,
+    title=\textbf{Reader's Map: What This Chapter Does and Does Not Claim}]
+
+\textbf{Goal}: Derive the effective four-fermion contact strength $G_{\text{eff}}$ from
+first principles using the 5D gauge-fermion action and KK reduction, without using
+any Standard Model observables as inputs.
+
+\medskip
+
+\textbf{What we ASSUME} (tagged [P] or [M]):
+\begin{itemize}
+    \item 5D gauge action with canonical kinetic term [M]
+    \item Warped metric ansatz $ds^2 = e^{2A(\xi)} \eta_{\mu\nu} dx^\mu dx^\nu + d\xi^2$ [P]
+    \item Domain $\xi \in [0, \ell]$ with $\ell$ postulated [P]
+    \item \textbf{Working Default}: Brane-localized fermion current at $\xi = 0$ [P]
+    \item Natural normalization convention: $\int_0^\ell |f_n|^2 d\xi = \ell$ [Dc]
+\end{itemize}
+
+\textbf{What we DERIVE} (tagged [Dc]):
+\begin{itemize}
+    \item 4D effective coupling $g_{\text{eff},n} = g_5 f_n(0)$ for brane-localized current
+    \item Four-fermion operator from integrating out first massive mode
+    \item $G_{\text{eff}} = g_5^2 \ell |f_1(0)|^2 / (2 x_1^2)$ in terms of 5D parameters
+    \item Connection to OPR-20 contact strength: $G_{\text{eff}} = \frac{1}{2} C_{\text{eff}} |f_1(0)|^2$
+\end{itemize}
+
+\textbf{What we do NOT claim}:
+\begin{itemize}
+    \item We do NOT derive $g_5$, $\ell$, $V(\xi)$, or BC parameters from first principles
+    \item We do NOT use $G_F$, $M_W$, $M_Z$, $v$, or $\sin^2\theta_W$ as inputs
+    \item We call the result $G_{\text{eff}}$, not $G_F$, to distinguish computed from measured
+    \item Any numerical comparison to PDG values is labeled ``external comparison only''
+\end{itemize}
+
+\textbf{Dependencies}:
+\begin{itemize}
+    \item OPR-19 (Chapter~\ref{ch:opr19_g5}): $g_5 \to g_4$ dimensional reduction
+    \item OPR-20 (Chapter~\ref{ch:opr20_mediator_mass}): Mediator mass $m_1 = x_1/\ell$
+    \item OPR-21: BVP mode profiles $f_n(\xi)$ and Robin BC structure
+\end{itemize}
+
+\textbf{Status}: CONDITIONAL [Dc] --- structure derived; $g_5$, $\ell$, $V(\xi)$, $\kappa$ remain [P].
+
+\medskip
+
+\textbf{Reading path}:
+\begin{enumerate}
+    \item \textbf{First}: Invariant EFT exchange formula (Section~\ref{sec:ch19_integrate_out})
+    \item \textbf{Second}: Define eigenvalue $x_1 := m_1 \ell$ (OPR-20)
+    \item \textbf{Third}: Brane coupling rule $g_{4,1} = g_5 \tilde{f}_1(0)$ (Section~\ref{sec:ch19_4d_coupling})
+    \item \textbf{Fourth}: Dimensional bookkeeping and connection to OPR-20 (Section~\ref{sec:ch19_dimensions})
+\end{enumerate}
+
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DEPRECATION NOTE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black,
+    title=\textbf{Deprecation Note: Legacy Formula Correction}]
+
+Earlier chapters (CH11, CH12) may contain the formula $C_{\text{eff}} = g_5^2 \ell^2 / x_1^2$.
+This is \textbf{deprecated}. The correct invariant expression is:
+\begin{equation}
+    C_{\text{eff}} = \frac{g_5^2 \ell}{x_1^2}
+\end{equation}
+See OPR-20 patch (Chapter~\ref{ch:opr20_mediator_mass}) for the corrected derivation.
+The present chapter uses the corrected formula throughout.
+
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION 1: PHYSICAL MOTIVATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Physical Motivation}
+\label{sec:ch19_motivation}
+
+In the Standard Model, the Fermi constant $G_F$ characterizes the strength of weak
+interactions at low energies. It appears in the effective four-fermion Lagrangian:
+\begin{equation}
+    \mathcal{L}_{\text{Fermi}} = -\frac{G_F}{\sqrt{2}} \, j^\mu j_\mu
+    \label{eq:ch19_fermi_lagrangian}
+\end{equation}
+where $j^\mu$ represents the charged weak current.
+
+In the Standard Model, $G_F$ is computed from the W boson exchange:
+\begin{equation}
+    \frac{G_F}{\sqrt{2}} = \frac{g^2}{8 M_W^2}
+    \label{eq:ch19_gf_sm}
+\end{equation}
+where $g$ is the SU(2)$_L$ gauge coupling and $M_W$ is the W boson mass.
+
+\textbf{The EDC question}: Can we derive an analogous quantity $G_{\text{eff}}$ from the
+5D geometry, using only:
+\begin{itemize}
+    \item The 5D gauge coupling $g_5$ [P]
+    \item The domain size $\ell$ [P]
+    \item The eigenvalue structure from the Sturm--Liouville problem [Dc]
+    \item The mode profile evaluation at the brane [Dc]
+\end{itemize}
+
+This chapter answers yes, giving:
+\begin{equation}
+    \boxed{G_{\text{eff}} = \frac{g_5^2 \ell}{2 x_1^2} \cdot |f_1(0)|^2}
+    \label{eq:ch19_geff_preview}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION 2: 5D GAUGE-FERMION ACTION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{5D Gauge-Fermion Action}
+\label{sec:ch19_5d_action}
+
+\subsection{The Starting Point}
+
+We begin with the 5D action containing a gauge field $A_M$ and fermion fields $\psi$.
+In the warped metric ansatz (cf.\ OPR-19, Chapter~\ref{ch:opr19_g5}):
+\begin{equation}
+    ds^2 = e^{2A(\xi)} \eta_{\mu\nu} dx^\mu dx^\nu + d\xi^2
+    \label{eq:ch19_warped_metric}
+\end{equation}
+
+The gauge field action is:
+\begin{equation}
+    S_{\text{gauge}} = -\frac{1}{4g_5^2} \int d^4x \, d\xi \, \sqrt{-G} \,
+    G^{MA} G^{NB} F_{MN} F_{AB}
+    \label{eq:ch19_gauge_action}
+\end{equation}
+
+The gauge-fermion interaction:
+\begin{equation}
+    S_{\text{int}} = \int d^4x \, d\xi \, \sqrt{-G} \, J^M A_M
+    \label{eq:ch19_interaction}
+\end{equation}
+where $J^M$ is the 5D fermion current.
+
+\textbf{Epistemic status}: Eq.~\eqref{eq:ch19_warped_metric} is [P];
+Eqs.~\eqref{eq:ch19_gauge_action}--\eqref{eq:ch19_interaction} are [M].
+
+\subsection{Working Default: Brane-Localized Current}
+\label{sec:ch19_brane_current}
+
+\begin{tcolorbox}[colback=yellow!10!white, colframe=yellow!50!black,
+    title=\textbf{Working Default (WD-22-1): Brane-Localized Current}]
+
+We assume the fermion current relevant for weak interactions is localized on the
+brane at $\xi = 0$:
+\begin{equation}
+    J^\mu(x,\xi) = j^\mu(x) \, \delta(\xi)
+    \label{eq:ch19_brane_current}
+\end{equation}
+where $j^\mu(x)$ is the 4D fermion current.
+
+\textbf{Rationale}: This is the standard ansatz in Randall--Sundrum and related
+brane-world models. It provides a clean derivation where the 4D coupling depends
+on the mode profile evaluated at the brane location.
+
+\textbf{Alternative} (OPEN-22-1): Bulk-distributed current with profile $\rho(\xi)$
+leads to overlap integrals requiring OPR-21 mode profiles.
+
+\textbf{Epistemic status}: [P] --- working hypothesis.
+
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION 3: KK MODE EXPANSION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Kaluza--Klein Mode Expansion}
+\label{sec:ch19_kk_expansion}
+
+\subsection{Mode Decomposition}
+
+Following OPR-20 (Chapter~\ref{ch:opr20_mediator_mass}), we expand the 4D components
+of the gauge field:
+\begin{equation}
+    A_\mu(x,\xi) = \sum_{n=0}^{\infty} a_\mu^{(n)}(x) \, f_n(\xi)
+    \label{eq:ch19_kk_expansion}
+\end{equation}
+where:
+\begin{itemize}
+    \item $a_\mu^{(n)}(x)$ are 4D gauge fields satisfying $(\Box + m_n^2) a_\mu^{(n)} = 0$
+    \item $f_n(\xi)$ are mode profiles on $\xi \in [0, \ell]$
+    \item $m_n$ are the 4D mass eigenvalues
+\end{itemize}
+
+The mode profiles satisfy the Sturm--Liouville equation (OPR-20, Eq.~20.3):
+\begin{equation}
+    -\frac{d^2 f_n}{d\xi^2} + V(\xi) f_n(\xi) = m_n^2 f_n(\xi)
+    \label{eq:ch19_sl_equation}
+\end{equation}
+
+\textbf{Epistemic status}: [Dc] --- standard KK technique.
+
+\subsection{Normalization Convention}
+\label{sec:ch19_normalization}
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
+    title=\textbf{Key Convention: Natural Normalization}]
+
+Following OPR-19 (Chapter~\ref{ch:opr19_g5}), we adopt the \textbf{natural normalization}:
+\begin{equation}
+    \int_0^\ell d\xi \, |f_n(\xi)|^2 = \ell
+    \label{eq:ch19_natural_norm}
+\end{equation}
+
+\textbf{Consequences}:
+\begin{itemize}
+    \item The flat zero mode (Neumann BC) has $f_0(\xi) = 1$
+    \item The profile $f_n(\xi)$ is \textbf{dimensionless}
+    \item The 4D coupling is $g_{4,n}^2 = g_5^2 / \ell$ (OPR-19, Eq.~19.8)
+\end{itemize}
+
+\textbf{Alternative}: Unit normalization $\int |f_n|^2 d\xi = 1$ gives $[f_n] = L^{-1/2}$.
+Conversion: $\tilde{f}_n = f_n / \sqrt{\ell}$.
+
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION 4: EFFECTIVE 4D COUPLING
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Effective 4D Coupling to Brane Current}
+\label{sec:ch19_4d_coupling}
+
+\subsection{Substituting the KK Expansion}
+
+Substituting Eq.~\eqref{eq:ch19_kk_expansion} and Eq.~\eqref{eq:ch19_brane_current}
+into the interaction term Eq.~\eqref{eq:ch19_interaction}:
+
+\begin{align}
+    S_{\text{int}} &= \int d^4x \, d\xi \, j^\mu(x) \delta(\xi) \,
+    \sum_n a_\mu^{(n)}(x) f_n(\xi) \notag \\
+    &= \sum_n \int d^4x \, j^\mu(x) \, a_\mu^{(n)}(x) \,
+    \underbrace{\int d\xi \, \delta(\xi) f_n(\xi)}_{= f_n(0)} \notag \\
+    &= \sum_n \int d^4x \, j^\mu(x) \, a_\mu^{(n)}(x) \, f_n(0)
+    \label{eq:ch19_int_expanded}
+\end{align}
+
+\subsection{Canonical Field Normalization}
+
+To properly track dimensions, we work with the canonically normalized 5D field
+$\tilde{A}_M = A_M / g_5$. The interaction becomes:
+\begin{equation}
+    S_{\text{int}} = g_5 \int d^4x \, d\xi \, J^M \tilde{A}_M
+\end{equation}
+
+After KK expansion, the effective 4D coupling of mode $n$ to the brane current is:
+
+\begin{tcolorbox}[colback=orange!5!white, colframe=orange!50!black,
+    title=\textbf{Key Result: Effective 4D Coupling (Brane-Localized)}]
+\begin{equation}
+    \boxed{g_{\text{eff},n} = g_5 \cdot f_n(0)}
+    \label{eq:ch19_geff_n}
+\end{equation}
+where $f_n(0)$ is the mode profile evaluated at the brane ($\xi = 0$).
+
+\textbf{Dimensional check} (natural normalization):
+\begin{itemize}
+    \item $[g_5] = L^{1/2}$ (from 5D action normalization)
+    \item $[f_n(0)] = 1$ (dimensionless in natural normalization)
+    \item $[g_{\text{eff},n}] = L^{1/2}$
+\end{itemize}
+
+\textbf{Note}: The physical observables will involve $g_{\text{eff},n}^2 / m_n^2$, which
+has the correct dimension $L^2$ for a four-fermion coupling.
+
+\textbf{Epistemic status}: [Dc] --- follows from brane localization ansatz.
+
+\end{tcolorbox}
+
+\subsection{Normalization Invariance}
+
+\textbf{Lemma} (Invariance under profile rescaling):
+
+Under the rescaling $f_n \to c \cdot f_n$:
+\begin{itemize}
+    \item Normalization: $\int |f_n|^2 d\xi \to c^2 \int |f_n|^2 d\xi$
+    \item Brane evaluation: $f_n(0) \to c \cdot f_n(0)$
+    \item Effective coupling: $g_{\text{eff},n} \to c \cdot g_{\text{eff},n}$
+\end{itemize}
+
+The physical combination:
+\begin{equation}
+    \frac{g_{\text{eff},n}^2}{m_n^2} = \frac{g_5^2 \, f_n(0)^2}{m_n^2}
+\end{equation}
+transforms as $c^2$ under rescaling, which exactly compensates the change in the
+current coupling normalization. The observable $G_{\text{eff}}$ is \textbf{invariant}
+when conventions are consistently applied.
+
+\textbf{Epistemic status}: [Dc] --- algebraic verification.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION 5: INTEGRATING OUT THE MEDIATOR
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Integrating Out the Mediator}
+\label{sec:ch19_integrate_out}
+
+\subsection{Low-Energy Effective Theory}
+
+At energies $E \ll m_1$ (well below the first massive mode), we can integrate out
+the mediator $a_\mu^{(1)}$ to obtain a four-fermion contact interaction.
+
+The propagator for the massive mode in momentum space:
+\begin{equation}
+    \langle a_\mu^{(1)}(p) a_\nu^{(1)}(-p) \rangle = \frac{-i \eta_{\mu\nu}}{p^2 - m_1^2}
+    \xrightarrow{p^2 \ll m_1^2} \frac{i \eta_{\mu\nu}}{m_1^2}
+    \label{eq:ch19_propagator}
+\end{equation}
+
+\subsection{Four-Fermion Operator}
+
+The exchange diagram generates:
+\begin{equation}
+    \mathcal{L}_{\text{eff}} = -\frac{g_{4,1}^2}{2 m_1^2} \, (j^\mu j_\mu)
+    \label{eq:ch19_leff}
+\end{equation}
+where $g_{4,1}$ is the \textbf{dimensionless} 4D effective coupling.
+
+The factor of $1/2$ arises from the standard convention for four-fermion operators
+(matching the Fermi theory normalization).
+
+\begin{tcolorbox}[colback=orange!5!white, colframe=orange!50!black,
+    title=\textbf{Key Result: Invariant EFT Formula}]
+
+The effective four-fermion contact strength is:
+\begin{equation}
+    \boxed{G_{\text{eff}} := \frac{g_{4,1}^2}{2 m_1^2}}
+    \label{eq:ch19_geff_def}
+\end{equation}
+
+This is the \textbf{invariant} result---it holds regardless of normalization convention.
+What matters is that $g_{4,1}$ is the dimensionless 4D coupling.
+
+\textbf{Epistemic status}: [Dc] --- standard effective field theory.
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black,
+    title=\textbf{Common Pitfall: Double Counting $|f_1(0)|^2$}]
+
+\textbf{Warning}: Mixing a brane-localized coupling $g_{4,1} = g_5 \tilde{f}_1(0)$ with
+a bulk-normalization reduction formula can double-count $|f_1(0)|^2$.
+
+\textbf{We fix one convention and stick to it.}
+
+In this chapter:
+\begin{itemize}
+    \item Brane-localized current: $g_{4,1} = g_5 \cdot \tilde{f}_1(0)$
+    \item Unit normalization: $\int_0^\ell |\tilde{f}_1|^2 d\xi = 1$, so $[\tilde{f}_1] = L^{-1/2}$
+    \item Result: $g_{4,1}$ is dimensionless (as required for a 4D gauge coupling)
+\end{itemize}
+
+The $|f_1(0)|^2$ factor enters \emph{once} through the brane coupling, not separately.
+
+\end{tcolorbox}
+
+\subsection{Careful Dimensional Analysis}
+\label{sec:ch19_dimensions}
+
+\textbf{Step 1: 5D action dimensions}
+
+The 5D gauge action:
+\begin{equation}
+    S = -\frac{1}{4g_5^2} \int d^5x \, F_{MN} F^{MN}
+\end{equation}
+
+For $[S] = 1$, $[d^5x] = L^5$, $[F] = L^{-2}$:
+\begin{equation}
+    \left[\frac{1}{g_5^2}\right] \cdot L^5 \cdot L^{-4} = 1
+    \implies [g_5^2] = L \implies [g_5] = L^{1/2}
+\end{equation}
+
+\textbf{Step 2: Canonical field}
+
+Define $\tilde{A}_M = A_M / g_5$ so the kinetic term is canonical. Then $[\tilde{A}] = L^{-3/2}$.
+
+\textbf{Step 3: KK decomposition}
+
+For canonical 4D fields $[\tilde{a}_\mu^{(n)}] = L^{-1}$ and unit-normalized profiles
+$\int |\tilde{f}_n|^2 d\xi = 1$ with $[\tilde{f}_n] = L^{-1/2}$:
+\begin{equation}
+    \tilde{A}_\mu = \sum_n \tilde{a}_\mu^{(n)} \tilde{f}_n \implies
+    [\tilde{A}_\mu] = L^{-1} \cdot L^{-1/2} = L^{-3/2} \checkmark
+\end{equation}
+
+\textbf{Step 4: Brane coupling}
+
+The interaction $S_{\text{int}} = g_5 \int d^4x \, j^\mu \tilde{a}_\mu^{(n)} \tilde{f}_n(0)$
+gives effective coupling:
+\begin{equation}
+    g_{\text{eff},n} = g_5 \, \tilde{f}_n(0), \quad
+    [g_{\text{eff},n}] = L^{1/2} \cdot L^{-1/2} = 1 \quad \text{(dimensionless)}
+\end{equation}
+
+\textbf{Step 5: Four-fermion coupling}
+\begin{equation}
+    G_{\text{eff}} = \frac{g_{\text{eff},1}^2}{2 m_1^2} = \frac{g_5^2 \, |\tilde{f}_1(0)|^2}{2 m_1^2}
+\end{equation}
+\begin{equation}
+    [G_{\text{eff}}] = \frac{L \cdot L^{-1}}{L^{-2}} = \frac{1}{L^{-2}} = L^2 = \text{GeV}^{-2} \checkmark
+\end{equation}
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
+    title=\textbf{Dimensional Summary}]
+
+\textbf{Unit normalization} ($\int |\tilde{f}_n|^2 d\xi = 1$):
+\begin{itemize}
+    \item $[\tilde{f}_n] = L^{-1/2}$
+    \item $g_{\text{eff},n} = g_5 \tilde{f}_n(0)$ is dimensionless
+    \item $G_{\text{eff}} = g_5^2 |\tilde{f}_1(0)|^2 / (2m_1^2)$ has $[G_{\text{eff}}] = L^2$
+\end{itemize}
+
+\textbf{Natural normalization} ($\int |f_n|^2 d\xi = \ell$):
+\begin{itemize}
+    \item $[f_n] = 1$ (dimensionless)
+    \item Conversion: $\tilde{f}_n = f_n / \sqrt{\ell}$, so $|\tilde{f}_n(0)|^2 = |f_n(0)|^2 / \ell$
+    \item $G_{\text{eff}} = g_5^2 |f_1(0)|^2 / (2 m_1^2 \ell)$
+\end{itemize}
+
+Using $m_1 = x_1/\ell$:
+\begin{equation}
+    G_{\text{eff}} = \frac{g_5^2 |f_1(0)|^2}{2 \ell} \cdot \frac{\ell^2}{x_1^2}
+    = \frac{g_5^2 \ell |f_1(0)|^2}{2 x_1^2}
+\end{equation}
+
+\textbf{Dimensional check}:
+$[g_5^2 \ell / x_1^2] = L \cdot L / 1 = L^2$ \checkmark
+
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION 6: FINAL FORMULAS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Final Formulas for $G_{\text{eff}}$}
+\label{sec:ch19_final}
+
+\begin{tcolorbox}[colback=orange!5!white, colframe=orange!50!black,
+    title=\textbf{Key Result: $G_{\text{eff}}$ in Natural Normalization}]
+
+For brane-localized fermion current (WD-22-1) with natural normalization
+($\int |f_n|^2 d\xi = \ell$):
+
+\begin{equation}
+    \boxed{G_{\text{eff}} = \frac{g_5^2 \, \ell}{2 x_1^2} \cdot |f_1(0)|^2}
+    \label{eq:ch19_geff_natural}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $g_5$ = 5D gauge coupling with $[g_5] = L^{1/2}$ \hfill [P]
+    \item $\ell$ = domain size with $[\ell] = L$ \hfill [P]
+    \item $x_1 = x_1(\kappa, V)$ = first eigenvalue from BVP (dimensionless) \hfill [Dc]
+    \item $f_1(0)$ = first mode profile at brane (dimensionless) \hfill [Dc]
+\end{itemize}
+
+\textbf{Dimensional check}: $[g_5^2 \ell / x_1^2] = L^2 = \text{GeV}^{-2}$ \checkmark
+
+\textbf{Epistemic status}: [Dc] --- derived from 5D action + KK reduction + brane localization.
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=orange!5!white, colframe=orange!50!black,
+    title=\textbf{Key Result: Connection to OPR-20 $C_{\text{eff}}$}]
+
+From OPR-20 (Chapter~\ref{ch:opr20_mediator_mass}, Eq.~20.11):
+\begin{equation}
+    C_{\text{eff}} = \frac{g_5^2 \, \ell}{x_1^2}
+\end{equation}
+
+The relation to $G_{\text{eff}}$ is:
+\begin{equation}
+    \boxed{G_{\text{eff}} = \frac{1}{2} \, C_{\text{eff}} \cdot |f_1(0)|^2}
+    \label{eq:ch19_geff_ceff}
+\end{equation}
+
+\textbf{Physical interpretation}:
+\begin{itemize}
+    \item $C_{\text{eff}}$ is the contact strength \emph{before} specifying fermion localization
+    \item $|f_1(0)|^2$ is the ``wavefunction-at-brane'' factor from brane-localized current
+    \item Factor of $1/2$ is the Fermi convention for four-fermion operators
+\end{itemize}
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=orange!5!white, colframe=orange!50!black,
+    title=\textbf{Key Result: $G_{\text{eff}}$ in Unit Normalization}]
+
+For unit normalization ($\int |\tilde{f}_n|^2 d\xi = 1$):
+
+\begin{equation}
+    \boxed{G_{\text{eff}} = \frac{g_5^2 \, |\tilde{f}_1(0)|^2}{2 m_1^2}
+    = \frac{g_5^2 \, \ell^2 \, |\tilde{f}_1(0)|^2}{2 x_1^2}}
+    \label{eq:ch19_geff_unit}
+\end{equation}
+
+\textbf{Conversion}: $|\tilde{f}_1(0)|^2 = |f_1(0)|^2 / \ell$
+
+\textbf{Consistency check}:
+$\frac{g_5^2 \ell^2 |\tilde{f}_1(0)|^2}{2 x_1^2}
+= \frac{g_5^2 \ell^2}{2 x_1^2} \cdot \frac{|f_1(0)|^2}{\ell}
+= \frac{g_5^2 \ell |f_1(0)|^2}{2 x_1^2}$ \checkmark
+
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION 7: FACTOR AUDIT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Factor Audit Table}
+\label{sec:ch19_factor_audit}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Factor} & \textbf{Origin} & \textbf{Expression} & \textbf{Status} \\
+\hline
+$g_5^2$ & 5D gauge coupling & Parameter & [P] \\
+$\ell$ & Domain size & Parameter & [P] \\
+$x_1$ & First eigenvalue & $x_1(\kappa, V)$ from BVP & [Dc] \\
+$m_1$ & First mass & $x_1 / \ell$ & [Dc] \\
+$f_1(0)$ & Mode at brane & From BVP solution & [Dc] \\
+$1/2$ & Fermi convention & Standard EFT & [M] \\
+$C_{\text{eff}}$ & OPR-20 contact & $g_5^2 \ell / x_1^2$ & [Dc] \\
+\hline
+\end{tabular}
+\caption{Origin and status of each factor in $G_{\text{eff}}$.}
+\label{tab:ch19_factor_audit}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION 8: TOY LIMIT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Toy Limit: Flat Potential with Neumann BC}
+\label{sec:ch19_toy}
+
+For the toy case $V(\xi) = 0$ with Neumann BC ($\kappa_0 = \kappa_\ell = 0$):
+\begin{itemize}
+    \item $x_1 = \pi$ (OPR-20, Table~20.1)
+    \item $f_1(\xi) = \sqrt{2} \cos(\pi \xi / \ell)$ (normalized to $\int |f_1|^2 = \ell$)
+    \item $f_1(0) = \sqrt{2}$, so $|f_1(0)|^2 = 2$
+\end{itemize}
+
+\textbf{Toy formula}:
+\begin{equation}
+    G_{\text{eff}}^{\text{(toy)}} = \frac{g_5^2 \, \ell}{2 \pi^2} \cdot 2
+    = \frac{g_5^2 \, \ell}{\pi^2}
+    \label{eq:ch19_geff_toy}
+\end{equation}
+
+\textbf{Caution}: This is the toy limit only. Physical systems have $V(\xi) \neq 0$
+and potentially Robin BC, giving different $x_1$ and $f_1(0)$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION 9: COMPARISON BOX (OPTIONAL)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{External Comparison (Not an Input)}
+\label{sec:ch19_comparison}
+
+\begin{tcolorbox}[colback=gray!10!white, colframe=gray!50!black,
+    title=\textbf{External Comparison Box --- NOT Used as Input}]
+
+The measured Fermi constant is (PDG 2024):
+\begin{equation}
+    G_F = 1.1663788(6) \times 10^{-5} \, \text{GeV}^{-2}
+\end{equation}
+
+If we assume (purely for illustration):
+\begin{itemize}
+    \item $g_5^2 \approx 0.2 \, \text{GeV}^{-1}$ [P]
+    \item $\ell \approx 0.05 \, \text{GeV}^{-1} \approx 0.01 \, \text{fm}$ [P]
+    \item $x_1 \approx \pi$ (toy limit)
+    \item $|f_1(0)|^2 \approx 2$ (toy limit)
+\end{itemize}
+
+Then:
+\begin{equation}
+    G_{\text{eff}} \approx \frac{0.2 \times 0.05}{2 \times \pi^2} \times 2
+    \approx \frac{0.02}{\pi^2} \approx 2 \times 10^{-3} \, \text{GeV}^{-2}
+\end{equation}
+
+This is $\mathcal{O}(10^2)$ times larger than $G_F$.
+
+\textbf{Interpretation}: The toy parameters above are not physical. Achieving
+$G_{\text{eff}} \sim G_F$ requires either:
+\begin{itemize}
+    \item Smaller $g_5^2$ (weaker 5D coupling)
+    \item Smaller $\ell$ (more compact extra dimension)
+    \item Larger $x_1$ (higher eigenvalue from non-trivial potential)
+    \item Smaller $|f_1(0)|^2$ (mode suppressed at brane)
+\end{itemize}
+
+\textbf{This comparison is NOT used as input.} The EDC derivation stands
+independently of whether $G_{\text{eff}}$ numerically matches $G_F$.
+
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION 10: SUMMARY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Summary and Epistemic Status}
+\label{sec:ch19_summary}
+
+\subsection{Main Results}
+
+\textbf{Eq.~\eqref{eq:ch19_geff_natural}}: $G_{\text{eff}}$ in natural normalization
+\begin{equation}
+    G_{\text{eff}} = \frac{g_5^2 \, \ell}{2 x_1^2} \cdot |f_1(0)|^2
+\end{equation}
+
+\textbf{Eq.~\eqref{eq:ch19_geff_ceff}}: Connection to OPR-20
+\begin{equation}
+    G_{\text{eff}} = \frac{1}{2} \, C_{\text{eff}} \cdot |f_1(0)|^2
+\end{equation}
+
+\textbf{Eq.~\eqref{eq:ch19_geff_toy}}: Toy limit ($V=0$, Neumann BC)
+\begin{equation}
+    G_{\text{eff}}^{\text{(toy)}} = \frac{g_5^2 \, \ell}{\pi^2}
+\end{equation}
+
+\subsection{Epistemic Status}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Item} & \textbf{Status} \\
+\hline
+5D action to 4D EFT structure & [Dc] \\
+KK mode expansion & [Dc] \\
+Brane-localized current ansatz & [P] (WD) \\
+Normalization conventions & [Dc] \\
+$G_{\text{eff}}$ formula structure & [Dc] \\
+Connection to OPR-19/20 & [Dc] \\
+Dimensional verification & [M] \\
+\hline
+$g_5$ value & [P] \\
+$\ell$ value & [P] \\
+$V(\xi)$ shape & [P] \\
+BC parameters $\kappa$ & [P] \\
+\hline
+\textbf{Overall OPR-22} & \textbf{CONDITIONAL [Dc]} \\
+\hline
+\end{tabular}
+\caption{Epistemic status of OPR-22 components.}
+\label{tab:ch19_epistemic}
+\end{table}
+
+\subsection{Open Problems}
+
+\begin{enumerate}
+    \item \textbf{OPEN-22-1}: Bulk-distributed current (overlap integral formulation)
+    \item \textbf{OPEN-22-2}: Derive $g_5$ from UV completion
+    \item \textbf{OPEN-22-3}: Derive $\ell$ from first principles
+    \item \textbf{OPEN-22-4}: Compute $f_1(0)$ for physical $V(\xi)$
+    \item \textbf{OPEN-22-5}: Brane kinetic term corrections
+    \item \textbf{OPEN-22-6}: Multi-mediator corrections (KK tower sum)
+\end{enumerate}
+
+\subsection{Cross-References}
+
+\begin{itemize}
+    \item \textbf{OPR-19} (Chapter~\ref{ch:opr19_g5}): $g_5 \to g_4$ dimensional reduction
+    \item \textbf{OPR-20} (Chapter~\ref{ch:opr20_mediator_mass}): Mediator mass $m_1 = x_1/\ell$
+    \item \textbf{OPR-21}: BVP mode profiles (provides $f_n(\xi)$ and $f_1(0)$)
+    \item \textbf{OPR-04}: Scale Taxonomy ($\ell$ vs $\Delta$ vs $\delta$ vs $R_\xi$)
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% END OF CHAPTER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
