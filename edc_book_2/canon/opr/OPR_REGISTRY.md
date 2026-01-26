@@ -29,10 +29,27 @@
 
 **Rule**: No derivation may silently assume any of (A1)–(A3). Each must be explicitly tagged [P] with assumption label.
 
-### Working Default (WD)
+### Working Default (WD) — Scale Path
 
 **Path 1 (δ ≠ Δ)** is adopted as the narrative working hypothesis for subsequent chapters.
 This is a narrative choice [P], not a derived claim.
+
+### Canonical Physical Path (WD) — Potential Family (PHYSICAL PATH LOCK)
+
+**Date locked**: 2026-01-25
+
+| Path | Potential Family | μ₃ Window | Status |
+|------|------------------|-----------|--------|
+| **Physical (WD)** | Domain wall: V_L = M² − M' | [13, 17] | [Dc] |
+| Benchmark (toy) | Pöschl–Teller: V = −V₀ sech² | [15, 18] | [M] |
+
+**Reader route map**: See Box 14.1 (`\ref{box:ch14_canonical_physical_path}`) in Chapter 14.
+
+**Key principles**:
+1. Three-generation window μ₃ = μ₃(V, κ, ρ) is **shape-dependent** (OPR-21R).
+2. The deprecated "universal" [25, 35) window is a **toy artifact** — do NOT use.
+3. All downstream numerics (OPR-22, G_eff) use the **physical** path.
+4. Toy Pöschl–Teller is for benchmarks / code sanity / intuition ONLY.
 
 ### Conditional Tension (Lemma 16.1)
 
@@ -1038,6 +1055,29 @@ AND dimensional analysis verified ✓
 **No-smuggling certification**: ✓ PASS
 - Grep verification: No M_W, G_F, v=246GeV, sin²θ_W in derivation
 - Only used: 5D action [M] + KK decomposition [Dc] + brane localization [P]
+
+---
+
+## PHYSICAL_PATH_LOCK (2026-01-25)
+
+**Status**: DONE
+
+Canonical physical reader path is now locked:
+- **Physical (WD)**: Domain wall V_L = M² − M', μ-window [13, 17] [Dc]
+- **Toy benchmark**: Pöschl–Teller V = −V₀ sech², μ-window [15, 18] [M]
+
+**Deliverables**:
+- Box 14.1 (`box:ch14_canonical_physical_path`): Reader route map in CH14
+- Reminder boxes in CH16 and CH19
+- Registry section: "Canonical Physical Path (WD)"
+- Evidence: `audit/evidence/PHYSICAL_PATH_LOCK_AUDIT.md`
+
+**Gates**:
+- Build: ✓ PASS
+- Notation: ✓ PASS (μ = M₀ℓ consistent)
+- No-smuggling: ✓ PASS
+- No silent switching: ✓ PASS (all μ-windows tagged)
+- Deprecated window: ✓ PASS (no unqualified [25,35))
 
 ---
 
