@@ -1119,6 +1119,22 @@ AND dimensional analysis verified ✓
 - **Evidence**: `audit/evidence/OPEN22_4bFD_ROBIN_FEM_FIX_REPORT.md`
 - **Outputs**: `code/output/open22_4bFD_robin_toy_fem.json`, `code/output/open22_4bFD_physical_robin_scan.json`
 
+**OPEN-22-4b-R-PHYS** (Physical Robin Rerun — OPEN):
+- **Status**: OPEN (HIGH priority, non-blocking)
+- **Description**: Full physical domain-wall sweep with correct FEM Robin BC implementation
+- **Motivation**: OPEN-22-4b-FD fixed the toy-limit discretization. Physical potential V(ξ) = M² - M' rerun needed.
+- **Acceptance criteria**:
+  1. Sweep κ̂ ∈ {0, 0.5, 1, 2, 5, 10} for physical V(ξ)
+  2. Verify N_bound = 3 stability across κ̂ range (or document where it breaks)
+  3. Produce |f₁(0)|² and G_eff tables for physical Robin slices
+  4. Convergence gate: < 1% drift at N = 4000
+- **Decision**: Robin remains **NON-CANONICAL** until:
+  - N_bound = 3 proven compatible with κ > 0
+  - Physical Robin tables match or explain deviations from Neumann baseline
+- **Blocks**: None (informational, canonical path is Neumann)
+- **Code target**: `code/open22_4bRP_physical_robin_sweep.py` (not yet created)
+- **Depends on**: OPEN-22-4b-FD (DONE)
+
 **No-smuggling certification**: ✓ PASS
 - Grep verification: No M_W, G_F, v=246GeV, sin²θ_W in derivation
 - Only used: 5D action [M] + KK decomposition [Dc] + brane localization [P]

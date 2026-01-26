@@ -744,11 +744,32 @@ $G_{\text{eff}}/(g_5^2\ell)$ & $[1.5 \times 10^{-4}, 7.6 \times 10^{-4}]$ & Comp
 \begin{itemize}[nosep]
     \item \colorbox{green!20}{Convergence PASS}: $<1\%$ drift in $x_1$, $|f_1(0)|^2$, $G_{\text{eff}}$ (canonical slice)
     \item $N_{\text{bound}} = 3$ requires $\rho = 0.2$ \emph{and} $\mu \in [13, 15.5]$ (Neumann)
-    \item Robin BC ($\kappa > 0$): \emph{exploratory} (OPEN-22-4b-R); yields $|f_1(0)|^2 \to 0$, not used in canonical tables
+    \item Robin BC ($\kappa > 0$): \emph{exploratory} (OPEN-22-4b-R-PHYS); affects $|f_1(0)|^2$, not used in canonical tables
 \end{itemize}
 
 \textbf{Evidence}: \texttt{code/open22\_4b1\_slice\_family\_sweep.py},
 \texttt{audit/evidence/OPEN22\_4b\_MU\_SWEEP\_AUDIT.md}
 
 \textbf{No-smuggling}: \checkmark No SM observables ($M_W$, $G_F$, $v$, $\sin^2\theta_W$) used as inputs.
+\end{tcolorbox}
+
+% ==============================================================================
+% ROBIN BC CORRECTION NOTE (OPEN-22-4b-FD)
+% ==============================================================================
+
+\begin{tcolorbox}[colback=orange!5!white, colframe=orange!50!black,
+    title=\textbf{Correction Note: Robin BC Discretization (OPEN-22-4b-FD)}]
+\label{box:ch14_robin_correction}
+
+Earlier Robin-BC results showing apparent decoupling ($|f_1(0)|^2 \to 0$ for $\kappa > 0$)
+were an artifact of an incorrect FD ghost-point discretization. A weak-form FEM
+implementation and \texttt{solve\_bvp} match the analytic Robin eigenvalue equation
+in the toy limit ($V = 0$), confirming that $\hat{\kappa}$ \textbf{does} affect both
+eigenvalues and brane overlap.
+
+Physical-domain-wall Robin scans remain an open work package (OPEN-22-4b-R-PHYS).
+\textbf{Canonical path remains Neumann ($\kappa = 0$)}.
+
+\textbf{Evidence}: \texttt{audit/evidence/OPEN22\_4bFD\_ROBIN\_FEM\_FIX\_REPORT.md},
+\texttt{code/open22\_4bFD\_robin\_fd\_verification.py}
 \end{tcolorbox}
