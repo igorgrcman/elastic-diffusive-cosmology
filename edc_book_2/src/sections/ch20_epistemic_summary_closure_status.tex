@@ -1,0 +1,420 @@
+% ch20_epistemic_summary_closure_status.tex
+% CH20: Epistemic Summary & Closure Status
+% Purpose: Reader's Checkpoint and Zenodo-ready epistemic ledger
+% Status: META (summary/index, not new derivation)
+% Created: 2026-01-26
+% Scope guard: This chapter summarizes existing results; it does NOT introduce new physics.
+
+\chapter{Epistemic Summary \& Closure Status}
+\label{ch:ch20_epistemic_summary}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SCOPE GUARD BOX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!70!black,
+    title=\textbf{Scope Guard: What This Chapter Is (and Is Not)}]
+
+\textbf{Purpose}: This chapter is a \emph{summary}, \emph{index}, and \emph{navigation aid}
+for Part~II. It consolidates the epistemic status of all claims into a single checkpoint.
+
+\textbf{What this chapter does}:
+\begin{itemize}[nosep]
+    \item Summarizes parameter inputs and their status ([P], [Dc], [M], [BL])
+    \item Maps the dependency chain from primitives to derived outputs
+    \item Lists canonical results with pointers to their derivation locations
+    \item Catalogues open problems with priority and blocking status
+    \item Clarifies what Part~II claims and what it does \emph{not} claim
+\end{itemize}
+
+\textbf{What this chapter does NOT do}:
+\begin{itemize}[nosep]
+    \item Introduce new physical assumptions or postulates
+    \item Derive new results or modify existing derivations
+    \item Use any Standard Model observable as a derivation input
+\end{itemize}
+
+\textbf{Audit evidence}: \texttt{audit/evidence/CH20\_EPISTEMIC\_SUMMARY\_AUDIT.md}
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION 20.1: READER'S MAP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Reader's Map}
+\label{sec:ch20_readers_map}
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
+    title=\textbf{Quick Navigation: The Green Path}]
+
+\textbf{If you want to understand the core derivation chain with minimal detours}:
+
+\medskip
+\begin{center}
+\begin{tikzpicture}[node distance=0.8cm, auto,
+    block/.style={rectangle, draw, fill=green!10, text width=3cm, text centered, rounded corners, minimum height=1cm},
+    arrow/.style={->, thick, >=stealth}]
+
+    \node [block] (ch14) {Ch14: BVP + Robin BC\\Box~14.2};
+    \node [block, right=of ch14] (ch17) {Ch17: OPR-19\\$g_5 \to g_4$};
+    \node [block, right=of ch17] (ch18) {Ch18: OPR-20\\$m_1 = x_1/\ell$};
+    \node [block, right=of ch18] (ch19) {Ch19: OPR-22\\$G_{\text{eff}}$};
+
+    \draw [arrow] (ch14) -- (ch17);
+    \draw [arrow] (ch17) -- (ch18);
+    \draw [arrow] (ch18) -- (ch19);
+\end{tikzpicture}
+\end{center}
+
+\medskip
+\textbf{Key distinction}:
+\begin{itemize}[nosep]
+    \item \colorbox{green!15}{\textbf{Physical (canonical)}}: Domain wall $V_L = M^2 - M'$, $\mu$-window $[13, 17]$
+    \item \textbf{Toy benchmark}: P\"oschl--Teller $V = -V_0\,\text{sech}^2$, $\mu$-window $[15, 18]$
+\end{itemize}
+
+\textbf{The physical path is canonical}. Toy benchmarks are for code validation only.
+
+See Box~14.1 (\texttt{\textbackslash ref\{box:ch14\_canonical\_physical\_path\}}) for the full reader route map.
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION 20.2: PARAMETER LEDGER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Parameter Ledger}
+\label{sec:ch20_parameter_ledger}
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!50!black,
+    title=\textbf{Primitive Inputs: What Enters the Framework}]
+
+The following parameters are \textbf{inputs} to the Part~II derivation chain.
+None are derived from Standard Model observables.
+
+\medskip
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{llp{4cm}l}
+\toprule
+\textbf{Symbol} & \textbf{Status} & \textbf{Physical Meaning} & \textbf{First Appears} \\
+\midrule
+$g_5$ & \tagP{} & 5D gauge coupling & Ch17 (OPR-19) \\
+$\sigma$ & \tagP{} & Membrane tension & Ch15 (OPR-01) \\
+$\Delta$ & \tagP{} & Domain-wall kink width & Ch16 (OPR-04) \\
+$\ell$ & \tagP{} & Sturm--Liouville domain size & Ch14 (OPR-21) \\
+$\rho = \Delta/\ell$ & \tagP{} & Wall-to-domain ratio & Ch14 Box~14.2 \\
+$\hat\kappa$ & \tagP{} & Robin BC parameter (dimensionless) & Ch14 \S14.4 \\
+$y$ & \tagP{} & Yukawa coupling (domain wall) & Ch15 (OPR-01) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+\textbf{Key relations}:
+\begin{itemize}[nosep]
+    \item $\mu = M_0 \ell$ is the dimensionless control parameter (OPR-21)
+    \item $M_0 = (\sqrt{3}/2)\, y\, \sqrt{\sigma\Delta}$ from OPR-01 \tagDc{}
+    \item The $\mu$-window for $N_{\text{bound}} = 3$ is \textbf{shape-dependent}: $\mu_3(V, \hat\kappa, \rho)$
+\end{itemize}
+
+\end{tcolorbox}
+
+\paragraph{Scale Taxonomy Reference.}
+The distinction between $\Delta$ (kink width), $\delta$ (boundary-layer scale), $\ell$ (domain size),
+and $R_\xi$ (diffusion scale) is critical. See Chapter~16, \S\ref{sec:ch16_reader_map} for the
+canonical Scale Taxonomy.
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black,
+    title=\textbf{Common Pitfall: Do Not Confuse These Scales}]
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Symbol} & \textbf{Role} & \textbf{Typical Order} \\
+\midrule
+$\Delta$ & Scalar kink width & Profile microphysics \\
+$\delta$ & Boundary-layer / Robin BC & Transport regularization \\
+$\ell$ & BVP domain & Sturm--Liouville interval \\
+$R_\xi$ & Diffusion / correlation & $\sim \hbar c / M_Z$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+Under assumptions (A1)--(A3), these may be related, but \textbf{no such relation is assumed by default}.
+See OPR-04 for the conditional tension analysis.
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION 20.3: DEPENDENCY GRAPH
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Dependency Graph}
+\label{sec:ch20_dependency_graph}
+
+The derivation chain flows from [P] primitives through conditional [Dc] results to the
+effective weak-sector outputs.
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.2cm, auto,
+    prim/.style={rectangle, draw, fill=yellow!20, text width=2.5cm, text centered, rounded corners, minimum height=0.8cm, font=\small},
+    deriv/.style={rectangle, draw, fill=green!20, text width=3cm, text centered, rounded corners, minimum height=0.8cm, font=\small},
+    output/.style={rectangle, draw, fill=blue!20, text width=3cm, text centered, rounded corners, minimum height=0.8cm, font=\small},
+    arrow/.style={->, thick, >=stealth}]
+
+    % Primitives
+    \node [prim] (g5) {$g_5$ [P]};
+    \node [prim, below=0.5cm of g5] (sigma) {$\sigma, \Delta, y$ [P]};
+    \node [prim, below=0.5cm of sigma] (ell) {$\ell, \rho, \hat\kappa$ [P]};
+
+    % Derived intermediates
+    \node [deriv, right=2cm of g5] (opr19) {OPR-19\\$g_{4,n} = g_5 f_n(0)$};
+    \node [deriv, right=2cm of sigma] (opr01) {OPR-01\\$M_0 = f(\sigma,\Delta,y)$};
+    \node [deriv, right=2cm of ell] (opr21) {OPR-21\\$V_L, N_{\text{bound}}, f_n(\xi)$};
+
+    % More derived
+    \node [deriv, right=2cm of opr19] (opr20) {OPR-20\\$m_1 = x_1/\ell$};
+    \node [deriv, below=0.3cm of opr20] (f10) {$|f_1(0)|^2$\\from BVP};
+
+    % Output
+    \node [output, right=2cm of opr20] (geff) {OPR-22\\$G_{\text{eff}} = \frac{g_5^2 \ell |f_1(0)|^2}{2 x_1^2}$};
+
+    % Arrows
+    \draw [arrow] (g5) -- (opr19);
+    \draw [arrow] (sigma) -- (opr01);
+    \draw [arrow] (ell) -- (opr21);
+    \draw [arrow] (opr01) -- (opr21);
+    \draw [arrow] (opr19) -- (opr20);
+    \draw [arrow] (opr21) -- (opr20);
+    \draw [arrow] (opr21) -- (f10);
+    \draw [arrow] (opr20) -- (geff);
+    \draw [arrow] (f10) -- (geff);
+    \draw [arrow] (opr19) to[bend left=20] (geff);
+\end{tikzpicture}
+\end{center}
+
+\paragraph{Chain Status Summary.}
+\begin{itemize}[nosep]
+    \item \textbf{OPR-19} (Ch17): $g_5 \to g_4$ reduction --- CONDITIONAL [Dc]
+    \item \textbf{OPR-20} (Ch18): $m_1 = x_1/\ell$ eigenvalue structure --- CONDITIONAL [Dc]
+    \item \textbf{OPR-21} (Ch14): BVP mode profiles, $N_{\text{bound}}$ --- CONDITIONAL [Dc]
+    \item \textbf{OPR-22} (Ch19): $G_{\text{eff}}$ from mode overlap --- CONDITIONAL [Dc]
+    \item \textbf{OPR-01} (Ch15): $M_0 = f(\sigma, \Delta, y)$ anchor --- CONDITIONAL [Dc]
+\end{itemize}
+
+All results are \tagDc{} (conditional on [P] primitives), not \tagDer{} (unconditionally derived).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION 20.4: CANONICAL RESULTS SUMMARY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Canonical Results Summary}
+\label{sec:ch20_canonical_results}
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
+    title=\textbf{Key Outputs (Derived Conditional on [P] Inputs)}]
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{p{4cm}lp{5cm}}
+\toprule
+\textbf{Result} & \textbf{Status} & \textbf{Reference} \\
+\midrule
+$g_{4,n} = g_5 f_n(0)$ & \tagDc{} & Ch17, Eq.~(17.x), OPR-19 \\
+$m_n = x_n / \ell$ & \tagDc{} & Ch18, Eq.~(18.x), OPR-20 \\
+$x_n = x_n(\hat\kappa, V)$ & \tagDc{} & BVP eigenvalue (shape-dependent) \\
+$C_{\text{eff}} = g_5^2 \ell / x_1^2$ & \tagDc{} & Ch18, Eq.~(18.x), OPR-20 \\
+$G_{\text{eff}} = \frac{1}{2} C_{\text{eff}} |f_1(0)|^2$ & \tagDc{} & Ch19, Eq.~(19.x), OPR-22 \\
+$M_0^2 = \frac{3y^2}{4} \sigma \Delta$ & \tagDc{} & Ch15, Eq.~(15.x), OPR-01 \\
+$V_L = M^2 - M'$ (physical) & \tagDc{} & Ch14, from 5D Dirac \\
+Robin BC: $f'(0) + \kappa f(0) = 0$ & \tagDc{} & Ch14, from Israel junction \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{tcolorbox}
+
+\paragraph{Green Path Family (Physical BC).}
+From OPEN-22-4b-R-PHYS (Box~14.2):
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{llcc}
+\toprule
+\textbf{Path} & \textbf{BC Type} & \textbf{$N_{\text{bound}}=3$ Window} & \textbf{Status} \\
+\midrule
+\rowcolor{green!15}
+Green-A & Neumann ($\hat\kappa = 0$) & $\mu \in [13.0, 15.6]$ & CANONICAL \\
+\rowcolor{green!10}
+Green-B & Robin ($\hat\kappa = 0.5$) & $\mu \in [13.0, 15.2]$ & CANONICAL \\
+\rowcolor{green!10}
+Green-B & Robin ($\hat\kappa = 1.0$) & $\mu \in [13.0, 14.8]$ & CANONICAL \\
+\rowcolor{green!10}
+Green-B & Robin ($\hat\kappa = 2.0$) & $\mu \in [13.0, 13.6]$ & CANONICAL (narrow) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Scope guard}: Cross-$\hat\kappa$ comparisons are only valid within the common $\mu$-overlap
+and at fixed $\rho$. The $\mu$-window \textbf{narrows} with increasing $\hat\kappa$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION 20.5: OPEN PROBLEMS REGISTER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Open Problems Register (Snapshot)}
+\label{sec:ch20_open_problems}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black,
+    title=\textbf{Blocking for ``No [P]'' Book (Part III Campaign)}]
+
+These items must be resolved to upgrade Part~II from [Dc] to [Der]:
+
+\begin{enumerate}[nosep]
+    \item \textbf{Derive $g_5$} from UV completion or 5D action normalization (OPEN-22-2)
+    \item \textbf{Derive $\sigma$} from cosmological/gravitational first principles
+    \item \textbf{Derive $\Delta, \ell, \rho$} from junction stability or brane microphysics (OPR-04)
+    \item \textbf{Derive $y$} from gauge embedding or naturalness
+    \item \textbf{Derive $V(\xi)$} entirely from 5D action (not ansatz)
+\end{enumerate}
+
+\textbf{Status}: All above are \textbf{Part III scope}---not addressed in this book.
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!50!black,
+    title=\textbf{Non-Blocking for Part II Zenodo (Scope-Guarded)}]
+
+These items are documented as open but do not block Part~II publication:
+
+\begin{itemize}[nosep]
+    \item \textbf{OPR-03}: $\pi_1(M^5) = \mathbb{Z}_3$ topology closure
+    \item \textbf{OPR-13}: PMNS angles ($\theta_{23}$ derived, $\theta_{12}/\theta_{13}$ identified)
+    \item \textbf{OPR-14}: CP phase $\delta$ derivation
+    \item \textbf{OPR-15}: Dirac/Majorana determination
+    \item \textbf{OPR-16}: Pion mass/lifetime
+    \item \textbf{OPR-17}: SU(2)$_L$ gauge embedding
+    \item \textbf{OPR-18}: CKM/PMNS from overlaps
+\end{itemize}
+
+Full registry: \texttt{canon/opr/OPR\_REGISTRY.md}
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION 20.6: WHAT THIS BOOK CLAIMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{What This Book Claims (and What It Does Not)}
+\label{sec:ch20_claims}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{p{6.5cm}|p{6.5cm}}
+\toprule
+\textbf{Claims Within Scope (Part II)} & \textbf{Not Claimed Here} \\
+\midrule
+EFT structure: $G_{\text{eff}}$ from 5D mediator exchange [Dc] &
+Baryogenesis / Sakharov conditions \\[4pt]
+
+V--A chirality from geometric asymmetry [Dc] &
+Matter--antimatter asymmetry origin \\[4pt]
+
+$N_{\text{bound}} = 3$ as geometric possibility [Dc] &
+Why parameters fall in 3-gen window \\[4pt]
+
+Robin BC structure from Israel junction [Dc] &
+Actual value of $\kappa$ from microphysics \\[4pt]
+
+$M_0 = f(\sigma, \Delta, y)$ from kink theory [Dc] &
+First-principles derivation of $\sigma$ \\[4pt]
+
+$\sin^2\theta_W = 1/4$ from $\mathbb{Z}_6$ counting [Der] &
+CP violation mechanism \\[4pt]
+
+Shape-dependent $\mu$-windows for $N_{\text{bound}}$ [Dc] &
+Inflow/outflow thermodynamics (Part I) \\[4pt]
+
+Green Path family (Neumann + Robin) [Dc] &
+Neutrino mass absolute scale \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!50!black,
+    title=\textbf{Explicit Non-Treatment Notice}]
+The following topics are \textbf{not treated} in Part~II and should not be inferred from any statement herein:
+\begin{itemize}[nosep]
+    \item \textbf{Baryogenesis}: No Sakharov conditions analysis
+    \item \textbf{Antimatter}: No matter--antimatter asymmetry mechanism
+    \item \textbf{Dark matter}: No Plenum-based DM candidate
+    \item \textbf{Quantum gravity}: No graviton KK modes or gravitational corrections
+\end{itemize}
+These topics may be addressed in future work (Part~III or beyond).
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION 20.7: REPRO & AUDIT POINTERS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Reproducibility \& Audit Pointers}
+\label{sec:ch20_repro}
+
+\paragraph{Key Sanity Scripts.}
+The following scripts reproduce numerical results cited in Part~II:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lp{6cm}}
+\toprule
+\textbf{Script} & \textbf{Validates} \\
+\midrule
+\texttt{code/opr19\_g5\_sanity.py} & OPR-19 dimensional consistency \\
+\texttt{code/opr20\_mediator\_mass\_sanity.py} & OPR-20 eigenvalue structure \\
+\texttt{code/opr22\_geff\_sanity.py} & OPR-22 $G_{\text{eff}}$ formula \\
+\texttt{code/open22\_4bR\_phys\_robin\_sweep.py} & Green Path Robin BC sweep \\
+\texttt{code/opr21\_bvp\_physical\_run.py} & Physical domain wall BVP \\
+\texttt{repro/scripts/repro\_sin2\_z6\_verify.py} & $\sin^2\theta_W = 1/4$ from $\mathbb{Z}_6$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Audit Evidence Files.}
+\begin{itemize}[nosep]
+    \item \texttt{audit/evidence/OPR19\_G5\_DERIVATION\_REPORT.md}
+    \item \texttt{audit/evidence/OPR20\_MEDIATOR\_MASS\_DERIVATION\_REPORT.md}
+    \item \texttt{audit/evidence/OPR22\_GEFF\_DERIVATION\_REPORT.md}
+    \item \texttt{audit/evidence/OPEN22\_4bR\_PHYSICAL\_ROBIN\_AUDIT.md}
+    \item \texttt{audit/evidence/CH20\_EPISTEMIC\_SUMMARY\_AUDIT.md} (this chapter)
+\end{itemize}
+
+\paragraph{What Is Reproducible Without New Inputs.}
+Given the [P] primitives listed in \S\ref{sec:ch20_parameter_ledger}, all [Dc] results
+in \S\ref{sec:ch20_canonical_results} can be reproduced by:
+\begin{enumerate}[nosep]
+    \item Running the BVP solver with specified $(V, \ell, \rho, \hat\kappa)$
+    \item Extracting eigenvalues $x_n$ and mode profiles $f_n(\xi)$
+    \item Computing $G_{\text{eff}}$ via the OPR-22 formula
+\end{enumerate}
+No Standard Model observable ($M_W$, $G_F$, $v$, $\sin^2\theta_W$) is used as input.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CLOSING BOX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
+    title=\textbf{Epistemic Checkpoint: Part II Status}]
+
+\textbf{What Part~II achieves}:
+\begin{itemize}[nosep]
+    \item Complete derivation chain from [P] primitives to $G_{\text{eff}}$
+    \item All intermediate steps tagged with epistemic status
+    \item No Standard Model observables used as derivation inputs
+    \item All claims scope-guarded with explicit conditions
+\end{itemize}
+
+\textbf{What remains for Part~III}:
+\begin{itemize}[nosep]
+    \item Derive [P] primitives from deeper principles
+    \item Upgrade [Dc] $\to$ [Der] by closing parameter dependencies
+    \item Address baryogenesis, CP violation, neutrino masses
+\end{itemize}
+
+\textbf{Publication readiness}: Part~II is ready for Zenodo archival as a
+\emph{conditional derivation framework} with transparent epistemic tagging.
+\end{tcolorbox}
