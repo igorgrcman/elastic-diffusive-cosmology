@@ -4,6 +4,18 @@
 **Created**: 2026-01-25
 **Branch**: book2-opr22-geff-derivation-v1
 
+### Status Addendum (2026-01-26, OPEN-22-4b.1a)
+
+**Canonical slice convergence**: ✓ PASS
+- Slice: (κ=0, ρ=0.20) under V_L = M² − M'
+- Convergence: < 1% drift for x₁, |f₁(0)|², G_eff (N_grid: 2000→4000)
+- All canonical G_eff tables use this slice only
+
+**Robin κ>0 family**: OPEN-22-4b-R (exploratory)
+- NOT part of canonical G_eff tables
+- Current solver yields trivial brane amplitude
+- Pending: toy analytic verification + physical interpretation
+
 ---
 
 ## Purpose

@@ -1,8 +1,10 @@
 # OPEN-22-4b μ-Sweep Audit Report
 
-**Status**: COMPLETE (with OPEN-22-4b.1 PATCH)
+**Status**: COMPLETE (with OPEN-22-4b.1a MICRO-PATCH)
 **Date**: 2026-01-26 (updated)
-**Sprint**: OPEN-22-4b + OPEN-22-4b.1 (Slice-Family Extension)
+**Sprint**: OPEN-22-4b + OPEN-22-4b.1 + OPEN-22-4b.1a
+**Canonical slice**: (κ=0, ρ=0.20) — CONVERGENCE PASS
+**Robin κ>0**: OPEN-22-4b-R (exploratory, not used in reader path)
 
 ---
 
@@ -151,6 +153,68 @@ For κ > 0 and ρ = 0.2, N_bound = 3 is achieved in μ ∈ [14, 17] but:
 
 ---
 
+## Canonical Slice Verification (PASS)
+
+**Canonical slice**: (κ = 0, ρ = 0.20) under V_L = M² − M'
+
+This is the **canonical physical reader path** used for all Book 2 G_eff tables and claims.
+
+### Convergence Metrics
+
+| Metric | N_grid: 2000→4000 | Threshold | Status |
+|--------|-------------------|-----------|--------|
+| Δx₁/x₁ | 0.0004% | < 1% | ✓ PASS |
+| Δ\|f₁(0)\|²/\|f₁(0)\|² | 0.24% | < 1% | ✓ PASS |
+| ΔG_eff/G_eff | 0.24% | < 1% | ✓ PASS |
+
+**Verdict**: ✓ **CONVERGENCE PASS** for canonical slice
+
+### Test Point Details
+
+Representative test: μ = 15.0, κ = 0, ρ = 0.2
+
+| N_grid | x₁ | \|f₁(0)\|² | G_eff/(g₅²ℓ) |
+|--------|-----|---------|--------------|
+| 2000 | 11.1577 | 0.0524 | 2.11×10⁻⁴ |
+| 4000 | 11.1576 | 0.0526 | 2.11×10⁻⁴ |
+
+All quantities stable within 0.3% — well below the 1% convergence threshold.
+
+---
+
+## Robin κ>0 Family Status (OPEN)
+
+**Status**: OPEN-22-4b-R (Exploratory)
+
+**NOT used in canonical reader path or G_eff tables.**
+
+### Current Behavior
+
+For κ > 0 (Robin BC) with ρ = 0.2 under V_L = M² − M':
+- x₁ ≈ 0.04–0.10 (very small eigenvalue)
+- \|f₁(0)\|² ≈ 10⁻⁸ to 10⁻⁹ (trivial/near-zero brane amplitude)
+- 75% drift in \|f₁(0)\|² when N_grid: 2000→4000 (non-converged)
+
+### Plausible Causes (not yet resolved)
+
+1. **κ dimensional scaling/normalization ambiguity**: The Robin BC form f'(0) + κf(0) = 0
+   has κ with dimension 1/length; current solver may have incorrect dimensionless mapping.
+
+2. **Numerical stiffness / boundary layer resolution**: Robin BC may require finer grid
+   near ξ = 0 to resolve the boundary layer; current uniform grid may be insufficient.
+
+3. **Physical decoupling regime**: Robin BC with κ > 0 may genuinely push the first
+   massive mode away from the brane, making brane coupling → 0. This would be a
+   physical effect, not a numerical artifact.
+
+### Resolution Path
+
+Tracked as **OPEN-22-4b-R**: "Robin κ>0 BC family verification + interpretation"
+- Toy analytic verification required before physical interpretation
+- See `canon/opr/OPR_REGISTRY.md` for tracking
+
+---
+
 ## Canonical Physical Path Summary
 
 | Attribute | Value | Status |
@@ -245,7 +309,7 @@ The toy Pöschl–Teller benchmark (not shown) would give different numerical va
 - [x] DIMENSIONAL: ✓ PASS
 - [x] REPRO: ✓ PASS (meta.json with hashes)
 - [x] NO SILENT SWITCHING: ✓ PASS
-- [x] CONVERGENCE: ⚠ CONDITIONAL (Neumann only)
+- [x] CONVERGENCE: ✓ PASS (canonical slice κ=0, ρ=0.2; Robin κ>0 = OPEN-22-4b-R)
 
 ---
 

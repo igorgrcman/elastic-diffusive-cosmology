@@ -1076,7 +1076,23 @@ AND dimensional analysis verified ✓
 - **Canonical Physical Path** (Neumann, ρ=0.2): μ ∈ [13.0, 15.5], x₁ ∈ [10.19, 11.38]
 - Code: `code/open22_4b1_slice_family_sweep.py`
 - Outputs: `code/output/open22_4b1_slices.json`, `code/output/open22_4b1_meta.json`
-- Status: CONDITIONAL [Dc] — slice-family bands established, parameters [P]
+- **Status**: DONE for canonical slice (κ=0, ρ=0.2); Robin κ>0 → OPEN-22-4b-R
+
+**OPEN-22-4b.1a Resolution** (2026-01-26 — Canonical Convergence PASS):
+- Canonical slice (κ=0, ρ=0.20) convergence verified: < 1% drift for x₁, |f₁(0)|², G_eff
+- **CONVERGENCE GATE**: ✓ PASS (canonical slice)
+- Robin κ>0 explicitly marked OPEN-22-4b-R (not used in reader path)
+
+**OPEN-22-4b-R** (NEW — Robin BC Family):
+- **Status**: OPEN (HIGH priority for completeness, not blocking canonical path)
+- **Description**: Robin κ>0 boundary-condition family verification + interpretation
+- **Current state**: κ>0 yields trivial brane amplitude and non-converged spectrum
+- **Plausible causes** (not resolved):
+  1. κ dimensional scaling/normalization ambiguity
+  2. Numerical stiffness / boundary layer resolution
+  3. Physical decoupling regime (mode pushed away from brane)
+- **Resolution path**: Toy analytic verification → physical domain wall re-run
+- **Not blocking**: Canonical path uses Neumann (κ=0) only
 
 **No-smuggling certification**: ✓ PASS
 - Grep verification: No M_W, G_F, v=246GeV, sin²θ_W in derivation
