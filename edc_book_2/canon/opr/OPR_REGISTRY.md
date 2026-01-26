@@ -1004,7 +1004,7 @@ AND dimensional analysis verified ✓
 1. ~~Extract f₁(0) from BVP (OPEN-22-1)~~ **RESOLVED** (2026-01-25)
 2. Derive g₅ from UV completion (OPEN-22-2)
 3. Derive ℓ from first principles (OPEN-22-3)
-4. Compute f₁(0) for physical V(ξ) (OPEN-22-4) — PARTIAL (toy verified)
+4. ~~Compute f₁(0) for physical V(ξ) (OPEN-22-4)~~ **CONDITIONAL [Dc]** (2026-01-25)
 5. Include brane kinetic term corrections (OPEN-22-5)
 
 **OPEN-22-1 Resolution** (2026-01-25):
@@ -1012,6 +1012,14 @@ AND dimensional analysis verified ✓
 - Normalization bridge: Natural ↔ Unit conversion documented
 - Toy limit verified: |f₁(0)|² = 2.002 vs expected 2.0 (0.1% error)
 - Evidence: `code/opr22_f1_brane_amplitude_extract.py`, `code/output/opr22_f1_brane_amplitude_report.md`
+
+**OPEN-22-4 Resolution** (2026-01-25):
+- Physical pipeline operational: OPR-01 → OPR-21 → OPR-22
+- V(ξ) = M² - M' from 5D Dirac [Dc], M₀ from σ anchor [Dc]
+- N_bound = 3 achieved at μ ≈ 10 (physical domain wall potential)
+- Physical results: x₁ = 7.77, |f₁(0)|² = 0.57, G_eff/(g₅²ℓ) = 0.0048
+- Evidence: `code/opr22_open22_4_physical_run.py`, `audit/evidence/OPEN22_4_PHYSICAL_VEFF_REPORT.md`
+- Status: CONDITIONAL [Dc] — structure derived, parameters [P]
 
 **No-smuggling certification**: ✓ PASS
 - Grep verification: No M_W, G_F, v=246GeV, sin²θ_W in derivation

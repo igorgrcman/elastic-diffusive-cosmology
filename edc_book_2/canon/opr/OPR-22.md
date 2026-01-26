@@ -293,7 +293,7 @@ where $C_{\text{eff}} = g_5^2 \ell / x_1^2$ from OPR-20.
 | OPEN-22-1 | Extract $\|f_1(0)\|^2$ from BVP mode profiles | HIGH | **RESOLVED** (2026-01-25) |
 | OPEN-22-2 | Derive $g_5$ from UV completion or membrane physics | HIGH | OPEN |
 | OPEN-22-3 | Derive $\ell$ from first principles | HIGH (shared with OPR-19/20) | OPEN |
-| OPEN-22-4 | Compute $f_1(0)$ numerically for physical V(ξ) | MEDIUM | PARTIAL (toy verified) |
+| OPEN-22-4 | Compute $f_1(0)$ numerically for physical V(ξ) | MEDIUM | **CONDITIONAL [Dc]** |
 | OPEN-22-5 | Include brane kinetic terms (BKT) and their effect on $G_{\text{eff}}$ | MEDIUM | OPEN |
 | OPEN-22-6 | Multi-mediator corrections (sum over KK tower) | LOW | OPEN |
 | OPEN-22-7 | Running of $G_{\text{eff}}$ with energy scale | LOW | OPEN |
@@ -359,11 +359,62 @@ G_eff^(toy) = g₅²ℓ × 2.0 / (2 × π²) = g₅²ℓ/π²
 - `code/output/opr22_f1_brane_amplitude.json` — Machine-readable results
 - `code/output/opr22_f1_brane_amplitude_report.md` — Human-readable report
 
-### Remaining Work (OPEN-22-4)
+### Remaining Work
 
-- Physical potential V(ξ) = domain wall: |f₁(0)|² = 1.72 (preliminary)
-- BC robustness scan completed
-- Full closure requires derived V(ξ) parameters from OPR-21
+- Full [Der] closure requires derived parameter values (σ, Δ, ℓ, y, g₅) from independent physics
+
+---
+
+## OPEN-22-4 Resolution: Physical V(ξ) Pipeline
+
+**Status**: CONDITIONAL [Dc] (2026-01-25)
+**Sprint**: OPEN-22-4
+
+### Summary
+
+The complete pipeline OPR-01 → OPR-21 → OPR-22 is now operational with physical V(ξ):
+
+```
+σ, Δ, y [P] → M₀ [Dc] → V(ξ) [Dc] → BVP → f₁(0), x₁ [Dc] → G_eff [Dc]
+```
+
+### Physical Potential Used
+
+From OPR-21 L2 (5D Dirac reduction, flat space):
+```
+V_L(ξ) = M(ξ)² - M'(ξ)
+       = M₀² tanh²((ξ-ℓ/2)/Δ) - (M₀/Δ) sech²((ξ-ℓ/2)/Δ)
+```
+
+### M₀ from OPR-01 (Sigma Anchor)
+```
+M₀² = (3/4) y² σ Δ
+μ = M₀ℓ (dimensionless parameter)
+```
+
+### Key Numerical Results (Target Regime: N_bound = 3)
+
+| μ | x₁ | \|f₁(0)\|² | G_eff/(g₅²ℓ) |
+|---|-----|-----------|--------------|
+| 10 | 7.77 | 0.57 | 0.0048 |
+
+**Note**: The physical domain wall potential V = M² - M' has N_bound = 3 at μ ≈ 10,
+which differs from the Pöschl-Teller estimate (μ ∈ [25,35]). This reflects the
+actual spectral properties of the derived potential.
+
+### G_eff in Target Regime
+```
+G_eff = (g₅²ℓ) × |f₁(0)|² / (2x₁²)
+      = (g₅²ℓ) × 0.57 / (2 × 60.4)
+      = (g₅²ℓ) × 0.0048
+```
+
+### Evidence Files
+
+- `code/opr22_open22_4_physical_run.py` — Pipeline script
+- `code/output/open22_4_physical_summary.json` — Machine-readable results
+- `code/output/open22_4_physical_table.md` — Human-readable table
+- `audit/evidence/OPEN22_4_PHYSICAL_VEFF_REPORT.md` — Full evidence report
 
 ---
 

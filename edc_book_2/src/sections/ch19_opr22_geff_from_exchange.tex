@@ -62,6 +62,7 @@ any Standard Model observables as inputs.
     \item \textbf{Second}: Define eigenvalue $x_1 := m_1 \ell$ (OPR-20)
     \item \textbf{Third}: Brane coupling rule $g_{4,1} = g_5 \tilde{f}_1(0)$ (Section~\ref{sec:ch19_4d_coupling})
     \item \textbf{Fourth}: Dimensional bookkeeping and connection to OPR-20 (Section~\ref{sec:ch19_dimensions})
+    \item \textbf{Fifth}: Physical run path: $V(\xi) = M^2 - M'$ results (Section~\ref{sec:ch19_physical_run})
 \end{enumerate}
 
 \end{tcolorbox}
@@ -572,7 +573,142 @@ For the toy case $V(\xi) = 0$ with Neumann BC ($\kappa_0 = \kappa_\ell = 0$):
 and potentially Robin BC, giving different $x_1$ and $f_1(0)$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% SECTION 9: COMPARISON BOX (OPTIONAL)
+% SECTION 9: PHYSICAL RUN PATH (OPEN-22-4)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Physical Run Path: From OPR-01 to $G_{\text{eff}}$}
+\label{sec:ch19_physical_run}
+
+The toy limit (Section~\ref{sec:ch19_toy}) uses $V(\xi) = 0$, which is unrealistic.
+The \textbf{physical} potential comes from the 5D Dirac reduction (OPR-21), with
+parameters anchored to membrane tension (OPR-01).
+
+\subsection{Physical Potential: Domain Wall from 5D Dirac}
+\label{sec:ch19_physical_potential}
+
+From OPR-21 Lemma~2, the effective potential for left-handed fermions in flat space is:
+\begin{equation}
+    V_L(\xi) = M(\xi)^2 - M'(\xi)
+    \label{eq:ch19_vl_physical}
+\end{equation}
+where $M(\xi)$ is the 5D mass profile. For a domain-wall configuration:
+\begin{equation}
+    M(\xi) = M_0 \tanh\left(\frac{\xi - \ell/2}{\Delta}\right)
+    \label{eq:ch19_mass_profile}
+\end{equation}
+
+This gives:
+\begin{equation}
+    V_L(\xi) = M_0^2 \tanh^2\left(\frac{\xi - \ell/2}{\Delta}\right)
+    - \frac{M_0}{\Delta} \operatorname{sech}^2\left(\frac{\xi - \ell/2}{\Delta}\right)
+    \label{eq:ch19_vl_explicit}
+\end{equation}
+
+\textbf{Chirality asymmetry}: The right-handed potential differs by sign of $M'$:
+\begin{equation}
+    V_R - V_L = 2M', \quad \text{(origin of V--A structure)}
+\end{equation}
+
+\textbf{Epistemic status}: Eq.~\eqref{eq:ch19_vl_physical} is [Dc] from OPR-21.
+
+\subsection{$M_0$ from Membrane Tension (OPR-01)}
+\label{sec:ch19_m0_anchor}
+
+From OPR-01 Lemma~4 (scalar kink theory), the bulk mass amplitude relates to
+membrane tension:
+\begin{equation}
+    M_0^2 = \frac{3}{4} y^2 \sigma \Delta
+    \label{eq:ch19_m0_sigma}
+\end{equation}
+where $y$ is the Yukawa coupling and $\sigma$ is the membrane tension.
+
+The dimensionless parameter controlling the spectrum is:
+\begin{equation}
+    \mu := M_0 \ell = \frac{\sqrt{3}}{2} y \, n \sqrt{\sigma \Delta^3}
+    \label{eq:ch19_mu_def}
+\end{equation}
+where $n = \ell/\Delta$ is the domain-size ratio.
+
+\textbf{Epistemic status}: [Dc] from OPR-01.
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black,
+    title=\textbf{Common Pitfall: Scale Disambiguation}]
+
+\textbf{Do NOT confuse}:
+\begin{itemize}
+    \item $\mu = M_0 \ell$ \quad (dimensionless eigenvalue parameter)
+    \item $M_0 \Delta$ \quad (potential depth at wall)
+    \item $\ell$ \quad (domain size; eigenvalue spacing $\sim 1/\ell$)
+    \item $\Delta$ \quad (domain wall width; potential shape)
+    \item $\delta$ \quad (effective penetration depth; different from $\Delta$)
+    \item $R_\xi$ \quad (geometric radius; see OPR-04 taxonomy)
+\end{itemize}
+
+\textbf{Hierarchy}: Typically $\delta \ll \Delta \lesssim \ell$.
+
+\textbf{Physical meaning}:
+\begin{itemize}
+    \item $\Delta$ controls how ``sharp'' the domain wall is
+    \item $\ell$ controls how many bound states exist ($N_{\text{bound}} \sim M_0 \ell / \pi$)
+    \item $\mu$ is the product that enters BVP eigenvalue counting
+\end{itemize}
+
+See OPR-04 (Scale Taxonomy) for the full scale disambiguation.
+
+\end{tcolorbox}
+
+\subsection{Physical BVP Results (OPEN-22-4)}
+\label{sec:ch19_physical_results}
+
+Running the pipeline OPR-01 $\to$ OPR-21 $\to$ OPR-22 with physical $V(\xi)$:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$\mu$ & $M_0$ & $N_{\text{bound}}$ & $x_1$ & $|f_1(0)|^2$ & $G_{\text{eff}}/(g_5^2\ell)$ \\
+\hline
+5 & 1.25 & 2 & 4.70 & 1.54 & 0.035 \\
+\textbf{10} & \textbf{2.50} & \textbf{3} & \textbf{7.77} & \textbf{0.57} & \textbf{0.0048} \\
+15 & 3.75 & 4 & 10.17 & 0.061 & 0.00030 \\
+20 & 5.00 & 5 & 12.00 & 0.0037 & 0.000013 \\
+\hline
+\end{tabular}
+\caption{Physical BVP scan with domain wall potential. Target regime ($N_{\text{bound}}=3$)
+    highlighted. Parameters: $n=4$, $\Delta=1$, $y=1$.}
+\label{tab:ch19_physical_scan}
+\end{table}
+
+\textbf{Key observation}: The domain wall potential $V = M^2 - M'$ gives $N_{\text{bound}} = 3$
+at $\mu \approx 10$, \emph{not} at $\mu \in [25, 35]$ as estimated for Pöschl--Teller-like
+potentials. This reflects the different spectral properties of the physical potential.
+
+\subsection{Physical $G_{\text{eff}}$ Formula}
+\label{sec:ch19_geff_physical}
+
+In the target regime ($\mu = 10$, $N_{\text{bound}} = 3$):
+\begin{align}
+    x_1 &= 7.77 \notag \\
+    |f_1(0)|^2 &= 0.57 \notag \\
+    G_{\text{eff}} &= (g_5^2 \ell) \times \frac{0.57}{2 \times 60.4}
+    = (g_5^2 \ell) \times 0.0048
+    \label{eq:ch19_geff_physical}
+\end{align}
+
+\textbf{Comparison to toy limit}:
+\begin{itemize}
+    \item Toy ($V=0$, Neumann): $G_{\text{eff}}^{\text{(toy)}} = (g_5^2 \ell) / \pi^2 \approx 0.10 \times (g_5^2 \ell)$
+    \item Physical ($\mu=10$): $G_{\text{eff}}^{\text{(phys)}} \approx 0.0048 \times (g_5^2 \ell)$
+\end{itemize}
+
+The physical potential suppresses $G_{\text{eff}}$ by a factor of $\sim 20$ relative to
+the toy limit, due to (1) larger $x_1$ and (2) smaller $|f_1(0)|^2$.
+
+\textbf{Epistemic status}: CONDITIONAL [Dc] --- pipeline operational; parameters
+$(\sigma, \Delta, \ell, y, g_5)$ remain [P].
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION 10: COMPARISON BOX (OPTIONAL)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{External Comparison (Not an Input)}
@@ -675,6 +811,7 @@ BC parameters $\kappa$ & [P] \\
     \item \textbf{OPEN-22-2}: Derive $g_5$ from UV completion
     \item \textbf{OPEN-22-3}: Derive $\ell$ from first principles
     \item \textbf{OPEN-22-4}: Compute $f_1(0)$ for physical $V(\xi)$
+          --- \textbf{RESOLVED} (Section~\ref{sec:ch19_physical_run})
     \item \textbf{OPEN-22-5}: Brane kinetic term corrections
     \item \textbf{OPEN-22-6}: Multi-mediator corrections (KK tower sum)
 \end{enumerate}
