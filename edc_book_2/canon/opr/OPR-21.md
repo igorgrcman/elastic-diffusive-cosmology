@@ -305,10 +305,18 @@ N_bound = #{n : λ_n < λ_th and ψ_n ∈ L²(Ω)}
 | 25-35   | 3       | **TARGET** |
 | >35     | 4+      | over-counting |
 
-**Key finding**: N_bound = 3 is achieved for μ ∈ [25, 35). This is STABLE under BC
-variations (kappa scan). However, μ = M_0 ℓ is [P] postulated, not derived.
+**Key finding**: N_bound = 3 is achieved for μ ∈ [25, 35) (Pöschl-Teller reference).
+However, the **physical domain wall potential** V = M² - M' (OPEN-22-4) shows
+N_bound = 3 at **μ ≈ 10**, reflecting the different spectral properties.
 
-**Evidence**: `code/opr21_bvp_physical_run.py`, `code/output/opr21_physical_summary.json`
+**Updated results (2026-01-25 OPEN-22-4)**:
+- Physical V(ξ) = M² - M' from 5D Dirac [Dc]
+- N_bound = 3 at μ ≈ 10 (not 25-35 as for Pöschl-Teller)
+- This is consistent — different potential shape gives different spectrum
+
+**Evidence**:
+- `code/opr21_bvp_physical_run.py`, `code/output/opr21_physical_summary.json`
+- `code/opr22_open22_4_physical_run.py` (OPEN-22-4 pipeline)
 
 ---
 
