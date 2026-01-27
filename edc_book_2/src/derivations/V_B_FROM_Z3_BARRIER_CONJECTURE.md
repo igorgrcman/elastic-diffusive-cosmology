@@ -293,14 +293,20 @@ produces metastability:
 
 **C Derivation (2026-01-27) [Dc]:**
 ```
-C = (L0/δ)² = (1.0 fm / 0.1 fm)² = 100
+C = (L0/δ)² = (1.0 fm / 0.1 fm)² = 100    [Dc] conditional on [I]
 ```
 Physical picture: Junction core is a pancake with transverse extent L0 (nucleon)
-and thickness δ (brane). Area ratio gives C = 100. See `DERIVE_C_FROM_GEOMETRY.md`.
+and thickness δ = L0/10 (brane). Area ratio gives C = 100. See `DERIVE_C_FROM_GEOMETRY.md`.
 
-**Current status [Dc]:** Junction core is fully derived:
+**Input anchoring [I]:**
+- L0 = 1.0 fm [I] — nucleon scale (not derived)
+- δ = L0/10 = 0.1 fm [I] — aspect ratio identification (not derived)
+- See `DELTA_ANCHOR_MAP.md` for full forensic audit
+
+**Current status [Dc] conditional on [I]:** Junction core derivation:
 - Geometry-motivated functional form [Dc]
 - C = (L0/δ)² derived from geometry [Dc]
+- E0 = σ × L0² is independent of δ (shape only depends on δ)
 - **CLOSED:** No free parameters remain (given L0, δ, σ as [I] inputs)
 
 ---

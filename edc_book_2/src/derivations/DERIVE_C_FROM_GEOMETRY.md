@@ -143,24 +143,15 @@ I_⊥^(disk) = ∫₀^1 2π ξ dξ = π
 
 ---
 
-## 5. Identification of r_0 [I]
+## 5. Identification of Scales [I]
 
-### 5.1 Candidates for r_0
+### 5.1 Transverse Scale r_0 = L0 [I]
 
 | Candidate | Value | Source |
 |-----------|-------|--------|
-| Brane thickness δ | 0.1 fm | [I] Definition |
-| Nucleon scale L0 | 1.0 fm | [I] Proton charge radius |
+| Nucleon scale L0 | 1.0 fm | [I] Proton charge radius scale |
 | Leg projection L0 | 1.0 fm | [Def] Used in V_NG |
 | Proton charge radius | 0.88 fm | [BL] PDG |
-
-### 5.2 Physical Argument [Dc]
-
-The junction core is where the three flux tubes meet. This region extends over:
-- In the brane plane: the junction "footprint" ~ L0
-- Into the bulk: the brane thickness ~ δ
-
-The transverse core area should be A_core ~ L0², not δ².
 
 **Identification [I]:**
 ```
@@ -168,6 +159,34 @@ r_0 = L0 = 1.0 fm
 ```
 
 This is the in-brane leg projection already used in V_NG.
+
+### 5.2 Brane Thickness δ = L0/10 [I]
+
+**Critical anchoring:** The brane thickness δ used in the junction-core model
+is identified as:
+
+```
+δ ≡ L0/10 = 0.1 fm    [I]
+```
+
+**Rationale [I]:**
+- The junction core is a "pancake" structure
+- Transverse extent: L0 (nucleon scale)
+- Bulk extent: δ (10× smaller)
+- Aspect ratio L0/δ = 10 gives C = 100
+
+**Epistemic status:**
+- δ = L0/10 is an **identification [I]**, not a derivation
+- It is NOT the same as R_ξ ≈ 0.002 fm (electroweak scale)
+- See `DELTA_ANCHOR_MAP.md` for full forensic audit
+
+### 5.3 Physical Picture [Dc]
+
+The junction core is where the three flux tubes meet. This region extends over:
+- In the brane plane: the junction "footprint" ~ L0
+- Into the bulk: the brane thickness ~ δ = L0/10
+
+The transverse core area is A_core ~ L0², and the aspect ratio L0/δ = 10.
 
 ---
 
@@ -297,11 +316,20 @@ This range (56 to 160) encompasses the best-fit region.
 
 | Claim | Old Status | New Status | Justification |
 |-------|------------|------------|---------------|
-| C ~ 100 | [P/Cal] | [Dc] | Derived as (L0/δ)² |
-| E0 = C σ δ² | [Dc] | [Dc] | Dimensional closure (unchanged) |
+| L0 = 1.0 fm | [I] | [I] | Nucleon scale (not derived) |
+| δ = L0/10 = 0.1 fm | [I] | [I] | Aspect ratio identification (not derived) |
+| C = (L0/δ)² = 100 | [P/Cal] | [Dc] | Derived conditional on L0, δ [I] |
+| E0 = C σ δ² = σ L0² | [Dc] | [Dc] | Reformulated — independent of δ |
 | V_B ~ 2.6 MeV | [Cal] | [Dc] | Follows from C [Dc] and Z₃ structure |
 
-**Overall status: [Dc]** — C is derived from geometry with no free parameters.
+**Overall status: [Dc] conditional on [I] inputs**
+
+The derivation C = (L0/δ)² is geometric [Dc], but depends on:
+- L0 ~ 1.0 fm [I] — nucleon scale identification
+- δ = L0/10 [I] — aspect ratio identification
+
+**Key insight:** E0 = σ × L0² depends only on L0, not δ explicitly.
+The brane thickness δ only affects the **shape** of f(q/δ), not the energy scale.
 
 Note: The identification L0 = 1.0 fm and δ = 0.1 fm remain [I] (pattern fit).
 The derivation C = (L0/δ)² is [Dc] conditional on these inputs.

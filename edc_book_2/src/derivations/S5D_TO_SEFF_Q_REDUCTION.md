@@ -685,8 +685,30 @@ The junction core is a "pancake" structure:
 **Epistemic upgrade:**
 | Quantity | Before | After |
 |----------|--------|-------|
-| C | [P/Cal] | [Dc] |
+| C | [P/Cal] | [Dc] conditional on [I] inputs |
 | V_B | [Cal] | [Dc] (with Z₃ structure) |
+
+### 11.3.2 Brane Thickness Anchor [I]
+
+**Audit:** `derivations/DELTA_ANCHOR_MAP.md`
+
+The brane thickness δ = 0.1 fm used in junction-core is identified as:
+```
+δ = L0/10 = 0.1 fm    [I]
+```
+
+**Key points:**
+1. δ = 0.1 fm is an ORDER-OF-MAGNITUDE identification [I], not derived
+2. It is NOT the electroweak scale R_ξ ~ 0.002 fm
+3. The ratio δ/R_ξ ~ 50 reflects nucleon/electroweak scale hierarchy
+4. E0 = σ × L0² is independent of δ (only the shape f(q/δ) depends on δ)
+
+**Scale hierarchy:**
+| Scale | Value | Context |
+|-------|-------|---------|
+| R_ξ | ~0.002 fm | Electroweak (KK modes) |
+| δ | ~0.1 fm | Nucleon (junction core) |
+| L0 | ~1.0 fm | Nucleon radius |
 
 ### Output Artifacts
 
@@ -703,3 +725,4 @@ The junction core is a "pancake" structure:
 - 2026-01-27: Executed Helfrich route — NO-GO result documented
 - 2026-01-27: Executed Junction Core Well — mixed result [Dc]+[P/Cal]
 - 2026-01-27: Derived C = (L0/δ)² = 100 from geometry — upgrades to [Dc]
+- 2026-01-27: δ audit — anchored as δ = L0/10 [I], added DELTA_ANCHOR_MAP.md
