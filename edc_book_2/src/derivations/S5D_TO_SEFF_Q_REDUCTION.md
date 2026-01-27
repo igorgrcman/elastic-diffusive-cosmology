@@ -466,8 +466,8 @@ Put C addresses this gap systematically.
 | M(q) | **[Dc]** | [Der] | ✓ ACHIEVED — see `DERIVE_MQ_FROM_ACTION.md` |
 | V(q) | [P] | [Der] | Execute C2-C4 |
 | V_B | [Dc] 2.59 MeV | [Der] | ✓ PARTIAL (Z₃ structure) |
-| Γ₀ | [Cal] | [Der] | Mode spectrum at q_n |
-| τ_n | [Cal] 879 s | [Der] | V_B + Γ₀ via WKB |
+| Γ₀ | **[Dc]** 2.53×10²³ Hz | [Der] | ✓ ACHIEVED — see `DERIVE_GAMMA0_FROM_ACTION.md` |
+| τ_n | [Cal] 879 s | [Der] | S/ℏ calibration needed (currently ~0.01, need ~60) |
 
 ---
 
@@ -482,6 +482,8 @@ Put C addresses this gap systematically.
 
 **Linked derivation docs:**
 - V_B_FROM_Z3_BARRIER_CONJECTURE.md — Z₃ barrier picture
+- DERIVE_MQ_FROM_ACTION.md — M(q) derivation
+- DERIVE_GAMMA0_FROM_ACTION.md — Γ₀ prefactor derivation
 - Z3_SYMMETRY_ANALYSIS_NEUTRON.md — Z₃ symmetry analysis
 
 ---

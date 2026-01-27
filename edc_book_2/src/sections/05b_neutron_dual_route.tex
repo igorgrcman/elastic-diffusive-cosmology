@@ -22,13 +22,14 @@ The Put C corridor (\S\ref{subsec:putC_corridor}) has partially closed the 5D de
   \item $C = (L_0/\delta)^2 = 100$ derived from geometry \tagDc{} (conditional on \tagI{})
   \item $V_B = 2\Delta m_{np} \approx 2.6\,\mathrm{MeV}$ from $\mathbb{Z}_3$ barrier \tagDc{}
   \item Helfrich bending: NO-GO (proven insufficient) \tagDc{}
+  \item Effective mass $M(q) = M_{\mathrm{NG}} + M_{\mathrm{core}}$ from 5D action \tagDc{}
+  \item Prefactor $\Gamma_0 = \sqrt{\omega_n\omega_B}/(2\pi)$ from mode spectrum \tagDc{}
 \end{itemize}
 
 \textbf{What remains OPEN:}
 \begin{itemize}[nosep]
   \item Derive $\delta = L_0/10$ from first principles (currently \tagI{})
-  \item Derive effective mass $M(q)$ from 5D geometry
-  \item Connect $\Gamma_0$ prefactor to 5D mode spectrum
+  \item Calibrate $S/\hbar \approx 60$ (currently $\approx 0.01$ with junction-core parameters)
 \end{itemize}
 
 \textbf{What this section does:} Establishes the \emph{structural} picture (Route A),
@@ -661,6 +662,68 @@ S/\hbar = \int_{q_B}^{q_n} \sqrt{2M(q)(V(q)-E)}\,dq
 \textbf{Status:} $M(q)$ is now \tagDc{} (conditional on junction-core ansatz).
 $Q(q)$ definition is \tagDef{}; evaluated $Q(q)$ map is \tagDc{} (depends on derived $M(q)$).
 
+% --- Prefactor Derivation ---
+\paragraph{Prefactor $\Gamma_0$ from local mode spectrum.}
+\label{par:Gamma0_prefactor}
+
+The semiclassical WKB decay rate is $\Gamma = \Gamma_0 \exp(-S/\hbar)$, where $\Gamma_0$
+is the attempt frequency (prefactor). We derive $\Gamma_0$ from the local curvatures of
+$V(q)$ at the metastable well and barrier.
+
+\textbf{Frequency definitions} \tagDc{}:
+\begin{align}
+\omega_n^2 &= \frac{V''(q_n)}{M(q_n)} \quad \text{(well oscillation frequency)} \\
+\omega_B^2 &= \frac{|V''(q_B)|}{M(q_B)} \quad \text{(barrier unstable mode)}
+\end{align}
+where $q_n$ is the metastable minimum ($V'(q_n) = 0$, $V''(q_n) > 0$) and $q_B$ is the
+barrier maximum ($V'(q_B) = 0$, $V''(q_B) < 0$).
+
+\textbf{Prefactor formula} \tagDc{}:
+\begin{equation}
+\boxed{\Gamma_0 = \frac{\sqrt{\omega_n \, \omega_B}}{2\pi}}
+\quad \text{\tagDc{}}
+\label{eq:Gamma0_prefactor}
+\end{equation}
+
+\textbf{Physical origin:} The prefactor arises from the functional determinant ratio
+in the path integral. In the harmonic approximation: $\omega_n$ counts the oscillation
+frequency in the well (setting the ``attempt rate''), $\omega_B$ accounts for the
+unstable mode at the barrier, and $2\pi$ is the zero-mode normalization.
+
+\textbf{Numerical values} ($C = 100\,\mathrm{MeV}$, Lorentzian profile):
+\begin{center}
+\small
+\begin{tabular}{lll}
+\toprule
+\textbf{Quantity} & \textbf{Value} & \textbf{Tag} \\
+\midrule
+$q_B$ (barrier) & $0.095\,\mathrm{fm}$ & \tagDc{} \\
+$q_n$ (well) & $0.373\,\mathrm{fm}$ & \tagDc{} \\
+$V_B = V(q_B) - V(q_n)$ & $2.87\,\mathrm{MeV}$ & \tagDc{} \\
+$M(q_n)$ & $9.15\,\mathrm{MeV}$ & \tagDc{} \\
+$M(q_B)$ & $5.27\,\mathrm{MeV}$ & \tagDc{} \\
+$\omega_n$ & $3.79\,\mathrm{fm}^{-1}$ & \tagDc{} \\
+$\omega_B$ & $7.41\,\mathrm{fm}^{-1}$ & \tagDc{} \\
+$\Gamma_0$ & $2.53 \times 10^{23}\,\mathrm{Hz}$ & \tagDc{} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Unit conversion:} $\Gamma_0 [\mathrm{Hz}] = \Gamma_0 [\mathrm{fm}^{-1}] \times c$
+where $c = 2.998 \times 10^{23}\,\mathrm{fm/s}$.
+
+\textbf{Action integral finding} \tagDc{}:
+With current junction-core parameters, the WKB action gives $S/\hbar \approx 0.01$.
+This is much smaller than the required $S/\hbar \approx 60$ for $\tau_n = 879\,\mathrm{s}$.
+
+\textbf{Diagnosis:} The $\Gamma_0$ formula is correct \tagDc{}. The discrepancy indicates
+that the junction-core barrier is too narrow with current $(C, \delta)$ values. This is
+a parameter calibration issue, not a formula error. Resolving $S/\hbar$ requires separate
+work (either adjusting parameters or including additional barrier mechanisms).
+
+\textbf{Status:} $\Gamma_0 = \sqrt{\omega_n \omega_B}/(2\pi)$ is now \tagDc{}.
+Supporting derivation: \texttt{derivations/DERIVE\_GAMMA0\_FROM\_ACTION.md}.
+
 % --- Put C Status Summary Box ---
 \begin{tcolorbox}[colback=blue!5!white, colframe=blue!50!black,
                   title={\textbf{Put C Corridor: Status Summary}}]
@@ -673,6 +736,7 @@ $Q(q)$ definition is \tagDef{}; evaluated $Q(q)$ map is \tagDc{} (depends on der
   \item Helfrich bending: NO-GO (does not produce barrier) \tagDc{}
   \item $M(q) = M_{\mathrm{NG}} + M_{\mathrm{core}}$ derived from action \tagDc{} (see \S\ref{par:Mq_derivation})
   \item Canonical normalization $Q(q) = \int\sqrt{M}\,dq$ \tagDef{}
+  \item Prefactor $\Gamma_0 = \sqrt{\omega_n\omega_B}/(2\pi)$ from mode spectrum \tagDc{} (see \S\ref{par:Gamma0_prefactor})
 \end{itemize}
 
 \textbf{NO-GO:}
@@ -686,7 +750,7 @@ $Q(q)$ definition is \tagDef{}; evaluated $Q(q)$ map is \tagDc{} (depends on der
 \begin{itemize}[nosep]
   \item Derive $\delta = L_0/10$ from first principles (currently \tagI{})
   \item Prove ``one unit per leg = $\Delta m_{np}$'' from 5D action
-  \item Connect $\Gamma_0$ prefactor to 5D mode spectrum
+  \item Calibrate $S/\hbar \approx 60$ (currently $\approx 0.01$ with junction-core parameters)
 \end{itemize}
 
 \textbf{Impact:} With junction-core mechanism and $\mathbb{Z}_3$ barrier structure,
@@ -698,6 +762,7 @@ description becomes \emph{derived} rather than calibrated.
   \item \texttt{derivations/S5D\_TO\_SEFF\_Q\_REDUCTION.md} --- Put C corridor overview
   \item \texttt{derivations/DERIVE\_C\_FROM\_GEOMETRY.md} --- $C = (L_0/\delta)^2$ derivation
   \item \texttt{derivations/DERIVE\_MQ\_FROM\_ACTION.md} --- $M(q)$ derivation
+  \item \texttt{derivations/DERIVE\_GAMMA0\_FROM\_ACTION.md} --- $\Gamma_0$ prefactor derivation
   \item \texttt{derivations/V\_B\_FROM\_Z3\_BARRIER\_CONJECTURE.md} --- $\mathbb{Z}_3$ barrier
   \item \texttt{derivations/DELTA\_ANCHOR\_MAP.md} --- Brane thickness audit
 \end{itemize}
@@ -717,7 +782,7 @@ B3 & $V_B \approx 2.6$ MeV & \tagCal{} & \tagDc{} ($\mathbb{Z}_3$ + junction) \\
 \midrule
 --- & $V(q)$ from 5D action & OPEN & PARTIAL (junction core) \\
 --- & $M(q)$ from 5D geometry & OPEN & \tagDc{} (Eq.~\ref{eq:M_total}) \\
---- & $\Gamma_0$ from mode spectrum & OPEN & OPEN \\
+--- & $\Gamma_0$ from mode spectrum & OPEN & \tagDc{} (Eq.~\ref{eq:Gamma0_prefactor}) \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -744,6 +809,7 @@ $V_B$ & $2.59\,\mathrm{MeV}$ & \tagDc{} & Eq.~(\ref{eq:VB_Z3}) & WKB tunneling \
 $\tau_n$ & $879\,\mathrm{s}$ & \tagBL{} & PDG & Benchmark target \\
 $\tau_{\mathrm{eff}}$ & $70\,\mathrm{MeV}$ & \tagDc{} & Eq.~(\ref{eq:M_NG}) & $M_{\mathrm{NG}}(q)$ (inertia scale) \\
 $M(q)$ & Eq.~(\ref{eq:M_total}) & \tagDc{} & \S\ref{par:Mq_derivation} & WKB integral \\
+$\Gamma_0$ & $2.53\times 10^{23}\,\mathrm{Hz}$ & \tagDc{} & \S\ref{par:Gamma0_prefactor} & Decay rate prefactor \\
 $R_\xi$ & $0.002\,\mathrm{fm}$ & \tagP{}+\tagBL{} & Framework v2.0 & NOT used here \\
 \bottomrule
 \end{tabular}
