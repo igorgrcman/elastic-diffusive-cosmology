@@ -731,10 +731,12 @@ work (either adjusting parameters or including additional barrier mechanisms).
 \paragraph{Interpretation and scope.}
 Routes A--C close the \emph{origin} of the effective 1D ingredients ($M(q)$, $V(q)$, $\Gamma_0$) from the 5D action corridor, fixing the MeV-scale barrier \emph{height}.
 Yet the canonical bounce action implies essentially unsuppressed tunneling, so the present 1D WKB channel cannot explain $\tau_n$.
-A minimal 2D extension using the $\mathbb{Z}_3$-doublet coordinate $\Delta$ does not help (the optimal path remains at $\Delta=0$), so the lifetime mechanism remains open.
+A minimal 2D extension using the $\mathbb{Z}_3$-doublet coordinate $\Delta$ does not help (Route D: optimal path remains at $\Delta=0$).
+Testing internal-mode relaxation via a mechanical analogue also fails (Route E: finite discrete modes oscillate quasi-periodically rather than thermalizing).
+The lifetime mechanism remains open.
 
-% --- Neutron Status Summary Box (Routes A--D) ---
-\begin{tcolorbox}[title={Neutron: Status Summary (Routes A--D)}, colback=black!2, colframe=black!35, boxrule=0.6pt]
+% --- Neutron Status Summary Box (Routes A--E) ---
+\begin{tcolorbox}[title={Neutron: Status Summary (Routes A--E)}, colback=black!2, colframe=black!35, boxrule=0.6pt]
 \small
 
 \textbf{CLOSED (structural elements established).}
@@ -751,6 +753,7 @@ A minimal 2D extension using the $\mathbb{Z}_3$-doublet coordinate $\Delta$ does
 \begin{itemize}\setlength\itemsep{0.2em}
   \item \textbf{1D WKB channel fails:} The canonical bounce action gives $B/\hbar \simeq 8.9\times 10^{-3}$, while reproducing $\tau_n\approx 879~\mathrm{s}$ would require $B/\hbar\sim 60.7$. Therefore the present 1D tunneling channel cannot explain the neutron lifetime. \tagNoGo{}
   \item \textbf{Route D (2D test, $q$ and doublet mode $\Delta$) fails:} For $a(q)>0$, $V(q,\Delta)$ increases monotonically with $\lvert\Delta\rvert$ and the optimal bounce remains at $\Delta=0$, yielding no enhancement ($B_{2\mathrm{D}}\approx B_{1\mathrm{D}}$). \tagNoGo{}
+  \item \textbf{Route E (internal mode relaxation) fails:} A mechanical analogue with internal ring DOF shows NO sustained thermalization in conservative dynamics. Finite discrete modes oscillate quasi-periodically rather than thermalizing (FPU-like behavior). \tagNoGo{}
 \end{itemize}
 
 \medskip
@@ -972,8 +975,74 @@ provides \emph{no} additional suppression.
 See derivation note ``Route D: 2D Bounce Report'' in the supplementary documentation.
 \end{tcolorbox}
 
+% ==============================================================================
+% ROUTE E: Internal Mode Relaxation Test
+% ==============================================================================
+
+\subsubsection{Route E: Internal Mode Relaxation Test}
+\label{subsec:routeE_relaxation}
+
+Route E tests whether coupling the collective coordinate $q$ to additional internal
+degrees of freedom (a ``ring'' of springs connecting the Y-junction legs) could provide
+an effective relaxation mechanism, thermalizing energy away from the tunneling coordinate.
+
+\paragraph{Model.}
+A toy mechanical analogue: 4-node spring-mass system with central node (mass $m_0$) connected
+to three outer nodes (mass $m_{\mathrm{out}}$) via leg springs ($k_{\mathrm{leg}}$), and the
+outer nodes connected in a triangular ring via ring springs ($k_{\mathrm{ring}}$). The collective
+coordinate $q$ measures symmetric breathing; internal modes include ring deformations and doublet
+asymmetries.
+
+\paragraph{Relaxation modes tested.}
+\begin{itemize}[nosep]
+  \item \textbf{Mode 1 (damped):} Add Rayleigh viscous damping $\gamma$. Measures $t_{\mathrm{relax}}$.
+  \item \textbf{Mode 2 (conservative):} No dissipation. Check if internal modes act as effective bath.
+\end{itemize}
+
+\paragraph{Key result: NO-GO.}
+
+\begin{center}
+\begin{tabular}{lllp{4.5cm}}
+\toprule
+\textbf{Test} & \textbf{Outcome} & \textbf{Tag} & \textbf{Comment} \\
+\midrule
+Mode 1 (damped) & $t_{\mathrm{relax}} \propto \gamma^{-1}$ & \tagDc{} & Expected scaling \\
+Mode 2 (conservative) & No thermalization & \tagDc{} & Quasi-periodic (FPU-like) \\
+Effective $q$-relaxation & Transient only & \tagDc{} & Not sustained \\
+\midrule
+\textbf{Decision} & \textbf{NO-GO} & & Internal modes insufficient \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Physical reason.}
+In a finite-mode conservative system (8 DOF total, 6 independent after removing CM),
+energy oscillates quasi-periodically between modes rather than thermalizing. True
+relaxation requires either:
+\begin{enumerate}[nosep]
+  \item A continuum of modes (not present in the discrete toy model), or
+  \item Genuine nonlinear mode-mode coupling with many DOF, or
+  \item External dissipation channel (added in Mode 1).
+\end{enumerate}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!60!black,
+                  title={\textbf{Route E Status: NO-GO}}]
+\label{box:routeE_status}
+
+\textbf{Tested:} Y-junction + ring mechanical analogue with internal DOF.
+
+\textbf{Result:} Mode 2 (conservative) shows NO sustained thermalization. Mode 1 (damped) relaxes
+with $t_{\mathrm{relax}} \propto \gamma^{-1}$, requiring external dissipation.
+
+\textbf{Implication:} Discrete internal modes cannot rescue the lifetime mechanism. A continuum
+(bulk field modes, brane fluctuations) or quantum dissipation channel is required.
+
+\textbf{Supporting material:}
+180-run parameter scan documented in supplementary derivation note.
+\end{tcolorbox}
+
 % --- Updated Overall Status ---
-\paragraph{Updated neutron route status (post--Route D).}
+\paragraph{Updated neutron route status (post--Route E).}
 
 \begin{center}
 \begin{tabular}{lllp{5.5cm}}
@@ -985,8 +1054,9 @@ B & Effective 1D WKB & PARTIAL & Formula correct; $\tau_n$ not reproduced \\
 C & 5D$\to$1D reduction & PARTIAL & $M(q)$, $V(q)$, $\Gamma_0$ derived \tagDc{} \\
   & 1D bounce action & \textbf{NO-GO} & $B/\hbar = 0.009$ vs required $60.7$ \\
 D & 2D $(q,\Delta)$ bounce & \textbf{NO-GO} & $B_{2\mathrm{D}} = B_{1\mathrm{D}}$, no help \\
+E & Internal mode relaxation & \textbf{NO-GO} & FPU-like, no thermalization \\
 \midrule
-\multicolumn{4}{l}{\textbf{Open:} 3D modes, angular modes, non-WKB mechanisms} \\
+\multicolumn{4}{l}{\textbf{Open:} Continuum modes, bulk dissipation, non-WKB mechanisms} \\
 \bottomrule
 \end{tabular}
 \end{center}
