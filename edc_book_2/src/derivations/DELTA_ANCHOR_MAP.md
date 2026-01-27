@@ -185,13 +185,41 @@ Attempt to derive δ as a geometric mean or other combination:
 
 This gives δ ~ 0.05 fm, which is order-of-magnitude correct but not exactly 0.1 fm.
 
-### Recommended: Option B (Reformulation)
+### Option D: Proton Compton Wavelength Anchor [I] ← RECOMMENDED
 
-The cleanest approach is to reformulate so that:
-1. **E0 = σ × L0²** [Dc] — depends on nucleon scale, not brane thickness
-2. **f(q/δ)** [P] — shape function with decay scale δ as [I] input
+**New proposal (2026-01-27):** Anchor δ to the proton Compton wavelength:
 
-This keeps the [Dc] status for E0 while honestly tagging the shape dependence.
+```
+δ_nucl = λ_p/2 = ℏ/(2 m_p c) = 0.105 fm    [I]
+```
+
+**Numerical verification:**
+```
+λ_p = ℏc / (m_p c²) = 197.3 MeV·fm / 938.3 MeV = 0.210 fm
+δ_nucl = λ_p/2 = 0.105 fm ≈ 0.1 fm ✓
+```
+
+**Physical interpretation:**
+The junction core "probes" the bulk on the quantum scale of nucleon position
+uncertainty. The Compton wavelength λ_p is the characteristic quantum length
+for a particle of mass m_p. The factor 1/2 is natural for a localized core.
+
+**Advantages:**
+- Uses only m_p [BL] and ℏ, c [Def] — no free parameters
+- Consistent with aspect ratio L0/δ ≈ 10 (since L0 ≈ r_p ≈ 0.88 fm)
+- Physically motivated: quantum scale of nucleon
+- Independent of electroweak scale R_ξ
+
+**Status:** [I] (identified pattern), not [Der] until derived from 5D action.
+
+### Recommended: Option D (Compton Anchor) + Option B (Reformulation)
+
+The combined approach:
+1. **E0 = σ × L0²** [Dc] — energy scale depends on L0 only, not δ
+2. **δ_nucl = λ_p/2** [I] — decay scale has Compton interpretation
+3. **f(q/δ)** [P] — shape function uses Compton-anchored δ
+
+This keeps [Dc] for E0 while giving δ a principled (though not derived) anchor.
 
 ---
 
@@ -287,16 +315,19 @@ Update comments to reference δ = L0/10 identification with book cross-reference
 
 ---
 
-## 9. Conclusions
+## 9. Conclusions (Updated 2026-01-27)
 
-1. **δ = 0.1 fm is NOT anchored in the book** — it is an order-of-magnitude
-   estimate introduced in the code.
+1. **δ = 0.1 fm NOW HAS PRINCIPLED ANCHOR** — the proton Compton wavelength:
+   ```
+   δ_nucl = λ_p/2 = ℏ/(2 m_p c) = 0.105 fm    [I]
+   ```
 
-2. **The value δ = L0/10** provides a reasonable geometric identification [I]
-   based on the pancake aspect ratio of the junction core.
+2. **Two distinct thickness scales** must be distinguished:
+   - δ_EW = R_ξ ≈ 0.002 fm (electroweak/KK physics)
+   - δ_nucl ≈ 0.1 fm (nucleon/junction physics)
 
-3. **C = (L0/δ)² = 100 [Dc]** remains valid as a derived-conditional result,
-   with the condition being δ = L0/10 [I].
+3. **C = (L0/δ)² ≈ 90–100 [Dc]** remains valid as a derived-conditional result.
+   With δ = λ_p/2 = 0.105 fm and L0 = 1.0 fm: C = (1.0/0.105)² ≈ 91.
 
 4. **E0 = σ × L0² [Dc]** — the energy scale can be expressed without explicit
    δ, which strengthens the derivation.
@@ -319,6 +350,23 @@ All file paths and line numbers are as of 2026-01-27.
 
 ---
 
-## 11. Version History
+## 11. Book Integration
+
+**This analysis is now integrated into Book 2:**
+
+| Content | Book Location | Box/Section |
+|---------|---------------|-------------|
+| Two-scale taxonomy (δ_EW vs δ_nucl) | §5.1.4 Put C Corridor | Box: Brane Thickness Audit |
+| δ Decision Tree | §5.1.4 Put C Corridor | Box: δ Decision Tree |
+| Compton anchor δ = λ_p/2 | §5.1.4 Put C Corridor | Box: δ Decision Tree |
+| Parameter Provenance Table | §5.1.4 Put C Corridor | Box: Parameter Provenance |
+
+**File:** `sections/05b_neutron_dual_route.tex`
+
+---
+
+## 12. Version History
 
 - 2026-01-27: Initial forensic audit completed
+- 2026-01-27: Added Compton anchor (Option D) as recommended approach
+- 2026-01-27: Book integration completed (§5.1.4)
