@@ -59,8 +59,10 @@ SIGMA_FM2 = 8.82  # MeV/fm² [Dc] (calibrated value)
 L0_EDC = 1.0   # fm [I] nucleon scale (transverse junction extent)
 DELTA_EDC = 0.1  # fm [I] brane thickness (λ_p/2 anchor)
 
-# String tension [Dc]
-TAU_EFF = 70.0  # MeV/fm [Dc] effective string tension
+# Effective inertia-energy scale [Dc]
+# Note: τ_eff has units [MeV] (energy), NOT [MeV/fm] (tension)
+# This is because M_NG(q) = τ_eff × q²/(L0² + q²) must give [MeV] for M
+TAU_EFF = 70.0  # MeV [Dc] effective inertia-energy scale (integrated over legs)
 
 # Core energy scale [Dc]
 E0_EDC = SIGMA_FM2 * L0_EDC**2  # MeV [Dc] = 8.82 MeV

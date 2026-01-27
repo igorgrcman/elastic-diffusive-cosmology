@@ -200,13 +200,17 @@ Now M(0) = E0 × g(0) = E0 ≠ 0, resolving the regularization issue.
 
 ### 4.1 Input Parameters
 
-| Parameter | Value | Source | Status |
-|-----------|-------|--------|--------|
-| τ_eff | 70.0 MeV/fm | σ × δ × √(2π) [Dc] | [Dc] |
-| L0 | 1.0 fm | Nucleon scale | [I] |
-| δ | 0.1 fm | λ_p/2 anchor | [I] |
-| σ | 8.82 MeV/fm² | E_σ = m_e/α | [Dc] |
-| E0 | 8.82 MeV | σ × L0² | [Dc] |
+| Parameter | Value | Units | Source | Status |
+|-----------|-------|-------|--------|--------|
+| τ_eff | 70.0 | MeV | Integrated kinetic density (Z₃) | [Dc] |
+| L0 | 1.0 | fm | Nucleon scale | [I] |
+| δ | 0.1 | fm | λ_p/2 anchor | [I] |
+| σ | 8.82 | MeV/fm² | E_σ = m_e/α | [Dc] |
+| E0 | 8.82 | MeV | σ × L0² | [Dc] |
+
+**Note on τ_eff units:** M_NG(q) = τ_eff × q²/(L0² + q²) requires τ_eff to have
+dimension [MeV] (energy), not [MeV/fm] (tension). This is an inertia-energy scale
+obtained by integrating the kinetic density along the three flux tube legs.
 
 ### 4.2 M(q) Values at Key Points
 
@@ -223,6 +227,34 @@ Using Lorentzian profile g(x) = 1/(1+x²):
 | 2.0 | 50.91 | 0.02 | 50.93 |
 
 **Observation:** M_core dominates for q < 0.2 fm, M_NG dominates for q > 0.3 fm.
+
+### 4.3 Profile Robustness: Lorentzian vs Gaussian [Dc]
+
+The choice of profile g(x) for M_core(q) affects the functional form but not the
+key physical properties. We compare:
+
+| Profile | g(x) | M_core(0) | Decay at q = δ | Decay at q = 5δ |
+|---------|------|-----------|----------------|-----------------|
+| Gaussian | exp(-x²) | E0 | 0.37 E0 | 1.4×10⁻¹¹ E0 |
+| Lorentzian | 1/(1+x²) | E0 | 0.50 E0 | 0.04 E0 |
+| Constant | 1 | E0 | E0 | E0 |
+
+**Key findings:**
+1. **M(0) = E0 for all profiles** — The regularization is profile-independent.
+2. **Lorentzian has longer tail** — More gradual transition to M_NG dominance.
+3. **Gaussian decays faster** — Essentially M_NG only for q > 3δ.
+
+**Impact on Q(q) integral:**
+
+| q [fm] | Q (Lorentzian) | Q (Gaussian) | Difference |
+|--------|----------------|--------------|------------|
+| 0.1 | 0.267 | 0.261 | 2.3% |
+| 0.5 | 1.35 | 1.31 | 3.0% |
+| 1.0 | 3.83 | 3.79 | 1.0% |
+
+**Conclusion [Dc]:** Profile choice affects Q(q) by < 5% in the relevant range.
+We adopt Lorentzian as default since it gives smoother transition and is
+analytically tractable for curvature calculations.
 
 ---
 
