@@ -463,9 +463,9 @@ Put C addresses this gap systematically.
 | Quantity | Current status | Put C target | What is needed |
 |----------|----------------|--------------|----------------|
 | S_total | [Def] | — | Already defined |
-| M(q) | [P] | [Der] | Execute C2-C4 |
+| M(q) | **[Dc]** | [Der] | ✓ ACHIEVED — see `DERIVE_MQ_FROM_ACTION.md` |
 | V(q) | [P] | [Der] | Execute C2-C4 |
-| V_B | [Cal] 2.6 MeV | [Der] | V(q) → find extrema |
+| V_B | [Dc] 2.59 MeV | [Der] | ✓ PARTIAL (Z₃ structure) |
 | Γ₀ | [Cal] | [Der] | Mode spectrum at q_n |
 | τ_n | [Cal] 879 s | [Der] | V_B + Γ₀ via WKB |
 

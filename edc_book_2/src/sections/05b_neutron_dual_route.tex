@@ -587,6 +587,79 @@ This is within 0.5\% of the calibrated value $V_B^{\mathrm{cal}} \approx 2.6\,\m
 \textbf{Status:} \tagDc{} --- conditionally derived within $\mathbb{Z}_3$ framework.
 The ``one unit per leg = $\Delta m_{np}$'' identification remains \tagI{}.
 
+% --- M(q) Effective Mass Derivation ---
+\paragraph{Effective mass $M(q)$ from 5D action.}
+\label{par:Mq_derivation}
+
+The effective Lagrangian $L_{\mathrm{eff}} = \frac{1}{2}M(q)\dot{q}^2 - V(q)$ requires
+an effective mass $M(q)$ for the collective coordinate $q$. We derive this from two
+contributions arising from the 5D action:
+
+\textbf{(i) Nambu--Goto kinetic term} \tagDc{}:
+When the junction node moves with velocity $\dot{q}$, the three flux tube worldsheets
+acquire time-dependence. Expanding the Nambu--Goto action to quadratic order in $\dot{q}$:
+\begin{equation}
+M_{\mathrm{NG}}(q) = \tau_{\mathrm{eff}} \times \frac{q^2}{L_0^2 + q^2}
+\quad \text{\tagDc{}}
+\label{eq:M_NG}
+\end{equation}
+where $\tau_{\mathrm{eff}} \approx 70\,\mathrm{MeV/fm}$ is the effective string tension and
+$L_{\mathrm{leg}}(q) = \sqrt{L_0^2 + q^2}$ is the leg length.
+
+\textbf{(ii) Junction-core kinetic term} \tagDc{}:
+The moving junction core drags brane material with it, contributing an inertial term:
+\begin{equation}
+M_{\mathrm{core}}(q) = E_0 \times g(q/\delta)
+\quad \text{\tagDc{}}
+\label{eq:M_core}
+\end{equation}
+where $g(x) = 1/(1+x^2)$ (Lorentzian profile) and $E_0 = \sigma L_0^2 = 8.82\,\mathrm{MeV}$.
+
+\textbf{Combined result} \tagDc{}:
+\begin{equation}
+\boxed{M(q) = \tau_{\mathrm{eff}} \frac{q^2}{L_0^2 + q^2} + E_0 \frac{1}{1 + (q/\delta)^2}}
+\quad \text{\tagDc{}}
+\label{eq:M_total}
+\end{equation}
+
+\textbf{Key improvement:} Previous models had $M(0) = 0$, causing WKB breakdown near the proton.
+The junction-core term regularizes this: $M(0) = E_0 \neq 0$.
+
+\textbf{Numerical values (Lorentzian profile):}
+\begin{center}
+\small
+\begin{tabular}{cccc}
+\toprule
+$q$ [fm] & $M_{\mathrm{NG}}$ [MeV] & $M_{\mathrm{core}}$ [MeV] & $M_{\mathrm{total}}$ [MeV] \\
+\midrule
+0.0 & 0.00 & 8.82 & 8.82 \\
+0.1 & 0.69 & 4.41 & 5.10 \\
+0.5 & 14.0 & 0.34 & 14.3 \\
+1.0 & 35.0 & 0.09 & 35.1 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Canonical normalization $Q(q)$.}
+\label{par:Q_canonical}
+
+The canonical coordinate $Q$ is defined by:
+\begin{equation}
+\frac{dQ}{dq} = \sqrt{M(q)} \quad\Rightarrow\quad Q(q) = \int_0^q dq'\, \sqrt{M(q')}
+\quad \text{\tagDef{}}
+\label{eq:Q_canonical}
+\end{equation}
+
+This transforms the Lagrangian to $L = \frac{1}{2}\dot{Q}^2 - U(Q)$ where $U(Q) = V(q(Q))$.
+The WKB integral becomes:
+\begin{equation}
+S/\hbar = \int_{q_B}^{q_n} \sqrt{2M(q)(V(q)-E)}\,dq
+= \int_{Q_B}^{Q_n} \sqrt{2(U(Q)-E)}\,dQ
+\end{equation}
+
+\textbf{Status:} $M(q)$ is now \tagDc{} (conditional on junction-core ansatz).
+$Q(q)$ is \tagDef{} by construction.
+
 % --- Put C Status Summary Box ---
 \begin{tcolorbox}[colback=blue!5!white, colframe=blue!50!black,
                   title={\textbf{Put C Corridor: Status Summary}}]
@@ -597,6 +670,8 @@ The ``one unit per leg = $\Delta m_{np}$'' identification remains \tagI{}.
   \item $C = (L_0/\delta)^2 = 100$ derived from geometry \tagDc{} (conditional on \tagI{} inputs)
   \item $E_0 = \sigma L_0^2$ energy scale independent of $\delta$ \tagDc{}
   \item Helfrich bending: NO-GO (does not produce barrier) \tagDc{}
+  \item $M(q) = M_{\mathrm{NG}} + M_{\mathrm{core}}$ derived from action \tagDc{} (see \S\ref{par:Mq_derivation})
+  \item Canonical normalization $Q(q) = \int\sqrt{M}\,dq$ \tagDef{}
 \end{itemize}
 
 \textbf{NO-GO:}
@@ -610,7 +685,6 @@ The ``one unit per leg = $\Delta m_{np}$'' identification remains \tagI{}.
 \begin{itemize}[nosep]
   \item Derive $\delta = L_0/10$ from first principles (currently \tagI{})
   \item Prove ``one unit per leg = $\Delta m_{np}$'' from 5D action
-  \item Derive $M(q)$ effective mass from bulk fluctuations
   \item Connect $\Gamma_0$ prefactor to 5D mode spectrum
 \end{itemize}
 
@@ -622,6 +696,7 @@ description becomes \emph{derived} rather than calibrated.
 \begin{itemize}[nosep]
   \item \texttt{derivations/S5D\_TO\_SEFF\_Q\_REDUCTION.md} --- Put C corridor overview
   \item \texttt{derivations/DERIVE\_C\_FROM\_GEOMETRY.md} --- $C = (L_0/\delta)^2$ derivation
+  \item \texttt{derivations/DERIVE\_MQ\_FROM\_ACTION.md} --- $M(q)$ derivation
   \item \texttt{derivations/V\_B\_FROM\_Z3\_BARRIER\_CONJECTURE.md} --- $\mathbb{Z}_3$ barrier
   \item \texttt{derivations/DELTA\_ANCHOR\_MAP.md} --- Brane thickness audit
 \end{itemize}
@@ -640,7 +715,7 @@ B2 & WKB tunneling formula & \tagM{} & \tagM{} (unchanged) \\
 B3 & $V_B \approx 2.6$ MeV & \tagCal{} & \tagDc{} ($\mathbb{Z}_3$ + junction) \\
 \midrule
 --- & $V(q)$ from 5D action & OPEN & PARTIAL (junction core) \\
---- & $M(q)$ from 5D geometry & OPEN & OPEN \\
+--- & $M(q)$ from 5D geometry & OPEN & \tagDc{} (Eq.~\ref{eq:M_total}) \\
 --- & $\Gamma_0$ from mode spectrum & OPEN & OPEN \\
 \bottomrule
 \end{tabular}
@@ -666,6 +741,8 @@ $E_0$ & $8.82\,\mathrm{MeV}$ & \tagDc{} & Eq.~(\ref{eq:E0_derivation}) & $V_{\ma
 $\Delta m_{np}$ & $1.293\,\mathrm{MeV}$ & \tagBL{} & PDG & $V_B$ barrier height \\
 $V_B$ & $2.59\,\mathrm{MeV}$ & \tagDc{} & Eq.~(\ref{eq:VB_Z3}) & WKB tunneling \\
 $\tau_n$ & $879\,\mathrm{s}$ & \tagBL{} & PDG & Benchmark target \\
+$\tau_{\mathrm{eff}}$ & $70\,\mathrm{MeV/fm}$ & \tagDc{} & Eq.~(\ref{eq:M_NG}) & $M_{\mathrm{NG}}(q)$ \\
+$M(q)$ & Eq.~(\ref{eq:M_total}) & \tagDc{} & \S\ref{par:Mq_derivation} & WKB integral \\
 $R_\xi$ & $0.002\,\mathrm{fm}$ & \tagP{}+\tagBL{} & Framework v2.0 & NOT used here \\
 \bottomrule
 \end{tabular}
@@ -681,7 +758,7 @@ $R_\xi$ & $0.002\,\mathrm{fm}$ & \tagP{}+\tagBL{} & Framework v2.0 & NOT used he
 
 \textbf{Dependency chain:}
 \[
-\sigma \xrightarrow{\text{[Dc]}} E_0 = \sigma L_0^2 \xrightarrow{\text{[Dc]}} V(q)
+\sigma \xrightarrow{\text{[Dc]}} E_0 = \sigma L_0^2 \xrightarrow{\text{[Dc]}} V(q), M(q)
 \xrightarrow{\text{[Dc]}} V_B = 2\Delta m_{np} \xrightarrow{\text{[M]}} \tau_n
 \]
 \end{tcolorbox}
