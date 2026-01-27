@@ -587,8 +587,89 @@ by itself. The phenomenological node well [P] remains the only viable route.
 
 ---
 
+## 11.3 Junction Core Well Execution [Dc]+[P/Cal]
+
+**Report:** `derivations/JUNCTION_CORE_EXECUTION_REPORT.md`
+**Code:** `derivations/code/junction_core_well.py`
+**Status:** Mixed result — mechanism works [Dc], magnitude requires tuning [P/Cal]
+
+### Model Definition
+
+Junction-core action term:
+```
+S_core = -∫ dt E0 × f(q/δ)
+```
+where:
+- E0 = C × σ × δ² [Dc] (dimensional closure)
+- f(x) → 1 as x → 0, f(x) → 0 as x → ∞
+- δ = 0.1 fm [I] (brane thickness)
+
+### Mechanisms Tested
+
+| Mechanism | Functional Form | Physical Picture |
+|-----------|-----------------|------------------|
+| A1 (Gaussian overlap) | -E0 × exp(-(q/δ)²) | Three legs overlap near brane |
+| A2 (Junction rim) | -E0 × exp(-(q/δ)²) | Rim line tension τ_line ~ σδ |
+| A3 (Lorentzian) | -E0 / (1 + (q/δ)²) | Longer-range curvature attraction |
+
+### Results Summary
+
+| Scan Type | Configurations | Metastable | Key Finding |
+|-----------|----------------|------------|-------------|
+| Closure (C ~ O(1)) | 60 | 59 | Mechanism works [Dc] |
+| Extended (C ∈ [0.1, 100]) | 2340 | 635 | Full characterization |
+
+### Critical Finding: V_B Scaling
+
+With C ~ O(1):
+```
+E0(C=1) = σ × δ² = 8.82 × 0.01 = 0.088 MeV
+V_B ~ 0.22 MeV (11× smaller than target)
+```
+
+To achieve V_B ≈ 2.6 MeV requires C ~ 30-100 [P/Cal].
+
+### Best Match to V_B = 2×Δm_np
+
+| Parameter | Value |
+|-----------|-------|
+| Mechanism | A3 (Lorentzian) |
+| C | 100 |
+| τ | 20.0 MeV/fm |
+| k | 2.0 /fm |
+| V_B | 2.867 MeV |
+| Error vs target | +10.3% |
+
+### Comparison with Previous Routes
+
+| Route | Metastability | Free Parameters | Status |
+|-------|---------------|-----------------|--------|
+| Put C V1-V2 (NG only) | NO | 0 | [Dc] no-go |
+| Put C V3 (node well) | YES | 3 | [P/Cal] |
+| Helfrich | NO | 0 | [Dc] no-go |
+| **Junction core (C~1)** | **YES** | **1** | **[Dc]** |
+| **Junction core (C>>1)** | **YES** | **1** | **[P/Cal]** |
+
+### Conclusion [Dc]+[P/Cal]
+
+The junction-core mechanism **improves** over Put C V3:
+1. One free parameter (C) instead of three
+2. Geometry-motivated functional form
+3. Clear scaling: V_B ∝ C × σ × δ²
+
+**OPEN:** Geometric derivation of C ~ 30-100 from 5D action.
+
+### Output Artifacts
+
+- `derivations/artifacts/junction_core_results.json` — full numerical results
+- `derivations/artifacts/junction_core_results.csv` — summary table
+- `derivations/figures/junction_core_*.png` — potential plots
+
+---
+
 ## 12. Version History
 
 - 2026-01-27: Initial skeleton created (Put C corridor structure)
 - 2026-01-27: Executed Variants 1-3, added execution report and artifacts
 - 2026-01-27: Executed Helfrich route — NO-GO result documented
+- 2026-01-27: Executed Junction Core Well — mixed result [Dc]+[P/Cal]

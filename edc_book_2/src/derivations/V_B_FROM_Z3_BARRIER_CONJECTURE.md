@@ -275,7 +275,9 @@ computed and shows E_barrier = 3×Δm_np structure.
 | Flat bulk Nambu-Goto | [Dc] | NO metastability | `PUTC_EXECUTION_REPORT.md` |
 | Warped RS-like bulk | [Dc/P] | NO metastability | `PUTC_EXECUTION_REPORT.md` |
 | Warped + node well | [P/Cal] | YES, V_B ≈ 2.8 MeV | `PUTC_EXECUTION_REPORT.md` |
-| **Helfrich bending** | **[Dc/Cal]** | **NO-GO** | `HELFRICH_EXECUTION_REPORT.md` |
+| Helfrich bending | [Dc/Cal] | NO-GO | `HELFRICH_EXECUTION_REPORT.md` |
+| **Junction core (C~1)** | **[Dc]** | **YES, V_B ≈ 0.2 MeV** | `JUNCTION_CORE_EXECUTION_REPORT.md` |
+| **Junction core (C>>1)** | **[P/Cal]** | **YES, V_B ≈ 2.6 MeV** | `JUNCTION_CORE_EXECUTION_REPORT.md` |
 
 **Helfrich Route Closure [Dc]:**
 The Helfrich (brane bending) term with parameter closure κ ~ σδ² was tested
@@ -283,9 +285,17 @@ as a purely geometric source for the metastable well. Result: NO-GO.
 - With c₀ = 0: V_bend ~ +q² adds to NG cost (mathematical no-go)
 - With c₀ ≠ 0: 250 parameter combinations tested, 0 metastable
 
-**Current status:** The phenomenological node well [P] remains the only viable
-route for metastability. Its physical origin (junction core, bulk field coupling,
-or other mechanism) is OPEN.
+**Junction Core Route [Dc]+[P/Cal]:**
+The junction-core mechanism S_core = -∫ dt E0 × f(q/δ) with E0 = C × σ × δ²
+produces metastability:
+- **Mechanism [Dc]:** With C ~ O(1), 59/60 configurations are metastable
+- **Magnitude [P/Cal]:** V_B ~ 0.22 MeV for C~1, need C ~ 100 for V_B ~ 2.6 MeV
+- **Improvement:** 1 free parameter vs 3 for phenomenological node well
+
+**Current status:** Junction core is the best-available route:
+- Geometry-motivated functional form [Dc]
+- One free parameter (C) [P/Cal]
+- **OPEN:** Derive C ~ 30-100 from 5D action to upgrade to [Dc]
 
 ---
 
