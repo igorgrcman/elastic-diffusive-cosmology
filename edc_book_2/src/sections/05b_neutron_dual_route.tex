@@ -29,7 +29,7 @@ The Put C corridor (\S\ref{subsec:putC_corridor}) has partially closed the 5D de
 \textbf{What remains OPEN:}
 \begin{itemize}[nosep]
   \item Derive $\delta = L_0/10$ from first principles (currently \tagI{})
-  \item Calibrate $S/\hbar \approx 60$ (currently $\approx 0.01$ with junction-core parameters)
+  \item \textbf{[NO-GO]} WKB gives $S/\hbar = 0.009$ vs required $60.7$ --- 1D WKB mechanism ruled out
 \end{itemize}
 
 \textbf{What this section does:} Establishes the \emph{structural} picture (Route A),
@@ -768,6 +768,75 @@ description becomes \emph{derived} rather than calibrated.
 \end{itemize}
 \end{tcolorbox}
 
+% --- Canonical Bounce Audit Box (Task D) ---
+\begin{tcolorbox}[colback=red!5!white, colframe=red!60!black,
+                  title={\textbf{Canonical Bounce Action Audit: WKB NO-GO}}]
+\label{box:bounce_action_audit}
+
+\textbf{Question:} Does the junction-core model with $V_B \approx 2.6\,\mathrm{MeV}$
+produce $\tau_n \approx 879\,\mathrm{s}$ via WKB tunneling?
+
+\textbf{Method:} Compute the Euclidean bounce action $B$ in canonical coordinates:
+\begin{equation}
+Q(q) = \int_0^q dq'\, \sqrt{M(q')}, \qquad
+B = 2 \int_{Q_B}^{Q_n} dQ\, \sqrt{2[V(Q) - V_n]}
+\end{equation}
+
+\textbf{Key results:}
+\begin{center}
+\small
+\begin{tabular}{llll}
+\toprule
+\textbf{Quantity} & \textbf{Computed} & \textbf{Required} & \textbf{Status} \\
+\midrule
+$V_{\mathrm{barrier}}$ & $2.87\,\mathrm{MeV}$ & $\approx 2.6\,\mathrm{MeV}$ & ✓ OK \\
+$B/\hbar$ & $0.0089$ & $60.7$ & \textbf{✗ 6800× too small} \\
+$\tau$ (implied) & $4\times 10^{-24}\,\mathrm{s}$ & $879\,\mathrm{s}$ & \textbf{✗ OFF by $10^{27}$} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Why $B/\hbar$ is small:}
+\[
+\frac{V_{\mathrm{barrier}}}{\hbar\omega} \approx \frac{2.9\,\mathrm{MeV}}{1000\,\mathrm{MeV}} \approx 0.003
+\]
+The barrier is much smaller than the quantum zero-point energy (quantum-limited regime).
+Tunneling is nearly classical, not exponentially suppressed.
+
+\textbf{Large-factor hunt:} Required multiplier $\sim 7000$ to fix $\tau_n$.
+\begin{center}
+\small
+\begin{tabular}{ll}
+$(L_0/\delta)^1 = 10$: & insufficient \\
+$(L_0/\delta)^2 = 100$: & insufficient \\
+$(L_0/\delta)^3 = 1000$: & insufficient \\
+Max stack $\approx 38000$: & marginally sufficient \\
+\end{tabular}
+\end{center}
+
+\textbf{Conclusion: \textcolor{red}{[NO-GO]}}
+The 1D WKB mechanism with current $V(q)$, $M(q)$ \textbf{cannot} reproduce $\tau_n = 879\,\mathrm{s}$.
+
+\textbf{What this means:}
+\begin{itemize}[nosep]
+  \item $V_B \approx 2\Delta m_{np}$ remains \tagDc{} --- barrier HEIGHT is correct
+  \item But barrier SHAPE (width, curvature) does not produce long lifetime
+  \item WKB formula $\tau = \Gamma_0^{-1}\exp(B/\hbar)$ is not the right mechanism
+\end{itemize}
+
+\textbf{Open alternatives:}
+\begin{itemize}[nosep]
+  \item Large geometric factors from full 5D$\to$4D reduction [OPEN]
+  \item Different barrier shape from improved ansatz [OPEN]
+  \item Non-WKB mechanism (resonant tunneling, instanton sum) [OPEN]
+  \item Multi-dimensional angular modes modify effective action [OPEN]
+\end{itemize}
+
+\textbf{Supporting material:}
+\texttt{derivations/BOUNCE\_CANONICAL\_ACTION\_AUDIT.md},
+\texttt{derivations/code/derive\_bounce\_action\_Q.py}
+\end{tcolorbox}
+
 % --- Updated Route B Status Map ---
 \paragraph{Updated Route B status (post--Put C).}
 
@@ -783,6 +852,7 @@ B3 & $V_B \approx 2.6$ MeV & \tagCal{} & \tagDc{} ($\mathbb{Z}_3$ + junction) \\
 --- & $V(q)$ from 5D action & OPEN & PARTIAL (junction core) \\
 --- & $M(q)$ from 5D geometry & OPEN & \tagDc{} (Eq.~\ref{eq:M_total}) \\
 --- & $\Gamma_0$ from mode spectrum & OPEN & \tagDc{} (Eq.~\ref{eq:Gamma0_prefactor}) \\
+--- & WKB produces $\tau_n$ & OPEN & \textbf{[NO-GO]} (Box~\ref{box:bounce_action_audit}) \\
 \bottomrule
 \end{tabular}
 \end{center}

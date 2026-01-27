@@ -467,7 +467,7 @@ Put C addresses this gap systematically.
 | V(q) | [P] | [Der] | Execute C2-C4 |
 | V_B | [Dc] 2.59 MeV | [Der] | ✓ PARTIAL (Z₃ structure) |
 | Γ₀ | **[Dc]** 2.53×10²³ Hz | [Der] | ✓ ACHIEVED — see `DERIVE_GAMMA0_FROM_ACTION.md` |
-| τ_n | [Cal] 879 s | [Der] | S/ℏ calibration needed (currently ~0.01, need ~60) |
+| τ_n | **[NO-GO]** | [Der] | S/ℏ = 0.009 vs required 60.7 — WKB ruled out |
 
 ---
 
@@ -720,6 +720,93 @@ The brane thickness δ = 0.1 fm used in junction-core is identified as:
 
 ---
 
+## 11.4 Canonical Bounce Action Audit (Task D) [Dc]+[NO-GO]
+
+**Report:** `derivations/BOUNCE_CANONICAL_ACTION_AUDIT.md`
+**Code:** `derivations/code/derive_bounce_action_Q.py`
+**Status:** COMPLETED — WKB mechanism ruled out
+
+### Objective
+
+Formalize and close the "WKB exponent too small" finding from Task C.
+
+### Canonical Coordinate Method
+
+Transform from variable-mass coordinate q to canonical coordinate Q:
+```
+Q(q) = ∫₀^q dq' √M(q')
+```
+
+The Lagrangian becomes unit-mass: L = ½ Q̇² - V(Q), enabling standard WKB.
+
+### Bounce Action Formulas
+
+**Canonical (primary):**
+```
+B = 2 × ∫_{Q_B}^{Q_n} dQ √(2[V(Q) - V_n])
+```
+
+**Non-canonical (cross-check):**
+```
+B = 2 × ∫_{q_B}^{q_n} dq √(2M(q)[V(q) - V_n])
+```
+
+Both must agree — verified numerically to < 10⁻⁷ relative error.
+
+### Key Results
+
+| Quantity | Value | Units | Tag |
+|----------|-------|-------|-----|
+| q_B | 0.0948 | fm | [Dc] |
+| q_n | 0.3732 | fm | [Dc] |
+| Q_B | 0.255 | MeV^½·fm | [Dc] |
+| Q_n | 0.914 | MeV^½·fm | [Dc] |
+| V_barrier | 2.867 | MeV | [Dc] |
+| B (canonical) | 1.765 | MeV·fm | [Dc] |
+| B/ℏ | 0.00894 | — | [Dc] |
+| B/ℏ required | 60.7 | — | [Cal] |
+| **Deficit** | **60.7** | — | [Dc] |
+| Multiplier needed | ~7000 | — | [Dc] |
+
+### Why B/ℏ is Small
+
+Dimensional analysis:
+```
+V_barrier / ℏω ≈ 2.9 MeV / 1000 MeV ≈ 0.003
+```
+
+This is the **quantum-limited regime** where the barrier is much smaller than
+the zero-point energy. Tunneling is nearly classical, not exponentially suppressed.
+
+### Large-Factor Hunt
+
+| Factor | Value | Sufficient? |
+|--------|-------|-------------|
+| (L0/δ)¹ | 10 | NO |
+| (L0/δ)² | 100 | NO |
+| (L0/δ)³ | 1000 | NO |
+| Max stack | ~38000 | MAYBE |
+
+Required multiplier ~7000 exceeds all simple geometric factors.
+
+### Conclusion [NO-GO]
+
+The 1D WKB mechanism with current V(q), M(q) **cannot** reproduce τ_n = 879 s.
+
+**What could rescue the model:**
+1. [OPEN] Large geometric factors from 5D→4D reduction (not yet derived)
+2. [OPEN] Different barrier shape from improved ansatz
+3. [OPEN] Non-WKB mechanism (resonant tunneling, instanton sum)
+4. [OPEN] Multi-dimensional effects (angular modes)
+
+### Artifacts
+
+- `artifacts/bounce_results.json` — full numerical results
+- `artifacts/bounce_results.csv` — portable summary
+- `figures/bounce_action_audit.png` — diagnostic plots
+
+---
+
 ## 12. Version History
 
 - 2026-01-27: Initial skeleton created (Put C corridor structure)
@@ -728,3 +815,4 @@ The brane thickness δ = 0.1 fm used in junction-core is identified as:
 - 2026-01-27: Executed Junction Core Well — mixed result [Dc]+[P/Cal]
 - 2026-01-27: Derived C = (L0/δ)² = 100 from geometry — upgrades to [Dc]
 - 2026-01-27: δ audit — anchored as δ = L0/10 [I], added DELTA_ANCHOR_MAP.md
+- 2026-01-27: Task D — Canonical bounce action audit, B/ℏ = 0.009 [NO-GO]

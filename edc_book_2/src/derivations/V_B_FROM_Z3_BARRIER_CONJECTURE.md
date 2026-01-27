@@ -309,6 +309,60 @@ and thickness δ = L0/10 (brane). Area ratio gives C = 100. See `DERIVE_C_FROM_G
 - E0 = σ × L0² is independent of δ (shape only depends on δ)
 - **CLOSED:** No free parameters remain (given L0, δ, σ as [I] inputs)
 
+### 11.1.2 Lifetime Viability Audit (Task D) [NO-GO]
+
+**Report:** `derivations/BOUNCE_CANONICAL_ACTION_AUDIT.md`
+**Code:** `derivations/code/derive_bounce_action_Q.py`
+**Status:** [NO-GO] — WKB mechanism cannot reproduce τ_n = 879 s
+
+**The Question:**
+Does the junction-core model with V_B ≈ 2.6 MeV actually produce τ_n ≈ 879 s
+via WKB tunneling?
+
+**Method:**
+Compute the Euclidean bounce action B in canonical coordinates Q(q):
+```
+Q(q) = ∫₀^q dq' √M(q')     (canonical transformation)
+B = 2 × ∫_{Q_B}^{Q_n} dQ √(2[V(Q) - V_n])     (bounce action)
+τ = Γ₀⁻¹ × exp(B/ℏ)     (WKB lifetime)
+```
+
+**Key Results:**
+
+| Quantity | Value | Required | Status |
+|----------|-------|----------|--------|
+| V_barrier | 2.867 MeV | 2.6 MeV | ✓ OK |
+| B/ℏ | 0.00894 | 60.7 | ✗ **6800× too small** |
+| τ (implied) | 4×10⁻²⁴ s | 879 s | ✗ **OFF by 10²⁷** |
+
+**Why B/ℏ is Small:**
+```
+V_barrier / ℏω ≈ 2.9 / 1000 ≈ 0.003
+```
+The barrier is much smaller than the quantum zero-point energy.
+This is the **quantum-limited regime** — tunneling is nearly classical.
+
+**Large-Factor Hunt:**
+Required multiplier ~7000 to fix τ_n. Available geometric factors:
+- (L0/δ)¹ = 10: insufficient
+- (L0/δ)² = 100: insufficient
+- (L0/δ)³ = 1000: insufficient
+- Max stack (4π × Z₃ × (L0/δ)³) ≈ 38000: marginally sufficient
+
+**Conclusion [NO-GO]:**
+The 1D WKB mechanism with current V(q), M(q) **cannot** reproduce τ_n.
+
+**What this means for V_B:**
+- V_B ≈ 2×Δm_np remains [Dc] — the barrier HEIGHT is correct
+- But the barrier SHAPE (width, curvature) does not produce long lifetime
+- The WKB formula τ = Γ₀⁻¹ exp(B/ℏ) is not the right mechanism
+
+**Open Alternatives:**
+1. [OPEN] Large geometric factors from full 5D→4D reduction
+2. [OPEN] Different barrier shape from improved ansatz
+3. [OPEN] Non-WKB mechanism (resonant tunneling, instanton sum)
+4. [OPEN] Multi-dimensional angular modes modify effective action
+
 ---
 
 ## 12. Reproducibility
