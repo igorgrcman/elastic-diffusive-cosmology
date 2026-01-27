@@ -249,16 +249,16 @@ Numeric depends on Δm_np option:
 
 ---
 
-## 11.1 Put C Corridor (5D→1D Reduction)
+## 11.1 Route C Corridor (5D→1D Reduction)
 
 **Link:** See `derivations/S5D_TO_SEFF_Q_REDUCTION.md`
 
-Put C establishes the formal pathway:
+Route C establishes the formal pathway:
 ```
 S_5D (bulk + brane + GHY + Israel) → S_eff[q] = ∫ dt (½ M(q) q̇² − V(q))
 ```
 
-When Put C is completed:
+When Route C is completed:
 - V(q) becomes [Der] instead of [P]
 - V_B = V(q_B) − V(q_n) becomes [Der] instead of [Cal]
 - The Z₃ barrier picture provides a consistency check
@@ -268,7 +268,7 @@ computed and shows E_barrier = 3×Δm_np structure.
 
 ### 11.1.1 Tested Routes for V(q) Metastability (2026-01-27)
 
-**Summary of Put C execution attempts:**
+**Summary of Route C execution attempts:**
 
 | Route | Status | Result | Report |
 |-------|--------|--------|--------|

@@ -15,7 +15,7 @@ This audit identifies **four distinct thickness-like scales** used in EDC:
 | R_ξ | ~2×10⁻³ fm | Membrane correlation length | [P]+[BL] | Part I, Framework v2.0 |
 | Δ | 3.121×10⁻³ fm | Electron mass formula | [P] | CH4, OPR-04 |
 | ℓ | 2π R_ξ ≈ 0.013 fm | Orbifold circumference | [Dc] | CH11–13 |
-| **δ** | **0.1 fm** | **Junction core / Put C** | **[I]** | **NOT in book** |
+| **δ** | **0.1 fm** | **Junction core / Route C** | **[I]** | **NOT in book** |
 
 **Critical Finding:**
 The δ = 0.1 fm used in junction-core derivations is an **order-of-magnitude estimate**
@@ -72,7 +72,7 @@ m_e = π √(α σ Δ ℏc)    [P]
 
 **Key role:** Enters Robin BC via α = ℓ/δ.
 
-### 2.4 δ — Junction Core Thickness (Put C)
+### 2.4 δ — Junction Core Thickness (Route C)
 
 **Definition:** Brane thickness scale used in junction-core model.
 
@@ -356,10 +356,10 @@ All file paths and line numbers are as of 2026-01-27.
 
 | Content | Book Location | Box/Section |
 |---------|---------------|-------------|
-| Two-scale taxonomy (δ_EW vs δ_nucl) | §5.1.4 Put C Corridor | Box: Brane Thickness Audit |
-| δ Decision Tree | §5.1.4 Put C Corridor | Box: δ Decision Tree |
-| Compton anchor δ = λ_p/2 | §5.1.4 Put C Corridor | Box: δ Decision Tree |
-| Parameter Provenance Table | §5.1.4 Put C Corridor | Box: Parameter Provenance |
+| Two-scale taxonomy (δ_EW vs δ_nucl) | §5.1.4 Route C Corridor | Box: Brane Thickness Audit |
+| δ Decision Tree | §5.1.4 Route C Corridor | Box: δ Decision Tree |
+| Compton anchor δ = λ_p/2 | §5.1.4 Route C Corridor | Box: δ Decision Tree |
+| Parameter Provenance Table | §5.1.4 Route C Corridor | Box: Parameter Provenance |
 
 **File:** `sections/05b_neutron_dual_route.tex`
 

@@ -364,7 +364,7 @@ See code file for numerical verification and Q(q) computation.
 
 ## 9. Book Integration
 
-**Target location:** §5.1.4 "Put C Corridor" in 05b_neutron_dual_route.tex
+**Target location:** §5.1.4 "Route C Corridor" in 05b_neutron_dual_route.tex
 
 **Content to add:**
 1. M(q) formula box with derivation sketch

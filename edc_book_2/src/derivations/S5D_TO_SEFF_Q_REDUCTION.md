@@ -1,4 +1,4 @@
-# Put C: S_5D → S_eff[q] Reduction Corridor
+# Route C: S_5D → S_eff[q] Reduction Corridor
 
 **Date:** 2026-01-27
 **Status:** [P]+[Dc] — Formal structure established; actual M(q), V(q) computation OPEN
@@ -8,14 +8,14 @@
 
 ## 1. Executive Summary
 
-**What Put C is:**
+**What Route C is:**
 A formal derivation pathway showing how the effective 1D action
 ```
 S_eff[q] = ∫ dt ( ½ M(q) q̇² − V(q) )
 ```
 emerges from the full 5D action (bulk + brane + boundary terms).
 
-**What Put C does NOT yet do:**
+**What Route C does NOT yet do:**
 - Compute explicit functional forms of M(q) and V(q)
 - Derive V_B numerically from first principles
 - Close the "unit-per-leg = Δm_np" gap
@@ -23,14 +23,14 @@ emerges from the full 5D action (bulk + brane + boundary terms).
 **Output object:** S_eff[q] with M(q), V(q) as derived functionals of the 5D geometry.
 
 **Why this matters:**
-When completed, Put C upgrades the current status:
+When completed, Route C upgrades the current status:
 - V(q): [P] → [Der]
 - M(q): [P] → [Der]
 - V_B: [Cal] → [Der] (via V_B = V(q_B) − V(q_n))
 - τ_n: [Cal] → [Der] (via WKB with derived barrier)
 
 Currently, the neutron lifetime calculation uses phenomenological M(q), V(q).
-Put C provides the rigorous 5D foundation.
+Route C provides the rigorous 5D foundation.
 
 ---
 
@@ -353,19 +353,19 @@ This is conditional on:
 1. Barrier is Z₃-symmetric (minimal saddle) [Dc]
 2. "One unit per leg = Δm_np" [Dc] — OPEN
 
-### 5.3 Put C Target
+### 5.3 Route C Target
 
-When Put C is completed:
+When Route C is completed:
 1. V(q) is explicitly computed from S_5D
 2. q_n and q_B are found from V'(q) = 0
 3. V_B = V(q_B) − V(q_n) becomes [Der]
 
 The Z₃ barrier picture provides a constraint/check:
-if Put C gives V_B ≈ 2Δm_np, the Z₃ interpretation is validated.
+if Route C gives V_B ≈ 2Δm_np, the Z₃ interpretation is validated.
 
 ---
 
-## 6. OPEN Steps for Put C Completion
+## 6. OPEN Steps for Route C Completion
 
 | Step | What is needed | Current status |
 |------|----------------|----------------|
@@ -420,7 +420,7 @@ The current neutron lifetime calculations use:
 - M(q): [P] assumed constant or simple q-dependence
 - V_B: [Cal] ≈ 2.6 MeV from τ_n fit
 
-Put C is the next true 5D step. Until Steps C2-C4 are executed with explicit
+Route C is the next true 5D step. Until Steps C2-C4 are executed with explicit
 integrals, the effective model remains [P]+[Cal].
 
 **Consistency with 5D Forensic Audit:**
@@ -428,7 +428,7 @@ The STATUS_MAP in aside_neutron_dual_route confirms:
 > "the full 5D derivation (derive S_eff[q], M(q), V(q), V_B from 5D action)
 > is **not yet implemented**."
 
-Put C addresses this gap systematically.
+Route C addresses this gap systematically.
 
 ---
 
@@ -460,7 +460,7 @@ Put C addresses this gap systematically.
 
 ## 9. Status Map
 
-| Quantity | Current status | Put C target | What is needed |
+| Quantity | Current status | Route C target | What is needed |
 |----------|----------------|--------------|----------------|
 | S_total | [Def] | — | Already defined |
 | M(q) | **[Dc]** | [Der] | ✓ ACHIEVED — see `DERIVE_MQ_FROM_ACTION.md` |
@@ -646,15 +646,15 @@ To achieve V_B ≈ 2.6 MeV requires C ~ 30-100 [P/Cal].
 
 | Route | Metastability | Free Parameters | Status |
 |-------|---------------|-----------------|--------|
-| Put C V1-V2 (NG only) | NO | 0 | [Dc] no-go |
-| Put C V3 (node well) | YES | 3 | [P/Cal] |
+| Route C V1-V2 (NG only) | NO | 0 | [Dc] no-go |
+| Route C V3 (node well) | YES | 3 | [P/Cal] |
 | Helfrich | NO | 0 | [Dc] no-go |
 | **Junction core (C~1)** | **YES** | **1** | **[Dc]** |
 | **Junction core (C>>1)** | **YES** | **1** | **[P/Cal]** |
 
 ### Conclusion [Dc]+[P/Cal] → [Dc]
 
-The junction-core mechanism **improves** over Put C V3:
+The junction-core mechanism **improves** over Route C V3:
 1. One free parameter (C) instead of three
 2. Geometry-motivated functional form
 3. Clear scaling: V_B ∝ C × σ × δ²
@@ -809,7 +809,7 @@ The 1D WKB mechanism with current V(q), M(q) **cannot** reproduce τ_n = 879 s.
 
 ## 12. Version History
 
-- 2026-01-27: Initial skeleton created (Put C corridor structure)
+- 2026-01-27: Initial skeleton created (Route C corridor structure)
 - 2026-01-27: Executed Variants 1-3, added execution report and artifacts
 - 2026-01-27: Executed Helfrich route — NO-GO result documented
 - 2026-01-27: Executed Junction Core Well — mixed result [Dc]+[P/Cal]

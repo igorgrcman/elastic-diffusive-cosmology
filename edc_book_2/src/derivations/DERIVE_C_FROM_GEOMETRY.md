@@ -486,7 +486,7 @@ python3 derivations/code/derive_C_integrals.py
 
 **Internal:**
 - `derivations/JUNCTION_CORE_EXECUTION_REPORT.md` — Best-fit C ~ 100
-- `derivations/S5D_TO_SEFF_Q_REDUCTION.md` — Put C corridor
+- `derivations/S5D_TO_SEFF_Q_REDUCTION.md` — Route C corridor
 - `derivations/code/junction_core_well.py` — Original computation
 
 **Parameters:**

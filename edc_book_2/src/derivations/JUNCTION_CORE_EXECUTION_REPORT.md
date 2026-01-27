@@ -39,7 +39,7 @@ This is a **partial success**:
 - **Magnitude**: [P/Cal] — requires C >> 1 for correct V_B
 
 The junction core represents an **improvement** over the phenomenological
-node well (Put C Variant 3) because:
+node well (Route C Variant 3) because:
 1. The functional form is derived from geometry
 2. Only one free parameter (C) instead of three (V_node_0, q*, width)
 3. Dimensional closure is attempted
@@ -273,15 +273,15 @@ This is the fundamental scale of localized energy near the junction.
 
 | Route | Metastability | V_B achievable | Free parameters | Status |
 |-------|---------------|----------------|-----------------|--------|
-| Put C V1 (flat NG) | NO | — | 0 | [Dc] no-go |
-| Put C V2 (warped) | NO | — | 0 | [Dc/P] no-go |
-| Put C V3 (node well) | YES | 2.8 MeV | 3 (V_node_0, q*, w) | [P/Cal] |
+| Route C V1 (flat NG) | NO | — | 0 | [Dc] no-go |
+| Route C V2 (warped) | NO | — | 0 | [Dc/P] no-go |
+| Route C V3 (node well) | YES | 2.8 MeV | 3 (V_node_0, q*, w) | [P/Cal] |
 | Helfrich | NO | — | 0 | [Dc] no-go |
 | **Junction core (C~1)** | **YES** | **0.2 MeV** | **1 (C)** | **[Dc]** |
 | **Junction core (C>>1)** | **YES** | **2.6 MeV** | **1 (C)** | **[P/Cal]** |
 
 **Junction core is an improvement:**
-- Fewer free parameters than Put C V3
+- Fewer free parameters than Route C V3
 - Geometry-motivated functional form
 - Clear scaling relation
 
@@ -379,7 +379,7 @@ python3 derivations/code/junction_core_well.py
 
 **Internal:**
 - `derivations/S5D_TO_SEFF_Q_REDUCTION.md` — Corridor document
-- `derivations/PUTC_EXECUTION_REPORT.md` — Put C results
+- `derivations/PUTC_EXECUTION_REPORT.md` — Route C results
 - `derivations/HELFRICH_EXECUTION_REPORT.md` — Helfrich no-go
 - `derivations/V_B_FROM_Z3_BARRIER_CONJECTURE.md` — Z₃ barrier analysis
 

@@ -307,7 +307,7 @@ No circularity: Γ₀ depends only on [BL] inputs + [Dc]/[Cal] intermediates.
 
 ## 10. Book Integration
 
-**Target:** §5.1.4 "Put C Corridor" → new subsection "Prefactor Γ₀ from local mode spectrum"
+**Target:** §5.1.4 "Route C Corridor" → new subsection "Prefactor Γ₀ from local mode spectrum"
 
 **Content:**
 1. Frequency definitions (ω_n, ω_B)

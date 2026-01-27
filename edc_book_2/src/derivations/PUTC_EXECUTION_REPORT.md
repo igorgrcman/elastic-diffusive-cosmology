@@ -1,4 +1,4 @@
-# Put C Execution Report: M(q), V(q) from 5D Models
+# Route C Execution Report: M(q), V(q) from 5D Models
 
 **Date:** 2026-01-27
 **Status:** [Dc/P/Cal] — Model-dependent results; not unique [Der]
@@ -9,7 +9,7 @@
 
 ## 1. Executive Summary
 
-This report documents the execution of Put C — computing the effective 1D action
+This report documents the execution of Route C — computing the effective 1D action
 S_eff[q] = ∫dt (½ M(q) q̇² − V(q)) from explicit 5D model variants.
 
 **Key Results:**

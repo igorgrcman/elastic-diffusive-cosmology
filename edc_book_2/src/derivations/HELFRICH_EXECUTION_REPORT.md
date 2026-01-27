@@ -240,9 +240,9 @@ metastability by itself.
 
 ---
 
-## 6. Comparison with Put C (Node Well) Results
+## 6. Comparison with Route C (Node Well) Results
 
-The previous Put C execution (see `PUTC_EXECUTION_REPORT.md`) found that:
+The previous Route C execution (see `PUTC_EXECUTION_REPORT.md`) found that:
 
 | Route | Metastability | V_B achievable |
 |-------|---------------|----------------|
@@ -353,9 +353,9 @@ python3 derivations/code/putC_helfrich_well.py
 
 **Internal:**
 - `derivations/S5D_TO_SEFF_Q_REDUCTION.md` — Corridor document (Helfrich definitions)
-- `derivations/PUTC_EXECUTION_REPORT.md` — Previous Put C results
+- `derivations/PUTC_EXECUTION_REPORT.md` — Previous Route C results
 - `derivations/V_B_FROM_Z3_BARRIER_CONJECTURE.md` — Z₃ barrier analysis
 
 **Code:**
 - `derivations/code/putC_helfrich_well.py` — Computation script
-- `derivations/code/putC_compute_MV.py` — Original Put C script
+- `derivations/code/putC_compute_MV.py` — Original Route C script

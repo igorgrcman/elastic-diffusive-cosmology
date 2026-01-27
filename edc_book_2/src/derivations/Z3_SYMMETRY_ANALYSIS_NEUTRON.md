@@ -294,7 +294,7 @@ Z₃ symmetry implies equal partition but does not determine the quantized unit.
 
 ---
 
-## 8. Put C Corridor (5D→1D Reduction)
+## 8. Route C Corridor (5D→1D Reduction)
 
 **Link:** See `derivations/S5D_TO_SEFF_Q_REDUCTION.md`
 
@@ -305,7 +305,7 @@ S_5D → S_eff[q] = ∫ dt (½ M(q) q̇² − V(q))
 
 **Relevance to Z₃ analysis:**
 - V(q) shape determines whether Z₃ saddle exists
-- Put C can validate/derive the "3×Δm_np" barrier structure
+- Route C can validate/derive the "3×Δm_np" barrier structure
 - "One unit per leg = Δm_np" remains OPEN until V(q) is computed
 
 ---
@@ -316,4 +316,4 @@ S_5D → S_eff[q] = ∫ dt (½ M(q) q̇² − V(q))
 - 04c_routeB_z6_steiner.tex: Z₆ crystallization and equal tensions
 - 05b_neutron_dual_route.tex: Neutron metastability
 - V_B_FROM_Z3_BARRIER_CONJECTURE.md: V_B = 2×Δm_np conjecture
-- S5D_TO_SEFF_Q_REDUCTION.md: Put C corridor (5D→1D reduction)
+- S5D_TO_SEFF_Q_REDUCTION.md: Route C corridor (5D→1D reduction)
