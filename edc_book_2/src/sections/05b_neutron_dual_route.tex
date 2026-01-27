@@ -502,6 +502,63 @@ $\delta$ & $\sim 0.1\,\mathrm{fm}$ & Nucleon / junction scale \tagI{} \\
 \texttt{derivations/DELTA\_ANCHOR\_MAP.md}.
 \end{tcolorbox}
 
+% --- δ Decision Tree ---
+\begin{tcolorbox}[colback=orange!5!white, colframe=orange!60!black,
+                  title={\textbf{$\delta$ Decision Tree: Two Thickness Scales in EDC}}]
+\label{box:delta_decision_tree}
+
+\textbf{Critical distinction:} EDC contains TWO physically distinct thickness scales.
+Using the wrong one corrupts dimensional analysis.
+
+\paragraph{Scale taxonomy.}
+\begin{center}
+\begin{tabular}{lllll}
+\toprule
+\textbf{Symbol} & \textbf{Value} & \textbf{Physics} & \textbf{Status} & \textbf{Used for} \\
+\midrule
+$\delta_{\mathrm{EW}}$ & $\sim 0.002\,\mathrm{fm}$ & Electroweak/KK & \tagP{}+\tagBL{} & Mediator masses, OPR-20 \\
+$\delta_{\mathrm{nucl}}$ & $\sim 0.1\,\mathrm{fm}$ & Nucleon/junction & \tagI{} & Junction core, Put C \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Ratio:} $\delta_{\mathrm{nucl}} / \delta_{\mathrm{EW}} \approx 50$ (nucleon/EW hierarchy)
+
+\paragraph{Candidate anchors for $\delta_{\mathrm{nucl}}$.}
+
+\textbf{Option 1: Aspect ratio (current) \tagI{}}
+\begin{equation}
+\delta_{\mathrm{nucl}} = L_0/10 = 0.1\,\mathrm{fm}
+\end{equation}
+\emph{Rationale:} Pancake geometry of junction core (width $L_0$, thickness $L_0/10$).\\
+\emph{Problem:} ``Why factor 10?'' is not derived.
+
+\textbf{Option 2: Proton Compton wavelength (proposed) \tagI{}/\tagDc{}}
+\begin{equation}
+\delta_{\mathrm{nucl}} = \frac{\lambda_p}{2} = \frac{\hbar}{2 m_p c} = 0.105\,\mathrm{fm}
+\end{equation}
+\emph{Rationale:} Junction core ``probes'' bulk on quantum scale of nucleon position uncertainty.\\
+\emph{Advantage:} Uses only $m_p$ \tagBL{} and $\hbar, c$ \tagDef{}. No free parameters.\\
+\emph{Numerical check:} $\lambda_p/2 = 197.3\,\mathrm{MeV\cdot fm} / (2 \times 938.3\,\mathrm{MeV}) = 0.105\,\mathrm{fm}$ ✓
+
+\textbf{Option 3: σ-based scale (rejected)}
+\begin{equation}
+\delta_\sigma = \sqrt{\frac{\Delta m_{np}}{\sigma}} = \sqrt{\frac{1.293}{8.82}}\,\mathrm{fm} = 0.38\,\mathrm{fm}
+\end{equation}
+\emph{Problem:} Too large; gives $C \approx 7$, not $C \approx 100$.
+
+\paragraph{Decision.}
+\textbf{Adopted anchor:} $\delta_{\mathrm{nucl}} = \lambda_p/2 \approx 0.1\,\mathrm{fm}$ \tagI{}
+
+This is consistent with the aspect-ratio identification ($L_0/\delta \approx 10$) and has
+a physical interpretation (Compton scale), but remains \tagI{} until derived from 5D action.
+
+\paragraph{What this DOES NOT affect.}
+The energy scale $E_0 = \sigma L_0^2$ depends on $L_0$ only, NOT on $\delta$.
+The barrier height $V_B = 2\Delta m_{np}$ comes from $\mathbb{Z}_3$ structure, NOT from $\delta$.
+Only the \emph{shape} of $V(q)$ depends on $\delta$ via the profile function $f(q/\delta)$.
+\end{tcolorbox}
+
 % --- Barrier Height ---
 \paragraph{Barrier height: $V_B = 2 \times \Delta m_{np}$ \tagDc{}.}
 
@@ -602,7 +659,8 @@ B3 & $V_B \approx 2.6$ MeV & \tagCal{} & \tagDc{} ($\mathbb{Z}_3$ + junction) \\
 \midrule
 $\sigma$ & $8.82\,\mathrm{MeV/fm}^2$ & \tagDc{} & \S\ref{ch:ch15_opr01} & $E_0$, junction core \\
 $L_0$ & $1.0\,\mathrm{fm}$ & \tagI{} & This section & $C$, $E_0$ \\
-$\delta$ & $0.1\,\mathrm{fm}$ & \tagI{} & This section & $C$, profile $f(q/\delta)$ \\
+$\delta$ & $0.105\,\mathrm{fm}$ & \tagI{} & Box~\ref{box:delta_decision_tree} & $C$, profile $f(q/\delta)$ \\
+$\lambda_p$ & $0.210\,\mathrm{fm}$ & \tagBL{} & PDG ($m_p$) & Anchor for $\delta = \lambda_p/2$ \\
 $C$ & $100$ & \tagDc{} & Eq.~(\ref{eq:E0_derivation}) & $E_0 = C\sigma\delta^2$ \\
 $E_0$ & $8.82\,\mathrm{MeV}$ & \tagDc{} & Eq.~(\ref{eq:E0_derivation}) & $V_{\mathrm{core}}(q)$ \\
 $\Delta m_{np}$ & $1.293\,\mathrm{MeV}$ & \tagBL{} & PDG & $V_B$ barrier height \\
@@ -616,9 +674,9 @@ $R_\xi$ & $0.002\,\mathrm{fm}$ & \tagP{}+\tagBL{} & Framework v2.0 & NOT used he
 \textbf{Anchoring notes:}
 \begin{itemize}[nosep]
   \item $L_0 \approx r_p \approx 0.88\,\mathrm{fm}$ (proton charge radius); rounded to $1.0\,\mathrm{fm}$ \tagI{}
-  \item $\delta = L_0/10$ is an aspect-ratio identification (pancake geometry) \tagI{}
+  \item $\delta = \lambda_p/2 = 0.105\,\mathrm{fm}$ (proton Compton anchor) \tagI{}; see Box~\ref{box:delta_decision_tree}
   \item $\sigma$ is derived from $E_\sigma = m_e c^2/\alpha$ hypothesis \tagDc{}
-  \item $R_\xi$ (electroweak scale) is distinct from $\delta$ (nucleon scale); ratio $\approx 50$
+  \item $R_\xi \approx 0.002\,\mathrm{fm}$ (electroweak scale) is DISTINCT from $\delta$ (nucleon scale); ratio $\approx 50$
 \end{itemize}
 
 \textbf{Dependency chain:}
