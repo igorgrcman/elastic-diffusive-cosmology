@@ -30,6 +30,7 @@ Route~C (\S\ref{subsec:routeC_corridor}) --- the 5D$\to$1D reduction corridor --
 \begin{itemize}[nosep]
   \item Derive $\delta = L_0/10$ from first principles (currently \tagI{})
   \item \textbf{[NO-GO]} WKB gives $S/\hbar = 0.009$ vs required $60.7$ --- 1D WKB mechanism ruled out
+  \item \textbf{[NO-GO]} Route D: 2D $(q,\Delta)$ bounce gives $B_{2\mathrm{D}} = B_{1\mathrm{D}}$ --- no rescue from doublet mode
 \end{itemize}
 
 \textbf{What this section does:} Establishes the \emph{structural} picture (Route A),
@@ -922,4 +923,94 @@ $R_\xi$ & $0.002\,\mathrm{fm}$ & \tagP{}+\tagBL{} & Framework v2.0 & NOT used he
 \xrightarrow{\text{[Dc]}} V_B = 2\Delta m_{np} \xrightarrow{\text{[M]}} \tau_n
 \]
 \end{tcolorbox}
+
+% ==============================================================================
+% ROUTE D: 2D Coupled-Mode (q, Δ) Tunneling Test
+% ==============================================================================
+
+\subsubsection{Route D: Coupled-Mode (q, Δ) Tunneling Test}
+\label{subsec:routeD_2D_bounce}
+
+Route D tests whether extending the tunneling problem from 1D (collective coordinate $q$)
+to 2D --- adding the $\mathbb{Z}_3$ doublet asymmetry coordinate $\Delta$ --- provides
+additional suppression that could rescue the WKB mechanism.
+
+\paragraph{Model summary.}
+The $\mathbb{Z}_3$-symmetric Y-junction has a doublet mode $\Delta$ measuring ``which leg
+is special'' (departure from equal arm lengths). The 2D potential is constrained by symmetry:
+\begin{equation}
+V(q, \Delta) = V_0(q) + \tfrac{1}{2} a(q) \Delta^2 + \tfrac{1}{4} b(q) \Delta^4
+\quad \text{\tagDc{}/\tagP{}}
+\label{eq:routeD_potential}
+\end{equation}
+where $V_0(q)$ is the 1D potential from Route C, and $a(q), b(q)$ are phenomenological
+couplings constrained by doublet stability: $a(q_n) > 0$ (no low-lying partners at the
+neutron minimum).
+
+\paragraph{Key result: NO-GO.}
+
+\begin{center}
+\begin{tabular}{lllp{5cm}}
+\toprule
+\textbf{Quantity} & \textbf{Value} & \textbf{Tag} & \textbf{Comment} \\
+\midrule
+$B_{1\mathrm{D}}/\hbar$ (Route C) & $0.0089$ & \tagDc{} & 1D tunneling (baseline) \\
+$B_{2\mathrm{D}}/\hbar$ (Route D) & $0.0089$ & \tagDc{}/\tagP{} & 2D tunneling (this work) \\
+$B_{2\mathrm{D}}/B_{1\mathrm{D}}$ & $1.0000$ & \tagDc{} & No enhancement \\
+Required for $\tau_n$ & $60.7$ & \tagBL{} & To match $\tau_n = 879\,\mathrm{s}$ \\
+\midrule
+\textbf{Decision} & \textbf{NO-GO} & & Minimal 2D insufficient \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Physical reason.}
+The 2D channel does NOT help because:
+\begin{itemize}[nosep]
+  \item $V(q, \Delta)$ increases monotonically with $|\Delta|$ (since $a(q) > 0$)
+  \item No saddle point exists at $\Delta \neq 0$ with lower barrier
+  \item The optimal tunneling path stays at $\Delta = 0$ throughout
+  \item $\mathbb{Z}_3$ symmetry + stability constraint $\Rightarrow$ $\Delta = 0$ is minimum at every $q$
+\end{itemize}
+
+\textbf{Mathematical statement:} If $a(q) > 0$ for all $q \in [q_B, q_n]$, then the
+minimum action path has $\Delta(s) = 0$ for all $s$. Any detour into $\Delta \neq 0$
+increases both potential energy and path length.
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!60!black,
+                  title={\textbf{Route D Status: NO-GO}}]
+\label{box:routeD_status}
+
+\textbf{Tested:} Minimal 2D $(q, \Delta)$ coupled-mode tunneling with $\mathbb{Z}_3$ symmetry.
+
+\textbf{Result:} $B_{2\mathrm{D}} = B_{1\mathrm{D}}$ (ratio = 1.0000). The doublet mode
+provides \emph{no} additional suppression.
+
+\textbf{Required multiplier:} $\sim 6800\times$ to reach $B/\hbar \approx 60$.
+
+\textbf{Conclusion:} The $\mathbb{Z}_3$ doublet coordinate cannot rescue the WKB tunneling mechanism.
+
+\textbf{Supporting material:}
+\texttt{derivations/ROUTED\_2D\_BOUNCE\_REPORT.md},
+\texttt{derivations/code/routeD\_2D\_bounce.py}
+\end{tcolorbox}
+
+% --- Updated Overall Status ---
+\paragraph{Updated neutron route status (post--Route D).}
+
+\begin{center}
+\begin{tabular}{lllp{5.5cm}}
+\toprule
+\textbf{Route} & \textbf{What it tests} & \textbf{Status} & \textbf{Comment} \\
+\midrule
+A & Structural metastability & CLOSED & Neutron is metastable Y-junction \tagDc{}+\tagP{} \\
+B & Effective 1D WKB & PARTIAL & Formula correct; $\tau_n$ not reproduced \\
+C & 5D$\to$1D reduction & PARTIAL & $M(q)$, $V(q)$, $\Gamma_0$ derived \tagDc{} \\
+  & 1D bounce action & \textbf{NO-GO} & $B/\hbar = 0.009$ vs required $60.7$ \\
+D & 2D $(q,\Delta)$ bounce & \textbf{NO-GO} & $B_{2\mathrm{D}} = B_{1\mathrm{D}}$, no help \\
+\midrule
+\multicolumn{4}{l}{\textbf{Open:} 3D modes, angular modes, non-WKB mechanisms} \\
+\bottomrule
+\end{tabular}
+\end{center}
 
