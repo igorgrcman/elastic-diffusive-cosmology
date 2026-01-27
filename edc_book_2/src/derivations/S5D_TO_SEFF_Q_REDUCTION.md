@@ -417,6 +417,55 @@ Put C addresses this gap systematically.
 
 ---
 
-## 11. Version History
+## 11. Executed Variants (Appendix)
+
+**Execution date:** 2026-01-27
+**Full report:** `derivations/PUTC_EXECUTION_REPORT.md`
+**Code:** `derivations/code/putC_compute_MV.py`
+
+### Summary of Implemented Models
+
+| Variant | Description | Result | Status |
+|---------|-------------|--------|--------|
+| 1 | Flat bulk, Nambu-Goto only | NO metastability | [Dc] |
+| 2 | Warped (RS-like), Nambu-Goto + brane | NO metastability | [Dc/P] |
+| 3 | Warped + phenomenological node well | Metastability FOUND | [P/Cal] |
+
+### Best Match for Variant 3
+
+| Quantity | Value | Target | Error |
+|----------|-------|--------|-------|
+| q_B (barrier) | 1.22 fm | — | — |
+| q_n (neutron) | 1.86 fm | — | — |
+| V_B | 2.82 MeV | 2.6 MeV [Cal] | +8.3% |
+| V_B | 2.82 MeV | 2.587 MeV [Dc] | +8.8% |
+
+### Critical Finding
+
+**V_B = 2 × Δm_np does NOT emerge from minimal 5D models.**
+
+The Z₃ barrier conjecture [Dc] remains unvalidated:
+- Flat bulk: V(q) monotonically increasing
+- Warped bulk alone: insufficient for barrier structure
+- Warped + node well: CAN produce barrier, but V_B depends on fitted parameters
+
+### What Remains OPEN
+
+1. **Node energy origin:** V_node(q) is phenomenological [P], not derived from action
+2. **Parameter fixing:** (V_{node,0}, q*, width) require independent physics
+3. **V_B = 2×Δm_np:** Not naturally produced — needs mechanism
+4. **M(q) derivation:** Current estimate is simplified [Dc/P]
+
+### Output Artifacts
+
+- `derivations/artifacts/putC_results.json` — full numerical results
+- `derivations/artifacts/putC_results.csv` — summary table
+- `derivations/figures/putC_Vq_*.png` — potential plots
+- `derivations/figures/putC_Mq_*.png` — effective mass plots
+
+---
+
+## 12. Version History
 
 - 2026-01-27: Initial skeleton created (Put C corridor structure)
+- 2026-01-27: Executed Variants 1-3, added execution report and artifacts
