@@ -266,6 +266,27 @@ When Put C is completed:
 **OPEN:** "One unit per leg = Δm_np" remains conditional until V(q) is explicitly
 computed and shows E_barrier = 3×Δm_np structure.
 
+### 11.1.1 Tested Routes for V(q) Metastability (2026-01-27)
+
+**Summary of Put C execution attempts:**
+
+| Route | Status | Result | Report |
+|-------|--------|--------|--------|
+| Flat bulk Nambu-Goto | [Dc] | NO metastability | `PUTC_EXECUTION_REPORT.md` |
+| Warped RS-like bulk | [Dc/P] | NO metastability | `PUTC_EXECUTION_REPORT.md` |
+| Warped + node well | [P/Cal] | YES, V_B ≈ 2.8 MeV | `PUTC_EXECUTION_REPORT.md` |
+| **Helfrich bending** | **[Dc/Cal]** | **NO-GO** | `HELFRICH_EXECUTION_REPORT.md` |
+
+**Helfrich Route Closure [Dc]:**
+The Helfrich (brane bending) term with parameter closure κ ~ σδ² was tested
+as a purely geometric source for the metastable well. Result: NO-GO.
+- With c₀ = 0: V_bend ~ +q² adds to NG cost (mathematical no-go)
+- With c₀ ≠ 0: 250 parameter combinations tested, 0 metastable
+
+**Current status:** The phenomenological node well [P] remains the only viable
+route for metastability. Its physical origin (junction core, bulk field coupling,
+or other mechanism) is OPEN.
+
 ---
 
 ## 12. Reproducibility

@@ -73,6 +73,29 @@ S_junction = junction energy functional at Y-junction node
 [P] Form depends on the specific junction model (Nambu-Goto strings, etc.).
 See aside_neutron_dual_route/STATUS_MAP.md for current status.
 
+**S_Helfrich — Brane bending/curvature term [Def]:**
+```
+S_Helfrich = ∫_Σ d⁴x √(-h) [ (κ/2)(2H − c₀)² + κ̄ K_G ]
+```
+[Def] where:
+- H = (1/2) h^μν K_μν is the mean curvature of the brane
+- K_G is the Gaussian curvature (topological for closed surfaces)
+- κ is the bending rigidity [MeV]
+- c₀ is the spontaneous curvature [1/fm]
+- κ̄ is the Gaussian rigidity (set to 0 in minimal model)
+
+**Parameter closure [Dc]:**
+Dimensional analysis suggests κ ~ σ δ² where σ is brane tension and δ is thickness:
+```
+κ = C_κ × σ × δ²
+```
+with C_κ = O(1) dimensionless constant. This avoids introducing new fundamental scales.
+
+**Physical role:**
+When the Y-junction node displaces into the bulk (q > 0), it creates a local
+"dimple" in the brane. The Helfrich term provides the energetic cost/benefit
+of this bending deformation, potentially creating a mechanism for metastability.
+
 ### 2.2 Junction Sector (Y-Junction) [P]+[Dc]
 
 For the nucleon (proton/neutron), the relevant configuration is a **Y-junction**:
@@ -258,6 +281,52 @@ V(q) ⊃ τ Σᵢ Lᵢ(q) + E_node(q)
 String tension × total length + node energy.
 
 **Status:** [Dc] — form follows from Lagrangian structure; coefficients are OPEN.
+
+### 4.5 Helfrich Route: Bending Contribution to V(q) [Dc]
+
+**Where Helfrich enters:**
+When the junction node is at depth q, the brane develops a local deformation
+(dimple) around the attachment points. The Helfrich term contributes:
+```
+V(q) ⊃ V_bend(q) = (κ/2) ∫ dA (2H − c₀)²
+```
+
+**Monge gauge approximation [Dc]:**
+For small slopes, parametrize brane as ξ = w(r) in axisymmetric coordinates:
+```
+H ≈ (1/2) ∇²w = (1/2)(w'' + w'/r)
+```
+
+The bending energy becomes:
+```
+E_bend ≈ (κ/2) ∫₀^∞ 2πr dr (∇²w − c₀)²
+```
+
+**Boundary conditions:**
+- w(0) = q (junction node at depth q)
+- w(r → ∞) = 0 (brane returns to flat)
+- Smooth matching at characteristic radius a
+
+**Scaling analysis [Dc]:**
+For dimple of radius a and depth q:
+```
+∇²w ~ q/a² → E_bend ~ κ (q/a²)² × a² = κ q²/a²
+```
+
+If c₀ ≠ 0, additional terms arise that can compete with the q² cost.
+
+**What must be computed:**
+1. Solve for optimal brane profile w(r; q) given boundary conditions
+2. Compute E_bend(q) for each q
+3. Add to other contributions: V_total(q) = V_NG(q) + V_bend(q) + ...
+4. Check for metastability (local minimum + barrier)
+
+**Parameter closure:**
+- κ = C_κ σ δ² with C_κ ~ O(1) [Dc]
+- a ~ δ (brane thickness) [I]
+- c₀: Case 1 (c₀=0), Case 2 (c₀ ~ 1/δ) [P]
+
+See `derivations/HELFRICH_EXECUTION_REPORT.md` for computational results.
 
 ---
 
@@ -465,7 +534,61 @@ The Z₃ barrier conjecture [Dc] remains unvalidated:
 
 ---
 
+## 11.2 Helfrich Route Execution (2026-01-27)
+
+**Full report:** `derivations/HELFRICH_EXECUTION_REPORT.md`
+**Code:** `derivations/code/putC_helfrich_well.py`
+
+### Tested Hypothesis
+
+Could the Helfrich (bending rigidity) term provide a purely geometric mechanism
+for the metastable node well, without introducing new physics?
+
+### Parameter Closure Tested
+
+```
+κ = C_κ × σ × δ²
+```
+with σ = 8.82 MeV/fm² [Dc], δ = 0.1 fm [I], C_κ ∈ {0.5, 1.0, 2.0, 5.0}.
+
+### Results Summary
+
+| Level | Configurations | Metastable | Outcome |
+|-------|----------------|------------|---------|
+| L1 (scaling) | 10 | 0 | NO-GO |
+| L2 (variational) | 250 | 0 | NO-GO |
+
+### Key Finding: c₀ = 0 is Mathematical NO-GO [Dc]
+
+With spontaneous curvature c₀ = 0 (best-case parameter closure):
+```
+V_bend(q) ~ +κ q²/a²
+```
+This adds a positive quadratic term to V_NG, reinforcing the stretching cost.
+No mechanism exists to create a well.
+
+### Parameter Scan (c₀ ≠ 0)
+
+Scanned c₀ ∈ {0, 5, 10, 20, 50, 100} /fm with a ∈ {0.05, 0.1, 0.2} fm
+and τ ∈ {1, 2, 5, 10} MeV/fm. Total 250 configurations tested.
+
+**Result:** 0 metastable configurations found.
+
+### Conclusion [Dc]+[Cal]
+
+The Helfrich bending term with κ ~ σδ² **cannot** provide the metastable well
+by itself. The phenomenological node well [P] remains the only viable route.
+
+### Output Artifacts
+
+- `derivations/artifacts/helfrich_results.json` — full numerical results
+- `derivations/artifacts/helfrich_results.csv` — summary table
+- `derivations/figures/helfrich_Vtotal_*.png` — potential plots
+
+---
+
 ## 12. Version History
 
 - 2026-01-27: Initial skeleton created (Put C corridor structure)
 - 2026-01-27: Executed Variants 1-3, added execution report and artifacts
+- 2026-01-27: Executed Helfrich route — NO-GO result documented
