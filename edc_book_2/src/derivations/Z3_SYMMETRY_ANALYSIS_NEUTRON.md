@@ -257,9 +257,17 @@ then V_B = 2×Δm_np.
 
 ### Q2: What is the geometric meaning of Δm_np?
 
-From existing derivation [Der]: Δm_np = 8 m_e c² / π
+**Two options for Δm_np:**
+- **Option B [BL]:** Δm_np = 1.2933 MeV (PDG baseline)
+- **Option A [Dc]:** Δm_np = (5/2 + 4α) m_e = 1.2924 MeV (Book formula)
 
-**Interpretation:** The Z₆ symmetry breaking (120° → asymmetric angles) costs energy proportional to m_e.
+Where 5/2 = D_bulk/D_membrane is a dimensional projection factor.
+
+**Note:** A previous version incorrectly stated "Δm_np = 8 m_e c² / π [Der]".
+This formula was not supported by the codebase and has been corrected.
+
+**Interpretation:** The geometric/dimensional projection of 5D→2D (factor 5/2)
+plus electromagnetic correction (4α) gives the neutron excess energy.
 
 ### Q3: Why does one unit = Δm_np?
 

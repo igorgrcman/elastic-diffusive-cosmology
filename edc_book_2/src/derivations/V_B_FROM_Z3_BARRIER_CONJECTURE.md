@@ -1,6 +1,6 @@
 # V_B Derivation Attempt: Z₃ Barrier Conjecture
 
-**Date:** 2026-01-27
+**Date:** 2026-01-27 (updated)
 **Status:** [Dc] — Derived conditional on Z₃ barrier ansatz
 **Target:** Upgrade V_B from [Cal] to [Der]
 
@@ -12,34 +12,51 @@ From WKB calibration: V_B ≈ 2.6 MeV reproduces τ_n ≈ 879 s.
 
 **Observation:** V_B / Δm_np = 2.6 / 1.293 ≈ 2.01 (within 0.5%)
 
-Since Δm_np = 8 m_e c² / π [Der], this suggests:
-
+This suggests:
 ```
-V_B = 2 × Δm_np = 16 m_e c² / π = 2.6025 MeV
+V_B = 2 × Δm_np
 ```
-
-**Match:** 99.9% — This is NOT a coincidence.
 
 ---
 
-## 2. The Question
+## 2. Δm_np Options
+
+**IMPORTANT:** The neutron-proton mass difference can be treated two ways:
+
+### Option B: PDG Baseline [BL]
+```
+Δm_np = 1.2933 MeV   [BL] (PDG)
+```
+This is the experimental value, taken as input.
+
+### Option A: Book Formula [Dc]
+```
+Δm_np = (5/2 + 4α) m_e = 1.2924 MeV   [Dc]
+```
+Where:
+- 5/2 = D_bulk / D_membrane (dimensional projection factor)
+- 4α = electromagnetic correction from Dirac spinor structure
+- Error vs PDG: 0.07%
+
+**Note:** A previous version of this document incorrectly stated "Δm_np = 8 m_e / π [Der]".
+This formula was not supported by the codebase and has been removed.
+
+---
+
+## 3. The Question
 
 **Why factor of 2?**
 
-The derivation chain would be:
+The conjecture is:
 ```
-Δm_np = 8 m_e / π  [Der]
-       ↓
-V_B = 2 × Δm_np    [?? — needs geometric reason]
-       ↓
-V_B = 16 m_e / π   [Dc]
+V_B = 2 × Δm_np    [Dc] — needs geometric reason
 ```
 
 ---
 
-## 3. Candidate Explanation: Z₃ Symmetric Barrier
+## 4. Candidate Explanation: Z₃ Symmetric Barrier
 
-### 3.1 Energy Structure
+### 4.1 Energy Structure
 
 | Configuration | Energy above proton | Physical interpretation |
 |---------------|---------------------|------------------------|
@@ -52,7 +69,7 @@ Therefore:
 V_B = E_barrier - E_neutron = 3×Δm_np - Δm_np = 2×Δm_np
 ```
 
-### 3.2 Physical Picture
+### 4.2 Physical Picture
 
 The Y-junction has **Z₃ symmetry** (3 flux tubes at 120°).
 
@@ -68,19 +85,22 @@ The Y-junction has **Z₃ symmetry** (3 flux tubes at 120°).
 - Energy cost: 3 × Δm_np (one unit per leg)
 - Symmetry: Full Z₃ (but excited)
 
-### 3.3 Why 3 × Δm_np for the barrier?
+### 4.3 Why 3 × Δm_np for the barrier?
 
-**Argument:** The Z₆ breaking that produces Δm_np is associated with a specific topological/geometric deformation. In the neutron, this deformation affects the Y-junction asymmetrically (1 leg vs 2). At the barrier, the configuration is Z₃-symmetric, meaning all three legs must carry the deformation equally.
+**Argument:** The deformation that produces Δm_np is associated with a specific topological/geometric displacement. In the neutron, this deformation affects the Y-junction asymmetrically (1 leg vs 2). At the barrier, the configuration is Z₃-symmetric, meaning all three legs must carry the deformation equally.
 
 If the "cost per leg" is Δm_np, then the Z₃-symmetric barrier has cost 3 × Δm_np.
 
+**OPEN:** "One unit per leg = Δm_np" requires 5D action verification.
+
 ---
 
-## 4. Epistemic Status
+## 5. Epistemic Status
 
 | Claim | Status | Justification |
 |-------|--------|---------------|
-| Δm_np = 8 m_e / π | [Der] | Z₆ breaking derivation (existing) |
+| Δm_np = 1.2933 MeV | [BL] | PDG value (Option B) |
+| Δm_np = (5/2 + 4α) m_e | [Dc] | Book formula (Option A) |
 | Z₃ invariance of junction sector | [Dc] | Identical BC on edges + Steiner ⇒ τ₁=τ₂=τ₃ |
 | No low-lying doublet partners | [BL] | Observed: no near-degenerate neutron multiplet |
 | Doublet mode constrained | [BL]+[M] | Absence of partners ⇒ a(q_n)>0 OR splitting suppressed |
@@ -88,11 +108,10 @@ If the "cost per leg" is Δm_np, then the Z₃-symmetric barrier has cost 3 × �
 | Barrier is Z₃-symmetric | [Dc] | Minimal transition path through symmetric saddle |
 | Each leg costs Δm_np | [Dc] | Z₃ symmetry ⇒ equal partition; **OPEN: unit quantization** |
 | V_B = 3Δm - Δm = 2Δm | [Dc] | Follows from above |
-| V_B = 16 m_e / π | [Dc] | Numerical consequence |
 
 **Current overall status: [Dc]** — conditionally derived within Z₃ framework.
 
-### 4.1 Observational Constraint on Doublet Mode [BL]+[M]
+### 5.1 Observational Constraint on Doublet Mode [BL]+[M]
 
 **[BL]:** No low-lying "neutron partners" are observed corresponding to a
 Z₃-multiplet structure (singlet + doublet states with tunnel splitting).
@@ -112,7 +131,39 @@ requires explicit Hessian calculation or convexity lemma.
 
 ---
 
-## 5. What's Needed to Upgrade to [Der]
+## 6. V_B Numerical Results (Option A vs Option B)
+
+### Option B: Using PDG Baseline
+```
+V_B^(B) = 2 × 1.2933 MeV = 2.5867 MeV
+E_barrier^(B) = 3 × 1.2933 MeV = 3.8800 MeV
+```
+Error vs V_B_cal (2.6 MeV): **0.51%**
+
+### Option A: Using Book Formula
+```
+V_B^(A) = 2 × (5/2 + 4α) m_e = 2.5848 MeV
+E_barrier^(A) = 3 × (5/2 + 4α) m_e = 3.8772 MeV
+```
+Error vs V_B_cal (2.6 MeV): **0.58%**
+
+### Cross-Check: Barrier Above Proton
+```
+E_barrier_cal = V_B_cal + Δm_np = 2.6 + 1.293 = 3.893 MeV
+```
+
+| Quantity | Option B | Option A | Calibrated |
+|----------|----------|----------|------------|
+| Δm_np | 1.2933 MeV [BL] | 1.2924 MeV [Dc] | — |
+| V_B | 2.5867 MeV | 2.5848 MeV | 2.6 MeV [Cal] |
+| E_barrier | 3.8800 MeV | 3.8772 MeV | 3.893 MeV |
+| Error vs cal | 0.51% | 0.58% | — |
+
+Both options give V_B within 0.6% of the calibrated value.
+
+---
+
+## 7. What's Needed to Upgrade to [Der]
 
 To make V_B = 2 × Δm_np fully derived [Der], need to show from 5D action:
 
@@ -132,7 +183,7 @@ To make V_B = 2 × Δm_np fully derived [Der], need to show from 5D action:
 
 ---
 
-## 5.1 Guardrail Statement
+## 8. Guardrail Statement
 
 EDC is a 5D geometric "why"-framework; it does not replace 3D microscopic
 descriptions of particle processes. In this analysis:
@@ -144,21 +195,21 @@ descriptions of particle processes. In this analysis:
 
 ---
 
-## 6. Alternative Interpretations for Factor 2
+## 9. Alternative Interpretations for Factor 2
 
-### 6.1 Two-Layer Brane (Z₂)
+### 9.1 Two-Layer Brane (Z₂)
 
 The factor 12 = Z₆ × Z₂ suggests the brane has a two-layer structure. The barrier could involve crossing **two layers**, each costing Δm_np.
 
 **Problem:** Why would neutron → proton require crossing two layers?
 
-### 6.2 Bounce/Instanton Doubling
+### 9.2 Bounce/Instanton Doubling
 
 In quantum tunneling, the bounce solution is time-symmetric. The barrier appears "twice" in the Euclidean action.
 
 **Problem:** V_B is defined as a single barrier height, not related to action doubling.
 
-### 6.3 Domain Wall Pair
+### 9.3 Domain Wall Pair
 
 The transition might require creating and annihilating a domain wall pair, with each wall costing Δm_np.
 
@@ -166,39 +217,19 @@ The transition might require creating and annihilating a domain wall pair, with 
 
 ---
 
-## 7. Numerical Cross-Checks
-
-### 7.1 Barrier Above Proton
-
-E_barrier (above proton) = V_B + Δm_np = 2.6 + 1.29 = 3.89 MeV
-
-Compare to 3 × Δm_np = 3.88 MeV — **Match: 99.7%**
-
-### 7.2 Characteristic Area
-
-A_char = V_B / σ = 2.6 / 8.82 = 0.295 fm²
-
-√A_char = 0.54 fm — comparable to nucleon scale, but no clean geometric interpretation yet.
-
-### 7.3 Derived τ_n Sensitivity
-
-With V_B [Der] = 2.6025 MeV vs V_B [Cal] = 2.6 MeV:
-- ΔV_B = 2.5 keV
-- Estimated Δτ_n/τ_n ≈ 4%
-
-This is within WKB model uncertainty — **consistent**.
-
----
-
-## 8. Summary
+## 10. Summary
 
 **CONJECTURE:**
 ```
-V_B = 2 × Δm_np = 16 m_e c² / π ≈ 2.60 MeV
+V_B = 2 × Δm_np ≈ 2.59 MeV   [Dc]
 ```
 
+Numeric depends on Δm_np option:
+- Option B (PDG): V_B ≈ 2.587 MeV
+- Option A (Book): V_B ≈ 2.585 MeV
+
 **Physical interpretation (Z₃ barrier ansatz):**
-> The barrier configuration corresponds to a Z₃-symmetric excited state of the Y-junction, where all three flux tube legs are equally stressed. Each leg contributes one unit of the Z₆-breaking energy (Δm_np), giving a total barrier of 3×Δm_np above the proton. Since the neutron is already at Δm_np, the effective barrier height is V_B = 2×Δm_np.
+> The barrier configuration corresponds to a Z₃-symmetric excited state of the Y-junction, where all three flux tube legs are equally stressed. Each leg contributes one unit of the deformation energy (Δm_np), giving a total barrier of 3×Δm_np above the proton. Since the neutron is already at Δm_np, the effective barrier height is V_B = 2×Δm_np.
 
 **Status:** [Dc] — awaiting 5D action proof of Z₃ barrier structure.
 
@@ -206,7 +237,7 @@ V_B = 2 × Δm_np = 16 m_e c² / π ≈ 2.60 MeV
 
 ---
 
-## 9. Next Steps
+## 11. Next Steps
 
 1. **Explicit V(q) derivation** — Show from 5D membrane action that V(q) has a maximum at q_B with Z₃ symmetry
 
@@ -215,3 +246,11 @@ V_B = 2 × Δm_np = 16 m_e c² / π ≈ 2.60 MeV
 3. **Cross-validation** — Check if V_B = 2×Δm_np is consistent with other EDC predictions
 
 4. **Document in main text** — Add [Dc] claim to neutron dual-route section with explicit conditional statement
+
+---
+
+## 12. Reproducibility
+
+Calculations are in: `derivations/code/delta_m_np_options.py`
+
+Run: `python3 derivations/code/delta_m_np_options.py`
