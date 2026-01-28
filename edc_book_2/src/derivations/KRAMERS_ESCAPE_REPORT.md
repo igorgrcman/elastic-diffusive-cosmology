@@ -1,6 +1,6 @@
 # Route F: Kramers Escape from Double-Well Potential
 
-**Date:** 2026-01-28 (v3.5 — Bath 1 derivation chain)
+**Date:** 2026-01-28 (v3.6 — relativistic dispersion selected)
 **Purpose:** Model neutron → proton transition as thermal activation over topological barrier
 
 ---
@@ -518,20 +518,39 @@ where ρ_π, T_π are expressed in terms of **σ** (and possibly δ through regu
 
 ### Step 3: Dispersion and Mode Spectral Density
 
+**DECISION: Relativistic dispersion** ω = c_π k (tension-dominated)
+
+**Rationale:**
+- Nambu-Goto/DBI quadratic action → wave equation with ω² = c_π² k²
+- Flexural (ω ∝ k²) implies bending-dominant dynamics (Helfrich) — already NO-GO for well mechanism
+- Relativistic is more rigid: J(ω) shape fixed by dimensions + form-factors, less room for hidden tuning
+
 **Must exist in book:**
 
-Equation of motion for π and dispersion:
-$$\omega^2 = c_\pi^2 k^2 + \omega_0^2 \quad \text{(or } \omega^2 = c_\pi^2 k^2 \text{ if massless)}$$
+Dispersion relation (massless, tension-dominated):
+$$\omega^2 = c_\pi^2 k^2$$
 
 Density of states in 3D brane:
-$$\rho(\omega) \sim \frac{k^2}{2\pi^2}\frac{dk}{d\omega}$$
+$$\rho(\omega) \sim \frac{k^2}{2\pi^2}\frac{dk}{d\omega} \propto \omega^2$$
 
-Thickness δ enters as UV form-factor (minimal choice):
-$$F(k\delta) = e^{-k\delta} \quad \text{or} \quad F = (1 + k^2\delta^2)^{-1}$$
+Form-factors (UV regularization via δ, source localization via L₀):
+$$F(kL_0), \quad F(k\delta)$$
 
-**Key for F2:** δ and L₀ filter "how much noise" q actually sees.
+**Consequence for J(ω):**
 
-**Status:** [OPEN] — **DECISION NEEDED:** relativistic (ω = c_π k) vs flexural (ω ∝ k²)?
+With relativistic dispersion and localized coupling:
+$$J(\omega) \propto \omega^3 \times |F(\omega L_0/c_\pi)|^2 \times |F(\omega\delta/c_\pi)|^2$$
+
+This is a **super-ohmic bath** (J ∝ ω³).
+
+**Why super-ohmic is good for F2:**
+- Very weak low-frequency "tapping" on collective coordinate q
+- Natural path to keV E_fluct without manual reduction
+- But: gives frequency-dependent friction γ(ω), not constant
+
+**Status:** [CLOSED] — Relativistic dispersion selected
+
+**Next decision:** Form-factor type (Gaussian vs Lorentzian) — must be consistent with Route C core profile
 
 ---
 
@@ -636,12 +655,43 @@ Everything else is "standard" bath integration.
 
 ---
 
+### Three Micro-Decisions to Lock (Step 3 closure)
+
+| Decision | Choice | Status |
+|----------|--------|--------|
+| **Dispersion** | ω = c_π k (tension-dominated) | **[CLOSED]** |
+| **Form-factor type** | Gaussian or Lorentzian? | **[DECISION NEEDED]** |
+| **E_fluct definition** | Operational, from S_ξ(ω) around ω_b | [OPEN] |
+
+**Form-factor options:**
+
+| Type | F(kL) | Properties |
+|------|-------|------------|
+| **Gaussian** | $e^{-(kL)^2/2}$ | Smooth, fast decay |
+| **Lorentzian** | $(1 + k^2L^2)^{-1}$ | Slower decay, algebraic tail |
+
+**Critical:** Must use same type as Route C core profile for consistency.
+
+---
+
+### Warning: Super-Ohmic Bath Risk
+
+With pure super-ohmic bath (J ∝ ω³):
+- E_fluct may come out very small ✓ (good for F2)
+- BUT γ(ω_b) may also come out very small (outside turnover window)
+
+**If this happens:** Not a defeat, but information that Bath 1 alone needs supplementation:
+- Bulk leakage channel
+- Internal junction modes as additional bath
+
+This would still be "derived", not "tuned" — the form-factor calculation tells you what's missing.
+
+---
+
 ### Next Decision Point
 
-**Dispersion choice (Step 3):**
-- **Relativistic:** ω = c_π k — gives J(ω) ∝ ω³ at low ω
-- **Flexural:** ω ∝ k² — gives J(ω) ∝ ω^{1/2} at low ω
-
-This dramatically affects J(ω) shape and whether "keV" emerges naturally.
+**Form-factor consistency:**
+- Which form-factor (Gaussian vs Lorentzian) is canonical in EDC book?
+- Must be consistent across Route C core-well and Bath 1
 
 **Status:** [DECISION NEEDED]
