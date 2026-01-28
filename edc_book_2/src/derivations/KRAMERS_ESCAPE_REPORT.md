@@ -1,6 +1,6 @@
 # Route F: Kramers Escape from Double-Well Potential
 
-**Date:** 2026-01-28 (v3.7 — Gaussian form-factor canonical)
+**Date:** 2026-01-28 (v3.8 — Bath 1 NO-GO)
 **Purpose:** Model neutron → proton transition as thermal activation over topological barrier
 
 ---
@@ -717,7 +717,7 @@ This would still be "derived", not "tuned" — the form-factor calculation tells
 
 ---
 
-### Next Step: Derive J(ω) Explicitly
+### Bath 1 Numerical Results (v1)
 
 **All micro-decisions closed:**
 
@@ -725,14 +725,79 @@ This would still be "derived", not "tuned" — the form-factor calculation tells
 |----------|--------|--------|
 | Dispersion | ω = c_π k | [CLOSED] |
 | Form-factor | Gaussian (canonical) | [CLOSED] |
-| E_fluct definition | From S_ξ(ω) | [OPEN] |
+| E_fluct definition | From ∫ dω J(ω)/ω | [CLOSED] |
 
-**Next task:** Compute J(ω) explicitly with:
-- ρ(ω) ∝ ω² (from 3D brane + relativistic dispersion)
-- g_k from junction-core coupling
-- Form-factors F_{L₀}(k), F_δ(k) as Gaussian
+**Locked parameters:**
 
-**Expected result:**
-$$J(\omega) \propto \omega^3 \exp\left[-\left(\frac{\omega L_0}{c_\pi}\right)^2\right] \exp\left[-\left(\frac{\omega \delta}{c_\pi}\right)^2\right]$$
+| Parameter | Value | Source |
+|-----------|-------|--------|
+| L₀ | 1.0 fm | Junction extent [I] |
+| δ | 0.105 fm | λ_p/2 Compton anchor [I] |
+| σ | 8.82 MeV/fm² | Brane tension [Dc] |
+| E₀ = σL₀² | 8.82 MeV | Junction energy scale |
+| ω_b | ~8.82 MeV | Barrier frequency (estimate) |
 
-**Then:** Extract γ(ω_b) and E_fluct, check against keV target.
+**Scan over c_π/c:**
+
+| c_π/c | ω_c (MeV) | E_fluct (keV) | Θ | Υ | Status |
+|-------|-----------|---------------|---|---|--------|
+| 1.0 | 197 | **3844** | 0.3 | 10⁻⁸ | ✗ |
+| 0.3 | 59 | **3844** | 0.3 | 10⁻⁷ | ✗ |
+| 0.1 | 20 | **3844** | 0.3 | 10⁻⁵ | ✗ |
+
+---
+
+## 16. Bath 1 Verdict: NO-GO (v3.8)
+
+$$\boxed{\text{BATH 1 ALONE: NO-GO FOR F2}}$$
+
+**Key finding:** E_fluct ~ 3.8 MeV, **NOT** 20-50 keV
+
+**Target vs Actual:**
+
+| Quantity | Target (F2) | Actual (Bath 1) | Ratio |
+|----------|-------------|-----------------|-------|
+| E_fluct | 20-50 keV | 3844 keV | **110× too large** |
+| Θ | 55-60 | 0.3 | **180× too small** |
+| Υ | 0.1-10 | 10⁻⁸ – 10⁻⁵ | **Extremely underdamped** |
+
+### Physics Explanation
+
+For super-ohmic bath J(ω) ∝ ω³, the E_fluct integral is:
+
+$$E_{\text{fluct}} \sim \int d\omega \frac{J(\omega)}{\omega} \sim \int d\omega\, \omega^2 \times F^2(\omega L_0/c_\pi) \times F^2(\omega \delta/c_\pi)$$
+
+With Gaussian form factors:
+- Integral dominated by ω ~ c_π/L₀ (cutoff scale)
+- **Independent of c_π** (cancels out!)
+- Proportional to **coupling strength ~ σ L₀² = E₀**
+
+$$\boxed{E_{\text{fluct}} \sim E_0 \sim \text{few MeV}}$$
+
+The fluctuation scale is the **junction energy scale**, not some smaller scale.
+
+### Implications
+
+1. **Bath 1 (brane radiation) alone cannot produce F2 target**
+   - Junction is too strongly coupled to brane modes
+   - Natural fluctuation scale is E₀ ~ MeV, not keV
+
+2. **Suppression factor needed: ~110×**
+   - To go from 3844 keV to 35 keV
+
+3. **Possible resolutions:**
+   - (a) Additional suppression factor (geometric? symmetry? screening?)
+   - (b) Different bath with weaker coupling (Bath 2, 3, or 4)
+   - (c) Form factor more aggressive than Gaussian
+   - (d) Accept Bath 1 → Route F fails
+
+### Next Steps (Bath Selection)
+
+| Option | Path | Expected Outcome |
+|--------|------|------------------|
+| **Bath 4** | Rξ screening | Suppression via scale mismatch |
+| **Bath 2** | Bulk wake | May have weaker coupling |
+| **Bath 3** | Internal modes | Requires open channel |
+| **Give up** | Route F fails | Need different mechanism |
+
+**Recommended:** Try Bath 4 (Rξ screening) — natural suppression via form-factor mismatch between nucleon scale and EW scale.
