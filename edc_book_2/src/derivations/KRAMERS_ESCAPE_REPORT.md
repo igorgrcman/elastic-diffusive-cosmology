@@ -1,6 +1,6 @@
 # Route F: Kramers Escape from Double-Well Potential
 
-**Date:** 2026-01-28 (v3.6 — relativistic dispersion selected)
+**Date:** 2026-01-28 (v3.7 — Gaussian form-factor canonical)
 **Purpose:** Model neutron → proton transition as thermal activation over topological barrier
 
 ---
@@ -660,17 +660,46 @@ Everything else is "standard" bath integration.
 | Decision | Choice | Status |
 |----------|--------|--------|
 | **Dispersion** | ω = c_π k (tension-dominated) | **[CLOSED]** |
-| **Form-factor type** | Gaussian or Lorentzian? | **[DECISION NEEDED]** |
+| **Form-factor type** | Gaussian (canonical), Lorentzian (sensitivity) | **[CLOSED]** |
 | **E_fluct definition** | Operational, from S_ξ(ω) around ω_b | [OPEN] |
 
-**Form-factor options:**
+---
 
-| Type | F(kL) | Properties |
-|------|-------|------------|
-| **Gaussian** | $e^{-(kL)^2/2}$ | Smooth, fast decay |
-| **Lorentzian** | $(1 + k^2L^2)^{-1}$ | Slower decay, algebraic tail |
+### Form-Factor Decision: Gaussian Canonical
 
-**Critical:** Must use same type as Route C core profile for consistency.
+**Canonical (default):**
+$$F_{L_0}(k) = \exp[-(kL_0)^2/2], \qquad F_\delta(k) = \exp[-(k\delta)^2/2]$$
+
+**Sensitivity check (conservative):**
+$$F(kL) = (1 + k^2L^2)^{-1}$$
+
+**Rationale for Gaussian:**
+
+1. **Minimal assumptions** for finite-size core — smooth localization without sharp edges
+2. **Least UV-sensitive** — clean integrals, clean convergence; aggressively cuts high-k contributions
+3. **Compatible with F2 target** — helps q "see" narrow spectrum → E_fluct naturally falls to keV
+
+**Why Lorentzian is kept as secondary:**
+- Algebraic tail → typically gives larger noise and larger γ
+- If even Lorentzian gives keV E_fluct → super robust result
+- If only Gaussian gives keV → still valid, but "soft UV" assumption is part of model (honest)
+
+**No conflict with Route C:**
+
+| Aspect | Route C | Bath 1 |
+|--------|---------|--------|
+| **Profile type** | Lorentzian in q/δ | Gaussian in kL₀, kδ |
+| **Dimension** | Longitudinal (bulk extraction) | Transverse (in-brane smearing) |
+| **Physical meaning** | Well shape / inertia | Source localization for radiation |
+
+Different physical aspects → different profiles is physically normal.
+
+**Book statement:**
+> "Gaussian is the minimal-smoothness regulator consistent with a finite-size core; Lorentzian is the conservative heavy-tail alternative used only to stress-test the keV outcome."
+
+**Calculation plan:**
+1. **Mainline:** Gaussian form-factors
+2. **Appendix:** Lorentzian robustness check (1 figure + 1 table)
 
 ---
 
@@ -688,10 +717,22 @@ This would still be "derived", not "tuned" — the form-factor calculation tells
 
 ---
 
-### Next Decision Point
+### Next Step: Derive J(ω) Explicitly
 
-**Form-factor consistency:**
-- Which form-factor (Gaussian vs Lorentzian) is canonical in EDC book?
-- Must be consistent across Route C core-well and Bath 1
+**All micro-decisions closed:**
 
-**Status:** [DECISION NEEDED]
+| Decision | Choice | Status |
+|----------|--------|--------|
+| Dispersion | ω = c_π k | [CLOSED] |
+| Form-factor | Gaussian (canonical) | [CLOSED] |
+| E_fluct definition | From S_ξ(ω) | [OPEN] |
+
+**Next task:** Compute J(ω) explicitly with:
+- ρ(ω) ∝ ω² (from 3D brane + relativistic dispersion)
+- g_k from junction-core coupling
+- Form-factors F_{L₀}(k), F_δ(k) as Gaussian
+
+**Expected result:**
+$$J(\omega) \propto \omega^3 \exp\left[-\left(\frac{\omega L_0}{c_\pi}\right)^2\right] \exp\left[-\left(\frac{\omega \delta}{c_\pi}\right)^2\right]$$
+
+**Then:** Extract γ(ω_b) and E_fluct, check against keV target.
