@@ -1,6 +1,6 @@
 # Route F: Kramers Escape from Double-Well Potential
 
-**Date:** 2026-01-28 (v3.2 — F2 primary path)
+**Date:** 2026-01-28 (v3.3 — F2 primary, terminology fixed)
 **Purpose:** Model neutron → proton transition as thermal activation over topological barrier
 
 ---
@@ -11,11 +11,11 @@
 |----------|--------|-----|
 | **Closed** | Kramers/Langevin escape in double-well produces τ(Θ,Υ) map in **dimensionless simulation units**; scaling τ ~ exp(Θ) verified; TURNOVER regime identified | [Dc] |
 | **Calibrated (WRONG)** | Old "τ=879s at Θ≈6" is a **fit** that requires ω ~ 10⁻³ s⁻¹ — inconsistent with fm-scale physics | [Cal] |
-| **Open (F2 PATH)** | Derive γ and T_eff from 5D dissipation channel; **target: T_eff ~ 20–50 keV, Θ ~ 55** | [OPEN] |
+| **Open (F2 PATH)** | Derive γ and E_fluct from 5D dissipation channel; **target: E_fluct ~ 20–50 keV, Θ ~ 55** | [OPEN] |
 
 **Bottom line:**
 - Mechanism viability: **YES** (escape processes can yield long times)
-- Prediction status: **OPEN** (F2 path: need T_eff ~ keV from 5D physics)
+- Prediction status: **OPEN** (F2 path: need E_fluct ~ keV from 5D physics)
 - Primary path: **F2** (weak noise, Θ ~ 55)
 - Backup path: **F1** (slow clock — requires 10²⁶ factor, no evidence)
 
@@ -44,14 +44,14 @@ $$e^{\Theta} = 8.79 \times 10^{23} \quad \Rightarrow \quad \Theta \approx 55$$
 
 ---
 
-## 0.3 Path Decision: F2 PRIMARY (v3.2)
+## 0.3 Path Decision: F2 PRIMARY (v3.3)
 
 **Two survival options for Route F:**
 
 | Option | Requirement | Status |
 |--------|-------------|--------|
 | **F1: Slow collective coordinate** | ω_n, ω_b ≪ MeV/ℏ because of large effective inertia or weak restoring force | **BACKUP** — requires 10²⁶ slowdown factor with no trace in Route C |
-| **F2: Weak noise (PRIMARY)** | T_eff ≈ 20–50 keV so that Θ = ΔV/T_eff ≈ 55-60 | **[OPEN]** — must derive γ and T_eff from 5D physics |
+| **F2: Weak noise (PRIMARY)** | E_fluct ≈ 20–50 keV so that Θ = ΔV/E_fluct ≈ 55-60 | **[OPEN]** — must derive γ and E_fluct from 5D physics |
 
 ### Why F1 is weak
 
@@ -60,22 +60,35 @@ Route C already gives ω_n, ω_b in fm⁻¹ units, i.e., natural scale ~10²²�
 ### Why F2 is the rational choice
 
 If ω is "fast" (fm scale), then the only way to get τ = 879 s is:
-$$\Theta = \frac{\Delta V}{T_{\text{eff}}} \approx 55\text{–}60$$
+$$\Theta = \frac{\Delta V}{E_{\text{fluct}}} \approx 55\text{–}60$$
 
 This means:
-- **T_eff is NOT "temperature"** in the MeV sense, but the effective fluctuation energy seen by the collective coordinate q
+- **E_fluct is NOT "temperature"** — it is the effective fluctuation energy scale seen by the collective coordinate q
 - **The bath must be extremely cold/weakly coupled** for this channel
 - This is EDC-friendly: no new slow clock, just weak coupling q ↔ bath or soft spectral density at the relevant frequency
+
+### Terminology note (avoid "temperature" trap)
+
+Throughout this document, we use **E_fluct** (effective fluctuation energy scale) rather than "T_eff" or "temperature" to avoid the false impression that the model claims a real thermal bath at ~30 keV. The quantity E_fluct represents:
+
+$$E_{\text{fluct}} = \text{(effective noise amplitude seen by coordinate } q \text{)}$$
+
+This may arise from:
+- Vacuum fluctuations of the bath modes
+- Spectral density of the dissipation channel at relevant frequencies
+- Quantum zero-point energy of coupled modes
+
+**It is NOT necessarily a thermal equilibrium temperature.**
 
 ### Corrected calibration target (F2)
 
 | Old (wrong) | New (F2) |
 |-------------|----------|
 | Θ ≈ 6 | Θ ≈ 55–60 |
-| T_eff ≈ 0.2 MeV | T_eff ≈ 20–50 keV |
+| E_fluct ≈ 0.2 MeV | E_fluct ≈ 20–50 keV |
 
 **Sanity check:** With ΔV ~ 1–3 MeV and Θ ~ 55–60:
-$$T_{\text{eff}} = \frac{\Delta V}{\Theta} \approx \frac{1.3 \text{ MeV}}{60} \approx 22 \text{ keV}$$
+$$E_{\text{fluct}} = \frac{\Delta V}{\Theta} \approx \frac{1.3 \text{ MeV}}{60} \approx 22 \text{ keV}$$
 
 ---
 
@@ -114,7 +127,12 @@ $$\tau \sim \exp\left(\frac{\Delta V}{E_{\text{fluct}}}\right)$$
 When the n→p transition occurs:
 - The energy difference (Δm_np c² = 1.293 MeV) is **redistributed** into available excitations
 - In EDC language: these excitations include **brane modes** (transverse oscillations) and **bulk wake** (deformations in Φ/A_B fields)
-- The observed electron and antineutrino are interpreted as specific brane/bulk excitation channels
+
+**Precision on e⁻ and ν̄ interpretation [P]:**
+
+In the EDC picture, e⁻ and ν̄ are **effective output modes** of the brane/bulk into which the excess energy and charge/spin are transferred. This is a description of the **emission channel**, not necessarily an identification with a single geometric wave.
+
+> "e⁻ and ν̄ are the emission channels carrying the appropriate quantum numbers (charge, spin, lepton number) and energy — they are the EDC map of the final-state degrees of freedom, not a claim that 'transverse wave = electron' as a geometric identity."
 
 **Note:** This is [P] interpretation. Route F addresses only the statistical escape over the barrier, not the detailed energy partition among final-state modes.
 
@@ -164,11 +182,11 @@ where:
 
 **Observation:** $\tau$ scales exponentially with $\Theta$ as expected from Kramers theory.
 
-### 4.2 Calibration to Neutron Lifetime [Cal]
+### 4.2 Calibration to Neutron Lifetime [Cal] — REJECTED
 
 **Target:** $\tau = 879$ simulation units
 
-**Best match:**
+**Best match (in simulation units):**
 $$\boxed{\Theta \approx 6, \quad \Upsilon \approx 0.3}$$
 
 | Metric | Value |
@@ -177,7 +195,13 @@ $$\boxed{\Theta \approx 6, \quad \Upsilon \approx 0.3}$$
 | Target $\tau$ | 879 |
 | Regime | TURNOVER |
 
-**Warning [Cal]:** This is a fit. The statement "τ = 879 seconds" requires anchoring simulation time to physical seconds via ω_n, which is [OPEN].
+**⚠️ REJECTED as physical calibration:**
+
+This match (Θ ≈ 6) is an **artifact of simulation time units**. It only maps to τ = 879 seconds if ω ~ 10⁻³ s⁻¹, which contradicts Route C's fm-scale physics (ω ~ 10²² Hz).
+
+**Correct F2 target:** Θ ≈ 55–60, E_fluct ≈ 20–50 keV
+
+The Θ ≈ 6 row in the simulation demonstrates that the code works and Kramers scaling is verified, but it is **not** the physical operating point.
 
 ---
 
@@ -238,7 +262,7 @@ For Route F (F2 path) to make a physical prediction, the following must be deriv
 | $\omega_n^2 = V''(q_n)/M(q_n)$ | Route C M(q), V(q) | [OPEN] — expect ~10²² Hz (fm scale) |
 | $\omega_b^2 = |V''(q_b)|/M(q_b)$ | Route C M(q), V(q) | [OPEN] — expect ~10²² Hz (fm scale) |
 | $\gamma$ | Specific dissipation channel | [OPEN] — brane wave emission? bulk modes? radiation reaction? |
-| $T_{\text{eff}}$ | Fluctuation-dissipation from same channel | [OPEN] — **must give ~20–50 keV** |
+| $E_{\text{fluct}}$ | Fluctuation-dissipation from same channel | [OPEN] — **must give ~20–50 keV** |
 
 ### 7.2 The Two Numbers F2 Requires
 
@@ -249,7 +273,7 @@ To close Route F via F2, you must derive from 5D/brane mechanics:
    - Bulk mode emission
    - "Radiation reaction" of junction moving through plenum
 
-2. **Noise amplitude (T_eff)** from the fluctuation spectrum of that same channel, ideally via fluctuation-dissipation relation (in whatever EDC form applies)
+2. **Noise amplitude (E_fluct)** from the fluctuation spectrum of that same channel, ideally via fluctuation-dissipation relation (in whatever EDC form applies)
 
 **Once both are fixed, Θ is no longer free.** Then you get a prediction:
 - If Θ ~ 55 → **VIABLE**
@@ -257,18 +281,18 @@ To close Route F via F2, you must derive from 5D/brane mechanics:
 
 ### 7.3 Viability Criterion for F2
 
-$$T_{\text{eff}} = \frac{\Delta V}{\Theta} \approx \frac{1.3 \text{ MeV}}{55} \approx 24 \text{ keV}$$
+$$E_{\text{fluct}} = \frac{\Delta V}{\Theta} \approx \frac{1.3 \text{ MeV}}{55} \approx 24 \text{ keV}$$
 
 **If 5D physics naturally gives keV-level effective noise on q → Route F succeeds.**
 **If 5D physics gives MeV-level noise → Route F fails.**
 
 ### 7.4 Only Then
 
-$$\tau_{\text{pred}} = \frac{2\pi}{\omega_n} \cdot \frac{\gamma}{\omega_b^2} \cdot \exp\left(\frac{\Delta V}{T_{\text{eff}}}\right) \stackrel{?}{=} 879 \text{ s}$$
+$$\tau_{\text{pred}} = \frac{2\pi}{\omega_n} \cdot \frac{\gamma}{\omega_b^2} \cdot \exp\left(\frac{\Delta V}{E_{\text{fluct}}}\right) \stackrel{?}{=} 879 \text{ s}$$
 
 ---
 
-## 8. Epistemic Status (v3.2 — F2 Path)
+## 8. Epistemic Status (v3.3 — F2 Path)
 
 | Claim | Tag | Note |
 |-------|-----|------|
@@ -277,9 +301,9 @@ $$\tau_{\text{pred}} = \frac{2\pi}{\omega_n} \cdot \frac{\gamma}{\omega_b^2} \cd
 | Kramers scaling τ ~ exp(Θ) | [Dc] | Confirmed over Θ = 3–15 |
 | TURNOVER regime | [Dc] | All points have 0.1 < Υ < 10 |
 | **τ = 879 s at Θ ≈ 6** | **[Cal]** | **Wrong calibration target** — only works if ω ~ 10⁻³ s⁻¹ |
-| **T_eff = 0.22 MeV** | **[Cal]** | **Wrong** — F2 requires T_eff ~ 20–50 keV |
+| **E_fluct = 0.22 MeV** | **[Cal]** | **Wrong** — F2 requires E_fluct ~ 20–50 keV |
 | **F2 target: Θ ≈ 55–60** | **[OPEN]** | Correct target if ω ~ fm⁻¹ scale |
-| **F2 target: T_eff ~ 20–50 keV** | **[OPEN]** | Must be derived from 5D fluctuation-dissipation |
+| **F2 target: E_fluct ~ 20–50 keV** | **[OPEN]** | Must be derived from 5D fluctuation-dissipation |
 | ω_n, ω_b ~ 10²² Hz | [OPEN] | Expected from Route C (fm scale) |
 | γ from dissipation channel | [OPEN] | Must be identified |
 | e⁻, ν̄ as brane/bulk modes | [P] | Interpretation, not part of Route F dynamics |
@@ -299,8 +323,8 @@ However, the claim "τ = 879 s" is currently **calibrated [Cal]**, not derived. 
 **F2 requirements (PRIMARY):**
 1. ω_n, ω_b from Route C — expected ~10²² Hz (fm scale)
 2. γ from a specific dissipation channel (brane/bulk modes)
-3. T_eff from fluctuation-dissipation — **must give ~20–50 keV**
-4. Resulting Θ = ΔV/T_eff — **must be ~55** for τ = 879 s
+3. E_fluct from fluctuation-dissipation — **must give ~20–50 keV**
+4. Resulting Θ = ΔV/E_fluct — **must be ~55** for τ = 879 s
 
 **F1 (BACKUP):** Only viable if 5D reduction reveals ~10²⁶ slowdown factor — currently no evidence.
 
@@ -333,11 +357,11 @@ To close Route F via F2, derive from 5D/brane physics:
 2. **Derive γ from that channel**
    - What is the damping coefficient in physical units?
 
-3. **Derive T_eff via fluctuation-dissipation**
+3. **Derive E_fluct via fluctuation-dissipation**
    - Same channel must give noise spectrum
-   - **Target: T_eff ~ 20–50 keV** (not 0.2 MeV)
+   - **Target: E_fluct ~ 20–50 keV** (not 0.2 MeV)
 
-4. **Compute Θ = ΔV / T_eff**
+4. **Compute Θ = ΔV / E_fluct**
    - If Θ ~ 55 → VIABLE
    - Otherwise → NO-GO
 
@@ -357,7 +381,7 @@ To close Route F via F2, derive from 5D/brane physics:
 |------|----------|-----------------|
 | Dissipation channel | What physical process gives γ? | Identified from 5D |
 | γ value | What is damping in SI units? | Derived, not chosen |
-| Fluctuation-dissipation | What is T_eff from same channel? | ~20–50 keV |
-| Θ check | Is Θ = ΔV/T_eff ≈ 55? | YES for viability |
+| Fluctuation-dissipation | What is E_fluct from same channel? | ~20–50 keV |
+| Θ check | Is Θ = ΔV/E_fluct ≈ 55? | YES for viability |
 
 **Route F becomes [Der] when all four items are closed without free parameters.**
