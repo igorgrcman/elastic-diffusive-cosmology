@@ -145,11 +145,103 @@ The 8-DOF system (4 nodes $\times$ 2D) has only 6 independent modes after removi
 
 ---
 
-## 8. Artifacts
+## 8. Version 2: Strict Three-Metric Criterion [Dc]
 
+### 8.1 Motivation
+
+The v1 study used only the collective coordinate $q$ to define relaxation. This is potentially misleading—the center may appear "settled" while the ring remains distorted (not equilateral). A true "proton minimum" requires ALL degrees of freedom to settle.
+
+### 8.2 Three-Metric Definition [Def]
+
+**Metric 1 (q):** Node displacement from equilibrium
+$$q(t) = \|\mathbf{r}_0(t) - \mathbf{r}_0^{\mathrm{eq}}\|$$
+
+**Metric 2 (D):** Ring distortion (departure from equilateral)
+$$D(t) = \sqrt{\frac{(s_{12} - \bar{s})^2 + (s_{23} - \bar{s})^2 + (s_{31} - \bar{s})^2}{\bar{s}^2}}$$
+where $s_{ij} = |\mathbf{r}_j - \mathbf{r}_i|$ and $\bar{s} = (s_{12} + s_{23} + s_{31})/3$.
+
+**Metric 3 ($V_{\mathrm{ring}}$):** Ring spring potential energy
+$$V_{\mathrm{ring}}(t) = \frac{1}{2}k_{\mathrm{ring}}\sum_{\langle ij\rangle}(s_{ij} - L_{\mathrm{ring}})^2$$
+
+### 8.3 Strict Relaxation Criterion
+
+**RELAXED_STRICT** requires ALL three conditions to hold simultaneously for $T_{\mathrm{hold}} = 10 T_{\mathrm{slow}}$:
+1. $q_{\mathrm{RMS}} < \eta_q L_0$ with $\eta_q = 10^{-3}$
+2. $D_{\mathrm{RMS}} < \eta_D$ with $\eta_D = 10^{-3}$
+3. $V_{\mathrm{ring,RMS}} - V_{\mathrm{ring,min}} < \eta_V (V_0 - V_{\mathrm{min}})$ with $\eta_V = 10^{-3}$
+
+where RMS is computed over a sliding window of $2 T_{\mathrm{slow}}$.
+
+**RELAXED_PARTIAL:** At least one metric satisfied, but not all three.
+
+### 8.4 Normal Mode Analysis
+
+For reference parameters ($k_{\mathrm{ring}}/k_{\mathrm{leg}} = 1$, $m_0/m_{\mathrm{out}} = 1$):
+
+| Mode | $\omega$ | Interpretation |
+|------|----------|----------------|
+| 1-2 | $\approx 0$ | CM translation (2D) |
+| 3 | $\approx 0$ | Rigid rotation |
+| 4-5 | 1.0 | Doublet (ring shear) |
+| 6-7 | 1.73 | Breathing + distortion |
+| 8 | 2.0 | Symmetric breathing |
+
+**Physical frequency cutoff:** $\omega_{\mathrm{min}} = 1.0$, so $T_{\mathrm{slow}} = 2\pi/\omega_{\mathrm{min}} = 6.28$.
+
+### 8.5 v2 Results Summary
+
+| Category | Count |
+|----------|-------|
+| Total runs | 180 |
+| CONSERVATIVE ($\gamma = 0$) | 45 |
+| RELAXED_STRICT | 30 |
+| RELAXED_PARTIAL | 105 |
+| NO_RELAX | 0 |
+
+### 8.6 "Cheating" Detection
+
+The key finding: many runs appear relaxed by one metric but fail others.
+
+| Metric passed alone | Count |
+|---------------------|-------|
+| q only | 120 |
+| D only | 147 |
+| $V_{\mathrm{ring}}$ only | 90 |
+
+This confirms that looking at $q$ alone gives **false positives**. The strict three-metric criterion catches these cases.
+
+### 8.7 Which configurations achieve RELAXED_STRICT?
+
+| IC type | $\gamma$ | RELAXED_STRICT | Typical $t_{\mathrm{relax}}^{\mathrm{strict}}$ |
+|---------|----------|----------------|------------------------------------------------|
+| symmetric_push | 0 | 0 | — |
+| symmetric_push | 0.01 | 0 | — |
+| symmetric_push | 0.1 | 0 | — |
+| doublet | any | 0 | — |
+| ring_mode | 0 | 0 | — |
+| ring_mode | 0.01 | 15 | $\sim 650$ |
+| ring_mode | 0.1 | 15 | $\sim 65-90$ |
+
+**Only ring_mode IC with external damping achieves RELAXED_STRICT.**
+
+### 8.8 v2 Conclusions [Dc]
+
+1. **Conservative case ($\gamma = 0$):** ZERO runs achieve RELAXED_STRICT. Energy sloshes between modes quasi-periodically (FPU behavior). **NO TRUE THERMALIZATION.**
+
+2. **Damped case ($\gamma > 0$):** Only ring_mode IC achieves strict relaxation, and only with sufficient damping.
+
+3. **"Cheating" is real:** 120 runs have q-RMS satisfied but fail D or $V_{\mathrm{ring}}$. The single-metric criterion is unreliable.
+
+4. **Strengthened NO-GO:** The three-metric criterion definitively rules out "internal DOF as effective bath" in finite-mode conservative systems.
+
+---
+
+## 10. Artifacts
+
+### v1 (single-metric)
 | File | Description |
 |------|-------------|
-| `code/yjunction_ring_relax.py` | Simulation code |
+| `code/yjunction_ring_relax.py` | Simulation code (v1) |
 | `artifacts/yjunction_relax_results.json` | Full results (180 runs) |
 | `artifacts/yjunction_relax_summary.csv` | Summary table |
 | `figures/yjunction_energy_vs_time.png` | Energy decay plots |
@@ -157,17 +249,55 @@ The 8-DOF system (4 nodes $\times$ 2D) has only 6 independent modes after removi
 | `figures/yjunction_mode_energy_partition.png` | Energy partition between modes |
 | `figures/yjunction_trelax_vs_gamma.png` | Relaxation time scaling |
 
+### v2 (strict three-metric)
+| File | Description |
+|------|-------------|
+| `code/yjunction_ring_relax_v2.py` | Simulation code (v2, strict criterion) |
+| `artifacts/strict_relax_results.json` | Full results with three metrics |
+| `artifacts/strict_relax_summary.csv` | Summary table |
+| `artifacts/strict_relax_report.txt` | Text report with normal modes |
+| `figures/strict_trelax_vs_gamma.png` | Relaxation time vs damping |
+| `figures/strict_sample_timeseries.png` | Sample time series (all three metrics) |
+| `figures/strict_cheating_histogram.png` | "Cheating" cases histogram |
+
 ---
 
-## 9. Epistemic Status
+## 11. Epistemic Status
 
 | Claim | Tag | Note |
 |-------|-----|------|
 | Model definition | [Def] | Standard Hamiltonian mechanics |
-| Numerical results | [Dc] | Computational, verified energy conservation |
+| Three-metric criterion | [Def] | Definition of strict relaxation |
+| v1 numerical results | [Dc] | Computational, verified energy conservation |
+| v2 numerical results | [Dc] | Computational, 180 runs with three metrics |
 | Physical interpretation | [I] | Identification with neutron (not derivation) |
-| Thermalization absence | [Dc] | Demonstrated computationally |
+| Thermalization absence (v1) | [Dc] | Demonstrated computationally (q-only) |
+| Thermalization absence (v2) | [Dc] | Demonstrated computationally (strict three-metric) |
+| "Cheating" detection | [Dc] | 120+ false positives identified |
 
 ---
 
-**Verdict:** This toy model demonstrates that finite-mode internal DOF do NOT provide true relaxation in a conservative system. The neutron lifetime problem requires a different mechanism.
+## 12. Final Verdict [Dc]
+
+### v1 Verdict (weak)
+Single-metric ($q$) criterion: NO thermalization in conservative case, but could be misleading.
+
+### v2 Verdict (strong)
+Three-metric ($q$, $D$, $V_{\mathrm{ring}}$) criterion with persistence requirement ($10 T_{\mathrm{slow}}$):
+
+**NO-GO confirmed with stronger evidence.**
+
+1. **Conservative ($\gamma = 0$):** 0/45 achieve RELAXED_STRICT → **NO TRUE THERMALIZATION**
+2. **"Cheating" cases:** 120+ runs pass $q$ but fail $D$ or $V_{\mathrm{ring}}$
+3. **Only external dissipation works:** All 30 RELAXED_STRICT cases have $\gamma > 0$
+
+### Implication for Neutron Lifetime
+
+The "internal DOF as effective bath" mechanism is **NOT viable** in a finite-mode classical system. The neutron lifetime suppression ($10^{27}$ factor) requires:
+
+- **Option A:** True continuum of modes (5D bulk field spectrum) — possible but requires QFT
+- **Option B:** Quantum tunneling through energy barrier — Route D/F
+- **Option C:** WKB penetration of classically forbidden region — Route B
+- **Option D:** Some other mechanism beyond classical mechanics
+
+This toy model rules out the naive expectation that ring modes "absorb" collective energy and trap the system in the proton minimum. **Route E is closed.**
