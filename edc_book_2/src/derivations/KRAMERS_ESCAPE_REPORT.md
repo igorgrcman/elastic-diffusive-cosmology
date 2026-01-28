@@ -1,6 +1,6 @@
 # Route F: Kramers Escape from Double-Well Potential
 
-**Date:** 2026-01-28 (v3.4 — Bath 1 selected)
+**Date:** 2026-01-28 (v3.5 — Bath 1 derivation chain)
 **Purpose:** Model neutron → proton transition as thermal activation over topological barrier
 
 ---
@@ -472,19 +472,176 @@ Four candidate baths for closing F2, ordered by EDC-minimality:
 
 ---
 
-## 15. Bath 1 Derivation Chain [OPEN]
+## 15. Bath 1 Derivation Chain (Detailed)
 
-**Required steps (to be filled):**
+### Overview
 
-| Step | Task | Source | Status |
-|------|------|--------|--------|
-| 1 | Brane action with σ, δ | Framework/EDC | [OPEN] |
-| 2 | Linearize around flat brane | Perturbation theory | [OPEN] |
-| 3 | Mode spectrum of transverse oscillations | Dispersion relation | [OPEN] |
-| 4 | Junction-core source term for q(t) | Route C geometry | [OPEN] |
-| 5 | Radiation reaction → γ(ω) | Power emitted | [OPEN] |
-| 6 | Spectral density J(ω) | Caldeira-Leggett | [OPEN] |
-| 7 | E_fluct from J(ω) integral | FDT/vacuum | [OPEN] |
-| 8 | Check: E_fluct ~ 20–50 keV? | Numerical | [OPEN] |
+This chain derives γ and E_fluct from the **same source** (brane mode spectrum J(ω)), ensuring co-derivation without hand-fitting.
 
-**Derivation chain to be developed in collaboration.**
+**Minimal 5D ingredients required:**
+1. Induced metric + embedding (Step 1)
+2. Quadratic action for transverse mode π (Step 2)
+3. Junction-core coupling as geometrically localized source (Step 4)
+
+---
+
+### Step 1: 5D Action + Brane Embedding
+
+**Must exist in book:**
+
+$$S_{\text{tot}} = S_{\text{bulk}}[g_{AB}] + S_{\text{GHY}} + S_{\text{brane}}[\gamma_{\mu\nu}] + S_{\text{junction-core}}[q,\dots]$$
+
+Induced metric on brane:
+$$\gamma_{\mu\nu}(x) = g_{AB}(X)\,\partial_\mu X^A \partial_\nu X^B$$
+
+Brane kinematics with transverse displacement (brane-bending field):
+$$X^A = (x^\mu,\, y = \pi(x))$$
+
+**Why needed:** Without this, no geometric DOF that radiates.
+
+**Status:** [OPEN]
+
+---
+
+### Step 2: Quadratic Action for Transverse Mode π
+
+**Must exist in book:**
+
+Expand brane action (Nambu-Goto/DBI or EDC brane term) to O(π²):
+$$S_{\text{brane}} \;\Rightarrow\; \frac{1}{2}\int d^4x\;\Big[\,\rho_\pi\,\dot\pi^2 - T_\pi\,(\nabla\pi)^2 \;-\; \dots\Big]$$
+
+where ρ_π, T_π are expressed in terms of **σ** (and possibly δ through regularization/cutoff).
+
+**Status:** [OPEN]
+
+---
+
+### Step 3: Dispersion and Mode Spectral Density
+
+**Must exist in book:**
+
+Equation of motion for π and dispersion:
+$$\omega^2 = c_\pi^2 k^2 + \omega_0^2 \quad \text{(or } \omega^2 = c_\pi^2 k^2 \text{ if massless)}$$
+
+Density of states in 3D brane:
+$$\rho(\omega) \sim \frac{k^2}{2\pi^2}\frac{dk}{d\omega}$$
+
+Thickness δ enters as UV form-factor (minimal choice):
+$$F(k\delta) = e^{-k\delta} \quad \text{or} \quad F = (1 + k^2\delta^2)^{-1}$$
+
+**Key for F2:** δ and L₀ filter "how much noise" q actually sees.
+
+**Status:** [OPEN] — **DECISION NEEDED:** relativistic (ω = c_π k) vs flexural (ω ∝ k²)?
+
+---
+
+### Step 4: Junction-Core as Source Coupled to Brane Modes
+
+**Must exist in book:**
+
+Definition of collective coordinate q(t) (from Route C).
+
+Minimal coupling (localized on scale L₀) between q and π:
+$$S_{\text{int}} = \int dt\, d^3x\; J(q(t))\,\pi(t,\mathbf{x})\,f_{L_0}(\mathbf{x})$$
+
+where f_{L₀} is the core "shape" (e.g., Gaussian of width L₀), giving form-factor F(kL₀) in Fourier space.
+
+**Critical:** J(q) must be tied to existing scales (σ, L₀, δ), NOT a new parameter.
+
+**Status:** [OPEN]
+
+---
+
+### Step 5: Integrate Out Brane Modes → Effective Equation for q
+
+**Must exist in book:**
+
+Standard "influence functional" / "integrate out bath" result:
+$$M(q)\ddot{q} + V'(q) + \int^t dt'\,\Gamma(t-t')\,\dot{q}(t') = \xi(t)$$
+
+where kernel Γ and noise ξ are determined by the **same** spectral object J(ω).
+
+**This is the bridge Route F needs:** γ and E_fluct must be co-derived.
+
+**Status:** [OPEN]
+
+---
+
+### Step 6: Spectral Density J(ω) from Geometry (L₀, δ, σ)
+
+**Must exist in book:**
+
+Spectral density in Caldeira-Leggett form:
+$$J(\omega) = \sum_{\mathbf{k}} \frac{|g_{\mathbf{k}}|^2}{2\rho_\pi\omega_{\mathbf{k}}}\;\delta(\omega - \omega_{\mathbf{k}})$$
+
+with:
+$$g_{\mathbf{k}} \propto \tilde{f}_{L_0}(\mathbf{k})\,F(k\delta) \times (\text{scale from } J(q))$$
+
+In continuum:
+$$J(\omega) \propto \int d^3k\;|g_k|^2\,\delta(\omega - \omega(k))$$
+
+**This must exist:** Without explicit J(ω), no hard target for keV.
+
+**Status:** [OPEN]
+
+---
+
+### Step 7: γ(ω) and Noise from Same J(ω) (FDT)
+
+**Must exist in book:**
+
+Friction-spectrum relation:
+$$\gamma(\omega) = \frac{J(\omega)}{M\,\omega}$$
+
+Noise spectral density (quantum generalization):
+$$S_\xi(\omega) \propto J(\omega)\,\coth\!\Big(\frac{\omega}{2\Omega}\Big)$$
+
+where Ω is the "bath scale" (= E_fluct in our notation).
+
+**Operational definition of E_fluct:** Energy scale that reproduces local S_ξ around relevant ω ~ ω_b, ω_n.
+
+**This is where F2 gets "weak noise":** If J(ω) is small at those ω due to form-factors F(kL₀)F(kδ), you get keV without inventing anything.
+
+**Status:** [OPEN]
+
+---
+
+### Step 8: Hard Check — E_fluct ~ 20–50 keV and Υ ~ 0.1–10?
+
+**Must exist in book (sanity box):**
+
+1. From Route C: ω_b, ω_n in SI units
+2. From Bath 1: γ(ω_b)
+3. Define: Υ = γ/ω_b
+4. From S_ξ(ω): define E_fluct
+5. **F2 target:** Θ = ΔV/E_fluct ≈ 55–60
+
+**Viability criterion:**
+- E_fluct ~ 20–50 keV → **VIABLE**
+- E_fluct ~ MeV → **NO-GO**
+
+**Status:** [OPEN]
+
+---
+
+### Minimal 5D Requirements Summary
+
+| Ingredient | What it provides | Where in book |
+|------------|------------------|---------------|
+| Induced metric + embedding | Geometric DOF (π) | Framework |
+| Quadratic brane action | ρ_π, T_π, dispersion | Brane physics |
+| Junction-core coupling | Source J(q) with shape f_{L₀} | Route C extension |
+
+Everything else is "standard" bath integration.
+
+---
+
+### Next Decision Point
+
+**Dispersion choice (Step 3):**
+- **Relativistic:** ω = c_π k — gives J(ω) ∝ ω³ at low ω
+- **Flexural:** ω ∝ k² — gives J(ω) ∝ ω^{1/2} at low ω
+
+This dramatically affects J(ω) shape and whether "keV" emerges naturally.
+
+**Status:** [DECISION NEEDED]
