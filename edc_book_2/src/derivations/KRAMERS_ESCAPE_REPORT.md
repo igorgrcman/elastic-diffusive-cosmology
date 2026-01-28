@@ -1,6 +1,6 @@
 # Route F: Kramers Escape from Double-Well Potential
 
-**Date:** 2026-01-28 (v3.3 — F2 primary, terminology fixed)
+**Date:** 2026-01-28 (v3.4 — Bath 1 selected)
 **Purpose:** Model neutron → proton transition as thermal activation over topological barrier
 
 ---
@@ -385,3 +385,106 @@ To close Route F via F2, derive from 5D/brane physics:
 | Θ check | Is Θ = ΔV/E_fluct ≈ 55? | YES for viability |
 
 **Route F becomes [Der] when all four items are closed without free parameters.**
+
+---
+
+## 13. Bath Shortlist for F2 (v3.3)
+
+Four candidate baths for closing F2, ordered by EDC-minimality:
+
+### Bath 1: Brane Radiation (PRIMARY) ⭐
+
+**Kupka:** Continuum of transverse brane waves (flexural/wave modes on the 3+1 brane).
+
+**γ mechanism:** q(t) is a local junction-core deformation; acceleration/deformation emits brane waves → radiation damping. Power: $P \sim \mathcal{G}\dot{q}^2$ or $P \sim \mathcal{G}\ddot{q}^2$ depending on mode dispersion.
+
+**E_fluct mechanism:** Same modes have vacuum fluctuations; effective noise on q from spectral density J(ω) (Caldeira-Leggett style). Quantum FDT relates γ(ω) and S(ω).
+
+**Hard output:** J(ω) from brane action (σ, δ, κ if present) + source geometry (L₀) ⇒ prediction of γ and E_fluct in keV.
+
+**Risk:** Must show spectrum seen by q is "cold" (low density at relevant ω) — otherwise noise too large.
+
+**Status:** [OPEN] — Derivation chain needed
+
+---
+
+### Bath 2: Bulk/Plenum Wake
+
+**Kupka:** Bulk perturbations (plenum/metric) excited when junction moves in bulk.
+
+**γ mechanism:** q creates "wake" in bulk → energy leaks into bulk wave continuum. Natural damping without hand-chosen γ.
+
+**E_fluct mechanism:** Vacuum fluctuations of bulk field projected onto brane at junction location; spectral density J_bulk(ω).
+
+**Hard output:** From 5D action (EH+GHY+brane) linearize around background → propagators → J(ω) on brane.
+
+**Risk:** Can slip into "new field" if not strict — must use existing bulk DOF (geometry/plenum), no ad hoc scalars.
+
+**Status:** [OPEN] — Technically harder than Bath 1
+
+---
+
+### Bath 3: Junction Internal Continuum
+
+**Kupka:** Micromodes within junction-core (short-wavelength modes of thickness δ and transverse structure L₀).
+
+**γ mechanism:** q couples to many internal modes; by themselves (finite number) they don't thermalize (Route E NO-GO), BUT if these micromodes have open channel to brane/bulk continuum, they become effective bath.
+
+**E_fluct mechanism:** Zero-point energies of internal modes filtered through coupling to q.
+
+**Hard output:** Show effective mode count ~(L₀/δ)² = C and coupling gives noise suppression → keV.
+
+**Risk:** Must avoid Route E "closed Hamiltonian" — bath must be open (radiation/leakage).
+
+**Status:** [OPEN] — Must not repeat Route E failure
+
+---
+
+### Bath 4: Electroweak-Scale Screened Bath (Rξ filter)
+
+**Kupka:** High-frequency modes at scale Rξ (or other short cutoff), but coupling q↔bath geometrically suppressed because q is nucleon-scale deformation (scale δ_nucl).
+
+**γ / E_fluct mechanism:** Small effective noise because spectral overlap is weak (scale mismatch). Natural path to 20–50 keV without "tuning temperature".
+
+**Hard output:** Derive suppression factor ε ~ (Rξ/δ)^p or exponential cutoff from junction-core form factor.
+
+**Risk:** Need clean derivation of form factor (otherwise another [P]).
+
+**Status:** [OPEN] — Clever but needs form factor derivation
+
+---
+
+## 14. Bath Selection: Bath 1 PRIMARY
+
+**Decision:** Pursue **Bath 1 (Brane Radiation)** as primary path.
+
+**Rationale:**
+- Most EDC-native: everything is "brane geometry"
+- Naturally gives both damping and quantum noise
+- Uses existing parameters (σ, δ, L₀)
+- No new fields required
+
+**Hard targets for Bath 1:**
+1. E_fluct from brane vacuum spectrum ≈ 20–50 keV
+2. Υ = γ/ω_b in turnover region ≈ 0.1–10
+
+**Next step:** Derive minimal derivation chain (6–8 steps) from 5D/brane action to J(ω) to E_fluct.
+
+---
+
+## 15. Bath 1 Derivation Chain [OPEN]
+
+**Required steps (to be filled):**
+
+| Step | Task | Source | Status |
+|------|------|--------|--------|
+| 1 | Brane action with σ, δ | Framework/EDC | [OPEN] |
+| 2 | Linearize around flat brane | Perturbation theory | [OPEN] |
+| 3 | Mode spectrum of transverse oscillations | Dispersion relation | [OPEN] |
+| 4 | Junction-core source term for q(t) | Route C geometry | [OPEN] |
+| 5 | Radiation reaction → γ(ω) | Power emitted | [OPEN] |
+| 6 | Spectral density J(ω) | Caldeira-Leggett | [OPEN] |
+| 7 | E_fluct from J(ω) integral | FDT/vacuum | [OPEN] |
+| 8 | Check: E_fluct ~ 20–50 keV? | Numerical | [OPEN] |
+
+**Derivation chain to be developed in collaboration.**
