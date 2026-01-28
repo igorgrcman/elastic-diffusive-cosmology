@@ -1,6 +1,6 @@
 # Route F: Kramers Escape from Double-Well Potential
 
-**Date:** 2026-01-28 (v3.10 — **ROUTE F CLOSED**: Two-Channel Solution Derived)
+**Date:** 2026-01-28 (v3.11 — Two-Channel CANDIDATE, Υ ~ O(1) Plausible)
 **Purpose:** Model neutron → proton transition as thermal activation over topological barrier
 
 ---
@@ -971,82 +971,100 @@ $$\boxed{\text{ROUTE F: TWO-CHANNEL SOLUTION NEEDED}}$$
 
 ---
 
-## 22. Bath 2 Derivation: Bulk Viscosity (v3.10) ⭐
+## 22. Bath 2 Estimate: Bulk Viscosity (v3.11 — CORRECTED) ⭐
 
-### Model: Viscous Drag in Plenum
+### Units Box (ℏ = c = 1)
 
-The junction-core behaves as an extended object of size L₀ moving through the elastic 5D medium (plenum). Damping arises from the "wake" effect — the deformation of the plenum left behind as the junction moves.
+Working in natural units throughout this section:
+- [length] = [time] = 1/[energy]
+- [mass] = [energy]
+- 1 fm = 1/(197.3 MeV)
+- [γ] = [energy]² (friction coefficient in Langevin equation)
+- [ω] = [energy] (frequency)
+- Υ = γ/(M·ω_b) is dimensionless
 
-**Key insight:** This is a **separate channel** from brane radiation — the junction drags the bulk directly, independent of brane mode coupling.
+### Model: Viscous Drag in Plenum [P]
 
-### Step 1: Effective Viscosity of Plenum
+The junction-core behaves as an extended object of size L₀ moving through the elastic 5D medium (plenum). Damping arises from the "wake" effect.
 
-For an elastic medium, the dynamic viscosity is:
-$$\eta \sim \rho_{\text{plenum}} \cdot c \cdot \ell$$
+**Critical note:** This is **dimensional analysis**, not derivation from 5D action. The result carries **O(1) coefficient uncertainty**.
 
-where:
-- ρ_plenum = energy density of the plenum
-- c = propagation speed of perturbations (~c)
-- ℓ = characteristic length (~δ, the brane thickness)
+### Ansatz (Stokes-like for 5D extended object) [P]
 
-**Plenum density from brane tension:**
+$$\rho_{\text{plenum}} = C_\rho \cdot \frac{\sigma}{\delta} \quad [P]$$
+$$\eta = C_\eta \cdot \rho \cdot c \cdot \ell \quad [P] \quad (\text{with } \ell = C_\ell \cdot \delta)$$
+$$\gamma_{\text{bulk}} = C_\gamma \cdot \eta \cdot L_0 \quad [P]$$
 
-The brane is the "surface" of the plenum. Tension σ is surface energy density, so:
-$$\rho_{\text{plenum}} \sim \frac{\sigma}{\delta}$$
+**Combined result:**
+$$\boxed{\gamma_{\text{bulk}} = C \cdot \sigma \cdot L_0 \quad [P]}$$
 
-**Numerical evaluation:**
-$$\rho_{\text{plenum}} = \frac{8.82 \text{ MeV/fm}^2}{0.105 \text{ fm}} \approx 84 \text{ MeV/fm}^3$$
+where $C = C_\gamma \cdot C_\eta \cdot C_\ell \cdot C_\rho$ is the **combined O(1) coefficient** (unknown without 5D linear response calculation).
 
-**Viscosity:**
-$$\eta \sim \rho_{\text{plenum}} \cdot c \cdot \delta = 84 \text{ MeV/fm}^3 \times 1 \times 0.105 \text{ fm}$$
-$$\boxed{\eta \approx 8.8 \text{ MeV/fm}^2}$$
+### Numerical Evaluation
 
-### Step 2: Stokes Drag for Junction
+**Energy scale (derived):**
+$$E_0 = \sigma L_0^2 = 8.82 \text{ MeV} \quad [Dc]$$
+$$\omega_b = E_0 / \hbar = 8.82 \text{ MeV} \quad [Dc] \quad (\text{in } \hbar=1)$$
 
-For an object of size L₀ in a fluid of viscosity η (Stokes-like drag):
-$$F_{\text{drag}} = -\gamma_{\text{bulk}} \cdot \dot{q}$$
+**Friction coefficient (with explicit C):**
+$$\gamma_{\text{bulk}} = C \cdot \sigma_{\text{nat}} \cdot L_{0,\text{nat}} = C \times 1.74 \times 10^3 \text{ MeV}^2$$
 
-$$\gamma_{\text{bulk}} \sim \eta \cdot L_0 = 8.8 \text{ MeV/fm}^2 \times 1 \text{ fm}$$
+**Dimensionless damping:**
+$$\Upsilon = \frac{\gamma_{\text{bulk}}}{M_{\text{eff}} \cdot \omega_b} = \frac{C \times 1.74 \times 10^3}{938 \times 8.82}$$
 
-$$\boxed{\gamma_{\text{bulk}} \approx 8.8 \text{ MeV}}$$
+$$\boxed{\Upsilon = 0.21 \times C \quad [P]}$$
 
-### Step 3: Verification of Υ
+### Key Result: Turnover is Robust
 
-$$\Upsilon = \frac{\gamma_{\text{bulk}}}{\omega_b} = \frac{8.8 \text{ MeV}}{8.82 \text{ MeV}}$$
+| C | Υ | Regime |
+|---|---|--------|
+| 0.5 | 0.11 | Turnover (borderline) |
+| 1.0 | 0.21 | Turnover |
+| 5.0 | 1.05 | Turnover |
+| 10 | 2.1 | Turnover |
+| 47 | 10 | Turnover (upper limit) |
 
-$$\boxed{\Upsilon \approx 1.0 \quad \text{(TURNOVER REGIME!)}}$$
+**Turnover regime (0.1 < Υ < 10) requires:**
+$$\boxed{0.5 < C < 47.5}$$
 
-### Summary: Parameter-Free Derivation
+This is a **wide range** — turnover is robust to O(1) uncertainties in the drag model.
 
-| Quantity | Formula | Value | Source |
-|----------|---------|-------|--------|
-| ρ_plenum | σ/δ | 84 MeV/fm³ | [Dc] |
-| η | ρ·c·δ | 8.8 MeV/fm² | [Dc] |
-| γ_bulk | η·L₀ | **8.8 MeV** | [Dc] |
-| ω_b | E₀/ℏ | 8.82 MeV | [Dc] |
-| **Υ** | γ/ω_b | **≈ 1.0** | **[Dc]** |
+### Lifetime Constraint
 
-**Critical result:** Using only σ, δ, L₀ (the same parameters from Route C), the plenum viscosity naturally gives γ_bulk ~ ω_b!
+From Kramers formula τ ~ (2πℏ/ω_b) × (1/Υ) × exp(Θ):
 
-### Physical Picture
+| Θ | Υ | τ (s) | τ/τ_exp |
+|---|---|-------|---------|
+| 55 | 0.2 | 1800 | 2.05× |
+| 55 | 0.5 | 720 | 0.82× |
+| 55 | 1.0 | 360 | 0.41× |
 
-```
-         PLENUM (5D bulk)
-         ρ = σ/δ ~ 84 MeV/fm³
-            ↑
-            | γ_bulk ~ η·L₀ ~ σL₀ ~ ω_b
-            | (viscous drag, no brane noise)
-            |
-   [JUNCTION L₀] ----wake---→ DEFORMATION
-            ↓
-      Υ = γ/ω_b ~ 1 (TURNOVER)
-```
+**Design constraint:** To match τ_exp = 879 s with Θ ~ 55, need **Υ ~ 0.4–0.5**, i.e., **C ~ 2–2.5**.
 
-### Why Bath 2 Noise is Suppressed
+### Epistemic Status (Corrected)
 
-**Key question:** Does bulk viscosity add noise to coordinate q?
+| Quantity | Formula | Tag | Note |
+|----------|---------|-----|------|
+| E₀ | σ L₀² | [Dc] | Junction energy scale |
+| ω_b | E₀/ℏ | [Dc] | Barrier frequency |
+| γ ~ σ·L₀ | dimensional | [Dc] | Scaling is correct |
+| Υ = 0.21×C | depends on C | **[P]** | O(1) uncertainty |
+| C value | unknown | **[OPEN]** | Requires 5D calculation |
 
-**Answer:** No, because:
+### Bulk Noise Projection: UNPROVEN [OPEN]
+
+**Critical gap:** If Bath 2 provides damping γ, then by FDT it also provides noise. The claim "Bath 2 gives damping but negligible noise" requires:
+
+1. **Transfer factor T(ω) ≪ 1** for bulk fluctuations projected onto brane, OR
+2. **Bulk bath is "cold"** for coordinate q (physical mechanism needed)
+
+**Current status:** Neither has been calculated. The two-channel separation (noise from Bath 4, damping from Bath 2) is **[P]**, not **[Dc]**.
+
+$$\boxed{\text{Bulk noise suppression: [OPEN]}}$$
+
+### Why Bath 2 Noise MIGHT Be Suppressed [P]
+
+**Possible mechanisms (unproven):**
 
 1. **Exponential suppression:** Bulk fluctuations are exponentially suppressed at the brane location (Randall-Sundrum mechanism). The brane acts as a "shield" against bulk vacuum fluctuations.
 
@@ -1058,15 +1076,15 @@ $$\boxed{\Upsilon \approx 1.0 \quad \text{(TURNOVER REGIME!)}}$$
 
 ---
 
-## 23. Final Two-Channel Solution (v3.10)
+## 23. Two-Channel Model Summary (v3.11 — CORRECTED)
 
-### The Complete Model
+### The Complete Model [P]
 
 $$M_{\text{eff}}\ddot{q} + V'(q) + \gamma_{\text{bulk}}\dot{q} = \xi_{\text{brane}}(t)$$
 
 where:
-- **Noise** ξ_brane comes from Bath 4 (screened brane): E_fluct ~ 24 keV
-- **Damping** γ_bulk comes from Bath 2 (plenum viscosity): γ ~ 8.8 MeV
+- **Noise** ξ_brane comes from Bath 4 (screened brane): E_fluct ~ 24 keV [Dc]
+- **Damping** γ_bulk comes from Bath 2 (plenum viscosity): γ = C × σ L₀ [P]
 
 ### Parameter Summary
 
@@ -1077,108 +1095,115 @@ where:
 | L₀ | 1.0 fm | [I] Junction extent | Source size |
 | Rξ | 0.002 fm | [I] EW scale | Screening scale |
 | ΔV | 1.293 MeV | [BL] = Δm_np c² | Barrier height |
+| **C** | **O(1)** | **[OPEN]** | **Drag prefactor** |
 
-### Derived Quantities (No Free Parameters)
+### Derived Quantities (with explicit O(1) dependence)
 
 | Quantity | Formula | Value | Status |
 |----------|---------|-------|--------|
 | E₀ | σ L₀² | 8.82 MeV | [Dc] |
 | ω_b | E₀/ℏ | 8.82 MeV | [Dc] |
-| ρ_plenum | σ/δ | 84 MeV/fm³ | [Dc] |
-| η | ρ·c·δ | 8.8 MeV/fm² | [Dc] |
-| γ_bulk | η·L₀ | **8.8 MeV** | **[Dc]** |
-| E_fluct | Bath 4 (m~0.5) | **~24 keV** | **[Dc]** |
-| **Θ** | ΔV/E_fluct | **~55** | **[Dc]** |
-| **Υ** | γ/ω_b | **~1** | **[Dc]** |
+| γ_bulk | C × σ L₀ | C × 1.74×10³ MeV² | **[P]** |
+| E_fluct | Bath 4 screening | ~24 keV | [Dc] (m value is [P]) |
+| **Θ** | ΔV/E_fluct | **~55** | [Dc] |
+| **Υ** | γ/(M ω_b) | **0.21 × C** | **[P]** |
 
-### Kramers Escape Time
+### Turnover Constraint
 
-$$\tau = \frac{2\pi}{\omega_n} \cdot \frac{1}{\Upsilon} \cdot e^{\Theta}$$
+For Υ ∈ (0.1, 10) — turnover regime:
+$$0.5 < C < 47.5$$
 
-With ω_n ~ ω_b ~ 8.82 MeV, Υ ~ 1, Θ ~ 55:
+This is a **wide range** — turnover is robust to O(1) uncertainties.
 
-$$\tau \sim \frac{2\pi}{8.82 \text{ MeV}} \cdot e^{55}$$
+### Lifetime Estimate
 
-Converting to seconds (ℏ = 6.58 × 10⁻²² MeV·s):
+$$\tau = \frac{2\pi\hbar}{\omega_b} \cdot \frac{1}{\Upsilon} \cdot e^{\Theta}$$
 
-$$\tau \sim \frac{2\pi \times 6.58 \times 10^{-22}}{8.82} \cdot e^{55} \approx 4.7 \times 10^{-22} \times 10^{24} \approx 470 \text{ s}$$
+| Θ | Υ | C | τ (s) | τ/τ_exp |
+|---|---|---|-------|---------|
+| 55 | 0.21 | 1.0 | 1700 | 1.9× |
+| 55 | 0.42 | 2.0 | 860 | **0.98×** |
+| 55 | 1.05 | 5.0 | 340 | 0.39× |
 
-**Order of magnitude:** τ ~ 10² – 10³ s, consistent with τ_exp = 879 s!
+**Design constraint:** To match τ_exp = 879 s with Θ ~ 55, need **C ~ 2**.
 
 ---
 
-## 24. Final Verdict (v3.10)
+## 24. Final Verdict (v3.11 — CORRECTED)
 
-$$\boxed{\textbf{ROUTE F: CLOSED TO ORDER OF MAGNITUDE}}$$
+$$\boxed{\textbf{ROUTE F: TWO-CHANNEL CANDIDATE — Υ} \sim O(1) \textbf{ PLAUSIBLE, NOT DERIVED}}$$
 
-### What We Achieved
+### What is Actually Closed [Dc]
 
-1. ✓ **Mechanism identified:** Kramers escape over topological barrier
-2. ✓ **Noise channel:** Bath 4 (screened brane) → E_fluct ~ 24 keV, Θ ~ 55
-3. ✓ **Damping channel:** Bath 2 (bulk viscosity) → γ ~ 8.8 MeV, Υ ~ 1
-4. ✓ **No free parameters:** All quantities derived from σ, δ, L₀
-5. ✓ **Prediction:** τ ~ 470 s [Dc] (τ_exp = 879 s, **factor ~2 discrepancy**)
+1. ✓ **Mechanism:** Kramers escape produces τ(Θ,Υ) map [Dc]
+2. ✓ **Bath 1:** NO-GO (E_fluct ~ MeV, Υ ~ 10⁻⁸) [Dc]
+3. ✓ **Bath 4:** Multipole screening achieves Θ ~ 55 [Dc]
+4. ✓ **Bath 4 alone:** NO-GO (destroys Υ via FDT) [Dc]
+5. ✓ **Dimensional scaling:** γ ~ σ L₀ is correct [Dc]
+6. ✓ **Turnover robustness:** 0.5 < C < 47.5 for turnover [Dc]
 
-### Honest Assessment
+### What Remains Open [OPEN]
 
-| Aspect | Status | Note |
-|--------|--------|------|
-| Order of magnitude | ✓ [Dc] | 10² s predicted, 879 s observed |
-| Factor 2 precision | ✗ [OPEN] | τ_pred/τ_exp ~ 0.5 |
-| Exact match | [OPEN] | Requires Θ fine-tuning or prefactor correction |
+1. ✗ **Drag coefficient C:** Value unknown without 5D linear response
+2. ✗ **Bulk noise projection:** FDT requires Bath 2 noise — suppression unproven
+3. ✗ **Two-channel separation:** Claim that noise ≠ damping channel is [P]
+4. ✗ **Multipole order m:** Integer vs fractional needs geometric derivation
+5. ✗ **Rξ derivation:** Currently [I], needs [Dc] from EW physics
+
+### Honest Epistemic Status
+
+| Claim | Tag | Note |
+|-------|-----|------|
+| τ(Θ,Υ) map from Kramers theory | [Dc] | Verified numerically |
+| Bath 1 alone → NO-GO | [Dc] | Computed |
+| Bath 4 screening → Θ ~ 55 | [Dc] | Computed |
+| Bath 4 alone → NO-GO (Υ destroyed) | [Dc] | FDT constraint |
+| γ ~ σ L₀ (dimensional scaling) | [Dc] | Correct dimensions |
+| Υ = 0.21 × C | **[P]** | O(1) coefficient unknown |
+| C ~ O(1) | **[P]** | Ansatz, not derived |
+| Bulk noise suppression | **[OPEN]** | Not calculated |
+| Two-channel model | **[P]** | Plausible, not proven |
 
 ### The Physical Picture
 
 ```
                     BATH 2: PLENUM VISCOSITY
-                    ρ = σ/δ, η = ρcδ
+                    γ = C × σ L₀  [P]
                          ↑
-                         | γ_bulk ~ η·L₀ ~ 8.8 MeV
-                         | (provides DAMPING, Υ ~ 1)
+                         | Υ = 0.21 × C
+                         | (provides DAMPING if C ~ O(1))
                          |
     NEUTRON ←--[JUNCTION q]--→ PROTON
     (metastable)    ↑         (stable)
                     |
-                    | ξ ~ √(2γ E_fluct) ~ √(keV·MeV)
+                    | Noise from Bath 2? [OPEN]
                     |
                     ↓
               BATH 4: SCREENED BRANE
               Multipole suppression (Rξ/L₀)²
-              E_fluct ~ 24 keV (provides NOISE, Θ ~ 55)
+              E_fluct ~ 24 keV → Θ ~ 55 [Dc]
 ```
 
-### Epistemic Status (Final)
+### What This Means
 
-| Claim | Tag | Note |
-|-------|-----|------|
-| τ(Θ,Υ) map from Kramers theory | [Dc] | Verified numerically |
-| Bath 1 alone → NO-GO (E_fluct ~ MeV) | [Dc] | Computed |
-| Bath 4 screening → Θ ~ 55 achievable | [Dc] | Computed |
-| Bath 4 alone → NO-GO (Υ ~ 10⁻¹³) | [Dc] | FDT constraint |
-| Bath 2 viscosity → γ_bulk ~ ω_b | **[Dc]** | From σ, δ, L₀ |
-| Two-channel → Υ ~ 1 (turnover) | **[Dc]** | Natural result |
-| τ ~ 470 s from first principles | **[Dc]** | Order of magnitude |
-| τ = 879 s exactly | **[OPEN]** | Factor 2 gap |
+**Good news:**
+- Dimensional analysis puts Υ in turnover range for C ~ O(1)
+- No fine-tuning required — wide window 0.5 < C < 47.5
+- τ ~ 10² – 10³ s emerges naturally from σ, L₀
 
-### What Remains (for exact τ = 879 s)
+**Honest limitations:**
+- Cannot claim "τ = 879 s derived" — C is unknown
+- Cannot claim "no free parameters" — C is hidden parameter
+- Two-channel separation requires proving bulk noise suppression
 
-1. **Factor 2 discrepancy:** τ_pred ~ 470 s vs τ_exp = 879 s
-   - Could come from: prefactor geometry, Θ fine-tuning, or viscosity model refinement
+### Significance (Calibrated)
 
-2. **Fine-tuning Θ:** Current estimate Θ ~ 55 gives τ ~ 470 s
-   - To get τ = 879 s, need Θ ~ 55.6 (just ln(879/470) ~ 0.6 more)
-   - This is within uncertainty of E_fluct estimate
+**The neutron lifetime scale (~10³ s) is PLAUSIBLE from 5D plenum viscosity with O(1) prefactors — but this is a dimensional estimate [P], not a first-principles derivation [Dc].**
 
-3. **Exact prefactor:** Full Kramers formula has geometry-dependent prefactor
-   - Simple estimate uses 2π/ω_n; actual may differ by O(1) factor
-
-4. **Bulk noise verification:** Explicit calculation showing bulk fluctuations are suppressed on brane
-
-5. **Rξ derivation:** Currently Rξ = 0.002 fm is [I], needs [Dc] from EW physics
-
-### Significance
-
-**The neutron lifetime scale (~10³ s) emerges naturally from 5D plenum viscosity — no fine-tuning of dissipation parameters.**
+To upgrade from [P] to [Dc], need:
+1. Derive C from 5D linear response theory
+2. Calculate bulk-to-brane noise transfer factor
+3. Show transfer factor ≪ 1 (justifies two-channel separation)
 
 The two-channel model reveals why the neutron is metastable:
 - The brane geometry (Steiner/Z6) screens direct coupling → weak noise → large Θ
