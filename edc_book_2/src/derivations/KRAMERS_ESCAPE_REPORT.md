@@ -1,6 +1,6 @@
 # Route F: Kramers Escape from Double-Well Potential
 
-**Date:** 2026-01-28 (v3.8 — Bath 1 NO-GO)
+**Date:** 2026-01-28 (v3.9 — Bath 4 Analysis: Partial Success, Two-Channel Required)
 **Purpose:** Model neutron → proton transition as thermal activation over topological barrier
 
 ---
@@ -801,3 +801,166 @@ The fluctuation scale is the **junction energy scale**, not some smaller scale.
 | **Give up** | Route F fails | Need different mechanism |
 
 **Recommended:** Try Bath 4 (Rξ screening) — natural suppression via form-factor mismatch between nucleon scale and EW scale.
+
+---
+
+## 17. Bath 4 Analysis: Multipole Screening (v3.9)
+
+### Concept
+
+Bath 4 introduces **multipole screening** via derivative coupling. Instead of monopole coupling q·π, use q·∇^m π, which gives form factor ~ (kRξ)^m in Fourier space.
+
+**Screening mechanism:**
+- At k ~ 1/L₀, suppression factor ~ (Rξ/L₀)^(2m)
+- For Rξ ~ 0.002 fm, L₀ ~ 1 fm, m=1: (0.002)^2 ~ 4×10⁻⁶
+
+This is the "symmetry-forbidden leading coupling" approach — monopole coupling vanishes by symmetry, leading dipole/quadrupole coupling is suppressed.
+
+### Parameters (Bath 4)
+
+| Parameter | Value | Source |
+|-----------|-------|--------|
+| L₀ | 1.0 fm | Junction extent [I] |
+| δ | 0.105 fm | Compton anchor [I] |
+| Rξ | 0.002 fm | EW scale [I] — to be derived |
+| σ | 8.82 MeV/fm² | Brane tension [Dc] |
+| Rξ/L₀ | 0.002 | Scale ratio |
+
+### Numerical Results: Scan over Multipole Order m
+
+| m | E_fluct (keV) | Suppression | Expected Suppression | Θ | Status |
+|---|---------------|-------------|---------------------|---|--------|
+| 0 | 3844 | 1.0× | 1× | 0.3 | ✗ |
+| **1** | **0.023** | **1.7×10⁵×** | **2.5×10⁵×** | **56686** | **✓** |
+| 2 | 2.3×10⁻⁷ | 1.7×10¹⁰× | 6.3×10¹⁰× | 5.7×10⁹ | ✓ |
+| 3 | 3.1×10⁻¹² | 1.2×10¹⁵× | 1.6×10¹⁶× | 4.1×10¹¹ | ✓ |
+| 4 | 5.6×10⁻¹⁷ | 6.9×10¹⁹× | 3.9×10²¹× | 2.3×10¹⁹ | ✓ |
+
+**Key finding:** m=1 (dipole) achieves Θ > 55 with comfortable margin.
+
+### Bath 4 Verdict: PARTIAL SUCCESS
+
+$$\boxed{\text{BATH 4 CAN ACHIEVE } \Theta \sim 55 \text{ BUT DESTROYS } \Upsilon}$$
+
+**The good:**
+- Multipole screening CAN suppress E_fluct to keV scale
+- m=1 gives Θ ~ 56000 (overshoots target of 55 by ~1000×)
+- Scale ratio Rξ/L₀ = 0.002 provides natural suppression
+
+**The critical problem:**
+
+Bath 4 suppresses **BOTH noise AND damping** via the same screening factor.
+
+$$\text{If Bath 1 gave:} \quad \Upsilon = \gamma/\omega_b \sim 10^{-8} \quad \text{(catastrophically underdamped)}$$
+
+$$\text{Then Bath 4 with suppression } S \text{ gives:} \quad \Upsilon_{\text{new}} = \Upsilon_{\text{old}} / S \sim 10^{-8} / S$$
+
+For S ~ 10⁵ (m=1): Υ_new ~ 10⁻¹³ (even worse!)
+
+**Physics:** The fluctuation-dissipation theorem couples noise and damping from the same source. You cannot suppress one without suppressing the other — unless damping comes from a **separate channel**.
+
+---
+
+## 18. Two-Channel Solution (v3.9)
+
+### The Insight
+
+To make Route F work with Bath 4, need **TWO independent channels**:
+
+| Channel | Provides | Mechanism | Target |
+|---------|----------|-----------|--------|
+| **Bath 4 (brane, screened)** | Noise (E_fluct) | Multipole screening suppresses coupling | E_fluct ~ 24 keV, Θ ~ 55 |
+| **Bath 2 (bulk wake)** | Damping (γ) | Junction motion excites bulk modes | Υ ~ 0.1–10 (turnover) |
+
+### Why This Works
+
+1. **Noise channel (Bath 4):** q couples weakly to brane modes due to multipole screening → low E_fluct
+2. **Damping channel (Bath 2):** q couples to bulk modes via different mechanism (wake/radiation into 5D) → provides γ without adding noise to q
+
+**Key requirement:** Bath 2 must provide γ ~ ω_b **without contributing significant noise** to the collective coordinate q.
+
+### Physical Picture
+
+```
+              BATH 2: Bulk Wake
+              ↑ provides γ
+              | (no noise contribution to q)
+              |
+    JUNCTION [q] ←--weak-→ BATH 4: Brane (screened)
+              ↓                (low noise, low γ)
+         COLLECTIVE
+         COORDINATE
+```
+
+### Next Steps: Bath 2 Investigation
+
+To close the two-channel solution:
+
+1. **Derive γ_bulk from Bath 2**
+   - Junction motion → bulk wave emission → radiation reaction
+   - Target: γ_bulk ~ ω_b (turnover condition)
+
+2. **Show noise from Bath 2 is suppressed on brane**
+   - Bulk fluctuations projected onto brane → exponentially suppressed?
+   - Junction doesn't "feel" bulk vacuum fluctuations as much as brane ones
+
+3. **Verify total budget**
+   - E_fluct ≈ E_fluct(Bath 4) ~ 24 keV [dominated by screened brane]
+   - γ ≈ γ(Bath 2) ~ ω_b [dominated by bulk wake]
+   - Resulting Θ = ΔV/E_fluct ~ 55 ✓
+   - Resulting Υ = γ/ω_b ~ 1 ✓
+
+### Required Derivations for Bath 2
+
+| Step | What | Where |
+|------|------|-------|
+| B2-1 | Bulk perturbation from junction motion | Linearize around brane |
+| B2-2 | Radiation reaction force on q | Standard radiation reaction |
+| B2-3 | γ_bulk in terms of σ, δ, L₀, M_5 | Must be parameter-free |
+| B2-4 | Noise projection onto brane | Exponential suppression? |
+
+---
+
+## 19. Epistemic Status Update (v3.9)
+
+| Claim | Tag | Note |
+|-------|-----|------|
+| Bath 1 alone: E_fluct ~ MeV | [Dc] | Computed numerically, NO-GO for F2 |
+| Bath 4 multipole screening works | [Dc] | Computed, gives Θ > 55 |
+| Bath 4 destroys Υ | [Dc] | Same screening suppresses γ |
+| Two-channel solution (Bath 4 + Bath 2) | [P] | Proposed, requires Bath 2 derivation |
+| Bath 2 provides γ ~ ω_b | [OPEN] | Must be derived |
+| Bath 2 noise is suppressed | [OPEN] | Must be shown |
+
+---
+
+## 20. Current Verdict (v3.9)
+
+$$\boxed{\text{ROUTE F: TWO-CHANNEL SOLUTION NEEDED}}$$
+
+**Path forward:**
+
+1. ✓ Bath 1 tested → NO-GO (E_fluct ~ MeV)
+2. ✓ Bath 4 tested → PARTIAL SUCCESS (Θ ~ 55 achievable, but Υ destroyed)
+3. **NEXT:** Bath 2 (bulk wake) as independent damping source
+4. **Goal:** Show γ_bulk ~ ω_b without significant noise contribution
+
+**If Bath 2 succeeds:**
+- Route F becomes viable with TWO-CHANNEL model
+- E_fluct from Bath 4 (screened brane) + γ from Bath 2 (bulk wake)
+- No free parameters (both derived from 5D geometry)
+
+**If Bath 2 fails:**
+- Route F requires yet another mechanism
+- Or accept failure and look for alternative mechanisms
+
+---
+
+## 21. Artifacts (v3.9)
+
+| File | Description |
+|------|-------------|
+| `code/bath1_spectral_density_v1.py` | Bath 1 calculation (NO-GO) |
+| `code/bath4_screening_v1.py` | Bath 4 multipole screening |
+| `artifacts/bath1_results_v1.json` | Bath 1 numerical results |
+| `artifacts/bath4_results_v1.json` | Bath 4 numerical results |
