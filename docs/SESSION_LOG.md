@@ -172,6 +172,54 @@ Systematize and record for permanent use.
 
 ---
 
+## 2026-01-28 (cont'd pt4) — Workflow Hardening (Repo-Relative Paths)
+
+### Goal
+Harden the workflow so CC never gets confused about paths again.
+
+### Starting Directory
+- Started in: `/Users/igor/ClaudeAI/EDC_Project/elastic-diffusive-cosmology_repo` (correct - already in repo root)
+- Confirmed with: `git rev-parse --show-toplevel`
+
+### Files Modified
+
+1. **CLAUDE.md** — Added SECTION 0: WORKING DIRECTORY (MANDATORY)
+   - Rule: If agent starts in parent workspace, MUST `cd elastic-diffusive-cosmology_repo` first
+   - All paths are repo-relative
+   - External paths use `../EDC_Research_PRIVATE/`
+   - NEVER hunt PDFs; always use LaTeX/Markdown sources
+   - Fixed paths in SECTION A and SECTION B to be repo-relative
+
+2. **docs/CANON_BUNDLE.md** — Path normalization
+   - Added header: "All paths in this document are repo-relative"
+   - Changed `elastic-diffusive-cosmology_repo/edc_book/` → `edc_book/`
+   - Changed `elastic-diffusive-cosmology_repo/edc_book_2/` → `edc_book_2/`
+   - Changed `elastic-diffusive-cosmology_repo/edc_papers/` → `edc_papers/`
+   - Changed `EDC_Research_PRIVATE/` → `../EDC_Research_PRIVATE/` (external)
+
+3. **docs/KNOWLEDGE_INVENTORY.md** — Path clarification
+   - Added header: "All paths in this document are repo-relative"
+   - Updated scope description
+
+### New Invariant Established
+
+**PATH CONVENTION (MANDATORY):**
+- All paths in repo docs are **repo-relative** (from git root)
+- External paths use **`../`** prefix explicitly
+- CC must verify `git rev-parse --show-toplevel` at session start
+- NO absolute paths in documentation
+
+### Next Steps
+1. Commit changes
+2. Push to origin
+3. Test with fresh session starting from EDC_Project/
+
+### Open Questions
+1. Should we add pre-commit hook to validate path format?
+2. Should WORKSPACE_MAP.md also be patched?
+
+---
+
 ## Template for Future Sessions
 
 ```markdown

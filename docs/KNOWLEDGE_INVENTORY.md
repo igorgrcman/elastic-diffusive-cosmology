@@ -1,8 +1,11 @@
 # EDC KNOWLEDGE INVENTORY
 
+> **All paths in this document are repo-relative** (from git repo root).
+> External paths use `../EDC_Research_PRIVATE/` notation.
+
 **Created:** 2026-01-28
 **Purpose:** Comprehensive catalog of all EDC knowledge, systematized for permanent use
-**Scope:** elastic-diffusive-cosmology_repo + EDC_Research_PRIVATE
+**Scope:** This repo + `../EDC_Research_PRIVATE/` (external sibling)
 
 ---
 

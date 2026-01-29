@@ -7,6 +7,33 @@ You are Claude Code, operating in a **stateless environment** on the EDC (Elasti
 
 ---
 
+## SECTION 0: WORKING DIRECTORY (MANDATORY — READ FIRST)
+
+**This repository is located in the subfolder:** `elastic-diffusive-cosmology_repo/`
+
+If the agent starts in a parent workspace (e.g., `EDC_Project/`), it MUST:
+1. `cd elastic-diffusive-cosmology_repo`
+2. Confirm with `git rev-parse --show-toplevel`
+3. THEN read `docs/CANON_BUNDLE.md` and proceed
+
+**All paths in this repository are repo-relative** (from the git repo root).
+
+**Path conventions:**
+- `docs/` means `<repo-root>/docs/`
+- `edc_book/` means `<repo-root>/edc_book/`
+- `edc_book_2/` means `<repo-root>/edc_book_2/`
+- `edc_papers/` means `<repo-root>/edc_papers/`
+
+**External directories (outside this repo):**
+- `EDC_Research_PRIVATE/` — sibling folder, NOT inside this repo
+
+**NEVER:**
+- Use absolute paths in documentation
+- Hunt PDFs for "find in book" — always use LaTeX/Markdown sources
+- Assume you're in the repo root without verifying
+
+---
+
 ## SECTION A: SESSION START PROTOCOL (MANDATORY)
 
 Before doing ANY work, you MUST read these files in order:
@@ -26,12 +53,12 @@ Before doing ANY work, you MUST read these files in order:
 
 If working on Book 2:
 ```
-elastic-diffusive-cosmology_repo/edc_book_2/docs/CANON_BUNDLE.md
+edc_book_2/docs/CANON_BUNDLE.md
 ```
 
-If working on Research Private:
+If working on Research Private (external sibling folder):
 ```
-EDC_Research_PRIVATE/CLAUDE.md
+../EDC_Research_PRIVATE/CLAUDE.md
 ```
 
 ### Step 3: Announce Plan
@@ -52,10 +79,10 @@ Write a short "Plan for this session" at the TOP of your response.
 
 1. **FIRST** consult `docs/CONCEPT_INDEX.md`
 2. If found: Return the exact .tex/.md path + section title + equation labels
-3. If NOT found: Search ONLY within the relevant source root:
-   - Book 1: `elastic-diffusive-cosmology_repo/edc_book/`
-   - Book 2: `elastic-diffusive-cosmology_repo/edc_book_2/`
-   - Papers: `elastic-diffusive-cosmology_repo/edc_papers/`
+3. If NOT found: Search ONLY within the relevant source root (repo-relative):
+   - Book 1: `edc_book/`
+   - Book 2: `edc_book_2/`
+   - Papers: `edc_papers/`
 4. **UPDATE** `docs/CONCEPT_INDEX.md` with the new mapping
 
 ### Canonical Definitions (DO NOT RE-DERIVE):

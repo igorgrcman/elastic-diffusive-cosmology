@@ -1,5 +1,8 @@
 # WORKSPACE MAP (EDC_Project)
 
+> **All paths in this document are repo-relative** (from git repo root).
+> External paths use `../EDC_Research_PRIVATE/` notation.
+
 **Generated:** 2026-01-28
 **Purpose:** Single entry point for navigating the entire EDC workspace.
 **Usage:** Read at START of every CC session. MANDATORY.
@@ -26,10 +29,10 @@
 
 | Item | Path |
 |------|------|
-| **LaTeX root** | `elastic-diffusive-cosmology_repo/edc_book/main.tex` |
-| **Chapters** | `elastic-diffusive-cosmology_repo/edc_book/chapters/` |
-| **Appendices** | `elastic-diffusive-cosmology_repo/edc_book/appendices/` |
-| **Epistemic standard** | `elastic-diffusive-cosmology_repo/edc_book/EDC_EPISTEMIC_STANDARD.tex` |
+| **LaTeX root** | `edc_book/main.tex` |
+| **Chapters** | `edc_book/chapters/` |
+| **Appendices** | `edc_book/appendices/` |
+| **Epistemic standard** | `edc_book/EDC_EPISTEMIC_STANDARD.tex` |
 
 **Key chapters:**
 - `chapter_0_theory_core_V17.49.tex` - Core theory
@@ -45,10 +48,10 @@
 
 | Item | Path |
 |------|------|
-| **Working root** | `elastic-diffusive-cosmology_repo/edc_book_2/` |
-| **Source derivations** | `elastic-diffusive-cosmology_repo/edc_book_2/src/derivations/` |
-| **Domain-specific docs** | `elastic-diffusive-cosmology_repo/edc_book_2/docs/` |
-| **CLAUDE.md (domain)** | `elastic-diffusive-cosmology_repo/edc_book_2/CLAUDE.md` |
+| **Working root** | `edc_book_2/` |
+| **Source derivations** | `edc_book_2/src/derivations/` |
+| **Domain-specific docs** | `edc_book_2/docs/` |
+| **CLAUDE.md (domain)** | `edc_book_2/CLAUDE.md` |
 
 **Key source files:**
 - `src/derivations/BOOK_SECTION_TOPOLOGICAL_PINNING_MODEL.tex` - Active
@@ -62,10 +65,10 @@
 
 | Item | Path |
 |------|------|
-| **Papers root** | `elastic-diffusive-cosmology_repo/edc_papers/` |
-| **Paper 2 (Frozen)** | `elastic-diffusive-cosmology_repo/edc_papers/paper_2/paper/main.tex` |
-| **Paper 2 derivations** | `elastic-diffusive-cosmology_repo/edc_papers/paper_2/paper/derivations/` |
-| **Paper 3 series** | `elastic-diffusive-cosmology_repo/edc_papers/paper_3_series/` |
+| **Papers root** | `edc_papers/` |
+| **Paper 2 (Frozen)** | `edc_papers/paper_2/paper/main.tex` |
+| **Paper 2 derivations** | `edc_papers/paper_2/paper/derivations/` |
+| **Paper 3 series** | `edc_papers/paper_3_series/` |
 | **Paper 3 (private)** | `EDC_Research_PRIVATE/releases/paper_3_private/paper/main.tex` |
 | **Paper 3 (public)** | `EDC_Research_PRIVATE/releases/paper_3_public/paper/main.tex` |
 
@@ -133,7 +136,7 @@ Instability: Can relax theta: 60deg -> 0deg (toward proton)
 
 | Directory | Purpose | Active? |
 |-----------|---------|---------|
-| `EDC_Book_2/` | Legacy Book 2 location | NO - use `elastic-diffusive-cosmology_repo/edc_book_2/` |
+| `EDC_Book_2/` | Legacy Book 2 location | NO - use `edc_book_2/` |
 | `edc_paper_2_archive/` | Archive of Paper 2 development | Archive only |
 | `build/` | Build artifacts | Transient |
 | `aside_proof_audit/` | Audit materials | Reference |

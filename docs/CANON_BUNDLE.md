@@ -1,5 +1,8 @@
 # CANON BUNDLE — EDC_Project Workspace Level
 
+> **All paths in this document are repo-relative** (from git repo root: `elastic-diffusive-cosmology_repo/`).
+> External paths (e.g., `../EDC_Research_PRIVATE/`) are explicitly marked.
+
 **Generated:** 2026-01-28
 **Purpose:** Single entry point for ALL canonical EDC content.
 **Usage:** Read this file at the START of every CC session. MANDATORY. NO EXCEPTIONS.
@@ -21,12 +24,12 @@
 
 See: `docs/WORKSPACE_MAP.md`
 
-Key paths:
-- Book 1: `elastic-diffusive-cosmology_repo/edc_book/main.tex`
-- Book 2: `elastic-diffusive-cosmology_repo/edc_book_2/`
-- Paper 2: `elastic-diffusive-cosmology_repo/edc_papers/paper_2/paper/main.tex`
-- Paper 3: `EDC_Research_PRIVATE/releases/paper_3_private/paper/main.tex`
-- KB: `EDC_Research_PRIVATE/kb/`
+Key paths (repo-relative):
+- Book 1: `edc_book/main.tex`
+- Book 2: `edc_book_2/`
+- Paper 2: `edc_papers/paper_2/paper/main.tex`
+- Paper 3: `../EDC_Research_PRIVATE/releases/paper_3_private/paper/main.tex` (external)
+- KB: `../EDC_Research_PRIVATE/kb/` (external)
 
 ### CONCEPT_INDEX.md
 
@@ -55,7 +58,7 @@ Key discoveries:
 4. **τ_n ≈ 880 s from pure 5D** — no fitting, just σ, L₀, δ
 
 ### TP-2026-01-20: EDC Synthesis Key Findings
-**Location:** `EDC_Research_PRIVATE/kb/turning_points/TP-2026-01-20_EDC_Synthesis_Key_Findings.md`
+**Location:** `../EDC_Research_PRIVATE/kb/turning_points/TP-2026-01-20_EDC_Synthesis_Key_Findings.md` (external)
 
 Key content: σ derivation, factor 12 = Z₆×Z₂, mass ratios, brane picture.
 
@@ -65,7 +68,7 @@ Key content: σ derivation, factor 12 = Z₆×Z₂, mass ratios, brane picture.
 
 ### Book 2 Canon (Active Development)
 
-**Location:** `elastic-diffusive-cosmology_repo/edc_book_2/docs/CANON_BUNDLE.md`
+**Location:** `edc_book_2/docs/CANON_BUNDLE.md`
 
 This bundle contains:
 1. CLAUDE.md (Book 2 workflow rules)
@@ -80,7 +83,7 @@ This bundle contains:
 
 ### Research Private Canon
 
-**Location:** `EDC_Research_PRIVATE/CLAUDE.md`
+**Location:** `../EDC_Research_PRIVATE/CLAUDE.md` (external)
 
 Contains:
 - Repo policy (no branch deletion, XeLaTeX, etc.)
@@ -232,7 +235,7 @@ If you encounter any of these, STOP and ask the user:
 3. CONSULT `docs/CONCEPT_INDEX.md` for definitions
 4. CHECK `docs/STATUS.md` and `docs/TODO.md`
 5. READ last entry of `docs/SESSION_LOG.md`
-6. If working on Book 2: ALSO read `elastic-diffusive-cosmology_repo/edc_book_2/docs/CANON_BUNDLE.md`
+6. If working on Book 2: ALSO read `edc_book_2/docs/CANON_BUNDLE.md`
 
 ### End of Session (MANDATORY)
 
