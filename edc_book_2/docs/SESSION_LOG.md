@@ -260,6 +260,34 @@ Systematize and record for permanent use.
 
 ---
 
+## 2026-01-29 — G_F Constraint Insert for Chapter 11
+
+### Goal
+Add book-ready LaTeX snippet for G_F constraint falsification channel.
+
+### Work Performed
+1. Created `edc_papers/_shared/boxes/gf_constraint_box.tex`
+   - 3-sentence canon summary (constraint status, naive overlap, BVP falsification)
+   - Falsification box with target window [0.9,1.1]×G_F
+   - Cross-references to docs/GF_CONSTRAINT_NOTE.md and Projection Lemma
+
+2. Wired into `sections/11_gf_derivation.tex`
+   - Added `\input` after Stoplight Verdict section
+   - Insertion at line ~650
+
+### Files Modified
+- `sections/11_gf_derivation.tex` — Added \input for constraint box
+
+### Results
+- G_F constraint falsification channel now documented in Book 2
+- Key insight: naive overlap is O(1), matching G_F is non-trivial
+
+### Next Steps
+1. Test LaTeX compilation
+2. Verify \input path resolves from sections/ subdirectory
+
+---
+
 ## Template for Future Sessions
 
 ```markdown

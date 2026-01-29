@@ -503,6 +503,37 @@ Formalize the Projection-Reduction Principle in LaTeX as first Priority 0 task.
 
 ---
 
+## 2026-01-29 (cont'd pt9) — Book2 G_F Insert
+
+### Goal
+Create Book 2-ready LaTeX snippet + companion markdown for G_F constraint falsification channel.
+
+### Files Created
+- `edc_papers/_shared/boxes/gf_constraint_box.tex` — LaTeX falsification box
+- `docs/BOOK2_INSERT_GF.md` — Companion markdown with stoplight status
+
+### Files Modified
+- `edc_book_2/src/sections/11_gf_derivation.tex` — Added `\input` for constraint box
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-045
+- `docs/TODO.md` — Marked task complete
+- `docs/SESSION_LOG.md` — This entry
+
+### Insertion Location
+**Path:** `edc_book_2/src/sections/11_gf_derivation.tex`
+**Section:** After "Stoplight Verdict" and "Bottom line" paragraph, before NOTE comment
+**Line:** ~650 (after line 647)
+
+### Box Contents
+1. **Canon summary (3 sentences):** G_F is constraint, naive overlap is O(1), BVP is falsification channel
+2. **Falsification box:** Target window [0.9,1.1]×G_F, fail criteria (>10× mismatch)
+3. **Cross-references:** GF_CONSTRAINT_NOTE.md, Projection Lemma Case (B)
+
+### Manual Review Needed
+- Test LaTeX compilation: `latexmk -xelatex edc_book_2/src/main.tex`
+- Verify `\input` path resolves correctly from `sections/` subdirectory
+
+---
+
 ## 2026-01-29 (cont'd pt8) — G_F Constraint Note Patch
 
 ### Goal

@@ -484,6 +484,23 @@ Ratio: ~12× — OPEN PROBLEM
 
 ---
 
+### CONCEPT-045: Book2 Insert: G_F Constraint Box
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/boxes/gf_constraint_box.tex` |
+| **Companion** | `docs/BOOK2_INSERT_GF.md` |
+| **Insertion** | `edc_book_2/src/sections/11_gf_derivation.tex` (after Stoplight Verdict) |
+| **Epistemic tag** | [Dc] for constraint; falsification channel documented |
+| **Used in** | Book 2 Chapter 11 (Fermi Constant from Geometry) |
+
+**Content:**
+- 3-sentence canon summary (constraint status, naive overlap, falsification)
+- Falsification box with target window and fail criteria
+- Cross-references to GF_CONSTRAINT_NOTE.md and Projection Lemma Case (B)
+
+---
+
 ### CONCEPT-044: G_F Constraint (Fermi Constant)
 
 | Field | Value |

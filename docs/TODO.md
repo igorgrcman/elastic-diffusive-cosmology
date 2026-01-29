@@ -19,6 +19,8 @@
 - [x] **G_F constraint note** — `docs/GF_CONSTRAINT_NOTE.md` (2026-01-29)
       Result: Constraint window g_eff²/M_eff² ∈ [0.9,1.1]×G_F; X = G_F m_e² = 3×10⁻¹²
       True prediction: sin²θ_W = 1/4 [Der]; First-principles G_F remains RED-C (open)
+- [x] **Book2 G_F insert** — `edc_papers/_shared/boxes/gf_constraint_box.tex` (2026-01-29)
+      LaTeX box + companion MD for Chapter 11; falsification channel documented
 
 ---
 
