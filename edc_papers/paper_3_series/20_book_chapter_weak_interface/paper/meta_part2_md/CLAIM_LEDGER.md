@@ -835,18 +835,49 @@ notes: |
   IMPLICATION: k-channel robust to realistic defect levels (~10%)
 ```
 
+### CL-ZN-BOX-1: Z_N k-channel robustness box (book-ready summary)
+
+```yaml
+id: CL-ZN-BOX-1
+status: GREEN
+chapter: breadth
+claim: "Book-ready box summarizing k(N) definition, applicability, and robustness"
+evidence:
+  box: "edc_papers/_shared/boxes/zn_kchannel_robustness_box.tex"
+  wired_into: "RT-CH3-003_NEUTRON_LIFETIME_DERIVATION.tex"
+  breadth_synthesis: "docs/BREADTH_SYNTHESIS_2026-01-29.md"
+tag: "[Der]+[Dc]"
+commit: "2026-01-29"
+notes: |
+  BOOK-READY SUMMARY BOX:
+    - Definition: k(N) = 1 + 1/N [Der]
+    - Applicability: averaging YES, cardinality NO (CRITICAL)
+    - Robustness: non-quadratic W [Der], strong pinning [Der], one-defect O(ε²) [Der]
+
+  CONSOLIDATES:
+    - CL-Z6-1, CL-ZN-NORM-1 (definition and derivation)
+    - CL-ZN-WNL-1 (non-quadratic robustness)
+    - CL-ZN-PIN-STRONG-1 (strong pinning robustness)
+    - CL-ZN-DEFECT-1 (one-defect robustness)
+    - CL-ZN-UNIV-1 (applicability rule)
+
+  WIRED INTO:
+    - RT-CH3-003_NEUTRON_LIFETIME_DERIVATION.tex (after ncell_renorm_box)
+    - BREADTH_SYNTHESIS Section D.3 cross-references this box
+```
+
 ---
 
 ## Statistics
 
 | Status | Count |
 |--------|-------|
-| GREEN | 17 |
+| GREEN | 18 |
 | YELLOW | 15 |
 | RED | 4 |
 | FALSIFIED | 1 |
-| **Total** | **37** |
+| **Total** | **38** |
 
 ---
 
-*Claim Ledger v2.1 — Last updated 2026-01-29*
+*Claim Ledger v2.2 — Last updated 2026-01-29*

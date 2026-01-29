@@ -1063,6 +1063,40 @@ k-channel is ROBUST to realistic defect levels (~10% mismatch).
 
 ---
 
+### CONCEPT-060: Z_N k-channel Robustness Box (Book-Ready Summary)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/boxes/zn_kchannel_robustness_box.tex` |
+| **Wired into** | `RT-CH3-003_NEUTRON_LIFETIME_DERIVATION.tex` (after ncell_renorm_box) |
+| **Epistemic tag** | [Der] for math; [Dc] for physical thresholds |
+| **Used in** | Neutron lifetime derivation, k-channel summary |
+
+**Purpose:**
+Book-ready tcolorbox summarizing k(N) = 1 + 1/N definition, applicability rules, and robustness results.
+
+**Contents:**
+```
+1. DEFINITION: k(N) = ⟨O⟩_disc / ⟨O⟩_cont = 1 + 1/N [Der]
+   Valid for Z_N-symmetric anisotropy f(θ) = c + a cos(Nθ) under a/c = 1/N
+
+2. APPLICABILITY RULE (CRITICAL):
+   ✓ USE for averaging observables (N_cell, pion ε-dressing)
+   × DO NOT USE for cardinality ratios (sin²θ_W, N_g, Koide Q, CP phases)
+
+3. ROBUSTNESS RESULTS [Der]:
+   - Non-quadratic W(u): Mode index m=N unchanged
+   - Strong pinning (ρ >> N²): Z_N irrep structure protected at any ρ
+   - One-defect (ε ≠ 0): Contamination ~ O(ε²), robust to ~10% mismatch
+```
+
+**Cross-references:**
+- Lemma: `edc_papers/_shared/lemmas/zn_discrete_averaging_lemma.tex`
+- Strong pinning: CONCEPT-058, `docs/ZN_STRONG_PINNING_ROBUSTNESS_NOTE.md`
+- One-defect: CONCEPT-059, `docs/ZN_ONE_DEFECT_ROBUSTNESS_NOTE.md`
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:

@@ -132,6 +132,7 @@ N_cell_eff = 12 / k(6) = 12 × (6/7) = 10.29 ≈ 10 ✓
 - Algebraic bridge: `docs/OP-SIGMA-2_NCELL12_RESOLUTION.md`
 - k(6) derivation: `docs/Z6_CORRECTION_FACTOR_7over6.md`
 - General k(N): `docs/ZN_CORRECTION_CHANNEL.md`
+- **Book-ready box:** `edc_papers/_shared/boxes/zn_kchannel_robustness_box.tex` (applicability + robustness summary)
 
 **Status:** [Der]+[Dc] — math relation derived, physical use of k(6) channel is hypothesis
 

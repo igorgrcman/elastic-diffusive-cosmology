@@ -1523,6 +1523,71 @@ Python: python3 zn_one_defect_contamination_scan.py
 
 ---
 
+## 2026-01-29 (cont'd pt29) — k-Channel Robustness Box (Book-Ready)
+
+### Goal
+Create book-ready tcolorbox summarizing k(N) definition, applicability rules, and all robustness results. Wire into neutron lifetime research target.
+
+### Key Result: BOOK-READY SUMMARY BOX CREATED
+
+**Contents of `zn_kchannel_robustness_box.tex`:**
+```
+1. DEFINITION: k(N) = ⟨O⟩_disc / ⟨O⟩_cont = 1 + 1/N [Der]
+2. APPLICABILITY RULE:
+   ✓ USE for averaging (N_cell, pion ε-dressing)
+   × DO NOT USE for cardinality (sin²θ_W, N_g, Koide Q, CP)
+3. ROBUSTNESS [Der]:
+   - Non-quadratic W(u): mode m=N unchanged
+   - Strong pinning: protected at any ρ
+   - One-defect: O(ε²) scaling, robust to ~10%
+```
+
+### Files Created
+- `edc_papers/_shared/boxes/zn_kchannel_robustness_box.tex` — Book-ready tcolorbox
+
+### Files Modified
+- `edc_papers/paper_3_series/20_book_chapter_weak_interface/paper/research_targets/RT-CH3-003_NEUTRON_LIFETIME_DERIVATION.tex` — Wired in box after ncell_renorm_box
+- `docs/BREADTH_SYNTHESIS_2026-01-29.md` — Added pointer to book-ready box in Section D.3
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-060 (k-channel robustness box)
+- `edc_papers/paper_3_series/20_book_chapter_weak_interface/paper/meta_part2_md/CLAIM_LEDGER.md` — Added CL-ZN-BOX-1 (GREEN)
+- `docs/SESSION_LOG.md` — This entry
+
+### Compile Status
+```
+latexmk -xelatex RT-CH3-003_NEUTRON_LIFETIME_DERIVATION.tex
+Output: 6 pages, PASS
+Box included successfully
+```
+
+### What This Consolidates
+All three robustness workpackages are now summarized in a single book-ready box:
+1. Non-quadratic W(u) robustness (pt26)
+2. Strong pinning regime robustness (pt27)
+3. One-defect symmetry breaking robustness (pt28)
+
+### Priority 1 Z₆ Correction Channel: COMPLETE
+
+The full derivation chain is now book-ready:
+```
+Z_N symmetry [Der]
+    ↓
+Identical anchors: τ_n = τ [Der] (Israel junction)
+    ↓
+cos(Nθ) is leading mode [Der] (Selection + Gradient)
+    ↓
+Energy minimization: a₁ ∝ 1/N [Der]
+    ↓
+a/c = 1/N [Der]
+    ↓
+k(N) = 1 + 1/N [Der]
+    ↓
+Applications: pion [I], N_cell [Dc], overlap [Der]
+    ↓
+ROBUSTNESS: non-quadratic [Der], strong pinning [Der], one-defect [Der]
+```
+
+---
+
 ## Template for Future Sessions
 
 ```markdown
