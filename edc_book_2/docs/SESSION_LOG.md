@@ -905,6 +905,67 @@ TEASER WIRED: edc_book_2/src/main.tex:738
 
 ---
 
+## 2026-01-29 — Comprehensive Consolidation Cleanup Pass
+
+### Goal
+- Perform Book 2 consolidation cleanup: consistency, de-duplication, unit conventions
+- Create audit documentation and canon rules
+- Preserve scientific content (no numeric changes)
+
+### Work Performed
+
+#### Tool Creation
+- Created `tools/consolidate_book2.py`:
+  - Parses 112-file include tree
+  - Scans for unit issues, notation drift, epistemic tags, stoplights, duplication
+  - Generates audit reports with issue categorization
+
+#### Documentation Created
+- `docs/BOOK2_CONSOLIDATION_AUDIT.md`:
+  - Issue summary by category (A_UNITS through F_LATEX)
+  - False positive analysis
+  - Action plan
+- `docs/BOOK2_CONSOLIDATION_PATCHLOG.md`:
+  - 25 patches suggested, 0 applied (all false positives)
+  - Risk assessment
+- `docs/BOOK2_CANON_RULES.md`:
+  - Unit conventions (δ scales, natural units)
+  - Notation standards (m_p, g_5, I_4)
+  - Label prefixing rules
+  - k-channel applicability
+
+### Results
+
+#### Audit Findings
+| Category | Flagged | Real Issues | False Positives |
+|----------|---------|-------------|-----------------|
+| A_UNITS | 187 | ~20 | ~167 (CP phase δ) |
+| B_NOTATION | 72 | ~5 | ~67 (TikZ nodes) |
+| C_EPISTEMIC | 812 | ~50 | ~762 (prose) |
+| D_STOPLIGHT | 16 | 0 | 16 (have status boxes) |
+| E_DUPLICATION | 14 | 7 | 7 (pedagogical) |
+
+#### Key Finding
+Chapters flagged as "missing stoplight" (ch10, ch12, ch14) already have
+equivalent "Dependency & Status" boxes with color-coded verdicts.
+
+#### Compilation
+- **Status**: PASS (604 pages)
+- **Undefined refs**: 0
+- **Multiply-defined labels**: 0
+
+### Files Created
+- `tools/consolidate_book2.py`
+- `docs/BOOK2_CONSOLIDATION_AUDIT.md`
+- `docs/BOOK2_CONSOLIDATION_PATCHLOG.md`
+- `docs/BOOK2_CANON_RULES.md`
+
+### Next Steps
+1. Review C_EPISTEMIC flags for critical gaps in future session
+2. Consider standardizing "Dependency & Status" → "Stoplight" naming
+
+---
+
 ```markdown
 ## YYYY-MM-DD — [Session Title]
 
