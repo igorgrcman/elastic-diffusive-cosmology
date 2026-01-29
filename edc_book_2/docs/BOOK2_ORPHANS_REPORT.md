@@ -1,10 +1,10 @@
 # Book 2 Orphans Report
 
-**Generated:** 2026-01-29 15:00
+**Generated:** 2026-01-29 15:06
 
 Files in `edc_papers/_shared/` that are NOT included in Book 2.
 
-## Summary: 23 orphan files
+## Summary: 15 orphan files
 
 ### Derivations (13 orphans)
 
@@ -22,19 +22,12 @@ Files in `edc_papers/_shared/` that are NOT included in Book 2.
 - `edc_papers/_shared/derivations/zn_symmetry_breaking_one_defect.tex`
 - `edc_papers/_shared/derivations/zn_toy_functional_from_5d_action.tex`
 
-### Boxes (7 orphans)
+### Boxes (0 orphans)
 
-- `edc_papers/_shared/boxes/delta_from_5d_action_box.tex`
-- `edc_papers/_shared/boxes/dlr_chiral_localization_box.tex`
-- `edc_papers/_shared/boxes/gf_bvp_pipeline_box.tex`
-- `edc_papers/_shared/boxes/gf_bvp_tuning_box.tex`
-- `edc_papers/_shared/boxes/ncell_renorm_box.tex`
-- `edc_papers/_shared/boxes/prefactor_A_box.tex`
-- `edc_papers/_shared/boxes/zn_kchannel_robustness_box.tex`
+*All files included.*
 
-### Lemmas (3 orphans)
+### Lemmas (2 orphans)
 
-- `edc_papers/_shared/lemmas/projection_reduction_lemma.tex`
 - `edc_papers/_shared/lemmas/z6_discrete_averaging_lemma.tex`
 - `edc_papers/_shared/lemmas/zn_discrete_averaging_lemma.tex`
 

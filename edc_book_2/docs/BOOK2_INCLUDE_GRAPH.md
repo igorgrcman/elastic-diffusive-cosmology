@@ -1,6 +1,6 @@
 # Book 2 Include Graph
 
-**Generated:** 2026-01-29 15:00
+**Generated:** 2026-01-29 15:06
 
 ## Visualization (depth ≤ 3)
 
@@ -156,6 +156,24 @@ graph TD
     ch19_opr22_geff_from["ch19_opr22_geff_from_exchange"]
     EDC_Part_II_Weak_Sec --> ch20_epistemic_summa
     ch20_epistemic_summa["ch20_epistemic_summary_closure"]
+    EDC_Part_II_Weak_Sec --> APPENDIX_DERIVATION_
+    APPENDIX_DERIVATION_["APPENDIX_DERIVATION_LIBRARY"]
+    APPENDIX_DERIVATION_ --> projection_reduction
+    projection_reduction["projection_reduction_lemma"]
+    APPENDIX_DERIVATION_ --> delta_from_5d_action
+    delta_from_5d_action["delta_from_5d_action_box"]
+    APPENDIX_DERIVATION_ --> dlr_chiral_localizat
+    dlr_chiral_localizat["dlr_chiral_localization_box"]
+    APPENDIX_DERIVATION_ --> gf_bvp_pipeline_box
+    gf_bvp_pipeline_box["gf_bvp_pipeline_box"]
+    APPENDIX_DERIVATION_ --> gf_bvp_tuning_box
+    gf_bvp_tuning_box["gf_bvp_tuning_box"]
+    APPENDIX_DERIVATION_ --> ncell_renorm_box
+    ncell_renorm_box["ncell_renorm_box"]
+    APPENDIX_DERIVATION_ --> prefactor_A_box
+    prefactor_A_box["prefactor_A_box"]
+    APPENDIX_DERIVATION_ --> zn_kchannel_robustne
+    zn_kchannel_robustne["zn_kchannel_robustness_box"]
     EDC_Part_II_Weak_Sec --> 00_meta_index
     00_meta_index["00_meta_index"]
     EDC_Part_II_Weak_Sec --> 01_claim_ledger
@@ -172,10 +190,10 @@ graph TD
 
 ## Statistics
 
-- Nodes: 83
-- Edges: 82
+- Nodes: 92
+- Edges: 91
 - Max depth: 3
-- Total lines: 33908
+- Total lines: 34693
 
 ## JSON Data
 

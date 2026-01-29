@@ -608,7 +608,8 @@ Add Book2-ready k-channel cross-validation box + prominent editorial warning.
 #### Step C: Path Architecture (COMPLETE)
 - Defined `\newcommand{\EDCPAPERS}{../../edc_papers}` in main.tex
 - Updated existing includes in sections to use `\EDCPAPERS` macro
-- Updated parser to expand `\EDCPAPERS` macro
+- Updated parser to expand `\EDCPAPERS` macro in `normalize_path()`
+- Parser now handles LaTeX macros in include paths correctly
 
 #### Step D: LaTeX Sweep (COMPLETE)
 - Compilation: PASS (481 pages)

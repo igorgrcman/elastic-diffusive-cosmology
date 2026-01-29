@@ -1,18 +1,18 @@
 # Book 2 Include Manifest
 
-**Generated:** 2026-01-29 15:00
+**Generated:** 2026-01-29 15:06
 
 ## Statistics
 
-- **Total files:** 83
-- **Total lines:** 33908
+- **Total files:** 92
+- **Total lines:** 34693
 - **Max depth:** 3
 - **Missing files:** 0
 
 ## Include Tree
 
 ```
-EDC_Part_II_Weak_Sector_rebuild.tex (900 lines)
+EDC_Part_II_Weak_Sector_rebuild.tex (910 lines)
   edc_meta_macros.tex (57 lines)
   edc_stoplight_legend.tex (65 lines)
   00_reader_contract.tex (33 lines)
@@ -89,6 +89,15 @@ EDC_Part_II_Weak_Sector_rebuild.tex (900 lines)
   ch18_opr20_mediator_mass_from_eigenvalue.tex (544 lines)
   ch19_opr22_geff_from_exchange.tex (861 lines)
   ch20_epistemic_summary_closure_status.tex (589 lines)
+  APPENDIX_DERIVATION_LIBRARY.tex (124 lines)
+    projection_reduction_lemma.tex (202 lines)
+    delta_from_5d_action_box.tex (92 lines)
+    dlr_chiral_localization_box.tex (72 lines)
+    gf_bvp_pipeline_box.tex (67 lines)
+    gf_bvp_tuning_box.tex (115 lines)
+    ncell_renorm_box.tex (24 lines)
+    prefactor_A_box.tex (35 lines)
+    zn_kchannel_robustness_box.tex (44 lines)
   00_meta_index.tex (47 lines)
   01_claim_ledger.tex (104 lines)
   02_decision_log.tex (84 lines)
@@ -101,7 +110,7 @@ EDC_Part_II_Weak_Sector_rebuild.tex (900 lines)
 
 | Depth | Type | Lines | Path |
 |-------|------|-------|------|
-| 0 | root | 900 | `edc_book_2/src/EDC_Part_II_Weak_Sector_rebuild.tex` |
+| 0 | root | 910 | `edc_book_2/src/EDC_Part_II_Weak_Sector_rebuild.tex` |
 | 1 | input | 57 | `edc_papers/_shared/meta/edc_meta_macros.tex` |
 | 1 | input | 65 | `edc_papers/_shared/meta/edc_stoplight_legend.tex` |
 | 1 | input | 33 | `edc_book_2/src/sections/00_reader_contract.tex` |
@@ -178,6 +187,15 @@ EDC_Part_II_Weak_Sector_rebuild.tex (900 lines)
 | 1 | input | 544 | `edc_book_2/src/sections/ch18_opr20_mediator_mass_from_eigenvalue.tex` |
 | 1 | input | 861 | `edc_book_2/src/sections/ch19_opr22_geff_from_exchange.tex` |
 | 1 | input | 589 | `edc_book_2/src/sections/ch20_epistemic_summary_closure_status.tex` |
+| 1 | input | 124 | `edc_book_2/src/appendices/APPENDIX_DERIVATION_LIBRARY.tex` |
+| 2 | input | 202 | `edc_papers/_shared/lemmas/projection_reduction_lemma.tex` |
+| 2 | input | 92 | `edc_papers/_shared/boxes/delta_from_5d_action_box.tex` |
+| 2 | input | 72 | `edc_papers/_shared/boxes/dlr_chiral_localization_box.tex` |
+| 2 | input | 67 | `edc_papers/_shared/boxes/gf_bvp_pipeline_box.tex` |
+| 2 | input | 115 | `edc_papers/_shared/boxes/gf_bvp_tuning_box.tex` |
+| 2 | input | 24 | `edc_papers/_shared/boxes/ncell_renorm_box.tex` |
+| 2 | input | 35 | `edc_papers/_shared/boxes/prefactor_A_box.tex` |
+| 2 | input | 44 | `edc_papers/_shared/boxes/zn_kchannel_robustness_box.tex` |
 | 1 | input | 47 | `edc_book_2/src/meta_part2/00_meta_index.tex` |
 | 1 | input | 104 | `edc_book_2/src/meta_part2/01_claim_ledger.tex` |
 | 1 | input | 84 | `edc_book_2/src/meta_part2/02_decision_log.tex` |

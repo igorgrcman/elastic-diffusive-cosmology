@@ -72,9 +72,14 @@ def normalize_path(include_path: str, current_file: Path, include_type: str) -> 
     - Resolve relative to current file's directory
     - Handle _shared/ references
     - Handle ../../edc_papers/ paths that go outside edc_book_2
+    - Expand LaTeX macros like \EDCPAPERS
     """
     # Remove any quotes
     include_path = include_path.strip('"\'')
+
+    # Expand known LaTeX macros
+    # \EDCPAPERS is defined as ../../edc_papers in the main document
+    include_path = include_path.replace('\\EDCPAPERS', '../../edc_papers')
 
     # Add .tex if no extension
     if not include_path.endswith('.tex'):
