@@ -819,6 +819,92 @@ TEASER WIRED: edc_book_2/src/main.tex:738
 
 ---
 
+## 2026-01-29 — Chapter Sweep + Stoplight Consolidation Pass
+
+### Goal
+- Complete chapter inventory for Book 2 (grown organically in fragments)
+- Add Stoplight Verdicts to all case chapters and OPR chapters
+- Create single-source definitions for δ scales and overlap integral
+- Fix undefined citation (companion_C)
+- Minimal patches only—no physics changes
+
+### Work Performed
+
+#### Documentation Created
+- `docs/BOOK2_WEAK_SECTOR_CHAPTER_SWEEP_TABLE.md` — Full chapter inventory (65 chapters)
+- `docs/BOOK2_STOPLIGHT_GATES_TAG_AUDIT.md` — Detailed audit (33/65 had stoplights = 51%)
+- `docs/BOOK2_CONSOLIDATION_PLAN.md` — Spine design and de-duplication plan
+- `docs/BOOK2_STOPLIGHT_GAPS_CLOSED.md` — This consolidation pass record
+
+#### Shared Canon Files Created
+- `src/_shared/stoplight_stub.tex` — Reusable stoplight template
+- `src/_shared/scale_disambiguation_box.tex` — Canonical δ_nucl vs δ_EW distinction
+- `src/_shared/overlap_integral_canon.tex` — Single-source I₄ definition
+
+#### Case Chapter Stoplights Added (6 files)
+| File | Verdict |
+|------|---------|
+| `05_case_neutron.tex` | YELLOW |
+| `06_case_muon.tex` | YELLOW |
+| `07_case_tau.tex` | YELLOW |
+| `08_case_pion.tex` | YELLOW |
+| `09_case_electron.tex` | GREEN |
+| `10_case_neutrino.tex` | YELLOW |
+
+#### OPR Chapter Stoplights Added (5 files)
+| File | Verdict | Tag |
+|------|---------|-----|
+| `ch15_opr01_sigma_anchor_derivation.tex` | YELLOW | [Dc] |
+| `ch16_opr04_delta_derivation.tex` | GREEN | [Dc] |
+| `ch17_opr19_g5_from_action.tex` | YELLOW | [Dc] |
+| `ch18_opr20_mediator_mass_from_eigenvalue.tex` | YELLOW | [Dc] |
+| `ch19_opr22_geff_from_exchange.tex` | YELLOW | [Dc] |
+
+#### Section Updates
+- `sections/12_epistemic_map.tex`:
+  - Added Consolidated Gate Registry (12-gate summary table)
+  - Added `\input{_shared/scale_disambiguation_box}`
+  - Added `\input{_shared/overlap_integral_canon}`
+- `sections/ch20_epistemic_summary_closure_status.tex`:
+  - Added Overall Stoplight Verdict tcolorbox
+- `src/main.tex`:
+  - Added "How to Read This Book" section
+
+#### Citation Fix
+- `bib/part2_backbone.bib`: Added `companion_C` entry
+  - Resolved undefined reference in `zn_toy_functional_from_5d_action.include.tex`
+
+### Results
+- **Compilation**: PASS (604 pages)
+- **Undefined references**: 0
+- **Stoplight coverage**: 51% → 68% (33/65 → 44/65 files)
+- All 11 requested stoplights added
+- Single-source canon files created for δ disambiguation and I₄
+
+### Files Created
+- `docs/BOOK2_WEAK_SECTOR_CHAPTER_SWEEP_TABLE.md`
+- `docs/BOOK2_STOPLIGHT_GATES_TAG_AUDIT.md`
+- `docs/BOOK2_CONSOLIDATION_PLAN.md`
+- `docs/BOOK2_STOPLIGHT_GAPS_CLOSED.md`
+- `src/_shared/stoplight_stub.tex`
+- `src/_shared/scale_disambiguation_box.tex`
+- `src/_shared/overlap_integral_canon.tex`
+
+### Files Modified
+- 6 case chapter files (stoplights)
+- 5 OPR chapter files (stoplights)
+- `sections/12_epistemic_map.tex` (Gate Registry + shared boxes)
+- `sections/ch20_epistemic_summary_closure_status.tex` (Overall Verdict)
+- `src/main.tex` (How to Read section)
+- `bib/part2_backbone.bib` (companion_C citation)
+
+### Next Steps
+1. Commit all changes
+2. Add stoplights to remaining OPR chapters (ch21–ch24) in future session
+3. Review YELLOW verdicts as BVP work progresses
+
+---
+
 ```markdown
 ## YYYY-MM-DD — [Session Title]
 
