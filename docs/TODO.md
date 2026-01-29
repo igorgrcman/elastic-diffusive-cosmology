@@ -16,7 +16,9 @@
 - [x] **Flavor Skeleton v0.1** — `docs/FLAVOR_SKELETON_v0.1.md` (2026-01-29)
       Result: N_g=3 [Der], sin²θ_W=1/4 [Der], θ_23≈45° [Dc], CKM hierarchy [Dc/P], δ=60° [Dc]
       NO-GO: Z₃ DFT for CKM (×144), Z₃ DFT for PMNS (×15), pure Z₃→CP (J=0)
-- [ ] **G_F constraint note** — if derivation is RED, set constraint window instead
+- [x] **G_F constraint note** — `docs/GF_CONSTRAINT_NOTE.md` (2026-01-29)
+      Result: Constraint window g_eff²/M_eff² ∈ [0.9,1.1]×G_F; X = G_F m_e² = 3×10⁻¹²
+      True prediction: sin²θ_W = 1/4 [Der]; First-principles G_F remains RED-C (open)
 
 ---
 

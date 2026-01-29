@@ -287,6 +287,25 @@ tag: "[P]"
 notes: "Not achieved — requires g₅, m_φ, BVP solution"
 ```
 
+### CL-11.4: G_F Constraint Window
+
+```yaml
+id: CL-11.4
+status: YELLOW
+chapter: 11
+claim: "G_F constrained (not derived): g_eff²/M_eff² ∈ [0.9,1.1]×G_F"
+evidence:
+  file: "docs/GF_CONSTRAINT_NOTE.md"
+  equation: "Section E"
+tag: "[Dc]"
+commit: "2026-01-29"
+notes: |
+  Since first-principles derivation is RED-C (open), constraint window defined.
+  Projection-Reduction Lemma maps: g_eff² ∝ ⟨K_g⟩_w, M_eff² ∝ ⟨K_M⟩_w.
+  Dimensionless check: X = G_F m_e² = 3×10⁻¹² must be matched.
+  True independent prediction: sin²θ_W = 1/4 [Der] (0.08% agreement).
+```
+
 ---
 
 ## Chapter 10: Neutron-Proton Mass Difference
@@ -438,10 +457,10 @@ notes: "Links σ to cosmology. σ is explicit, not cancelled."
 | Status | Count |
 |--------|-------|
 | GREEN | 10 |
-| YELLOW | 9 |
+| YELLOW | 10 |
 | RED | 4 |
 | FALSIFIED | 1 |
-| **Total** | **24** |
+| **Total** | **25** |
 
 ---
 

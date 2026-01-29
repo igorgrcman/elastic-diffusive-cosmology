@@ -503,6 +503,71 @@ Formalize the Projection-Reduction Principle in LaTeX as first Priority 0 task.
 
 ---
 
+## 2026-01-29 (cont'd pt7) — G_F Constraint Note
+
+### Goal
+Turn RED G_F derivation into useful constraint window, using Projection-Reduction Lemma.
+
+### Key Results
+
+**Status clarification:**
+- GREEN-A: EW consistency closure (sin²θ_W → g² → M_W → G_F) — CIRCULAR via v
+- YELLOW-B: Mode overlap mechanism — qualitative only
+- RED-C: First-principles derivation — OPEN (requires g₅, m_φ, BVP)
+
+**Constraint window established [Dc]:**
+```
+g_eff² / M_eff² ∈ [0.9, 1.1] × G_F
+Dimensionless check: X = G_F m_e² = 3.04 × 10⁻¹²
+```
+
+**Projection mapping via Lemma:**
+- g_eff² = g₅² × ⟨K_g⟩_w (overlap integral)
+- M_eff² = ⟨K_M⟩_w (projected curvature)
+- Source: `edc_papers/_shared/lemmas/projection_reduction_lemma.tex`
+
+**TRUE EDC PREDICTION [Der]:**
+```
+sin²θ_W = |Z₂|/|Z₆| = 1/4 (bare)
+→ sin²θ_W(M_Z) = 0.2314 (0.08% from PDG)
+```
+
+**Circularity firewall:**
+- v = (√2 G_F)^{-1/2} is DEFINED from G_F
+- Therefore G_F "exact" is consistency identity, not prediction
+
+### Files Created
+- `docs/GF_CONSTRAINT_NOTE.md` — Full constraint analysis
+
+### Files Modified
+- `CLAIM_LEDGER.md` — Added CL-11.4 (G_F constraint window)
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-044 (G_F constraint)
+- `docs/TODO.md` — Marked task complete
+- `docs/SESSION_LOG.md` — This entry
+
+### Falsifiability (3 modes)
+1. BVP yields I₄ incompatible with constraint (>10× off)
+2. KK reduction gives M_eff inconsistent with δ
+3. g_eff from 5D action incompatible with sin²θ_W structure
+
+### Upgrade Roadmap
+```
+BVP Solution (OPR-04)
+       ↓
+Mode Profiles f_L(χ)
+       ↓
+Overlap I₄ + Mediator m_φ
+       ↓
+G_F First-Principles (RED-C → GREEN-A)
+```
+
+### Next Steps
+1. Begin BVP workpackage for mode profiles
+2. Test constraint window against explicit toy models
+3. Document in Book 2 narrative
+
+---
+
 ## 2026-01-29 (cont'd pt6) — Flavor Skeleton v0.1
 
 ### Goal

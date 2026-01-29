@@ -484,6 +484,49 @@ Ratio: ~12× — OPEN PROBLEM
 
 ---
 
+### CONCEPT-044: G_F Constraint (Fermi Constant)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `docs/GF_CONSTRAINT_NOTE.md` |
+| **Location** | Full document |
+| **Epistemic tag** | [Dc] for constraint; [P] for first-principles; sin²θ_W = 1/4 is [Der] |
+| **Used in** | Weak interactions, electroweak unification |
+
+**Baseline [BL]:**
+```
+G_F = 1.1663787 × 10⁻⁵ GeV⁻²
+G_F = g²/(4√2 M_W²) (tree-level W-exchange)
+v = (√2 G_F)^{-1/2} = 246.22 GeV
+```
+
+**Constraint window [Dc]:**
+```
+g_eff² / M_eff² ∈ [0.9, 1.1] × G_F
+Dimensionless check: X = G_F m_e² = 3.04 × 10⁻¹²
+```
+
+**Projection mapping [P]:**
+```
+g_eff² = g₅² × ⟨K_g⟩_w   (overlap integral)
+M_eff² = ⟨K_M⟩_w         (projected curvature)
+Source: Projection-Reduction Lemma (edc_papers/_shared/lemmas/)
+```
+
+**True EDC prediction [Der]:**
+```
+sin²θ_W = |Z₂|/|Z₆| = 2/6 = 1/4 (bare)
+sin²θ_W(M_Z) = 0.2314 (0.08% from PDG)
+```
+
+**Circularity caveat:**
+```
+G_F "exact agreement" is CONSISTENCY IDENTITY, not independent prediction.
+Higgs VEV v is DEFINED from G_F: v = (√2 G_F)^{-1/2}
+```
+
+---
+
 ### CONCEPT-043: Flavor Skeleton v0.1 (Breadth Deliverable)
 
 | Field | Value |
