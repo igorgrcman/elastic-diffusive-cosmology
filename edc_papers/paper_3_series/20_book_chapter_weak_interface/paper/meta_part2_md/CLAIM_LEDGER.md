@@ -794,18 +794,59 @@ notes: |
   IMPLICATION: k-channel correction not limited to weak pinning regime
 ```
 
+### CL-ZN-DEFECT-1: One-defect symmetry breaking robustness
+
+```yaml
+id: CL-ZN-DEFECT-1
+status: GREEN
+chapter: breadth
+claim: "Overlap loss from one-defect Z_N symmetry breaking scales as O(ε²)"
+evidence:
+  derivation: "edc_papers/_shared/derivations/zn_symmetry_breaking_one_defect.tex"
+  code: "edc_papers/_shared/code/zn_one_defect_contamination_scan.py"
+  summary: "docs/ZN_ONE_DEFECT_ROBUSTNESS_NOTE.md"
+tag: "[Der]"
+commit: "2026-01-29"
+notes: |
+  ONE-DEFECT PERTURBATION [Der]:
+    - One anchor has strength λ(1+ε) instead of λ
+    - Perturbation: ΔL = λκ δ(θ - θ₀) (localized)
+    - First-order PT gives contamination amplitudes c_m ~ ε·ρ/[π(N²-m²)]
+
+  O(ε²) SCALING [Der]:
+    - Overlap loss = 1 - |⟨ψ_N|ψ̃⟩|² = Σ|c_m|² = O(ε²)
+    - Small defects (ε < 10%) cause <1% overlap loss
+    - Quadratic scaling confirmed numerically
+
+  CONTAMINATION SPECTRUM [Der]:
+    - ALL cosine modes get contaminated (Selection Lemma violated)
+    - Dominant contamination from m = N ± 1
+    - Sine modes unaffected (zero coupling at θ₀ = 0)
+
+  TOLERANCE THRESHOLDS [Dc]:
+    - Weak pinning (ρ << N²): ε_99 > 1 (very robust)
+    - Moderate (ρ ~ N²): ε_99 ~ 0.1-0.5
+    - Strong pinning (ρ >> N²): mode already distorted at ε=0
+
+  FAILURE MODE [Dc]:
+    - When |ε| ~ 2πN/ρ, perturbation theory breaks down
+    - Eigenmodes reorganize; Z_N selection lost
+
+  IMPLICATION: k-channel robust to realistic defect levels (~10%)
+```
+
 ---
 
 ## Statistics
 
 | Status | Count |
 |--------|-------|
-| GREEN | 16 |
+| GREEN | 17 |
 | YELLOW | 15 |
 | RED | 4 |
 | FALSIFIED | 1 |
-| **Total** | **36** |
+| **Total** | **37** |
 
 ---
 
-*Claim Ledger v2.0 — Last updated 2026-01-29*
+*Claim Ledger v2.1 — Last updated 2026-01-29*

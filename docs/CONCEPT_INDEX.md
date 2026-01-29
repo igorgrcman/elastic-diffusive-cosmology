@@ -1023,6 +1023,46 @@ k-channel correction formula k(N) = 1 + 1/N is not limited to weak pinning regim
 
 ---
 
+### CONCEPT-059: One-Defect Symmetry Breaking Robustness
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/derivations/zn_symmetry_breaking_one_defect.tex` |
+| **Code** | `edc_papers/_shared/code/zn_one_defect_contamination_scan.py` |
+| **Summary** | `docs/ZN_ONE_DEFECT_ROBUSTNESS_NOTE.md` |
+| **Epistemic tag** | [Der] for O(ε²) scaling; [Dc] for thresholds |
+| **Used in** | Robustness of k-channel under realistic defect conditions |
+
+**Purpose:**
+Quantify contamination when one anchor has strength λ(1+ε) instead of λ.
+
+**Key result [Der]:**
+```
+Overlap loss = 1 - |⟨ψ_N|ψ̃⟩|² = O(ε²)
+```
+
+Small defects cause quadratically small contamination.
+
+**Contamination spectrum:**
+- ALL cosine modes get contaminated (Selection Lemma violated for ε ≠ 0)
+- Dominant contamination from m = N ± 1
+- Amplitude: c_m ~ ε·ρ / [π(N² - m²)]
+
+**Tolerance thresholds [Dc]:**
+| Regime | Condition | ε_99 |
+|--------|-----------|------|
+| Weak | ρ << N² | >1.0 |
+| Moderate | ρ ~ N² | 0.1-0.5 |
+| Strong | ρ >> N² | mode distorted at ε=0 |
+
+**Failure mode:**
+When |ε| ~ 2πN/ρ, perturbation theory breaks down and Z_N selection is lost.
+
+**Implication:**
+k-channel is ROBUST to realistic defect levels (~10% mismatch).
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:

@@ -1456,6 +1456,73 @@ Mode selection is protected by symmetry at ANY ρ.
 
 ---
 
+## 2026-01-29 (cont'd pt28) — Robustness: One-Defect Symmetry Breaking
+
+### Goal
+Quantify contamination when one anchor has different strength: λ(1+ε) instead of λ.
+Verify O(ε²) scaling and find tolerance thresholds.
+
+### Key Result: O(ε²) SCALING CONFIRMED [Der]
+
+**Perturbation theory:**
+```
+L = L₀ + ε ΔL   where ΔL = λκ δ(θ - θ₀)
+
+Contamination amplitude: c_m ~ ε · ρ / [π(N² - m²)]
+Overlap loss: 1 - |⟨ψ_N|ψ̃⟩|² = Σ|c_m|² = O(ε²)
+```
+
+**Contamination spectrum:**
+- ALL cosine modes get contaminated (Selection Lemma violated for ε ≠ 0)
+- Dominant contamination from m = N ± 1
+- Sine modes unaffected (zero coupling at θ₀ = 0)
+
+**Tolerance thresholds (ε_99):**
+| Regime | Condition | ε_99 |
+|--------|-----------|------|
+| Weak | ρ << N² | >1.0 (very robust) |
+| Moderate | ρ ~ N² | 0.1-0.5 |
+| Strong | ρ >> N² | mode distorted at ε=0 |
+
+### Files Created
+- `edc_papers/_shared/derivations/zn_symmetry_breaking_one_defect.tex` — 7-page derivation
+- `edc_papers/_shared/code/zn_one_defect_contamination_scan.py` — scan code
+- `docs/ZN_ONE_DEFECT_ROBUSTNESS_NOTE.md` — executive summary
+
+### Files Modified
+- `CLAIM_LEDGER.md` — Added CL-ZN-DEFECT-1 (GREEN, [Der])
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-059
+- `docs/TODO.md` — Marked one-defect robustness as DONE
+- `docs/SESSION_LOG.md` — This entry
+
+### Compile & Run Status
+```
+LaTeX: latexmk -xelatex zn_symmetry_breaking_one_defect.tex
+       Output: 7 pages, PASS
+
+Python: python3 zn_one_defect_contamination_scan.py
+        O(ε²) scaling: CONFIRMED
+        Tolerance thresholds computed for Z_3, Z_6, Z_12
+        VERDICT: PASS
+```
+
+### Key Implications
+1. Small defects (~10% mismatch) cause <1% overlap loss
+2. k-channel is ROBUST to realistic defect levels
+3. Strong pinning regime is more sensitive to defects
+
+### Next Steps
+1. Robustness analysis complete for: non-quadratic W, strong pinning, one-defect
+2. Optional: Multi-defect analysis (multiple non-identical anchors)
+3. Optional: Continuous symmetry breaking (not Z_N)
+
+### Open Questions
+1. What happens with MULTIPLE defects (each with different ε_n)?
+2. Can interference between defects cancel contamination?
+3. Physical origin of defect strength variations?
+
+---
+
 ## Template for Future Sessions
 
 ```markdown

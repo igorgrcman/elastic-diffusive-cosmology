@@ -80,6 +80,14 @@
       Code: `edc_papers/_shared/code/zn_strong_pinning_scan.py` (all N tested: PASS)
       Summary: `docs/ZN_STRONG_PINNING_ROBUSTNESS_NOTE.md`
       **IMPLICATION:** k-channel not limited to weak pinning regime
+- [x] **Robustness: one-defect symmetry breaking** — `edc_papers/_shared/derivations/zn_symmetry_breaking_one_defect.tex` (2026-01-29)
+      Overlap loss from one defect scales as O(ε²) [Der]
+      Perturbation theory: c_m ~ ε·ρ/[π(N²-m²)] for contamination amplitudes
+      ALL cosine modes contaminated (Selection Lemma violated for ε≠0)
+      Dominant contamination from m = N ± 1
+      Code: `edc_papers/_shared/code/zn_one_defect_contamination_scan.py` (all tests PASS)
+      Summary: `docs/ZN_ONE_DEFECT_ROBUSTNESS_NOTE.md`
+      **IMPLICATION:** k-channel robust to realistic (~10%) defect levels
 
 ---
 
