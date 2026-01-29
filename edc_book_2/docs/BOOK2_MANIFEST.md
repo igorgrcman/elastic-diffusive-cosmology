@@ -1,11 +1,11 @@
 # Book 2 Include Manifest
 
-**Generated:** 2026-01-29 15:06
+**Generated:** 2026-01-29 16:13
 
 ## Statistics
 
-- **Total files:** 92
-- **Total lines:** 34693
+- **Total files:** 107
+- **Total lines:** 40013
 - **Max depth:** 3
 - **Missing files:** 0
 
@@ -89,8 +89,23 @@ EDC_Part_II_Weak_Sector_rebuild.tex (910 lines)
   ch18_opr20_mediator_mass_from_eigenvalue.tex (544 lines)
   ch19_opr22_geff_from_exchange.tex (861 lines)
   ch20_epistemic_summary_closure_status.tex (589 lines)
-  APPENDIX_DERIVATION_LIBRARY.tex (124 lines)
+  APPENDIX_DERIVATION_LIBRARY.tex (211 lines)
     projection_reduction_lemma.tex (202 lines)
+    z6_discrete_averaging_lemma.include.tex (214 lines)
+    zn_discrete_averaging_lemma.include.tex (128 lines)
+    israel_zn_fixed_points_anchors.include.tex (524 lines)
+    zn_toy_functional_from_5d_action.include.tex (360 lines)
+    zn_anisotropy_normalization_from_action.include.tex (284 lines)
+    zn_ring_delta_pinning_modes.include.tex (434 lines)
+    zn_mode_selection_nonlinear_W.include.tex (352 lines)
+    zn_strong_pinning_regimes.include.tex (412 lines)
+    zn_symmetry_breaking_one_defect.include.tex (388 lines)
+    delta_from_5d_action_proton_scale.include.tex (420 lines)
+    dlr_from_chiral_localization.include.tex (430 lines)
+    fw_from_stability_and_spectrum.include.tex (360 lines)
+    gf_noncircular_chain_framework.include.tex (312 lines)
+    gf_potential_shapes_from_5d.include.tex (398 lines)
+    prefactor_A_from_fluctuations.include.tex (217 lines)
     delta_from_5d_action_box.tex (92 lines)
     dlr_chiral_localization_box.tex (72 lines)
     gf_bvp_pipeline_box.tex (67 lines)
@@ -187,8 +202,23 @@ EDC_Part_II_Weak_Sector_rebuild.tex (910 lines)
 | 1 | input | 544 | `edc_book_2/src/sections/ch18_opr20_mediator_mass_from_eigenvalue.tex` |
 | 1 | input | 861 | `edc_book_2/src/sections/ch19_opr22_geff_from_exchange.tex` |
 | 1 | input | 589 | `edc_book_2/src/sections/ch20_epistemic_summary_closure_status.tex` |
-| 1 | input | 124 | `edc_book_2/src/appendices/APPENDIX_DERIVATION_LIBRARY.tex` |
+| 1 | input | 211 | `edc_book_2/src/appendices/APPENDIX_DERIVATION_LIBRARY.tex` |
 | 2 | input | 202 | `edc_papers/_shared/lemmas/projection_reduction_lemma.tex` |
+| 2 | input | 214 | `edc_papers/_shared/lemmas/z6_discrete_averaging_lemma.include.tex` |
+| 2 | input | 128 | `edc_papers/_shared/lemmas/zn_discrete_averaging_lemma.include.tex` |
+| 2 | input | 524 | `edc_papers/_shared/derivations/israel_zn_fixed_points_anchors.include.tex` |
+| 2 | input | 360 | `edc_papers/_shared/derivations/zn_toy_functional_from_5d_action.include.tex` |
+| 2 | input | 284 | `edc_papers/_shared/derivations/zn_anisotropy_normalization_from_action.include.tex` |
+| 2 | input | 434 | `edc_papers/_shared/derivations/zn_ring_delta_pinning_modes.include.tex` |
+| 2 | input | 352 | `edc_papers/_shared/derivations/zn_mode_selection_nonlinear_W.include.tex` |
+| 2 | input | 412 | `edc_papers/_shared/derivations/zn_strong_pinning_regimes.include.tex` |
+| 2 | input | 388 | `edc_papers/_shared/derivations/zn_symmetry_breaking_one_defect.include.tex` |
+| 2 | input | 420 | `edc_papers/_shared/derivations/delta_from_5d_action_proton_scale.include.tex` |
+| 2 | input | 430 | `edc_papers/_shared/derivations/dlr_from_chiral_localization.include.tex` |
+| 2 | input | 360 | `edc_papers/_shared/derivations/fw_from_stability_and_spectrum.include.tex` |
+| 2 | input | 312 | `edc_papers/_shared/derivations/gf_noncircular_chain_framework.include.tex` |
+| 2 | input | 398 | `edc_papers/_shared/derivations/gf_potential_shapes_from_5d.include.tex` |
+| 2 | input | 217 | `edc_papers/_shared/derivations/prefactor_A_from_fluctuations.include.tex` |
 | 2 | input | 92 | `edc_papers/_shared/boxes/delta_from_5d_action_box.tex` |
 | 2 | input | 72 | `edc_papers/_shared/boxes/dlr_chiral_localization_box.tex` |
 | 2 | input | 67 | `edc_papers/_shared/boxes/gf_bvp_pipeline_box.tex` |

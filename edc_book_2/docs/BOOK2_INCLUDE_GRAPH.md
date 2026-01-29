@@ -1,6 +1,6 @@
 # Book 2 Include Graph
 
-**Generated:** 2026-01-29 15:06
+**Generated:** 2026-01-29 16:13
 
 ## Visualization (depth ≤ 3)
 
@@ -160,8 +160,37 @@ graph TD
     APPENDIX_DERIVATION_["APPENDIX_DERIVATION_LIBRARY"]
     APPENDIX_DERIVATION_ --> projection_reduction
     projection_reduction["projection_reduction_lemma"]
+    APPENDIX_DERIVATION_ --> z6_discrete_averagin
+    z6_discrete_averagin["z6_discrete_averaging_lemma.in"]
+    APPENDIX_DERIVATION_ --> zn_discrete_averagin
+    zn_discrete_averagin["zn_discrete_averaging_lemma.in"]
+    APPENDIX_DERIVATION_ --> israel_zn_fixed_poin
+    israel_zn_fixed_poin["israel_zn_fixed_points_anchors"]
+    APPENDIX_DERIVATION_ --> zn_toy_functional_fr
+    zn_toy_functional_fr["zn_toy_functional_from_5d_acti"]
+    APPENDIX_DERIVATION_ --> zn_anisotropy_normal
+    zn_anisotropy_normal["zn_anisotropy_normalization_fr"]
+    APPENDIX_DERIVATION_ --> zn_ring_delta_pinnin
+    zn_ring_delta_pinnin["zn_ring_delta_pinning_modes.in"]
+    APPENDIX_DERIVATION_ --> zn_mode_selection_no
+    zn_mode_selection_no["zn_mode_selection_nonlinear_W."]
+    APPENDIX_DERIVATION_ --> zn_strong_pinning_re
+    zn_strong_pinning_re["zn_strong_pinning_regimes.incl"]
+    APPENDIX_DERIVATION_ --> zn_symmetry_breaking
+    zn_symmetry_breaking["zn_symmetry_breaking_one_defec"]
     APPENDIX_DERIVATION_ --> delta_from_5d_action
-    delta_from_5d_action["delta_from_5d_action_box"]
+    delta_from_5d_action["delta_from_5d_action_proton_sc"]
+    APPENDIX_DERIVATION_ --> dlr_from_chiral_loca
+    dlr_from_chiral_loca["dlr_from_chiral_localization.i"]
+    APPENDIX_DERIVATION_ --> fw_from_stability_an
+    fw_from_stability_an["fw_from_stability_and_spectrum"]
+    APPENDIX_DERIVATION_ --> gf_noncircular_chain
+    gf_noncircular_chain["gf_noncircular_chain_framework"]
+    APPENDIX_DERIVATION_ --> gf_potential_shapes_
+    gf_potential_shapes_["gf_potential_shapes_from_5d.in"]
+    APPENDIX_DERIVATION_ --> prefactor_A_from_flu
+    prefactor_A_from_flu["prefactor_A_from_fluctuations."]
+    APPENDIX_DERIVATION_ --> delta_from_5d_action
     APPENDIX_DERIVATION_ --> dlr_chiral_localizat
     dlr_chiral_localizat["dlr_chiral_localization_box"]
     APPENDIX_DERIVATION_ --> gf_bvp_pipeline_box
@@ -190,10 +219,10 @@ graph TD
 
 ## Statistics
 
-- Nodes: 92
-- Edges: 91
+- Nodes: 107
+- Edges: 106
 - Max depth: 3
-- Total lines: 34693
+- Total lines: 40013
 
 ## JSON Data
 
