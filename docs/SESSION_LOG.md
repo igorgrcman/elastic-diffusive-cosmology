@@ -595,6 +595,37 @@ Alternative: r_π ≈ (7/6) × 4α — near-unity with 4α term
 
 ---
 
+## 2026-01-29 (cont'd pt12) — Z₆ Correction Factor 7/6 Hypothesis
+
+### Goal
+Formalize the k = 7/6 ≈ 1 + 1/|Z₆| correction factor as a [Dc] hypothesis.
+
+### Files Created
+- `docs/Z6_CORRECTION_FACTOR_7over6.md` — hypothesis note
+
+### Files Modified
+- `CLAIM_LEDGER.md` — Added CL-Z6-1 (YELLOW)
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-048
+
+### Hypothesis [Dc]
+```
+Z₆ discrete averaging → multiplicative correction (1 + 1/|Z₆|) = 7/6
+```
+
+### Geometric Interpretations
+1. Corner weighting on hexagonal ring
+2. Boundary cell fraction (finite-size)
+3. Adjacency count correction
+
+### Breadth Links
+- Pion: r_π/(4α) = 7/6 (0.06% match)
+- N_cell: 12 × (6/7) ≈ 10 (may explain τ_n vs E_σ discrepancy)
+
+### Upgrade Path
+Discrete averaging derivation on Z₆ ring (Path 4: ring tiling boundary counting).
+
+---
+
 ## 2026-01-29 (cont'd pt8) — G_F Constraint Note Patch
 
 ### Goal

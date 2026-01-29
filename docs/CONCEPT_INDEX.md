@@ -633,6 +633,37 @@ Alternative: r_π ≈ (7/6) × 4α — near-unity factor with 4α
 
 ---
 
+### CONCEPT-048: Z₆ Correction Factor k = 7/6 (Hypothesis)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `docs/Z6_CORRECTION_FACTOR_7over6.md` |
+| **Location** | Full document |
+| **Epistemic tag** | [Dc] — hypothesis, not derived |
+| **Used in** | Discrete correction formalism, breadth links |
+
+**Hypothesis:**
+Z₆ discrete averaging introduces multiplicative correction (1 + 1/|Z₆|) = 7/6.
+
+**Key observation:**
+```
+r_π / (4α) = 1.166 ≈ 7/6 = 1 + 1/6 (0.06% match)
+```
+
+**Geometric interpretations:**
+- Corner weighting on hexagonal ring
+- Boundary cell fraction (finite-size effect)
+- Adjacency count correction
+
+**Breadth links:**
+- Pion splitting: k = 7/6 (MATCH)
+- N_cell: 12 × (6/7) ≈ 10 (explains τ_n value?)
+- ε-dressing: TBD
+
+**Upgrade path:** Discrete averaging derivation on Z₆ ring/graph.
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:

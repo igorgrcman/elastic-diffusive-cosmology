@@ -452,16 +452,39 @@ notes: "Links σ to cosmology. σ is explicit, not cancelled."
 
 ---
 
+## Z₆ Discrete Corrections
+
+### CL-Z6-1: Candidate discrete correction factor k = 7/6
+
+```yaml
+id: CL-Z6-1
+status: YELLOW
+chapter: breadth
+claim: "Z₆ discrete averaging introduces correction factor k = 7/6 = 1 + 1/|Z₆|"
+evidence:
+  file: "docs/Z6_CORRECTION_FACTOR_7over6.md"
+  observation: "r_π / (4α) = 1.166 ≈ 7/6 (0.06% match)"
+tag: "[Dc]"
+commit: "2026-01-29"
+notes: |
+  NON-CANONICAL until derived.
+  Hypothesis: first-order discrete correction to continuum Z₆ average.
+  Breadth links: pion splitting, ε-dressing, N_cell (12 vs 10).
+  Upgrade path: discrete averaging derivation on Z₆ ring.
+```
+
+---
+
 ## Statistics
 
 | Status | Count |
 |--------|-------|
 | GREEN | 10 |
-| YELLOW | 10 |
+| YELLOW | 11 |
 | RED | 4 |
 | FALSIFIED | 1 |
-| **Total** | **25** |
+| **Total** | **26** |
 
 ---
 
-*Claim Ledger v1.4 — Last updated 2026-01-29*
+*Claim Ledger v1.5 — Last updated 2026-01-29*
