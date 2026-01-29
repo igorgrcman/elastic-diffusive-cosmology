@@ -503,6 +503,33 @@ Formalize the Projection-Reduction Principle in LaTeX as first Priority 0 task.
 
 ---
 
+## 2026-01-29 (cont'd pt8) — G_F Constraint Note Patch
+
+### Goal
+Fix numeric inconsistencies and add naive overlap insight.
+
+### What Was Inconsistent
+1. **X value mismatch:** Executive Summary said X = 2.22×10⁻¹¹, but Section D.1 correctly computed X = 3.04×10⁻¹²
+2. **Unit convention unclear:** Definition X := G_F(m_e c/ℏ)² mixed with natural units X = G_F m_e²
+3. **Constraint window:** Numeric interval [1.05, 1.28]×10⁻⁵ not explicitly linked to ±10% around G_F
+
+### What Was Fixed
+1. Executive Summary: X = 3.04×10⁻¹² (correct value, natural units)
+2. Section D.1: Added explicit unit convention note ("natural units ℏ = c = 1")
+3. Section E.1: Clarified that [1.05, 1.28]×10⁻⁵ = [0.9, 1.1]×G_F = ±10%
+
+### What Was Added
+**Section E.4: "Why Naive Overlap Is Too Large"**
+- Naive localized profiles give g₅² I₄ ~ O(1)
+- Matching tiny G_F requires EW-scale mediator OR chiral suppression
+- BVP overlap is decisive falsification channel
+- References Projection-Reduction Lemma Case (B)
+
+### Files Modified
+- `docs/GF_CONSTRAINT_NOTE.md` — Version 1.0 → 1.1
+
+---
+
 ## 2026-01-29 (cont'd pt7) — G_F Constraint Note
 
 ### Goal

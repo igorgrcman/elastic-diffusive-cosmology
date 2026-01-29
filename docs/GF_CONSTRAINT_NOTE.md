@@ -1,7 +1,7 @@
 # G_F Constraint Note — From RED Derivation to Constraint Window
 
-**Version:** 1.0
-**Date:** 2026-01-29
+**Version:** 1.1
+**Date:** 2026-01-29 (patched)
 **Status:** Constraint established; first-principles derivation remains OPEN
 **Purpose:** Turn G_F derivation (currently RED-C) into a useful constraint window
 
@@ -13,7 +13,7 @@
 
 2. **Constraint window defined** — EDC must satisfy: g_eff²/M_eff² ∈ [0.9, 1.1] × G_F to be viable
 
-3. **Dimensionless check quantity** — X := G_F × (m_e c/ℏ)² = 2.22 × 10⁻¹¹ is the target
+3. **Dimensionless check quantity** — X := G_F m_e² = 3.04 × 10⁻¹² is the target (natural units)
 
 4. **Projection mapping** — g_eff² ∝ ⟨K_g⟩_w and M_eff² ∝ ⟨K_M⟩_w via Projection-Reduction Lemma
 
@@ -119,20 +119,20 @@ G_EDC ~ g₅² × I₄ / M_eff²                              [P]
 
 ### D.1 Define Dimensionless Check Quantity
 
-To create a parameter-free constraint, define:
+To create a parameter-free constraint, define (in natural units ℏ = c = 1):
 
 ```
-X := G_F × (m_e c / ℏ)²
+X := G_F m_e²                                          [Definition]
 ```
+
+**Unit convention:** Throughout this document we use natural units where G_F has dimension [Energy]⁻² and m_e has dimension [Energy]. The product X is dimensionless.
 
 **Numerical value [BL]:**
 ```
-X = 1.1664 × 10⁻⁵ GeV⁻² × (0.511 × 10⁻³ GeV)²
+X = G_F × m_e²
+  = 1.1664 × 10⁻⁵ GeV⁻² × (0.511 × 10⁻³ GeV)²
   = 1.1664 × 10⁻⁵ × 2.61 × 10⁻⁷
-  = 3.04 × 10⁻¹²
-
-Equivalently in natural units (ℏ = c = 1):
-X = G_F m_e² = 3.04 × 10⁻¹²                            [BL]
+  = 3.04 × 10⁻¹²                                       [BL]
 ```
 
 ### D.2 Express X_EDC in Terms of EDC Parameters
@@ -186,11 +186,15 @@ Since G_F is not derived from first principles, EDC must satisfy:
 ┌─────────────────────────────────────────────────────────────────┐
 │  CONSTRAINT: g_eff² / M_eff² must reproduce G_F within ±10%    │
 │                                                                 │
-│  g_eff² / M_eff² ∈ [1.05, 1.28] × 10⁻⁵ GeV⁻²                   │
+│  g_eff² / M_eff² ∈ [0.9, 1.1] × G_F                            │
+│                   = [1.05, 1.28] × 10⁻⁵ GeV⁻²                  │
 │                                                                 │
-│  Equivalently: X_EDC ∈ [2.7, 3.3] × 10⁻¹²                      │
+│  Equivalently: X_EDC ∈ [0.9, 1.1] × 3.04 × 10⁻¹²              │
+│                      = [2.7, 3.3] × 10⁻¹²                      │
 └─────────────────────────────────────────────────────────────────┘
 ```
+
+**Note:** The interval [0.9, 1.1] × G_F corresponds to ±10% tolerance around the baseline G_F = 1.1664 × 10⁻⁵ GeV⁻².
 
 ### E.2 Translated Constraints on EDC Parameters
 
@@ -230,6 +234,10 @@ I₄ ~ (6 MeV)² ~ (r_e⁻¹)²                              [Window]
 ```
 
 This is consistent with fermion localization scale ~ r_e.
+
+### E.4 Why Naive Overlap Is Too Large (Critical Insight)
+
+In generic 5D setups with localized fermion profiles, naive estimates often give g₅² I₄ ~ O(1) because normalized wavefunctions have ∫|f|² = 1, so ∫|f|⁴ ~ 1/width is naturally large. To reproduce the tiny G_F ~ 10⁻⁵ GeV⁻² then requires **either** (a) a heavy mediator M_eff ~ 100 GeV (electroweak scale), **or** (b) strong overlap suppression via the chirality mechanism of Projection-Reduction Lemma Case (B): if left and right modes are spatially separated, the effective coupling ε = ∫ w_L w_R ≪ 1 suppresses the vertex. Therefore, the BVP overlap calculation is a **decisive falsification channel**: if the thick-brane solution gives I₄ incompatible with the constraint window (neither EW-scale mediator nor chiral suppression), the mode-overlap mechanism fails.
 
 ---
 
@@ -385,4 +393,4 @@ blocking:
 
 ---
 
-*G_F Constraint Note v1.0 — Establishes constraint window pending first-principles derivation. True EDC prediction: sin²θ_W = 1/4.*
+*G_F Constraint Note v1.1 — Establishes constraint window pending first-principles derivation. True EDC prediction: sin²θ_W = 1/4.*
