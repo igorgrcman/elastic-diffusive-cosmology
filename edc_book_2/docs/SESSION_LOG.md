@@ -721,6 +721,82 @@ In `edc_papers/_shared/lemmas/`:
 
 ---
 
+## 2026-01-29 — Forensic Audit: MN/Geiger-Nuttall 44.7% Claim
+
+### Goal
+- Forensic-audit the "Frustration-Corrected Geiger-Nuttall Law" claim
+- Verify the "44.7% improvement over current" number
+- Create reproducible scripts and exact comparison definition
+- Create Book2 teaser chapter with full provenance
+
+### Work Performed
+
+#### 1. Claim Location (MN_GN_CLAIM_LOCATOR.md)
+- Found all references: `frustration_geiger_nuttall.py`, `BOOK_SECTION_TOPOLOGICAL_PINNING_MODEL.tex:716`
+- The 44.7% appears in both Python docstring and LaTeX source
+
+#### 2. Code Manifest (MN_GN_CODE_MANIFEST.md)
+- Producer script: `src/derivations/frustration_geiger_nuttall.py`
+- No external data files—21 nuclei embedded in script
+
+#### 3. Reproduction (compare_models.py)
+- Created `edc_papers/_shared/mn_gn_audit/compare_models.py`
+- Runs both standard and frustration-corrected G-N fits
+- Output: **44.7% improvement confirmed**
+
+#### 4. Data Provenance (MN_GN_DATA_PROVENANCE.md)
+- 21 alpha-emitters (Po to Cf), A = 210-252
+- Data hash: `ca087ebb6025f1d3`
+- Target: log₁₀(t½), no train/test split
+
+#### 5. Metric Definition (MN_GN_METRIC_AND_BASELINE_AUDIT.md)
+- Metric: **MAE on log₁₀(t½)**
+- Baseline: Standard Geiger-Nuttall Law (refitted to same 21 nuclei)
+- Formula: `(MAE_baseline - MAE_edc) / MAE_baseline × 100%`
+- Result: `(0.5562 - 0.3078) / 0.5562 × 100 = 44.7%`
+
+#### 6. Book2 Teaser Chapter
+- Created `src/sections/XX_teaser_book3_nuclear_mn_gn.tex`
+- Wired at line 738 in `main.tex`
+- Full provenance: dataset, metric, baseline, epistemic tags
+- Created reusable box: `edc_papers/_shared/boxes/mn_gn_teaser_box.tex`
+
+#### 7. Reproduction Script
+- Created `edc_papers/_shared/mn_gn_audit/repro_commands.sh`
+- Captures git hash, Python version, output logs
+
+### Results
+- **Compilation**: PASS (569 pages)
+- **44.7% claim verified**: Reproducible with `compare_models.py`
+- **Exact metric**: MAE on log₁₀(t½)
+- **Exact baseline**: Standard Geiger-Nuttall, refitted to same data
+
+### Files Created
+- `edc_book_2/docs/MN_GN_CLAIM_LOCATOR.md`
+- `edc_book_2/docs/MN_GN_CODE_MANIFEST.md`
+- `edc_book_2/docs/MN_GN_DATA_PROVENANCE.md`
+- `edc_book_2/docs/MN_GN_METRIC_AND_BASELINE_AUDIT.md`
+- `edc_book_2/docs/MN_GN_REPRO_REPORT.md`
+- `edc_book_2/src/sections/XX_teaser_book3_nuclear_mn_gn.tex`
+- `edc_papers/_shared/boxes/mn_gn_teaser_box.tex`
+- `edc_papers/_shared/mn_gn_audit/compare_models.py`
+- `edc_papers/_shared/mn_gn_audit/repro_commands.sh`
+- `edc_papers/_shared/mn_gn_audit/logs/comparison_run_20260129.log`
+- `edc_papers/_shared/mn_gn_audit/comparison_results.json`
+
+### Files Modified
+- `edc_book_2/src/main.tex` (added teaser chapter at line 738)
+
+### Key Result
+```
+EXACT COMMAND: python edc_papers/_shared/mn_gn_audit/compare_models.py
+EXACT METRIC: MAE on log₁₀(t½)
+EXACT BASELINE: Standard Geiger-Nuttall Law (slope=1.4348, intercept=-46.8164)
+TEASER WIRED: edc_book_2/src/main.tex:738
+```
+
+---
+
 ```markdown
 ## YYYY-MM-DD — [Session Title]
 

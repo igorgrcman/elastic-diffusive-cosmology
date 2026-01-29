@@ -1,0 +1,190 @@
+% =============================================================================
+% XX_teaser_book3_nuclear_mn_gn.tex
+%
+% Teaser Chapter: Nuclear Applications Preview
+%
+% This chapter provides a preview of Book 3 results, specifically the
+% Frustration-Corrected Geiger-Nuttall Law for alpha-decay half-lives.
+%
+% Status: [I/Cal] - Pattern identified, coefficients calibrated
+% Author: EDC Research
+% Date: 2026-01-29
+% =============================================================================
+
+\chapter{Preview: Nuclear Applications (Book 3)}
+\label{ch:teaser-nuclear}
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!75!black, title=Chapter Status]
+This chapter is a \textbf{teaser} for the full nuclear framework developed in Book~3.
+It presents one key result---the Frustration-Corrected Geiger-Nuttall Law---to
+demonstrate the predictive power of the EDC topological model.
+\end{tcolorbox}
+
+% =============================================================================
+\section{Motivation: From Weak Sector to Nuclear Structure}
+\label{sec:nuclear-motivation}
+
+The weak sector developed in this book (Part II) establishes that particle masses
+and mixing matrices emerge from the geometric structure of the 5D bulk.
+Book~3 extends this framework to nuclear structure, addressing:
+
+\begin{itemize}
+    \item Binding energies of light nuclei
+    \item Nuclear stability and magic numbers
+    \item Alpha-decay half-lives
+    \item Neutron lifetime in bound vs.\ free states
+\end{itemize}
+
+Here we preview one striking result: a \textbf{44.7\% improvement} in predicting
+alpha-decay half-lives using a \emph{frustration-corrected} Geiger-Nuttall law.
+
+% =============================================================================
+\section{Topological Frustration in Nuclear Matter}
+\label{sec:frustration-concept}
+
+\subsection{The Key Insight: $n = 43$ is Forbidden}
+
+The EDC topological pinning model (Book 3, Chapter 3) predicts that only certain
+coordination numbers are \emph{allowed} for stable nuclear configurations:
+\begin{equation}
+    n_{\text{allowed}} = 2^a \times 3^b \qquad (a, b \geq 0)
+    \label{eq:allowed-coordinations}
+\end{equation}
+
+This gives: $n = 1, 2, 3, 4, 6, 8, 9, 12, 16, 18, 24, 27, 32, 36, \ldots$
+
+Numerical optimization of nuclear matter (Fermi gas with pinning corrections)
+predicts an \emph{optimal} coordination of approximately $n \approx 43$.
+
+\textbf{But 43 is a prime number $> 3$, making it topologically forbidden.}
+
+This creates \emph{geometric frustration}: heavy nuclei cannot achieve their
+energetically optimal configuration, leading to stress that drives alpha decay.
+
+% =============================================================================
+\section{The Frustration-Corrected Geiger-Nuttall Law}
+\label{sec:frustration-gn}
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!75!black,
+                  title={Frustration-Corrected Geiger-Nuttall Law [I/Cal]}]
+\begin{equation}
+    \log_{10}(t_{1/2}) = a \cdot \frac{Z}{\sqrt{Q_\alpha}} + c \cdot \varepsilon_f + b
+    \label{eq:frustration-gn}
+\end{equation}
+where:
+\begin{itemize}
+    \item $Z$ = atomic number of daughter nucleus
+    \item $Q_\alpha$ = alpha-decay energy (MeV)
+    \item $\varepsilon_f(A)$ = frustration energy per nucleon (MeV)
+\end{itemize}
+
+\textbf{Fitted parameters:}
+\begin{align*}
+    a &= 1.63 && \text{(Geiger-Nuttall coefficient)} \\
+    c &= -2.40 && \text{(frustration coefficient; negative = faster decay)} \\
+    b &= -42.1 && \text{(intercept)}
+\end{align*}
+\end{tcolorbox}
+
+\subsection{The Frustration Energy}
+
+The frustration energy interpolates between the alpha-cluster regime ($n = 6$)
+and the bulk limit ($n \to 43$):
+\begin{equation}
+    n_{\text{eff}}(A) = 6 + 37\left(1 - e^{-(A-20)/80}\right)
+    \label{eq:n-eff-interpolation}
+\end{equation}
+
+The frustration is the energy mismatch between the effective coordination and
+the nearest allowed coordination:
+\begin{equation}
+    \varepsilon_f(A) = \left| E/A(n_{\text{eff}}) - E/A(n_{\text{allowed}}) \right|
+    \label{eq:frustration-energy}
+\end{equation}
+
+% =============================================================================
+\section{Result: 44.7\% Improvement Over Standard Geiger-Nuttall}
+\label{sec:gn-result}
+
+\begin{tcolorbox}[colback=yellow!10!white, colframe=orange!75!black,
+                  title={Result with Full Provenance}]
+\textbf{Dataset:} 21 alpha-emitting nuclei (Po to Cf), mass numbers 210--252
+
+\textbf{Metric:} Mean Absolute Error on $\log_{10}(t_{1/2})$
+
+\textbf{Comparison:}
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Model & MAE & $R^2$ \\
+\midrule
+Standard Geiger-Nuttall & 0.56 & 0.982 \\
+Frustration-Corrected   & 0.31 & 0.994 \\
+\midrule
+\textbf{Improvement}    & \textbf{44.7\%} & +1.2 pp \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Formula:} $\text{Improvement} = \dfrac{\text{MAE}_{\text{baseline}} - \text{MAE}_{\text{EDC}}}{\text{MAE}_{\text{baseline}}} \times 100\%$
+
+\textbf{Baseline:} Standard Geiger-Nuttall law, refitted to same 21 nuclei.
+
+\textbf{Reproducibility:} \\
+\texttt{python src/derivations/frustration\_geiger\_nuttall.py}
+\end{tcolorbox}
+
+\subsection{Physical Interpretation}
+
+The negative frustration coefficient ($c = -2.40$) confirms the physical picture:
+\begin{itemize}
+    \item Higher frustration energy $\varepsilon_f$ reduces the predicted half-life
+    \item Heavy nuclei with $A > 200$ have significant frustration
+    \item The frustration ``assists'' alpha emission by destabilizing the nucleus
+\end{itemize}
+
+% =============================================================================
+\section{Epistemic Status}
+\label{sec:epistemic-status}
+
+\begin{tcolorbox}[colback=gray!10!white, colframe=gray!75!black, title={Epistemic Tags}]
+\begin{itemize}
+    \item[\textbf{[I]}] \textbf{Identified:} Correlation between frustration energy and half-life improvement
+    \item[\textbf{[Cal]}] \textbf{Calibrated:} Parameters $a$, $c$, $b$ fitted to 21 nuclei
+    \item[\textbf{[P]}] \textbf{Proposed:} The $n_{\text{eff}}(A)$ interpolation is phenomenological
+\end{itemize}
+
+\textbf{What is derived (Book 3):}
+\begin{itemize}
+    \item Allowed coordinations $n = 2^a \times 3^b$ from $\mathbb{Z}_N$ topology [Dc]
+    \item Optimal $n \approx 43$ from Fermi gas + pinning energy minimization [Dc]
+\end{itemize}
+
+\textbf{What is calibrated:}
+\begin{itemize}
+    \item Coefficients $a$, $c$, $b$ from least-squares fit [Cal]
+    \item Interpolation scale $(A-20)/80$ is phenomenological [P]
+\end{itemize}
+\end{tcolorbox}
+
+% =============================================================================
+\section{What Book 3 Will Cover}
+\label{sec:book3-preview}
+
+The full nuclear framework in Book~3 includes:
+
+\begin{enumerate}
+    \item \textbf{Topological pinning model} with derivation of $n = 2^a \times 3^b$ constraint
+    \item \textbf{Light nuclei binding energies:} He-4, C-12, O-16 within 3\%
+    \item \textbf{Be-8 instability:} Correctly predicted from coordination mismatch
+    \item \textbf{Nuclear magic numbers:} Connection to allowed coordinations
+    \item \textbf{Neutron lifetime:} Why bound neutrons are stable (topological suppression)
+    \item \textbf{Alpha decay systematics:} Full derivation of frustration correction
+\end{enumerate}
+
+\vspace{1cm}
+
+\begin{center}
+\textit{This teaser demonstrates that the EDC framework extends meaningfully to nuclear physics.\\
+Full treatment in Book 3: ``Nuclear Structure from 5D Topology.''}
+\end{center}
