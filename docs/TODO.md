@@ -60,6 +60,13 @@
       Third confirmation: explicit mathematical demonstration [Der]
       Code: `edc_papers/_shared/code/toy_overlap_kchannel_check.py` (5/5 tests pass)
       R = I₄_disc/I₄_cont = 1 + a/c; under a/c=1/N gives k(N)=1+1/N
+- [x] **BVP: cos(Nθ) mode structure verification** — `edc_papers/_shared/derivations/zn_ring_delta_pinning_modes.tex` (2026-01-29)
+      Selection Lemma: Only m = kN modes couple to Z_N anchors [Der]
+      Gradient ordering: m = N is lowest anisotropic among Z_N-symmetric modes [Der]
+      Result: cos(Nθ) is unique leading anisotropic mode [Der]
+      Code: `edc_papers/_shared/code/zn_delta_pinning_mode_check.py` (all tests PASS)
+      Summary: `docs/ZN_MODE_STRUCTURE_BVP_NOTE.md`
+      **VALIDATES:** ansatz u(θ) = u₀ + a₁cos(Nθ) used in a/c = 1/N derivation
 
 ---
 

@@ -1246,7 +1246,85 @@ Z_N symmetry → τ_n = τ → λ_n = λ → a/c = 1/N → k(N) = 1 + 1/N
 ### What Remains Open
 - Exact c_λ prefactor (requires bulk field equations)
 - W(u) functional form (requires K(u) coupling from 5D)
-- BVP verification of cos(Nθ) structure
+- ~~BVP verification of cos(Nθ) structure~~ → DONE (pt25)
+
+---
+
+## 2026-01-29 (cont'd pt25) — BVP: cos(Nθ) Mode Structure Verification
+
+### Goal
+Verify that cos(Nθ) is the dominant anisotropic mode under Z_N delta-pinning, validating the ansatz used in the a/c = 1/N derivation.
+
+### Key Result: PASS [Der]
+
+**Selection Lemma [Der]:**
+```
+For mode exp(imθ), coupling to N anchors at θ_n = 2πn/N:
+  Σ_n exp(imθ_n) = N   if m ≡ 0 (mod N)
+                 = 0   otherwise
+
+Only Z_N-symmetric modes (m = 0, N, 2N, ...) couple to anchors.
+```
+
+**Gradient Ordering [Der]:**
+```
+Among Z_N-symmetric modes:
+  m = 0:  constant (isotropic)
+  m = N:  cos(Nθ), gradient energy ∝ N²  ← FIRST anisotropic
+  m = 2N: cos(2Nθ), gradient energy ∝ 4N²
+```
+
+**Combined Result [Der]:**
+cos(Nθ) is the unique leading anisotropic mode.
+
+### Numerical Verification
+```
+Selection Lemma: PASS for N = 3, 4, 5, 6, 8, 12
+Eigenmode overlap with cos(Nθ): >99% for all N tested
+```
+
+### Files Created
+- `edc_papers/_shared/derivations/zn_ring_delta_pinning_modes.tex` — 7-page LaTeX derivation
+- `edc_papers/_shared/code/zn_delta_pinning_mode_check.py` — numerical verification
+- `docs/ZN_MODE_STRUCTURE_BVP_NOTE.md` — executive summary
+
+### Files Modified
+- `CLAIM_LEDGER.md` — Added CL-ZN-MODE-1 (GREEN, [Der])
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-056
+- `docs/TODO.md` — Marked BVP verification as DONE
+- `docs/SESSION_LOG.md` — This entry
+
+### Compile & Run Status
+```
+LaTeX: latexmk -xelatex zn_ring_delta_pinning_modes.tex
+       Output: 7 pages, 84494 bytes, PASS
+
+Python: python3 zn_delta_pinning_mode_check.py
+        All tests PASS, VERDICT: PASS
+```
+
+### What This Validates
+Ansatz u(θ) = u₀ + a₁cos(Nθ) used in deriving a/c = 1/N and k(N) = 1 + 1/N.
+
+### Complete k-Channel Derivation Chain Now [Der]
+```
+Z_N symmetry [Der]
+    ↓
+Identical anchors: τ_n = τ [Der] (Israel junction)
+    ↓
+cos(Nθ) is leading anisotropic mode [Der] (Selection + Gradient)
+    ↓
+Energy minimization: a₁ ∝ 1/N [Der]
+    ↓
+a/c = 1/N [Der]
+    ↓
+k(N) = 1 + 1/N [Der]
+```
+
+### What Remains Open (5D Mapping Only)
+- Exact c_λ prefactor (requires bulk field equations)
+- W(u) functional form (requires K(u) coupling)
+- Full 5D → ring reduction (toy model is [Der], 5D mapping is [Dc])
 
 ---
 

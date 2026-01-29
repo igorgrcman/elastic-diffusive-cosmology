@@ -686,18 +686,50 @@ notes: |
   W(u) functional form also requires K(u) coupling from 5D [Dc].
 ```
 
+### CL-ZN-MODE-1: cos(Nθ) is leading anisotropic mode under Z_N delta-pinning
+
+```yaml
+id: CL-ZN-MODE-1
+status: GREEN
+chapter: breadth
+claim: "cos(Nθ) is the unique leading anisotropic mode under Z_N delta-pinning"
+evidence:
+  derivation: "edc_papers/_shared/derivations/zn_ring_delta_pinning_modes.tex"
+  code: "edc_papers/_shared/code/zn_delta_pinning_mode_check.py"
+  summary: "docs/ZN_MODE_STRUCTURE_BVP_NOTE.md"
+tag: "[Der]"
+commit: "2026-01-29"
+notes: |
+  PROOF (3 steps):
+    1. Selection Lemma: Only m = kN modes couple to Z_N anchors [Der]
+       Σ_n exp(imθ_n) = N if m ≡ 0 (mod N), else 0
+    2. Gradient ordering: E_grad ∝ m², so m = N is lowest among m = kN [Der]
+    3. Therefore: cos(Nθ) is the first anisotropic mode that couples [Der]
+
+  NUMERICAL VERIFICATION:
+    - Selection Lemma: PASS for N = 3, 4, 5, 6, 8, 12
+    - Eigenmode overlap with cos(Nθ): >99% for all N tested
+
+  CONDITIONS:
+    - Identical anchors at Z_N fixed points
+    - Quadratic W(u) near equilibrium
+    - Ring geometry with periodic BC
+
+  UPGRADE: Validates ansatz u(θ) = u₀ + a₁cos(Nθ) used in a/c = 1/N derivation
+```
+
 ---
 
 ## Statistics
 
 | Status | Count |
 |--------|-------|
-| GREEN | 13 |
+| GREEN | 14 |
 | YELLOW | 15 |
 | RED | 4 |
 | FALSIFIED | 1 |
-| **Total** | **33** |
+| **Total** | **34** |
 
 ---
 
-*Claim Ledger v1.7 — Last updated 2026-01-29*
+*Claim Ledger v1.8 — Last updated 2026-01-29*

@@ -903,6 +903,47 @@ Exact c_λ requires solving bulk field equations (out of scope).
 
 ---
 
+### CONCEPT-056: Z_N Mode Structure (cos(Nθ) Selection)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/derivations/zn_ring_delta_pinning_modes.tex` |
+| **Code** | `edc_papers/_shared/code/zn_delta_pinning_mode_check.py` |
+| **Summary** | `docs/ZN_MODE_STRUCTURE_BVP_NOTE.md` |
+| **Epistemic tag** | [Der] for delta-pinning ring model; [Dc] for 5D mapping |
+| **Used in** | Justifying ansatz u(θ) = u₀ + a₁cos(Nθ) in a/c = 1/N derivation |
+
+**Purpose:**
+Verify that cos(Nθ) is the unique leading anisotropic mode under Z_N delta-pinning.
+
+**Selection Lemma [Der]:**
+```
+For mode exp(imθ), coupling to N anchors at θ_n = 2πn/N:
+  Σ_n exp(imθ_n) = N   if m ≡ 0 (mod N)
+                 = 0   otherwise
+
+Only Z_N-symmetric modes (m = 0, N, 2N, ...) couple to anchors.
+```
+
+**Gradient ordering [Der]:**
+```
+Among Z_N-symmetric modes:
+  m = 0:  constant (isotropic)
+  m = N:  cos(Nθ), gradient energy ∝ N²  ← FIRST anisotropic
+  m = 2N: cos(2Nθ), gradient energy ∝ 4N²
+```
+
+**Combined result [Der]:**
+cos(Nθ) is the lowest-energy anisotropic mode that couples to anchors.
+
+**Numerical verification:**
+All N tested (3, 4, 5, 6, 8): eigenmode overlap with cos(Nθ) > 99%.
+
+**What this validates:**
+Ansatz u(θ) = u₀ + a₁cos(Nθ) used in deriving a/c = 1/N and k(N) = 1 + 1/N.
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:
