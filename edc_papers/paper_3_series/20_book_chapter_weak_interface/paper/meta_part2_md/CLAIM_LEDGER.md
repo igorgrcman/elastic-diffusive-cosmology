@@ -867,6 +867,49 @@ notes: |
   NEXT STEP: Pick 1 candidate and run numerical analog test
 ```
 
+### CL-KCHAN-XVAL-SC-1: Spin chain cross-validation of k(N) averaging mechanism
+
+```yaml
+id: CL-KCHAN-XVAL-SC-1
+status: GREEN
+chapter: breadth
+claim: "k(N) = 1 + 1/N averaging mechanism confirmed in spin chain (XX model, ED)"
+evidence:
+  document: "docs/SPIN_CHAIN_KCHANNEL_CROSSVALIDATION.md"
+  code: "edc_papers/_shared/code/spin_chain_kchannel_ed_test.py"
+  N_values: [3, 4, 5, 6, 8, 10, 12]
+  precision: "<1e-15 (machine precision)"
+tag: "[Der]"
+commit: "2026-01-29"
+notes: |
+  VALIDATES AVERAGING MECHANISM IN INDEPENDENT MODEL
+
+  WHAT WAS TESTED:
+    - XX spin chain with periodic BC
+    - Ground state local energy density o_n (exact diagonalization)
+    - Weighting function f(θ) = c + a·cos(Nθ)
+    - Ratio R = O_disc / O_cont
+
+  RESULTS (all N values):
+    - R = 1 + a/c: CONFIRMED to machine precision
+    - Under a/c = 1/N: R = k(N) = 1 + 1/N exactly
+    - Translational invariance: confirmed (σ/|μ| < 10⁻¹⁵)
+
+  WHAT THIS VALIDATES:
+    - The mathematical averaging mechanism [Der]
+    - The formula works for N ≠ 6 (tested 3, 4, 5, 6, 8, 10, 12)
+
+  WHAT THIS DOES NOT VALIDATE:
+    - EDC-specific predictions (pion, N_cell)
+    - Physical origin of "equal corner share" normalization
+    - Any claim that spin chains are described by EDC
+
+  EDC-SAFE FRAMING:
+    "The discrete averaging mechanism underlying EDC's k-channel
+     appears in independent physical systems. This confirms the
+     mathematical formula, not the physics-specific applications."
+```
+
 ### CL-ZN-BOX-1: Z_N k-channel robustness box (book-ready summary)
 
 ```yaml
@@ -904,12 +947,12 @@ notes: |
 
 | Status | Count |
 |--------|-------|
-| GREEN | 18 |
+| GREEN | 19 |
 | YELLOW | 16 |
 | RED | 4 |
 | FALSIFIED | 1 |
-| **Total** | **39** |
+| **Total** | **40** |
 
 ---
 
-*Claim Ledger v2.3 — Last updated 2026-01-29*
+*Claim Ledger v2.4 — Last updated 2026-01-29*

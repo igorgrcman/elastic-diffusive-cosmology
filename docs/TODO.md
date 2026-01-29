@@ -88,10 +88,11 @@
       Code: `edc_papers/_shared/code/zn_one_defect_contamination_scan.py` (all tests PASS)
       Summary: `docs/ZN_ONE_DEFECT_ROBUSTNESS_NOTE.md`
       **IMPLICATION:** k-channel robust to realistic (~10%) defect levels
-- [ ] **k(N) cross-validation: pick 1 candidate and run numerical analog test** — `docs/KN_CHANNEL_CROSS_VALIDATION_CANDIDATES.md` (2026-01-29)
-      Candidates: spin chain (N=4-20), LC ring (SPICE), antenna array (NEC2)
-      Purpose: Validate mathematical mechanism independently of EDC
-      Next: Write Python script for spin chain exact diagonalization
+- [x] **k(N) cross-validation: spin chain exact diagonalization** — `docs/SPIN_CHAIN_KCHANNEL_CROSSVALIDATION.md` (2026-01-29)
+      Code: `edc_papers/_shared/code/spin_chain_kchannel_ed_test.py`
+      Result: **GREEN** — R = 1 + a/c confirmed to machine precision for N = 3,4,5,6,8,10,12
+      Under a/c = 1/N: R = k(N) = 1 + 1/N exactly
+      Validates mathematical mechanism in independent physical system (XX spin chain)
 
 ---
 

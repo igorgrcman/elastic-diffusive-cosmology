@@ -1124,6 +1124,41 @@ Catalog of 12 candidate systems (N ≠ 6) where k(N) = 1 + 1/N discrete averagin
 
 ---
 
+### CONCEPT-062: Spin Chain k-Channel Cross-Validation (Averaging Mechanism)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `docs/SPIN_CHAIN_KCHANNEL_CROSSVALIDATION.md` |
+| **Code** | `edc_papers/_shared/code/spin_chain_kchannel_ed_test.py` |
+| **Epistemic tag** | [Der] — mathematical mechanism confirmed numerically |
+| **Used in** | Independent validation of k(N) = 1 + 1/N formula |
+
+**Purpose:**
+Test the discrete averaging mechanism k(N) = 1 + 1/N in an independent physical system (XX spin chain) that has nothing to do with EDC.
+
+**Model:**
+- XX spin chain with periodic BC, N = 3, 4, 5, 6, 8, 10, 12
+- Local energy density o_n from ground state (exact diagonalization)
+- Weighting function f(θ) = c + a·cos(Nθ)
+
+**Observable definitions:**
+```
+O_disc = (1/N) Σ f(θ_n) · o_n   (discrete sampling)
+O_cont = c · ō                   (continuum average)
+R = O_disc / O_cont
+```
+
+**Results:**
+- R = 1 + a/c confirmed to machine precision (error < 10⁻¹⁵)
+- Under a/c = 1/N: R = k(N) = 1 + 1/N exactly
+- All N values (3–12) pass
+
+**Verdict:** GREEN — mathematical mechanism validated in independent system
+
+**What this does NOT validate:** EDC-specific predictions (pion, N_cell)
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:

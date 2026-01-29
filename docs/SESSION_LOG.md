@@ -1627,6 +1627,69 @@ Create catalog of N ≠ 6 systems where k(N) = 1 + 1/N discrete averaging could 
 
 ---
 
+## 2026-01-29 (cont'd pt31) — Spin Chain k-Channel Cross-Validation
+
+### Goal
+Test the k(N) = 1 + 1/N discrete averaging mechanism in an independent physical system (spin chain), NOT to prove EDC predictions.
+
+### Key Result: **GREEN — MATHEMATICAL MECHANISM CONFIRMED**
+
+**Model:** XX spin chain with periodic BC (exact diagonalization)
+
+**Observable construction:**
+```
+f(θ) = c + a·cos(Nθ)              (Z_N symmetric weighting)
+o_n = ⟨ψ_0|h_n|ψ_0⟩                (local energy density)
+O_disc = (1/N) Σ f(θ_n) · o_n     (discrete sampling)
+O_cont = c · ō                     (continuum average)
+R = O_disc / O_cont
+```
+
+### Results Table
+
+| N | R_num | 1+1/N | error |
+|---|-------|-------|-------|
+| 3 | 1.333333333333 | 1.3333333333 | 2e-16 |
+| 4 | 1.250000000000 | 1.2500000000 | 0 |
+| 5 | 1.200000000000 | 1.2000000000 | 2e-16 |
+| 6 | 1.166666666667 | 1.1666666667 | 0 |
+| 8 | 1.125000000000 | 1.1250000000 | 0 |
+| 10 | 1.100000000000 | 1.1000000000 | 2e-16 |
+| 12 | 1.083333333333 | 1.0833333333 | 0 |
+
+**All N values PASS** — errors at machine precision (~10⁻¹⁶)
+
+### Files Created
+- `edc_papers/_shared/code/spin_chain_kchannel_ed_test.py` — ED code
+- `docs/SPIN_CHAIN_KCHANNEL_CROSSVALIDATION.md` — Results + interpretation
+
+### Files Modified
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-062
+- `edc_papers/.../CLAIM_LEDGER.md` — Added CL-KCHAN-XVAL-SC-1 (GREEN)
+- `docs/TODO.md` — Marked spin chain test as DONE
+- `docs/SESSION_LOG.md` — This entry
+
+### Verdict
+
+**Status: GREEN** — Mathematical mechanism validated in independent system
+
+**What this validates:**
+- R = 1 + a/c formula (machine precision)
+- k(N) = 1 + 1/N under equal corner share
+- Works for N ≠ 6 (tested 3, 4, 5, 6, 8, 10, 12)
+
+**What this does NOT validate:**
+- EDC-specific predictions (pion, N_cell)
+- Physical origin of a/c = 1/N normalization
+- Any claim that spin chains are described by EDC
+
+### EDC-Safe Framing
+> "The discrete averaging mechanism underlying EDC's k-channel appears in
+> independent physical systems. This confirms the mathematical formula,
+> not the physics-specific applications."
+
+---
+
 ## Template for Future Sessions
 
 ```markdown
