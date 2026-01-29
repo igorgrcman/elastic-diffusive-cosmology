@@ -288,6 +288,45 @@ Add book-ready LaTeX snippet for G_F constraint falsification channel.
 
 ---
 
+## 2026-01-29 — k-Channel Spin-Chain Cross-Validation Insert + Prepublication Warning
+
+### Goal
+Add Book2-ready k-channel cross-validation box + prominent editorial warning.
+
+### Work Performed
+1. Created `edc_papers/_shared/boxes/kchannel_spinchain_crossval_box.tex`
+   - Definition: k(N) = ⟨O⟩_disc/⟨O⟩_cont (averaging only)
+   - Cross-validation: spin-chain ED confirms R = 1+1/N for N = 3–12
+   - Bold VALIDATES / DOES NOT VALIDATE lists
+   - Guardrail: "k-channel is a correction channel, not a universal multiplier"
+
+2. Created `edc_book_2/docs/PREPUBLICATION_REVIEW_WARNING.md`
+   - "Book 2 is not publication-final"
+   - Pre-publication checklist
+
+3. Wired into `sections/12_epistemic_map.tex`
+   - Red warning box at line ~52
+   - Cyan cross-validation box immediately after
+   - Location: after Part II Status Map, before Quantitative Summary
+
+### Files Created
+- `edc_papers/_shared/boxes/kchannel_spinchain_crossval_box.tex`
+- `edc_book_2/docs/PREPUBLICATION_REVIEW_WARNING.md`
+
+### Files Modified
+- `edc_book_2/src/sections/12_epistemic_map.tex` — Added both boxes
+
+### Results
+- Book2 now has explicit k-channel guardrail
+- Prepublication warning prominent in epistemic section
+- Cross-validation cited with machine-precision results
+
+### Next Steps
+1. Compile Book2 to verify boxes render
+2. Commit and push
+
+---
+
 ## Template for Future Sessions
 
 ```markdown

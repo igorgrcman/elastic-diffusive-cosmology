@@ -1690,6 +1690,42 @@ R = O_disc / O_cont
 
 ---
 
+## 2026-01-29 (cont'd pt32) — Book2 k-Channel Insert + Prepublication Warning
+
+### Goal
+Add Book2-ready k-channel cross-validation box + prominent editorial warning about pre-publication review.
+
+### Key Result: BOOK2 INSERT COMPLETE
+
+**Insertion location:** `edc_book_2/src/sections/12_epistemic_map.tex` (line ~52)
+- After: Part II Status Map tcolorbox
+- Before: Quantitative Summary subsection
+- Why: Natural epistemic guardrail location in the "Epistemic Landscape" section
+
+### Files Created
+- `edc_papers/_shared/boxes/kchannel_spinchain_crossval_box.tex` — Book-ready box
+- `edc_book_2/docs/PREPUBLICATION_REVIEW_WARNING.md` — Editorial warning doc
+
+### Files Modified
+- `edc_book_2/src/sections/12_epistemic_map.tex` — Wired in both boxes
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-063
+- `edc_papers/.../CLAIM_LEDGER.md` — Added CL-KCHAN-BOOK2-1 (GREEN)
+- `docs/SESSION_LOG.md` — This entry
+
+### Book2 Now Says About k-Channel
+
+**Red warning box:**
+> "Book 2 is not publication-final. Before any public release: full narrative/claim audit required; decide what to publish vs internal working notes; ensure strict epistemic tagging."
+
+**Cyan cross-validation box:**
+- Definition: k(N) = ⟨O⟩_disc/⟨O⟩_cont (averaging only)
+- Cross-validation: spin-chain ED confirms R = 1+1/N for N = 3–12 at machine precision
+- **VALIDATES:** averaging mechanism, N≠6 generality, numerical reproducibility
+- **DOES NOT VALIDATE:** EDC sector predictions, pion match, N_cell physics
+- Guardrail: "k-channel is a correction channel, not a universal multiplier"
+
+---
+
 ## Template for Future Sessions
 
 ```markdown

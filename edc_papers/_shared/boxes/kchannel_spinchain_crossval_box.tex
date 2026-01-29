@@ -1,0 +1,53 @@
+% k-channel Spin-Chain Cross-Validation Box
+% File: edc_papers/_shared/boxes/kchannel_spinchain_crossval_box.tex
+% Created: 2026-01-29
+% Purpose: Book-ready summary of independent k-channel cross-validation
+%
+% EPISTEMIC STATUS: [Der] for mathematical results; cross-validation only
+
+\begin{tcolorbox}[colback=cyan!5!white, colframe=cyan!50!black,
+                  title=\textbf{k-channel Cross-Validation (Independent Analog Test)}]
+\label{box:kchannel-spinchain-xval}
+
+\textbf{Definition} (averaging correction only):
+\begin{equation}
+k(N) := \frac{\langle O \rangle_{\text{disc}}}{\langle O \rangle_{\text{cont}}}
+= 1 + \frac{a}{c} \quad \text{[Der]}
+\end{equation}
+Applies \textbf{only} to averaging observables (discrete sampling vs continuum average)
+with Z$_N$-symmetric anisotropy $O(\theta) = c + a\cos(N\theta)$.
+Under equal-corner-share ($a/c = 1/N$): $k(N) = 1 + 1/N$.
+See Box~\ref{box:zn-kchannel-robustness} for applicability rules.
+
+\vspace{0.3em}
+\textbf{Cross-Validation} (spin-chain exact diagonalization):
+\begin{itemize}[nosep,leftmargin=1.5em]
+\item Model: XX spin chain with periodic BC, ground state local energy $o_n$
+\item Test: $R = O_{\text{disc}}/O_{\text{cont}}$ for $N = 3, 4, 5, 6, 8, 10, 12$
+\item Result: $R = 1 + 1/N$ at machine precision ($<10^{-15}$) for all $N$
+\end{itemize}
+
+\vspace{0.3em}
+\textbf{VALIDATES} [Der]:
+\begin{itemize}[nosep,leftmargin=1.5em]
+\item[\checkmark] Averaging mechanism ($R = 1 + a/c$ formula)
+\item[\checkmark] $N \ne 6$ generality (tested $N = 3, 4, 5, 8, 10, 12$)
+\item[\checkmark] Numerical reproducibility (independent physical system)
+\end{itemize}
+
+\vspace{0.3em}
+\textbf{DOES NOT VALIDATE}:
+\begin{itemize}[nosep,leftmargin=1.5em]
+\item[$\times$] EDC sector predictions (pion, $N_{\text{cell}}$, nuclear physics)
+\item[$\times$] Physical origin of equal-corner-share ($a/c = 1/N$) in EDC
+\item[$\times$] Any claim that spin chains are described by EDC
+\end{itemize}
+
+\vspace{0.3em}
+\textit{Use this box as epistemic guardrail: k-channel is a correction channel
+(discrete$\to$continuum averaging), not a universal multiplier.}
+
+\vspace{0.2em}
+\textit{Source: \texttt{spin\_chain\_kchannel\_ed\_test.py}; doc: \texttt{SPIN\_CHAIN\_KCHANNEL\_CROSSVALIDATION.md}}
+
+\end{tcolorbox}

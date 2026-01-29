@@ -910,6 +910,38 @@ notes: |
      mathematical formula, not the physics-specific applications."
 ```
 
+### CL-KCHAN-BOOK2-1: Book2 k-channel cross-validation insert + prepublication warning
+
+```yaml
+id: CL-KCHAN-BOOK2-1
+status: GREEN
+chapter: book2-epistemic
+claim: "Book2 guardrail box added; scope-limited; cross-validation cited"
+evidence:
+  box: "edc_papers/_shared/boxes/kchannel_spinchain_crossval_box.tex"
+  wired_into: "edc_book_2/src/sections/12_epistemic_map.tex"
+  warning_doc: "edc_book_2/docs/PREPUBLICATION_REVIEW_WARNING.md"
+  location: "After Part II Status Map, before Quantitative Summary"
+tag: "[Der]+[Editorial]"
+commit: "2026-01-29"
+notes: |
+  BOOK2 GUARDRAIL INSERT:
+    - Definition: k(N) = ⟨O⟩_disc/⟨O⟩_cont (averaging only)
+    - Cross-validation: spin-chain ED for N = 3–12
+    - Bold VALIDATES / DOES NOT VALIDATE lists
+    - Final line: "k-channel is a correction channel, not a universal multiplier"
+
+  PREPUBLICATION WARNING (RED BOX):
+    - "Book 2 is not publication-final"
+    - Audit checklist reference
+    - Internal-only notes disclaimer
+
+  INSERTION POINT:
+    - File: 12_epistemic_map.tex (line ~52)
+    - After: Part II Status Map tcolorbox
+    - Before: Quantitative Summary subsection
+```
+
 ### CL-ZN-BOX-1: Z_N k-channel robustness box (book-ready summary)
 
 ```yaml
@@ -947,12 +979,12 @@ notes: |
 
 | Status | Count |
 |--------|-------|
-| GREEN | 19 |
+| GREEN | 20 |
 | YELLOW | 16 |
 | RED | 4 |
 | FALSIFIED | 1 |
-| **Total** | **40** |
+| **Total** | **41** |
 
 ---
 
-*Claim Ledger v2.4 — Last updated 2026-01-29*
+*Claim Ledger v2.5 — Last updated 2026-01-29*

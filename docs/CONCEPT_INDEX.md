@@ -1159,6 +1159,30 @@ R = O_disc / O_cont
 
 ---
 
+### CONCEPT-063: Book2 Insert — k-Channel Spin-Chain Cross-Validation + Prepublication Warning
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/boxes/kchannel_spinchain_crossval_box.tex` |
+| **Wired into** | `edc_book_2/src/sections/12_epistemic_map.tex` (after Part II Status Map) |
+| **Warning doc** | `edc_book_2/docs/PREPUBLICATION_REVIEW_WARNING.md` |
+| **Epistemic tag** | [Der] for math; editorial for warning |
+| **Used in** | Book2 epistemic guardrail |
+
+**Purpose:**
+Book2-ready box summarizing k-channel cross-validation + prominent editorial warning that Book2 requires pre-publication review.
+
+**Contents:**
+1. k-channel definition (averaging correction only)
+2. Spin-chain ED results (N = 3–12, machine precision)
+3. Bold VALIDATES / DOES NOT VALIDATE lists
+4. Guardrail statement: "k-channel is a correction channel, not a universal multiplier"
+5. Red warning box: "Book 2 is not publication-final"
+
+**Location:** `12_epistemic_map.tex` after the Part II Status Map, before Quantitative Summary
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:
