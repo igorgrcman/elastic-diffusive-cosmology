@@ -503,6 +503,53 @@ Formalize the Projection-Reduction Principle in LaTeX as first Priority 0 task.
 
 ---
 
+## 2026-01-29 (cont'd pt6) — Flavor Skeleton v0.1
+
+### Goal
+Create minimal breadth deliverable for EDC flavor sector: what is actually derived vs postulated vs falsified.
+
+### Key Results
+
+**DERIVED [Der]:**
+- N_g = 3 from |Z₃| = 3 (Z₆ = Z₂ × Z₃ structure)
+- sin²θ_W = 1/4 (bare) from |Z₂|/|Z₆| = 2/6
+
+**DERIVED CONDITIONAL [Dc]:**
+- θ₂₃ ≈ 45° (atmospheric) from Z₆ overlap geometry
+- CKM hierarchy λ, λ², λ³ from localization overlap (single parameter)
+- CP phase δ = 60° from Z₂ sign selection (5° from PDG 65°)
+- sin²θ_W(M_Z) = 0.2314 after standard RG (0.08% from PDG)
+
+**IDENTIFIED [I]:**
+- θ₁₂ ~ 33°, θ₁₃ ~ 8.5° structure (rank-2 + ε mechanism)
+- κ_q/κ_ℓ ≈ 0.4 (CKM vs PMNS asymmetry explanation)
+
+**NO-GO Results (FALSIFIED):**
+1. Z₃ DFT for CKM: |V_ij|² = 1/3 → ×144 off for |V_ub|
+2. Z₃ DFT for PMNS: sin²θ₁₃ = 1/3 → ×15 off
+3. Pure Z₃ charges → CP: Phase Cancellation Theorem gives J = 0
+4. Gaussian overlap profile: ×100 over-suppresses corners
+
+### Files Created
+- `docs/FLAVOR_SKELETON_v0.1.md` — Minimal breadth deliverable
+
+### Files Modified
+- `docs/TODO.md` — Marked Flavor Skeleton complete
+- `docs/SESSION_LOG.md` — This entry
+
+### What This Establishes
+1. Clear separation: N_g = 3 and sin²θ_W = 1/4 are TRUE EDC predictions [Der]
+2. θ₂₃ is derived from geometry [Dc], other angles are structural only [I]
+3. Four documented NO-GO results close off naive approaches
+4. Open problems clearly listed with priority
+
+### Next Steps
+1. G_F constraint note (if derivation RED, set constraint window instead)
+2. Test N_cell = 12 for flavor implications
+3. BVP solution for quark profiles (OPR-09)
+
+---
+
 ## Template for Future Sessions
 
 ```markdown

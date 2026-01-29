@@ -484,6 +484,44 @@ Ratio: ~12× — OPEN PROBLEM
 
 ---
 
+### CONCEPT-043: Flavor Skeleton v0.1 (Breadth Deliverable)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `docs/FLAVOR_SKELETON_v0.1.md` |
+| **Location** | Full document |
+| **Epistemic tag** | Mixed: [Der] for N_g, sin²θ_W; [Dc] for θ₂₃, CKM hierarchy; [I] for θ₁₂, θ₁₃ |
+| **Used in** | Cross-sector validation, flavor physics |
+
+**What is DERIVED [Der]:**
+```
+N_g = 3 from |Z₃| = 3 (Z₆ = Z₂ × Z₃ structure)
+sin²θ_W = 1/4 (bare) from |Z₂|/|Z₆| = 2/6 = 1/4
+```
+
+**What is DERIVED CONDITIONAL [Dc]:**
+```
+θ₂₃ ≈ 45° (atmospheric) from Z₆ overlap geometry
+CKM hierarchy λ, λ², λ³ from localization overlap (single parameter)
+CP phase δ = 60° from Z₂ sign selection (5° from PDG 65°)
+sin²θ_W(M_Z) = 0.2314 after standard RG (0.08% from PDG)
+```
+
+**NO-GO Results (Falsified approaches):**
+```
+1. Z₃ DFT for CKM: |V_ij|² = 1/3 → ×144 off for |V_ub|
+2. Z₃ DFT for PMNS: sin²θ₁₃ = 1/3 → ×15 off
+3. Pure Z₃ charges → CP: Phase Cancellation Theorem gives J = 0
+4. Gaussian overlap profile: over-suppresses corners (×100)
+```
+
+**Open problems:**
+- OPR-05: Derive PMNS angles θ₁₂, θ₁₃ from geometry
+- OPR-09: Derive f_i(z) profiles from 5D BVP
+- OPR-11: CKM (ρ̄, η̄) from 5D geometry
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:
