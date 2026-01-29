@@ -1401,6 +1401,80 @@ I_4 by factor ~37, matching target X_EDC.
 
 ---
 
+### CONCEPT-070: G_F BVP Tuning Decomposition (OPR-21c)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/bvp_gf/one_factor_sensitivity.py` |
+| **Report** | `docs/GF_BVP_TUNING_DECOMPOSITION.md` |
+| **Data** | `edc_papers/_shared/bvp_gf/out/sensitivity_*.csv` |
+| **Epistemic tag** | [Der] for analysis, [Dc] for interpretation |
+| **Used in** | Book 2 Chapter 11 (G_F derivation) |
+
+**Sensitivity analysis results:**
+- LR_separation: Elasticity = -6.5 (dominant, exponential control)
+- fermion_width: Elasticity = +1.3 (secondary, polynomial control)
+
+**Key insight:** LR controls exponential suppression; fw fine-tunes residual.
+
+**"Goldilocks" effect:** fw=0.8 is optimal because:
+- Too narrow (fw < 0.3): Tails don't reach overlap region
+- Too wide (fw > 1.5): Modes spread beyond brane
+- fw = 0.8: Optimal tail overlap while staying localized
+
+**Status:** OPR-21c GREEN — Decomposition complete
+
+---
+
+### CONCEPT-071: G_F BVP Physical Priors (OPR-21c)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `docs/GF_BVP_PHYSICAL_PRIORS.md` |
+| **Epistemic tag** | [Dc] — Physical identification assumed |
+| **Used in** | Book 2 Chapter 11 (G_F derivation) |
+
+**Physical length scales:**
+| Parameter | Tuned Value | Physical Length | Interpretation |
+|-----------|-------------|-----------------|----------------|
+| δ | 0.533 GeV⁻¹ | 0.105 fm | = ℏ/(2m_p) |
+| LR_sep | 8.0 δ | 0.84 fm | ≈ r_p (proton radius) |
+| fw | 0.8 δ | 0.085 fm | ≈ 0.4 λ_N |
+
+**Key coincidence:**
+```
+d_LR = 8δ = 0.84 fm ≈ r_p = 0.84 fm
+```
+L-R separation matches proton charge radius to 2 significant figures.
+
+**Status:** [Dc] — Plausible but not derived
+
+---
+
+### CONCEPT-072: G_F BVP Potential Shapes from 5D (OPR-21c)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/derivations/gf_potential_shapes_from_5d.tex` |
+| **Note** | `docs/GF_POTENTIAL_SHAPES_FROM_5D_NOTE.md` |
+| **Epistemic tag** | [Dc] for Gaussian, [Der] for RS and tanh |
+| **Used in** | Book 2 Chapter 11, BVP pipeline |
+
+**Potential shapes:**
+| Background | V(χ) Shape | Status |
+|------------|-----------|--------|
+| Gaussian Wall | -V₀ exp(-χ²/2w²) | [Dc] |
+| RS-like | V₀ - V₁ δ(χ) | [Der] |
+| Tanh Domain Wall | M₀² ∓ (M₀/δ) sech²(χ/δ) | [Der] |
+
+**Universal feature:** All backgrounds produce attractive well of depth ~1/δ² and width ~δ.
+
+**Mode equation:** -d²w/dχ² + V(χ)w = λw
+
+**Status:** Connection established; specific choice remains [Dc]
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:

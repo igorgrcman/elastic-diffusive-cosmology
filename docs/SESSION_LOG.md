@@ -2130,6 +2130,82 @@ I_4 by factor ~37, matching target X_EDC within 5%.
 
 ---
 
+## 2026-01-29 — OPR-21c: Tuning Decomposition + Physical Priors
+
+### Goal
+- Decompose BVP tuning (why LR=8.0, fw=0.8 work)
+- Establish physical priors for tuned parameters
+- Derive V(χ) shapes from 5D action
+- Create Book2 guarded box
+
+### Read State
+- docs/GF_BVP_GATE_REPORT.md: SUCCESS, X_ratio=1.045
+- docs/GF_BVP_PARAMETER_SCAN.md: Best at LR=8.0, fw=0.8
+- docs/GF_NONCIRCULAR_FRAMEWORK_NOTE.md: Non-circular chain established
+
+### Files Created
+- `edc_papers/_shared/bvp_gf/one_factor_sensitivity.py` — One-factor sensitivity analysis
+- `edc_papers/_shared/bvp_gf/out/sensitivity_LR.csv` — LR scan data
+- `edc_papers/_shared/bvp_gf/out/sensitivity_fw.csv` — fw scan data
+- `docs/GF_BVP_TUNING_DECOMPOSITION.md` — Sensitivity report
+- `docs/GF_BVP_PHYSICAL_PRIORS.md` — Physical length scales
+- `edc_papers/_shared/derivations/gf_potential_shapes_from_5d.tex` — V(χ) derivation
+- `docs/GF_POTENTIAL_SHAPES_FROM_5D_NOTE.md` — V(χ) summary
+- `edc_papers/_shared/boxes/gf_bvp_tuning_box.tex` — Book2 guarded box
+
+### Files Modified
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-070, 071, 072
+- `docs/TODO.md` — Marked OPR-21c complete
+
+### Key Results
+
+**Sensitivity analysis:**
+- LR_separation elasticity: -6.5 (dominant, exponential control)
+- fermion_width elasticity: +1.3 (secondary, polynomial control)
+
+**Physical priors:**
+| Parameter | Tuned Value | Physical Length | Interpretation |
+|-----------|-------------|-----------------|----------------|
+| δ | 0.533 GeV⁻¹ | 0.105 fm | = ℏ/(2m_p) |
+| LR_sep | 8.0 δ | 0.84 fm | ≈ r_p (proton radius) |
+| fw | 0.8 δ | 0.085 fm | ≈ 0.4 λ_N |
+
+**Key coincidence:**
+```
+d_LR = 8δ = 0.84 fm ≈ r_p = 0.84 fm (proton charge radius)
+```
+
+**Potential shapes from 5D:**
+- Gaussian wall: [Dc] — Simplest ansatz
+- RS-like: [Der] — Standard from AdS
+- Tanh domain wall: [Der] — Chirality separation
+
+### Tests Run
+- one_factor_sensitivity.py: ✓ PASS (27 points scanned)
+- Elasticity computed: ✓ PASS
+
+### Verdict: **GREEN**
+
+**OPR-21c status:**
+| Component | Status | Color |
+|-----------|--------|-------|
+| Sensitivity analysis | [Der] | GREEN |
+| Physical priors | [Dc] | YELLOW |
+| V(χ) shapes | [Dc/Der] | YELLOW |
+| Book2 box | [Dc] | GREEN |
+
+### Next Steps
+- Derive δ = ℏ/(2m_p) from 5D action
+- Derive d_LR from chiral localization (upgrade d_LR ≈ r_p to [Der])
+- Investigate whether fw=0.8 can be derived from BVP eigenvalue structure
+
+### Open Questions
+- Is d_LR = r_p coincidental or fundamental?
+- Can the Goldilocks effect for fw be derived from stability analysis?
+- What physics selects the Gaussian wall over RS-like or tanh?
+
+---
+
 ## Template for Future Sessions
 
 ```markdown

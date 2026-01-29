@@ -131,6 +131,13 @@
       Result: ALL GATES PASS with LR_sep=8.0, fw=0.8
       X_EDC / X_target = 1.045 (4.5% off target)
       Improvement: 36.8× reduction in error (38.4 → 1.045)
+- [x] **Decompose tuning + physical priors (OPR-21c)** — (2026-01-29)
+      Workpackage A: `edc_papers/_shared/bvp_gf/one_factor_sensitivity.py`, `docs/GF_BVP_TUNING_DECOMPOSITION.md`
+      Workpackage B: `docs/GF_BVP_PHYSICAL_PRIORS.md`
+      Workpackage C: `edc_papers/_shared/derivations/gf_potential_shapes_from_5d.tex`, `docs/GF_POTENTIAL_SHAPES_FROM_5D_NOTE.md`
+      Workpackage D: `edc_papers/_shared/boxes/gf_bvp_tuning_box.tex`
+      Result: LR elasticity=-6.5 (dominant), fw elasticity=+1.3 (secondary)
+      Key finding: d_LR = 8δ = 0.84 fm ≈ r_p (proton radius)
 - [ ] **Derive V(χ) from 5D action reduction** — Upgrade background from [Dc] to [Der]
 
 ---

@@ -1,0 +1,115 @@
+% =============================================================================
+% BOX: G_F BVP Tuning and Physical Priors
+% =============================================================================
+% Issue: OPR-21c — Tuning decomposition and physical priors
+% Insert location: Chapter 11 (G_F derivation), after gate evaluation
+% Status: [Dc] — Parameters tuned, physical interpretation established
+% =============================================================================
+
+\begin{tcolorbox}[
+    colback=yellow!5!white,
+    colframe=orange!75!black,
+    title={\textbf{BVP Tuning: Why These Parameters Work}},
+    fonttitle=\bfseries
+]
+
+\textbf{Status:} Parameters tuned (not derived) \tagDc{}; physical interpretation plausible \tagDc{}
+
+\vspace{0.5em}
+\textbf{Current gate status:} ALL PASS with $X_{\text{EDC}}/X_{\text{target}} = 1.045$ (4.5\% error)
+
+\vspace{0.5em}
+\textbf{Tuned parameters:}
+\begin{center}
+\begin{tabular}{lccl}
+\toprule
+\textbf{Parameter} & \textbf{Value} & \textbf{Physical Length} & \textbf{Interpretation} \\
+\midrule
+$\delta$ (brane thickness) & $0.533\,\text{GeV}^{-1}$ & $0.105\,\text{fm}$ & $= \hbar/(2m_p)$ \\
+LR\_separation & $8.0\,\delta$ & $0.84\,\text{fm}$ & $\approx r_p$ (proton radius) \\
+fermion\_width & $0.8\,\delta$ & $0.085\,\text{fm}$ & $\approx 0.4\,\lambda_N$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Sensitivity analysis:}
+\begin{itemize}[leftmargin=*, itemsep=0pt]
+    \item LR\_separation: Elasticity $= -6.5$ (dominant, exponential control)
+    \item fermion\_width: Elasticity $= +1.3$ (secondary, polynomial control)
+\end{itemize}
+
+\textbf{Why $\mathbf{fw = 0.8}$ works (``Goldilocks'' effect):}
+\begin{itemize}[leftmargin=*, itemsep=0pt]
+    \item Too narrow ($fw < 0.3$): Tails don't reach overlap region
+    \item Too wide ($fw > 1.5$): Modes spread beyond brane, diluted overlap
+    \item $fw = 0.8$: Optimal tail overlap while staying localized
+\end{itemize}
+
+\textbf{Key coincidence:}
+\[
+d_{\text{LR}} = 8\delta = 0.84\,\text{fm} \approx r_p = 0.84\,\text{fm}
+\]
+The L-R separation equals the proton charge radius to 2 significant figures.
+
+\vspace{0.5em}
+\textbf{Caveats:}
+\begin{itemize}[leftmargin=*, itemsep=0pt]
+    \item Parameters are \textit{tuned}, not derived from first principles
+    \item Physical identifications are plausible but not proven
+    \item The $d_{\text{LR}} \approx r_p$ coincidence may be accidental
+\end{itemize}
+
+\textbf{What would upgrade to [Der]:}
+\begin{enumerate}[leftmargin=*, itemsep=0pt]
+    \item Derive $\delta = \hbar/(2m_p)$ from 5D action reduction
+    \item Derive L-R separation from 5D Dirac equation (chiral localization)
+    \item Derive fermion width from BVP eigenvalue structure
+\end{enumerate}
+
+\textbf{Reference:} \texttt{docs/GF\_BVP\_TUNING\_DECOMPOSITION.md}, \texttt{docs/GF\_BVP\_PHYSICAL\_PRIORS.md}
+
+\end{tcolorbox}
+
+% =============================================================================
+% FALSIFICATION BOX (complementary)
+% =============================================================================
+
+\begin{tcolorbox}[
+    colback=red!5!white,
+    colframe=red!75!black,
+    title={\textbf{Falsification Window: What Could Kill This}},
+    fonttitle=\bfseries
+]
+
+\textbf{Gate failures that would falsify the mechanism:}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Condition} & \textbf{Outcome} \\
+\midrule
+$I_4 > 100 \times I_4^{\text{required}}$ & Mode overlap mechanism fails \\
+$I_4 < 0.01 \times I_4^{\text{required}}$ & Insufficient suppression \\
+$M_{\text{eff}} > 10/\delta$ & KK scale inconsistent with geometry \\
+No physical prior for $d_{\text{LR}}$ & Tuning without foundation \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Current status:} All gates PASS. No falsification triggered.
+
+\textbf{Most fragile assumption:} $d_{\text{LR}} = r_p$ (currently a coincidence, not derived).
+
+\end{tcolorbox}
+
+% =============================================================================
+% INSERTION RECOMMENDATION
+% =============================================================================
+% This box pair should be inserted in Chapter 11 AFTER:
+% 1. The non-circular G_F formula is presented
+% 2. The BVP pipeline box (OPR-21)
+% 3. The gate evaluation results
+%
+% Purpose: Document WHY the tuned parameters work and what could falsify
+% the mechanism. Honest about [Dc] status of physical identifications.
+% =============================================================================
