@@ -7,7 +7,8 @@
 ## Priority 0: Breadth Strategy (NEW — 2026-01-29)
 
 - [x] **Formalize Projection Lemma in LaTeX** — `edc_papers/_shared/lemmas/projection_reduction_lemma.tex` (2026-01-29)
-- [ ] **Δm_np sensitivity analysis** — dimensionless rewrite, robustness check
+- [x] **Δm_np sensitivity analysis** — `docs/DELTA_MNP_SENSITIVITY.md` (2026-01-29)
+      Result: ROBUST to σ/δ/L_0/w; FRAGILE to Z_6 structure
 - [ ] **σ dependency audit** — complete table, identify master parameter role
 - [ ] **Flavor Skeleton v0.1** — N_g=3 + θ_23 + qualitative CP constraint
 - [ ] **G_F constraint note** — if derivation is RED, set constraint window instead

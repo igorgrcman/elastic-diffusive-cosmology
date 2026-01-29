@@ -421,6 +421,35 @@ Case (C): Barrier/Tunneling — κ_eff = ⟨κ⟩_w → pinning
 
 ---
 
+### CONCEPT-041: Δm_np Derivation Anchor (8/π)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/paper_3_series/00_framework_v2_0/paper/main.tex:964-1028` |
+| **Location** | Theorems: `\label{thm:brane-tension}`, `\label{thm:v3-derived}`, `\label{thm:mass-diff-derived}` |
+| **Epistemic tag** | [Dc] |
+| **Used in** | Nuclear-leptonic bridge, cross-sector breadth |
+
+**Derivation chain:**
+```
+1. σr_e² = (36/π)m_e     [Dc] — Z_6 + ring normalization
+2. q_n = 1/3             [Der] — geometry of θ = 60°
+3. V_3 = σr_e² × q_n²    [Dc] — elastic energy ansatz
+4. Δm_np = 2|V_3|        [M]  — potential analysis
+   → Δm_np = (8/π)m_e = 1.301 MeV (0.6% error)
+```
+
+**Sensitivity analysis:** `docs/DELTA_MNP_SENSITIVITY.md`
+- ROBUST to: σ, δ, L_0, w(χ) — they don't enter independently
+- FRAGILE to: Z_6 structure, charge-angle coupling [Dc], elastic ansatz [Dc]
+
+**Alternative derivation:** `edc_book/chapters/chapter_9_electroweak_v17.48_patched.tex:829-876`
+- Formula: (5/2 + 4α)m_e = 1.292 MeV
+- Different physical model (dimensional counting)
+- 0.7% tension with 8/π model
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:

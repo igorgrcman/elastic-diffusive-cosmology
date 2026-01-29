@@ -273,6 +273,67 @@ Harden the workflow so CC never gets confused about paths again.
 
 ---
 
+## 2026-01-29 (cont'd pt2) — Δm_np Sensitivity Analysis
+
+### Goal
+Determine robustness of Δm_np = 8m_e/π under parameter variations (σ, δ, L_0, w).
+
+### Key Finding
+
+**The 8/π formula is remarkably ROBUST:**
+- σ, δ, L_0, w(χ) don't enter as independent parameters
+- All parameters are geometrically locked to m_e via Z_6 ring structure
+- The 8/π ratio is a pure geometric constant
+
+### Derivation Chain (Framework v2.0 §10.4-10.5)
+
+```
+1. σr_e² = (36/π)m_e     [Dc] — Z_6 + ring normalization
+2. q_n = 1/3             [Der] — half-Steiner angle θ = 60°
+3. V_3 = σr_e² × q_n²    [Dc] — elastic energy ansatz
+4. Δm_np = 2|V_3| = (8/π)m_e = 1.301 MeV (0.6% error)
+```
+
+### Sensitivity Summary
+
+| Parameter | Enters? | Why |
+|-----------|---------|-----|
+| σ | NO | σr_e² = (36/π)m_e is geometrically fixed |
+| δ | NO | Not a thick-brane calculation |
+| L_0 | NO | Ring model uses angular, not spatial |
+| w(χ) | NO | Not a projection calculation |
+
+### Fragility Points
+
+1. Z_6 structure (if Z_8 → would change 36 → 64)
+2. Charge-angle coupling θ = (1-Q)×60° [Dc]
+3. Elastic ansatz V ∝ q² [Dc]
+
+### Files Created
+1. `docs/DELTA_MNP_SENSITIVITY.md` — NEW (comprehensive analysis)
+
+### Files Modified
+1. `edc_papers/paper_3_series/20_book_chapter_weak_interface/paper/meta_part2_md/CLAIM_LEDGER.md` — Added CL-10.1, CL-10.2
+2. `docs/CONCEPT_INDEX.md` — Added CONCEPT-041
+3. `docs/TODO.md` — Marked task complete
+4. `docs/SESSION_LOG.md` — This entry
+
+### Cross-Check: Two Models Coexist
+
+| Model | Formula | Value | Error |
+|-------|---------|-------|-------|
+| Z_6 Ring (Fwk v2.0) | (8/π)m_e | 1.301 MeV | 0.6% |
+| Dimensional (Ch.9) | (5/2+4α)m_e | 1.292 MeV | 0.07% |
+
+**Tension:** 0.7% between models. Need reconciliation.
+
+### Next Steps
+1. σ dependency audit (complete table)
+2. Reconcile 8/π with (5/2+4α) — why two models?
+3. Flavor Skeleton v0.1
+
+---
+
 ## 2026-01-29 (cont'd) — Projection-Reduction Lemma Formalization
 
 ### Goal

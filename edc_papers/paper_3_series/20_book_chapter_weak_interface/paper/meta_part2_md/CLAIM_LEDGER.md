@@ -289,16 +289,58 @@ notes: "Not achieved — requires g₅, m_φ, BVP solution"
 
 ---
 
+## Chapter 10: Neutron-Proton Mass Difference
+
+### CL-10.1: Δm_np = 8m_e/π
+
+```yaml
+id: CL-10.1
+status: YELLOW
+chapter: 10
+claim: "Δm_np = (8/π)m_e = 1.301 MeV (0.6% from PDG)"
+evidence:
+  equation: "eq:mass-diff-derived"
+  file: "edc_papers/paper_3_series/00_framework_v2_0/paper/main.tex"
+  line: 1017-1028
+  sensitivity: "docs/DELTA_MNP_SENSITIVITY.md"
+tag: "[Dc]"
+commit: "2026-01-29"
+notes: |
+  ROBUST to continuous parameters (σ, δ, L_0, w) — they don't enter independently.
+  FRAGILE to discrete structure (Z_6 → Z_N would change 36 → N²).
+  Depends on 3 [Dc] assumptions:
+  1. Charge-angle coupling θ = (1-Q)×60°
+  2. V ∝ q² elastic ansatz
+  3. Z_6 ring normalization σr_e² = (36/π)m_e
+  Cross-check: (5/2 + 4α)m_e from Ch.9 gives 0.7% different value.
+```
+
+### CL-10.2: Sensitivity Analysis (DONE)
+
+```yaml
+id: CL-10.2
+status: GREEN
+chapter: 10
+claim: "Δm_np robustness: ROBUST to σ/δ/L_0/w; FRAGILE to Z_6 structure"
+evidence:
+  file: "docs/DELTA_MNP_SENSITIVITY.md"
+tag: "[M]"
+commit: "2026-01-29"
+notes: "Sensitivity analysis complete. No continuous parameter dependence found."
+```
+
+---
+
 ## Statistics
 
 | Status | Count |
 |--------|-------|
-| GREEN | 7 |
-| YELLOW | 6 |
+| GREEN | 8 |
+| YELLOW | 7 |
 | RED | 3 |
 | FALSIFIED | 1 |
-| **Total** | **17** |
+| **Total** | **19** |
 
 ---
 
-*Claim Ledger v1.0 — Last updated 2026-01-22*
+*Claim Ledger v1.1 — Last updated 2026-01-29*
