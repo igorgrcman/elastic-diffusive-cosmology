@@ -478,6 +478,32 @@ notes: |
   Breadth links: pion splitting (confirmed), N_cell 12→10 (candidate), ε-dressing (TBD)
 ```
 
+### CL-NCELL-RENORM-1: N_cell renormalization via k(6)
+
+```yaml
+id: CL-NCELL-RENORM-1
+status: YELLOW
+chapter: breadth
+claim: "N_cell_eff = N_cell_bare / k(6) = 12 × (6/7) = 10.29 ≈ 10"
+evidence:
+  file: "docs/BREADTH_SYNTHESIS_2026-01-29.md"
+  algebraic: "docs/OP-SIGMA-2_NCELL12_RESOLUTION.md"
+  k6_derivation: "docs/Z6_CORRECTION_FACTOR_7over6.md"
+  general: "docs/ZN_CORRECTION_CHANNEL.md"
+tag: "[Der]+[Dc]"
+commit: "2026-01-29"
+notes: |
+  Resolves N_cell = 12 vs 10 tension:
+    - N_cell_bare = 12 from E_σ/σr_e² algebraic bridge [I]
+    - k(6) = 7/6 from Z₆ discrete averaging [Der]+[Dc]
+    - N_cell_eff = 12/(7/6) = 10.29 ≈ 10 [Der] (mathematical relation)
+  Physical interpretation [Dc]:
+    - Bare count = 12 (algebraic/geometric)
+    - Effective count = 10 (dynamical, seen in τ_n)
+    - Discrete averaging correction bridges the two
+  Explains why τ_n calculation uses N_cell = 10
+```
+
 ---
 
 ## Statistics
@@ -485,11 +511,11 @@ notes: |
 | Status | Count |
 |--------|-------|
 | GREEN | 10 |
-| YELLOW | 11 |
+| YELLOW | 12 |
 | RED | 4 |
 | FALSIFIED | 1 |
-| **Total** | **26** |
+| **Total** | **27** |
 
 ---
 
-*Claim Ledger v1.5 — Last updated 2026-01-29*
+*Claim Ledger v1.6 — Last updated 2026-01-29*

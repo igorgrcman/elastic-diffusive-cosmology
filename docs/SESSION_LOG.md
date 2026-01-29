@@ -711,6 +711,35 @@ If any sector needs N ≠ 6 for the same mechanism, Z₆ universality fails.
 
 ---
 
+## 2026-01-29 (cont'd pt15) — N_cell Renormalization Canonicalization
+
+### Goal
+Canonicalize N_cell renormalization (12 → 10 via k(6)=7/6) as turning point + Book2 box.
+
+### Files Created
+- `edc_papers/_shared/boxes/ncell_renorm_box.tex` — Book2-ready LaTeX box
+
+### Files Modified
+- `docs/BREADTH_SYNTHESIS_2026-01-29.md` — Added Section D.3 "Resolution: N_cell (Bare→Effective)"
+- `CLAIM_LEDGER.md` — Added CL-NCELL-RENORM-1 (YELLOW, [Der]+[Dc])
+
+### Key Result
+```
+N_cell_bare = 12        (algebraic bridge from E_σ/σr_e²)
+k(6) = 7/6              (Z₆ discrete averaging)
+N_cell_eff = 12 × (6/7) = 10.29 ≈ 10 ✓
+```
+
+### Box Wiring Status
+Box created but NOT wired into Book2. Manual insertion recommended at:
+- `RT-CH3-003_NEUTRON_LIFETIME_DERIVATION.tex` (lines ~74, 156) where "N_cell = 10" appears
+- Or in the compiled Book2 section that pulls from this research target
+
+### Conflicts Discovered
+None — N_cell = 10 is used in research targets; box provides the derivation justification.
+
+---
+
 ## 2026-01-29 (cont'd pt8) — G_F Constraint Note Patch
 
 ### Goal

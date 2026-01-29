@@ -115,6 +115,26 @@ N_cell = π/(36α) = 11.96 → 12 gives 0.35% match
 **Fail mode:** If no geometric derivation of 12, then OP-σ-2 remains open.
 **Source:** `docs/OP-SIGMA-2_NCELL12_RESOLUTION.md`
 
+### D.3 Resolution: N_cell (Bare → Effective)
+
+**The puzzle:** E_σ/σr_e² gives N_cell = 12, but τ_n calculation uses N_cell = 10.
+
+**Resolution via Z₆ correction channel [Der]+[Dc]:**
+```
+N_cell_bare = 12        (algebraic bridge)
+k(6) = 7/6              (Z₆ discrete averaging)
+N_cell_eff = 12 / k(6) = 12 × (6/7) = 10.29 ≈ 10 ✓
+```
+
+**Interpretation:** Bare cell count is 12; discrete averaging correction converts to effective count ~10 seen in τ_n dynamics.
+
+**Anchors:**
+- Algebraic bridge: `docs/OP-SIGMA-2_NCELL12_RESOLUTION.md`
+- k(6) derivation: `docs/Z6_CORRECTION_FACTOR_7over6.md`
+- General k(N): `docs/ZN_CORRECTION_CHANNEL.md`
+
+**Status:** [Der]+[Dc] — math relation derived, physical use of k(6) channel is hypothesis
+
 ---
 
 ## E. σ Map: Robust vs Fragile
@@ -168,6 +188,8 @@ N_cell = π/(36α) = 11.96 → 12 gives 0.35% match
 | `docs/SIGMA_DEPENDENCY_AUDIT.md` | σ master parameter map |
 | `docs/GF_CONSTRAINT_NOTE.md` | G_F constraint window |
 | `docs/OP-SIGMA-2_NCELL12_RESOLUTION.md` | N_cell = 12 analysis |
+| `docs/ZN_CORRECTION_CHANNEL.md` | k(N) = 1+1/N general formula |
+| `docs/Z6_CORRECTION_FACTOR_7over6.md` | k(6) = 7/6 derivation |
 
 ---
 
