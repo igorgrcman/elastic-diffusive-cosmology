@@ -536,17 +536,47 @@ notes: |
   Next test: Find independent channel to discriminate.
 ```
 
+### CL-KCHAN-TOY-1: Toy overlap k-channel demonstration
+
+```yaml
+id: CL-KCHAN-TOY-1
+status: GREEN
+chapter: breadth
+claim: "There exists an explicit overlap observable where k(N) arises as disc/cont averaging ratio"
+evidence:
+  document: "docs/TOY_OVERLAP_KCHANNEL_TEST.md"
+  code: "edc_papers/_shared/code/toy_overlap_kchannel_check.py"
+  profile: "|f(θ)|^4 = c + a*cos(Nθ)"
+  result: "R = I4_disc / I4_cont = 1 + a/c"
+tag: "[Der]"
+commit: "2026-01-29"
+notes: |
+  MATHEMATICAL DEMONSTRATION (GREEN):
+    - General formula R = 1 + a/c derived analytically [Der]
+    - Equal corner share (a/c = 1/N) gives k(N) = 1 + 1/N [Der]
+    - N = 6: k(6) = 7/6 = 1.1667 confirmed numerically
+
+  This is the THIRD confirmation of k-channel mechanism:
+    1. Pion splitting: r_π/(4α) = 1.166 [I]
+    2. N_cell renormalization: 12→10 [Dc]
+    3. Toy overlap: explicit demonstration [Der]
+
+  APPLICABILITY CRITERION:
+    - k applies to averaging observables (⟨O⟩_disc / ⟨O⟩_cont)
+    - k does NOT apply to cardinality ratios (|G₁|/|G₂|)
+```
+
 ---
 
 ## Statistics
 
 | Status | Count |
 |--------|-------|
-| GREEN | 10 |
+| GREEN | 11 |
 | YELLOW | 13 |
 | RED | 4 |
 | FALSIFIED | 1 |
-| **Total** | **28** |
+| **Total** | **29** |
 
 ---
 

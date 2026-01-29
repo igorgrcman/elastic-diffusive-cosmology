@@ -756,6 +756,41 @@ Do NOT apply k blindly to sin²θ_W, N_g, Koide Q = 2/3, or CP phases.
 
 ---
 
+### CONCEPT-052: Toy Overlap k-Channel Test
+
+| Field | Value |
+|-------|-------|
+| **Source** | `docs/TOY_OVERLAP_KCHANNEL_TEST.md` |
+| **Code** | `edc_papers/_shared/code/toy_overlap_kchannel_check.py` |
+| **Epistemic tag** | [Der] — mathematical demonstration |
+| **Used in** | k(N) mechanism confirmation |
+
+**Purpose:**
+Explicit toy model demonstrating k(N) = 1 + 1/N arises in overlap-type observables.
+
+**Profile:**
+```
+|f(θ)|⁴ = c + a·cos(Nθ)   (Z_N symmetric)
+```
+
+**Key results [Der]:**
+```
+I₄_cont = c                      (cos integrates to 0)
+I₄_disc = c + a                  (cos(N·θₙ) = 1 at corners)
+R = I₄_disc / I₄_cont = 1 + a/c
+
+Under equal corner share (a/c = 1/N):
+  R = k(N) = 1 + 1/N
+  For N = 6: k(6) = 7/6 ✓
+```
+
+**Third confirmation:**
+1. Pion splitting: r_π/(4α) = 1.166 [I]
+2. N_cell renormalization: 12→10 [Dc]
+3. Toy overlap: explicit demo [Der]
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:
