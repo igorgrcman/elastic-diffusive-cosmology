@@ -230,4 +230,59 @@ This could mean:
 
 ---
 
+## Q7: Why is fw ≈ 0.8 physically motivated and not arbitrary?
+
+**Short answer:** It's constrained to a physical window [0.5, 1.2]; the value 0.8 is calibrated within that window.
+
+**Detailed answer:**
+
+The fermion width parameter fw = σ_ψ/δ has four physics-based constraints:
+
+### 1. Normalizability: fw > 0.5 [Der]
+
+For the zero mode to be normalizable (L² integrable), the mode must decay fast enough. For domain-wall fermions:
+
+```
+w_L(χ) ∝ [cosh(χ/(fw·δ))]^{-m₀ fw δ}
+```
+
+Normalizability requires m₀ fw δ > 1/2. With m₀ ~ 1/δ, this gives fw > 0.5.
+
+### 2. Strict localization: fw < 1.2 [Dc]
+
+For 95% of the mode to lie within ±2δ of the center:
+
+```
+∫_{-2δ}^{+2δ} |w|² dχ > 0.95  →  fw < 1.2
+```
+
+### 3. Variational principle: fw ~ 1 [Dc]
+
+Energy minimization for a harmonic-like potential predicts:
+
+```
+σ_opt = √(ℏ/(m_eff ω)) ~ δ  →  fw ~ 1
+```
+
+### 4. Combined window: fw ∈ [0.5, 1.2]
+
+All constraints together give this window. The tuned value **fw = 0.8 is inside**.
+
+### 5. Why specifically 0.8? [Cal]
+
+The value 0.8 comes from the I_4 gate fit with d_LR = 8δ. Within the window:
+- fw = 0.6 → X_ratio too small
+- fw = 0.8 → X_ratio ≈ 1.05 ✓
+- fw = 1.0 → X_ratio too large
+
+The sensitivity is polynomial (elasticity +1.3), so fw tunes the prefactor of I_4.
+
+**Bottom line:** fw ≈ 0.8 is:
+- **Constrained** to [0.5, 1.2] by physics (not arbitrary)
+- **Calibrated** within window to match I_4 gate (specific value from fit)
+
+**See:** `docs/FW_FROM_STABILITY_NOTE.md` and `edc_papers/_shared/derivations/fw_from_stability_and_spectrum.tex`
+
+---
+
 *Updated 2026-01-29. For use in publication defense and review.*

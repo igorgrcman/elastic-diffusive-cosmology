@@ -149,8 +149,12 @@
          Result: Single domain wall gives d_LR = 0; need two walls or junction
          The r_p coincidence (d_LR ≈ r_p) remains [I] — suggestive, not derived
          OPEN: Derive d_LR from Y-junction geometry
-      3. [ ] Derive fw from BVP stability or eigenvalue constraints
-      See: `docs/GF_BVP_DEFENSE_NOTES.md` Q5, Q6
+      3. [~] Derive fw from BVP stability — PARTIAL (2026-01-29)
+         `edc_papers/_shared/derivations/fw_from_stability_and_spectrum.tex`
+         Status: [Dc/Cal] — window [0.5, 1.2] derived; specific value 0.8 calibrated
+         Result: fw = 0.8 is inside derived window (physically natural, not unique)
+         OPEN: Derive exact fw from 5D action (would need V(χ), m(χ) from bulk)
+      See: `docs/GF_BVP_DEFENSE_NOTES.md` Q5, Q6, Q7
 
 ---
 

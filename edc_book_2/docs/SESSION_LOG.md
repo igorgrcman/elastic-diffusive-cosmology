@@ -357,6 +357,59 @@ Add Book2-ready k-channel cross-validation box + prominent editorial warning.
 
 ---
 
+## 2026-01-29 — fw from Stability and Spectrum (OPR-21c item 3)
+
+### Goal
+- Derive fermion width fw from stability/spectrum constraints
+- Explain why tuned value fw ≈ 0.8δ is preferred (or identify as [Cal])
+
+### Work Performed
+- Created `edc_papers/_shared/derivations/fw_from_stability_and_spectrum.tex`
+  - Derived window [0.5, 1.2] from normalizability, localization, variational
+  - Showed fw = 0.8 is inside window (physically natural)
+  - Identified specific value as [Cal] (from I_4 gate)
+- Created `edc_papers/_shared/bvp_gf/fw_measure.py`
+  - Measures fw from mode profiles using second-moment and exp-fit
+  - Verified fw = 0.8 is inside derived window
+- Created `docs/FW_FROM_STABILITY_NOTE.md`
+  - Executive summary with defendable statement
+- Updated `docs/GF_BVP_DEFENSE_NOTES.md`
+  - Added Q7: Why is fw ≈ 0.8 physically motivated?
+- Updated `docs/CONCEPT_INDEX.md`
+  - Added CONCEPT-076: fw from Stability and Spectrum
+- Updated `docs/TODO.md`
+  - Marked item 3 of YELLOW→GREEN upgrade as partial
+
+### Results
+- Derived window: fw ∈ [0.5, 1.2] [Dc]
+- Tuned value fw = 0.8 inside window [Der]
+- Specific value 0.8 from I_4 calibration [Cal]
+- LaTeX compiles: 6 pages, no warnings
+- Python test: PASS (fw window verification)
+
+### Epistemic Status
+- Status: YELLOW [Dc/Cal]
+- Window is derived from physics (not arbitrary)
+- Specific value is calibrated (not derived from 5D)
+
+### Files Created
+- `edc_papers/_shared/derivations/fw_from_stability_and_spectrum.tex`
+- `edc_papers/_shared/bvp_gf/fw_measure.py`
+- `docs/FW_FROM_STABILITY_NOTE.md`
+
+### Files Modified
+- `docs/GF_BVP_DEFENSE_NOTES.md` — Added Q7
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-076
+- `docs/TODO.md` — Marked item 3 partial
+- `edc_book_2/docs/SESSION_LOG.md` — This entry
+
+### Next Steps
+1. All three YELLOW→GREEN items now addressed (partial status)
+2. Full GREEN upgrade requires deriving exact values from 5D action
+3. Current status is defensible: windows derived, values calibrated within
+
+---
+
 ## 2026-01-29 — d_LR from Chiral Localization (OPR-21 continuation)
 
 ### Goal

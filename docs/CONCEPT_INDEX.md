@@ -1561,6 +1561,45 @@ The value 8 is the center of this window.
 
 ---
 
+### CONCEPT-076: fw from Stability and Spectrum
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/derivations/fw_from_stability_and_spectrum.tex` |
+| **Summary** | `docs/FW_FROM_STABILITY_NOTE.md` |
+| **Code** | `edc_papers/_shared/bvp_gf/fw_measure.py` |
+| **Defense** | `docs/GF_BVP_DEFENSE_NOTES.md` Q7 |
+| **Epistemic tag** | [Dc/Cal] — Window derived, value calibrated |
+| **Used in** | G_F BVP priors, weak sector |
+
+**Result:**
+```
+fw ∈ [0.5, 1.2] (derived window)
+fw = 0.8 (tuned value, inside window)
+```
+
+**Derived constraints:**
+| Constraint | Bound | Status |
+|------------|-------|--------|
+| Normalizability | fw > 0.5 | [Der] |
+| Strict localization | fw < 1.2 | [Dc] |
+| Variational | fw ~ 1 | [Dc] |
+
+**Key findings:**
+1. Physical window [0.5, 1.2] from stability/localization [Dc]
+2. Tuned value fw = 0.8 lies inside window [Der]
+3. Specific value 0.8 from I_4 gate matching [Cal]
+4. fw affects overlap polynomially (elasticity +1.3)
+
+**Defendable claim:**
+fw ≈ 0.8 is physically natural (inside derived bounds) but not uniquely derived.
+
+**Status:** YELLOW [Dc/Cal] — Window derived, specific value calibrated
+
+**Upgrade path:** Derive V(χ), m(χ) from 5D action; solve exact BVP; show σ_ψ/δ ≈ 0.8
+
+---
+
 ### CONCEPT-073: G_F BVP All-Gates Pass + Defense (YELLOW)
 
 | Field | Value |
