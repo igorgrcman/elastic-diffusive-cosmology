@@ -1389,6 +1389,73 @@ Python: python3 zn_nonlinear_W_harmonics_demo.py
 
 ---
 
+## 2026-01-29 (cont'd pt27) — Robustness: Strong Pinning Regime
+
+### Goal
+Extend Z_N delta-pinning mode analysis to strong-pinning regime (ρ >> N²).
+Verify mode index stability across ALL pinning regimes.
+
+### Key Result: MODE INDEX STABLE AT ALL ρ [Der]
+
+**Regime Classification (ρ = λκ/T, critical ρ* = N²):**
+```
+Weak (ρ << N²):        gradient-dominated, μ_N ≈ N², mode = cos(Nθ)
+Intermediate (ρ ~ N²): crossover behavior
+Strong (ρ >> N²):      pinning-dominated, μ_N ∝ ρ, mode = cusp-like
+```
+
+**Symmetry Protection Theorem [Der]:**
+Selection Lemma is a GEOMETRIC identity about anchor positions.
+It holds regardless of ρ → mode index always m = N.
+
+**What changes with ρ:**
+- Eigenvalue: N² (weak) → ρN/π (strong)
+- Mode shape: cosine → cusp/localized
+- Energy distribution: uniform → concentrated at anchors
+
+**What does NOT change:**
+- Mode index: always m = N
+- Z_N periodicity of mode
+
+### Files Created
+- `edc_papers/_shared/derivations/zn_strong_pinning_regimes.tex` — 8-page derivation
+- `edc_papers/_shared/code/zn_strong_pinning_scan.py` — ρ scan verification
+- `docs/ZN_STRONG_PINNING_ROBUSTNESS_NOTE.md` — executive summary
+
+### Files Modified
+- `CLAIM_LEDGER.md` — Added CL-ZN-PIN-STRONG-1 (GREEN, [Der])
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-058
+- `docs/TODO.md` — Marked strong pinning robustness as DONE
+- `docs/SESSION_LOG.md` — This entry
+
+### Compile & Run Status
+```
+LaTeX: latexmk -xelatex zn_strong_pinning_regimes.tex
+       Output: 8 pages, PASS
+
+Python: python3 zn_strong_pinning_scan.py
+        Z_3:  m=3 stable for ρ ∈ [0.01, 10⁵]  PASS
+        Z_6:  m=6 stable for ρ ∈ [0.01, 10⁵]  PASS
+        Z_12: m=12 stable for ρ ∈ [0.01, 10⁵] PASS
+        VERDICT: PASS
+```
+
+### Key Implication
+k-channel correction formula k(N) = 1 + 1/N is NOT limited to weak pinning regime.
+Mode selection is protected by symmetry at ANY ρ.
+
+### Next Steps
+1. Optional: Explicit 5D→toy mapping (λ prefactor derivation)
+2. Optional: Apply k-channel to Δm_np ε-dressing (UNCLEAR status)
+3. Optional: Find systems with N ≠ 6 for experimental test
+
+### Open Questions
+1. Does k(N) apply to Δm_np EM renormalization?
+2. Exact λ = c_λ · κ₅²τ prefactor from bulk EOM?
+3. Physical systems with N ≠ 6 for cross-validation?
+
+---
+
 ## Template for Future Sessions
 
 ```markdown

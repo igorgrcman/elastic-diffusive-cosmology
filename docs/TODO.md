@@ -73,6 +73,13 @@
       Nonlinearities generate higher harmonics (2N, 3N, ...) but do NOT change mode index
       Code: `edc_papers/_shared/code/zn_nonlinear_W_harmonics_demo.py` (all tests PASS)
       Summary: `docs/ZN_NONQUADRATIC_W_ROBUSTNESS_NOTE.md`
+- [x] **Robustness: strong pinning regime (ρ >> N²)** — `edc_papers/_shared/derivations/zn_strong_pinning_regimes.tex` (2026-01-29)
+      Selection Lemma is GEOMETRIC → mode index m=N stable at ANY ρ [Der]
+      Regime map: weak (ρ<<N², μ≈N²) → intermediate → strong (ρ>>N², μ∝ρ)
+      Mode shape changes (cosine→cusp) but mode index does NOT
+      Code: `edc_papers/_shared/code/zn_strong_pinning_scan.py` (all N tested: PASS)
+      Summary: `docs/ZN_STRONG_PINNING_ROBUSTNESS_NOTE.md`
+      **IMPLICATION:** k-channel not limited to weak pinning regime
 
 ---
 

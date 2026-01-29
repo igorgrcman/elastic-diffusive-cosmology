@@ -982,6 +982,47 @@ the leading anisotropic mode is cos(Nθ) for sufficiently small amplitude.
 
 ---
 
+### CONCEPT-058: Strong Pinning Regime Robustness
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/derivations/zn_strong_pinning_regimes.tex` |
+| **Code** | `edc_papers/_shared/code/zn_strong_pinning_scan.py` |
+| **Summary** | `docs/ZN_STRONG_PINNING_ROBUSTNESS_NOTE.md` |
+| **Epistemic tag** | [Der] for mode index stability; [Dc] for localization bounds |
+| **Used in** | Robustness of k-channel derivation across all pinning regimes |
+
+**Purpose:**
+Prove mode index m = N is stable across all pinning strengths ρ = λκ/T ∈ (0, ∞).
+
+**Regime classification (critical ρ* = N²):**
+```
+Weak (ρ << N²):       gradient-dominated, μ_N ≈ N², mode shape = cos(Nθ)
+Intermediate (ρ ~ N²): crossover behavior
+Strong (ρ >> N²):      pinning-dominated, μ_N ∝ ρ, mode shape = cusp-like
+```
+
+**Symmetry protection [Der]:**
+Selection Lemma is a GEOMETRIC identity about anchor positions.
+It holds regardless of ρ → mode index always m = N.
+
+**What changes with ρ:**
+- Eigenvalue scaling: N² (weak) → ρN/π (strong)
+- Mode shape: delocalized cosine → localized at anchors
+- Energy distribution: uniform → concentrated near anchors
+
+**What does NOT change:**
+- Mode index: always m = N
+- Z_N periodicity of mode
+
+**Numerical verification:**
+All N tested (3, 6, 12): mode m = N stable across ρ ∈ [0.01, 10⁵].
+
+**Implication:**
+k-channel correction formula k(N) = 1 + 1/N is not limited to weak pinning regime.
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:

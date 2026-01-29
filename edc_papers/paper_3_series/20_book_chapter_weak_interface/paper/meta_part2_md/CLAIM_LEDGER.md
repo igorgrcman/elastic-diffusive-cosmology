@@ -751,18 +751,61 @@ notes: |
     - Non-smooth W, metastability, large amplitude, symmetry breaking
 ```
 
+### CL-ZN-PIN-STRONG-1: Mode index stable across all pinning regimes
+
+```yaml
+id: CL-ZN-PIN-STRONG-1
+status: GREEN
+chapter: breadth
+claim: "Mode index m=N is stable for all ρ ∈ (0, ∞): weak, intermediate, and strong pinning"
+evidence:
+  derivation: "edc_papers/_shared/derivations/zn_strong_pinning_regimes.tex"
+  code: "edc_papers/_shared/code/zn_strong_pinning_scan.py"
+  summary: "docs/ZN_STRONG_PINNING_ROBUSTNESS_NOTE.md"
+tag: "[Der]"
+commit: "2026-01-29"
+notes: |
+  REGIME CLASSIFICATION (ρ = λκ/T, critical ρ* = N²):
+    - Weak (ρ << N²): gradient-dominated, μ_N ≈ N²
+    - Intermediate (ρ ~ N²): crossover behavior
+    - Strong (ρ >> N²): pinning-dominated, μ_N ∝ ρ
+
+  SYMMETRY PROTECTION [Der]:
+    - Selection Lemma is a GEOMETRIC identity about anchor positions
+    - Holds regardless of ρ
+    - Only m = kN modes couple to anchors at ANY ρ
+    - Mode index m = N protected by Z_N symmetry
+
+  WHAT CHANGES WITH ρ:
+    - Eigenvalue: N² (weak) → ρN/π (strong)
+    - Mode shape: cosine (weak) → cusp/localized (strong)
+    - Energy distribution: uniform → concentrated at anchors
+
+  WHAT DOES NOT CHANGE:
+    - Mode index: always m = N
+    - Z_N periodicity of mode
+
+  NUMERICAL VERIFICATION:
+    - Z_3: m=3 stable for ρ ∈ [0.01, 10⁵] ✓
+    - Z_6: m=6 stable for ρ ∈ [0.01, 10⁵] ✓
+    - Z_12: m=12 stable for ρ ∈ [0.01, 10⁵] ✓
+    - All tests PASS
+
+  IMPLICATION: k-channel correction not limited to weak pinning regime
+```
+
 ---
 
 ## Statistics
 
 | Status | Count |
 |--------|-------|
-| GREEN | 15 |
+| GREEN | 16 |
 | YELLOW | 15 |
 | RED | 4 |
 | FALSIFIED | 1 |
-| **Total** | **35** |
+| **Total** | **36** |
 
 ---
 
-*Claim Ledger v1.9 — Last updated 2026-01-29*
+*Claim Ledger v2.0 — Last updated 2026-01-29*
