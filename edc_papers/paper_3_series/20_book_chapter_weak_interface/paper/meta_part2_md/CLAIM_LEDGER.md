@@ -835,6 +835,38 @@ notes: |
   IMPLICATION: k-channel robust to realistic defect levels (~10%)
 ```
 
+### CL-KCHAN-XVAL-1: k(N) cross-validation candidate catalog
+
+```yaml
+id: CL-KCHAN-XVAL-1
+status: YELLOW
+chapter: breadth
+claim: "12 candidate systems identified for k(N) = 1+1/N cross-validation (N ≠ 6)"
+evidence:
+  catalog: "docs/KN_CHANNEL_CROSS_VALIDATION_CANDIDATES.md"
+  categories: "wave/oscillator, lattice/solid-state, EM resonators, other physics"
+  top_candidates: "spin chain, LC ring, antenna array"
+tag: "[P]"
+commit: "2026-01-29"
+notes: |
+  CANDIDATE LIST PREPARED — NO EMPIRICAL CONFIRMATION YET
+
+  PURPOSE: Find N ≠ 6 systems where discrete→continuum averaging ratio
+  k(N) = 1 + 1/N can be tested as independent validation.
+
+  TOP 3 (HIGH confidence, cheap to simulate):
+    1. Spin chain exact diagonalization (N = 4–20)
+    2. LC oscillator ring (SPICE simulation, N = 4–16)
+    3. Circular antenna array (NEC2 simulation, N = 4–16)
+
+  EDC-SAFE FRAMING:
+    - Tests validate mathematical mechanism, NOT specific EDC predictions
+    - "Analog systems provide sanity checks for averaging interpretation"
+    - Do NOT claim EDC predicts antenna/spin-chain behavior
+
+  NEXT STEP: Pick 1 candidate and run numerical analog test
+```
+
 ### CL-ZN-BOX-1: Z_N k-channel robustness box (book-ready summary)
 
 ```yaml
@@ -873,11 +905,11 @@ notes: |
 | Status | Count |
 |--------|-------|
 | GREEN | 18 |
-| YELLOW | 15 |
+| YELLOW | 16 |
 | RED | 4 |
 | FALSIFIED | 1 |
-| **Total** | **38** |
+| **Total** | **39** |
 
 ---
 
-*Claim Ledger v2.2 — Last updated 2026-01-29*
+*Claim Ledger v2.3 — Last updated 2026-01-29*

@@ -1588,6 +1588,45 @@ ROBUSTNESS: non-quadratic [Der], strong pinning [Der], one-defect [Der]
 
 ---
 
+## 2026-01-29 (cont'd pt30) — k(N) Cross-Validation Candidate Catalog
+
+### Goal
+Create catalog of N ≠ 6 systems where k(N) = 1 + 1/N discrete averaging could be tested independently of EDC.
+
+### Key Result: 12 CANDIDATES IDENTIFIED
+
+**Categories:**
+1. Wave/oscillator rings (3 candidates)
+2. Lattice/solid-state (3 candidates)
+3. EM resonators/antennas (3 candidates)
+4. Other physics analogs (3 candidates)
+
+**Top 3 (HIGH confidence, cheap to simulate):**
+1. **Spin chain exact diagonalization** (N = 4–20) — finite-size scaling
+2. **LC oscillator ring** (N = 4–16) — SPICE simulation
+3. **Circular antenna array** (N = 4–16) — NEC2 free software
+
+### Files Created
+- `docs/KN_CHANNEL_CROSS_VALIDATION_CANDIDATES.md` — 12 candidates with measurement protocols
+
+### Files Modified
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-061
+- `edc_papers/.../CLAIM_LEDGER.md` — Added CL-KCHAN-XVAL-1 (YELLOW)
+- `docs/TODO.md` — Added Priority 1 item for numerical test
+- `docs/SESSION_LOG.md` — This entry
+
+### EDC-Safe Framing Established
+
+**DO:** "Tests validate mathematical mechanism, not specific EDC predictions"
+**DO NOT:** "EDC predicts antenna behavior" (overclaim)
+
+### Next Steps
+1. Pick 1 candidate (recommend: spin chain)
+2. Write numerical simulation script
+3. Test k(N) = 1 + 1/N for N = 3, 4, 5, 6, 8, 10, 12
+
+---
+
 ## Template for Future Sessions
 
 ```markdown

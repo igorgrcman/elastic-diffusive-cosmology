@@ -1097,6 +1097,33 @@ Book-ready tcolorbox summarizing k(N) = 1 + 1/N definition, applicability rules,
 
 ---
 
+### CONCEPT-061: k(N) Cross-Validation Candidate Catalog
+
+| Field | Value |
+|-------|-------|
+| **Source** | `docs/KN_CHANNEL_CROSS_VALIDATION_CANDIDATES.md` |
+| **Location** | Full document |
+| **Epistemic tag** | [P] — candidate list, no empirical confirmation |
+| **Used in** | Analog testing of k-channel mechanism |
+
+**Purpose:**
+Catalog of 12 candidate systems (N ≠ 6) where k(N) = 1 + 1/N discrete averaging could be tested.
+
+**Categories:**
+1. Wave/oscillator rings (pendulums, LC circuits, acoustics)
+2. Lattice/solid-state (spin chains, phonons, Josephson junctions)
+3. EM resonators/antennas (phased arrays, cavities, optical rings)
+4. Other physics analogs (LQCD, crystal field, DFT)
+
+**Top 3 candidates (HIGH confidence):**
+- Spin chain exact diagonalization (N = 4–20)
+- LC oscillator ring simulation (N = 4–16)
+- Circular antenna array (N = 4–16)
+
+**EDC-safe framing:** Tests validate mathematical mechanism, not specific EDC predictions.
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:
