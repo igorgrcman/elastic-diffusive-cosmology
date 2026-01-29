@@ -669,6 +669,48 @@ The "equal corner share" normalization (a/c = 1/N) is not derived from the 5D ac
 
 ---
 
+## 2026-01-29 (cont'd pt14) — Z_N Generalization + Prediction Fork
+
+### Goal
+Generalize Z₆ discrete averaging to Z_N; create prediction fork for universality testing.
+
+### Files Created
+- `edc_papers/_shared/lemmas/zn_discrete_averaging_lemma.tex` — General Z_N lemma
+- `docs/ZN_CORRECTION_CHANNEL.md` — Prediction fork document
+
+### Files Modified
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-050
+
+### Key Results
+
+**General formula:**
+```
+k(N) = 1 + 1/N   [Der]+[Dc]
+```
+
+**Prediction fork:**
+
+| N | k(N) | Application |
+|---|------|-------------|
+| 6 | 7/6 = 1.167 | Pion (confirmed), N_cell (candidate) |
+| 4 | 5/4 = 1.250 | Dirac? |
+| 3 | 4/3 = 1.333 | Flavor? |
+
+### Concrete Implication: N_cell
+
+The N_cell = 12 vs 10 tension resolves if k(6) applies:
+```
+N_cell_bare = 12 (from E_σ / σr_e²)
+N_cell_eff = 12 / k(6) = 12 × (6/7) = 10.29 ≈ 10 ✓
+```
+
+Explains why τ_n calculation uses N_cell = 10.
+
+### Falsification
+If any sector needs N ≠ 6 for the same mechanism, Z₆ universality fails.
+
+---
+
 ## 2026-01-29 (cont'd pt8) — G_F Constraint Note Patch
 
 ### Goal

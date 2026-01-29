@@ -687,6 +687,39 @@ For Z₆: R = 7/6.
 
 ---
 
+### CONCEPT-050: Z_N Correction Channel (Prediction Fork)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `docs/ZN_CORRECTION_CHANNEL.md` |
+| **Lemma** | `edc_papers/_shared/lemmas/zn_discrete_averaging_lemma.tex` |
+| **Epistemic tag** | [Der]+[Dc] — generalized from Z₆ |
+| **Used in** | Cross-sector universality tests, N_cell explanation |
+
+**General result:**
+```
+k(N) = 1 + 1/N   (under equal corner share normalization)
+```
+
+**Prediction fork:**
+
+| N | k(N) | EDC Application |
+|---|------|-----------------|
+| 6 | 7/6 | Pion (confirmed), N_cell (candidate) |
+| 4 | 5/4 | Dirac components? |
+| 3 | 4/3 | Flavor counting? |
+
+**Key implication for N_cell:**
+```
+N_cell_bare = 12
+N_cell_eff = 12 / k(6) = 12 × (6/7) = 10.3 ≈ 10 ✓
+```
+Explains why τ_n uses N_cell = 10 while E_σ/σr_e² gives 12.
+
+**Falsification:** If any sector needs N ≠ 6, Z₆ universality fails.
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:
