@@ -37,16 +37,19 @@
 
 ## Priority 1: Z₆ Correction Channel (Partially Open)
 
-- [ ] **Derive physical normalization a/c = 1/N from 5D action** (P1)
+**Status:** k(N) is validated as an averaging correction [Der]; physical normalization (a/c=1/N) remains [Dc] → channel remains YELLOW in physics.
+
+- [ ] **Derive physical normalization a/c = 1/N from 5D action** ← NEXT PRIORITY
       Currently [Dc]: "equal corner share" hypothesis not derived from first principles
       Upgrade path: show 5D membrane action produces Z_N anisotropy with amplitude 1/N
-- [x] **Sector-universality check** — `docs/ZN_CHANNEL_UNIVERSALITY_AUDIT.md` (2026-01-29)
+- [x] **Sector-universality audit** — `docs/ZN_CHANNEL_UNIVERSALITY_AUDIT.md` (2026-01-29)
       Result: PARTIAL — k applies to averaging processes, NOT cardinality ratios
       APPLY: N_cell (12→10), pion (r_π/4α≈7/6)
       DOES-NOT-APPLY: sin²θ_W = |Z₂|/|Z₆| (cardinality ratio)
       UNCLEAR: Δm_np ε-dressing
 - [x] **Toy overlap k-channel test** — `docs/TOY_OVERLAP_KCHANNEL_TEST.md` (2026-01-29)
       Third confirmation: explicit mathematical demonstration [Der]
+      Code: `edc_papers/_shared/code/toy_overlap_kchannel_check.py` (5/5 tests pass)
       R = I₄_disc/I₄_cont = 1 + a/c; under a/c=1/N gives k(N)=1+1/N
 
 ---

@@ -1037,6 +1037,27 @@ Tests passed: 5/5
 
 ---
 
+## 2026-01-29 (cont'd pt21) — TODO Update for k-Channel Completion
+
+### Goal
+Update TODO.md to reflect k-channel universality audit and toy overlap test completion.
+
+### Items Marked DONE
+- Sector-universality audit → `docs/ZN_CHANNEL_UNIVERSALITY_AUDIT.md`
+- Toy overlap k-channel test → `docs/TOY_OVERLAP_KCHANNEL_TEST.md` + code
+
+### Status Line Added
+> k(N) is validated as an averaging correction [Der]; physical normalization (a/c=1/N) remains [Dc] → channel remains YELLOW in physics.
+
+### Next Priority Highlighted
+- "Derive physical normalization a/c = 1/N from 5D action" ← NEXT PRIORITY
+
+### Consistency Check
+- CLAIM_LEDGER: CL-KCHAN-TOY-1 (GREEN for math), CL-ZN-UNIV-1 (YELLOW for physics)
+- TODO: matches — math [Der], physics [Dc], channel YELLOW
+
+---
+
 ## Template for Future Sessions
 
 ```markdown
