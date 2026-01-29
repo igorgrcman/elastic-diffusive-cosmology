@@ -795,6 +795,21 @@ EXACT BASELINE: Standard Geiger-Nuttall Law (slope=1.4348, intercept=-46.8164)
 TEASER WIRED: edc_book_2/src/main.tex:738
 ```
 
+### Additional Closing Fixes (same session)
+
+#### Label Prefixing
+- Updated `generate_include_files.py` to prefix all labels with `DL:<filename>:`
+- Regenerated all 15 `.include.tex` files with new prefixes
+- Result: **0 multiply-defined label warnings** (was 12)
+
+#### Teaser Guardrails
+- Added explicit N=21 caveat: "Small curated dataset for illustrative benchmark"
+- Added "Why is this a teaser?" explanation box pointing to Book 3
+
+#### Derivation Library Provenance
+- Added tcolorbox explaining standalone vs included body distinction
+- Documents edit workflow
+
 ---
 
 ```markdown
