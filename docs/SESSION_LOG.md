@@ -565,6 +565,36 @@ Create 1-2 page "front door" document synthesizing cross-sector breadth work.
 
 ---
 
+## 2026-01-29 (cont'd pt11) — Pion Splitting ε-Check
+
+### Goal
+Cheap breadth test: Does pion mass splitting follow ε ≈ 0.679% EM dressing pattern?
+
+### Files Created
+- `docs/PION_SPLITTING_EPSILON_CHECK.md` — breadth test document
+
+### Files Modified
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-047
+
+### Key Findings
+```
+r_π = Δm_π / m_π0 = 4.593 / 134.977 = 3.40%
+r_π / ε = 3.40% / 0.679% = 5.01 ≈ 5
+Alternative: r_π ≈ (7/6) × 4α — near-unity with 4α term
+```
+
+### Verdict: YELLOW
+- Order-of-magnitude match: YES (ratio = 5)
+- k factor O(1–10): YES
+- Geometric explanation for k: NO (open)
+- Most economical: r_π ≈ (7/6) × 4α with k' = 1.17
+
+### Next Refinement
+- Check if 7/6 = 1 + 1/|Z_6| appears elsewhere in EDC
+- Look for pion mass formula in existing canon
+
+---
+
 ## 2026-01-29 (cont'd pt8) — G_F Constraint Note Patch
 
 ### Goal

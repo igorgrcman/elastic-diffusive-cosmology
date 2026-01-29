@@ -607,6 +607,32 @@ Front-door document for EDC cross-sector breadth work. Summarizes:
 
 ---
 
+### CONCEPT-047: Pion Splitting ε-Check (Breadth Test)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `docs/PION_SPLITTING_EPSILON_CHECK.md` |
+| **Location** | Full document |
+| **Epistemic tag** | [I] — pattern identification, not derivation |
+| **Used in** | Breadth validation, EM dressing pattern |
+
+**Purpose:**
+Cheap breadth test: Does pion mass splitting (r_π = 3.40%) match ε ≈ 0.679% EM dressing pattern?
+
+**Key findings:**
+```
+r_π / ε ≈ 5.0 — same order of magnitude
+Alternative: r_π ≈ (7/6) × 4α — near-unity factor with 4α
+```
+
+**Verdict:** YELLOW — order-of-magnitude match but factor ~5 (or 7/6) needs geometric explanation
+
+**Cross-references:**
+- ε source: `docs/DELTA_MNP_RECONCILIATION.md`
+- Test motivation: `docs/BREADTH_SYNTHESIS_2026-01-29.md` (Test 1)
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:
