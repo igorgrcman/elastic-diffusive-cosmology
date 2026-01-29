@@ -763,6 +763,27 @@ Box successfully included (verified in log)
 
 ---
 
+## 2026-01-29 (cont'd pt17) — Verify N_cell Box in edc_book_2
+
+### Goal
+Check if N_cell renorm box is also needed in edc_book_2 main sections.
+
+### Search Results
+Searched for: N_cell, N_{text{cell}}, cell count, 10 near cell, 59 MeV, geometric estimate
+
+**Findings:**
+- `edc_book_2/src/sections/*.tex`: NO N_cell mentions
+- `edc_book_2/src/derivations/*.tex`: NO N_cell mentions (58.6 refers to S_E/ℏ, not barrier energy)
+- V_0 in BVP sections is generic potential depth, not the 10×5.86=59 MeV barrier
+- Neutron sections use V_B ≈ 2.6 MeV (from Δm_np), different quantity
+
+**Conclusion:** Box wired only in research_targets; edc_book_2 has no N_cell mention yet.
+
+### Action Taken
+No insertion needed in edc_book_2. Box already wired in RT-CH3-003_NEUTRON_LIFETIME_DERIVATION.tex.
+
+---
+
 ## 2026-01-29 (cont'd pt8) — G_F Constraint Note Patch
 
 ### Goal
