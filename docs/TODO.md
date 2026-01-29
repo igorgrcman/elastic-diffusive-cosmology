@@ -143,9 +143,14 @@
       1. [x] Derive δ = ℏ/(2m_p) from 5D action — DONE (2026-01-29)
          `edc_papers/_shared/derivations/delta_from_5d_action_proton_scale.tex`
          Status: [Dc] — principled but model-dependent coefficient
-      2. [ ] Derive d_LR from chiral localization / junction geometry
+      2. [~] Derive d_LR from chiral localization — PARTIAL (2026-01-29)
+         `edc_papers/_shared/derivations/dlr_from_chiral_localization.tex`
+         Status: [Dc/Cal] — constrained by G_F gate to d_LR/δ ∈ [5,10], not derived
+         Result: Single domain wall gives d_LR = 0; need two walls or junction
+         The r_p coincidence (d_LR ≈ r_p) remains [I] — suggestive, not derived
+         OPEN: Derive d_LR from Y-junction geometry
       3. [ ] Derive fw from BVP stability or eigenvalue constraints
-      See: `docs/GF_BVP_DEFENSE_NOTES.md` Q5
+      See: `docs/GF_BVP_DEFENSE_NOTES.md` Q5, Q6
 
 ---
 

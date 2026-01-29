@@ -357,6 +357,59 @@ Add Book2-ready k-channel cross-validation box + prominent editorial warning.
 
 ---
 
+## 2026-01-29 — d_LR from Chiral Localization (OPR-21 continuation)
+
+### Goal
+- Derive L-R separation d_LR from 5D Dirac equation / chiral localization
+- Upgrade d_LR ≈ 8δ from [Cal] to [Dc] or identify what remains open
+
+### Work Performed
+- Created `edc_papers/_shared/derivations/dlr_from_chiral_localization.tex`
+  - Full LaTeX derivation showing single domain wall gives d_LR = 0
+  - Mechanisms for d_LR > 0: two walls, Yukawa, junction geometry
+  - G_F gate constraint: d_LR/δ ∈ [5, 10] required
+  - r_p coincidence analysis
+- Created `docs/DLR_FROM_CHIRAL_LOCALIZATION_NOTE.md`
+  - Executive summary with defendable claim
+- Created `edc_papers/_shared/boxes/dlr_chiral_localization_box.tex`
+  - Book2-ready tcolorbox
+- Updated `docs/GF_BVP_DEFENSE_NOTES.md`
+  - Added Q6: Why is d_LR ≈ 8δ physically motivated?
+- Updated `docs/CONCEPT_INDEX.md`
+  - Added CONCEPT-075: d_LR from Chiral Localization
+- Updated `docs/TODO.md`
+  - Marked item 2 of YELLOW→GREEN upgrade as partial
+
+### Results
+- Single domain wall gives d_LR = 0 [Der]
+- Non-zero d_LR requires two walls or junction geometry [Der]
+- G_F gate constrains d_LR/δ ∈ [5, 10] [Dc]
+- BVP scan gives d_LR/δ = 8 [Cal]
+- The r_p coincidence (d_LR ≈ r_p = 0.84 fm) remains [I]
+
+### Epistemic Status
+- Status: YELLOW [Dc/Cal] — Constrained by G_F gate, not derived from 5D
+- The specific value d_LR/δ = 8 is from scan, but the range [5,10] is physical
+- r_p coincidence is suggestive but not explained
+
+### Files Created
+- `edc_papers/_shared/derivations/dlr_from_chiral_localization.tex`
+- `docs/DLR_FROM_CHIRAL_LOCALIZATION_NOTE.md`
+- `edc_papers/_shared/boxes/dlr_chiral_localization_box.tex`
+
+### Files Modified
+- `docs/GF_BVP_DEFENSE_NOTES.md` — Added Q6
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-075
+- `docs/TODO.md` — Marked item 2 partial
+- `edc_book_2/docs/SESSION_LOG.md` — This entry
+
+### Next Steps
+1. Derive d_LR from Y-junction geometry (would explain r_p coincidence)
+2. Derive fw from BVP stability (item 3)
+3. Or: Accept d_LR as constrained [Dc] and proceed
+
+---
+
 ## 2026-01-29 — δ Derivation from 5D Action (OPR-21 continuation)
 
 ### Goal

@@ -154,4 +154,80 @@ All three are order-of-magnitude windows, not precision tests. The point is cons
 
 ---
 
-*Created 2026-01-29. For use in publication defense and review.*
+## Q6: Why is d_LR ≈ 8δ physically motivated and not arbitrary?
+
+**Short answer:** It's constrained by the G_F gate, not derived from first principles.
+
+**Detailed answer:**
+
+The value d_LR/δ = 8 emerges from three constraints:
+
+### 1. Single domain wall gives d_LR = 0 [Der]
+
+For the standard domain-wall mass m(χ) = μ tanh(χ/δ), the 5D Dirac equation
+gives zero modes that localize at the wall center. Both L and R modes (when
+present) peak at χ = 0. Therefore a single symmetric domain wall CANNOT
+produce L-R separation.
+
+### 2. Non-zero d_LR requires additional structure [Der]
+
+To get d_LR > 0, we need one of:
+- Two domain walls at different positions
+- Yukawa coupling to a Higgs profile φ(χ)
+- Y-junction geometry (EDC-specific)
+
+The specific mechanism determines the value of d_LR.
+
+### 3. G_F gate constrains d_LR/δ to [5, 10] [Dc]
+
+The overlap integral I_4 is exponentially sensitive to L-R separation:
+
+```
+I_4 ∝ exp(-d_LR²/(2σ²))
+```
+
+To achieve I_4 ~ 10⁻³ GeV (Gate 1 requirement), we need:
+
+```
+d_LR/δ ~ √(2 × ln(1000)) ~ 4-5 (lower bound)
+```
+
+Including polynomial prefactors and mode shape corrections from BVP:
+
+```
+d_LR/δ ∈ [5, 10] passes Gate 1
+```
+
+### 4. The value 8 is the center of the allowed window [Cal]
+
+The BVP parameter scan found:
+- d_LR/δ = 7 → X_ratio = 2.18 (passes, but high)
+- d_LR/δ = 8 → X_ratio = 1.045 (optimal)
+- d_LR/δ = 9 → X_ratio = 0.49 (passes, but low)
+
+The value 8 is where X_EDC best matches X_target. This is calibration [Cal]
+within a constrained window, not arbitrary tuning.
+
+### 5. The r_p coincidence is suggestive but not derived [I]
+
+```
+d_LR = 8δ = 0.84 fm ≈ r_p = 0.841 fm (0.1% match)
+```
+
+This could mean:
+- Coincidence (both are O(QCD scale))
+- Common origin (Y-junction sets both scales)
+- Constraint propagation (r_p is defined by this chiral scale)
+
+**Status:** The coincidence motivates the Y-junction hypothesis but does not prove it.
+
+**Bottom line:** d_LR ≈ 8δ is:
+- NOT arbitrary (constrained to [5, 10] by G_F gate)
+- NOT derived from 5D action (specific value from scan)
+- COINCIDENT with r_p (suggestive, requires explanation)
+
+**See:** `docs/DLR_FROM_CHIRAL_LOCALIZATION_NOTE.md` for full analysis.
+
+---
+
+*Updated 2026-01-29. For use in publication defense and review.*

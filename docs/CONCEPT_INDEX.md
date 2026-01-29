@@ -1519,6 +1519,48 @@ E_n = ℏω(n + 1/2), ω ~ 1/δ → E₀ = ℏ/(2δ)
 
 ---
 
+### CONCEPT-075: d_LR from Chiral Localization
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/derivations/dlr_from_chiral_localization.tex` |
+| **Summary** | `docs/DLR_FROM_CHIRAL_LOCALIZATION_NOTE.md` |
+| **Book box** | `edc_papers/_shared/boxes/dlr_chiral_localization_box.tex` |
+| **Defense** | `docs/GF_BVP_DEFENSE_NOTES.md` Q6 |
+| **Epistemic tag** | [Dc/Cal] — Constrained by G_F gate, not derived |
+| **Used in** | G_F BVP priors, weak sector |
+
+**Result:**
+```
+d_LR = 8δ = 0.84 fm ≈ r_p (proton radius)
+```
+
+**Key findings:**
+1. Single domain wall gives d_LR = 0 [Der]
+   - For m(χ) = μ tanh(χ/δ), only one chirality localizes at wall center
+2. d_LR > 0 requires additional structure [Der]
+   - Two walls, Yukawa coupling, or Y-junction geometry
+3. G_F gate constrains d_LR/δ ∈ [5, 10] [Dc]
+   - Exponential suppression I_4 ∝ exp(-d_LR²/2σ²)
+4. BVP scan gives d_LR/δ = 8 [Cal]
+   - Center of allowed window
+
+**The r_p coincidence:**
+```
+d_LR = 0.84 fm ≈ r_p = 0.841 fm (0.1% match)
+```
+Status: [I] — Suggestive, not derived. Y-junction geometry could explain it.
+
+**Defendable claim:**
+d_LR/δ ~ 5–10 is REQUIRED by I_4 gate, not arbitrary tuning.
+The value 8 is the center of this window.
+
+**Status:** YELLOW [Dc/Cal] — Constrained, not derived
+
+**Upgrade path:** Derive d_LR from Y-junction geometry; show d_LR = r_p follows
+
+---
+
 ### CONCEPT-073: G_F BVP All-Gates Pass + Defense (YELLOW)
 
 | Field | Value |
