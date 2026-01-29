@@ -597,30 +597,47 @@ Add Book2-ready k-channel cross-validation box + prominent editorial warning.
 - Missing files: 3 → 0 (now correctly resolved)
 - Orphan count: 26 → 23 (the 3 boxes now found as included)
 
-#### Step B: Derivation Library Appendix (in progress)
-- Creating `edc_book_2/src/appendices/APPENDIX_DERIVATION_LIBRARY.tex`
-- Wiring all 23 orphan files:
-  - 13 derivations
-  - 7 boxes (previously 10, minus 3 now found)
-  - 3 lemmas
+#### Step B: Derivation Library Appendix (COMPLETE)
+- Created `edc_book_2/src/appendices/APPENDIX_DERIVATION_LIBRARY.tex`
+- Structure:
+  - Reference tables for 13 standalone derivations (cannot be \input directly)
+  - Included 1 lemma (projection_reduction_lemma.tex)
+  - Included 7 boxes (all includable boxes now wired)
+- Added `\EDCPAPERS` macro to main document for consistent paths
+
+#### Step C: Path Architecture (COMPLETE)
+- Defined `\newcommand{\EDCPAPERS}{../../edc_papers}` in main.tex
+- Updated existing includes in sections to use `\EDCPAPERS` macro
+- Updated parser to expand `\EDCPAPERS` macro
+
+#### Step D: LaTeX Sweep (COMPLETE)
+- Compilation: PASS (481 pages)
+- Undefined references: 0
+- Multiply defined labels: 0
+- Created `docs/LATEX_SWEEP_REPORT.md`
 
 ### Files Modified
-- `edc_book_2/tools/book2_manifest.py` — Parser fix
-- `edc_book_2/docs/BOOK2_MANIFEST.md` — Regenerated (0 missing)
-- `edc_book_2/docs/BOOK2_ORPHANS_REPORT.md` — Regenerated (23 orphans)
+- `edc_book_2/tools/book2_manifest.py` — Parser fix + macro expansion
+- `edc_book_2/src/EDC_Part_II_Weak_Sector_rebuild.tex` — Added \EDCPAPERS macro + appendix wire
+- `edc_book_2/src/sections/11_gf_derivation.tex` — Use \EDCPAPERS macro
+- `edc_book_2/src/sections/12_epistemic_map.tex` — Use \EDCPAPERS macro
+- `edc_book_2/docs/BOOK2_MANIFEST.md` — Regenerated
+- `edc_book_2/docs/BOOK2_ORPHANS_REPORT.md` — Regenerated
 
-### Files Created (pending)
+### Files Created
 - `edc_book_2/src/appendices/APPENDIX_DERIVATION_LIBRARY.tex`
+- `edc_book_2/docs/LATEX_SWEEP_REPORT.md`
 
 ### Results
-- Parser now correctly resolves all paths
-- Missing files = 0
+- Parser: Missing files = 0
+- Orphans: 26 → 15 (11 files integrated as includable content)
+- Remaining 15: standalone derivations (reference tables provided)
+- Compilation: PASS (481 pages)
+- All undefined references resolved
 
 ### Next Steps
-1. Complete Derivation Library appendix
-2. Wire into main.tex
-3. LaTeX sweep
-4. Final manifest regeneration
+1. Commit all changes
+2. Consider converting standalone derivations to includable format (optional)
 
 ---
 
