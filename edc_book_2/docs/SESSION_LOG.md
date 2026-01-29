@@ -905,6 +905,63 @@ TEASER WIRED: edc_book_2/src/main.tex:738
 
 ---
 
+## 2026-01-29 — Repo-Wide Cleanup Audit
+
+### Goal
+- Comprehensive scan for LLM/log artifacts across entire repo
+- Check standalone derivations have .include.tex siblings
+- Apply safe patches (only actual artifacts, not documentation)
+
+### Work Performed
+
+#### Tool Creation
+- Created `tools/repo_cleanup_audit.py`:
+  - Scans 284 files across edc_book_2/src, edc_papers/_shared, docs
+  - Detects LLM patterns: "END OUTPUT", "Session Summary", "PASS (N pages)", etc.
+  - Smart exclusion: Documentation files (AUDIT, LOG, REPORT) are preserved
+  - Checks standalone derivations for .include.tex siblings
+
+#### Audit Results
+| Metric | Value |
+|--------|-------|
+| Files scanned | 284 |
+| Issues found | 21 |
+| Marked DELETE | 0 |
+| Marked KEEP | 21 |
+| Lines deleted | 0 |
+| Files modified | 0 |
+
+All 21 "issues" are legitimate documentation entries in SESSION_LOG and AUDIT files.
+
+#### Standalone Derivations Check
+- 13 standalone files checked
+- 13 have .include.tex siblings ✓
+- 0 missing
+
+#### Specific File Checks (per prompt)
+- `delta_from_5d_action_proton_scale.tex`: Clean ✓
+- `dlr_from_chiral_localization.tex`: Clean ✓
+- `fw_from_stability_and_spectrum.tex`: Clean ✓
+- `gf_noncircular_chain_framework.tex`: Clean ✓
+- `israel_zn_fixed_points_anchors.tex`: Clean ✓
+- `zn_toy_functional_from_5d_action.tex`: Clean ✓
+
+#### Compilation
+- **Status:** PASS (604 pages)
+- **Undefined refs:** 0
+- **Multiply-defined labels:** 0
+
+### Conclusion
+**The codebase is clean.** No LLM artifacts in source files or derivations.
+All "PASS (N pages)" entries are in documentation files where they belong.
+
+### Files Created
+- `tools/repo_cleanup_audit.py`
+- `docs/REPO_CLEANUP_AUDIT.md`
+- `docs/REPO_CLEANUP_PATCHLOG.md`
+
+---
+
 ## 2026-01-29 — Full Cleanup Audit (Single-Pass)
 
 ### Goal
