@@ -1,0 +1,202 @@
+% ═══════════════════════════════════════════════════════════════════════════════
+% PROJECTION-REDUCTION LEMMA
+% ═══════════════════════════════════════════════════════════════════════════════
+%
+% File: projection_reduction_lemma.tex
+% Created: 2026-01-29
+% Status: CANONICAL
+% Epistemic: [Der] - Derived from bulk→brane geometry
+%
+% Usage: \input{edc_papers/_shared/lemmas/projection_reduction_lemma.tex}
+%
+% Dependencies: amsmath, amsthm, physics (optional)
+%
+% ═══════════════════════════════════════════════════════════════════════════════
+
+% -------------------------------------------------------------------------------
+% SETUP (assumes theorem environments defined in parent document)
+% -------------------------------------------------------------------------------
+% If not defined, uncomment:
+% \newtheorem{lemma}{Lemma}
+% \newtheorem{corollary}{Corollary}
+% \theoremstyle{definition}
+% \newtheorem{definition}{Definition}
+
+% -------------------------------------------------------------------------------
+% DEFINITION: PROJECTION OPERATOR
+% -------------------------------------------------------------------------------
+\begin{definition}[Brane Projection Operator]
+\label{def:projection-operator}
+Let $\Phi(x,\chi)$ be a bulk field where $x \in \mathbb{R}^{3,1}$ (4D spacetime)
+and $\chi$ is the extra-dimensional coordinate. Let the brane have localization
+profile $w(\chi) \geq 0$ normalized as $\int d\chi\, w(\chi) = 1$.
+
+The \textbf{projection operator} $\mathcal{P}_w$ is defined by:
+\begin{equation}
+\label{eq:projection-operator}
+\phi(x) := (\mathcal{P}_w \Phi)(x) = \int d\chi\, w(\chi)\, \Phi(x,\chi)
+\end{equation}
+
+For any bulk quantity $F(x,\chi)$, the \textbf{projected expectation} is:
+\begin{equation}
+\label{eq:projected-expectation}
+\langle F \rangle_w(x) := \int d\chi\, w(\chi)\, F(x,\chi)
+\end{equation}
+\end{definition}
+
+% -------------------------------------------------------------------------------
+% MAIN LEMMA
+% -------------------------------------------------------------------------------
+\begin{lemma}[Projection-Reduction Principle]
+\label{lem:projection-reduction}
+Bulk $\to$ brane observation is linear projection. All 4D observables are
+weighted averages of bulk structure. This principle has three universal
+manifestations:
+\end{lemma}
+
+% -------------------------------------------------------------------------------
+% CASE (A): EFFECTIVE LAGRANGIAN
+% -------------------------------------------------------------------------------
+\paragraph{Case (A): Reduced Effective Lagrangian.}
+\label{par:case-a-lagrangian}
+
+If the bulk action is:
+\begin{equation}
+\label{eq:bulk-action}
+S[\Phi] = \int d^4x\, d\chi \left[ \frac{1}{2} K(\chi)(\partial\Phi)^2 - U(\Phi,\chi) \right]
+\end{equation}
+
+Then for low-mode dynamics $\Phi(x,\chi) \approx \phi(x) f(\chi)$ with localized $f$:
+\begin{equation}
+\label{eq:effective-action}
+S_{\text{eff}}[\phi] = \int d^4x \left[ \frac{1}{2} Z (\partial\phi)^2 - V_{\text{eff}}(\phi) \right]
+\end{equation}
+
+where the \textbf{effective coefficients} are integrals:
+\begin{align}
+\label{eq:wave-renormalization}
+Z &= \int d\chi\, K(\chi)\, f(\chi)^2 \\[6pt]
+\label{eq:effective-potential}
+V_{\text{eff}}(\phi) &= \int d\chi\, U(\phi f(\chi), \chi)
+\end{align}
+
+\textit{Interpretation:} All bulk details (geometry, tension, brane thickness)
+enter only through integral weights.
+
+% -------------------------------------------------------------------------------
+% CASE (B): CHIRALITY SELECTION
+% -------------------------------------------------------------------------------
+\paragraph{Case (B): Chirality as Projection Selection.}
+\label{par:case-b-chirality}
+
+Let bulk fermion $\Psi(x,\chi)$ have different localization profiles for
+left/right components:
+\begin{align}
+\label{eq:left-projection}
+\psi_L(x) &= \int d\chi\, w_L(\chi)\, \Psi_L(x,\chi) \\[6pt]
+\label{eq:right-projection}
+\psi_R(x) &= \int d\chi\, w_R(\chi)\, \Psi_R(x,\chi)
+\end{align}
+
+Define the \textbf{chirality overlap}:
+\begin{equation}
+\label{eq:chirality-overlap}
+\varepsilon := \int d\chi\, w_L(\chi)\, w_R(\chi)
+\end{equation}
+
+\textbf{Chirality Selection Criterion:}
+\begin{equation}
+\label{eq:va-criterion}
+\boxed{\varepsilon \ll 1 \quad \Longrightarrow \quad \text{Effective theory is dominantly chiral (V--A like)}}
+\end{equation}
+
+\textit{Interpretation:} Chirality emerges geometrically from overlap suppression,
+without invoking specific gauge structure.
+
+% -------------------------------------------------------------------------------
+% CASE (C): BARRIER AND TUNNELING
+% -------------------------------------------------------------------------------
+\paragraph{Case (C): Effective Barrier and Tunneling.}
+\label{par:case-c-barrier}
+
+Let reaction coordinate $q$ (topological deformation) have $\chi$-dependent
+potential $V(q,\chi)$.
+
+The \textbf{projected potential} is:
+\begin{equation}
+\label{eq:projected-potential}
+V_{\text{eff}}(q) = \int d\chi\, w(\chi)\, V(q,\chi)
+\end{equation}
+
+If bulk has pinning energy $+\kappa(\chi) q^2$:
+\begin{equation}
+\label{eq:pinning-potential}
+V_{\text{eff}}(q) = V_0(q) + \langle\kappa\rangle_w\, q^2
+\end{equation}
+
+where the \textbf{effective pinning constant} is:
+\begin{equation}
+\label{eq:effective-pinning}
+\kappa_{\text{eff}} := \langle\kappa\rangle_w = \int d\chi\, w(\chi)\, \kappa(\chi) > 0
+\quad \Longrightarrow \quad \Delta V_{\text{barrier}} > 0
+\end{equation}
+
+\textit{Interpretation:} WKB tunneling exponents become functions of projected
+parameters.
+
+% -------------------------------------------------------------------------------
+% UNIVERSAL CONSEQUENCES
+% -------------------------------------------------------------------------------
+\paragraph{Three Universal Consequences.}
+\begin{enumerate}
+    \item \textbf{Effective coefficients are integrals:} $Z$, $\kappa_{\text{eff}}$,
+          $V_{\text{eff}}$ all arise from $\int d\chi\, w(\chi) \times (\text{bulk quantity})$
+    \item \textbf{Chirality is geometrically selected:} $\varepsilon \ll 1$
+          produces V--A without fine-tuning
+    \item \textbf{Barriers are projections:} Tunneling rates depend on
+          projected energy profiles
+\end{enumerate}
+
+% -------------------------------------------------------------------------------
+% EDC APPLICATION COROLLARY
+% -------------------------------------------------------------------------------
+\begin{corollary}[EDC Breadth Mapping]
+\label{cor:edc-breadth}
+In Elastic Diffusive Cosmology, three distinct phenomena are manifestations
+of the same Projection-Reduction Principle:
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{EDC Result} & \textbf{Lemma Case} & \textbf{Key Parameter} \\
+\hline
+EM projection & Case (A) & $Z = \int K f^2$ \\
+V--A from boundary & Case (B) with $\varepsilon \ll 1$ & $\varepsilon$ \\
+Nuclear tunneling / pinning & Case (C) & $\kappa_{\text{eff}}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\textit{Canonical statement:} We adopt a single projection-reduction principle.
+EM, chiral weak structure, and nuclear barrier tunneling appear as different
+sectoral manifestations of the same bulk$\to$brane projection operator.
+\end{corollary}
+
+% -------------------------------------------------------------------------------
+% CROSS-SECTOR BRIDGE
+% -------------------------------------------------------------------------------
+\paragraph{Cross-Sector Power.}
+\label{par:cross-sector}
+
+This lemma connects three sectors with one formalism:
+\[
+\text{EM} \longleftrightarrow \text{Weak} \longleftrightarrow \text{Nuclear}
+\quad \text{(via } \mathcal{P}_w \text{)}
+\]
+
+Status: \textbf{[Der]} for individual cases; \textbf{[P]} for universal operator
+unification (requires formal proof of uniqueness).
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% END OF LEMMA
+% ═══════════════════════════════════════════════════════════════════════════════

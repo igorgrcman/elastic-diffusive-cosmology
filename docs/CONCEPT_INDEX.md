@@ -395,6 +395,32 @@ Status: NOT coincidence - connects to N_g = 3 via Z_3
 
 ---
 
+### CONCEPT-040: Projection-Reduction Lemma
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/lemmas/projection_reduction_lemma.tex` |
+| **Location** | Lemma \ref{lem:projection-reduction}, Definition \ref{def:projection-operator} |
+| **Epistemic tag** | [Der] for individual cases; [P] for universal operator unification |
+| **Used in** | EM projection, V-A chirality, Nuclear tunneling, Cross-sector breadth |
+
+**Definition:**
+```
+Projection Operator: φ(x) = ∫ dχ w(χ) Φ(x,χ)
+
+Case (A): Effective Lagrangian — Z, V_eff as bulk integrals
+Case (B): Chirality Selection — ε = ∫w_L w_R ≪ 1 → V-A
+Case (C): Barrier/Tunneling — κ_eff = ⟨κ⟩_w → pinning
+```
+
+**One-liner:**
+> "Bulk → brane observation is linear projection; all 4D observables are weighted averages of bulk structure."
+
+**Cross-sector power:**
+- EM ↔ Weak ↔ Nuclear connected via single formalism 𝒫_w
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:
@@ -429,4 +455,4 @@ See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical trap
 
 ---
 
-*Last updated: 2026-01-28*
+*Last updated: 2026-01-29*

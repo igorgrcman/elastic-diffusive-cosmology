@@ -6,7 +6,7 @@
 
 ## Priority 0: Breadth Strategy (NEW — 2026-01-29)
 
-- [ ] **Formalize Projection Lemma in LaTeX** — universal operator for EM/V-A/tunneling
+- [x] **Formalize Projection Lemma in LaTeX** — `edc_papers/_shared/lemmas/projection_reduction_lemma.tex` (2026-01-29)
 - [ ] **Δm_np sensitivity analysis** — dimensionless rewrite, robustness check
 - [ ] **σ dependency audit** — complete table, identify master parameter role
 - [ ] **Flavor Skeleton v0.1** — N_g=3 + θ_23 + qualitative CP constraint
@@ -72,4 +72,4 @@
 
 ---
 
-*Last updated: 2026-01-28*
+*Last updated: 2026-01-29*

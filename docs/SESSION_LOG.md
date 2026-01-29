@@ -273,6 +273,40 @@ Harden the workflow so CC never gets confused about paths again.
 
 ---
 
+## 2026-01-29 (cont'd) — Projection-Reduction Lemma Formalization
+
+### Goal
+Formalize the Projection-Reduction Principle in LaTeX as first Priority 0 task.
+
+### Files Created
+1. `edc_papers/_shared/lemmas/projection_reduction_lemma.tex` — NEW
+   - Definition: Brane Projection Operator 𝒫_w
+   - Lemma: Projection-Reduction Principle
+   - Case (A): Effective Lagrangian (Z, V_eff as integrals)
+   - Case (B): Chirality Selection (ε ≪ 1 → V-A)
+   - Case (C): Barrier/Tunneling (κ_eff from projection)
+   - Corollary: EDC Breadth Mapping
+   - Cross-sector power: EM ↔ Weak ↔ Nuclear
+
+2. `edc_papers/_shared/lemmas/test_compile.tex` — Compile test (passes)
+
+### Files Modified
+1. `docs/CONCEPT_INDEX.md` — Added CONCEPT-040: Projection-Reduction Lemma
+2. `docs/TODO.md` — Marked "Formalize Projection Lemma in LaTeX" as complete
+3. `docs/SESSION_LOG.md` — This entry
+
+### What This Enables
+- Single `\input{edc_papers/_shared/lemmas/projection_reduction_lemma.tex}` for any document
+- Formal reference for cross-sector breadth claims
+- Clear epistemic status: [Der] for individual cases, [P] for universal unification
+
+### Next Steps
+1. Δm_np sensitivity analysis (dimensionless rewrite, robustness check)
+2. σ dependency audit (complete table)
+3. Flavor Skeleton v0.1
+
+---
+
 ## Template for Future Sessions
 
 ```markdown
