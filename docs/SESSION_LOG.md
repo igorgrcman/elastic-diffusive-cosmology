@@ -273,6 +273,44 @@ Harden the workflow so CC never gets confused about paths again.
 
 ---
 
+## 2026-01-29 (cont'd pt3) — Δm_np Model Reconciliation
+
+### Goal
+Reconcile Z_6 ring (8/π) and dimensional (5/2+4α) models for Δm_np.
+
+### Key Result
+
+**ε = 0.679%** connects the two models:
+```
+(8/π)(1 - ε) = 5/2 + 4α   ✓
+```
+
+### Interpretation
+
+- **8/π** = bare geometric limit (Z_6 ring, no EM corrections)
+- **5/2 + 4α** = EM-renormalized result
+- **ε** = electromagnetic correction from Dirac spinor loops
+
+### Candidate ε Origins (Ranked)
+
+| Rank | Candidate | Plausibility | Breadth Link |
+|------|-----------|--------------|--------------|
+| 1 | Factor 2 (EM correction) | HIGH | Isospin splittings |
+| 2 | Elastic ansatz (q^(2-δ)) | MEDIUM | Nuclear binding |
+| 3 | Ring geometry (π→π_eff) | MEDIUM | sin²θ_W |
+| 4 | Charge-angle coupling | LOW | CKM/PMNS |
+
+### Files Created
+- `docs/DELTA_MNP_RECONCILIATION.md` — full analysis
+
+### Files Modified
+- `CLAIM_LEDGER.md` — Added CL-10.3, updated CL-10.1
+
+### Next Test
+Check pion mass splitting for analogous EM correction structure.
+
+---
+
 ## 2026-01-29 (cont'd pt2) — Δm_np Sensitivity Analysis
 
 ### Goal

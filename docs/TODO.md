@@ -1,6 +1,6 @@
 # TODO.md — EDC_Project Workspace Actions
 
-**Last updated:** 2026-01-28
+**Last updated:** 2026-01-29
 
 ---
 
@@ -9,6 +9,8 @@
 - [x] **Formalize Projection Lemma in LaTeX** — `edc_papers/_shared/lemmas/projection_reduction_lemma.tex` (2026-01-29)
 - [x] **Δm_np sensitivity analysis** — `docs/DELTA_MNP_SENSITIVITY.md` (2026-01-29)
       Result: ROBUST to σ/δ/L_0/w; FRAGILE to Z_6 structure
+- [x] **Δm_np model reconciliation** — `docs/DELTA_MNP_RECONCILIATION.md` (2026-01-29)
+      Result: ε = 0.679% connects (8/π) and (5/2+4α); 8/π = bare, 5/2+4α = EM-renormalized
 - [ ] **σ dependency audit** — complete table, identify master parameter role
 - [ ] **Flavor Skeleton v0.1** — N_g=3 + θ_23 + qualitative CP constraint
 - [ ] **G_F constraint note** — if derivation is RED, set constraint window instead
