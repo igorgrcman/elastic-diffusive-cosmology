@@ -520,6 +520,67 @@ Add Book2-ready k-channel cross-validation box + prominent editorial warning.
 
 ---
 
+## 2026-01-29 — Book2 Chapter Inventory + Full Include Manifest
+
+### Goal
+- Create comprehensive inventory of Book2 chapter structure
+- Generate machine-readable include graph
+- Identify orphan derivations/boxes not yet integrated
+- Create integration plan
+
+### Work Performed
+- Created `edc_book_2/tools/book2_manifest.py`
+  - Recursive LaTeX parser for \input, \include, \subfile
+  - Path normalization (adds .tex, resolves relative paths)
+  - Ignores commented includes
+  - Outputs: chapter list, manifest, graph (md+json), orphans report
+- Generated `edc_book_2/docs/BOOK2_CHAPTER_LIST.md`
+  - 65 numbered sections identified (Ch 0-20 + subsections + meta)
+  - Total ~28,000 lines of chapter content
+- Generated `edc_book_2/docs/BOOK2_MANIFEST.md`
+  - 83 total files, 33,668 total lines
+  - Max depth: 3
+  - 3 missing files identified
+- Generated `edc_book_2/docs/BOOK2_INCLUDE_GRAPH.json`
+  - Machine-readable graph (83 nodes, 82 edges)
+- Generated `edc_book_2/docs/BOOK2_INCLUDE_GRAPH.md`
+  - Mermaid visualization (depth ≤ 3)
+- Generated `edc_book_2/docs/BOOK2_ORPHANS_REPORT.md`
+  - 26 orphan files in edc_papers/_shared/:
+    - 13 derivations (G_F, Z_N related)
+    - 10 boxes
+    - 3 lemmas
+- Created `edc_book_2/docs/BOOK2_INTEGRATION_PLAN.md`
+  - Priority 1: G_F derivations → ch11, ch14
+  - Priority 2: Z_N k-channel → ch12
+  - Missing files list (need creation)
+  - Integration procedure
+
+### Results
+- Full Book2 structure now documented
+- 26 orphan files identified for integration
+- 3 missing files need creation:
+  - gf_constraint_box.tex (referenced but not found)
+  - kchannel_spinchain_crossval_box.tex (referenced but not found)
+  - gf_bvp_allgates_physical_priors_box.tex (referenced but not found)
+
+### Files Created
+- `edc_book_2/tools/book2_manifest.py`
+- `edc_book_2/docs/BOOK2_CHAPTER_LIST.md`
+- `edc_book_2/docs/BOOK2_MANIFEST.md`
+- `edc_book_2/docs/BOOK2_INCLUDE_GRAPH.json`
+- `edc_book_2/docs/BOOK2_INCLUDE_GRAPH.md`
+- `edc_book_2/docs/BOOK2_ORPHANS_REPORT.md`
+- `edc_book_2/docs/BOOK2_INTEGRATION_PLAN.md`
+
+### Next Steps
+1. Create missing box files
+2. Integrate orphan derivations per integration plan
+3. Re-run manifest to verify orphan count decreases
+4. Test LaTeX compilation after integration
+
+---
+
 ```markdown
 ## YYYY-MM-DD — [Session Title]
 
