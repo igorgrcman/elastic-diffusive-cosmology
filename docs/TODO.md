@@ -139,10 +139,12 @@
       Result: LR elasticity=-6.5 (dominant), fw elasticity=+1.3 (secondary)
       Key finding: d_LR = 8δ = 0.84 fm ≈ r_p (proton radius)
 - [ ] **Derive V(χ) from 5D action reduction** — Upgrade background from [Dc] to [Der]
-- [ ] **Upgrade G_F BVP YELLOW → GREEN** — Three derivations required:
-      1. Derive δ = ℏ/(2m_p) from 5D action (no tuning)
-      2. Derive d_LR from chiral localization / junction geometry
-      3. Derive fw from BVP stability or eigenvalue constraints
+- [~] **Upgrade G_F BVP YELLOW → GREEN** — Three derivations required:
+      1. [x] Derive δ = ℏ/(2m_p) from 5D action — DONE (2026-01-29)
+         `edc_papers/_shared/derivations/delta_from_5d_action_proton_scale.tex`
+         Status: [Dc] — principled but model-dependent coefficient
+      2. [ ] Derive d_LR from chiral localization / junction geometry
+      3. [ ] Derive fw from BVP stability or eigenvalue constraints
       See: `docs/GF_BVP_DEFENSE_NOTES.md` Q5
 
 ---

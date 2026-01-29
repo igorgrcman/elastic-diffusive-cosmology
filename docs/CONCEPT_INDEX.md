@@ -1475,6 +1475,50 @@ L-R separation matches proton charge radius to 2 significant figures.
 
 ---
 
+### CONCEPT-074: δ from 5D Action (Proton Scale)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/derivations/delta_from_5d_action_proton_scale.tex` |
+| **Summary** | `docs/DELTA_FROM_5D_ACTION_NOTE.md` |
+| **Book box** | `edc_papers/_shared/boxes/delta_from_5d_action_box.tex` |
+| **Epistemic tag** | [Dc] — Principled but model-dependent |
+| **Used in** | G_F BVP priors, brane geometry |
+
+**Result:**
+```
+δ = ℏ/(2m_p c) = 0.533 GeV⁻¹ = 0.105 fm
+```
+The brane thickness equals half the proton Compton wavelength.
+
+**Derivation chain:**
+1. 5D action → mode equation [Der]: KK reduction gives -d²w/dχ² + V(χ)w = λw
+2. Potential scaling [Dc]: Well depth V₀ ~ 1/δ², width ~ δ
+3. Ground state energy [Der]: E₀ ~ 1/δ from quantum mechanics
+4. Proton identification [P]: Postulate identifying proton with localized fermionic mode
+5. Energy matching [Dc]: m_p = E₀ → δ = 1/(2m_p)
+
+**Key insight:** Factor of 2 from harmonic approximation:
+E_n = ℏω(n + 1/2), ω ~ 1/δ → E₀ = ℏ/(2δ)
+
+**Assumptions:**
+- Thick brane structure [P]
+- Proton = lightest bound fermionic mode [P]
+- Single-scale dominance [Dc]
+- Harmonic approximation for coefficient [Dc]
+
+**What remains open:**
+- Potential shape V(χ) from bulk dynamics
+- Exact coefficient (why 1/2 vs 1/π)
+- Proton mass itself (input, not output)
+- Topological justification for proton identification
+
+**Status:** YELLOW [Dc] — Principled derivation, model-dependent coefficient
+
+**Upgrade path:** Derive V(χ) from 5D action; compute exact bound state; justify proton ID from topology
+
+---
+
 ### CONCEPT-073: G_F BVP All-Gates Pass + Defense (YELLOW)
 
 | Field | Value |

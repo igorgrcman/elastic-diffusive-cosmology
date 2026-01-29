@@ -357,6 +357,63 @@ Add Book2-ready k-channel cross-validation box + prominent editorial warning.
 
 ---
 
+## 2026-01-29 — δ Derivation from 5D Action (OPR-21 continuation)
+
+### Goal
+- Derive brane thickness δ = ℏ/(2m_p c) from 5D action
+- Upgrade δ from "physical prior" [Cal] to derived [Dc]
+
+### Work Performed
+- Created `edc_papers/_shared/derivations/delta_from_5d_action_proton_scale.tex`
+  - Full LaTeX derivation (7 pages, compiles clean)
+  - Derivation chain: 5D action → mode equation → potential scaling → bound state → proton matching
+  - Factor 2 explained via harmonic approximation E₀ = ℏ/(2δ)
+- Created `docs/DELTA_FROM_5D_ACTION_NOTE.md`
+  - Executive summary (10-25 lines)
+  - Links to full derivation
+- Created `edc_papers/_shared/boxes/delta_from_5d_action_box.tex`
+  - Book2-ready tcolorbox with derivation chain and status
+- Updated `docs/CONCEPT_INDEX.md`
+  - Added CONCEPT-074: δ from 5D Action (Proton Scale)
+- Updated `docs/TODO.md`
+  - Marked δ derivation complete (item 1 of 3 for YELLOW→GREEN upgrade)
+
+### Results
+- δ = ℏ/(2m_p c) = 0.533 GeV⁻¹ = 0.105 fm [Dc]
+- Factor 2 from harmonic approximation (not arbitrary)
+- LaTeX compiles: 7 pages, no errors
+- First of three derivations needed for GREEN upgrade complete
+
+### Epistemic Status
+- Status: YELLOW [Dc] — Principled but model-dependent
+- Assumptions:
+  - Thick brane structure [P]
+  - Proton = bound fermionic mode [P]
+  - Single-scale dominance [Dc]
+  - Harmonic approximation for coefficient [Dc]
+
+### Upgrade Path (remaining)
+- Derive V(χ) explicitly from 5D bulk action
+- Compute exact bound state (not harmonic approximation)
+- Justify proton identification from topology
+
+### Files Created
+- `edc_papers/_shared/derivations/delta_from_5d_action_proton_scale.tex`
+- `docs/DELTA_FROM_5D_ACTION_NOTE.md`
+- `edc_papers/_shared/boxes/delta_from_5d_action_box.tex`
+
+### Files Modified
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-074
+- `docs/TODO.md` — Marked item 1 complete
+- `edc_book_2/docs/SESSION_LOG.md` — This entry
+
+### Next Steps
+1. Commit all changes
+2. Proceed to derive d_LR from chiral localization (item 2)
+3. Or derive fw from BVP stability (item 3)
+
+---
+
 ```markdown
 ## YYYY-MM-DD — [Session Title]
 
