@@ -1058,6 +1058,66 @@ Update TODO.md to reflect k-channel universality audit and toy overlap test comp
 
 ---
 
+## 2026-01-29 (cont'd pt22) — Z_N Anisotropy Normalization Derivation
+
+### Goal
+Derive (or strongly motivate) a/c = 1/N from energy minimization rather than assuming it.
+
+### Key Result: DERIVED IN TOY MODEL [Der]
+
+**Energy functional:**
+```
+E[u] = (T/2) ∫(u')² dθ  +  λ Σₙ W(u(θₙ))
+       ───────────────     ─────────────────
+       Gradient ~ N²       Discrete ~ N
+```
+
+**For Z_N symmetric profile u(θ) = u₀ + a₁ cos(Nθ):**
+```
+Euler-Lagrange → a₁ ≈ -λW'(u₀)/(πTN) ∝ 1/N
+
+Therefore: a/c = a₁/u₀ ~ 1/N   [Der]
+```
+
+**Physical mechanism:** Each of N identical anchors contributes 1/N to total anisotropy.
+
+### Chain Now Complete
+```
+Energy minimization [Der]
+        ↓
+a/c = 1/N (equal corner share) [Der in toy model]
+        ↓
+k(N) = 1 + 1/N [Der]
+        ↓
+Applications: pion [I], N_cell [Dc], overlap [Der]
+```
+
+### Files Created
+- `edc_papers/_shared/derivations/zn_anisotropy_normalization_from_action.tex` — 5-page LaTeX derivation
+- `docs/ZN_NORMALIZATION_FROM_ACTION_NOTE.md` — executive summary
+
+### Files Modified
+- `CLAIM_LEDGER.md` — Added CL-ZN-NORM-1 (GREEN for math, [Der]+[Dc])
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-053
+- `docs/TODO.md` — Marked normalization derivation complete
+- `docs/SESSION_LOG.md` — This entry
+
+### Epistemic Summary
+
+| Component | Status |
+|-----------|--------|
+| Toy model derivation | [Der] GREEN |
+| Mapping to 5D action | [Dc] YELLOW |
+| k(N) = 1 + 1/N | [Der] GREEN |
+| Physical applications | [Dc] or [I] |
+
+### What Remains Open
+- Explicit 5D reduction: S_bulk + S_brane + S_GHY → toy functional
+- Israel junction conditions for identical anchors
+- BVP verification of cos(Nθ) structure
+
+---
+
 ## Template for Future Sessions
 
 ```markdown

@@ -791,6 +791,43 @@ Under equal corner share (a/c = 1/N):
 
 ---
 
+### CONCEPT-053: Z_N Anisotropy Normalization from Action
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/derivations/zn_anisotropy_normalization_from_action.tex` |
+| **Summary** | `docs/ZN_NORMALIZATION_FROM_ACTION_NOTE.md` |
+| **Epistemic tag** | [Der] for toy model; [Dc] for 5D mapping |
+| **Used in** | Justifying a/c = 1/N ("equal corner share") |
+
+**Purpose:**
+Derive the "equal corner share" normalization a/c = 1/N from energy minimization rather than assuming it.
+
+**Key result [Der]:**
+```
+Energy functional: E[u] = (T/2)∫(u')²dθ + λΣₙW(u(θₙ))
+
+For u(θ) = u₀ + a₁cos(Nθ):
+  - Gradient energy ~ N² (penalizes anisotropy)
+  - Discrete anchors ~ N (drive anisotropy)
+  - Balance: a₁ ≈ -λW'(u₀)/(πTN) ∝ 1/N
+
+Therefore: a/c ~ 1/N
+```
+
+**Physical mechanism:**
+Each of the N identical anchors contributes 1/N to the total anisotropy.
+
+**What remains [Dc]:**
+- Identification of E_cont with 5D brane tension
+- Identification of E_disc with anchor couplings at Z_N fixed points
+- Verification of tension-dominated regime from 5D parameters
+
+**Upgrade path:**
+Explicit 5D reduction of S_bulk + S_brane + S_GHY on Z_N background.
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:

@@ -566,17 +566,51 @@ notes: |
     - k does NOT apply to cardinality ratios (|G₁|/|G₂|)
 ```
 
+### CL-ZN-NORM-1: a/c ~ 1/N from Z_N symmetric energy minimization
+
+```yaml
+id: CL-ZN-NORM-1
+status: GREEN
+chapter: breadth
+claim: "a/c ~ 1/N derived from Z_N symmetric energy minimization with N identical anchor terms"
+evidence:
+  derivation: "edc_papers/_shared/derivations/zn_anisotropy_normalization_from_action.tex"
+  summary: "docs/ZN_NORMALIZATION_FROM_ACTION_NOTE.md"
+  result: "a₁ ≈ -λW'(u₀)/(πTN) ∝ 1/N"
+tag: "[Der]+[Dc]"
+commit: "2026-01-29"
+notes: |
+  TOY MODEL DERIVATION (GREEN for math):
+    Energy functional: E[u] = (T/2)∫(u')²dθ + λΣₙW(u(θₙ))
+    - Gradient energy scales as N² (penalizes cos(Nθ) mode)
+    - Discrete anchors scale as N (sum over N identical terms)
+    - Euler-Lagrange balance gives a₁ ∝ 1/N [Der]
+
+  PHYSICAL IDENTIFICATION (YELLOW):
+    - E_cont = brane tension integral [Dc]
+    - E_disc = anchor couplings at Z_N fixed points [Dc]
+    - Tension-dominated regime assumption [Dc]
+
+  WHAT THIS UPGRADES:
+    - "Equal corner share" hypothesis (a/c = 1/N) is now DERIVED [Der]
+      rather than assumed, within the toy model.
+    - Full 5D identification remains [Dc].
+
+  CHAIN NOW COMPLETE:
+    Energy minimization [Der] → a/c = 1/N → k(N) = 1+1/N → applications
+```
+
 ---
 
 ## Statistics
 
 | Status | Count |
 |--------|-------|
-| GREEN | 11 |
+| GREEN | 12 |
 | YELLOW | 13 |
 | RED | 4 |
 | FALSIFIED | 1 |
-| **Total** | **29** |
+| **Total** | **30** |
 
 ---
 

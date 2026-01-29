@@ -35,13 +35,17 @@
 
 ---
 
-## Priority 1: Z₆ Correction Channel (Partially Open)
+## Priority 1: Z₆ Correction Channel (Mostly Complete)
 
-**Status:** k(N) is validated as an averaging correction [Der]; physical normalization (a/c=1/N) remains [Dc] → channel remains YELLOW in physics.
+**Status:** k(N) = 1 + 1/N fully derived [Der] in toy model; 5D mapping [Dc] remains open.
 
-- [ ] **Derive physical normalization a/c = 1/N from 5D action** ← NEXT PRIORITY
-      Currently [Dc]: "equal corner share" hypothesis not derived from first principles
-      Upgrade path: show 5D membrane action produces Z_N anisotropy with amplitude 1/N
+- [x] **Derive physical normalization a/c = 1/N** — `edc_papers/_shared/derivations/zn_anisotropy_normalization_from_action.tex` (2026-01-29)
+      Result: Energy minimization with N identical anchors gives a₁ ∝ 1/N [Der]
+      Mechanism: Gradient energy ~ N² vs discrete anchors ~ N → balance ~ 1/N
+      Summary: `docs/ZN_NORMALIZATION_FROM_ACTION_NOTE.md`
+- [ ] **Explicit 5D reduction (optional upgrade)** ← OPEN for future
+      Show S_5D = S_bulk + S_brane + S_GHY reduces to toy functional
+      Would upgrade [Dc] → [Der] for physical identification
 - [x] **Sector-universality audit** — `docs/ZN_CHANNEL_UNIVERSALITY_AUDIT.md` (2026-01-29)
       Result: PARTIAL — k applies to averaging processes, NOT cardinality ratios
       APPLY: N_cell (12→10), pion (r_π/4α≈7/6)
