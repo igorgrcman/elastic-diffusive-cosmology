@@ -784,6 +784,27 @@ No insertion needed in edc_book_2. Box already wired in RT-CH3-003_NEUTRON_LIFET
 
 ---
 
+## 2026-01-29 (cont'd pt18) — Update TODO for Z₆/Z_N Status
+
+### Goal
+Update TODO.md to reflect completion of Z₆/Z_N correction channel deliverables.
+
+### Marked DONE
+- Pion splitting ε-check
+- Z₆ correction factor 7/6 hypothesis note
+- Z₆ discrete averaging lemma (LaTeX)
+- Z_N generalization + prediction fork
+- N_cell renorm canonicalization (synthesis + box + claim)
+
+### Added as OPEN (Priority 1)
+- Derive physical normalization a/c = 1/N from 5D action (P1)
+- Sector-universality check: same k(N) in neutron vs pion vs other? (P2)
+
+### Status Note Added
+"Math is [Der], physical normalization (a/c = 1/N) remains [Dc]; keep YELLOW until 5D normalization is derived."
+
+---
+
 ## 2026-01-29 (cont'd pt8) — G_F Constraint Note Patch
 
 ### Goal

@@ -21,10 +21,32 @@
       True prediction: sin²θ_W = 1/4 [Der]; First-principles G_F remains RED-C (open)
 - [x] **Book2 G_F insert** — `edc_papers/_shared/boxes/gf_constraint_box.tex` (2026-01-29)
       LaTeX box + companion MD for Chapter 11; falsification channel documented
+- [x] **Pion splitting ε-check** — `docs/PION_SPLITTING_EPSILON_CHECK.md` (2026-01-29)
+      Result: r_π/(4α) = 1.166 ≈ 7/6; YELLOW (order-of-magnitude match, factor ~5 needs explanation)
+- [x] **Z₆ correction factor 7/6 hypothesis** — `docs/Z6_CORRECTION_FACTOR_7over6.md` (2026-01-29)
+      Hypothesis: k = 1 + 1/|Z₆| = 7/6 from discrete averaging
+- [x] **Z₆ discrete averaging lemma** — `edc_papers/_shared/lemmas/z6_discrete_averaging_lemma.tex` (2026-01-29)
+      Math derivation [Der]: R = 1 + a/c for f(θ) = c + a cos(Nθ)
+- [x] **Z_N generalization + prediction fork** — `edc_papers/_shared/lemmas/zn_discrete_averaging_lemma.tex`, `docs/ZN_CORRECTION_CHANNEL.md` (2026-01-29)
+      General k(N) = 1 + 1/N; prediction fork for N = 3, 4, 6, 12
+- [x] **N_cell renorm canonicalization** — `docs/BREADTH_SYNTHESIS_2026-01-29.md` Section D.3, `edc_papers/_shared/boxes/ncell_renorm_box.tex` (2026-01-29)
+      Result: N_cell_eff = 12 × (6/7) = 10.29 ≈ 10; explains τ_n using N_cell = 10
+      **Status note:** Math is [Der], physical normalization (a/c = 1/N) remains [Dc]; keep YELLOW until 5D normalization is derived.
 
 ---
 
-## Priority 1: Infrastructure (Blocking)
+## Priority 1: Z₆ Correction Channel (Open)
+
+- [ ] **Derive physical normalization a/c = 1/N from 5D action** (P1)
+      Currently [Dc]: "equal corner share" hypothesis not derived from first principles
+      Upgrade path: show 5D membrane action produces Z_N anisotropy with amplitude 1/N
+- [ ] **Sector-universality check** (P2)
+      Does same k(N) apply in neutron vs pion vs other channels?
+      Test: Δm_np ε-dressing, sin²θ_W corrections, other isospin splittings
+
+---
+
+## Priority 2: Infrastructure (Complete)
 
 - [x] Create workspace-level CANON_BUNDLE.md (2026-01-28)
 - [x] Create WORKSPACE_MAP.md (2026-01-28)
@@ -38,7 +60,7 @@
 
 ---
 
-## Priority 2: Book 2 Blocking Issues
+## Priority 3: Book 2 Blocking Issues
 
 - [ ] **Resolve L_0/delta tension** — Why static prefers pi^2, dynamic prefers 9.33?
 - [ ] **Derive prefactor A** from fluctuation determinant (currently [Cal])
@@ -46,7 +68,7 @@
 
 ---
 
-## Priority 3: Model Completion
+## Priority 4: Model Completion
 
 - [ ] Derive geometric factor f = sqrt(delta/L_0) from first principles
 - [ ] Derive frustration energy epsilon_f(A) from 5D action
@@ -54,7 +76,7 @@
 
 ---
 
-## Priority 4: Documentation
+## Priority 5: Documentation
 
 - [ ] Audit all "<1%" vs "~20%" claims for consistency
 - [ ] Update turning points with frustration-corrected G-N law
@@ -62,7 +84,7 @@
 
 ---
 
-## Priority 5: Extensions
+## Priority 6: Extensions
 
 - [ ] Connect topological pinning to drip lines
 - [ ] Test superheavy predictions against experimental data
