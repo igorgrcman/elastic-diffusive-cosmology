@@ -1183,6 +1183,35 @@ Book2-ready box summarizing k-channel cross-validation + prominent editorial war
 
 ---
 
+### CONCEPT-064: LC Ring k-Channel Cross-Validation (Circuit Domain)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `docs/LC_RING_KCHANNEL_CROSSVALIDATION.md` |
+| **Code** | `edc_papers/_shared/code/lc_ring_kchannel_test.py` |
+| **Epistemic tag** | [Der] — mathematical mechanism confirmed in circuit domain |
+| **Used in** | Independent validation of k(N) = 1 + 1/N (second domain) |
+
+**Purpose:**
+Test the discrete averaging mechanism k(N) = 1 + 1/N in a second independent domain (classical circuits) to confirm domain independence.
+
+**Model:**
+- N LC sections in a ring (periodic BC)
+- Capacitor energy density: eC_n = (1/2)C|V_n|²
+- Weighting function f(θ) = c + a·cos(Nθ)
+
+**Results:**
+- R = 1 + a/c confirmed to machine precision (error < 10⁻¹⁵)
+- Under a/c = 1/N: R = k(N) = 1 + 1/N exactly
+- All N values (3–12) pass
+- a/c scan confirms general formula
+
+**Verdict:** GREEN — mathematical mechanism validated in second domain
+
+**Domain independence:** Same ratio in quantum spin chains and classical LC circuits confirms the mechanism is mathematical, not physics-specific.
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:

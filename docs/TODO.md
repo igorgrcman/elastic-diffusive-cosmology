@@ -93,6 +93,11 @@
       Result: **GREEN** — R = 1 + a/c confirmed to machine precision for N = 3,4,5,6,8,10,12
       Under a/c = 1/N: R = k(N) = 1 + 1/N exactly
       Validates mathematical mechanism in independent physical system (XX spin chain)
+- [x] **k(N) cross-validation: LC ring (SPICE-equivalent)** — `docs/LC_RING_KCHANNEL_CROSSVALIDATION.md` (2026-01-29)
+      Code: `edc_papers/_shared/code/lc_ring_kchannel_test.py`
+      Result: **GREEN** — R = 1 + a/c confirmed to machine precision for N = 3,4,5,6,8,10,12
+      Domain independence: same ratio in quantum (spin chain) and classical (LC ring)
+      Confirms mechanism is mathematical, not physics-specific
 
 ---
 

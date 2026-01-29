@@ -942,6 +942,44 @@ notes: |
     - Before: Quantitative Summary subsection
 ```
 
+### CL-KCHAN-XVAL-LC-1: LC ring cross-validation of k(N) averaging mechanism
+
+```yaml
+id: CL-KCHAN-XVAL-LC-1
+status: GREEN
+chapter: breadth
+claim: "k(N) = 1 + 1/N averaging mechanism confirmed in LC ring (SPICE-equivalent)"
+evidence:
+  document: "docs/LC_RING_KCHANNEL_CROSSVALIDATION.md"
+  code: "edc_papers/_shared/code/lc_ring_kchannel_test.py"
+  N_values: [3, 4, 5, 6, 8, 10, 12]
+  precision: "<1e-15 (machine precision)"
+tag: "[Der]"
+commit: "2026-01-29"
+notes: |
+  VALIDATES AVERAGING MECHANISM IN SECOND INDEPENDENT DOMAIN
+
+  WHAT WAS TESTED:
+    - N LC sections in a ring (periodic BC)
+    - Capacitor energy density eC_n = (1/2)C|V_n|²
+    - Weighting function f(θ) = c + a·cos(Nθ)
+    - Ratio R = O_disc / O_cont
+
+  RESULTS (all N values):
+    - R = 1 + a/c: CONFIRMED to machine precision
+    - Under a/c = 1/N: R = k(N) = 1 + 1/N exactly
+    - a/c scan: R = 1 + a/c for all a/c tested
+
+  DOMAIN INDEPENDENCE:
+    - Spin chain (quantum): k(N) = 1 + 1/N ✓
+    - LC ring (classical): k(N) = 1 + 1/N ✓
+    - Confirms mechanism is MATHEMATICAL, not physics-specific
+
+  WHAT THIS DOES NOT VALIDATE:
+    - EDC-specific predictions (pion, N_cell)
+    - Physical origin of "equal corner share" normalization
+```
+
 ### CL-ZN-BOX-1: Z_N k-channel robustness box (book-ready summary)
 
 ```yaml
@@ -979,12 +1017,12 @@ notes: |
 
 | Status | Count |
 |--------|-------|
-| GREEN | 20 |
+| GREEN | 21 |
 | YELLOW | 16 |
 | RED | 4 |
 | FALSIFIED | 1 |
-| **Total** | **41** |
+| **Total** | **42** |
 
 ---
 
-*Claim Ledger v2.5 — Last updated 2026-01-29*
+*Claim Ledger v2.6 — Last updated 2026-01-29*

@@ -1726,6 +1726,58 @@ Add Book2-ready k-channel cross-validation box + prominent editorial warning abo
 
 ---
 
+## 2026-01-29 (cont'd pt33) — LC Ring k-Channel Cross-Validation
+
+### Goal
+Second independent domain test: validate k(N) = 1 + 1/N in classical circuits (LC ring).
+
+### Key Result: **GREEN — DOMAIN INDEPENDENCE CONFIRMED**
+
+**Model:** N LC sections in a ring (SPICE-equivalent eigenmode analysis)
+
+### Results Table
+
+| N | R_num | 1+1/N | error | Status |
+|---|-------|-------|-------|--------|
+| 3 | 1.333333333333 | 1.3333333333 | 0 | PASS |
+| 4 | 1.250000000000 | 1.2500000000 | 0 | PASS |
+| 5 | 1.200000000000 | 1.2000000000 | 0 | PASS |
+| 6 | 1.166666666667 | 1.1666666667 | 0 | PASS |
+| 8 | 1.125000000000 | 1.1250000000 | 2e-16 | PASS |
+| 10 | 1.100000000000 | 1.1000000000 | 2e-16 | PASS |
+| 12 | 1.083333333333 | 1.0833333333 | 0 | PASS |
+
+**a/c scan also passes** for a/c ∈ {0.0, 0.1, 0.2, 0.5, 1.0}
+
+### Domain Independence Summary
+
+| Domain | System | Result |
+|--------|--------|--------|
+| Quantum | Spin chain (XX model) | k(N) = 1+1/N ✓ |
+| Classical | LC ring (circuits) | k(N) = 1+1/N ✓ |
+
+**Conclusion:** Mechanism is mathematical, not physics-specific.
+
+### Files Created
+- `edc_papers/_shared/code/lc_ring_kchannel_test.py` — SPICE-equivalent code
+- `docs/LC_RING_KCHANNEL_CROSSVALIDATION.md` — Results + interpretation
+
+### Files Modified
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-064
+- `edc_papers/.../CLAIM_LEDGER.md` — Added CL-KCHAN-XVAL-LC-1 (GREEN)
+- `docs/TODO.md` — Marked LC ring test DONE
+- `docs/SESSION_LOG.md` — This entry
+
+### Verdict: GREEN
+
+k-channel averaging mechanism validated in TWO independent domains:
+1. Quantum spin chains (XX model, exact diagonalization)
+2. Classical circuits (LC ring, eigenmode analysis)
+
+Both give k(N) = 1 + 1/N at machine precision.
+
+---
+
 ## Template for Future Sessions
 
 ```markdown
