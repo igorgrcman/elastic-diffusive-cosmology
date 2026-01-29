@@ -528,9 +528,40 @@ Create Book 2-ready LaTeX snippet + companion markdown for G_F constraint falsif
 2. **Falsification box:** Target window [0.9,1.1]×G_F, fail criteria (>10× mismatch)
 3. **Cross-references:** GF_CONSTRAINT_NOTE.md, Projection Lemma Case (B)
 
-### Manual Review Needed
-- Test LaTeX compilation: `latexmk -xelatex edc_book_2/src/main.tex`
-- Verify `\input` path resolves correctly from `sections/` subdirectory
+### LaTeX Compilation Test (PASSED)
+- Command: `latexmk -xelatex main.tex` (from `edc_book_2/src/`)
+- Result: Clean compile, 469 pages (1 more than before = box included)
+- Verified via: `grep "gf_constraint" main.fls` → file found in FLS
+- **Path resolution note:** LaTeX `\input` paths resolve relative to working directory (where latexmk invoked), NOT from the file containing the `\input`. Correct path is `../../edc_papers/_shared/boxes/gf_constraint_box` from `edc_book_2/src/`.
+
+### Status
+**COMPLETE** — All Priority 0 Breadth Strategy tasks done.
+
+---
+
+## 2026-01-29 (cont'd pt10) — Breadth Synthesis Note
+
+### Goal
+Create 1-2 page "front door" document synthesizing cross-sector breadth work.
+
+### Files Created
+- `docs/BREADTH_SYNTHESIS_2026-01-29.md` — canonical summary
+
+### Files Modified
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-046
+
+### Content Summary
+- **Section A:** 6-bullet executive summary
+- **Section B:** Projection-Reduction universal mechanism (pointer to lemma)
+- **Section C:** 3 GREEN anchors (N_g=3, sin²θ_W=1/4, Δm_np with ε reconciliation)
+- **Section D:** 2 falsification channels (G_F window, N_cell=12 bridge)
+- **Section E:** σ map (4 ROBUST, 4 FRAGILE)
+- **Section F:** Next 3 tests ranked by cost
+
+### Results
+- Front-door document created for onboarding
+- All claims anchored to existing canon (no new derivations)
+- Falsification channels clearly documented
 
 ---
 

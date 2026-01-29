@@ -582,6 +582,31 @@ sin²θ_W(M_Z) = 0.2314 after standard RG (0.08% from PDG)
 
 ---
 
+### CONCEPT-046: Breadth Synthesis 2026-01-29 (Front Door)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `docs/BREADTH_SYNTHESIS_2026-01-29.md` |
+| **Location** | Full document |
+| **Epistemic tag** | Summary document — no new claims |
+| **Used in** | Session onboarding, cross-sector overview |
+
+**Purpose:**
+Front-door document for EDC cross-sector breadth work. Summarizes:
+- Universal mechanism (Projection-Reduction Lemma)
+- 3 GREEN anchors (N_g=3, sin²θ_W=1/4, Δm_np)
+- 2 falsification channels (G_F constraint, N_cell=12)
+- σ robustness map (where cancels vs fragile)
+- Next 3 tests (ranked cheap→expensive)
+
+**Cross-references:**
+- Projection Lemma: `edc_papers/_shared/lemmas/projection_reduction_lemma.tex`
+- Flavor Skeleton: `docs/FLAVOR_SKELETON_v0.1.md`
+- G_F Constraint: `docs/GF_CONSTRAINT_NOTE.md`
+- σ Audit: `docs/SIGMA_DEPENDENCY_AUDIT.md`
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:
