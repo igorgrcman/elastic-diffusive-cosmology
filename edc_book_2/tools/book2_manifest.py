@@ -226,12 +226,26 @@ def find_orphans(root: IncludeNode) -> Dict[str, List[Path]]:
     """
     Find derivations and boxes that are NOT included in Book2.
 
+    A standalone .tex file is considered "covered" if either:
+    - It is directly included, OR
+    - Its .include.tex sibling is included (generated include body)
+
     Returns dict with keys: 'derivations', 'boxes', 'lemmas'
     """
-    # Collect all included paths
+    # Collect all included paths (both resolved paths and stems for .include matching)
     included = set()
+    included_stems = set()
     for node in flatten_tree(root):
-        included.add(node.path.resolve())
+        resolved = node.path.resolve()
+        included.add(resolved)
+        # Track stem for .include.tex matching
+        stem = node.path.stem
+        if stem.endswith('.include'):
+            # This is an include file - the base standalone is covered
+            base_stem = stem.replace('.include', '')
+            included_stems.add(base_stem)
+        else:
+            included_stems.add(stem)
 
     orphans = {
         'derivations': [],
@@ -244,7 +258,13 @@ def find_orphans(root: IncludeNode) -> Dict[str, List[Path]]:
         category_dir = SHARED_ROOT / category
         if category_dir.exists():
             for tex_file in category_dir.glob('*.tex'):
-                if tex_file.resolve() not in included:
+                # Skip .include.tex files - they're generated, not orphans
+                if '.include.' in tex_file.name:
+                    continue
+
+                stem = tex_file.stem
+                # Check if directly included or covered via .include.tex
+                if tex_file.resolve() not in included and stem not in included_stems:
                     orphans[category].append(tex_file)
 
     return orphans

@@ -642,6 +642,85 @@ Add Book2-ready k-channel cross-validation box + prominent editorial warning.
 
 ---
 
+## 2026-01-29 — Orphan Derivation Integration (Phase 2)
+
+### Goal
+- Eliminate remaining 15 orphan standalone LaTeX docs
+- Create `.include.tex` siblings for each standalone file
+- Wire all derivations into APPENDIX_DERIVATION_LIBRARY.tex
+- Achieve orphan count = 0
+
+### Work Performed
+
+#### Created Generation Tool
+- `edc_book_2/tools/generate_include_files.py`
+- Extracts document body from standalone `.tex` files
+- Strips `\documentclass`, preamble, `\maketitle`, `\tableofcontents`
+- Removes `\begin{abstract}...\end{abstract}` (not defined in Book2 class)
+- Converts `hypothesis` environment to `conjecture` (Book2 compatible)
+- Creates `.include.tex` sibling for each orphan
+
+#### Generated 15 `.include.tex` Files
+In `edc_papers/_shared/derivations/`:
+- `delta_from_5d_action_proton_scale.include.tex`
+- `dlr_from_chiral_localization.include.tex`
+- `fw_from_stability_and_spectrum.include.tex`
+- `gf_noncircular_chain_framework.include.tex`
+- `gf_potential_shapes_from_5d.include.tex`
+- `israel_zn_fixed_points_anchors.include.tex`
+- `prefactor_A_from_fluctuations.include.tex`
+- `zn_anisotropy_normalization_from_action.include.tex`
+- `zn_mode_selection_nonlinear_W.include.tex`
+- `zn_ring_delta_pinning_modes.include.tex`
+- `zn_strong_pinning_regimes.include.tex`
+- `zn_symmetry_breaking_one_defect.include.tex`
+- `zn_toy_functional_from_5d_action.include.tex`
+
+In `edc_papers/_shared/lemmas/`:
+- `z6_discrete_averaging_lemma.include.tex`
+- `zn_discrete_averaging_lemma.include.tex`
+
+#### Rewrote APPENDIX_DERIVATION_LIBRARY.tex
+- Now includes all 15 derivations via `.include.tex` files
+- Organized into sections:
+  - Core Lemmas (3 files)
+  - Z_N/k-Channel Derivations (8 files)
+  - BVP Physical Parameters (3 files)
+  - G_F Non-Circular Chain (2 files)
+  - Summary Boxes (6 files)
+- Uses `\input{\EDCPAPERS/_shared/derivations/xxx.include}` pattern
+
+#### Fixed Parser (book2_manifest.py)
+- Updated `find_orphans()` to recognize `.include.tex` siblings
+- A standalone `.tex` file is now "covered" if its `.include.tex` sibling is included
+- This prevents false orphan reports for files that have been converted
+
+### Results
+- **Orphans**: 15 → **0**
+- **Graph nodes**: 92 → **107** (all derivations now wired)
+- **Compilation**: **PASS** (565 pages)
+- **Missing files**: 0
+- Multiply defined labels: warnings only (expected when including content)
+
+### Files Created
+- `edc_book_2/tools/generate_include_files.py`
+- 15 `.include.tex` files (listed above)
+
+### Files Modified
+- `edc_book_2/src/appendices/APPENDIX_DERIVATION_LIBRARY.tex` (complete rewrite)
+- `edc_book_2/tools/book2_manifest.py` (sibling detection in find_orphans)
+- `edc_book_2/docs/BOOK2_MANIFEST.md` (regenerated)
+- `edc_book_2/docs/BOOK2_ORPHANS_REPORT.md` (regenerated)
+- `edc_book_2/docs/BOOK2_INCLUDE_GRAPH.md` (regenerated)
+- `edc_book_2/docs/BOOK2_INCLUDE_GRAPH.json` (regenerated)
+
+### Next Steps
+1. Commit generation script + appendix wiring + .include.tex files
+2. Commit refreshed manifest outputs
+3. Address any remaining multiply-defined label warnings if desired
+
+---
+
 ```markdown
 ## YYYY-MM-DD — [Session Title]
 

@@ -1,89 +1,33 @@
 % ═══════════════════════════════════════════════════════════════════════════════
 % APPENDIX: DERIVATION LIBRARY
 % All technical derivations used in Book 2, collected for reference.
+% Updated 2026-01-29: All standalone derivations now included via .include.tex
 % ═══════════════════════════════════════════════════════════════════════════════
 
 \chapter*{Appendix: Derivation Library}
 \addcontentsline{toc}{chapter}{Appendix: Derivation Library}
 
 All technical derivations developed during the construction of Book 2 are collected
-in this appendix. Derivations are organized into two categories:
+in this appendix. These derivations support the main narrative but are too detailed
+for inline presentation. Each section indicates its epistemic status using standard
+EDC tags.
 
+\textbf{Organization:}
 \begin{itemize}
-    \item \textbf{Included Content} --- Boxes and lemmas that can be displayed inline
-    \item \textbf{Standalone Documents} --- Full derivations available as separate PDF files
+    \item \textbf{Lemmas} --- Mathematical results reused across multiple derivations
+    \item \textbf{Z$_N$ / k-Channel Derivations} --- Discrete symmetry and averaging mechanisms
+    \item \textbf{BVP Physical Parameters} --- Derivations supporting $\delta$, $d_{LR}$, $f_w$
+    \item \textbf{G$_F$ Non-Circular Chain} --- Framework for Fermi constant derivation
+    \item \textbf{Summary Boxes} --- Quick-reference boxes for key results
 \end{itemize}
 
 % ═══════════════════════════════════════════════════════════════════════════════
-% PART 1: STANDALONE DERIVATIONS (REFERENCE TABLE)
-% These are full documents that compile separately. Reference only.
-% ═══════════════════════════════════════════════════════════════════════════════
-\section*{Standalone Derivation Documents}
-\addcontentsline{toc}{section}{Standalone Derivation Documents}
-
-The following derivations are maintained as standalone \LaTeX{} documents in
-\texttt{edc\_papers/\_shared/derivations/}. Each can be compiled independently
-for detailed review.
-
-\subsection*{Z$_N$ / k-Channel Derivations}
-
-\begin{center}
-\begin{tabular}{p{0.45\textwidth}p{0.15\textwidth}p{0.30\textwidth}}
-\toprule
-\textbf{File} & \textbf{Status} & \textbf{Purpose} \\
-\midrule
-\texttt{israel\_zn\_fixed\_points\_anchors} & \tagDer{} & Israel junction $\to$ Z$_N$ anchors \\
-\texttt{zn\_toy\_functional\_from\_5d\_action} & \tagDc{} & 5D $\to$ 1D toy model mapping \\
-\texttt{zn\_anisotropy\_normalization\_from\_action} & \tagDer{} & $a/c = 1/N$ from gradient energy \\
-\texttt{zn\_ring\_delta\_pinning\_modes} & \tagDer{} & BVP mode selection lemma \\
-\texttt{zn\_mode\_selection\_nonlinear\_W} & \tagDer{} & Robustness: nonlinear $W(u)$ \\
-\texttt{zn\_strong\_pinning\_regimes} & \tagDer{} & Robustness: strong pinning \\
-\texttt{zn\_symmetry\_breaking\_one\_defect} & \tagDer{} & Robustness: defect tolerance \\
-\texttt{z6\_discrete\_averaging\_lemma} & \tagDer{} & Z$_6$ averaging ratio \\
-\texttt{zn\_discrete\_averaging\_lemma} & \tagDer{} & General Z$_N$ averaging \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\subsection*{BVP Physical Parameters}
-
-\begin{center}
-\begin{tabular}{p{0.45\textwidth}p{0.15\textwidth}p{0.30\textwidth}}
-\toprule
-\textbf{File} & \textbf{Status} & \textbf{Purpose} \\
-\midrule
-\texttt{delta\_from\_5d\_action\_proton\_scale} & \tagDc{} & $\delta = \hbar/(2m_p)$ from 5D \\
-\texttt{dlr\_from\_chiral\_localization} & \tagDc{}/\tagCal{} & $d_{LR}/\delta \in [5,10]$ \\
-\texttt{fw\_from\_stability\_and\_spectrum} & \tagDc{}/\tagCal{} & $f_w \in [0.5, 1.2]$ window \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\subsection*{G$_F$ Non-Circular Chain}
-
-\begin{center}
-\begin{tabular}{p{0.45\textwidth}p{0.15\textwidth}p{0.30\textwidth}}
-\toprule
-\textbf{File} & \textbf{Status} & \textbf{Purpose} \\
-\midrule
-\texttt{gf\_noncircular\_chain\_framework} & \tagDer{} & Forward chain without $v$ input \\
-\texttt{gf\_potential\_shapes\_from\_5d} & \tagDc{} & $V(\chi)$ shapes from bulk \\
-\texttt{prefactor\_A\_from\_fluctuations} & \tagDer{} & $A \approx 0.84$ from fluctuations \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\textbf{Note:} To view a standalone derivation, compile the \texttt{.tex} file directly:
-\begin{verbatim}
-  latexmk -xelatex edc_papers/_shared/derivations/<filename>.tex
-\end{verbatim}
-
-% ═══════════════════════════════════════════════════════════════════════════════
-% PART 2: INCLUDED CONTENT (LEMMAS)
+% PART 1: LEMMAS
 % ═══════════════════════════════════════════════════════════════════════════════
 \section*{Core Lemmas}
 \addcontentsline{toc}{section}{Core Lemmas}
 
+% --- Projection-Reduction Lemma ---
 \subsection*{Projection-Reduction Lemma}
 \textbf{Status:} \tagDer{} \\
 \textbf{Purpose:} Core lemma for mode overlap integrals in $G_F$ derivation.
@@ -91,8 +35,151 @@ Establishes Case (A) vs Case (B) for chirality structure.
 
 \input{\EDCPAPERS/_shared/lemmas/projection_reduction_lemma}
 
+% --- Z_6 Discrete Averaging Lemma ---
+\subsection*{Z$_6$ Discrete Averaging Lemma}
+\textbf{Status:} \tagDer{} \\
+\textbf{Purpose:} Shows $R = 1 + a/c$ for discrete averaging over Z$_6$ anchors.
+Specialization of general Z$_N$ result to hexagonal lattice.
+
+\input{\EDCPAPERS/_shared/lemmas/z6_discrete_averaging_lemma.include}
+
+% --- Z_N Discrete Averaging Lemma (General) ---
+\subsection*{Z$_N$ Discrete Averaging Lemma (General)}
+\textbf{Status:} \tagDer{} \\
+\textbf{Purpose:} General result: $k(N) = 1 + 1/N$ for Z$_N$ symmetric averaging.
+Foundation for the k-channel correction mechanism.
+
+\input{\EDCPAPERS/_shared/lemmas/zn_discrete_averaging_lemma.include}
+
 % ═══════════════════════════════════════════════════════════════════════════════
-% PART 3: SUMMARY BOXES
+% PART 2: Z_N / K-CHANNEL DERIVATIONS
+% ═══════════════════════════════════════════════════════════════════════════════
+\section*{Z$_N$ / k-Channel Derivations}
+\addcontentsline{toc}{section}{Z$_N$ / k-Channel Derivations}
+
+% --- Israel Junction Z_N Fixed Points ---
+\subsection*{Israel Junction Conditions at Z$_N$ Fixed Points}
+\textbf{Status:} \tagDer{} \\
+\textbf{Purpose:} Shows Israel junction conditions give Z$_N$ fixed points as
+``identical anchors'' in the discrete averaging framework.
+
+\input{\EDCPAPERS/_shared/derivations/israel_zn_fixed_points_anchors.include}
+
+% --- Z_N Toy Functional from 5D Action ---
+\subsection*{5D Action to Toy Functional Mapping}
+\textbf{Status:} \tagDc{} \\
+\textbf{Purpose:} Reduces 5D brane action to 1D toy functional with
+$T = \sigma/R$, $\lambda = \kappa_5^2 \tau_n$ identification.
+
+\input{\EDCPAPERS/_shared/derivations/zn_toy_functional_from_5d_action.include}
+
+% --- Z_N Anisotropy Normalization ---
+\subsection*{Z$_N$ Anisotropy Normalization from Energy Minimization}
+\textbf{Status:} \tagDer{} \\
+\textbf{Purpose:} Derives $a/c = 1/N$ from gradient energy minimization.
+Key result: $a_1 \propto 1/N$ for $N$ identical anchors.
+
+\input{\EDCPAPERS/_shared/derivations/zn_anisotropy_normalization_from_action.include}
+
+% --- Z_N Ring Delta-Pinning Modes ---
+\subsection*{Z$_N$ Ring Delta-Pinning Mode Structure}
+\textbf{Status:} \tagDer{} \\
+\textbf{Purpose:} BVP analysis showing $\cos(N\theta)$ is unique leading
+anisotropic mode. Selection lemma: only $m = kN$ modes couple to Z$_N$ anchors.
+
+\input{\EDCPAPERS/_shared/derivations/zn_ring_delta_pinning_modes.include}
+
+% --- Z_N Mode Selection Nonlinear W ---
+\subsection*{Z$_N$ Mode Selection under Nonlinear $W(u)$}
+\textbf{Status:} \tagDer{} \\
+\textbf{Purpose:} Robustness theorem: mode index $m = N$ stable under any
+$C^2$ potential with stable minimum. Nonlinearities generate harmonics but
+don't change mode selection.
+
+\input{\EDCPAPERS/_shared/derivations/zn_mode_selection_nonlinear_W.include}
+
+% --- Z_N Strong Pinning Regimes ---
+\subsection*{Z$_N$ Strong Pinning Regime Analysis}
+\textbf{Status:} \tagDer{} \\
+\textbf{Purpose:} Shows selection lemma is geometric --- mode index $m = N$
+stable at any pinning strength $\rho$. Mode shape changes (cosine $\to$ cusp)
+but index doesn't.
+
+\input{\EDCPAPERS/_shared/derivations/zn_strong_pinning_regimes.include}
+
+% --- Z_N Symmetry Breaking One Defect ---
+\subsection*{Z$_N$ Symmetry Breaking: One-Defect Robustness}
+\textbf{Status:} \tagDer{} \\
+\textbf{Purpose:} Perturbation theory for defect: overlap loss scales as
+$O(\epsilon^2)$. k-channel robust to $\sim$10\% defect levels.
+
+\input{\EDCPAPERS/_shared/derivations/zn_symmetry_breaking_one_defect.include}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% PART 3: BVP PHYSICAL PARAMETERS
+% ═══════════════════════════════════════════════════════════════════════════════
+\section*{BVP Physical Parameters}
+\addcontentsline{toc}{section}{BVP Physical Parameters}
+
+% --- Delta from 5D Action ---
+\subsection*{Brane Thickness $\delta$ from 5D Action}
+\textbf{Status:} \tagDc{} \\
+\textbf{Purpose:} Derives $\delta = \hbar/(2m_p c) = 0.105$ fm from 5D action
+mode equation. Energy minimization gives E$_0 \sim 1/\delta$; matching to proton
+mass fixes scale.
+
+\input{\EDCPAPERS/_shared/derivations/delta_from_5d_action_proton_scale.include}
+
+% --- d_LR from Chiral Localization ---
+\subsection*{L-R Separation from Chiral Localization}
+\textbf{Status:} \tagDc{}/\tagCal{} \\
+\textbf{Purpose:} Analyzes L-R center separation from 5D Dirac equation.
+Single domain wall gives $d_{LR} = 0$; non-zero requires two walls or junction.
+$G_F$ gate constrains $d_{LR}/\delta \in [5,10]$.
+
+\input{\EDCPAPERS/_shared/derivations/dlr_from_chiral_localization.include}
+
+% --- f_w from Stability and Spectrum ---
+\subsection*{Fermion Width from Stability and Spectrum}
+\textbf{Status:} \tagDc{}/\tagCal{} \\
+\textbf{Purpose:} Derives fermion width window $f_w \in [0.5, 1.2]$ from
+normalizability, localization, and variational constraints. Specific value
+$f_w = 0.8$ calibrated from $I_4$ gate.
+
+\input{\EDCPAPERS/_shared/derivations/fw_from_stability_and_spectrum.include}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% PART 4: G_F NON-CIRCULAR CHAIN
+% ═══════════════════════════════════════════════════════════════════════════════
+\section*{G$_F$ Non-Circular Chain}
+\addcontentsline{toc}{section}{G$_F$ Non-Circular Chain}
+
+% --- G_F Noncircular Chain Framework ---
+\subsection*{Non-Circular $G_F$ Chain Framework}
+\textbf{Status:} \tagDer{} (framework) \\
+\textbf{Purpose:} Establishes forward chain for $G_F$ without using $v$
+(Higgs VEV) as input. Formula: $X_{EDC} = C \cdot (g_5^2 \cdot I_4 \cdot m_e^2) / M_{eff}^2$.
+
+\input{\EDCPAPERS/_shared/derivations/gf_noncircular_chain_framework.include}
+
+% --- G_F Potential Shapes from 5D ---
+\subsection*{BVP Potential Shapes from 5D Action Reduction}
+\textbf{Status:} \tagDc{} \\
+\textbf{Purpose:} Derives allowed $V(\chi)$ shapes from 5D bulk physics.
+Constrains BVP background potential.
+
+\input{\EDCPAPERS/_shared/derivations/gf_potential_shapes_from_5d.include}
+
+% --- Prefactor A from Fluctuations ---
+\subsection*{Prefactor $A$ from Semiclassical Fluctuations}
+\textbf{Status:} \tagDer{} (within 1D effective model) \\
+\textbf{Purpose:} Derives $A = \pi \times (\omega_0/\omega_B) / \sqrt{L_0/\delta} \approx 0.84$
+connecting prefactor to brane fluctuation amplitude.
+
+\input{\EDCPAPERS/_shared/derivations/prefactor_A_from_fluctuations.include}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% PART 5: SUMMARY BOXES
 % ═══════════════════════════════════════════════════════════════════════════════
 \section*{Summary Boxes}
 \addcontentsline{toc}{section}{Summary Boxes}
@@ -100,25 +187,25 @@ Establishes Case (A) vs Case (B) for chirality structure.
 These boxes provide quick-reference summaries of key derivations, suitable
 for inline use or independent review.
 
-\subsection*{$\delta$ from 5D Action}
+\subsection*{$\delta$ from 5D Action --- Summary}
 \input{\EDCPAPERS/_shared/boxes/delta_from_5d_action_box}
 
-\subsection*{$d_{LR}$ from Chiral Localization}
+\subsection*{$d_{LR}$ from Chiral Localization --- Summary}
 \input{\EDCPAPERS/_shared/boxes/dlr_chiral_localization_box}
 
-\subsection*{$G_F$ BVP Pipeline}
+\subsection*{$G_F$ BVP Pipeline --- Summary}
 \input{\EDCPAPERS/_shared/boxes/gf_bvp_pipeline_box}
 
-\subsection*{$G_F$ BVP Tuning Decomposition}
+\subsection*{$G_F$ BVP Tuning Decomposition --- Summary}
 \input{\EDCPAPERS/_shared/boxes/gf_bvp_tuning_box}
 
-\subsection*{$N_{cell}$ Renormalization}
+\subsection*{$N_{cell}$ Renormalization --- Summary}
 \input{\EDCPAPERS/_shared/boxes/ncell_renorm_box}
 
-\subsection*{Prefactor $A$}
+\subsection*{Prefactor $A$ --- Summary}
 \input{\EDCPAPERS/_shared/boxes/prefactor_A_box}
 
-\subsection*{Z$_N$ k-Channel Robustness}
+\subsection*{Z$_N$ k-Channel Robustness --- Summary}
 \input{\EDCPAPERS/_shared/boxes/zn_kchannel_robustness_box}
 
 % End of Derivation Library
