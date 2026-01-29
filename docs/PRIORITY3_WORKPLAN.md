@@ -1,7 +1,7 @@
 # Priority 3 Workplan: Book 2 Blocking Issues
 
 **Created:** 2026-01-29
-**Status:** Planning phase
+**Status:** P3-1 RESOLVED (2026-01-29), P3-2 RESOLVED (2026-01-29), P3-3 pending
 **Purpose:** Ordered attack plan for the three P3 blockers
 
 ---
@@ -36,7 +36,7 @@ P3-3 (G_F)
 
 ## Fastest-First Ordering
 
-### Rank 1: P3-1 (L_0/δ tension) — FASTEST
+### Rank 1: P3-1 (L_0/δ tension) — ✓ RESOLVED (2026-01-29)
 
 **What:** Static equilibrium gives L_0/δ = π² ≈ 9.87; dynamic (τ_n fit) prefers ~9.33.
 
@@ -51,15 +51,20 @@ P3-3 (G_F)
 3. Check if 9.33 vs 9.87 difference matters at current precision (<1%?)
 4. Document resolution: either (a) they're both valid in different limits, or (b) one is wrong
 
-**Deliverable:** `docs/L0_DELTA_TENSION_RESOLUTION.md`
+**Deliverable:** `docs/L0_DELTA_TENSION_RESOLUTION.md` ✓ CREATED
 
-**Estimated effort:** 1–2 sessions
+**Resolution:** Both values are valid in their respective contexts:
+- π² ≈ 9.87 for static/eigenvalue properties (m_p)
+- 9.33 for dynamic/tunneling processes (τ_n)
+- 5.5% difference = quantum corrections to classical resonance
+
+**Status:** GREEN — Not a contradiction, a feature
 
 ---
 
-### Rank 2: P3-2 (Prefactor A) — MEDIUM
+### Rank 2: P3-2 (Prefactor A) — ✓ RESOLVED (2026-01-29)
 
-**What:** A = 0.8–1.0 is calibrated [Cal], not derived. Should come from fluctuation determinant.
+**What:** A = 0.8–1.0 was calibrated [Cal]. Now derived from fluctuation determinant.
 
 **Why medium:**
 - Requires understanding Kramers escape rate theory
@@ -74,9 +79,17 @@ P3-3 (G_F)
 3. Compute A from first principles (or show it's O(1) generically)
 4. Compare with calibrated range
 
-**Deliverable:** `docs/PREFACTOR_A_DERIVATION.md`
+**Deliverable:**
+- `edc_papers/_shared/derivations/prefactor_A_from_fluctuations.tex` ✓ CREATED
+- `docs/PREFACTOR_A_DERIVATION_NOTE.md` ✓ CREATED
+- `edc_papers/_shared/code/prefactor_A_numeric_check.py` ✓ CREATED
 
-**Estimated effort:** 2–3 sessions
+**Resolution:**
+- Formula: A = π × (ω₀/ω_B) / √(L₀/δ) = 1.03 × (ω₀/ω_B) [Der]
+- With ω₀/ω_B ≈ 0.82: A ≈ 0.84 [Der within 1D]
+- Physical: barrier 22% steeper than well
+
+**Status:** GREEN — A upgraded from [Cal] to [Der] within 1D model
 
 ---
 
@@ -119,10 +132,10 @@ Week 3+: P3-3 (G_F) — ongoing, may not fully close
 
 ## Success Criteria
 
-| Issue | GREEN | YELLOW | RED |
-|-------|-------|--------|-----|
-| P3-1 | Tension explained, both values valid in context | One value wrong, corrected | Irreconcilable inconsistency |
-| P3-2 | A derived from determinant [Der] | A bounded O(1) [Dc] | Cannot derive, remains [Cal] |
+| Issue | GREEN | YELLOW | RED | **ACTUAL** |
+|-------|-------|--------|-----|------------|
+| P3-1 | Tension explained, both values valid in context | One value wrong, corrected | Irreconcilable inconsistency | ✓ **GREEN** |
+| P3-2 | A derived from determinant [Der] | A bounded O(1) [Dc] | Cannot derive, remains [Cal] | ✓ **GREEN** |
 | P3-3 | G_F from 5D, no SM input [Der] | Constraint window tightened [Dc] | Blocked by BVP |
 
 ---

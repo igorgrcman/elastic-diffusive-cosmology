@@ -59,7 +59,7 @@
 
 **Cross-sector power:** Connects Nuclear geometry ↔ tunneling dynamics.
 
-**Status:** TENSION: static prefers L_0/δ = π², dynamic prefers 9.33.
+**Status:** RESOLVED [Dc] — Both valid: π² for static, 9.33 for dynamic. See `docs/L0_DELTA_TENSION_RESOLUTION.md`
 
 ---
 

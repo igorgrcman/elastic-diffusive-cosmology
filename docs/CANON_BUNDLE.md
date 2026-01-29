@@ -214,7 +214,7 @@ If you encounter any of these, STOP and ask the user:
 
 ### P1: Blocking Issues
 
-1. **L_0/delta tension:** Static (m_p) prefers pi^2 ~ 9.87; Dynamic (tau_n) prefers 9.33
+1. ~~**L_0/delta tension**~~ **RESOLVED [Dc]** — Both values valid in context: π² for static, 9.33 for dynamic. See `docs/L0_DELTA_TENSION_RESOLUTION.md`
 2. **Prefactor A:** Calibrated (A ~ 0.84), not derived from fluctuation determinant
 3. **G_F derivation:** Uses measured v — need pure 5D derivation
 

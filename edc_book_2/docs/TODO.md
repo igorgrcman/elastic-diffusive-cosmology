@@ -6,7 +6,7 @@
 
 ## Priority 1: Blocking Issues
 
-- [ ] **Resolve L₀/δ tension** — Why does static prefer π², dynamic prefers 9.33?
+- [x] **Resolve L₀/δ tension** — RESOLVED [Dc] (2026-01-29): Both valid in context. See `docs/L0_DELTA_TENSION_RESOLUTION.md`
   - Possible: quantum/boundary corrections for dynamic processes
   - Need: explicit calculation from 5D action
 

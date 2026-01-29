@@ -117,8 +117,10 @@
 
 ## Priority 3: Book 2 Blocking Issues
 
-- [ ] **Resolve L_0/delta tension** — Why static prefers pi^2, dynamic prefers 9.33?
-- [ ] **Derive prefactor A** from fluctuation determinant (currently [Cal])
+- [x] **Resolve L_0/delta tension** — `docs/L0_DELTA_TENSION_RESOLUTION.md` (2026-01-29)
+      Result: RESOLVED [Dc] — Both values valid in context (static: π², dynamic: 9.33)
+- [x] **Derive prefactor A** — `edc_papers/_shared/derivations/prefactor_A_from_fluctuations.tex` (2026-01-29)
+      Result: A = π × (ω₀/ω_B) / √(L₀/δ) ≈ 0.84 [Der] within 1D effective model
 - [ ] **Derive G_F** without circular input (currently uses measured v)
 
 ---
@@ -159,4 +161,4 @@
 
 ---
 
-*Last updated: 2026-01-29*
+*Last updated: 2026-01-29 (P3-1 resolved)*

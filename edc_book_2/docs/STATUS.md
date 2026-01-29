@@ -49,7 +49,7 @@
 
 ## Known Issues
 
-1. **L₀/δ tension**: Static (m_p) prefers π² ≈ 9.87; Dynamic (τ_n) prefers 9.33
+1. ~~**L₀/δ tension**~~ **RESOLVED [Dc]** — Both valid: π² for static, 9.33 for dynamic. See `docs/L0_DELTA_TENSION_RESOLUTION.md`
 2. **Prefactor A**: Calibrated, not derived from fluctuation determinant
 3. **G_F derivation**: Uses measured v — need pure 5D derivation
 4. **Geometric factor f**: Identified as √(δ/L₀) but not derived from first principles

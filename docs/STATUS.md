@@ -1,6 +1,6 @@
 # STATUS.md — EDC_Project Workspace State
 
-**Last updated:** 2026-01-28
+**Last updated:** 2026-01-29
 
 ---
 
@@ -40,7 +40,7 @@
 *Note: tau_n prefactor A ~ 0.84 is [Cal], not derived.
 
 **Known Issues:**
-1. L_0/delta tension: Static prefers pi^2, dynamic prefers 9.33
+1. ~~L_0/delta tension~~ **RESOLVED** [Dc] — Both values valid in context (see `docs/L0_DELTA_TENSION_RESOLUTION.md`)
 2. Prefactor A not derived from fluctuation determinant
 3. G_F derivation uses measured v (circular)
 

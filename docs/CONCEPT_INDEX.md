@@ -1212,6 +1212,71 @@ Test the discrete averaging mechanism k(N) = 1 + 1/N in a second independent dom
 
 ---
 
+### CONCEPT-065: L₀/δ Tension Resolution (Static vs Dynamic)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `docs/L0_DELTA_TENSION_RESOLUTION.md` |
+| **Related** | `edc_book_2/src/derivations/DERIVE_L0_DELTA_PI_SQUARED.md`, `NEUTRON_LIFETIME_NARRATIVE_SYNTHESIS.md` |
+| **Epistemic tag** | [Dc] — resolved, both values valid in context |
+| **Used in** | Neutron lifetime (τ_n), proton mass (m_p) derivations |
+
+**The Tension:**
+- Static (resonance): L₀/δ = π² ≈ 9.87
+- Dynamic (tunneling): L₀/δ = 9.33
+
+**Resolution:**
+Both values are valid in their respective physical contexts:
+- **π²** for bound state/eigenvalue properties (static)
+- **9.33** for tunneling/transition rates (dynamic)
+
+The 5.5% difference represents **quantum corrections** to the classical resonance picture.
+
+**Key equations:**
+```
+(L₀/δ)_static   = π²               ≈ 9.87  [Der motivated]
+(L₀/δ)_dynamic  = (r_p + δ)/δ      ≈ 9.33  [Dc from brane map]
+ε_quantum       = 1 - 9.33/9.87    ≈ 5.5%  [I]
+```
+
+**Recommendations:**
+- For τ_n calculations: Use 9.33 (gives natural prefactor A ~ 0.94)
+- For m_p calculations: Either works at ~5% precision
+
+**Status:** RESOLVED — P3-1 closed, GREEN
+
+---
+
+### CONCEPT-066: Prefactor A from Semiclassical Theory
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/derivations/prefactor_A_from_fluctuations.tex` |
+| **Summary** | `docs/PREFACTOR_A_DERIVATION_NOTE.md` |
+| **Code** | `edc_papers/_shared/code/prefactor_A_numeric_check.py` |
+| **Epistemic tag** | [Der] within 1D effective model |
+| **Used in** | Neutron lifetime (τ_n) prefactor |
+
+**Derived formula:**
+```
+A = π × (ω₀/ω_B) / √(L₀/δ) = 1.03 × (ω₀/ω_B)
+```
+
+**Parameters:**
+- ω₀ = √(σ/m_p) = 19.1 MeV — well frequency [Dc]
+- ω_B = √|V''(q_B)/M| ≈ 23 MeV — barrier frequency [Dc]
+- ω₀/ω_B ≈ 0.82 — barrier 22% steeper than well
+
+**Result:** A ≈ 0.84 [Der] (within 1D)
+
+**Epistemic upgrade:** A from [Cal] → [Der] within 1D effective theory
+
+**Physical insight:** A < 1 because barrier is steeper than well (ω_B > ω₀)
+
+**Status:** P3-2 resolved, GREEN
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:
