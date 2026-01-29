@@ -862,8 +862,44 @@ The 1/N scaling of anisotropy amplitude emerges naturally from the balance of gr
 
 **What remains [Dc]:**
 - Specific gauge choices in dimensional reduction
-- Full Israel junction calculation at Z_N fixed points
+- ~~Full Israel junction calculation at Z_N fixed points~~ → DONE (CONCEPT-055)
 - BVP verification of cos(Nθ) structure
+
+---
+
+### CONCEPT-055: Israel Junction at Z_N Fixed Points (Identical Anchors)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/derivations/israel_zn_fixed_points_anchors.tex` |
+| **Summary** | `docs/ISRAEL_ZN_ANCHORS_NOTE.md` |
+| **Epistemic tag** | [Der] for identical anchors; [Dc] for λ prefactor |
+| **Used in** | Justifying uniform λ in toy functional; k-channel derivation chain |
+
+**Purpose:**
+Derive the "identical anchors" property from Israel junction conditions under Z_N symmetry.
+
+**Key result [Der]:**
+```
+Z_N symmetry ⇒ S_μν(θ_n) = S_μν(θ_0) for all n (covariance)
+             ⇒ τ_n = τ_0 ≡ τ (equal defect stress)
+             ⇒ λ_n = λ (uniform anchor coupling)
+```
+
+**λ scaling [Dc]:**
+```
+λ = c_λ · κ_5² τ   where c_λ ~ O(1) to O(2π)
+```
+Exact c_λ requires solving bulk field equations (out of scope).
+
+**What this upgrades:**
+- "Identical anchors" was assumption [Dc], now derived [Der]
+- Complete chain: Z_N symmetry → τ_n = τ → λ_n = λ → a/c = 1/N → k(N) = 1 + 1/N
+
+**Conditions for validity:**
+- Z_N symmetry must hold
+- Thin defect limit (delta approximation)
+- Weak field / linear Israel regime
 
 ---
 

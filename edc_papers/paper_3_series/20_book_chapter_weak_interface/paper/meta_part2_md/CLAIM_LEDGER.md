@@ -634,18 +634,70 @@ notes: |
     - Explicit GHY term evaluation
 ```
 
+### CL-ISRAEL-ANCHOR-1: Identical anchors from Z_N symmetry
+
+```yaml
+id: CL-ISRAEL-ANCHOR-1
+status: GREEN
+chapter: breadth
+claim: "Z_N symmetry ⇒ identical anchors τ_n = τ at all fixed points"
+evidence:
+  derivation: "edc_papers/_shared/derivations/israel_zn_fixed_points_anchors.tex"
+  summary: "docs/ISRAEL_ZN_ANCHORS_NOTE.md"
+  theorem: "Theorem 4.2 (Identical Anchors)"
+tag: "[Der]"
+commit: "2026-01-29"
+notes: |
+  DERIVED from Z_N symmetry (not assumed):
+    - Z_N covariance: S_μν(θ_n) = S_μν(θ_0) for all n
+    - Fixed points equivalent by symmetry group action
+    - Therefore: τ_n = τ_0 ≡ τ for all n
+
+  UPGRADE: "identical anchors" from [Dc] → [Der]
+
+  CONDITIONS FOR VALIDITY:
+    - Z_N symmetry must hold (if broken, τ_n ≠ τ_m possible)
+    - Thin defect limit (delta approximation)
+    - Weak field / linear Israel regime
+```
+
+### CL-ISRAEL-ANCHOR-2: λ scaling with κ_5² and defect stress
+
+```yaml
+id: CL-ISRAEL-ANCHOR-2
+status: YELLOW
+chapter: breadth
+claim: "λ = c_λ · κ_5² τ with c_λ ~ O(1) geometric factor"
+evidence:
+  derivation: "edc_papers/_shared/derivations/israel_zn_fixed_points_anchors.tex"
+  theorem: "Theorem 5.2 (λ Scaling)"
+tag: "[Dc]"
+commit: "2026-01-29"
+notes: |
+  DIMENSIONAL ANALYSIS gives scaling [Dc]:
+    [κ_5²] = length³, [τ] = energy², [κ_5² τ] = energy⁻¹
+
+  BOUNDS on c_λ [Dc]:
+    - Lower: c_λ ≳ 1 (no geometrical suppression)
+    - Upper: c_λ ≲ 4π (solid angle factors)
+    - Likely: c_λ ~ O(1) to O(2π)
+
+  EXACT c_λ VALUE requires solving bulk field equations (out of scope).
+  W(u) functional form also requires K(u) coupling from 5D [Dc].
+```
+
 ---
 
 ## Statistics
 
 | Status | Count |
 |--------|-------|
-| GREEN | 12 |
-| YELLOW | 14 |
+| GREEN | 13 |
+| YELLOW | 15 |
 | RED | 4 |
 | FALSIFIED | 1 |
-| **Total** | **31** |
+| **Total** | **33** |
 
 ---
 
-*Claim Ledger v1.6 — Last updated 2026-01-29*
+*Claim Ledger v1.7 — Last updated 2026-01-29*

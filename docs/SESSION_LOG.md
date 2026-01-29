@@ -1185,9 +1185,68 @@ Applications: pion [I], N_cell [Dc], overlap [Der]
 - Physical grounding of toy functional parameters
 
 ### What Remains Open
-- Full Israel junction calculation at Z_N fixed points
+- ~~Full Israel junction calculation at Z_N fixed points~~ → DONE (pt24)
 - BVP verification of cos(Nθ) mode structure
 - Explicit GHY term evaluation
+
+---
+
+## 2026-01-29 (cont'd pt24) — Israel Junction at Z_N Fixed Points
+
+### Goal
+Derive "identical anchors" property from Israel junction conditions, upgrading from [Dc] to [Der].
+
+### Key Result: IDENTICAL ANCHORS NOW [Der]
+
+**The derivation chain:**
+```
+Z_N symmetry [Der]
+    ↓
+S_μν(θ_n) = S_μν(θ_0) for all n (covariance) [Der]
+    ↓
+τ_n = τ_0 ≡ τ (equal defect stress) [Der]
+    ↓
+λ_n = λ (uniform anchor coupling) [Der]
+```
+
+**λ scaling [Dc]:**
+```
+λ = c_λ · κ_5² τ
+c_λ ~ O(1) to O(2π) — exact value requires bulk EOM
+```
+
+### Files Created
+- `edc_papers/_shared/derivations/israel_zn_fixed_points_anchors.tex` — 9-page LaTeX derivation
+- `docs/ISRAEL_ZN_ANCHORS_NOTE.md` — executive summary
+
+### Files Modified
+- `CLAIM_LEDGER.md` — Added CL-ISRAEL-ANCHOR-1 (GREEN, [Der]), CL-ISRAEL-ANCHOR-2 (YELLOW, [Dc])
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-055
+- `docs/TODO.md` — Progress note on Israel junction
+- `docs/SESSION_LOG.md` — This entry
+
+### Compile Status
+```
+latexmk -xelatex israel_zn_fixed_points_anchors.tex
+Output: 9 pages, 102720 bytes, PASS
+```
+
+### What Was Upgraded
+
+| Before | After |
+|--------|-------|
+| "Identical anchors" assumed [Dc] | "Identical anchors under Z_N symmetry" derived [Der] |
+| λ scaling heuristic | λ ∝ κ_5² τ established [Dc] |
+
+### Complete k-Channel Chain Now [Der]
+```
+Z_N symmetry → τ_n = τ → λ_n = λ → a/c = 1/N → k(N) = 1 + 1/N
+```
+
+### What Remains Open
+- Exact c_λ prefactor (requires bulk field equations)
+- W(u) functional form (requires K(u) coupling from 5D)
+- BVP verification of cos(Nθ) structure
 
 ---
 
