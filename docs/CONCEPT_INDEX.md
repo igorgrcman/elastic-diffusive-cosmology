@@ -1277,6 +1277,49 @@ A = π × (ω₀/ω_B) / √(L₀/δ) = 1.03 × (ω₀/ω_B)
 
 ---
 
+### CONCEPT-067: G_F Non-Circular Chain Framework
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/derivations/gf_noncircular_chain_framework.tex` |
+| **Summary** | `docs/GF_NONCIRCULAR_FRAMEWORK_NOTE.md` |
+| **Code** | `edc_papers/_shared/code/gf_toy_overlap_window.py` |
+| **Epistemic tag** | [Der] for skeleton, [OPEN] for numerical values |
+| **Used in** | Book 2 Chapter 11 (G_F derivation) |
+| **Blocks** | OPR-21 (thick-brane BVP solution) |
+
+**Non-circular formula:**
+```
+X_EDC = C × (g_5² × I_4 × m_e²) / M_eff²
+
+where:
+  X = G_F × m_e² = 3.04 × 10⁻¹² (dimensionless target)
+  g_5² = 5D gauge coupling from action [Dc]
+  I_4 = ∫ dχ w_L² w_R² w_φ² (overlap integral) [OPEN]
+  M_eff = √λ_0 / δ (effective mediator mass) [OPEN]
+  C = 1/(4√2) (SM convention)
+```
+
+**What is derived:**
+- Dimensional skeleton: unique combination g_5² × I_4 / M_eff² [Der]
+- Independence from v (Higgs VEV): no circularity [Der]
+- sin²θ_W = 1/4 (separate, fully derived prediction) [Der]
+
+**What is BVP-gated [OPEN]:**
+- Mode profiles w_L(χ), w_R(χ), w_φ(χ)
+- KK eigenvalue λ_0
+- Overlap integral I_4
+- Numerical G_F value
+
+**Falsification gates:**
+1. I_4 from BVP must be within [0.1, 10] × I_4_required
+2. M_eff must satisfy [0.1, 10] × (1/δ)
+3. g_eff² must be compatible with α and sin²θ_W = 1/4
+
+**Status:** P3-3 YELLOW — Framework complete, values BVP-gated
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:

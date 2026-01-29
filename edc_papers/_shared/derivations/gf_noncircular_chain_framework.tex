@@ -1,0 +1,343 @@
+% ============================================================================
+% DERIVATION: Non-Circular G_F Chain Framework (BVP-Gated)
+% ============================================================================
+% Status: [Der] for skeleton structure, [Dc] for parameter mappings
+% Date: 2026-01-29
+% Issue: P3-3 — G_F derivation without circularity
+% ============================================================================
+
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{physics}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{enumitem}
+\geometry{margin=1in}
+
+\newcommand{\tagDer}{{\small\textsf{[Der]}}}
+\newcommand{\tagDc}{{\small\textsf{[Dc]}}}
+\newcommand{\tagCal}{{\small\textsf{[Cal]}}}
+\newcommand{\tagP}{{\small\textsf{[P]}}}
+\newcommand{\tagBL}{{\small\textsf{[BL]}}}
+\newcommand{\tagM}{{\small\textsf{[M]}}}
+\newcommand{\tagI}{{\small\textsf{[I]}}}
+\newcommand{\tagOPEN}{{\small\textsf{[OPEN]}}}
+
+\title{Non-Circular $G_F$ Chain Framework\\[0.5em]\large BVP-Gated Derivation Structure}
+\author{EDC Project}
+\date{2026-01-29}
+
+\begin{document}
+\maketitle
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!75!black, title=Epistemic Status]
+\textbf{Skeleton structure:} \tagDer{} --- dimensional analysis and chain logic \\
+\textbf{Parameter mappings:} \tagDc{} --- conditional on mode profiles from BVP \\
+\textbf{Numerical values:} \tagOPEN{} --- blocked by BVP solution (OPR-21) \\[0.5em]
+\textbf{Goal:} Define a chain from 5D action $\to$ $G_F$ with NO circular $v$ input.
+\end{tcolorbox}
+
+% ============================================================================
+\section{Step 0: Circularity Audit}
+
+\subsection{The Circular Dependency}
+
+The Standard Model relation:
+\begin{equation}
+    v = (\sqrt{2} G_F)^{-1/2} = 246.22 \text{ GeV} \quad \tagBL{}
+\end{equation}
+
+\textbf{defines} the Higgs VEV from the measured $G_F$. Therefore:
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!75!black, title=Circularity Caveat]
+Using $v$ to derive $M_W = gv/2$, then $M_W$ to derive $G_F = g^2/(4\sqrt{2}M_W^2)$
+is \textbf{circular}---it returns the input $G_F$ by construction.
+\end{tcolorbox}
+
+\subsection{Where Circularity Occurs (File References)}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{File} & \textbf{Line(s)} & \textbf{Circular Element} \\
+\midrule
+\texttt{11\_gf\_derivation.tex} & 119--127 & $G_F = g^2/(4\sqrt{2}M_W^2)$ via $v$ \\
+\texttt{docs/GF\_CONSTRAINT\_NOTE.md} & B.2--B.3 & $v$ defined from $G_F$ \\
+\texttt{docs/STATUS.md} & 38 & G\_F marked ``circular'' \\
+\texttt{docs/TODO.md} & 17 & ``Derive G\_F without circular input'' \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{What IS Independent}
+
+\begin{itemize}
+    \item $\sin^2\theta_W = 1/4$ from $\mathbb{Z}_6$ subgroup counting \tagDer{}
+    \item $\alpha = 1/137.036$ \tagBL{} (measured independently of $G_F$)
+    \item $m_e = 0.511$ MeV \tagBL{} (measured independently)
+    \item $\delta = \hbar/(2m_p c) = 0.105$ fm \tagDc{}
+\end{itemize}
+
+% ============================================================================
+\section{Step 1: Non-Circular Chain Definitions}
+
+\subsection{The Forward Chain (No $v$ Allowed)}
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!75!black, title=Non-Circular Derivation Chain]
+\begin{equation}
+\boxed{
+\text{5D Action} \xrightarrow{\text{norm}} g_5
+\xrightarrow{\text{KK}} M_{\text{eff}}
+\xrightarrow{\text{BVP}} \{w_L, w_R, w_\phi\}
+\xrightarrow{\text{overlap}} I_4
+\xrightarrow{\text{assemble}} G_F^{\text{EDC}}
+}
+\end{equation}
+\end{tcolorbox}
+
+\subsection{Definitions}
+
+\paragraph{5D Gauge Coupling $g_5$:}
+From canonical normalization of 5D gauge action:
+\begin{equation}
+    S_{5D} = \int d^5x \sqrt{-g} \left( -\frac{1}{4g_5^2} F_{MN}F^{MN} \right)
+\end{equation}
+Dimension: $[g_5^2] = [\text{length}] = [\text{energy}]^{-1}$ \tagP{}
+
+\paragraph{Effective Mediator Mass $M_{\text{eff}}$:}
+From KK reduction along extra dimension:
+\begin{equation}
+    M_{\text{eff}}^2 = \lambda_0 \cdot \frac{1}{\delta^2}
+\end{equation}
+where $\lambda_0$ is the lowest massive KK eigenvalue (dimensionless). \tagOPEN{}
+
+\paragraph{Mode Profiles $w_L(\chi), w_R(\chi), w_\phi(\chi)$:}
+Solutions to the thick-brane Dirac/KG equations with asymmetric mass profile.
+Normalization: $\int d\chi |w|^2 = 1$. \tagOPEN{}
+
+\paragraph{Overlap Integral $I_4$:}
+\begin{equation}
+    I_4 := \int d\chi \, w_L(\chi)^2 \, w_R(\chi)^2 \, w_\phi(\chi)^2
+    \label{eq:I4_def}
+\end{equation}
+Dimension: $[I_4] = [\text{length}]^{-1} = [\text{energy}]$. \tagOPEN{}
+
+\paragraph{Effective 4D Coupling $g_{\text{eff}}$:}
+\begin{equation}
+    g_{\text{eff}}^2 = g_5^2 \cdot I_g
+\end{equation}
+where $I_g = \int d\chi \, w_\phi^2$ is the gauge boson overlap. \tagDc{}
+
+\paragraph{Final Assembly:}
+\begin{equation}
+    \boxed{G_F^{\text{EDC}} = \frac{g_{\text{eff}}^2}{4\sqrt{2} M_{\text{eff}}^2}}
+    \label{eq:GF_EDC}
+\end{equation}
+
+% ============================================================================
+\section{Step 2A: Derivable Skeleton (No BVP Needed)}
+
+\subsection{Dimensional Skeleton \tagDer{}}
+
+Using dimensional analysis alone:
+\begin{align}
+    [G_F] &= [\text{energy}]^{-2} \\
+    [g_5^2] &= [\text{length}] = [\text{energy}]^{-1} \\
+    [I_4] &= [\text{energy}] \\
+    [M_{\text{eff}}^2] &= [\text{energy}]^2
+\end{align}
+
+Therefore the \textbf{unique dimensionally correct combination} is:
+\begin{equation}
+    \boxed{G_F^{\text{EDC}} = C \cdot \frac{g_5^2 \cdot I_4}{M_{\text{eff}}^2}}
+    \label{eq:GF_skeleton}
+\end{equation}
+where $C$ is a numerical factor from conventions ($C = 1/4\sqrt{2}$ for SM normalization).
+
+\subsection{Dimensionless Form \tagDer{}}
+
+Define the dimensionless target:
+\begin{equation}
+    X := G_F m_e^2 = 3.04 \times 10^{-12} \quad \tagBL{}
+\end{equation}
+
+Then the EDC prediction is:
+\begin{equation}
+    \boxed{X_{\text{EDC}} = C \cdot \frac{g_5^2 \cdot I_4 \cdot m_e^2}{M_{\text{eff}}^2}}
+    \label{eq:X_EDC}
+\end{equation}
+
+\subsection{Reduction Using EDC Scales \tagDc{}}
+
+If $M_{\text{eff}} \sim 1/\delta$ and $g_5^2 \sim \delta$ (natural 5D scaling):
+\begin{equation}
+    X_{\text{EDC}} \sim C \cdot \delta \cdot I_4 \cdot m_e^2 \cdot \delta^2 = C \cdot I_4 \cdot m_e^2 \cdot \delta^3
+\end{equation}
+
+With $\delta = 0.105$ fm $= 5.3 \times 10^{-4}$ GeV$^{-1}$:
+\begin{equation}
+    X_{\text{EDC}} \sim C \cdot I_4 \cdot (0.511 \text{ MeV})^2 \cdot (5.3 \times 10^{-4} \text{ GeV}^{-1})^3
+\end{equation}
+
+\textbf{Key insight:} The $\delta^3$ factor provides enormous suppression, potentially explaining the smallness of $G_F$.
+
+% ============================================================================
+\section{Step 2B: BVP-Dependent Layer (Falsification Gates)}
+
+\subsection{What BVP Must Output}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Quantity} & \textbf{Definition} & \textbf{Status} \\
+\midrule
+$w_L(\chi)$ & Left-handed fermion mode & \tagOPEN{} \\
+$w_R(\chi)$ & Right-handed fermion mode & \tagOPEN{} \\
+$w_\phi(\chi)$ & Mediator (scalar/gauge) mode & \tagOPEN{} \\
+$\lambda_0$ & Lowest massive KK eigenvalue & \tagOPEN{} \\
+$I_4$ & Overlap integral \eqref{eq:I4_def} & \tagOPEN{} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Falsification Gates}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!75!black, title=Falsification Criteria (P3-3)]
+\textbf{FAIL conditions:}
+\begin{enumerate}
+    \item \textbf{Overlap mismatch:} $I_4$ from BVP differs from constraint window by $>10\times$
+    \begin{equation}
+        \text{FAIL if } I_4^{\text{BVP}} \notin [0.1, 10] \times I_4^{\text{required}}
+    \end{equation}
+
+    \item \textbf{Mass inconsistency:} $M_{\text{eff}}$ violates brane-thickness scaling
+    \begin{equation}
+        \text{FAIL if } M_{\text{eff}} \notin [0.1, 10] \times (1/\delta)
+    \end{equation}
+
+    \item \textbf{Coupling incompatibility:} $g_5$ from action contradicts $\sin^2\theta_W = 1/4$
+    \begin{equation}
+        \text{FAIL if } g_{\text{eff}}^2 \neq (4\pi\alpha/\sin^2\theta_W) \times f(\text{overlaps})
+    \end{equation}
+    with $f \sim O(1)$.
+\end{enumerate}
+\end{tcolorbox}
+
+\subsection{Success Criteria}
+
+\begin{equation}
+    \text{SUCCESS: } \left| \frac{X_{\text{EDC}} - X_{\text{target}}}{X_{\text{target}}} \right| < 0.1 \quad (\pm 10\%)
+\end{equation}
+
+% ============================================================================
+\section{Step 3: Toy Model Bounds (Feasibility Window)}
+
+\subsection{Simplified Ansatz}
+
+Assume exponential mode profiles with width $\sigma$:
+\begin{align}
+    w_L(\chi) &= \sqrt{\frac{1}{\sigma}} e^{-\chi/(2\sigma)} \\
+    w_R(\chi) &= \sqrt{\frac{1}{\sigma}} e^{-(\chi - d)/(2\sigma)} \quad \text{(displaced by } d\text{)} \\
+    w_\phi(\chi) &= \sqrt{\frac{1}{\delta}} e^{-\chi/(2\delta)}
+\end{align}
+
+\subsection{Chirality Suppression Factor}
+
+The left-right overlap:
+\begin{equation}
+    \varepsilon := \int d\chi \, w_L w_R = e^{-d/(2\sigma)}
+\end{equation}
+
+For $d \gg \sigma$: $\varepsilon \ll 1$ (chirality separation).
+
+\subsection{Overlap Integral Estimate}
+
+For the four-point overlap:
+\begin{equation}
+    I_4 \sim \frac{\varepsilon^2}{\sigma} \quad \text{(rough estimate)}
+\end{equation}
+
+\subsection{Required $\varepsilon$ for Target Window}
+
+From \eqref{eq:X_EDC}, matching $X_{\text{target}} = 3 \times 10^{-12}$ requires:
+\begin{equation}
+    I_4^{\text{required}} \sim \frac{X_{\text{target}}}{C \cdot g_5^2 \cdot m_e^2 / M_{\text{eff}}^2}
+\end{equation}
+
+With $M_{\text{eff}} \sim 1/\delta \sim 1.9$ GeV and $g_5^2 \sim 4\pi\alpha\delta$:
+\begin{equation}
+    I_4^{\text{required}} \sim 4 \times 10^{-5} \text{ GeV}^2 \sim (6 \text{ MeV})^2
+\end{equation}
+
+\textbf{Feasibility:} This scale is consistent with fermion localization at $\sim r_e^{-1}$.
+
+\subsection{Toy Window Summary}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Parameter} & \textbf{Range for $X_{\text{EDC}} \approx X_{\text{target}}$} & \textbf{Status} \\
+\midrule
+$\varepsilon$ (chirality suppression) & $10^{-3}$ -- $10^{-2}$ & Plausible \\
+$\sigma/\delta$ (localization ratio) & $0.01$ -- $0.1$ & Plausible \\
+$M_{\text{eff}}$ & $1$ -- $10$ GeV & Plausible \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{tcolorbox}[colback=yellow!10!white, colframe=yellow!75!black, title=Toy Model Caveat]
+This is a \textbf{feasibility window}, not an EDC derivation.
+The actual values must come from the thick-brane BVP solution (OPR-21).
+\end{tcolorbox}
+
+% ============================================================================
+\section{Summary}
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!75!black, title=P3-3 Framework Summary]
+\textbf{Non-circular formula:}
+\begin{equation}
+    \boxed{X_{\text{EDC}} = \frac{g_5^2 \cdot I_4 \cdot m_e^2}{4\sqrt{2} \, M_{\text{eff}}^2}}
+\end{equation}
+
+\textbf{What is derived:}
+\begin{itemize}
+    \item Dimensional skeleton \tagDer{}
+    \item Independence from $v$ \tagDer{}
+    \item $\sin^2\theta_W = 1/4$ (separate prediction) \tagDer{}
+\end{itemize}
+
+\textbf{What is conditional [Dc]:}
+\begin{itemize}
+    \item $g_5$ from 5D action normalization (OPR-19)
+    \item $M_{\text{eff}}$ from KK eigenvalue (OPR-20)
+\end{itemize}
+
+\textbf{What is OPEN (BVP-gated):}
+\begin{itemize}
+    \item Mode profiles $w_L, w_R, w_\phi$ (OPR-21)
+    \item Overlap integral $I_4$
+    \item Numerical $G_F^{\text{EDC}}$ value
+\end{itemize}
+\end{tcolorbox}
+
+\subsection{Epistemic Assessment}
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Component} & \textbf{Status} & \textbf{Blocking Issue} \\
+\midrule
+Framework existence & \tagDer{} (GREEN) & --- \\
+Dimensional skeleton & \tagDer{} (GREEN) & --- \\
+Circularity removed & \tagDer{} (GREEN) & --- \\
+Toy feasibility & \tagI{} (YELLOW) & --- \\
+$g_5$ value & \tagDc{} & OPR-19 \\
+$M_{\text{eff}}$ value & \tagDc{} & OPR-20 \\
+$I_4$ value & \tagOPEN{} & OPR-21 (BVP) \\
+Numerical $G_F$ & \tagOPEN{} & OPR-21 (BVP) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{document}

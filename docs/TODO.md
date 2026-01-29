@@ -121,7 +121,11 @@
       Result: RESOLVED [Dc] — Both values valid in context (static: π², dynamic: 9.33)
 - [x] **Derive prefactor A** — `edc_papers/_shared/derivations/prefactor_A_from_fluctuations.tex` (2026-01-29)
       Result: A = π × (ω₀/ω_B) / √(L₀/δ) ≈ 0.84 [Der] within 1D effective model
-- [ ] **Derive G_F** without circular input (currently uses measured v)
+- [x] **G_F non-circular framework** — `docs/GF_NONCIRCULAR_FRAMEWORK_NOTE.md` (2026-01-29)
+      Result: Framework [Der] established; numerical values [OPEN] blocked by BVP (OPR-21)
+      Formula: X_EDC = C × (g_5² × I_4 × m_e²) / M_eff² (no v in forward chain)
+      Toy feasibility: Parameter space exists where X_EDC could match X_target
+- [ ] **Solve thick-brane BVP (OPR-21)** — Blocks numerical G_F value
 
 ---
 

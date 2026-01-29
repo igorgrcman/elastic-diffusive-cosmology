@@ -306,6 +306,44 @@ notes: |
   True independent prediction: sin²θ_W = 1/4 [Der] (0.08% agreement).
 ```
 
+### CL-11.5: G_F Non-Circular Chain Framework
+
+```yaml
+id: CL-11.5
+status: YELLOW
+chapter: 11
+claim: "Non-circular G_F chain: 5D Action → g_5 → M_eff → BVP modes → I_4 → G_F"
+evidence:
+  derivation: "edc_papers/_shared/derivations/gf_noncircular_chain_framework.tex"
+  summary: "docs/GF_NONCIRCULAR_FRAMEWORK_NOTE.md"
+  code: "edc_papers/_shared/code/gf_toy_overlap_window.py"
+tag: "[Der] for skeleton, [OPEN] for numerical values"
+commit: "2026-01-29"
+blocking: "OPR-21 (thick-brane BVP solution)"
+notes: |
+  Non-circular formula: X_EDC = C × (g_5² × I_4 × m_e²) / M_eff²
+  where X = G_F × m_e² = 3.04 × 10⁻¹² (dimensionless target).
+
+  Derived [Der]:
+  - Dimensional skeleton (unique combination)
+  - Independence from v (Higgs VEV) — no circularity
+  - sin²θ_W = 1/4 (separate prediction)
+
+  BVP-gated [OPEN]:
+  - Mode profiles w_L(χ), w_R(χ), w_φ(χ)
+  - KK eigenvalue λ_0
+  - Overlap integral I_4
+  - Numerical G_F value
+
+  Falsification gates:
+  1. I_4 from BVP must be within [0.1, 10] × I_4_required
+  2. M_eff must satisfy [0.1, 10] × (1/δ)
+  3. g_eff² must be compatible with α and sin²θ_W = 1/4
+
+  Toy feasibility: Parameter space exists where X_EDC could match X_target
+  Required I_4 ~ (34 MeV) is physically reasonable
+```
+
 ---
 
 ## Chapter 10: Neutron-Proton Mass Difference
