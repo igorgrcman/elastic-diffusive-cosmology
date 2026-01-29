@@ -810,6 +810,13 @@ TEASER WIRED: edc_book_2/src/main.tex:738
 - Added tcolorbox explaining standalone vs included body distinction
 - Documents edit workflow
 
+#### Full Teaser Integration
+- Replaced short teaser with FULL content from:
+  - `BOOK_SECTION_NEUTRON_LIFETIME.tex` (neutron instanton calculation)
+  - `BOOK_SECTION_TOPOLOGICAL_PINNING_MODEL.tex` (Mn topological networks, M6-M48, forbidden M43)
+- Book 2 now 595 pages (was 569)
+- All Mn/nuclear content included as "Book 3 Teaser"
+
 ---
 
 ```markdown
