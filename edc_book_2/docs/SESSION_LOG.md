@@ -1105,3 +1105,75 @@ equivalent "Dependency & Status" boxes with color-coded verdicts.
 1. ...
 2. ...
 ```
+
+---
+
+## 2026-01-29 — Reader-Facing Artifact Cleanup
+
+### Goal
+Eliminate all raw .md references and repo paths from reader-facing content in compiled PDF.
+
+### Work Performed
+
+#### 1. Scan for Artifacts
+- Identified 25+ reader-facing .md references across Book2 sources and _shared materials
+- Classified each as: internalize (create LaTeX) or footnote (labeled "Repository artifact")
+
+#### 2. Specific Fix: BC Role Box
+- Tcolorbox "Remark: Role of Boundary Conditions" in `sections/04b_proton_anchor.tex`
+- Old: `\texttt{aside_frozen_brane_bc_v1/05_SIGN_AND_MINIMUM_ANALYSIS.md}`
+- New: `Appendix~\ref{sec:DL-bc-sign-analysis}` (BC Sign and Minimum Analysis)
+
+#### 3. BC Analysis Internalization
+- Created `_shared/derivations/bc_sign_and_minimum_analysis.tex` (standalone)
+- Created `_shared/derivations/bc_sign_and_minimum_analysis.include.tex`
+- Added to `appendices/APPENDIX_DERIVATION_LIBRARY.tex` as new section
+
+#### 4. Footnote Conversions
+All remaining .md references converted to footnotes with "Repository artifact:" label:
+- `sections/05b_neutron_dual_route.tex` (DELTA_ANCHOR_MAP.md)
+- `sections/12_epistemic_map.tex` (PREPUBLICATION_REVIEW_WARNING.md)
+- `sections/ch14_opr21_closure_derivation.tex` (4 audit/evidence refs)
+- `sections/ch16_opr04_delta_derivation.tex` (OPR_REGISTRY.md)
+- `sections/ch20_epistemic_summary_closure_status.tex` (6 refs)
+- `_shared/boxes/*.tex` (7 boxes)
+- `_shared/derivations/*.tex` (4 files)
+- `_shared/lemmas/*.tex` (2 files)
+
+#### 5. Audit Tool
+- Created `tools/reader_artifact_audit.py`
+- Scans for raw .md refs and repo paths outside of footnotes
+- PASS criteria: 0 reader-facing artifacts
+
+### Files Changed
+- `appendices/APPENDIX_DERIVATION_LIBRARY.tex`
+- `sections/04b_proton_anchor.tex`
+- `sections/05b_neutron_dual_route.tex`
+- `sections/12_epistemic_map.tex`
+- `sections/ch14_opr21_closure_derivation.tex`
+- `sections/ch16_opr04_delta_derivation.tex`
+- `sections/ch20_epistemic_summary_closure_status.tex`
+- 7 boxes in `_shared/boxes/`
+- 4 derivations in `_shared/derivations/`
+- 2 lemmas in `_shared/lemmas/`
+
+### Files Created
+- `_shared/derivations/bc_sign_and_minimum_analysis.tex`
+- `_shared/derivations/bc_sign_and_minimum_analysis.include.tex`
+- `tools/reader_artifact_audit.py`
+
+### Verification
+- LaTeX compilation: ✓ PASS (606 pages)
+- Undefined refs: 0
+- Multiply-defined labels: 0
+- Artifact audit: ✓ PASS (0 reader-facing artifacts)
+
+### Where BC Box Now Points
+- **Appendix:** Derivation Library
+- **Section:** "BC Sign and Minimum Analysis"
+- **Label:** `sec:DL-bc-sign-analysis`
+
+### Next Steps
+1. Keep audit tool in CI/pre-commit if desired
+2. Monitor for new .md refs in future edits
+3. Consider similar cleanup for any remaining raw repo paths

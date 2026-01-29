@@ -1,0 +1,188 @@
+% ═══════════════════════════════════════════════════════════════════════════════
+% BC Sign and Minimum Analysis
+% ═══════════════════════════════════════════════════════════════════════════════
+% TITLE: Sign Structure of V'_lin(d) Under Various Boundary Conditions
+% STATUS: [Der] - Derived from Green's function mathematics
+% COMPANION: aside_frozen_brane_bc_v1/05_SIGN_AND_MINIMUM_ANALYSIS.md (original)
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[margin=2.5cm]{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\title{Sign Structure of $V'_{\mathrm{lin}}(d)$ Under Various Boundary Conditions}
+\author{EDC Derivation Library}
+\date{January 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We analyze the sign of the linearized vortex--vortex interaction potential derivative
+$V'_{\mathrm{lin}}(d)$ under Neumann, Dirichlet, Robin, and ``frozen brane'' boundary
+conditions. The conclusion is universal: $V'_{\mathrm{lin}}(d) > 0$ for all $d > 0$
+regardless of BC choice. The minimum in the full potential arises from topological
+core repulsion, not from boundary conditions.
+\end{abstract}
+
+\section{The Original No-Go Result}
+
+\begin{lemma}[Monotonicity under Neumann BC]
+For same-sign vortices under Neumann BC with uniform $\xi$-weight:
+\begin{equation}
+V'_{\mathrm{lin}}(d) = \frac{1}{d} + \frac{2}{\delta} \sum_{m=1}^{\infty}
+\frac{1}{m} K_1\!\left(\frac{m\pi d}{\delta}\right) > 0
+\quad \text{for all } d > 0
+\end{equation}
+\end{lemma}
+
+\begin{theorem}[No Minimum in Linearized Potential]
+The linearized potential $V_{\mathrm{lin}}(d)$ has no local minimum for same-sign vortices.
+\end{theorem}
+
+\begin{theorem}[Core Divergence]
+$V_{\mathrm{core}}(d) \to +\infty$ as $d \to 0$ from topological winding constraints.
+\end{theorem}
+
+\begin{theorem}[Minimum Existence]
+The full potential $V(d) = V_{\mathrm{core}}(d) + V_{\mathrm{lin}}(d)$ has a minimum
+at some $d_0 > 0$ due to the balance of core repulsion and logarithmic growth.
+\end{theorem}
+
+\section{General Structure Under Arbitrary BC}
+
+Under any BC with mode spectrum $\{\mu_m\}$, the linearized potential takes the form:
+\begin{equation}
+V_{\mathrm{lin}}(d) = \sum_m c_m \, G_m(d)
+\end{equation}
+where:
+\begin{itemize}
+    \item $c_m = (n_1 n_2) \times (W_m^2 / N_m) \times (\text{coupling factor})$
+    \item $G_0(d) = -\frac{1}{2\pi} \ln(d/L)$ if zero mode exists
+    \item $G_m(d) = \frac{1}{2\pi} K_0(\mu_m d)$ for massive modes
+\end{itemize}
+
+\subsection{Sign of Coefficients}
+
+For same-sign vortices ($n_1 n_2 > 0$):
+\begin{itemize}
+    \item $c_m$ has definite sign (positive for repulsion convention)
+    \item $W_m^2 \geq 0$ always (squared quantity)
+    \item $N_m > 0$ always (integral of positive quantity)
+\end{itemize}
+
+\textbf{Conclusion:} No coefficient can be negative.
+
+\subsection{Derivatives}
+
+\textbf{Zero mode:}
+\begin{equation}
+\frac{d}{dd}\left[\ln d\right] = \frac{1}{d} > 0
+\end{equation}
+
+\textbf{Massive modes:}
+\begin{equation}
+\frac{d}{dd}\left[K_0(\mu d)\right] = -\mu K_1(\mu d) < 0
+\end{equation}
+
+But entering $V_{\mathrm{lin}}$ with negative overall coefficient:
+\begin{equation}
+V_{\mathrm{lin}} \propto -c_m K_0(\mu_m d)
+\quad\Rightarrow\quad
+V'_{\mathrm{lin}} \propto +c_m \mu_m K_1(\mu_m d) > 0
+\end{equation}
+
+\textbf{Every term in $V'_{\mathrm{lin}}$ is positive.}
+
+\section{Explicit Calculation: Dirichlet BC}
+
+\subsection{Mode Spectrum}
+\begin{equation}
+\mu_m = \frac{m\pi}{\delta}, \quad m = 1, 2, 3, \ldots \quad (\text{no zero mode})
+\end{equation}
+
+\subsection{Derivative}
+\begin{equation}
+V'_{\mathrm{lin}}(d) = n_1 n_2 \times \frac{8}{\pi\delta^2}
+\sum_{k=0}^{\infty} \frac{1}{2k+1} K_1\!\left(\frac{(2k+1)\pi d}{\delta}\right)
+\end{equation}
+
+\textbf{Every term is positive for $n_1 n_2 > 0$.}
+
+\section{Robin BC Analysis}
+
+Robin BC: $\partial_\xi\phi|_0 = \kappa\phi|_0$, $\partial_\xi\phi|_\delta = -\kappa\phi|_\delta$
+
+The transcendental equation:
+\begin{equation}
+\tan(\mu\delta) = \frac{2\kappa\mu}{\mu^2 - \kappa^2}
+\end{equation}
+
+In all cases:
+\begin{equation}
+V'_{\mathrm{lin}}(d) = \sum_m (\text{positive coefficient}) \times \mu_m \times K_1(\mu_m d) > 0
+\end{equation}
+
+\textbf{No regime of $\kappa$ creates $V' < 0$.}
+
+\section{Frozen (Stiff) Limit}
+
+``Frozen on brane'' = Dirichlet with matching boundary values: $\phi|_{\xi=0} = v$, $\phi|_{\xi=\delta} = v$.
+
+The constant $v$ acts as a zero mode, giving:
+\begin{equation}
+V_{\mathrm{lin}}(d) \propto \ln(d) \quad\Rightarrow\quad V'_{\mathrm{lin}}(d) \propto \frac{1}{d} + [K_1 \text{ terms}] > 0
+\end{equation}
+
+\textbf{Still monotonically increasing.}
+
+\section{Summary Table}
+\label{sec:bc-sign-summary}
+
+\begin{center}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+BC Type & Zero Mode & $V_{\mathrm{lin}}(d \to 0)$ & $V_{\mathrm{lin}}(d \to \infty)$ & $V'_{\mathrm{lin}}(d)$ \\
+\midrule
+Neumann & Yes & $-\infty$ & $+\infty$ & $\mathbf{>0}$ \\
+Dirichlet & No & finite & $+\infty$ & $\mathbf{>0}$ \\
+Robin & No & finite & $+\infty$ & $\mathbf{>0}$ \\
+Frozen & Yes$^*$ & $-\infty$ & $+\infty$ & $\mathbf{>0}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Conclusion}
+
+\textbf{$V'_{\mathrm{lin}}(d) > 0$ for all BC scenarios analyzed.}
+
+The brane-frozen regime (Dirichlet with stiff pinning) does NOT:
+\begin{itemize}
+    \item Create an attractive window
+    \item Change the monotonicity of $V_{\mathrm{lin}}$
+    \item Move the minimum location significantly
+\end{itemize}
+
+\textbf{The minimum in $V(d)$ comes from core overlap (topology), not from BC.}
+
+\subsection{What BC Actually Contribute}
+
+\textbf{Positive contributions:}
+\begin{enumerate}
+    \item \textbf{Scale $\delta$:} BC set the brane thickness scale
+    \item \textbf{Mode spectrum:} BC determine eigenvalues $\mu_m$
+    \item \textbf{Screening:} Higher modes provide exponential screening at $d > \delta$
+\end{enumerate}
+
+\textbf{What BC do NOT contribute:}
+\begin{enumerate}
+    \item \textbf{Attraction:} No BC creates $V' < 0$
+    \item \textbf{Minimum mechanism:} Comes from topology, not BC
+    \item \textbf{Sign reversal:} Impossible with standard Green's functions
+\end{enumerate}
+
+\end{document}
