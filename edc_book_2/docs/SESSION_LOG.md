@@ -1177,3 +1177,50 @@ All remaining .md references converted to footnotes with "Repository artifact:" 
 1. Keep audit tool in CI/pre-commit if desired
 2. Monitor for new .md refs in future edits
 3. Consider similar cleanup for any remaining raw repo paths
+
+---
+
+## 2026-01-29 — Frozen Brane BC Internalization
+
+### Goal
+Internalize all 6 .md files from `aside_frozen_brane_bc_v1/` into LaTeX and add to Derivation Library.
+
+### Work Performed
+
+#### Source Files Converted
+From `aside_frozen_brane_bc_v1/`:
+1. `01_MODEL_AND_DEFINITION.md` — Geometry, field content, two frozen concepts
+2. `02_BC_FROM_ACTION_VARIATION.md` — Neumann/Robin/Dirichlet from variational principle
+3. `03_MODE_SPECTRUM_UNDER_ROBIN_DIRICHLET.md` — Eigenvalues and zero mode analysis
+4. `04_GREENS_FUNCTION_WITH_WEIGHTING.md` — Effective 2D Green's function
+5. `05_SIGN_AND_MINIMUM_ANALYSIS.md` — V'_lin > 0 proof (already converted earlier)
+6. `06_RELATION_TO_RADIAL_STEP_FROZEN.md` — Comparison of two frozen types
+7. `07_VERDICT.txt` — Summary conclusions
+
+#### LaTeX Files Created
+- `_shared/derivations/frozen_brane_bc_complete.tex` (standalone, ~350 lines)
+- `_shared/derivations/frozen_brane_bc_complete.include.tex` (for Book2)
+
+#### Derivation Library Updated
+- Replaced shorter `bc_sign_and_minimum_analysis.include` with comprehensive `frozen_brane_bc_complete.include`
+- Section label preserved: `sec:DL-bc-sign-analysis`
+- All content from 6 source files now in compiled PDF
+
+### Key Results Internalized
+- [Der] BC from action variation (Neumann/Robin/Dirichlet)
+- [Der] Mode spectrum under each BC type
+- [Der] $V'_{\mathrm{lin}}(d) > 0$ for ALL BC combinations
+- [Der] "BC create attraction" = FALSE
+- Radial-frozen (core) vs Brane-frozen ($\xi$-BC) distinction clarified
+
+### Verification
+- LaTeX compilation: PASS (606 pages)
+- Undefined refs: 0
+- Content now self-contained in PDF
+
+### Files Changed
+- `appendices/APPENDIX_DERIVATION_LIBRARY.tex`
+
+### Files Created
+- `_shared/derivations/frozen_brane_bc_complete.tex`
+- `_shared/derivations/frozen_brane_bc_complete.include.tex`

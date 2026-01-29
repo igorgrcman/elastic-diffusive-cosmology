@@ -1,0 +1,350 @@
+% ═══════════════════════════════════════════════════════════════════════════════
+% Frozen Brane Boundary Conditions: Complete Analysis
+% ═══════════════════════════════════════════════════════════════════════════════
+% TITLE: Frozen on Brane via ξ-BC: Model, Derivation, and Verdict
+% STATUS: [Der] - Derived from action variation and Green's function analysis
+% ORIGIN: aside_frozen_brane_bc_v1/ (consolidated from 6 markdown files)
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[margin=2.5cm]{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+
+\title{Frozen on Brane via $\xi$-BC:\\Complete Analysis of Boundary Conditions and Vortex Interactions}
+\author{EDC Derivation Library}
+\date{January 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We investigate whether ``frozen on brane'' boundary conditions in the fifth dimension $\xi$
+can create an attractive regime in the vortex--vortex interaction potential. Starting from
+action variation, we derive Neumann, Robin, and Dirichlet BC as limiting cases. We solve
+the eigenvalue problem for each BC type and compute the effective 2D Green's function
+under various $\xi$-weightings. The conclusion is definitive: $V'_{\mathrm{lin}}(d) > 0$
+for all BC and weight choices. The interaction minimum arises from topological core
+repulsion (radial-frozen profiles), not from $\xi$-BC effects.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Model and Definitions}
+\label{sec:model}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Geometry}
+
+The thick brane occupies coordinates:
+\begin{itemize}[nosep]
+    \item \textbf{Transverse 2D:} $(r, \theta)$ --- the plane where vortices live
+    \item \textbf{Fifth dimension:} $\xi \in [0, \delta]$ --- brane thickness
+\end{itemize}
+
+The metric is:
+\begin{equation}
+ds^2 = dr^2 + r^2 d\theta^2 + d\xi^2
+\end{equation}
+
+\subsection{Field Content}
+
+Complex scalar field $\Phi(r, \theta, \xi)$ with vortex ansatz:
+\begin{equation}
+\Phi(r, \theta, \xi) = f(r, \xi) \cdot e^{in\theta}
+\end{equation}
+where $n \in \mathbb{Z}$ is the winding number and $f(r, \xi) \geq 0$ is the profile.
+
+\subsection{Two Distinct ``Frozen'' Concepts}
+
+\begin{definition}[Radial Step Frozen]
+The radial profile is a step function:
+\begin{equation}
+f(r) = \Theta(r - a) = \begin{cases} 0, & r < a \\ v, & r \geq a \end{cases}
+\end{equation}
+This eliminates the GL coherence length, giving exact geometric coefficients
+(e.g., $4\pi/3$, $2\pi^2$) required for $m_p/m_e = 6\pi^5$.
+\end{definition}
+
+\begin{definition}[Brane-Frozen ($\xi$-BC)]
+The $\xi$-profile is pinned at boundaries:
+\begin{itemize}[nosep]
+    \item Neumann: $\partial_\xi f|_{\text{boundaries}} = 0$
+    \item Dirichlet: $f|_{\text{boundaries}} = v$ (fixed value)
+    \item Robin: $\partial_\xi f = \kappa f$ at boundaries
+\end{itemize}
+\end{definition}
+
+\textbf{These are independent concepts.} Both can be true simultaneously.
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Boundary Conditions from Action Variation}
+\label{sec:bc-derivation}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Total Action}
+
+\begin{equation}
+S = S_{\text{bulk}} + S_{\partial,0} + S_{\partial,\delta}
+\end{equation}
+
+where the bulk action is:
+\begin{equation}
+S_{\text{bulk}} = 2\pi \int_0^\infty r\,dr \int_0^\delta d\xi \left[
+\frac{1}{2}(\partial_r f)^2 + \frac{n^2 f^2}{2r^2} + \frac{1}{2}(\partial_\xi f)^2 + U(f)
+\right]
+\end{equation}
+
+and boundary terms:
+\begin{equation}
+S_{\partial} = 2\pi \int r\,dr \left[ V_0(f)|_{\xi=0} + V_\delta(f)|_{\xi=\delta} \right]
+\end{equation}
+
+\subsection{Variation and Boundary Conditions}
+
+Varying $f \to f + \delta f$ and integrating by parts in $\xi$:
+\begin{equation}
+\int_0^\delta d\xi\, (\partial_\xi f)(\partial_\xi \delta f) =
+[(\partial_\xi f)\delta f]_0^\delta - \int_0^\delta d\xi\, (\partial_\xi^2 f)\delta f
+\end{equation}
+
+Collecting boundary terms:
+\begin{align}
+\text{At } \xi = 0: \quad & \partial_\xi f|_{\xi=0} = V'_0(f)|_{\xi=0} \\
+\text{At } \xi = \delta: \quad & \partial_\xi f|_{\xi=\delta} = -V'_\delta(f)|_{\xi=\delta}
+\end{align}
+
+\begin{theorem}[BC from Action --- \textnormal{[Der]}]
+\label{thm:bc-from-action}
+The boundary conditions follow from the variational principle:
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Boundary Action & BC at $\xi = 0$ & BC at $\xi = \delta$ \\
+\midrule
+$V = 0$ (none) & $\partial_\xi f = 0$ (Neumann) & $\partial_\xi f = 0$ (Neumann) \\
+$V = \frac{1}{2}\kappa f^2$ & $\partial_\xi f = \kappa f$ (Robin) & $\partial_\xi f = -\kappa f$ (Robin) \\
+$V = \frac{1}{2}\lambda(f-v_0)^2$, $\lambda\to\infty$ & $f = v_0$ (Dirichlet) & $f = v_\delta$ (Dirichlet) \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{theorem}
+
+\textbf{``Frozen on brane'' = Dirichlet BC in the stiff limit.}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Mode Spectrum Under Various BC}
+\label{sec:mode-spectrum}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+We solve the eigenvalue problem:
+\begin{equation}
+-\frac{d^2\phi_m}{d\xi^2} = \mu_m^2 \phi_m \quad \text{on } \xi \in [0, \delta]
+\end{equation}
+
+\subsection{Neumann--Neumann (Baseline)}
+
+\textbf{Eigenvalues:} $\mu_m = m\pi/\delta$, \quad $m = 0, 1, 2, \ldots$
+
+\textbf{Eigenfunctions:} $\phi_m(\xi) = \cos(m\pi\xi/\delta)$
+
+\textbf{Zero mode ($m=0$):} $\mu_0 = 0$, $\phi_0 = 1$ (constant). \textbf{EXISTS.}
+
+\subsection{Dirichlet--Dirichlet}
+
+\textbf{Eigenvalues:} $\mu_m = m\pi/\delta$, \quad $m = 1, 2, 3, \ldots$
+
+\textbf{Eigenfunctions:} $\phi_m(\xi) = \sin(m\pi\xi/\delta)$
+
+\textbf{Zero mode:} \textbf{DOES NOT EXIST} (excluded by BC).
+
+\subsection{Robin--Robin (General)}
+
+Transcendental eigenvalue equation:
+\begin{equation}
+\tan(\mu\delta) = \frac{\mu(\kappa_0 + \kappa_\delta)}{\mu^2 - \kappa_0\kappa_\delta}
+\end{equation}
+
+\textbf{Generic Robin: NO zero mode} ($\mu = 0$ not allowed).
+
+\subsection{Summary Table}
+
+\begin{center}
+\begin{tabular}{@{}lccl@{}}
+\toprule
+BC Type & Zero Mode? & Lowest Mode & Effect on log term \\
+\midrule
+Neumann--Neumann & YES ($m=0$) & $\mu_0 = 0$ & Log term PRESENT \\
+Dirichlet--Dirichlet & NO & $\mu_1 = \pi/\delta$ & Log term ABSENT \\
+Robin--Robin (generic) & NO & $\mu_1 > 0$ & Log term ABSENT \\
+Dirichlet (matching $v$) & YES$^*$ & Constant $v$ & Log term PRESENT$^*$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+$^*$For Dirichlet with matching boundary values, the constant $v$ acts like a zero mode.
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Green's Function with Weighting}
+\label{sec:greens-function}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Effective 2D Green's Function}
+
+\begin{equation}
+G_{\text{eff}}(r) = \int_0^\delta d\xi \int_0^\delta d\xi'\, w(\xi) w(\xi') G(r; \xi, \xi')
+\end{equation}
+
+where $w(\xi)$ is a weight function with $\int_0^\delta w(\xi)\,d\xi = 1$.
+
+Mode expansion:
+\begin{equation}
+G_{\text{eff}}(r) = \sum_m \frac{W_m^2}{N_m} G_m(r), \quad
+W_m := \int_0^\delta w(\xi) \phi_m(\xi)\,d\xi
+\end{equation}
+
+\subsection{2D Green's Functions}
+
+\textbf{Zero mode ($\mu_0 = 0$):}
+\begin{equation}
+G_0(r) = -\frac{1}{2\pi} \ln(r/L)
+\end{equation}
+
+\textbf{Massive modes ($\mu_m > 0$):}
+\begin{equation}
+G_m(r) = \frac{1}{2\pi} K_0(\mu_m r)
+\end{equation}
+
+\subsection{Summary: BC and Weight Combinations}
+
+\begin{center}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+BC & Weight & Zero Mode? & Log Term? & $V'(d)$ Sign \\
+\midrule
+Neumann & Uniform & Yes & Yes & $\mathbf{> 0}$ \\
+Neumann & Boundary & Yes & Yes & $\mathbf{> 0}$ \\
+Dirichlet (hom.) & Uniform & No & No & $\mathbf{> 0}$ \\
+Robin & Uniform & No & No & $\mathbf{> 0}$ \\
+Dirichlet (matching $v$) & Any & Yes$^*$ & Yes$^*$ & $\mathbf{> 0}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Sign Analysis: The No-Go Result}
+\label{sec:sign-analysis}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\begin{theorem}[BC and Weight Do Not Create Attraction --- \textnormal{[Der]}]
+\label{thm:no-attraction}
+For any combination of:
+\begin{itemize}[nosep]
+    \item Boundary conditions: Neumann, Robin, or Dirichlet
+    \item $\xi$-weight: uniform or boundary-localized
+\end{itemize}
+the linearized interaction $V_{\mathrm{lin}}(d)$ for same-sign vortices satisfies:
+\begin{equation}
+V'_{\mathrm{lin}}(d) > 0 \quad \text{for all } d > 0
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Two cases:
+\begin{enumerate}
+    \item \textbf{Zero mode exists:} $V$ includes log term. Derivative:
+    $\frac{d}{dd}[\ln d] = \frac{1}{d} > 0$.
+
+    \item \textbf{No zero mode:} $V$ includes only $K_0$ terms with positive coefficients.
+    Derivative: $\frac{d}{dd}[K_0(\mu d)] = -\mu K_1(\mu d)$, but entering $V$ with sign
+    that gives $V' \propto +\mu K_1(\mu d) > 0$.
+\end{enumerate}
+In both cases, $V'$ is a sum of positive terms.
+\end{proof}
+
+\textbf{The no-go result is ROBUST to BC and weight changes.}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Relation to Radial Step Frozen}
+\label{sec:radial-comparison}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Which Addresses the No-Go?}
+
+\begin{center}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Aspect & Radial-Frozen $f(r)$ & Brane-Frozen ($\xi$-BC) \\
+\midrule
+Definition & $f(r) = \Theta(r-a)$ & BC at $\xi = 0, \delta$ \\
+Direction & Radial ($r$) & Fifth dimension ($\xi$) \\
+Creates core energy? & YES & NO \\
+$V_{\text{core}} \to +\infty$ at $d\to 0$? & YES (Theorem 2) & NO \\
+Changes $V'_{\text{lin}}$ sign? & N/A & NO \\
+Resolves no-go? & \textbf{YES} & \textbf{NO} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{The Minimum Mechanism}
+
+The minimum in $V(d)$ arises from:
+\begin{itemize}[nosep]
+    \item $V_{\text{core}} \to +\infty$ as $d \to 0$ \quad [from radial-frozen core, topology]
+    \item $V_{\text{lin}} \to +\infty$ as $d \to \infty$ \quad [from log/Yukawa growth]
+    \item Continuity $\Rightarrow$ minimum at some $d_0$
+\end{itemize}
+
+\textbf{BC provide scale $\delta$ and mode spectrum, NOT the minimum mechanism.}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Verdict}
+\label{sec:verdict}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Answers to Key Questions}
+
+\textbf{Q1: Does ``frozen on brane via BC'' exist as a derived stiff limit?}\\
+\textbf{YES [Der].} Dirichlet BC emerges as $\lambda\to\infty$ limit of pinning potential.
+
+\textbf{Q2: Does it create a minimum in $V_{\mathrm{lin}}(d)$?}\\
+\textbf{NO [Der].} All BC scenarios give $V'_{\mathrm{lin}}(d) > 0$. BC affect mode spectrum but NOT sign structure.
+
+\textbf{Q3: Does the minimum still rely on core overlap/topology?}\\
+\textbf{YES [Der].} Minimum comes from radial-frozen core (Theorem 2), not BC effects.
+
+\subsection{Epistemic Status}
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Result & Status \\
+\midrule
+BC from action variation & [Der] \\
+Mode spectrum under BC & [Der] \\
+$V'_{\mathrm{lin}} > 0$ for all BC & [Der] \\
+$V_{\text{core}} \to +\infty$ as $d \to 0$ & [Der] (topology) \\
+Minimum exists & [Dc] (continuity) \\
+Minimum location $d_0 \sim \delta$ & [P] or [Cal] \\
+``BC create attraction'' & \textbf{FALSE} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{The Honest Statement}
+
+\begin{quote}
+``Thick-brane boundary conditions provide the characteristic scale $\delta$ and mode
+structure, but do not create attraction or a minimum in $V_{\mathrm{lin}}(d)$.
+The minimum in the full potential $V(d) = V_{\text{core}} + V_{\text{lin}}$ arises
+from the balance of topological core repulsion [Der] and logarithmic confinement [Dc],
+not from $\xi$-BC effects. Chapter 2's radial-frozen approach is validated and essential.''
+\end{quote}
+
+\end{document}

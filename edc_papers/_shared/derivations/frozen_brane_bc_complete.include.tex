@@ -1,0 +1,130 @@
+% ═══════════════════════════════════════════════════════════════════════════════
+% Frozen Brane BC Complete Analysis - INCLUDE VERSION
+% Auto-generated from frozen_brane_bc_complete.tex
+% Labels prefixed with DL: for Derivation Library inclusion
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\subsection*{Frozen on Brane via $\xi$-BC: Complete Analysis}
+\label{DL:frozen-brane-bc}
+
+\textbf{Status:} \tagDer{} \\
+\textbf{Purpose:} Investigate whether boundary conditions in $\xi$ can create attraction
+in the vortex--vortex interaction potential.
+
+% --- Section 1: Model ---
+\subsubsection*{1. Two Distinct ``Frozen'' Concepts}
+
+\textbf{Radial Step Frozen:} $f(r) = \Theta(r-a)$ --- step function in radial direction.
+Creates core energy, gives geometric coefficients ($4\pi/3$, $2\pi^2$), required for $m_p/m_e = 6\pi^5$.
+
+\textbf{Brane-Frozen ($\xi$-BC):} Boundary conditions at $\xi = 0, \delta$:
+Neumann ($\partial_\xi f = 0$), Robin ($\partial_\xi f = \kappa f$), or Dirichlet ($f = v$).
+
+\textbf{These are independent concepts.}
+
+% --- Section 2: BC from Action ---
+\subsubsection*{2. Boundary Conditions from Action Variation}
+\label{DL:bc-from-action}
+
+Starting from bulk + boundary action $S = S_{\text{bulk}} + S_\partial$, variation gives:
+\begin{equation}
+\label{DL:eq:bc-variation}
+\partial_\xi f\big|_{\text{boundary}} = V'(f)\big|_{\text{boundary}}
+\end{equation}
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Boundary Action & Resulting BC & Status \\
+\midrule
+$V = 0$ & Neumann: $\partial_\xi f = 0$ & [Der] \\
+$V = \frac{1}{2}\kappa f^2$ & Robin: $\partial_\xi f = \kappa f$ & [Der] \\
+$V = \frac{1}{2}\lambda(f-v)^2$, $\lambda\to\infty$ & Dirichlet: $f = v$ & [Der] \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% --- Section 3: Mode Spectrum ---
+\subsubsection*{3. Mode Spectrum Under Various BC}
+\label{DL:mode-spectrum}
+
+Eigenvalue problem: $-d^2\phi_m/d\xi^2 = \mu_m^2 \phi_m$ on $\xi \in [0, \delta]$.
+
+\begin{center}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+BC Type & Zero Mode? & Lowest $\mu$ & Log term? \\
+\midrule
+Neumann--Neumann & YES & $\mu_0 = 0$ & Present \\
+Dirichlet--Dirichlet & NO & $\mu_1 = \pi/\delta$ & Absent \\
+Robin--Robin & NO & $\mu_1 > 0$ & Absent \\
+Dirichlet (matching $v$) & YES$^*$ & const.\ $v$ & Present$^*$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% --- Section 4: Green's Function ---
+\subsubsection*{4. Effective 2D Green's Function}
+
+With $\xi$-weight $w(\xi)$:
+\begin{equation}
+G_{\text{eff}}(r) = \sum_m \frac{W_m^2}{N_m} G_m(r), \quad
+W_m = \int_0^\delta w(\xi) \phi_m(\xi)\,d\xi
+\end{equation}
+
+Zero mode: $G_0(r) = -(1/2\pi)\ln(r/L)$. Massive: $G_m(r) = (1/2\pi)K_0(\mu_m r)$.
+
+% --- Section 5: Sign Analysis ---
+\subsubsection*{5. The No-Go Result}
+\label{DL:bc-no-go}
+
+\textbf{Theorem (BC Do Not Create Attraction) [Der]:}
+For any BC (Neumann/Robin/Dirichlet) and weight (uniform/boundary):
+\begin{equation}
+\label{DL:eq:no-attraction}
+V'_{\mathrm{lin}}(d) > 0 \quad \text{for all } d > 0
+\end{equation}
+
+\textbf{Proof:}
+\begin{itemize}[nosep]
+    \item Zero mode present: $d[\ln d]/dd = 1/d > 0$
+    \item No zero mode: $d[K_0(\mu d)]/dd = -\mu K_1 < 0$, but enters $V$ with sign giving $V' > 0$
+\end{itemize}
+All terms positive $\Rightarrow$ $V' > 0$ always.
+
+% --- Section 6: Comparison ---
+\subsubsection*{6. Radial-Frozen vs.\ Brane-Frozen}
+\label{DL:radial-vs-brane}
+
+\begin{center}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Aspect & Radial-Frozen $f(r)$ & Brane-Frozen ($\xi$-BC) \\
+\midrule
+Creates core energy? & YES & NO \\
+$V_{\text{core}} \to +\infty$ at $d\to 0$? & YES & NO \\
+Resolves no-go? & \textbf{YES} & \textbf{NO} \\
+Essential for minimum? & YES & NO \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Minimum mechanism:}
+$V_{\text{core}} \to +\infty$ (radial-frozen, topology) +
+$V_{\text{lin}} \to +\infty$ at large $d$ (log growth) $\Rightarrow$
+minimum by continuity.
+
+% --- Section 7: Verdict ---
+\subsubsection*{7. Verdict}
+\label{DL:bc-verdict}
+
+\begin{itemize}[nosep]
+    \item[\checkmark] BC from action variation: [Der]
+    \item[\checkmark] Mode spectrum under BC: [Der]
+    \item[\checkmark] $V'_{\mathrm{lin}} > 0$ for all BC: [Der]
+    \item[$\times$] ``BC create attraction'': \textbf{FALSE}
+\end{itemize}
+
+\textbf{Conclusion:} Thick-brane BC provide scale $\delta$ and mode structure, but do NOT
+create attraction. The minimum arises from topological core repulsion, not $\xi$-BC effects.
+Chapter 2's radial-frozen approach is \textbf{validated and essential}.
