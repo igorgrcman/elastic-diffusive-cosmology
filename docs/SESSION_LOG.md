@@ -944,6 +944,49 @@ Create minimal breadth deliverable for EDC flavor sector: what is actually deriv
 
 ---
 
+## 2026-01-29 (cont'd pt19) — Z_N Channel Universality Audit
+
+### Goal
+Audit whether k(N) = 1 + 1/N applies universally across EDC sectors.
+
+### Key Result
+
+**UNIVERSALITY: PARTIAL (YELLOW)**
+
+k(N) applies to averaging processes, NOT to cardinality ratios.
+
+| Channel | Observable | Verdict | Reason |
+|---------|------------|---------|--------|
+| N_cell renorm | 12 → 10 | **APPLY** | Discrete-to-continuum correction |
+| Pion splitting | r_π/(4α) ≈ 7/6 | **APPLY** | Original observation |
+| Δm_np ε-dressing | ε = 0.679% | **UNCLEAR** | Speculative k connection |
+| sin²θ_W = 1/4 | Weinberg angle | **DOES-NOT-APPLY** | Cardinality ratio, no averaging |
+
+### Applicability Criterion
+```
+k(N) APPLIES when:    Observable = ⟨O⟩_disc / ⟨O⟩_cont (averaging)
+k(N) DOES NOT when:   Observable = |G₁| / |G₂| (cardinality ratio)
+```
+
+### Constraint Established
+**Do NOT apply k blindly to:**
+- Cardinality ratios (sin²θ_W, N_g, Koide Q = 2/3)
+- Phase factors (CP phase δ = 60°)
+- Quantities without discrete-vs-continuum structure
+
+### Files Created
+- `docs/ZN_CHANNEL_UNIVERSALITY_AUDIT.md` — full audit document
+
+### Files Modified
+- `CLAIM_LEDGER.md` — Added CL-ZN-UNIV-1 (YELLOW, partial support)
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-051
+- `docs/SESSION_LOG.md` — This entry
+
+### Next Recommended Test
+Find independent channel where k(N) makes specific numerical prediction.
+
+---
+
 ## Template for Future Sessions
 
 ```markdown

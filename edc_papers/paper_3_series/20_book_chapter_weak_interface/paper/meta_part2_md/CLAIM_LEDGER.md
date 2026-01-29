@@ -504,6 +504,38 @@ notes: |
   Explains why τ_n calculation uses N_cell = 10
 ```
 
+### CL-ZN-UNIV-1: k(N) universality audit
+
+```yaml
+id: CL-ZN-UNIV-1
+status: YELLOW
+chapter: breadth
+claim: "k(6) = 7/6 universality across channels: PARTIAL support"
+evidence:
+  audit: "docs/ZN_CHANNEL_UNIVERSALITY_AUDIT.md"
+  k_definition: "docs/ZN_CORRECTION_CHANNEL.md"
+  lemma: "edc_papers/_shared/lemmas/zn_discrete_averaging_lemma.tex"
+tag: "[I]"
+commit: "2026-01-29"
+notes: |
+  UNIVERSALITY AUDIT RESULT: PARTIAL
+
+  APPLY (2 channels):
+    - N_cell renormalization: 12 → 10 via k(6) [Dc]
+    - Pion splitting: r_π/(4α) = 1.166 ≈ 7/6 [I]
+
+  DOES-NOT-APPLY (1 channel):
+    - sin²θ_W = |Z₂|/|Z₆| = 1/4 — cardinality ratio, not averaging
+
+  UNCLEAR (1 channel):
+    - Δm_np ε = 0.679% — speculative k connection (ε = 14α/15?)
+
+  CONSTRAINT: k applies ONLY to discrete-vs-continuum averaging processes.
+  Do NOT apply k blindly to cardinality ratios (sin²θ_W, N_g, Koide Q).
+
+  Next test: Find independent channel to discriminate.
+```
+
 ---
 
 ## Statistics
@@ -511,10 +543,10 @@ notes: |
 | Status | Count |
 |--------|-------|
 | GREEN | 10 |
-| YELLOW | 12 |
+| YELLOW | 13 |
 | RED | 4 |
 | FALSIFIED | 1 |
-| **Total** | **27** |
+| **Total** | **28** |
 
 ---
 

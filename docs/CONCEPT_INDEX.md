@@ -720,6 +720,42 @@ Explains why τ_n uses N_cell = 10 while E_σ/σr_e² gives 12.
 
 ---
 
+### CONCEPT-051: Z_N Channel Universality Audit
+
+| Field | Value |
+|-------|-------|
+| **Source** | `docs/ZN_CHANNEL_UNIVERSALITY_AUDIT.md` |
+| **Location** | Full document |
+| **Epistemic tag** | [I] — audit result, not derivation |
+| **Used in** | Constraining k(N) applicability |
+
+**Purpose:**
+Audits whether k(N) = 1 + 1/N applies universally across EDC sectors.
+
+**Key finding:**
+```
+PARTIAL UNIVERSALITY — k applies to averaging processes, NOT to cardinality ratios
+
+APPLY:
+  - N_cell renormalization (12 → 10)
+  - Pion splitting (r_π/4α ≈ 7/6)
+
+DOES-NOT-APPLY:
+  - sin²θ_W = |Z₂|/|Z₆| = 1/4 (cardinality ratio, no averaging)
+
+UNCLEAR:
+  - Δm_np ε-dressing (speculative k connection)
+```
+
+**Applicability criterion:**
+- k(N) applies when: Observable = ⟨O⟩_discrete / ⟨O⟩_continuum
+- k(N) does NOT apply when: Observable = |G₁| / |G₂| (cardinality ratio)
+
+**Constraint:**
+Do NOT apply k blindly to sin²θ_W, N_g, Koide Q = 2/3, or CP phases.
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:
