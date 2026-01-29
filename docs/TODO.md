@@ -67,6 +67,12 @@
       Code: `edc_papers/_shared/code/zn_delta_pinning_mode_check.py` (all tests PASS)
       Summary: `docs/ZN_MODE_STRUCTURE_BVP_NOTE.md`
       **VALIDATES:** ansatz u(θ) = u₀ + a₁cos(Nθ) used in a/c = 1/N derivation
+- [x] **Robustness: non-quadratic W(u)** — `edc_papers/_shared/derivations/zn_mode_selection_nonlinear_W.tex` (2026-01-29)
+      Second-variation theorem: Hessian depends only on W''(u₀), not higher derivatives [Der]
+      Result: Mode index m=N is ROBUST under any C² potential with stable minimum [Der]
+      Nonlinearities generate higher harmonics (2N, 3N, ...) but do NOT change mode index
+      Code: `edc_papers/_shared/code/zn_nonlinear_W_harmonics_demo.py` (all tests PASS)
+      Summary: `docs/ZN_NONQUADRATIC_W_ROBUSTNESS_NOTE.md`
 
 ---
 

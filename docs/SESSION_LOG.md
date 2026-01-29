@@ -1328,6 +1328,67 @@ k(N) = 1 + 1/N [Der]
 
 ---
 
+## 2026-01-29 (cont'd pt26) — Robustness: Non-Quadratic W(u)
+
+### Goal
+Prove mode selection (m = N) is robust when W(u) is not purely quadratic.
+
+### Key Result: ROBUSTNESS THEOREM PROVEN [Der]
+
+**Second Variation Theorem:**
+```
+The Hessian (second variation) δ²E depends only on W''(u₀) = κ.
+Higher derivatives (W''', W'''', ...) enter at O(η³) and beyond.
+Mode INDEX selection is a LINEAR property → unchanged by nonlinearities.
+```
+
+**Robustness Theorem [Der]:**
+For any C² potential W with stable minimum (W'(u₀)=0, W''(u₀)>0),
+the leading anisotropic mode is cos(Nθ) for sufficiently small amplitude.
+
+**What changes vs what doesn't:**
+
+| Property | Quadratic W | General W |
+|----------|-------------|-----------|
+| Mode index (m=N) | Fixed | **Unchanged** |
+| Selection Lemma | Exact | **Unchanged** |
+| Amplitude relation | Linear | Nonlinear corrections |
+| Harmonic content | Pure cos(Nθ) | cos(Nθ) + higher (2N, 3N, ...) |
+
+### Files Created
+- `edc_papers/_shared/derivations/zn_mode_selection_nonlinear_W.tex` — 7-page derivation
+- `edc_papers/_shared/code/zn_nonlinear_W_harmonics_demo.py` — numerical demo
+- `docs/ZN_NONQUADRATIC_W_ROBUSTNESS_NOTE.md` — executive summary
+
+### Files Modified
+- `CLAIM_LEDGER.md` — Added CL-ZN-WNL-1 (GREEN, [Der])
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-057
+- `docs/TODO.md` — Marked non-quadratic W robustness as DONE
+- `docs/SESSION_LOG.md` — This entry
+
+### Compile & Run Status
+```
+LaTeX: latexmk -xelatex zn_mode_selection_nonlinear_W.tex
+       Output: 7 pages, 83553 bytes, PASS
+
+Python: python3 zn_nonlinear_W_harmonics_demo.py
+        All tests PASS, VERDICT: PASS
+```
+
+### Regime of Validity
+```
+ε₃ = |g|A/κ ≪ 1   (cubic nonlinearity small)
+ε₄ = |h|A²/κ ≪ 1  (quartic nonlinearity small)
+```
+
+### Failure Modes
+- Non-smooth W (C² required)
+- Metastability (W''(u₀) ≤ 0)
+- Large amplitude (perturbation theory fails)
+- Symmetry breaking
+
+---
+
 ## Template for Future Sessions
 
 ```markdown

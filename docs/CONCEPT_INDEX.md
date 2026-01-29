@@ -944,6 +944,44 @@ Ansatz u(θ) = u₀ + a₁cos(Nθ) used in deriving a/c = 1/N and k(N) = 1 + 1/N
 
 ---
 
+### CONCEPT-057: Non-Quadratic W(u) Robustness
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/derivations/zn_mode_selection_nonlinear_W.tex` |
+| **Code** | `edc_papers/_shared/code/zn_nonlinear_W_harmonics_demo.py` |
+| **Summary** | `docs/ZN_NONQUADRATIC_W_ROBUSTNESS_NOTE.md` |
+| **Epistemic tag** | [Der] for second-variation theorem; [Dc] for amplitude corrections |
+| **Used in** | Robustness of k-channel derivation |
+
+**Purpose:**
+Prove mode selection (m = N) is robust when W(u) is not purely quadratic.
+
+**Key insight [Der]:**
+```
+The Hessian (second variation) δ²E depends only on W''(u₀) = κ.
+Higher derivatives (W''', W'''', ...) enter at O(η³) and beyond.
+Mode INDEX selection is a LINEAR property → unchanged by nonlinearities.
+```
+
+**Robustness theorem [Der]:**
+For any C² potential W with stable minimum (W'(u₀)=0, W''(u₀)>0),
+the leading anisotropic mode is cos(Nθ) for sufficiently small amplitude.
+
+**What changes vs what doesn't:**
+
+| Property | Quadratic W | General W |
+|----------|-------------|-----------|
+| Mode index (m=N) | Fixed | **Unchanged** |
+| Selection Lemma | Exact | **Unchanged** |
+| Amplitude relation | Linear | Nonlinear corrections |
+| Harmonic content | Pure cos(Nθ) | cos(Nθ) + higher (2N, 3N, ...) |
+
+**Regime of validity:**
+ε₃ = |g|A/κ ≪ 1 and ε₄ = |h|A²/κ ≪ 1
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:

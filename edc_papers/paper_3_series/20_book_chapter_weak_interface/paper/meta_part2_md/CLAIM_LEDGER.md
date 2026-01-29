@@ -718,18 +718,51 @@ notes: |
   UPGRADE: Validates ansatz u(θ) = u₀ + a₁cos(Nθ) used in a/c = 1/N derivation
 ```
 
+### CL-ZN-WNL-1: Mode selection robust under non-quadratic W(u)
+
+```yaml
+id: CL-ZN-WNL-1
+status: GREEN
+chapter: breadth
+claim: "Mode index m=N is robust under non-quadratic W(u) with stable minimum"
+evidence:
+  derivation: "edc_papers/_shared/derivations/zn_mode_selection_nonlinear_W.tex"
+  code: "edc_papers/_shared/code/zn_nonlinear_W_harmonics_demo.py"
+  summary: "docs/ZN_NONQUADRATIC_W_ROBUSTNESS_NOTE.md"
+tag: "[Der]"
+commit: "2026-01-29"
+notes: |
+  SECOND VARIATION THEOREM [Der]:
+    - Hessian δ²E depends only on W''(u₀) = κ, not on W''', W'''', ...
+    - Mode index selection is a LINEAR property
+    - Selection Lemma and gradient ordering are UNCHANGED
+
+  NONLINEAR EFFECTS (do NOT change mode index):
+    - Generate higher harmonics (2N, 3N, ...) at O(A³), O(A⁴)
+    - Modify amplitude relationship (energy vs A)
+    - NO m < N modes generated (Z_N symmetry preserved)
+
+  REGIME OF VALIDITY:
+    ε₃ = |g|A/κ ≪ 1, ε₄ = |h|A²/κ ≪ 1
+
+  NUMERICAL VERIFICATION: All cases PASS (m=N dominant)
+
+  FAILURE MODES:
+    - Non-smooth W, metastability, large amplitude, symmetry breaking
+```
+
 ---
 
 ## Statistics
 
 | Status | Count |
 |--------|-------|
-| GREEN | 14 |
+| GREEN | 15 |
 | YELLOW | 15 |
 | RED | 4 |
 | FALSIFIED | 1 |
-| **Total** | **34** |
+| **Total** | **35** |
 
 ---
 
-*Claim Ledger v1.8 — Last updated 2026-01-29*
+*Claim Ledger v1.9 — Last updated 2026-01-29*
