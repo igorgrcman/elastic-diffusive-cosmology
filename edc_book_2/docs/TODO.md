@@ -38,6 +38,11 @@
 
 ## Priority 3: Documentation & Consistency
 
+- [ ] **Run full LaTeX reference sweep before distribution**
+  - Current: "undefined references" warning in compile
+  - Need: resolve all \ref, \cite, \label mismatches
+  - Blocker for any external release
+
 - [ ] **Create comprehensive derivation registry**
   - List all claims with epistemic status
   - Track dependencies

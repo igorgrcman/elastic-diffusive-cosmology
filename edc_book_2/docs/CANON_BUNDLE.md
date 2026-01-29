@@ -1,6 +1,6 @@
 # CANON BUNDLE — P0 Mandatory Documents
 
-**Generated:** 2026-01-28 20:08
+**Generated:** 2026-01-29 12:40
 **Purpose:** Single file containing ALL P0 canonical documents for session loading.
 **Usage:** Read this file at the START of every CC session. MANDATORY.
 
@@ -494,7 +494,7 @@ sin²θ_W = 1/4 (exact at tree level)
 
 ## Priority 1: Blocking Issues
 
-- [ ] **Resolve L₀/δ tension** — Why does static prefer π², dynamic prefers 9.33?
+- [x] **Resolve L₀/δ tension** — RESOLVED [Dc] (2026-01-29): Both valid in context. See `docs/L0_DELTA_TENSION_RESOLUTION.md`
   - Possible: quantum/boundary corrections for dynamic processes
   - Need: explicit calculation from 5D action
 
@@ -525,6 +525,11 @@ sin²θ_W = 1/4 (exact at tree level)
 ---
 
 ## Priority 3: Documentation & Consistency
+
+- [ ] **Run full LaTeX reference sweep before distribution**
+  - Current: "undefined references" warning in compile
+  - Need: resolve all \ref, \cite, \label mismatches
+  - Blocker for any external release
 
 - [ ] **Create comprehensive derivation registry**
   - List all claims with epistemic status
