@@ -125,7 +125,11 @@
       Result: Framework [Der] established; numerical values [OPEN] blocked by BVP (OPR-21)
       Formula: X_EDC = C × (g_5² × I_4 × m_e²) / M_eff² (no v in forward chain)
       Toy feasibility: Parameter space exists where X_EDC could match X_target
-- [ ] **Solve thick-brane BVP (OPR-21)** — Blocks numerical G_F value
+- [x] **Implement thick-brane BVP pipeline (OPR-21)** — `edc_papers/_shared/bvp_gf/` (2026-01-29)
+      Result: Pipeline [Der] complete; physics background [Dc] provisional
+      Baseline: M_eff = 2.43 GeV (PASS), I_4 = 0.077 GeV (FAIL — 38× too large)
+      Gate verdict: Need physics tuning (L-R separation, fermion width, potential)
+- [ ] **Tune BVP physics background** — Adjust parameters to match X_target
 
 ---
 

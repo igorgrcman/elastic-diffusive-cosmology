@@ -1,0 +1,160 @@
+# =============================================================================
+# BVP Configuration for G_F Mode Profile Pipeline
+# =============================================================================
+# Issue: OPR-21 — Thick-brane BVP solution for G_F non-circular chain
+# Reference: docs/GF_NONCIRCULAR_FRAMEWORK_NOTE.md
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Physical Parameters (EDC units: natural units with ℏ = c = 1)
+# -----------------------------------------------------------------------------
+physical:
+  # Brane thickness parameter [Dc]
+  delta_GeV_inv: 0.533        # δ = ℏ/(2 m_p c) ≈ 0.533 GeV^{-1}
+
+  # Electron mass [BL]
+  m_e_GeV: 0.00051099895      # m_e = 0.511 MeV
+
+  # Fine structure constant [BL]
+  alpha: 0.0072973525693      # α = 1/137.036
+
+  # sin²θ_W = 1/4 [Der] from Z₆ subgroup counting
+  sin2_theta_W: 0.25
+
+  # Target dimensionless combination [BL]
+  # X_target = G_F × m_e² = 3.04 × 10^{-12}
+  X_target: 3.04e-12
+
+# -----------------------------------------------------------------------------
+# Background Geometry
+# -----------------------------------------------------------------------------
+background:
+  # Available types: "gaussian_wall", "rs_like", "tanh_wall", "delta_approx"
+  type: "gaussian_wall"
+
+  # Wall width in units of δ
+  wall_width_delta: 1.0
+
+  # For RS-like: warp factor k (dimensionless)
+  rs_warp_k: 1.0
+
+  # For tanh_wall: steepness parameter
+  tanh_steepness: 5.0
+
+# -----------------------------------------------------------------------------
+# Domain and Grid
+# -----------------------------------------------------------------------------
+domain:
+  # Domain extent: χ ∈ [-L, +L] in units of δ
+  L_delta: 10.0
+
+  # Number of grid points
+  n_points: 1001
+
+  # Grid type: "uniform" or "chebyshev"
+  grid_type: "uniform"
+
+# -----------------------------------------------------------------------------
+# Boundary Conditions
+# -----------------------------------------------------------------------------
+boundary_conditions:
+  # For fermion modes: "even" (symmetric) or "odd" (antisymmetric) or "normalizable"
+  fermion_left_bc: "normalizable"
+  fermion_right_bc: "normalizable"
+
+  # For mediator mode: typically "even" (ground state)
+  mediator_bc: "even"
+
+# -----------------------------------------------------------------------------
+# Mode Configuration
+# -----------------------------------------------------------------------------
+modes:
+  # Which modes to compute
+  compute_w_L: true
+  compute_w_R: true
+  compute_w_phi: true
+
+  # Fermion localization model
+  # For chiral separation, we use asymmetric mass profile
+  # m(χ) = m_0 × sign(χ) for domain wall fermions
+  fermion_model: "domain_wall"
+
+  # Localization width for fermions in units of δ
+  fermion_width_delta: 0.1
+
+  # L-R separation distance in units of δ
+  LR_separation_delta: 2.0
+
+  # Number of KK eigenvalues to compute
+  n_eigenvalues: 5
+
+# -----------------------------------------------------------------------------
+# Solver Configuration
+# -----------------------------------------------------------------------------
+solver:
+  # Method: "shooting", "finite_diff", "spectral"
+  method: "finite_diff"
+
+  # For shooting method
+  shooting:
+    tol: 1.0e-10
+    max_iter: 100
+
+  # For finite difference
+  finite_diff:
+    sparse: true
+    which_eigenvalues: "SM"  # smallest magnitude
+
+  # General tolerances
+  normalization_tol: 1.0e-8
+  eigenvalue_tol: 1.0e-10
+
+# -----------------------------------------------------------------------------
+# Normalization Convention
+# -----------------------------------------------------------------------------
+normalization:
+  # L² normalization: ∫ |w|² dχ = 1
+  type: "L2"
+
+  # Weight function (if any): "flat" or "metric"
+  weight: "flat"
+
+# -----------------------------------------------------------------------------
+# Output Configuration
+# -----------------------------------------------------------------------------
+output:
+  # Output directory (relative to this config)
+  dir: "out"
+
+  # Files to generate
+  results_json: true
+  profiles_csv: true
+
+  # Include git hash for reproducibility
+  include_git_hash: true
+
+  # Verbosity: 0 = silent, 1 = summary, 2 = detailed
+  verbosity: 1
+
+# -----------------------------------------------------------------------------
+# Gate Evaluation
+# -----------------------------------------------------------------------------
+gates:
+  # Gate 1: Overlap window
+  I4_window_factor: 10.0  # FAIL if I4 outside [1/factor, factor] × I4_required
+
+  # Gate 2: Mass scaling
+  M_eff_window_factor: 10.0  # FAIL if M_eff outside [1/factor, factor] × (1/δ)
+
+  # Gate 3: X_EDC tolerance
+  X_EDC_tolerance: 0.1  # SUCCESS if |X_EDC - X_target| / X_target < tolerance
+
+# -----------------------------------------------------------------------------
+# Quick-Run Mode (for testing pipeline without heavy computation)
+# -----------------------------------------------------------------------------
+quick_run:
+  enabled: false
+  # Use toy exponential profiles instead of BVP solution
+  use_toy_profiles: true
+  # Reduced grid
+  n_points_quick: 201

@@ -1984,6 +1984,85 @@ Parameter scan shows 128 combinations within feasibility window:
 
 ---
 
+## 2026-01-29 (cont'd pt37) — OPR-21: BVP Pipeline Implementation
+
+### Goal
+Implement thick-brane BVP pipeline for G_F mode profiles, overlaps, and gate evaluation.
+
+### Key Result: **Pipeline [Der] complete, physics background [Dc] provisional**
+
+**Pipeline components:**
+```
+edc_papers/_shared/bvp_gf/
+├── config.yaml      # Full configuration
+├── bvp_driver.py    # Main entry point
+├── bvp_core.py      # Finite difference eigenvalue solver
+├── overlaps.py      # I_4, I_g, ε computation
+├── report.py        # Gate report generator
+└── README.md        # Usage instructions
+```
+
+**Equations solved:**
+- Mediator: -∂²w_φ/∂χ² + V(χ)w_φ = λw_φ
+- Fermions: -∂²w_{L,R}/∂χ² + V_±(χ)w_{L,R} = λw_{L,R}
+
+**Baseline run results (gaussian_wall background):**
+| Quantity | Value | Gate |
+|----------|-------|------|
+| M_eff | 2.43 GeV | PASS (ratio 1.30) |
+| I_4 | 0.077 GeV | FAIL (38× too large) |
+| g_eff² | 0.20 | PASS (ratio 0.53) |
+| X_EDC / X_target | 38.4 | — |
+
+**Interpretation:**
+Current background gives too much mode overlap. Gates 2 and 3 pass.
+Gate 1 fails because L-R modes overlap too strongly.
+
+### Files Created
+- `edc_papers/_shared/bvp_gf/config.yaml` — Full configuration
+- `edc_papers/_shared/bvp_gf/bvp_driver.py` — Main entry point
+- `edc_papers/_shared/bvp_gf/bvp_core.py` — BVP solver
+- `edc_papers/_shared/bvp_gf/overlaps.py` — Overlap computation
+- `edc_papers/_shared/bvp_gf/report.py` — Gate report generator
+- `edc_papers/_shared/bvp_gf/README.md` — Usage instructions
+- `docs/OPR-21_BVP_GF_WORKPACKAGE.md` — Workpackage specification
+- `docs/GF_BVP_GATE_REPORT.md` — Auto-generated gate report
+- `edc_papers/_shared/boxes/gf_bvp_pipeline_box.tex` — Book-ready box
+- `edc_papers/_shared/bvp_gf/out/results.json` — Machine-readable results
+- `edc_papers/_shared/bvp_gf/out/profiles_*.csv` — Mode profile data
+
+### Files Modified
+- `docs/TODO.md` — OPR-21 marked IN PROGRESS
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-068
+- `edc_papers/.../CLAIM_LEDGER.md` — Added CL-OPR21-PIPE-1, CL-OPR21-PHYS-1
+- `docs/SESSION_LOG.md` — This entry
+
+### Tests
+- py_compile: ✓ PASS (all 4 modules)
+- Quick-run mode: ✓ PASS (toy profiles)
+- BVP solution: ✓ PASS (converged, outputs generated)
+- Gate evaluation: ✓ PASS (correctly identifies FAIL_I4_TOO_LARGE)
+
+### Verdict: **YELLOW (Pipeline GREEN, Physics YELLOW)**
+
+**OPR-21 status:**
+| Component | Status | Color |
+|-----------|--------|-------|
+| Pipeline code | [Der] | GREEN |
+| Config structure | [Der] | GREEN |
+| Gate evaluation | [Der] | GREEN |
+| Background V(χ) | [Dc] | YELLOW |
+| Fermion m(χ) | [Dc] | YELLOW |
+| Numerical G_F | [OPEN] | RED |
+
+### Next Steps
+- Tune physics parameters to reduce mode overlap
+- Try different backgrounds (RS-like, tanh_wall)
+- Increase L-R separation
+- Derive V(χ) from 5D action reduction
+
+---
+
 ## Template for Future Sessions
 
 ```markdown

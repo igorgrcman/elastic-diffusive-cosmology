@@ -344,6 +344,70 @@ notes: |
   Required I_4 ~ (34 MeV) is physically reasonable
 ```
 
+### CL-OPR21-PIPE-1: BVP Pipeline Implementation
+
+```yaml
+id: CL-OPR21-PIPE-1
+status: GREEN
+chapter: 11
+claim: "BVP pipeline implemented with reproducible outputs"
+evidence:
+  code: "edc_papers/_shared/bvp_gf/"
+  workpackage: "docs/OPR-21_BVP_GF_WORKPACKAGE.md"
+  report: "docs/GF_BVP_GATE_REPORT.md"
+tag: "[Der]"
+commit: "2026-01-29"
+notes: |
+  Pipeline components:
+  - bvp_driver.py: Main entry point
+  - bvp_core.py: Finite difference eigenvalue solver
+  - overlaps.py: I_4, I_g, ε computation
+  - report.py: Gate report generator
+  - config.yaml: Full configuration
+
+  Outputs (reproducible with git hash):
+  - out/results.json: Machine-readable results
+  - out/profiles_*.csv: Mode profile data
+  - docs/GF_BVP_GATE_REPORT.md: Gate evaluation
+
+  Usage: python3 bvp_driver.py --config config.yaml
+```
+
+### CL-OPR21-PHYS-1: Physics Background Provisional
+
+```yaml
+id: CL-OPR21-PHYS-1
+status: YELLOW
+chapter: 11
+claim: "Physics background choice still provisional"
+evidence:
+  config: "edc_papers/_shared/bvp_gf/config.yaml"
+  report: "docs/GF_BVP_GATE_REPORT.md"
+tag: "[Dc]"
+commit: "2026-01-29"
+baseline_run:
+  background: "gaussian_wall"
+  M_eff_GeV: 2.43
+  I_4_GeV: 0.077
+  X_ratio: 38.4
+  gate1_I4: "FAIL (38× too large)"
+  gate2_mass: "PASS (ratio 1.30)"
+  gate3_coupling: "PASS (ratio 0.53)"
+notes: |
+  Current baseline gives I_4 too large by factor ~38.
+  Mode overlap is too strong with default parameters.
+
+  To achieve target X_EDC ≈ X_target, need to:
+  - Increase LR_separation_delta (currently 2.0)
+  - Decrease fermion_width_delta (currently 0.1)
+  - Adjust background potential depth/shape
+
+  Physical identification with EDC brane structure requires:
+  - 5D action reduction for V(χ)
+  - Fermion localization from brane geometry
+  - g_5 from action normalization (not scaling)
+```
+
 ---
 
 ## Chapter 10: Neutron-Proton Mass Difference

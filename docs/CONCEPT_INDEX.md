@@ -1320,6 +1320,55 @@ where:
 
 ---
 
+### CONCEPT-068: G_F BVP Pipeline (OPR-21)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/bvp_gf/` |
+| **Documentation** | `docs/OPR-21_BVP_GF_WORKPACKAGE.md` |
+| **Report** | `docs/GF_BVP_GATE_REPORT.md` (auto-generated) |
+| **Epistemic tag** | [Der] for pipeline, [Dc] for physics background |
+| **Used in** | Book 2 Chapter 11 (G_F derivation) |
+
+**Pipeline components:**
+```
+bvp_driver.py    — Main entry point
+bvp_core.py      — BVP solver (eigenvalue problem)
+overlaps.py      — Overlap integral computation
+report.py        — Gate report generator
+config.yaml      — Pipeline configuration
+```
+
+**Equations solved:**
+- Mediator: -∂²w_φ/∂χ² + V(χ)w_φ = λw_φ
+- Fermions: -∂²w_{L,R}/∂χ² + V_±(χ)w_{L,R} = λw_{L,R}
+
+**Outputs:**
+- `out/results.json` — Machine-readable with git hash
+- `out/profiles_*.csv` — Mode profile data
+- `docs/GF_BVP_GATE_REPORT.md` — Gate evaluation
+
+**Usage:**
+```bash
+python3 bvp_driver.py --config config.yaml
+```
+
+**Baseline run (2026-01-29):**
+- Background: gaussian_wall [Dc]
+- M_eff = 2.43 GeV (Gate 2: PASS)
+- I_4 = 0.077 GeV (Gate 1: FAIL — too large by 38×)
+- X_EDC / X_target = 38.4
+
+**Interpretation:**
+Current background gives too much mode overlap. Need to:
+- Increase L-R separation, OR
+- Decrease fermion localization width, OR
+- Adjust background potential
+
+**Status:** OPR-21 YELLOW — Pipeline complete, physics tuning needed
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:

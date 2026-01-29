@@ -1,0 +1,67 @@
+% =============================================================================
+% BOX: G_F BVP Pipeline Status
+% =============================================================================
+% Issue: OPR-21 — Thick-brane BVP for G_F non-circular chain
+% Insert location: Chapter 11 (G_F derivation) or Appendix
+% Status: [Der] for pipeline, [Dc] for physics background
+% =============================================================================
+
+\begin{tcolorbox}[
+    colback=blue!5!white,
+    colframe=blue!75!black,
+    title={\textbf{BVP Pipeline for $G_F$ Derivation (OPR-21)}},
+    fonttitle=\bfseries
+]
+
+\textbf{Status:} Pipeline implemented \tagDer{}; physics background provisional \tagDc{}
+
+\vspace{0.5em}
+\textbf{Purpose:} Compute mode profiles and overlap integrals for non-circular $G_F$ chain:
+\[
+\text{5D Action} \to g_5 \to M_{\text{eff}} \to \text{BVP modes} \to I_4 \to G_F^{\text{EDC}}
+\]
+
+\textbf{Equations solved:}
+\begin{itemize}[leftmargin=*, itemsep=0pt]
+    \item Mediator mode: $-\partial_\chi^2 w_\phi + V(\chi) w_\phi = \lambda w_\phi$
+    \item Fermion modes: $-\partial_\chi^2 w_{L,R} + V_{\pm}(\chi) w_{L,R} = \lambda w_{L,R}$
+\end{itemize}
+
+\textbf{Key outputs:}
+\begin{center}
+\begin{tabular}{ll}
+$I_4 = \int d\chi \, w_L^2 w_R^2 w_\phi^2$ & Four-point overlap \\
+$M_{\text{eff}} = \sqrt{\lambda_0}/\delta$ & Effective mediator mass \\
+$X_{\text{EDC}} = C \cdot g_5^2 I_4 m_e^2 / M_{\text{eff}}^2$ & Target comparison
+\end{tabular}
+\end{center}
+
+\textbf{Location:} \texttt{edc\_papers/\_shared/bvp\_gf/}
+
+\textbf{To run:}
+\begin{verbatim}
+python3 bvp_driver.py --config config.yaml
+\end{verbatim}
+
+\textbf{Caveats:}
+\begin{itemize}[leftmargin=*, itemsep=0pt]
+    \item Background potential $V(\chi)$ is provisional (Gaussian/RS/tanh ansatz)
+    \item Fermion mass profile $m(\chi)$ is domain-wall ansatz
+    \item Physical identification requires 5D action reduction
+\end{itemize}
+
+\textbf{Reference:} \texttt{docs/OPR-21\_BVP\_GF\_WORKPACKAGE.md}
+
+\end{tcolorbox}
+
+% =============================================================================
+% INSERTION RECOMMENDATION
+% =============================================================================
+% This box should be inserted in one of:
+% 1. Chapter 11 (G_F derivation), after discussing the non-circular formula
+% 2. An appendix on computational methods
+% 3. A "Pipeline Status" section at the end of the book
+%
+% The box documents that the numerical pipeline EXISTS and is reproducible,
+% even though the physics background remains provisional.
+% =============================================================================
