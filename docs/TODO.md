@@ -4,6 +4,16 @@
 
 ---
 
+## Priority 0: Breadth Strategy (NEW — 2026-01-29)
+
+- [ ] **Formalize Projection Lemma in LaTeX** — universal operator for EM/V-A/tunneling
+- [ ] **Δm_np sensitivity analysis** — dimensionless rewrite, robustness check
+- [ ] **σ dependency audit** — complete table, identify master parameter role
+- [ ] **Flavor Skeleton v0.1** — N_g=3 + θ_23 + qualitative CP constraint
+- [ ] **G_F constraint note** — if derivation is RED, set constraint window instead
+
+---
+
 ## Priority 1: Infrastructure (Blocking)
 
 - [x] Create workspace-level CANON_BUNDLE.md (2026-01-28)
@@ -13,6 +23,8 @@
 - [x] Create root TODO.md (2026-01-28)
 - [x] Create root CLAUDE.md with workspace canon enforcement (2026-01-28)
 - [x] Update SESSION_LOG.md (2026-01-28)
+- [x] Workflow hardening: repo-relative paths (2026-01-28)
+- [x] Breadth Strategy + BREADTH_MAP (2026-01-29)
 
 ---
 

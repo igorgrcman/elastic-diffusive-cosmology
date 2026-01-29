@@ -172,6 +172,59 @@ Systematize and record for permanent use.
 
 ---
 
+## 2026-01-29 — Breadth Strategy + Projection-Reduction Principle
+
+### Goal
+Establish meta-strategy for "breadth" work: one mechanism → multiple sectors → cross-consistency tests.
+
+### Key Insight
+
+Today's real discovery isn't just nuclear physics — it's that we now have instruments for expanding EDC without hallucinating:
+
+| Instrument | Purpose |
+|------------|---------|
+| KNOWLEDGE_INVENTORY | Map what exists (don't repeat) |
+| CLAIM_LEDGER | Where the "teeth" are (GREEN/YELLOW/RED) |
+| OPEN_PROBLEMS_REGISTER | Where the real frontier is |
+
+### Documents Created
+
+1. **TP-2026-01-29_Breadth_Strategy.md** — Canonical turning point
+   - 5 breadth explorations defined
+   - Projection-Reduction Principle (formal lemma)
+   - Three cases: (A) Lagrangian, (B) Chirality, (C) Barrier
+
+2. **BREADTH_MAP.md** — Cross-sector synthesis
+   - 5 bridge-candidate mechanisms
+   - 2 fastest cross-sector tests
+   - σ/δ/L_0 dependency table
+   - Dependency graph (σ as master parameter)
+
+### Projection-Reduction Principle (Summary)
+
+> "Bulk → brane observation is linear projection; everything you see in 4D is a weighted average of bulk structure."
+
+**Three universal consequences:**
+1. Effective coefficients are integrals (Z, κ_eff, ...)
+2. Chirality can be geometrically selected (ε ≪ 1)
+3. Barriers are projections of energy profiles
+
+**EDC application:**
+- EM projection = Case (A)
+- V-A from boundary = Case (B)
+- Nuclear tunneling = Case (C)
+
+### Files Created
+- `docs/TP-2026-01-29_Breadth_Strategy.md` — NEW
+- `docs/BREADTH_MAP.md` — NEW
+
+### Next Steps
+1. Formalize Projection Lemma in LaTeX
+2. Δm_np sensitivity analysis
+3. σ dependency audit
+
+---
+
 ## 2026-01-28 (cont'd pt4) — Workflow Hardening (Repo-Relative Paths)
 
 ### Goal
