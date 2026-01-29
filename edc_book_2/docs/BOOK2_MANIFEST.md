@@ -1,13 +1,13 @@
 # Book 2 Include Manifest
 
-**Generated:** 2026-01-29 13:47
+**Generated:** 2026-01-29 15:00
 
 ## Statistics
 
 - **Total files:** 83
-- **Total lines:** 33668
+- **Total lines:** 33908
 - **Max depth:** 3
-- **Missing files:** 3
+- **Missing files:** 0
 
 ## Include Tree
 
@@ -56,12 +56,12 @@ EDC_Part_II_Weak_Sector_rebuild.tex (900 lines)
   11_gf_derivation.tex (654 lines)
     fig_mediator_integration.tex (101 lines)
     fig_mode_overlap.tex (111 lines)
-    gf_constraint_box.tex (0 lines) [MISSING]
+    gf_constraint_box.tex (60 lines)
   09_va_structure.tex (1183 lines)
   ch10_electroweak_bridge.tex (496 lines)
   12_epistemic_map.tex (569 lines)
-    kchannel_spinchain_crossval_box.tex (0 lines) [MISSING]
-    gf_bvp_allgates_physical_priors_box.tex (0 lines) [MISSING]
+    kchannel_spinchain_crossval_box.tex (53 lines)
+    gf_bvp_allgates_physical_priors_box.tex (127 lines)
   ch11_g5_canonical_and_kk.tex (228 lines)
   ch11_g5_ell_value_closure_attempt.tex (386 lines)
   ch11_g5_value_closure_attempt2_coefficient.tex (319 lines)
@@ -145,12 +145,12 @@ EDC_Part_II_Weak_Sector_rebuild.tex (900 lines)
 | 1 | input | 654 | `edc_book_2/src/sections/11_gf_derivation.tex` |
 | 2 | input | 101 | `edc_book_2/src/figures/fig_mediator_integration.tex` |
 | 2 | input | 111 | `edc_book_2/src/figures/fig_mode_overlap.tex` |
-| 2 | MISSING | 0 | `edc_book_2/edc_papers/_shared/boxes/gf_constraint_box.tex` |
+| 2 | input | 60 | `edc_papers/_shared/boxes/gf_constraint_box.tex` |
 | 1 | input | 1183 | `edc_book_2/src/sections/09_va_structure.tex` |
 | 1 | input | 496 | `edc_book_2/src/sections/ch10_electroweak_bridge.tex` |
 | 1 | input | 569 | `edc_book_2/src/sections/12_epistemic_map.tex` |
-| 2 | MISSING | 0 | `edc_book_2/edc_papers/_shared/boxes/kchannel_spinchain_crossval_box.tex` |
-| 2 | MISSING | 0 | `edc_book_2/edc_papers/_shared/boxes/gf_bvp_allgates_physical_priors_box.tex` |
+| 2 | input | 53 | `edc_papers/_shared/boxes/kchannel_spinchain_crossval_box.tex` |
+| 2 | input | 127 | `edc_papers/_shared/boxes/gf_bvp_allgates_physical_priors_box.tex` |
 | 1 | input | 228 | `edc_book_2/src/sections/ch11_g5_canonical_and_kk.tex` |
 | 1 | input | 386 | `edc_book_2/src/sections/ch11_g5_ell_value_closure_attempt.tex` |
 | 1 | input | 319 | `edc_book_2/src/sections/ch11_g5_value_closure_attempt2_coefficient.tex` |

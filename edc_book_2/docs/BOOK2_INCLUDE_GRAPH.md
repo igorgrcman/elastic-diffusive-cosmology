@@ -1,6 +1,6 @@
 # Book 2 Include Graph
 
-**Generated:** 2026-01-29 13:47
+**Generated:** 2026-01-29 15:00
 
 ## Visualization (depth ≤ 3)
 
@@ -94,7 +94,7 @@ graph TD
     11_gf_derivation --> fig_mode_overlap
     fig_mode_overlap["fig_mode_overlap"]
     11_gf_derivation --> gf_constraint_box
-    gf_constraint_box["gf_constraint_box (MISSING)"]
+    gf_constraint_box["gf_constraint_box"]
     EDC_Part_II_Weak_Sec --> 09_va_structure
     09_va_structure["09_va_structure"]
     EDC_Part_II_Weak_Sec --> ch10_electroweak_bri
@@ -102,9 +102,9 @@ graph TD
     EDC_Part_II_Weak_Sec --> 12_epistemic_map
     12_epistemic_map["12_epistemic_map"]
     12_epistemic_map --> kchannel_spinchain_c
-    kchannel_spinchain_c["kchannel_spinchain_crossval_bo (MISSING)"]
+    kchannel_spinchain_c["kchannel_spinchain_crossval_bo"]
     12_epistemic_map --> gf_bvp_allgates_phys
-    gf_bvp_allgates_phys["gf_bvp_allgates_physical_prior (MISSING)"]
+    gf_bvp_allgates_phys["gf_bvp_allgates_physical_prior"]
     EDC_Part_II_Weak_Sec --> ch11_g5_canonical_an
     ch11_g5_canonical_an["ch11_g5_canonical_and_kk"]
     EDC_Part_II_Weak_Sec --> ch11_g5_ell_value_cl
@@ -175,7 +175,7 @@ graph TD
 - Nodes: 83
 - Edges: 82
 - Max depth: 3
-- Total lines: 33668
+- Total lines: 33908
 
 ## JSON Data
 

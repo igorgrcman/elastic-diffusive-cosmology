@@ -581,6 +581,49 @@ Add Book2-ready k-channel cross-validation box + prominent editorial warning.
 
 ---
 
+## 2026-01-29 — Book2 Integration + Manifest Fix + Derivation Library
+
+### Goal
+1. Fix "3 missing files" parser bug in book2_manifest.py
+2. Create Derivation Library appendix to wire all orphan derivations
+3. Standardize external include paths
+4. LaTeX sweep for undefined refs
+
+### Work Performed
+
+#### Step A: Parser Fix
+- Fixed `normalize_path()` in `book2_manifest.py`
+- Added handler for `../../edc_papers/` paths that go outside edc_book_2
+- Missing files: 3 → 0 (now correctly resolved)
+- Orphan count: 26 → 23 (the 3 boxes now found as included)
+
+#### Step B: Derivation Library Appendix (in progress)
+- Creating `edc_book_2/src/appendices/APPENDIX_DERIVATION_LIBRARY.tex`
+- Wiring all 23 orphan files:
+  - 13 derivations
+  - 7 boxes (previously 10, minus 3 now found)
+  - 3 lemmas
+
+### Files Modified
+- `edc_book_2/tools/book2_manifest.py` — Parser fix
+- `edc_book_2/docs/BOOK2_MANIFEST.md` — Regenerated (0 missing)
+- `edc_book_2/docs/BOOK2_ORPHANS_REPORT.md` — Regenerated (23 orphans)
+
+### Files Created (pending)
+- `edc_book_2/src/appendices/APPENDIX_DERIVATION_LIBRARY.tex`
+
+### Results
+- Parser now correctly resolves all paths
+- Missing files = 0
+
+### Next Steps
+1. Complete Derivation Library appendix
+2. Wire into main.tex
+3. LaTeX sweep
+4. Final manifest regeneration
+
+---
+
 ```markdown
 ## YYYY-MM-DD — [Session Title]
 

@@ -71,6 +71,7 @@ def normalize_path(include_path: str, current_file: Path, include_type: str) -> 
     - Add .tex extension if missing
     - Resolve relative to current file's directory
     - Handle _shared/ references
+    - Handle ../../edc_papers/ paths that go outside edc_book_2
     """
     # Remove any quotes
     include_path = include_path.strip('"\'')
@@ -83,9 +84,24 @@ def normalize_path(include_path: str, current_file: Path, include_type: str) -> 
     if include_path.startswith('_shared/'):
         return REPO_ROOT / "edc_papers" / include_path
 
+    # Handle paths containing edc_papers (going outside edc_book_2)
+    # e.g., ../../edc_papers/_shared/boxes/... -> repo_root/edc_papers/_shared/boxes/...
+    if 'edc_papers/' in include_path or 'edc_papers\\' in include_path:
+        # Extract the edc_papers/... portion and resolve from REPO_ROOT
+        idx = include_path.find('edc_papers')
+        edc_papers_rel = include_path[idx:]  # "edc_papers/_shared/boxes/..."
+        return (REPO_ROOT / edc_papers_rel).resolve()
+
     # Handle paths starting with ../
     if include_path.startswith('../'):
-        return (current_file.parent / include_path).resolve()
+        resolved = (current_file.parent / include_path).resolve()
+        # Verify it's a sensible path (under REPO_ROOT)
+        try:
+            resolved.relative_to(REPO_ROOT)
+            return resolved
+        except ValueError:
+            # Path went outside REPO_ROOT, try to fix
+            pass
 
     # Default: relative to current file's directory
     candidate = current_file.parent / include_path
@@ -97,7 +113,7 @@ def normalize_path(include_path: str, current_file: Path, include_type: str) -> 
     if candidate.exists():
         return candidate.resolve()
 
-    # Return best guess
+    # Return best guess (resolved from current file's directory)
     return (current_file.parent / include_path).resolve()
 
 

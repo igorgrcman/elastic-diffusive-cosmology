@@ -1,10 +1,10 @@
 # Book 2 Orphans Report
 
-**Generated:** 2026-01-29 13:47
+**Generated:** 2026-01-29 15:00
 
 Files in `edc_papers/_shared/` that are NOT included in Book 2.
 
-## Summary: 26 orphan files
+## Summary: 23 orphan files
 
 ### Derivations (13 orphans)
 
@@ -22,15 +22,12 @@ Files in `edc_papers/_shared/` that are NOT included in Book 2.
 - `edc_papers/_shared/derivations/zn_symmetry_breaking_one_defect.tex`
 - `edc_papers/_shared/derivations/zn_toy_functional_from_5d_action.tex`
 
-### Boxes (10 orphans)
+### Boxes (7 orphans)
 
 - `edc_papers/_shared/boxes/delta_from_5d_action_box.tex`
 - `edc_papers/_shared/boxes/dlr_chiral_localization_box.tex`
-- `edc_papers/_shared/boxes/gf_bvp_allgates_physical_priors_box.tex`
 - `edc_papers/_shared/boxes/gf_bvp_pipeline_box.tex`
 - `edc_papers/_shared/boxes/gf_bvp_tuning_box.tex`
-- `edc_papers/_shared/boxes/gf_constraint_box.tex`
-- `edc_papers/_shared/boxes/kchannel_spinchain_crossval_box.tex`
 - `edc_papers/_shared/boxes/ncell_renorm_box.tex`
 - `edc_papers/_shared/boxes/prefactor_A_box.tex`
 - `edc_papers/_shared/boxes/zn_kchannel_robustness_box.tex`
