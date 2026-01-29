@@ -1118,6 +1118,79 @@ Applications: pion [I], N_cell [Dc], overlap [Der]
 
 ---
 
+## 2026-01-29 (cont'd pt23) — 5D → Toy Functional Mapping
+
+### Goal
+Map the 5D brane-world action S_5D = S_bulk + S_brane + S_GHY to the toy functional E[u] for Z_N anisotropy normalization.
+
+### Key Result: MAPPING ESTABLISHED [Dc]
+
+**5D Action:**
+```
+S_5D = S_bulk + S_brane + S_GHY
+```
+
+**Toy Functional:**
+```
+E[u] = (T/2) ∫(u')² dθ + λ Σₙ W(u(θₙ))
+```
+
+**Mapping Dictionary:**
+
+| Toy Parameter | 5D Origin | Mechanism |
+|---------------|-----------|-----------|
+| T (tension) | σ/R | Brane tension / ring radius |
+| λ (coupling) | κ₅²τₙ | Israel junction × defect stress |
+| u(θ) | h(θ) | Metric perturbation at ring |
+| W(u) | φ(u)² | Localized potential at fixed points |
+
+### Derivation Stages
+
+1. **Stage 1-2 (Geometry + Gradient):** [Der] — Standard dimensional reduction
+2. **Stage 3 (Israel Junction):** [Dc] — Requires specific gauge choices
+3. **Overall Mapping:** [Dc] — Physical identification is heuristic
+
+### Files Created
+- `edc_papers/_shared/derivations/zn_toy_functional_from_5d_action.tex` — 6-page LaTeX derivation
+- `docs/ZN_5D_TO_TOY_MAPPING_NOTE.md` — executive summary
+
+### Files Modified
+- `CLAIM_LEDGER.md` — Added CL-5D-TOY-1 (YELLOW, [Dc])
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-054
+- `docs/TODO.md` — Progress note on "Explicit 5D reduction"
+- `docs/SESSION_LOG.md` — This entry
+
+### Compile Status
+```
+latexmk -xelatex zn_toy_functional_from_5d_action.tex
+Output: 6 pages, PDF generated successfully
+Warnings: Cosmetic (font chars in verbatim, undefined citation for companion_C)
+```
+
+### Chain Now Extended
+```
+5D action [Der]
+    ↓
+Toy functional [Dc]
+    ↓
+Energy minimization → a/c = 1/N [Der in toy model]
+    ↓
+k(N) = 1 + 1/N [Der]
+    ↓
+Applications: pion [I], N_cell [Dc], overlap [Der]
+```
+
+### What This Enables
+- Partial upgrade of k-channel from [I] toward [Dc]
+- Physical grounding of toy functional parameters
+
+### What Remains Open
+- Full Israel junction calculation at Z_N fixed points
+- BVP verification of cos(Nθ) mode structure
+- Explicit GHY term evaluation
+
+---
+
 ## Template for Future Sessions
 
 ```markdown

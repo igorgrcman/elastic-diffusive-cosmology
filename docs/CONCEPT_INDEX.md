@@ -828,6 +828,45 @@ Explicit 5D reduction of S_bulk + S_brane + S_GHY on Z_N background.
 
 ---
 
+### CONCEPT-054: 5D → Toy Functional Mapping for Z_N Anisotropy
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/derivations/zn_toy_functional_from_5d_action.tex` |
+| **Summary** | `docs/ZN_5D_TO_TOY_MAPPING_NOTE.md` |
+| **Epistemic tag** | [Dc] — Standard reduction techniques, heuristic gauge-fixing |
+| **Used in** | Justifying toy functional from 5D brane-world action |
+
+**Purpose:**
+Map the 5D brane-world action S_5D = S_bulk + S_brane + S_GHY to the 1D toy functional for Z_N anisotropy.
+
+**Mapping dictionary:**
+```
+5D Action:  S_5D = S_bulk + S_brane + S_GHY
+Toy Functional: E[u] = (T/2)∫(u')²dθ + λ Σₙ W(u(θₙ))
+
+| Toy Parameter | 5D Origin | Mechanism |
+|---------------|-----------|-----------|
+| T (tension)   | σ/R       | Brane tension / ring radius |
+| λ (coupling)  | κ₅²τₙ     | Israel junction × defect stress |
+| u(θ)          | h(θ)      | Metric perturbation at ring |
+| W(u)          | φ(u)²     | Localized potential at fixed points |
+```
+
+**Key result:**
+The 1/N scaling of anisotropy amplitude emerges naturally from the balance of gradient energy (∝ N²) vs discrete anchor terms (∝ N).
+
+**What this enables:**
+- Chain: 5D action → toy functional → a/c = 1/N → k(N) = 1 + 1/N
+- Partial upgrade of k-channel from [I] toward [Dc]
+
+**What remains [Dc]:**
+- Specific gauge choices in dimensional reduction
+- Full Israel junction calculation at Z_N fixed points
+- BVP verification of cos(Nθ) structure
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:

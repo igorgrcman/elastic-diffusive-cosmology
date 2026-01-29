@@ -43,8 +43,11 @@
       Result: Energy minimization with N identical anchors gives a₁ ∝ 1/N [Der]
       Mechanism: Gradient energy ~ N² vs discrete anchors ~ N → balance ~ 1/N
       Summary: `docs/ZN_NORMALIZATION_FROM_ACTION_NOTE.md`
-- [ ] **Explicit 5D reduction (optional upgrade)** ← OPEN for future
+- [~] **Explicit 5D reduction (optional upgrade)** — PARTIAL (2026-01-29)
       Show S_5D = S_bulk + S_brane + S_GHY reduces to toy functional
+      DONE: `edc_papers/_shared/derivations/zn_toy_functional_from_5d_action.tex`
+      Mapping: T = σ/R, λ = κ₅²τₙ established [Dc]
+      OPEN: Full Israel junction calculation, GHY term evaluation
       Would upgrade [Dc] → [Der] for physical identification
 - [x] **Sector-universality audit** — `docs/ZN_CHANNEL_UNIVERSALITY_AUDIT.md` (2026-01-29)
       Result: PARTIAL — k applies to averaging processes, NOT cardinality ratios

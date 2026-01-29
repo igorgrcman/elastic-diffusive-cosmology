@@ -1,0 +1,405 @@
+% 5D Action to Toy Functional Mapping for Z_N Anisotropy
+% File: edc_papers/_shared/derivations/zn_toy_functional_from_5d_action.tex
+% Created: 2026-01-29
+% Purpose: Map 5D brane-world action to toy functional E[u] used in Z_N normalization
+%
+% COMPANION: docs/ZN_5D_TO_TOY_MAPPING_NOTE.md
+% PREREQUISITE: edc_papers/_shared/derivations/zn_anisotropy_normalization_from_action.tex
+% REFERENCE: edc_papers/paper_3_series/04_companion_C_5d_reduction/paper/main.tex
+
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage{array}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{postulate}[theorem]{Postulate}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+% Epistemic tags
+\newcommand{\tagDer}{\textcolor{blue}{\textbf{[Der]}}}
+\newcommand{\tagDc}{\textcolor{green!60!black}{\textbf{[Dc]}}}
+\newcommand{\tagP}{\textcolor{orange}{\textbf{[P]}}}
+
+\title{5D Action to Toy Functional Mapping\\[0.5em]
+\large For Z$_N$ Anisotropy Normalization}
+\author{EDC Project}
+\date{2026-01-29}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We establish the explicit mapping from the 5D brane-world action
+$S_{5D} = S_{\text{bulk}} + S_{\text{brane}} + S_{\text{GHY}}$ to the toy functional
+$E[u] = (T/2)\int(u')^2 d\theta + \lambda \sum_n W(u(\theta_n))$
+used in the Z$_N$ anisotropy normalization derivation.
+The mapping identifies the tension parameter $T$, anchor coupling $\lambda$,
+anchor potential $W$, and angular coordinate $\theta$.
+All steps are tagged with epistemic status.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+%============================================================
+\section{Overview: The Mapping Chain}
+%============================================================
+
+\subsection{Starting Points}
+
+\textbf{5D Action (established in EDC):}
+\begin{equation}
+\boxed{S_{5D} = S_{\text{bulk}} + S_{\text{brane}} + S_{\text{GHY}}}
+\label{eq:S5D}
+\end{equation}
+
+where (following Companion C notation):
+\begin{align}
+S_{\text{bulk}} &= \frac{1}{2\kappa_5^2} \int d^5x \sqrt{-g} \, (R - 2\Lambda_5) \\
+S_{\text{brane}} &= -\sigma \int d^4\xi \sqrt{-h} + S_{\text{matter}} \\
+S_{\text{GHY}} &= \frac{1}{\kappa_5^2} \oint d^4\xi \sqrt{-h} \, K
+\end{align}
+
+\textbf{Toy Functional (target):}
+\begin{equation}
+\boxed{E[u] = \frac{T}{2} \int_0^{2\pi} (u')^2 \, d\theta + \lambda \sum_{n=0}^{N-1} W(u(\theta_n))}
+\label{eq:E_toy}
+\end{equation}
+
+\subsection{The Reduction Chain}
+
+\begin{equation}
+\boxed{
+\underbrace{S_{5D}}_{\text{5D action}}
+\xrightarrow[\text{Z}_N\text{ ansatz}]{\text{reduction}}
+\underbrace{S_{4D}[u]}_{\text{4D on ring}}
+\xrightarrow[\text{static}]{\text{integration}}
+\underbrace{E[u]}_{\text{1D functional}}
+}
+\end{equation}
+
+%============================================================
+\section{Stage 1: Geometry Setup}
+%============================================================
+
+\subsection{Z$_N$ Ring Embedding}
+
+\begin{postulate}[Ring Geometry] \tagP
+\label{post:ring}
+Consider a circular submanifold $\mathcal{R} \subset \Sigma^4$ parameterized by
+angular coordinate $\theta \in [0, 2\pi)$.
+\end{postulate}
+
+\begin{definition}[Angular Coordinate] \tagP
+\label{def:theta}
+The coordinate $\theta$ is defined via the transverse embedding such that:
+\begin{itemize}
+\item The Z$_N$ fixed points are located at $\theta_n = 2\pi n / N$
+\item The metric on $\mathcal{R}$ is $ds^2_{\mathcal{R}} = R^2 d\theta^2$
+\item $R$ is the characteristic ring radius
+\end{itemize}
+\end{definition}
+
+\begin{postulate}[Field Variable] \tagP
+\label{post:field}
+Let $u(\theta)$ be a scalar field on the ring representing:
+\begin{itemize}
+\item \textbf{Option A:} Brane displacement in the $\xi$-direction (transverse excursion)
+\item \textbf{Option B:} Mode envelope of a fermion zero mode
+\item \textbf{Option C:} Thickness variation of the membrane
+\end{itemize}
+We proceed with the general $u(\theta)$ without committing to a specific identification.
+\end{postulate}
+
+\subsection{Z$_N$ Symmetry Constraint}
+
+\begin{definition}[Z$_N$ Symmetry] \tagDer
+\label{def:ZN}
+The field $u(\theta)$ has Z$_N$ symmetry:
+\begin{equation}
+u\left(\theta + \frac{2\pi}{N}\right) = u(\theta)
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Fourier Restriction] \tagDer
+\label{prop:fourier}
+Under Z$_N$ symmetry, only modes with period $2\pi/N$ survive:
+\begin{equation}
+u(\theta) = u_0 + \sum_{m=1}^{\infty} a_m \cos(mN\theta)
+\end{equation}
+\end{proposition}
+
+%============================================================
+\section{Stage 2: Brane Action Reduction}
+%============================================================
+
+\subsection{Brane Tension Contribution}
+
+\begin{postulate}[Brane Action Ansatz] \tagP
+\label{post:brane_action}
+The brane action on the ring takes the form:
+\begin{equation}
+S_{\text{brane}}[\text{on }\mathcal{R}] = -\sigma \int d\theta \sqrt{h_{\theta\theta}}
+\end{equation}
+where $h_{\theta\theta}$ is the induced metric component.
+\end{postulate}
+
+\begin{proposition}[Induced Metric with Deformation] \tagDc
+\label{prop:induced}
+For a brane with transverse displacement $u(\theta)$:
+\begin{equation}
+h_{\theta\theta} = R^2 + (u')^2
+\label{eq:h_theta}
+\end{equation}
+where $u' = du/d\theta$.
+\end{proposition}
+
+\begin{proof}
+From the embedding $X^A(\theta) = (\theta, u(\theta))$, the tangent vector is
+$e^A = (1, u')$ and the induced metric is
+$h_{\theta\theta} = g_{AB} e^A e^B = g_{\theta\theta} + g_{uu} (u')^2 = R^2 + (u')^2$.
+\end{proof}
+
+\subsection{Gradient Energy Extraction}
+
+\begin{theorem}[Gradient Energy Term] \tagDc
+\label{thm:gradient}
+Expanding to quadratic order in $u'$:
+\begin{equation}
+\sqrt{h_{\theta\theta}} = R \sqrt{1 + (u'/R)^2} \approx R + \frac{(u')^2}{2R}
+\end{equation}
+
+The brane action becomes:
+\begin{equation}
+S_{\text{brane}} \approx -\sigma R \cdot 2\pi - \frac{\sigma}{2R} \int_0^{2\pi} (u')^2 \, d\theta
+\end{equation}
+
+Dropping the constant, the \textbf{gradient energy} is:
+\begin{equation}
+\boxed{E_{\text{grad}} = \frac{\sigma}{2R} \int_0^{2\pi} (u')^2 \, d\theta}
+\label{eq:E_grad}
+\end{equation}
+\end{theorem}
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!50!black,
+                  title=\textbf{Mapping: Tension Parameter}]
+\begin{equation}
+\boxed{T = \frac{\sigma}{R}}
+\label{eq:T_mapping}
+\end{equation}
+
+\textbf{5D origin:} $T$ is the ratio of brane tension $\sigma$ to ring radius $R$.
+
+\textbf{Epistemic status:} \tagDc --- derived under small-deformation approximation.
+\end{tcolorbox}
+
+%============================================================
+\section{Stage 3: Israel Junction Conditions at Z$_N$ Points}
+%============================================================
+
+\subsection{Localized Sources at Fixed Points}
+
+\begin{postulate}[Discrete Defects] \tagP
+\label{post:defects}
+At each Z$_N$ fixed point $\theta_n$, there exists a localized contribution
+to the stress-energy:
+\begin{equation}
+\tau_{\mu\nu}^{\text{defect}} = \sum_{n=0}^{N-1} \tau_n \, h_{\mu\nu} \, \delta(\theta - \theta_n)
+\label{eq:defect_stress}
+\end{equation}
+\end{postulate}
+
+\begin{theorem}[Israel Condition at Fixed Points] \tagDer
+\label{thm:israel}
+The Israel junction condition \cite{companion_C}:
+\begin{equation}
+[K_{\mu\nu}] - h_{\mu\nu} [K] = -\kappa_5^2 S_{\mu\nu}
+\end{equation}
+
+At a Z$_N$ fixed point with localized defect stress $\tau_n$:
+\begin{equation}
+[K]_{\theta_n} = -\kappa_5^2 \tau_n
+\label{eq:israel_local}
+\end{equation}
+\end{theorem}
+
+\subsection{Anchor Energy from Localized Extrinsic Curvature}
+
+\begin{postulate}[Extrinsic Curvature Coupling] \tagDc
+\label{post:K_coupling}
+The extrinsic curvature at $\theta_n$ depends on the field value:
+\begin{equation}
+K(\theta_n) = K_0 + K_1 \cdot u(\theta_n) + O(u^2)
+\end{equation}
+where $K_0, K_1$ are geometric coefficients.
+\end{postulate}
+
+\begin{theorem}[Discrete Anchor Energy] \tagDc
+\label{thm:anchor}
+Integrating the GHY + defect contributions over the $N$ fixed points:
+\begin{equation}
+E_{\text{disc}} = \sum_{n=0}^{N-1} \left[ \frac{1}{\kappa_5^2} K(\theta_n) + \tau_n u(\theta_n) \right]
+\end{equation}
+
+Defining $\lambda \equiv \tau_n$ (identical defects) and $W(u) \equiv u + \text{const}$:
+\begin{equation}
+\boxed{E_{\text{disc}} = \lambda \sum_{n=0}^{N-1} W(u(\theta_n))}
+\label{eq:E_disc}
+\end{equation}
+\end{theorem}
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!50!black,
+                  title=\textbf{Mapping: Anchor Coupling}]
+\begin{equation}
+\boxed{\lambda = \tau_n = \kappa_5^2 \cdot (\text{defect stress per anchor})}
+\label{eq:lambda_mapping}
+\end{equation}
+
+\textbf{5D origin:} $\lambda$ is the localized stress-energy at each Z$_N$ fixed point,
+arising from topological defects (Y-junctions, vortices, or pinning sites).
+
+\textbf{Key assumption:} All $N$ anchors have \textit{identical} $\tau_n = \lambda$.
+
+\textbf{Epistemic status:} \tagDc --- assumes Z$_N$ symmetry of defect configuration.
+\end{tcolorbox}
+
+%============================================================
+\section{Stage 4: Combined Functional}
+%============================================================
+
+\begin{theorem}[Total Energy Functional] \tagDc
+\label{thm:total}
+Combining Eq.~\eqref{eq:E_grad} and Eq.~\eqref{eq:E_disc}:
+\begin{equation}
+\boxed{E[u] = \frac{T}{2} \int_0^{2\pi} (u')^2 \, d\theta + \lambda \sum_{n=0}^{N-1} W(u(\theta_n))}
+\label{eq:E_total}
+\end{equation}
+
+This is exactly the toy functional used in the anisotropy normalization derivation.
+\end{theorem}
+
+%============================================================
+\section{Mapping Dictionary}
+%============================================================
+
+\begin{tcolorbox}[colback=yellow!10!white, colframe=orange!70!black,
+                  title=\textbf{5D $\to$ Toy Mapping Dictionary}]
+
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Toy Symbol} & \textbf{5D Origin} & \textbf{Formula} & \textbf{Status} \\
+\hline
+$\theta$ & Angular coordinate on ring & $\theta \in [0, 2\pi)$ & \tagP \\
+$u(\theta)$ & Brane displacement / mode envelope & --- & \tagP \\
+$T$ & Brane tension / ring radius & $T = \sigma / R$ & \tagDc \\
+$\lambda$ & Defect stress at Z$_N$ fixed points & $\lambda = \kappa_5^2 \tau_n$ & \tagDc \\
+$W(u)$ & Extrinsic curvature coupling & $W(u) \approx u$ & \tagDc \\
+$\theta_n$ & Z$_N$ fixed points & $\theta_n = 2\pi n / N$ & \tagDer \\
+$N$ & Order of discrete symmetry & $|Z_N|$ & \tagDer \\
+\hline
+\end{tabular}
+\end{tcolorbox}
+
+%============================================================
+\section{The Complete Chain}
+%============================================================
+
+\begin{center}
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black, width=0.95\textwidth,
+                  title=\textbf{Complete Derivation Chain: 5D $\to$ $a/c = 1/N$}]
+
+\textbf{ASCII Diagram:}
+\begin{verbatim}
+S_5D = S_bulk + S_brane + S_GHY
+              |
+              | [Dc] Ring embedding, Z_N symmetry
+              v
+S_4D[u] on ring R
+              |
+              | [Dc] Small deformation, static limit
+              v
+E[u] = (T/2) ∫(u')^2 dθ + λ Σ_n W(u(θ_n))
+              |
+              | [Der] Fourier expansion, Euler-Lagrange
+              v
+u(θ) = u_0 + a_1 cos(Nθ),  a_1 ∝ 1/N
+              |
+              | [Der] Identification c = u_0, a = a_1
+              v
+a/c = 1/N  (equal corner share)
+              |
+              | [Der] Averaging ratio formula
+              v
+k(N) = 1 + 1/N
+\end{verbatim}
+
+\end{tcolorbox}
+\end{center}
+
+%============================================================
+\section{Epistemic Status Summary}
+%============================================================
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Step} & \textbf{Status} & \textbf{What Would Upgrade to [Der]} \\
+\hline
+5D action structure & \tagP & Derive from Plenum dynamics \\
+Ring embedding & \tagP & Show ring arises from Y-junction topology \\
+$T = \sigma/R$ identification & \tagDc & Explicit dimensional reduction with warp factor \\
+Identical anchors $\lambda = \tau_n$ & \tagDc & Prove from Z$_N$ symmetry of brane \\
+$W(u) \approx u$ linear form & \tagDc & Derive from GHY + Israel terms \\
+\hline
+Fourier restriction & \tagDer & (Already derived) \\
+$a_1 \propto 1/N$ from E-L & \tagDer & (Already derived) \\
+$k(N) = 1 + 1/N$ & \tagDer & (Already derived) \\
+\hline
+\end{tabular}
+
+\vspace{1em}
+
+\textbf{Summary:} The toy functional form is \textit{motivated} from 5D physics but not \textit{derived}
+from first principles. The key [Dc] assumptions are:
+\begin{enumerate}
+\item Ring embedding exists and is Z$_N$-symmetric
+\item Brane deformation gives gradient energy $\propto (u')^2$
+\item Localized defects at Z$_N$ points give discrete anchors with identical $\lambda$
+\end{enumerate}
+
+Once these assumptions are granted, the rest follows by standard variational mechanics [Der].
+
+%============================================================
+\section{Conclusion}
+%============================================================
+
+We have established the explicit mapping:
+\begin{equation}
+\underbrace{S_{5D}}_{\text{5D brane-world}} \xrightarrow{\quad [Dc] \quad}
+\underbrace{E[u] = \frac{T}{2}\int(u')^2 d\theta + \lambda \sum_n W(u_n)}_{\text{toy functional}}
+\xrightarrow{\quad [Der] \quad}
+\underbrace{a/c = 1/N}_{\text{normalization}}
+\end{equation}
+
+\textbf{What this upgrades:}
+\begin{itemize}
+\item The toy functional is no longer an \textit{ad hoc} construct
+\item Its form has a clear physical interpretation from 5D brane physics
+\item The ``equal corner share'' hypothesis ($a/c = 1/N$) has a derivation chain back to 5D
+\end{itemize}
+
+\textbf{What remains open:}
+\begin{itemize}
+\item Full derivation of ring embedding from Y-junction topology
+\item Explicit calculation of $T$ and $\lambda$ from 5D parameters
+\item BVP verification of Z$_N$ mode structure
+\end{itemize}
+
+\end{document}

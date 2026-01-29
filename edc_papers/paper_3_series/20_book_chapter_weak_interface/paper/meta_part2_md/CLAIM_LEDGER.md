@@ -600,6 +600,40 @@ notes: |
     Energy minimization [Der] → a/c = 1/N → k(N) = 1+1/N → applications
 ```
 
+### CL-5D-TOY-1: 5D → Toy Functional Mapping
+
+```yaml
+id: CL-5D-TOY-1
+status: YELLOW
+chapter: breadth
+claim: "5D brane-world action S_5D maps to toy functional E[u] via dimensional reduction"
+evidence:
+  derivation: "edc_papers/_shared/derivations/zn_toy_functional_from_5d_action.tex"
+  summary: "docs/ZN_5D_TO_TOY_MAPPING_NOTE.md"
+  mapping: |
+    T = σ/R (brane tension / ring radius)
+    λ = κ₅²τₙ (Israel junction × defect stress)
+tag: "[Dc]"
+commit: "2026-01-29"
+notes: |
+  MAPPING ESTABLISHED:
+    S_5D = S_bulk + S_brane + S_GHY  →  E[u] = (T/2)∫(u')²dθ + λΣW(u(θₙ))
+
+  DERIVATION STATUS:
+    - Stage 1-2 (geometry, gradient): [Der] — standard dimensional reduction
+    - Stage 3 (Israel junction): [Dc] — requires specific gauge choices
+    - Overall mapping: [Dc] — physical identification is heuristic
+
+  WHAT THIS ENABLES:
+    - Chain: 5D action → toy functional → a/c=1/N → k(N)=1+1/N
+    - Partial upgrade of k-channel from [I] toward [Dc]
+
+  WHAT REMAINS OPEN:
+    - Full Israel junction calculation at Z_N fixed points
+    - BVP verification of cos(Nθ) mode structure
+    - Explicit GHY term evaluation
+```
+
 ---
 
 ## Statistics
@@ -607,10 +641,10 @@ notes: |
 | Status | Count |
 |--------|-------|
 | GREEN | 12 |
-| YELLOW | 13 |
+| YELLOW | 14 |
 | RED | 4 |
 | FALSIFIED | 1 |
-| **Total** | **30** |
+| **Total** | **31** |
 
 ---
 
