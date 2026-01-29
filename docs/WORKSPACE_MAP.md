@@ -12,10 +12,11 @@
 |----------|------|---------|
 | 1 | `docs/CANON_BUNDLE.md` | All P0 canonical content in one file |
 | 2 | `docs/WORKSPACE_MAP.md` | This file - navigation guide |
-| 3 | `docs/CONCEPT_INDEX.md` | Lookup table for key concepts |
-| 4 | `docs/STATUS.md` | Current state of ALL domains |
-| 5 | `docs/TODO.md` | Prioritized actions across domains |
-| 6 | `docs/SESSION_LOG.md` | Last entry - what was done recently |
+| 3 | `docs/CONCEPT_INDEX.md` | Lookup table for key concepts (39 entries) |
+| 4 | `docs/KNOWLEDGE_INVENTORY.md` | Complete catalog: derivations, NO-GOs, open problems |
+| 5 | `docs/STATUS.md` | Current state of ALL domains |
+| 6 | `docs/TODO.md` | Prioritized actions across domains |
+| 7 | `docs/SESSION_LOG.md` | Last entry - what was done recently |
 
 ---
 

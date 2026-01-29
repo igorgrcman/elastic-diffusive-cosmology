@@ -309,6 +309,92 @@ Calibrated (A=0.84): tau_n ~ 879 s [Cal]
 
 ---
 
+### CONCEPT-035: M6/Mn Topological Model
+
+| Field | Value |
+|-------|-------|
+| **Source** | Book 2: `edc_book_2/src/derivations/m_coordination_full_test.py` |
+| **Epistemic tag** | [Der] |
+| **Used in** | Nuclear structure, magic numbers |
+
+**Definition:**
+```
+Constraint: n = 2^a × 3^b (coordination numbers)
+- Factor 3: Y-junction trivalent structure
+- Factors 2: Quantum doubling
+Result: n = 43 is FORBIDDEN geometrically
+Verification: All known magic numbers satisfy constraint
+```
+
+---
+
+### CONCEPT-036: Frustration-Corrected Geiger-Nuttall
+
+| Field | Value |
+|-------|-------|
+| **Source** | Book 2: `edc_book_2/src/derivations/frustration_geiger_nuttall.py` |
+| **Epistemic tag** | [Dc] |
+| **Used in** | Alpha decay half-lives |
+
+**Formula:**
+```
+log_10(tau) = A(Z-2)/sqrt(Q) + B + C × frustration_factor
+R^2 = 0.9941 (vs 0.6921 uncorrected, 45% improvement)
+```
+
+---
+
+### CONCEPT-037: Three Generations N_g = 3
+
+| Field | Value |
+|-------|-------|
+| **Source** | Paper 3: `CLAIM_LEDGER.md` CL-5.1 |
+| **Epistemic tag** | [Der] |
+| **Used in** | Generation counting, flavor physics |
+
+**Derivation:**
+```
+N_g = |Z_6/Z_2| = |Z_3| = 3
+Interpretation: Flavor = Z_3 cyclic label on S^1_xi positions
+```
+
+---
+
+### CONCEPT-038: V-A Structure (Chirality)
+
+| Field | Value |
+|-------|-------|
+| **Source** | Paper 3: `CLAIM_LEDGER.md` CL-9.1, CL-9.2 |
+| **Epistemic tag** | [Der] |
+| **Used in** | Weak interactions, parity violation |
+
+**Derivation:**
+```
+V-A from Boundary: Chirality projection at epsilon-boundary produces (1-gamma_5) structure
+RH Currents Forbidden: Right-handed currents suppressed by epsilon-boundary Neumann BC
+Result: Parity violation EMERGES from geometry, not postulated
+```
+
+---
+
+### CONCEPT-039: Koide Relation Q = 2/3
+
+| Field | Value |
+|-------|-------|
+| **Source** | Paper 3: `LEPTON_MASS_ATTEMPT_1.md` |
+| **Epistemic tag** | [I] |
+| **Used in** | Lepton masses, generation hierarchy |
+
+**Identification:**
+```
+Observation: Koide Q = 2/3 = |Z_2|/|Z_3|
+Interpretation: Direct ratio of subgroup cardinalities in Z_6 = Z_2 × Z_3
+Result: Using Koide with derived m_e, m_mu gives m_tau = 1763 MeV (exp: 1777 MeV, 0.8% error)
+Status: NOT coincidence - connects to N_g = 3 via Z_3
+```
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:
