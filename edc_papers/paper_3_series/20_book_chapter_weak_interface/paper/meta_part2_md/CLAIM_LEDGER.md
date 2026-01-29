@@ -454,7 +454,7 @@ notes: "Links σ to cosmology. σ is explicit, not cancelled."
 
 ## Z₆ Discrete Corrections
 
-### CL-Z6-1: Candidate discrete correction factor k = 7/6
+### CL-Z6-1: Discrete correction factor k = 7/6
 
 ```yaml
 id: CL-Z6-1
@@ -463,14 +463,19 @@ chapter: breadth
 claim: "Z₆ discrete averaging introduces correction factor k = 7/6 = 1 + 1/|Z₆|"
 evidence:
   file: "docs/Z6_CORRECTION_FACTOR_7over6.md"
-  observation: "r_π / (4α) = 1.166 ≈ 7/6 (0.06% match)"
-tag: "[Dc]"
+  lemma: "edc_papers/_shared/lemmas/z6_discrete_averaging_lemma.tex"
+  code: "edc_papers/_shared/code/z6_discrete_average_check.py"
+  observation: "r_π / (4α) = 1.166 ≈ 7/6 (0.07% match)"
+tag: "[Der]+[Dc]"
 commit: "2026-01-29"
 notes: |
-  NON-CANONICAL until derived.
-  Hypothesis: first-order discrete correction to continuum Z₆ average.
-  Breadth links: pion splitting, ε-dressing, N_cell (12 vs 10).
-  Upgrade path: discrete averaging derivation on Z₆ ring.
+  MATHEMATICAL DERIVATION COMPLETE [Der]:
+    - For f(θ) = c + a cos(Nθ), R = <f>_disc/<f>_cont = 1 + a/c
+    - Under equal corner share (a/c = 1/N): R = 1 + 1/N = 7/6 for Z₆
+  PHYSICAL NORMALIZATION REMAINS [Dc]:
+    - The "equal corner share" hypothesis (a/c = 1/N) is not derived from 5D action
+    - Pion match supports but does not prove
+  Breadth links: pion splitting (confirmed), N_cell 12→10 (candidate), ε-dressing (TBD)
 ```
 
 ---

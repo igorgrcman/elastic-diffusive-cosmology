@@ -633,34 +633,57 @@ Alternative: r_π ≈ (7/6) × 4α — near-unity factor with 4α
 
 ---
 
-### CONCEPT-048: Z₆ Correction Factor k = 7/6 (Hypothesis)
+### CONCEPT-048: Z₆ Correction Factor k = 7/6 (Hypothesis + Partial Derivation)
 
 | Field | Value |
 |-------|-------|
 | **Source** | `docs/Z6_CORRECTION_FACTOR_7over6.md` |
 | **Location** | Full document |
-| **Epistemic tag** | [Dc] — hypothesis, not derived |
+| **Epistemic tag** | [Der]+[Dc] — math derived, normalization hypothesized |
 | **Used in** | Discrete correction formalism, breadth links |
 
-**Hypothesis:**
-Z₆ discrete averaging introduces multiplicative correction (1 + 1/|Z₆|) = 7/6.
+**Result:**
+Z₆ discrete averaging introduces multiplicative correction (1 + 1/|Z₆|) = 7/6 under equal corner share normalization.
 
-**Key observation:**
+**Mathematical derivation [Der]:**
 ```
-r_π / (4α) = 1.166 ≈ 7/6 = 1 + 1/6 (0.06% match)
+For f(θ) = c + a cos(6θ):
+  <f>_disc = c + a (samples at corners where cos=1)
+  <f>_cont = c     (cos term integrates to 0)
+  R = 1 + a/c
+Under a/c = 1/6: R = 7/6 ✓
 ```
 
-**Geometric interpretations:**
-- Corner weighting on hexagonal ring
-- Boundary cell fraction (finite-size effect)
-- Adjacency count correction
+**Physical normalization [Dc]:**
+Equal corner share hypothesis (a/c = 1/N) not derived from 5D action.
 
-**Breadth links:**
-- Pion splitting: k = 7/6 (MATCH)
-- N_cell: 12 × (6/7) ≈ 10 (explains τ_n value?)
-- ε-dressing: TBD
+**Pion match:** r_π/(4α) = 1.166 ≈ 7/6 (0.07% agreement)
 
-**Upgrade path:** Discrete averaging derivation on Z₆ ring/graph.
+---
+
+### CONCEPT-049: Z₆ Discrete Averaging Lemma
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/lemmas/z6_discrete_averaging_lemma.tex` |
+| **Code** | `edc_papers/_shared/code/z6_discrete_average_check.py` |
+| **Epistemic tag** | [Der] — mathematical derivation |
+| **Used in** | Z₆ correction factor, discrete vs continuum averaging |
+
+**Lemma statement:**
+For f(θ) = c + a cos(Nθ) with Z_N symmetry, the discrete-to-continuum ratio is:
+```
+R = <f>_disc / <f>_cont = 1 + a/c
+```
+
+Under equal corner share normalization (a/c = 1/N):
+```
+R = 1 + 1/N
+```
+
+For Z₆: R = 7/6.
+
+**Key insight:** Discrete sampling "sees" the Z_N Fourier mode that continuum averaging washes out.
 
 ---
 

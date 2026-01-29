@@ -626,6 +626,49 @@ Discrete averaging derivation on Z₆ ring (Path 4: ring tiling boundary countin
 
 ---
 
+## 2026-01-29 (cont'd pt13) — Z₆ Discrete Averaging Lemma Derivation
+
+### Goal
+Derive k = 7/6 from discrete vs continuum averaging on Z₆ ring.
+
+### Files Created
+- `edc_papers/_shared/lemmas/z6_discrete_averaging_lemma.tex` — Mathematical derivation
+- `edc_papers/_shared/code/z6_discrete_average_check.py` — Numerical verification
+
+### Files Modified
+- `docs/Z6_CORRECTION_FACTOR_7over6.md` — Added Section G (derivation attempt)
+- `CLAIM_LEDGER.md` — Updated CL-Z6-1 notes (now [Der]+[Dc])
+- `docs/CONCEPT_INDEX.md` — Updated CONCEPT-048, added CONCEPT-049
+
+### Derivation Result: DERIVED (Mathematical)
+
+**Key insight:** For f(θ) = c + a cos(Nθ):
+- Discrete average samples at corners where cos(Nθ_n) = 1 → gives c + a
+- Continuum average integrates cos term to 0 → gives c
+- Ratio R = (c + a) / c = 1 + a/c
+
+Under **equal corner share normalization** (a/c = 1/N):
+```
+R = 1 + 1/N = 7/6 for Z₆ ✓
+```
+
+### Verification
+```
+  k_observed (pion) = r_π / 4α = 1.165834
+  k_theory          = 7/6      = 1.166667
+  Difference: 0.07%
+```
+
+### Epistemic Status
+- Mathematical lemma: [Der] — clean derivation
+- Physical normalization: [Dc] — equal corner share is hypothesis
+- Pion match: [I] — pattern identified, not derived from action
+
+### Limitation
+The "equal corner share" normalization (a/c = 1/N) is not derived from the 5D action. This remains the open [Dc] component.
+
+---
+
 ## 2026-01-29 (cont'd pt8) — G_F Constraint Note Patch
 
 ### Goal

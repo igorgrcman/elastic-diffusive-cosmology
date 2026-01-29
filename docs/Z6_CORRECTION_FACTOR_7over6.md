@@ -223,7 +223,65 @@ To upgrade from [Dc] to [Der], need explicit derivation showing:
 
 ---
 
-## G. Reference Anchors
+## G. Derivation Attempt (2026-01-29)
+
+### G.1 Result: DERIVED (Mathematical)
+
+The factor k = 7/6 is derived from discrete vs continuum averaging under the **equal corner share normalization**.
+
+**Lemma source:** `edc_papers/_shared/lemmas/z6_discrete_averaging_lemma.tex`
+**Verification code:** `edc_papers/_shared/code/z6_discrete_average_check.py`
+
+### G.2 Key Result
+
+For test function f(θ) = c + a cos(Nθ) with Z_N symmetry:
+```
+R = <f>_disc / <f>_cont = 1 + a/c
+```
+
+Under **equal corner share normalization** (a/c = 1/N):
+```
+R = 1 + 1/N
+```
+
+For Z₆ (N = 6):
+```
+R = 1 + 1/6 = 7/6 ✓
+```
+
+### G.3 Verification Output
+
+```
+[Test 3] Z6 Specific: The 7/6 Factor
+  Discrete average:  1.166667
+  Continuum average: 1.000000
+  Ratio R = 1.166667
+  Expected: 7/6 = 1.166667
+  Match: True
+
+[Test 4] Pion Observation Match
+  k_observed = r_π / 4α = 1.165834
+  k_theory   = 7/6      = 1.166667
+  Difference: -0.07%
+```
+
+### G.4 Epistemic Status Update
+
+| Component | Status | Note |
+|-----------|--------|------|
+| Mathematical lemma | [Der] | Clean derivation from Fourier mode |
+| Equal corner share normalization | [Dc] | Hypothesis: corner excess = 1/N of mean |
+| Pion application | [I] | Pattern match (0.07%), not derived from action |
+
+### G.5 Limitation
+
+The derivation requires the **specific normalization** a/c = 1/N. This is not derived from the 5D action — it's a hypothesis about how Z₆ anisotropy manifests in physical quantities.
+
+**What remains [Dc]:** The claim that physical Z₆-symmetric quantities have this normalization.
+
+---
+
+## H. Reference Anchors
 
 | Document | Content |
 |----------|---------|
@@ -231,7 +289,9 @@ To upgrade from [Dc] to [Der], need explicit derivation showing:
 | `docs/DELTA_MNP_RECONCILIATION.md` | ε = 0.679% bridge |
 | `docs/OP-SIGMA-2_NCELL12_RESOLUTION.md` | N_cell = 12 vs 10 tension |
 | `docs/BREADTH_SYNTHESIS_2026-01-29.md` | Cross-sector overview |
+| `edc_papers/_shared/lemmas/z6_discrete_averaging_lemma.tex` | Mathematical derivation |
+| `edc_papers/_shared/code/z6_discrete_average_check.py` | Numerical verification |
 
 ---
 
-*This document formalizes the candidate Z₆ discrete correction factor k = 7/6 as [Dc]. Derivation required for upgrade to [Der].*
+*Updated 2026-01-29: Mathematical derivation complete [Der]. Physical normalization hypothesis remains [Dc].*
