@@ -378,19 +378,41 @@ notes: |
 
 ```yaml
 id: CL-σ-2
-status: RED
+status: YELLOW
 chapter: σ-audit
-claim: "σr_e² has two incompatible values: 70 MeV (E_σ) vs 5.856 MeV (Z_6)"
+claim: "σr_e² scales related by N_cell ≈ 12: E_σ = 12 × (36/π)m_e"
 evidence:
   file_1: "edc_papers/paper_3_series/09_companion_H_weak_interactions/paper/main.tex:697"
   file_2: "edc_papers/paper_3_series/00_framework_v2_0/paper/main.tex:970"
-  audit: "docs/SIGMA_DEPENDENCY_AUDIT.md"
+  resolution: "docs/OP-SIGMA-2_NCELL12_RESOLUTION.md"
+tag: "[I]"
+commit: "2026-01-29"
+notes: |
+  CANDIDATE RESOLUTION: N_cell = 12 gives 0.35% match.
+  12 × 5.856 MeV = 70.27 MeV ≈ E_σ = 70.03 MeV
+
+  NOT FULLY CLOSED because:
+  1. No geometric derivation of N_cell = 12
+  2. τ_n would worsen if V_0 uses N_cell = 12 instead of 10
+
+  Candidate meanings of 12: Z_2×Z_6, N_g×N_Dirac, HCP coordination
+```
+
+### CL-σ-2a: Derive N_cell = 12 from geometry (NEW SUBPROBLEM)
+
+```yaml
+id: CL-σ-2a
+status: RED
+chapter: σ-audit
+claim: "N_cell = 12 should be derivable from ring/brane geometry"
+evidence:
+  file: "docs/OP-SIGMA-2_NCELL12_RESOLUTION.md"
 tag: "[OPEN]"
 commit: "2026-01-29"
 notes: |
-  Factor ~12 discrepancy between E_σ model and Z_6 ring model.
-  Possible resolution: N_cell = 12 multiplier (10 × 5.86 ≈ 59 MeV ≈ 70 MeV).
-  Needs investigation.
+  Priority: P1
+  Candidates: Z_2 × Z_6, N_g × N_Dirac, HCP
+  Breadth links: chirality, flavor, spatial geometry
 ```
 
 ### CL-σ-3: Λ = σ/(8c²R_H²) cosmological
@@ -416,11 +438,11 @@ notes: "Links σ to cosmology. σ is explicit, not cancelled."
 | Status | Count |
 |--------|-------|
 | GREEN | 10 |
-| YELLOW | 8 |
+| YELLOW | 9 |
 | RED | 4 |
 | FALSIFIED | 1 |
-| **Total** | **23** |
+| **Total** | **24** |
 
 ---
 
-*Claim Ledger v1.3 — Last updated 2026-01-29*
+*Claim Ledger v1.4 — Last updated 2026-01-29*

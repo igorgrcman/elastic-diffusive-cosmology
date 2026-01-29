@@ -273,6 +273,51 @@ Harden the workflow so CC never gets confused about paths again.
 
 ---
 
+## 2026-01-29 (cont'd pt5) — OP-σ-2 Resolution: N_cell = 12
+
+### Goal
+Resolve the 70 vs 5.856 MeV tension via N_cell = 12 hypothesis.
+
+### Key Result
+
+**CANDIDATE RESOLUTION: N_cell = 12 gives 0.35% match**
+
+```
+E_σ = m_ec²/α = 70.03 MeV
+12 × (36/π)m_e = 70.27 MeV
+Error: 0.35%
+```
+
+**Exact relation [I]:**
+```
+N_cell = π/(36α) = 11.96 ≈ 12
+```
+
+### Candidate Geometric Meanings of 12
+
+| Decomposition | Meaning | Breadth Link |
+|---------------|---------|--------------|
+| 2 × 6 | Z_2 × Z_6 (sides × ring) | Chirality, V-A |
+| 3 × 4 | N_g × N_Dirac | Flavor, weak |
+| 12 | HCP coordination | Spatial geometry |
+
+### NOT FULLY CLOSED because:
+
+1. No first-principles derivation of N_cell = 12
+2. Using N_cell = 12 in τ_n (instead of 10) worsens the prediction
+3. E_σ (70 MeV) and V_0 (60 MeV) may be distinct scales
+
+### Files Created
+- `docs/OP-SIGMA-2_NCELL12_RESOLUTION.md`
+
+### Files Modified
+- `CLAIM_LEDGER.md` — CL-σ-2 upgraded RED→YELLOW [I], CL-σ-2a added (RED)
+
+### New Subproblem
+- **OP-σ-2a:** Derive N_cell = 12 from ring/brane geometry [P1]
+
+---
+
 ## 2026-01-29 (cont'd pt4) — σ Dependency Audit
 
 ### Goal
