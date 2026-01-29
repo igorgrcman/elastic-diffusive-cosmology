@@ -1,0 +1,121 @@
+% ═══════════════════════════════════════════════════════════════════════════════
+% G_F BVP ALL-GATES PASS + PHYSICAL PRIORS BOX
+% ═══════════════════════════════════════════════════════════════════════════════
+%
+% File: gf_bvp_allgates_physical_priors_box.tex
+% Created: 2026-01-29
+% Issue: OPR-21b/c — BVP pipeline results with physical priors
+% Status: Framework GREEN; values YELLOW (BVP-gated, tuned priors)
+%
+% Usage: \input{../../edc_papers/_shared/boxes/gf_bvp_allgates_physical_priors_box}
+%
+% Dependencies: tcolorbox, booktabs, enumitem
+%
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\begin{tcolorbox}[breakable, enhanced, colback=green!5!white, colframe=green!60!black,
+    title={\textbf{BVP Pipeline: All Gates Pass (OPR-21b/c)}}, width=\linewidth]
+
+\textbf{Result:} Three independent gates PASS simultaneously at tuned parameters.
+This is \textbf{non-trivial}: each gate tests a different aspect of the mode-overlap mechanism.
+
+\vspace{0.5em}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{llcc}
+\toprule
+\textbf{Gate} & \textbf{Test} & \textbf{Value} & \textbf{Status} \\
+\midrule
+Gate 1 & $I_4$ overlap window & $2.08 \times 10^{-3}$ GeV & \textcolor{OliveGreen}{\textbf{PASS}} \\
+Gate 2 & $M_{\text{eff}}$ mass scaling & $2.43$ GeV & \textcolor{OliveGreen}{\textbf{PASS}} \\
+Gate 3 & $g_{\text{eff}}^2$ coupling & $0.196$ & \textcolor{OliveGreen}{\textbf{PASS}} \\
+\midrule
+\multicolumn{2}{l}{\textbf{Target match:}} & \multicolumn{2}{l}{$X_{\text{EDC}} / X_{\text{target}} = 1.045$ (\textbf{4.5\% error})} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.5em}
+\textbf{Tuned parameters} \tagDc{}+\tagCal{}:
+\begin{center}
+\begin{tabular}{lccl}
+\toprule
+\textbf{Parameter} & \textbf{Value} & \textbf{Physical Length} & \textbf{Interpretation} \\
+\midrule
+$\delta$ (brane thickness) & $0.533\,\text{GeV}^{-1}$ & $0.105\,\text{fm}$ & $= \hbar/(2m_p)$ \tagDc{} \\
+LR\_separation & $8.0\,\delta$ & $0.84\,\text{fm}$ & $\approx r_p$ (suggestive) \\
+fermion\_width & $0.8\,\delta$ & $0.085\,\text{fm}$ & $\approx 0.4\,\lambda_N$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.5em}
+\textbf{Sensitivity decomposition} \tagDer{}:
+\begin{itemize}[nosep]
+    \item LR\_separation elasticity: $-6.5$ (dominant, exponential control)
+    \item fermion\_width elasticity: $+1.3$ (secondary, polynomial control)
+\end{itemize}
+Physical interpretation: LR controls the exponential overlap suppression; fw fine-tunes the residual.
+
+\vspace{0.5em}
+\textbf{Coincidence flag:} $d_{\text{LR}} = 8\delta = 0.84\,\text{fm} \approx r_p = 0.84\,\text{fm}$.\\
+\textit{Marked as suggestive, NOT derived. Would require deriving $d_{\text{LR}}$ from chiral localization.}
+
+\vspace{0.5em}
+\textbf{Potential-shape robustness:} Gaussian, RS-like, and tanh backgrounds all produce wells with depth $\sim 1/\delta^2$ and width $\sim \delta$. Specific shape is modeling choice \tagDc{}, not uniquely determined.
+
+\end{tcolorbox}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% EPISTEMIC GUARDRAIL
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\begin{tcolorbox}[colback=yellow!10!white, colframe=yellow!70!black,
+    title={\textbf{Epistemic Status: Framework GREEN, Values YELLOW}}]
+
+\textbf{What this validates:}
+\begin{itemize}[nosep]
+    \item Mode-overlap mechanism can produce the required $G_F$ suppression \checkmark
+    \item Three independent consistency gates are satisfied simultaneously \checkmark
+    \item Parameter space exists where BVP solution matches target \checkmark
+    \item Sensitivity is understood: LR dominant (exponential), fw secondary \checkmark
+\end{itemize}
+
+\textbf{What this does NOT validate:}
+\begin{itemize}[nosep]
+    \item Physical priors are not derived from 5D action (tuned) $\times$
+    \item The $d_{\text{LR}} \approx r_p$ coincidence is not explained $\times$
+    \item Potential shape is ansatz, not derived from bulk dynamics $\times$
+    \item $\delta = \hbar/(2m_p)$ is postulated, not derived $\times$
+\end{itemize}
+
+\vspace{0.5em}
+\textbf{Big Guardrail:}
+\begin{center}
+\fbox{\parbox{0.9\linewidth}{\centering
+\textbf{Framework: GREEN} (mechanism works)\\
+\textbf{Values: YELLOW} (BVP-gated, tuned priors --- not yet derived)
+}}
+\end{center}
+
+\vspace{0.5em}
+\textbf{Upgrade path YELLOW $\to$ GREEN:}
+\begin{enumerate}[nosep]
+    \item Derive $\delta = \hbar/(2m_p)$ from 5D action (no tuning)
+    \item Derive $d_{\text{LR}}$ from chiral localization / junction geometry
+    \item Derive fw from BVP stability or eigenvalue constraints
+\end{enumerate}
+
+\textbf{Cross-references:}
+\begin{itemize}[nosep]
+    \item Sensitivity analysis: \texttt{docs/GF\_BVP\_TUNING\_DECOMPOSITION.md}
+    \item Physical priors: \texttt{docs/GF\_BVP\_PHYSICAL\_PRIORS.md}
+    \item Gate report: \texttt{docs/GF\_BVP\_GATE\_REPORT.md}
+    \item Defense notes: \texttt{docs/GF\_BVP\_DEFENSE\_NOTES.md}
+\end{itemize}
+
+\end{tcolorbox}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% END OF BOX
+% ═══════════════════════════════════════════════════════════════════════════════

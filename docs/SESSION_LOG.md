@@ -2206,6 +2206,67 @@ d_LR = 8δ = 0.84 fm ≈ r_p = 0.84 fm (proton charge radius)
 
 ---
 
+## 2026-01-29 — Publication-Grade Defense Documentation (OPR-21d)
+
+### Goal
+- Create publication-ready, epistemically-guarded write-up of BVP results
+- Create defense notes (Q&A format)
+- Wire into Book 2
+- Update canon bookkeeping
+
+### Files Created
+- `edc_papers/_shared/boxes/gf_bvp_allgates_physical_priors_box.tex` — Book2 box with gates, priors, guardrails
+- `docs/GF_BVP_DEFENSE_NOTES.md` — Q&A defense document (5 key questions)
+
+### Files Modified
+- `edc_book_2/src/sections/12_epistemic_map.tex` — Inserted new box after k-channel box
+- `edc_papers/paper_3_series/.../CLAIM_LEDGER.md` — Added CL-GF-BVP-1 (YELLOW)
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-073
+- `docs/TODO.md` — Added YELLOW→GREEN upgrade bullets
+- `docs/SESSION_LOG.md` — This entry
+
+### Key Deliverables
+
+**A) Book2 Box:** Complete with:
+- Gate summary table (all 3 PASS)
+- X_EDC/X_target = 1.045 (4.5% error)
+- Tuned parameters with physical lengths
+- Coincidence flag (d_LR ≈ r_p marked suggestive)
+- Sensitivity decomposition (elasticities)
+- Big guardrail: "Framework GREEN; values YELLOW"
+
+**B) Defense Notes:** 5 Q&A:
+1. "Isn't this just fitting?" → Partially, but framework is derived
+2. "What fails if wrong?" → Mode-overlap mechanism for G_F
+3. "Why LR dominant?" → Exponential overlap suppression
+4. "Does 0.84 fm prove anything?" → No, suggestive only
+5. "YELLOW → GREEN?" → Three derivations required
+
+**C) Book2 Wiring:**
+- Path: `edc_book_2/src/sections/12_epistemic_map.tex`
+- Position: After k-channel cross-validation box, before "Quantitative Summary"
+
+**D) Canon Updates:**
+- CLAIM_LEDGER: CL-GF-BVP-1 added (YELLOW)
+- CONCEPT_INDEX: CONCEPT-073 added
+- TODO: Upgrade bullets added
+
+### Verification
+- LaTeX compile: PENDING (to be run)
+
+### Verdict: **GREEN** (documentation complete)
+
+### Next Steps
+1. Run latexmk to verify compile
+2. Derive δ from 5D action (YELLOW→GREEN path)
+3. Derive d_LR from chiral localization
+
+### Open Questions
+1. Is d_LR = r_p coincidental or fundamental?
+2. What would a first-principles derivation of δ look like?
+
+---
+
 ## Template for Future Sessions
 
 ```markdown

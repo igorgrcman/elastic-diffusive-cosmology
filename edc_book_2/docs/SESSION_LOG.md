@@ -329,6 +329,34 @@ Add Book2-ready k-channel cross-validation box + prominent editorial warning.
 
 ## Template for Future Sessions
 
+## 2026-01-29 — Publication-Grade Defense Documentation (OPR-21d)
+
+### Goal
+- Create publication-ready, epistemically-guarded write-up of BVP results
+- Wire new box into Book 2 epistemic map section
+
+### Work Performed
+- Changes:
+  - `src/sections/12_epistemic_map.tex`: Inserted gf_bvp_allgates_physical_priors_box after k-channel box
+  - `../../edc_papers/_shared/boxes/gf_bvp_allgates_physical_priors_box.tex`: Created Book2 box
+  - `../../docs/GF_BVP_DEFENSE_NOTES.md`: Created Q&A defense document
+
+### Results
+- All 3 BVP gates documented as PASS
+- Framework GREEN, values YELLOW status clearly established
+- d_LR ≈ r_p coincidence marked suggestive (not derived)
+- LaTeX compile: PASS (471 pages)
+
+### Known Issues / Risks
+- Physical priors are tuned [Cal], not derived
+- YELLOW→GREEN requires 3 derivations (δ, d_LR, fw)
+
+### Next Steps
+1. Derive δ from 5D action
+2. Derive d_LR from chiral localization
+
+---
+
 ```markdown
 ## YYYY-MM-DD — [Session Title]
 

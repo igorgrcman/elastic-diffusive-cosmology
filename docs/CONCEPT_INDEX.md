@@ -1475,6 +1475,36 @@ L-R separation matches proton charge radius to 2 significant figures.
 
 ---
 
+### CONCEPT-073: G_F BVP All-Gates Pass + Defense (YELLOW)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `docs/GF_BVP_DEFENSE_NOTES.md` |
+| **Book box** | `edc_papers/_shared/boxes/gf_bvp_allgates_physical_priors_box.tex` |
+| **Wired into** | `edc_book_2/src/sections/12_epistemic_map.tex` |
+| **Claim ledger** | CL-GF-BVP-1 (YELLOW) |
+| **Epistemic tag** | [Dc]+[Cal] — Framework derived, priors tuned |
+| **Used in** | Book 2 Chapter 11/12, publication defense |
+
+**Gate summary:**
+| Gate | Test | Value | Status |
+|------|------|-------|--------|
+| 1 | I_4 window | 2.08e-3 GeV | PASS |
+| 2 | M_eff scaling | 2.43 GeV | PASS |
+| 3 | g_eff² coupling | 0.196 | PASS |
+| — | X_EDC/X_target | 1.045 (4.5%) | PASS |
+
+**Sensitivity [Der]:**
+- LR elasticity = -6.5 (dominant, exponential)
+- fw elasticity = +1.3 (secondary, polynomial)
+
+**Coincidence (suggestive, NOT derived):**
+- d_LR = 8δ = 0.84 fm ≈ r_p = 0.84 fm
+
+**Status:** Framework GREEN, values YELLOW (tuned priors)
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:

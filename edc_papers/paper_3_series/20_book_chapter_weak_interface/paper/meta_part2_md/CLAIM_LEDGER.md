@@ -1153,16 +1153,69 @@ notes: |
 
 ---
 
+### CL-GF-BVP-1: G_F BVP All-Gates Pass at Tuned Priors
+
+```yaml
+id: CL-GF-BVP-1
+status: YELLOW
+chapter: 11 (G_F derivation)
+claim: "BVP mode-overlap mechanism produces G_F within 4.5% at tuned priors"
+evidence:
+  gate_report: "docs/GF_BVP_GATE_REPORT.md"
+  tuning_decomposition: "docs/GF_BVP_TUNING_DECOMPOSITION.md"
+  physical_priors: "docs/GF_BVP_PHYSICAL_PRIORS.md"
+  defense_notes: "docs/GF_BVP_DEFENSE_NOTES.md"
+  book_box: "edc_papers/_shared/boxes/gf_bvp_allgates_physical_priors_box.tex"
+tag: "[Dc]+[Cal]"
+commit: "2026-01-29"
+notes: |
+  THREE INDEPENDENT GATES PASS:
+    - Gate 1: I_4 = 2.08e-3 GeV (overlap window) ✓
+    - Gate 2: M_eff = 2.43 GeV (mass scaling) ✓
+    - Gate 3: g_eff² = 0.196 (coupling compatibility) ✓
+    - Result: X_EDC / X_target = 1.045 (4.5% error)
+
+  TUNED PARAMETERS (NOT DERIVED):
+    - δ = 0.533 GeV⁻¹ = 0.105 fm [Dc]
+    - LR_separation = 8.0δ = 0.84 fm [Cal]
+    - fermion_width = 0.8δ = 0.085 fm [Cal]
+
+  SENSITIVITY:
+    - LR elasticity = -6.5 (dominant, exponential control) [Der]
+    - fw elasticity = +1.3 (secondary, polynomial control) [Der]
+
+  COINCIDENCE (NOT DERIVED):
+    - d_LR = 0.84 fm ≈ r_p = 0.84 fm (proton radius)
+    - Marked suggestive, NOT claimed as prediction
+
+  YELLOW CONDITIONS (upgrade to GREEN requires):
+    1. Derive δ = ℏ/(2m_p) from 5D action
+    2. Derive d_LR from chiral localization
+    3. Derive fw from BVP stability/eigenvalue constraints
+
+  WHAT THIS VALIDATES:
+    - Mode-overlap mechanism CAN produce required suppression
+    - Parameter space EXISTS where all gates pass
+    - Framework is consistent (not proven)
+
+  WHAT THIS DOES NOT VALIDATE:
+    - Physical priors (tuned, not derived)
+    - The d_LR ≈ r_p coincidence (not explained)
+    - Potential shape (ansatz, not derived)
+```
+
+---
+
 ## Statistics
 
 | Status | Count |
 |--------|-------|
 | GREEN | 21 |
-| YELLOW | 16 |
+| YELLOW | 17 |
 | RED | 4 |
 | FALSIFIED | 1 |
-| **Total** | **42** |
+| **Total** | **43** |
 
 ---
 
-*Claim Ledger v2.6 — Last updated 2026-01-29*
+*Claim Ledger v2.7 — Last updated 2026-01-29*
