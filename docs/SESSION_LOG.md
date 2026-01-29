@@ -740,6 +740,29 @@ None — N_cell = 10 is used in research targets; box provides the derivation ju
 
 ---
 
+## 2026-01-29 (cont'd pt16) — Wire N_cell Box into Neutron Derivation
+
+### Goal
+Insert ncell_renorm_box into neutron lifetime derivation at first N_cell=10 explanation.
+
+### Files Modified
+- `RT-CH3-003_NEUTRON_LIFETIME_DERIVATION.tex` — Added box \input after line 156
+
+### Insertion Location
+After "We take N_cell = 10 as a geometric estimate (not fitted)."
+Added:
+- One-sentence pointer: "This effective value arises from a bare cell count of 12 via the Z6 discrete averaging correction"
+- `\input{../../../../_shared/boxes/ncell_renorm_box}`
+
+### Compile Status
+```
+latexmk -xelatex RT-CH3-003_NEUTRON_LIFETIME_DERIVATION.tex
+Output: 6 pages, no errors
+Box successfully included (verified in log)
+```
+
+---
+
 ## 2026-01-29 (cont'd pt8) — G_F Constraint Note Patch
 
 ### Goal
