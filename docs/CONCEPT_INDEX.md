@@ -450,6 +450,40 @@ Case (C): Barrier/Tunneling — κ_eff = ⟨κ⟩_w → pinning
 
 ---
 
+### CONCEPT-042: σ Dependency Audit (Master Parameter Map)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `docs/SIGMA_DEPENDENCY_AUDIT.md` |
+| **Location** | Full audit document |
+| **Epistemic tag** | [Dc] for σ definition; OPEN for 70 vs 5.856 MeV tension |
+| **Used in** | Nuclear (barriers), EM (E_σ scale), Cosmology (Λ) |
+
+**Canonical σ definition:**
+```
+σ = m_e³c⁴/(α³ℏ²) = 8.82 MeV/fm² [Dc]
+From hypothesis: E_σ = σr_e² = m_ec²/α = 70 MeV [P]
+```
+
+**Key invariant:**
+```
+E_σ = σ·r_e² = m_ec²/α = 70 MeV
+```
+
+**Critical tension:**
+```
+Nuclear/EM:  σr_e² = m_ec²/α = 70 MeV
+Z_6 Ring:   σr_e² = 36m_e/π = 5.856 MeV
+Ratio: ~12× — OPEN PROBLEM
+```
+
+**Sector dependencies:**
+- Nuclear: V_0, K, τ_n explicitly depend on σ
+- EM: σ cancels via E_σ = const
+- Cosmology: Λ ∝ σ explicitly
+
+---
+
 ## Anti-Patterns (Reference)
 
 See CANON_BUNDLE Section "Anti-Patterns: 3D Traps to Avoid" for 15 critical traps:

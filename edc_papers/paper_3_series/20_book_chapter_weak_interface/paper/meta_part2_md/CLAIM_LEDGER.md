@@ -353,16 +353,74 @@ notes: |
 
 ---
 
+## Chapter σ: Master Parameter Audit
+
+### CL-σ-1: σ = m_e³c⁴/(α³ℏ²) definition
+
+```yaml
+id: CL-σ-1
+status: YELLOW
+chapter: σ-audit
+claim: "σ = 8.82 MeV/fm² derived from E_σ = m_ec²/α hypothesis"
+evidence:
+  file: "edc_papers/paper_3_series/09_companion_H_weak_interactions/paper/main.tex"
+  line: 690-710
+  audit: "docs/SIGMA_DEPENDENCY_AUDIT.md"
+tag: "[Dc]"
+commit: "2026-01-29"
+notes: |
+  Derived from E_σ hypothesis [P], not from first principles.
+  Depends on σr_e² = m_ec²/α assumption.
+  YELLOW because E_σ hypothesis needs upgrade to [Der].
+```
+
+### CL-σ-2: 70 vs 5.856 MeV tension
+
+```yaml
+id: CL-σ-2
+status: RED
+chapter: σ-audit
+claim: "σr_e² has two incompatible values: 70 MeV (E_σ) vs 5.856 MeV (Z_6)"
+evidence:
+  file_1: "edc_papers/paper_3_series/09_companion_H_weak_interactions/paper/main.tex:697"
+  file_2: "edc_papers/paper_3_series/00_framework_v2_0/paper/main.tex:970"
+  audit: "docs/SIGMA_DEPENDENCY_AUDIT.md"
+tag: "[OPEN]"
+commit: "2026-01-29"
+notes: |
+  Factor ~12 discrepancy between E_σ model and Z_6 ring model.
+  Possible resolution: N_cell = 12 multiplier (10 × 5.86 ≈ 59 MeV ≈ 70 MeV).
+  Needs investigation.
+```
+
+### CL-σ-3: Λ = σ/(8c²R_H²) cosmological
+
+```yaml
+id: CL-σ-3
+status: GREEN
+chapter: σ-audit
+claim: "Cosmological constant from membrane tension: Λ = σ/(8c²R_H²)"
+evidence:
+  file: "edc_book/chapters/chapter_11_verifications.tex"
+  line: 332-350
+  error: "6%"
+tag: "[Der]"
+commit: "2026-01-29"
+notes: "Links σ to cosmology. σ is explicit, not cancelled."
+```
+
+---
+
 ## Statistics
 
 | Status | Count |
 |--------|-------|
-| GREEN | 9 |
-| YELLOW | 7 |
-| RED | 3 |
+| GREEN | 10 |
+| YELLOW | 8 |
+| RED | 4 |
 | FALSIFIED | 1 |
-| **Total** | **20** |
+| **Total** | **23** |
 
 ---
 
-*Claim Ledger v1.2 — Last updated 2026-01-29*
+*Claim Ledger v1.3 — Last updated 2026-01-29*

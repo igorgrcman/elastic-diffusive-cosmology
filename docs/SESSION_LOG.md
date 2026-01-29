@@ -273,6 +273,58 @@ Harden the workflow so CC never gets confused about paths again.
 
 ---
 
+## 2026-01-29 (cont'd pt4) — σ Dependency Audit
+
+### Goal
+Complete σ dependency audit: trace all occurrences, classify, identify invariants.
+
+### Key Findings
+
+**1. Canonical σ definition [Dc]:**
+```
+σ = m_e³c⁴/(α³ℏ²) = 8.82 MeV/fm²
+From: E_σ = σr_e² = m_ec²/α = 70 MeV [P]
+```
+
+**2. Key invariant:**
+```
+E_σ = σ·r_e² = m_ec²/α = 70 MeV
+```
+
+**3. Critical tension (NEW OPEN PROBLEM):**
+```
+Nuclear/EM:  σr_e² = 70 MeV (E_σ hypothesis)
+Z_6 Ring:   σr_e² = 5.856 MeV (36m_e/π)
+Ratio: ~12×
+```
+
+**4. Sector dependencies:**
+| Sector | σ Role |
+|--------|--------|
+| Nuclear | Explicit in V_0, K, τ_n — FRAGILE |
+| EM | Cancels via E_σ = const — ROBUST |
+| Cosmology | Explicit in Λ — FRAGILE |
+| Weak | Explicit in g² — FRAGILE |
+
+### Files Created
+- `docs/SIGMA_DEPENDENCY_AUDIT.md` — comprehensive audit
+
+### Files Modified
+- `docs/CONCEPT_INDEX.md` — CONCEPT-042
+- `CLAIM_LEDGER.md` — CL-σ-1, CL-σ-2, CL-σ-3
+
+### Open Problems Identified
+1. OP-σ-1: Which sector fixes σ?
+2. OP-σ-2: 70 vs 5.856 MeV tension (N_cell = 12?)
+3. OP-σ-3: Derive σ from 5D action
+
+### Next Steps
+1. Test N_cell = 12 hypothesis
+2. Flavor Skeleton v0.1
+3. G_F constraint note
+
+---
+
 ## 2026-01-29 (cont'd pt3) — Δm_np Model Reconciliation
 
 ### Goal

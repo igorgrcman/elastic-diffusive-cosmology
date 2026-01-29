@@ -11,7 +11,8 @@
       Result: ROBUST to σ/δ/L_0/w; FRAGILE to Z_6 structure
 - [x] **Δm_np model reconciliation** — `docs/DELTA_MNP_RECONCILIATION.md` (2026-01-29)
       Result: ε = 0.679% connects (8/π) and (5/2+4α); 8/π = bare, 5/2+4α = EM-renormalized
-- [ ] **σ dependency audit** — complete table, identify master parameter role
+- [x] **σ dependency audit** — `docs/SIGMA_DEPENDENCY_AUDIT.md` (2026-01-29)
+      Result: σ is master parameter; CRITICAL: 70 vs 5.856 MeV tension (factor ~12)
 - [ ] **Flavor Skeleton v0.1** — N_g=3 + θ_23 + qualitative CP constraint
 - [ ] **G_F constraint note** — if derivation is RED, set constraint window instead
 
