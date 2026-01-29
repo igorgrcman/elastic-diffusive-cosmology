@@ -80,13 +80,32 @@ modes:
   fermion_model: "domain_wall"
 
   # Localization width for fermions in units of δ
-  fermion_width_delta: 0.1
+  # TUNED (OPR-21b): was 0.1, now 0.8 for X_ratio ≈ 1
+  fermion_width_delta: 0.8
 
   # L-R separation distance in units of δ
-  LR_separation_delta: 2.0
+  # TUNED (OPR-21b): was 2.0, now 8.0 for X_ratio ≈ 1
+  LR_separation_delta: 8.0
 
   # Number of KK eigenvalues to compute
   n_eigenvalues: 5
+
+# -----------------------------------------------------------------------------
+# RECOMMENDED TUNING (OPR-21b scan results)
+# -----------------------------------------------------------------------------
+# Best candidate from parameter scan (2026-01-29):
+#   LR_separation_delta: 8.0
+#   fermion_width_delta: 0.8
+#   X_ratio: 1.044 (4.4% off target)
+#   ALL GATES PASS
+#
+# Alternative candidates:
+#   LR=6.0, fw=0.05: X_ratio=1.073
+#   LR=8.0, fw=0.6:  X_ratio=0.778
+#   LR=10.0, fw=0.8: X_ratio=0.592
+#
+# See: out/best_candidates.json, docs/GF_BVP_PARAMETER_SCAN.md
+# -----------------------------------------------------------------------------
 
 # -----------------------------------------------------------------------------
 # Solver Configuration

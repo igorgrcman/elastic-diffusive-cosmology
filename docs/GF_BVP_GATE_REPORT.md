@@ -1,10 +1,10 @@
 # G_F BVP Gate Report
 
-**Generated:** 2026-01-29 08:29:11
-**Git commit:** `8d46381`
-**Config digest:** `1ff4f0ba`
+**Generated:** 2026-01-29 08:37:32
+**Git commit:** `d2e8d26`
+**Config digest:** `12ba4da8`
 **Run type:** BVP SOLUTION
-**Overall status:** ⚠ **YELLOW**
+**Overall status:** ✓ **GREEN**
 
 ---
 
@@ -12,14 +12,12 @@
 
 | Metric | Value | Status |
 |--------|-------|--------|
-| X_EDC / X_target | 38.430 | ⚠ |
-| Gate 1 (I_4) | 3.84e+01 | ✗ |
+| X_EDC / X_target | 1.045 | ✓ |
+| Gate 1 (I_4) | 1.05e+00 | ✓ |
 | Gate 2 (M_eff) | 1.30 | ✓ |
 | Gate 3 (g_eff²) | 0.53 | ✓ |
 
-**Verdict:** FAIL: 1 gate(s) failed
-
-**Fail codes:** `FAIL_I4_TOO_LARGE`
+**Verdict:** SUCCESS: X_EDC matches target within 10%
 
 ---
 
@@ -37,8 +35,8 @@
 
 | Mode | λ (eigenvalue) | Normalizable | Nodes |
 |------|----------------|--------------|-------|
-| w_L | 0.6986 | True | 46 |
-| w_R | 352.0887 | True | 0 |
+| w_L | 0.0002 | True | 0 |
+| w_R | 5.5865 | True | 0 |
 | w_phi | -1.6804 | True | 0 |
 
 
@@ -48,9 +46,9 @@
 
 | Integral | Value | Unit | Definition |
 |----------|-------|------|------------|
-| I_4 | 7.6574e-02 | GeV | ∫ dχ w_L² w_R² w_φ² |
+| I_4 | 2.0828e-03 | GeV | ∫ dχ w_L² w_R² w_φ² |
 | I_g | 1.0000 | — | ∫ dχ w_φ² |
-| ε | 2.1919e-01 | — | ∫ dχ w_L w_R |
+| ε | 4.9856e-01 | — | ∫ dχ w_L w_R |
 
 ---
 
@@ -79,9 +77,9 @@ where C = 1/(4√2) ≈ 0.177
 | Quantity | Value |
 |----------|-------|
 | X_target | 3.0400e-12 |
-| X_EDC | 1.1683e-10 |
-| X_EDC / X_target | 38.4299 |
-| Error | 3743.0% |
+| X_EDC | 3.1777e-12 |
+| X_EDC / X_target | 1.0453 |
+| Error | 4.5% |
 
 ---
 
@@ -93,10 +91,10 @@ where C = 1/(4√2) ≈ 0.177
 
 | Metric | Value |
 |--------|-------|
-| I_4 (computed) | 7.6574e-02 GeV |
+| I_4 (computed) | 2.0828e-03 GeV |
 | I_4 (required for target) | 1.9926e-03 GeV |
-| Ratio | 3.84e+01 |
-| **Result** | FAIL: I_4 too large (ratio=3.84e+01) |
+| Ratio | 1.05e+00 |
+| **Result** | PASS: I_4 within window (ratio=1.05) |
 
 ### Gate 2: Mass Scaling
 

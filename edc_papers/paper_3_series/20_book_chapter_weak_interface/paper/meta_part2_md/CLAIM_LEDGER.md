@@ -408,6 +408,44 @@ notes: |
   - g_5 from action normalization (not scaling)
 ```
 
+### CL-OPR21-SCAN-1: I4 Suppression via Parameter Scan
+
+```yaml
+id: CL-OPR21-SCAN-1
+status: GREEN
+chapter: 11
+claim: "I4 suppression achieved via LR separation scan; X_EDC matches target within 5%"
+evidence:
+  scan_script: "edc_papers/_shared/bvp_gf/scan_params.py"
+  scan_report: "docs/GF_BVP_PARAMETER_SCAN.md"
+  scan_data: "edc_papers/_shared/bvp_gf/out/scan_results.csv"
+  best_candidates: "edc_papers/_shared/bvp_gf/out/best_candidates.json"
+tag: "[Dc]"
+commit: "2026-01-29"
+scan_results:
+  total_points: 99
+  valid_points: 95
+  best_candidate:
+    LR_separation_delta: 8.0
+    fermion_width_delta: 0.8
+    X_ratio: 1.045
+    M_eff_GeV: 2.43
+    I_4_GeV: 0.0021
+  improvement: "36.8× (baseline 38.4 → tuned 1.045)"
+  all_gates_pass: true
+notes: |
+  Parameter scan over LR_separation_delta × fermion_width_delta found
+  configuration where ALL GATES PASS.
+
+  Best point: LR_sep=8.0, fw=0.8 gives X_ratio=1.045 (4.5% off target).
+
+  Mechanism: Increasing L-R separation from 2.0 to 8.0 dramatically
+  reduces mode overlap I_4 by factor ~37.
+
+  CAVEAT: Parameters are scan-tuned [Dc], not derived from 5D action.
+  Physics background (gaussian_wall) remains provisional.
+```
+
 ---
 
 ## Chapter 10: Neutron-Proton Mass Difference

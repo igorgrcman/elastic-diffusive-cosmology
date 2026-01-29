@@ -127,9 +127,11 @@
       Toy feasibility: Parameter space exists where X_EDC could match X_target
 - [x] **Implement thick-brane BVP pipeline (OPR-21)** — `edc_papers/_shared/bvp_gf/` (2026-01-29)
       Result: Pipeline [Der] complete; physics background [Dc] provisional
-      Baseline: M_eff = 2.43 GeV (PASS), I_4 = 0.077 GeV (FAIL — 38× too large)
-      Gate verdict: Need physics tuning (L-R separation, fermion width, potential)
-- [ ] **Tune BVP physics background** — Adjust parameters to match X_target
+- [x] **Tune BVP parameters (OPR-21b)** — `edc_papers/_shared/bvp_gf/scan_params.py` (2026-01-29)
+      Result: ALL GATES PASS with LR_sep=8.0, fw=0.8
+      X_EDC / X_target = 1.045 (4.5% off target)
+      Improvement: 36.8× reduction in error (38.4 → 1.045)
+- [ ] **Derive V(χ) from 5D action reduction** — Upgrade background from [Dc] to [Der]
 
 ---
 

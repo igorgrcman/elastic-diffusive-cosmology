@@ -2063,6 +2063,73 @@ Gate 1 fails because L-R modes overlap too strongly.
 
 ---
 
+## 2026-01-29 (cont'd pt38) — OPR-21b: Parameter Scan for I4 Suppression
+
+### Goal
+Reduce Gate-1 failure by scanning LR separation and fermion width parameters.
+
+### Key Result: **ALL GATES PASS with tuned parameters**
+
+**Best candidate from scan:**
+| Parameter | Baseline | Tuned | Change |
+|-----------|----------|-------|--------|
+| LR_separation_delta | 2.0 | 8.0 | 4× |
+| fermion_width_delta | 0.1 | 0.8 | 8× |
+| X_ratio | 38.4 | 1.045 | 36.8× improvement |
+
+**Gate verdicts (tuned):**
+| Gate | Status |
+|------|--------|
+| Gate 1 (I_4) | ✓ PASS (ratio 1.05) |
+| Gate 2 (M_eff) | ✓ PASS (ratio 1.30) |
+| Gate 3 (g_eff²) | ✓ PASS (ratio 0.53) |
+| **Overall** | **SUCCESS** |
+
+**Mechanism:** Increasing L-R separation from 2.0 to 8.0 reduces mode overlap
+I_4 by factor ~37, matching target X_EDC within 5%.
+
+### Scan Details
+- Parameters: LR_sep ∈ {0.5...15}, fw ∈ {1.0...0.02}
+- Total points: 99, valid: 95
+- Best X_ratio: 1.044 (4.4% off target)
+
+### Files Created
+- `edc_papers/_shared/bvp_gf/scan_params.py` — Parameter scan script
+- `edc_papers/_shared/bvp_gf/out/scan_results.csv` — Full scan data
+- `edc_papers/_shared/bvp_gf/out/best_candidates.json` — Top 10 candidates
+- `docs/GF_BVP_PARAMETER_SCAN.md` — Scan report
+
+### Files Modified
+- `edc_papers/_shared/bvp_gf/config.yaml` — Updated with tuned parameters
+- `edc_papers/_shared/bvp_gf/out/results.json` — Tuned run results
+- `docs/GF_BVP_GATE_REPORT.md` — Updated gate report (SUCCESS)
+- `docs/TODO.md` — OPR-21b marked DONE
+- `docs/CONCEPT_INDEX.md` — Added CONCEPT-069
+- `edc_papers/.../CLAIM_LEDGER.md` — Added CL-OPR21-SCAN-1
+- `docs/SESSION_LOG.md` — This entry
+
+### Tests
+- py_compile: ✓ PASS
+- scan_params.py: ✓ PASS (95/99 valid points)
+- bvp_driver.py (tuned): ✓ PASS (ALL GATES PASS)
+
+### Verdict: **GREEN**
+
+**OPR-21b status:**
+| Component | Status | Color |
+|-----------|--------|-------|
+| Scan script | [Der] | GREEN |
+| Best parameters found | [Dc] | GREEN |
+| All gates pass | [Dc] | GREEN |
+| Physics background | [Dc] | YELLOW |
+
+### Next Steps
+- Derive V(χ) from 5D action reduction (upgrade [Dc] → [Der])
+- Investigate why fw=0.8 (larger) works better than fw=0.1 (smaller)
+- Try RS-like and tanh_wall backgrounds
+
+---
+
 ## Template for Future Sessions
 
 ```markdown

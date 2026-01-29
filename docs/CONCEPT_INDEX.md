@@ -1353,19 +1353,51 @@ config.yaml      — Pipeline configuration
 python3 bvp_driver.py --config config.yaml
 ```
 
-**Baseline run (2026-01-29):**
+**Tuned run (OPR-21b, 2026-01-29):**
 - Background: gaussian_wall [Dc]
+- LR_separation_delta: 8.0 (was 2.0)
+- fermion_width_delta: 0.8 (was 0.1)
 - M_eff = 2.43 GeV (Gate 2: PASS)
-- I_4 = 0.077 GeV (Gate 1: FAIL — too large by 38×)
-- X_EDC / X_target = 38.4
+- I_4 = 2.1e-3 GeV (Gate 1: PASS)
+- X_EDC / X_target = 1.045 (4.5% off target)
+- **ALL GATES PASS**
 
-**Interpretation:**
-Current background gives too much mode overlap. Need to:
-- Increase L-R separation, OR
-- Decrease fermion localization width, OR
-- Adjust background potential
+**Status:** OPR-21 GREEN — All gates pass with tuned parameters
 
-**Status:** OPR-21 YELLOW — Pipeline complete, physics tuning needed
+---
+
+### CONCEPT-069: G_F BVP Parameter Scan (OPR-21b)
+
+| Field | Value |
+|-------|-------|
+| **Source** | `edc_papers/_shared/bvp_gf/scan_params.py` |
+| **Report** | `docs/GF_BVP_PARAMETER_SCAN.md` |
+| **Data** | `edc_papers/_shared/bvp_gf/out/scan_results.csv` |
+| **Best** | `edc_papers/_shared/bvp_gf/out/best_candidates.json` |
+| **Epistemic tag** | [Dc] — Parameters tuned, not derived |
+| **Used in** | Book 2 Chapter 11 (G_F derivation) |
+
+**Scan parameters:**
+- LR_separation_delta ∈ {0.5, 1.0, ..., 15.0}
+- fermion_width_delta ∈ {1.0, 0.8, ..., 0.02}
+- Total: 99 points, 95 valid
+
+**Best candidate:**
+```yaml
+LR_separation_delta: 8.0
+fermion_width_delta: 0.8
+X_ratio: 1.044 (4.4% off target)
+ALL GATES PASS
+```
+
+**Improvement:** 36.8× reduction in X_ratio error (38.4 → 1.044)
+
+**Mechanism:** Increasing L-R separation from 2.0 to 8.0 reduces mode overlap
+I_4 by factor ~37, matching target X_EDC.
+
+**Caveat:** Parameters are scan-tuned [Dc], not derived from 5D action.
+
+**Status:** OPR-21b GREEN — Target achieved with tuned parameters
 
 ---
 
