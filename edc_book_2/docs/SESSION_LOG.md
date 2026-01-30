@@ -1,5 +1,73 @@
 # EDC Book 2 - Session Log
 
+## 2026-01-30: Chapters 8-12 Audit - Patch-Style Fixes
+
+### Session Goals
+- Implement A/B/C/D patch-style audit for Ch.8-12
+- Fix tag inconsistencies, add scope guardrails, clarify calibrations
+
+### Ch.8 Three Generations - Fixes Applied
+
+**Eq. z6_factor:**
+- Added dictionary mini-box explaining what carries Z₃ charge
+- Clarified "identification of structure [I], not derivation"
+
+**Angular channels:**
+- "hexagonal lattice → Z₆" tagged [Dc] → [P] (not derived from action)
+
+**Lifetime/WKB:**
+- Replaced t_P with observability threshold τ_obs ~ 10⁻²³ s
+- Added definitions for m_eff, V(ξ), ξ* as [Open]
+
+### Ch.9 Neutrinos - Fixes Applied
+
+**Mass suppression tag inconsistency:**
+- m_ν/m_e ~ 10⁻⁶: [Dc] → [I] (consistent with audit table)
+- Added note: upgrade to [Dc:Approx] requires deriving h(ξ), κ
+
+**V-A section:**
+- Added scope guardrail: flat metric + half-line domain
+- Added normalizability condition integral
+
+**PMNS:**
+- Added qualitative explanation: delocalized edge modes → large angles
+
+### Ch.10 V-A Structure - Fixes Applied
+
+**[BL] on math identities:**
+- 5D Dirac equation: removed [BL] (it's math, not empirical)
+- Chiral projectors: [BL] → [M]
+- Profile equations: [BL] → [Der]
+
+**z vs ξ inconsistency:**
+- Fixed ~15 occurrences of z → ξ throughout
+- Unified toy model notation
+
+**Mass from stress:**
+- Added dimensional check: [κ] = 1/mass³
+- Fixed T^{zz}(z) → T^{ξξ}(ξ)
+
+### Ch.11 CKM - Fixes Applied
+
+**Cabibbo calibration:**
+- Δξ/2κ = 1.49: [I] → [Cal]
+- Clarified: "This IS a calibration"
+
+### Ch.12 Coupling Chain - Fixes Applied
+
+**σ anchor:**
+- σ ≈ 8.82 MeV/fm²: [Dc] → [Cal] (anchor choice)
+
+**R_ξ anchor:**
+- R_ξ ~ ℏc/M_W: [I] → [Cal]
+- Added warning: cannot then "predict" M_W
+- Added alternative anchor note (M_Z gives 13% different)
+
+### Compilation Status
+- **183 pages** SUCCESS (0 errors)
+
+---
+
 ## 2026-01-30: Chapters 6-7 Audit - [Der:Sym] vs [Dc] Split
 
 ### Session Goals
