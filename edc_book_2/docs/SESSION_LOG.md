@@ -1,5 +1,30 @@
 # EDC Book 2 - Session Log
 
+## 2026-01-30: Chapter 5 Audit - [M] vs [P]/[I] Boundary Fixes
+
+### Session Goals
+- Separate mathematical definitions [M] from physical postulates [P]
+- Separate mathematical formulas [M] from identifications [I]
+
+### Fixes Applied
+
+**θ_k definition (line 99):**
+- θ_k = 2πk/3: \tagP → \tagM (this is a mathematical definition)
+- Added clarification that postulate is "angles correspond to generations"
+
+**Factor 12 (line 159):**
+- 12 = |Z₆| × |Z₂|: \tagI → \tagM (pure group theory)
+- Clarified "Identifying this with physical factors" is [I]
+
+**DFT baseline (line 241):**
+- DFT formula: \tagDer → \tagM (pure mathematics)
+- Added "Applying this to particle mixing [I]"
+
+### Compilation Status
+- **181 pages** SUCCESS (0 errors)
+
+---
+
 ## 2026-01-30: Chapter 4 Audit - Minor Tag Fixes
 
 ### Session Goals
