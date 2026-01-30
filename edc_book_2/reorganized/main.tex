@@ -5,16 +5,49 @@
 % ============================================================
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{textgreek}  % For Greek letters in text mode
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{cleveref}
 \usepackage{mdframed}  % For mechanism boxes
-\usepackage{tcolorbox} % For status boxes
+\usepackage[most]{tcolorbox} % For status boxes
 \usepackage{tikz}      % For diagrams
 \usepackage{booktabs}  % For professional tables
-\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}  % For nosep lists and (i) syntax
+\usepackage[dvipsnames]{xcolor} % Extended colors
+
+% Define colors
+\definecolor{OliveGreen}{rgb}{0.33, 0.42, 0.18}
+\definecolor{YellowOrange}{rgb}{1.0, 0.68, 0.26}
+\definecolor{BrickRed}{rgb}{0.8, 0.25, 0.33}
+
+% tcolorbox styles used in original chapters
+\tcbset{
+    edcGuardrail/.style={
+        colback=yellow!5!white,
+        colframe=yellow!70!black,
+        fonttitle=\bfseries
+    },
+    edcCanonical/.style={
+        colback=green!5!white,
+        colframe=green!70!black,
+        fonttitle=\bfseries
+    }
+}
+
+% amsthm theorem-like environments
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+
+% Additional tags from original
+\newcommand{\tagDef}{\textbf{[Def]}}
+\newcommand{\tagOPEN}{\textbf{[OPEN]}}
 
 % Hyperref setup
 \hypersetup{
@@ -29,6 +62,8 @@
 % ============================================================
 % EDC EPISTEMIC FRAMEWORK MACROS
 % ============================================================
+% Fix openbox conflict with amsthm before loading macros
+\let\openbox\relax
 \input{includes/EDC_MACROS_COMPLETE}
 
 % ============================================================
