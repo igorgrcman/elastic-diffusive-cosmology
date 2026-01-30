@@ -1,5 +1,60 @@
 # EDC Book 2 - Session Log
 
+## 2026-01-30: Chapters 15-17 Audit - Critical Epistemic Fixes
+
+### Session Goals
+- Fix Chapter 16 "hard-fail" on m_p/m_e = 6π⁵ in [Der] table
+- Fix Chapter 15 δ hidden anchor, M_Z/M_W clarification
+- Add exploratory guardrail and tags to Chapter 17
+
+### Ch.15 M_W and G_F - Fixes Applied (Prior Session)
+
+**δ hidden anchor:**
+- δ ~ 2.5×10⁻³ fm: [P] → [Cal] with critical honesty note
+- Added: "This is NOT a first-principles derivation"
+
+**Error budget table:**
+- κ (Robin parameter): [P] → [Open] (not derived)
+
+**M_Z/M_W ratio:**
+- SM identity: tagged [M]
+- EDC tree-level ratio 2/√3: [Der] → [Dc:Approx]
+- Clarified 1.8% discrepancy is expected missing effects, not tension
+
+### Ch.16 Epistemic Summary - CRITICAL Fixes
+
+**"Established Results [Der]" table (HARD-FAIL fix):**
+- "Proton-electron mass ratio m_p/m_e = 6π⁵" → "Geometric volume ratio E_p/E_e = 6π⁵"
+- Added clarification: geometric ratio is [Der:Sym], physical mass identification is [Dc]
+- Updated table description: "mathematical results follow necessarily; physical interpretations require reduction dictionary"
+
+**Conditional Results [Dc] table:**
+- Added footnote to m_p/m_e: geometric ratio [Der:Sym], dictionary step [Dc]
+- Added footnote to M_W: uses δ calibrated from M_W itself [Cal], consistency check not prediction
+
+**Falsification status:**
+- m_p/m_e: added "[Dc]" tag clarification
+
+### Ch.17 Beyond the Weak Sector - New Guardrails
+
+**Exploratory warning box added:**
+- Stated: "This chapter is exploratory"
+- Claims are [I] or [P], not rigorous [Der]
+
+**Tags added throughout:**
+- Weak sector results: [Dc] tags with note about dictionary requirement
+- Nuclear binding/magic numbers: [I] (speculative)
+- Cosmological tests: [I] with warning "highly speculative"
+- Precision test table: added Tag column with [Dc], [Dc:Approx]
+
+**Overstated conclusion fixed:**
+- "evidence that 5D captures something real" → "nontrivial consistency check"
+
+### Compilation Status
+- **183 pages** SUCCESS (0 errors)
+
+---
+
 ## 2026-01-30: Chapters 8-12 Audit - Patch-Style Fixes
 
 ### Session Goals
