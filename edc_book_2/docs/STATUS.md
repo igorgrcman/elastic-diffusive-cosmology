@@ -46,9 +46,25 @@
 - [x] W/Z mass consistency check
 - [x] Test compilation: **112 pages** - SUCCESS
 
+## Week 3 Progress (COMPLETE)
+
+### Chapter 8 Three Generations (Consolidated)
+- [x] Physical picture: Z₆ → Z₃ angular channels
+- [x] Candidate mechanisms A/B/C with verdicts
+- [x] Falsifiability criteria (4th gen invalidates)
+- [x] Epistemic audit table
+- [x] Test compilation: SUCCESS
+
+### Chapter 9 Neutrinos (Consolidated)
+- [x] Edge-mode mass suppression (m_ν/m_e ~ 10⁻⁶)
+- [x] Three flavors from Z₃
+- [x] V-A from boundary conditions
+- [x] PMNS: DFT baseline falsified
+- [x] Test compilation: **120 pages** - SUCCESS
+
 ### Pending
-- [ ] Week 3: Ch 7 Generations, Ch 8 Neutrinos
-- [ ] Week 4-5: Additional migration
+- [ ] Week 4: Ch 7 Leptons, Ch 11 CKM
+- [ ] Week 5: Additional migration
 - [ ] Week 6-7: Polish and review
 
 ## Original Version

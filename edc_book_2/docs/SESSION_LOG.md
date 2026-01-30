@@ -37,10 +37,42 @@
 - Scale Taxonomy established as canonical reference
 - No-smuggling certification for all derivations
 
-### Next Steps (Week 3)
-- Ch 7: Three Generations from μ-window
-- Ch 8: Neutrino Masses (edge modes)
-- Add 5D Mechanism boxes throughout
+---
+
+## 2026-01-30: Week 3 - Generations and Neutrinos
+
+### Session Goals
+- Write Chapter 8 (Three Generations) from source content
+- Write Chapter 9 (Neutrinos as Edge Modes) from source content
+- Add 5D Mechanism boxes
+
+### Completed
+1. **Chapter 8 "Three Generations: Why Not Four?"** (consolidated):
+   - Physical picture: three angular channels from Z₆→Z₃
+   - Candidate mechanisms A/B/C with stoplight verdicts
+   - Falsifiability: 4th generation would invalidate Z₃
+   - Summary table and epistemic audit
+
+2. **Chapter 9 "Neutrinos as Edge Modes"** (consolidated):
+   - Mass suppression: m_ν/m_e ~ e^{-14} ~ 10^{-6}
+   - Three flavors from Z₃ angular sectors
+   - V-A from Chapter 10 boundary conditions
+   - PMNS mixing: DFT baseline falsified (θ₁₃ wrong by 15×)
+   - Dirac vs Majorana: open question
+
+### Compilation Status
+- **120 pages** SUCCESS (up from 112)
+
+### Key Results
+- Both chapters have full epistemic tagging
+- 5D Mechanism boxes included
+- Clear falsification criteria stated
+- DFT baseline for PMNS explicitly falsified
+
+### Next Steps (Week 4)
+- Ch 7: Leptons (mass candidates)
+- Ch 11: CKM structure
+- Additional 5D mechanism boxes throughout
 
 ---
 
