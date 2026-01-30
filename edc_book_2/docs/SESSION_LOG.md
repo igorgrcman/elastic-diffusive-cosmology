@@ -1,5 +1,31 @@
 # EDC Book 2 - Session Log
 
+## 2026-01-30: Chapter 4 Audit - Minor Tag Fixes
+
+### Session Goals
+- Fix step-function profile tagged [Der] (should be [Dc:Approx])
+- Add [I] tags to projection identifications
+- Split summary table entry for C = 4π/3
+
+### Fixes Applied
+
+**Step function limit (lines 170-182):**
+- f(r) = Θ(r-a): \tagDer → \tagDcApprox (it's an asymptotic limit choice)
+- C = 4π/3: kept \tagDerSym but clarified "within step-function limit"
+
+**Projection mechanism (lines 200-206):**
+- "What projects" section: added \tagI (these are identifications)
+
+**Summary table (lines 255-266):**
+- Split "Step function C = 4π/3 [Der] (exact)" into:
+  - Step function limit: \tagDcApprox (asymptotic)
+  - C = 4π/3 (given step fn.): \tagDerSym
+
+### Compilation Status
+- **181 pages** SUCCESS (0 errors)
+
+---
+
 ## 2026-01-30: Chapter 3 Audit - [Der] vs [P]/[I] Boundary Fixes
 
 ### Session Goals
