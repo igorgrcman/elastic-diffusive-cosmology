@@ -1,0 +1,1016 @@
+% ==============================================================================
+% EDC BOOK 2: WEAK SECTOR — CANONICAL SPINE
+% ==============================================================================
+% This is the ONLY reader-facing path through Book 2.
+% All content flows through this file in coherent narrative order.
+%
+% Structure:
+%   Part I   (Ch 1-6):  Physical Picture — Intuition and case studies
+%   Part II  (Ch 7-12): Predictions — Electroweak observables and mixing
+%   Part III (Ch 13-16): Machinery — OPR derivation chain
+%   Epilogue (Ch 17):   Nuclear Applications Preview
+%
+% Created: 2026-01-29
+% ==============================================================================
+
+\documentclass[11pt,a4paper]{book}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% PACKAGES (inherited from rebuild)
+% ═══════════════════════════════════════════════════════════════════════════════
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{physics}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage[backend=biber,style=numeric-comp,sorting=none,maxbibnames=3]{biblatex}
+\addbibresource{bib/part2_backbone.bib}
+\usepackage{tikz}
+\usetikzlibrary{calc,angles,quotes,decorations.markings,decorations.pathmorphing,positioning}
+\usetikzlibrary{shapes,arrows,arrows.meta,shapes.geometric,fit,backgrounds}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{epigraph}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{pifont}
+\usepackage[normalem]{ulem}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+
+\tcbuselibrary{breakable,skins}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% PAGE SETUP
+% ═══════════════════════════════════════════════════════════════════════════════
+\geometry{margin=1in}
+\raggedbottom
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% THEOREM ENVIRONMENTS
+% ═══════════════════════════════════════════════════════════════════════════════
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{postulate}[theorem]{Postulate}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{axiom}[theorem]{Axiom}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% CUSTOM COMMANDS
+% ═══════════════════════════════════════════════════════════════════════════════
+\newcommand{\Membrane}{\Sigma}
+\newcommand{\Bulk}{\mathcal{M}_5}
+\newcommand{\vscan}{v_{\text{scan}}}
+\newcommand{\Rxi}{R_\xi}
+\newcommand{\EDCPAPERS}{../../edc_papers}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% EPISTEMIC TAGS
+% ═══════════════════════════════════════════════════════════════════════════════
+\definecolor{derivedColor}{RGB}{0,100,0}
+\definecolor{postulatedColor}{RGB}{150,0,0}
+\definecolor{calibratedColor}{RGB}{0,0,150}
+
+\newcommand{\tagBL}{\textcolor{brown}{\textbf{[BL]}}}
+\newcommand{\tagDer}{\textcolor{derivedColor}{\textbf{[Der]}}}
+\newcommand{\tagDc}{\textcolor{calibratedColor}{\textbf{[Dc]}}}
+\newcommand{\tagI}{\textcolor{gray}{\textbf{[I]}}}
+\newcommand{\tagCal}{\textcolor{postulatedColor}{\textbf{[Cal]}}}
+\newcommand{\tagP}{\textcolor{postulatedColor}{\textbf{[P]}}}
+\newcommand{\tagM}{\textcolor{gray}{\textbf{[M]}}}
+\newcommand{\tagDef}{\textcolor{blue!60!black}{\textbf{[Def]}}}
+\newcommand{\tagOPEN}{\textcolor{red!70!black}{\textbf{[OPEN]}}}
+\newcommand{\tagOpen}{\textcolor{red!70!black}{\textbf{[OPEN]}}}
+\newcommand{\tagNoGo}{\textcolor{red!70!black}{\textbf{[NO-GO]}}}
+
+\newcommand{\degree}{°}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% TCOLORBOX STYLES
+% ═══════════════════════════════════════════════════════════════════════════════
+\tcbset{
+  readerContract/.style={colback=blue!5, colframe=blue!50!black, fonttitle=\bfseries, title={Reader Contract}},
+  guardrail/.style={colback=yellow!5, colframe=orange!60!black, fonttitle=\bfseries},
+  falsifiability/.style={colback=red!5, colframe=red!40!black, fonttitle=\bfseries, title={Falsifiability Hooks}},
+  mechanism/.style={colback=teal!5, colframe=teal!50!black, fonttitle=\bfseries}
+}
+
+\newtcolorbox{edcPostulateBox}[2]{colback=orange!5, colframe=orange!60!black, fonttitle=\bfseries, title={#1 \hfill {\small #2}}, breakable}
+\newtcolorbox{edcDefinitionBox}[2]{colback=green!5, colframe=green!50!black, fonttitle=\bfseries, title={Definition: #1 \hfill {\small #2}}, breakable}
+\newtcolorbox{edcPropositionBox}[2]{colback=purple!5, colframe=purple!50!black, fonttitle=\bfseries, title={Proposition: #1 \hfill {\small #2}}, breakable}
+\newtcolorbox{edcLedgerBox}[2]{colback=blue!5, colframe=blue!50!black, fonttitle=\bfseries, title={Ledger: #1 \hfill {\small #2}}, breakable}
+\newtcolorbox{edcConsequenceBox}[2]{colback=teal!5, colframe=teal!50!black, fonttitle=\bfseries, title={#1 \hfill {\small #2}}, breakable}
+\newtcolorbox{edcWarningBox}[2]{colback=yellow!10, colframe=orange!70!black, fonttitle=\bfseries, title={Guardrail: #1}, breakable}
+\newtcolorbox{edcLemmaBox}[2]{colback=cyan!5, colframe=cyan!50!black, fonttitle=\bfseries, title={Lemma: #1 \hfill {\small #2}}, breakable}
+\newtcolorbox{edcTheoremBox}[2]{colback=blue!8, colframe=blue!60!black, fonttitle=\bfseries, title={Theorem: #1 \hfill {\small #2}}, breakable}
+\newtcolorbox{edcCorollaryBox}[2]{colback=green!8, colframe=green!60!black, fonttitle=\bfseries, title={Corollary: #1 \hfill {\small #2}}, breakable}
+\newtcolorbox{stepbox}[2]{colback=blue!5, colframe=blue!50!black, fonttitle=\bfseries, title={Step #1: #2}, breakable}
+\newtcolorbox{questionbox}[1]{colback=yellow!10, colframe=orange!70!black, fonttitle=\bfseries, title={Question: #1}, breakable}
+\newtcolorbox{answerbox}[1]{colback=green!5, colframe=green!50!black, fonttitle=\bfseries, title={Answer: #1}, breakable}
+\newtcolorbox{gapbox}[1]{colback=red!5, colframe=red!50!black, fonttitle=\bfseries, title={Gap Identified: #1}, breakable}
+\newtcolorbox{resolutionbox}[1]{colback=teal!5, colframe=teal!50!black, fonttitle=\bfseries, title={Resolution: #1}, breakable}
+
+\newtcolorbox{edcAtAGlance}[1]{colback=blue!3, colframe=blue!50!black, fonttitle=\bfseries, title={At a Glance: #1}, before upper={\parskip=0.3em}, boxrule=1pt, arc=3pt}
+
+\newcommand{\edcBaseline}[1]{\textbf{\textcolor{gray!70!black}{Standard Model \tagBL{}:}}\\#1\par\medskip}
+\newcommand{\edcEDCView}[1]{\textbf{\textcolor{purple!70!black}{EDC Interpretation \tagP{}/\tagDc{}:}}\\#1\par\medskip}
+\newcommand{\edcKeyInsight}[1]{\textbf{\textcolor{green!50!black}{Key Insight:}}\\\textit{#1}\par\medskip}
+\newcommand{\edcFalsifiable}[1]{\textbf{\textcolor{red!60!black}{Falsifiable If:}}\\#1}
+
+\tcbset{
+    edcCornerstone/.style={colback=blue!5, colframe=blue!40!black, fonttitle=\bfseries},
+    edcGuardrail/.style={colback=gray!5!white, colframe=gray!60!black, fonttitle=\bfseries},
+    edcPPN/.style={colback=blue!5, colframe=blue!50!black, fonttitle=\bfseries},
+    edcCanonical/.style={colback=yellow!5, colframe=orange!60!black, fonttitle=\bfseries},
+    edcConcept/.style={colback=yellow!5, colframe=orange!50!black, fonttitle=\bfseries},
+    edcPathway/.style={colback=purple!5, colframe=purple!40!black, fonttitle=\bfseries},
+    edcModel/.style={colback=green!5, colframe=green!40!black, fonttitle=\bfseries},
+    edcWarning/.style={colback=red!5, colframe=red!40!black, fonttitle=\bfseries},
+    edcMechanism/.style={colback=teal!5, colframe=teal!50!black, fonttitle=\bfseries, title={Mechanistic Dimension Note (Canon)}}
+}
+
+\newcommand{\edcMechanismNote}[3]{%
+\begin{tcolorbox}[edcMechanism]
+\begin{itemize}[nosep,leftmargin=*]
+    \item \textbf{5D cause (bulk):} #1
+    \item \textbf{Brane-layer process:} #2
+    \item \textbf{3D observation (output):} #3
+\end{itemize}
+\vspace{0.3em}
+\footnotesize\textit{Ledger closure must hold: bulk + brane + 3D outputs conserve energy/quantum numbers.}
+\end{tcolorbox}
+}
+
+% Chapter recap box
+\newtcolorbox{chapterRecap}{
+    colback=blue!3,
+    colframe=blue!40!black,
+    fonttitle=\bfseries,
+    title={Chapter Recap},
+    breakable
+}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% TIKZ STYLES
+% ═══════════════════════════════════════════════════════════════════════════════
+\tikzset{
+    edc box/.style={rectangle, draw, rounded corners=3pt, minimum width=2cm, minimum height=0.8cm, align=center, font=\small},
+    edc arrow/.style={->, >=stealth, thick},
+    gate box/.style={edc box, fill=orange!15, draw=orange!70!black, text=black},
+    bulk region/.style={fill=gray!15, draw=none, rounded corners=0pt},
+    brane region/.style={fill=blue!8, draw=none, rounded corners=0pt},
+    observer region/.style={fill=green!8, draw=none, rounded corners=0pt},
+    bulk box/.style={rectangle, rounded corners=4pt, draw=gray!60!black, thick, fill=gray!20, font=\footnotesize, align=center, minimum height=0.8cm},
+    brane box/.style={rectangle, rounded corners=4pt, draw=blue!50!black, thick, fill=blue!15, font=\footnotesize, align=center, minimum height=0.8cm},
+    process box/.style={rectangle, rounded corners=4pt, draw=orange!60!black, thick, fill=orange!15, font=\footnotesize, align=center, minimum height=0.8cm},
+    output box/.style={rectangle, rounded corners=4pt, draw=green!50!black, thick, fill=green!15, font=\footnotesize, align=center, minimum height=0.8cm},
+    section label/.style={font=\small\bfseries, text=black},
+    bulk boundary/.style={draw=gray!60!black, thick, dashed},
+    observer boundary/.style={draw=green!50!black, thick, dashed},
+    brane boundary/.style={draw=blue!50!black, thick, dashed},
+    particle/.style={circle, fill=green!40!black, minimum size=8pt, inner sep=0pt},
+    neutrino/.style={circle, draw=green!40!black, fill=white, minimum size=8pt, inner sep=0pt},
+    edc flow/.style={-{Stealth[length=5pt]}, thick, draw=black!70},
+    edc dashed/.style={-{Stealth[length=4pt]}, thick, draw=gray!50, dashed},
+}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% HYPERREF SETUP
+% ═══════════════════════════════════════════════════════════════════════════════
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=green!50!black,
+  urlcolor=blue!70!black,
+  pdftitle={EDC Book 2: Weak Sector (Canonical)},
+  pdfauthor={Igor Grcman}
+}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% SHARED MACROS
+% ═══════════════════════════════════════════════════════════════════════════════
+\input{_shared/meta/edc_meta_macros}
+\input{_shared/meta/edc_stoplight_legend}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% DOCUMENT
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\begin{document}
+
+% ---------------------------------------------------------------------------
+% FRONT MATTER
+% ---------------------------------------------------------------------------
+\frontmatter
+
+% Title Page
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+{\Huge\bfseries ELASTIC DIFFUSIVE COSMOLOGY}\\[1.5cm]
+{\Large Part II: Weak Sector}\\[0.5cm]
+{\large Geometric Origin of Weak Interactions}\\[2cm]
+{\Large Igor Gr\v{c}man}\\[1cm]
+{\large January 2026}\\[0.5cm]
+{\small Canonical Edition}\\[2cm]
+\vfill
+{\large\itshape ``Weak interactions are not fundamental gauge vertices.\\
+They are coarse-grained residues of thick-brane dynamics.''}
+\end{titlepage}
+
+% Copyright
+\newpage
+\thispagestyle{empty}
+\vspace*{3cm}
+\begin{center}
+{\Large\bfseries Elastic Diffusive Cosmology}\\[0.3cm]
+{\normalsize Quantum Mechanics and Gravity from a Unified 5D Membrane Action}\\[0.5cm]
+{\large Part II: Weak Sector}\\[1.5cm]
+\end{center}
+\noindent\textcopyright{} 2026 Igor Gr\v{c}man\\[0.3cm]
+All rights reserved under standard copyright.\\[0.5cm]
+\noindent\textbf{DOI:} \href{https://doi.org/10.5281/zenodo.18328508}{10.5281/zenodo.18328508}\\[1cm]
+\noindent Licensed under CC BY-NC-SA 4.0\\
+\url{https://creativecommons.org/licenses/by-nc-sa/4.0/}\\[1.5cm]
+\noindent\textbf{First edition:} January 2026\\
+\vfill
+
+% ---------------------------------------------------------------------------
+% HOW TO READ THIS BOOK
+% ---------------------------------------------------------------------------
+\chapter*{How to Read This Book}
+\addcontentsline{toc}{chapter}{How to Read This Book}
+
+This book presents the EDC approach to weak interactions as a coherent narrative
+in three parts. Each part serves a distinct purpose:
+
+\begin{description}[leftmargin=2cm,labelwidth=1.8cm]
+\item[Part I] \textbf{Physical Picture} --- Builds intuition through concrete examples.
+    No equations beyond high-school algebra. If you read nothing else, read Part I.
+\item[Part II] \textbf{Predictions} --- Derives electroweak observables from geometry.
+    Requires comfort with basic quantum mechanics.
+\item[Part III] \textbf{Derivation Machinery} --- Technical details for specialists.
+    Contains the OPR (Open Problem Registry) chain with full derivations.
+\end{description}
+
+\section*{Epistemic Tags}
+
+Every claim carries exactly one \textbf{evidence tag}:
+
+\begin{center}
+\begin{tabular}{@{}lp{10cm}@{}}
+\toprule
+\textbf{Tag} & \textbf{Meaning} \\
+\midrule
+\tagBL{}  & \textbf{Baseline} --- Accepted external fact (PDG/CODATA). Not derived. \\
+\tagDer{} & \textbf{Derived} --- Follows explicitly from EDC postulates. \\
+\tagDc{}  & \textbf{Derived conditional} --- Follows under stated assumptions. \\
+\tagI{}   & \textbf{Identified} --- Structural mapping within EDC (not unique). \\
+\tagP{}   & \textbf{Postulated} --- Hypothesis, not yet derived. \\
+\tagM{}   & \textbf{Mathematics} --- Pure mathematical result (no physics input). \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{The Projection Principle}
+
+Every physical process has a \textbf{5D bulk+brane cause} whose observable
+residue is a \textbf{3D shadow} on the observer boundary:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  \node[bulk box, minimum width=3cm] (bulk) at (0,0) {5D Bulk Cause};
+  \node[brane box, minimum width=3cm] (brane) at (4,0) {Brane Process};
+  \node[output box, minimum width=3cm] (obs) at (8,0) {3D Shadow};
+  \draw[edc flow] (bulk) -- (brane);
+  \draw[edc flow] (brane) -- (obs);
+\end{tikzpicture}
+\end{center}
+
+Standard Model terminology ($W^\pm$, $G_F$, V--A) appears as \textbf{3D observational
+shorthand}. The SM describes \emph{what} observers measure; EDC explains \emph{why}.
+
+\section*{Derivation Chain Map}
+
+The book's logical dependencies form a directed graph:
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm, every node/.style={font=\small}]
+  \node[edc box, fill=gray!20] (ch1) {Ch 1: Interface};
+  \node[edc box, fill=gray!20, right=of ch1] (ch2) {Ch 2: Ontology};
+  \node[edc box, fill=blue!10, below=of ch1] (ch3) {Ch 3--6: Cases};
+  \node[edc box, fill=green!10, below=of ch2] (ch7) {Ch 7--8: EW Params};
+  \node[edc box, fill=purple!10, right=of ch7] (ch9) {Ch 9--12: Mixing};
+  \node[edc box, fill=orange!10, below=of ch3] (ch13) {Ch 13--16: OPR Chain};
+
+  \draw[edc arrow] (ch1) -- (ch2);
+  \draw[edc arrow] (ch2) -- (ch3);
+  \draw[edc arrow] (ch3) -- (ch7);
+  \draw[edc arrow] (ch7) -- (ch9);
+  \draw[edc arrow] (ch3) -- (ch13);
+  \draw[edc arrow] (ch13) -- (ch7);
+\end{tikzpicture}
+\end{center}
+
+\textbf{Reading paths:}
+\begin{itemize}[nosep]
+  \item \textbf{Quick tour}: Ch 1--2, then Ch 7 summary boxes
+  \item \textbf{Full narrative}: Ch 1--12 in order
+  \item \textbf{Technical deep-dive}: Ch 13--16 after Part II
+\end{itemize}
+
+% ---------------------------------------------------------------------------
+% TABLE OF CONTENTS
+% ---------------------------------------------------------------------------
+\tableofcontents
+
+% ---------------------------------------------------------------------------
+% MAIN MATTER
+% ---------------------------------------------------------------------------
+\mainmatter
+
+% ###########################################################################
+%                        PART I: PHYSICAL PICTURE
+% ###########################################################################
+
+\part{Physical Picture}
+\label{part:physical_picture}
+
+\begin{quote}
+\textit{Part I builds intuition for the EDC approach to weak interactions.
+No advanced mathematics required. Each chapter presents one particle decay
+as a case study, showing how the unified pipeline applies.}
+\end{quote}
+
+% ===========================================================================
+% CHAPTER 1: THE WEAK INTERFACE
+% ===========================================================================
+\chapter{The Weak Interface}
+\label{ch:weak_interface}
+
+\begin{quote}
+\textit{This chapter establishes the physical mechanism for weak-sector processes.
+We introduce the ``thick brane'' picture and explain why weak interactions appear
+weak from a 5D perspective.}
+\end{quote}
+
+% --- Section 1.1: From 5D to Observable Physics ---
+\section{From 5D Relaxation to Observable Physics}
+\label{sec:5d_to_observable}
+
+\input{sections/01_how_we_got_here}
+
+% --- Section 1.2: The Unified Pipeline ---
+\section{The Unified Pipeline: Absorption--Dissipation--Release}
+% Label defined in sections/03_unified_pipeline.tex
+
+\input{sections/03_unified_pipeline}
+
+% --- Section 1.3: Geometry of the Brane Interface ---
+\section{Geometry of the Brane Interface}
+% Label defined in sections/02_geometry_interface.tex
+
+\input{sections/02_geometry_interface}
+
+% --- Chapter Recap ---
+\begin{chapterRecap}
+\textbf{What you learned:} Weak interactions are 3D shadows of 5D brane dynamics.
+The unified pipeline (Absorption $\to$ Dissipation $\to$ Release) applies to all decays.
+
+\textbf{What was derived:} Pipeline structure \tagDc{} from energy conservation.
+
+\textbf{What was assumed:} Thick-brane geometry \tagP{}, proton stability \tagP{}.
+
+\textbf{What remains open:} Quantitative mediator physics (Part III).
+
+\textbf{Full proofs:} Derivation Library, ``Unified Pipeline'' section.
+\end{chapterRecap}
+
+% ===========================================================================
+% CHAPTER 2: PARTICLE ONTOLOGY
+% ===========================================================================
+\chapter{Particle Ontology in EDC}
+\label{ch:ontology}
+
+\begin{quote}
+\textit{EDC classifies particles into five ontological categories based on their
+5D structure. This chapter defines each category and explains why the classification
+matters for decay dynamics.}
+\end{quote}
+
+\input{sections/04_ontology}
+
+% --- Section 2.2: Proton as Topological Anchor ---
+\section{The Proton as Topological Anchor}
+% Label defined in sections/04b_proton_anchor.tex
+
+\input{sections/04b_proton_anchor}
+
+% --- Section 2.3: Master Diagram ---
+\section{The Master Diagram}
+% Label defined in sections/04a_unified_master_figure.tex
+
+\input{sections/04a_unified_master_figure}
+
+% --- Chapter Recap ---
+\begin{chapterRecap}
+\textbf{What you learned:} Five particle categories (bulk-junction, brane-dominant,
+brane-defect, edge-mode, composite) determine decay pathways.
+
+\textbf{What was derived:} Classification scheme \tagDc{} from 5D structure.
+Steiner theorem \tagM{} guarantees proton stability.
+
+\textbf{What was assumed:} Y-junction topology \tagP{} for baryons.
+
+\textbf{What remains open:} Quantitative mode profiles (Part III, OPR-21).
+
+\textbf{Full proofs:} Derivation Library, ``Steiner Theorem'' and ``Z$_N$ Lemmas''.
+\end{chapterRecap}
+
+% ===========================================================================
+% CHAPTER 3: NEUTRON DECAY
+% ===========================================================================
+\chapter{Case Study: Neutron Decay}
+\label{ch:case_neutron}
+
+\begin{quote}
+\textit{The neutron provides our first test case: a bulk-junction particle
+undergoing beta decay. This chapter traces the energy flow from junction
+relaxation through brane charging to frozen projection.}
+\end{quote}
+
+\input{sections/05_case_neutron}
+
+% Dual-route analysis (consolidated here)
+\section{Route Analysis: Pump vs.\ Boundary-Dominant}
+% Label defined in sections/05b_neutron_dual_route.tex
+
+\input{sections/05b_neutron_dual_route}
+
+% --- Chapter Recap ---
+\begin{chapterRecap}
+\textbf{What you learned:} Neutron decay is junction relaxation toward Steiner minimum.
+The electron and antineutrino emerge from frozen projection of brane modes.
+
+\textbf{What was derived:} Decay pathway \tagDc{} from pipeline + junction topology.
+
+\textbf{What was assumed:} Neutron = displaced Y-junction \tagP{}.
+
+\textbf{What remains open:} Numerical $\tau_n$ prediction (6\% achieved in Book 1).
+
+\textbf{Full proofs:} Book 1, Chapter 3 (Peierls barrier calculation).
+\end{chapterRecap}
+
+% ===========================================================================
+% CHAPTER 4: MUON DECAY
+% ===========================================================================
+\chapter{Case Study: Muon Decay}
+\label{ch:case_muon}
+
+\begin{quote}
+\textit{The muon is a brane-dominant particle: its decay involves no bulk junction
+dynamics. This simplifies the analysis and isolates the role of mode-profile
+overlap in determining decay products.}
+\end{quote}
+
+\input{sections/06_case_muon}
+
+% --- Chapter Recap ---
+\begin{chapterRecap}
+\textbf{What you learned:} Muon decay is internal brane-mode redistribution.
+No bulk pumping needed---energy already stored in brane excitation.
+
+\textbf{What was derived:} Decay mechanism \tagDc{} from brane-dominant ontology.
+
+\textbf{What was assumed:} Mode-profile separation \tagP{}.
+
+\textbf{What remains open:} Numerical $\tau_\mu$ from overlap integral.
+
+\textbf{Full proofs:} Derivation Library, ``Projection-Reduction Lemma''.
+\end{chapterRecap}
+
+% ===========================================================================
+% CHAPTER 5: TAU DECAY
+% ===========================================================================
+\chapter{Case Study: Tau Decay}
+\label{ch:case_tau}
+
+\begin{quote}
+\textit{The tau has the same brane-dominant ontology as the muon but with higher
+mode energy. This opens hadronic channels, providing a universality test for the
+pipeline mechanism.}
+\end{quote}
+
+\input{sections/07_case_tau}
+
+% --- Chapter Recap ---
+\begin{chapterRecap}
+\textbf{What you learned:} Tau decay confirms pipeline universality. Higher energy
+opens hadronic channels via $\mathcal{P}_{\text{energy}}$ threshold.
+
+\textbf{What was derived:} Same mechanism for all charged leptons \tagDc{}.
+
+\textbf{What was assumed:} Mode index hierarchy \tagP{}.
+
+\textbf{What remains open:} Quantitative branching ratios.
+
+\textbf{Full proofs:} Same as muon (Chapter 4).
+\end{chapterRecap}
+
+% ===========================================================================
+% CHAPTER 6: STABILITY AND EDGE MODES
+% ===========================================================================
+\chapter{Stability and Edge Modes}
+\label{ch:stability_edge}
+
+\begin{quote}
+\textit{Three more particles complete the weak-sector catalog: the stable electron
+(ground-mode brane defect), the pion (composite junction pair), and the neutrino
+(edge mode at bulk-brane interface).}
+\end{quote}
+
+% --- Section 6.1: Electron Stability ---
+\section{Electron: The Ground Mode}
+% Label defined in sections/09_case_electron.tex
+
+\input{sections/09_case_electron}
+
+% --- Section 6.2: Pion Decay ---
+\section{Pion: Composite Decay with Helicity Suppression}
+% Label defined in sections/08_case_pion.tex
+
+\input{sections/08_case_pion}
+
+% --- Section 6.3: Neutrino Properties ---
+\section{Neutrino: Edge-Mode Partner}
+% Label defined in sections/10_case_neutrino.tex
+
+\input{sections/10_case_neutrino}
+
+% --- Chapter Recap ---
+\begin{chapterRecap}
+\textbf{What you learned:} Electron stability follows from being ground mode.
+Pion helicity suppression follows from boundary conditions. Neutrinos are edge modes.
+
+\textbf{What was derived:} Stability criterion \tagDc{}, helicity factor \tagDc{}.
+
+\textbf{What was assumed:} Edge-mode localization \tagP{}.
+
+\textbf{What remains open:} Neutrino mass mechanism.
+
+\textbf{Full proofs:} Derivation Library, ``Chiral Localization'' section.
+\end{chapterRecap}
+
+% ###########################################################################
+%                        PART II: PREDICTIONS
+% ###########################################################################
+
+\part{Predictions}
+\label{part:predictions}
+
+\begin{quote}
+\textit{Part II derives electroweak observables from EDC geometry. We obtain
+$\sin^2\theta_W$, $g^2$, $M_W$, and mixing angles without fitting to data.
+Each result carries explicit epistemic tags showing derivation status.}
+\end{quote}
+
+% ===========================================================================
+% CHAPTER 7: ELECTROWEAK PARAMETERS
+% ===========================================================================
+\chapter{Electroweak Parameters from Geometry}
+\label{ch:electroweak}
+
+\begin{quote}
+\textit{This chapter derives the core electroweak observables: Weinberg angle,
+weak coupling, and W-boson mass. All emerge from the $\mathbb{Z}_6$ lattice
+geometry established in Part I.}
+\end{quote}
+
+\input{CH3_electroweak_parameters}
+
+% --- Chapter Recap ---
+\begin{chapterRecap}
+\textbf{What you learned:} $\sin^2\theta_W = 1/4$ (bare) from Z$_6$ geometry.
+After RG running: 0.2314 vs.\ 0.2312 experiment (0.08\% error).
+
+\textbf{What was derived:} $\sin^2\theta_W$ \tagDc{}, $g^2$ \tagDc{}, $M_W$ \tagDc{}.
+
+\textbf{What was assumed:} Z$_6$ lattice structure \tagP{}.
+
+\textbf{What remains open:} Full RG chain from first principles.
+
+\textbf{Full proofs:} Derivation Library, ``Z$_N$ Discrete Averaging Lemma''.
+\end{chapterRecap}
+
+% ===========================================================================
+% CHAPTER 8: THE FERMI CONSTANT (OVERVIEW)
+% ===========================================================================
+\chapter{The Fermi Constant: Overview}
+\label{ch:gf_overview}
+
+\begin{quote}
+\textit{This chapter provides an overview of the $G_F$ derivation pathway.
+The detailed machinery lives in Part III (Chapters 13--16). Here we explain
+the structural argument: $G_F$ emerges from mode-overlap suppression.}
+\end{quote}
+
+\input{sections/11_gf_pathway}
+
+% --- Chapter Recap ---
+\begin{chapterRecap}
+\textbf{What you learned:} $G_F$ is not a fundamental coupling but an overlap
+suppression effect. The ``weakness'' of weak interactions is geometric.
+
+\textbf{What was derived:} Structural formula $G_F \propto g_5^2 I_4 / m_\phi^2$ \tagDc{}.
+
+\textbf{What was assumed:} Contact-interaction approximation \tagP{}.
+
+\textbf{What remains open:} Numerical closure (Part III).
+
+\textbf{Full proofs:} Chapter 15 (OPR-19, OPR-20, OPR-22).
+\end{chapterRecap}
+
+% ===========================================================================
+% CHAPTER 9: THREE GENERATIONS
+% ===========================================================================
+\chapter{Why Exactly Three Generations?}
+\label{ch:three_generations}
+
+\begin{quote}
+\textit{The Standard Model has three generations of quarks and leptons with no
+explanation for this number. EDC connects it to the $\mathbb{Z}_3$ subgroup of
+$\mathbb{Z}_6$ and the BVP bound-state spectrum.}
+\end{quote}
+
+\input{sections/05_three_generations}
+
+% --- Chapter Recap ---
+\begin{chapterRecap}
+\textbf{What you learned:} Three generations arise from $\mathbb{Z}_3$ vortex modes
+and the BVP bound-state count $N_{\text{bound}} = 3$ for appropriate $\mu$-window.
+
+\textbf{What was derived:} Generation count constraint \tagDc{}.
+
+\textbf{What was assumed:} BVP physical potential \tagP{}.
+
+\textbf{What remains open:} Why $\mu$ falls in 3-generation window (Part III).
+
+\textbf{Full proofs:} Chapter 14 (OPR-21 BVP closure).
+\end{chapterRecap}
+
+% ===========================================================================
+% CHAPTER 10: NEUTRINO MIXING (PMNS)
+% ===========================================================================
+\chapter{Neutrino Mixing Angles}
+\label{ch:pmns}
+
+\begin{quote}
+\textit{The PMNS matrix describes neutrino flavor mixing. EDC derives the mixing
+angles from $\mathbb{Z}_3 / \mathbb{Z}_6$ geometry. One angle achieves full derivation
+status; two others are close.}
+\end{quote}
+
+\input{sections/06_neutrinos_edge_modes}
+
+% --- Chapter Recap ---
+\begin{chapterRecap}
+\textbf{What you learned:} $\theta_{23}$ derived from Z$_6$ geometry (GREEN).
+$\theta_{12}$, $\theta_{13}$ identified with small deviations (YELLOW).
+
+\textbf{What was derived:} $\theta_{23} = 45°$ \tagDc{} (maximal mixing).
+
+\textbf{What was identified:} $\theta_{12}$, $\theta_{13}$ \tagI{} with 8--9\% errors.
+
+\textbf{What remains open:} Reactor angle from first principles.
+
+\textbf{Full proofs:} Derivation Library, ``PMNS Attempts'' archive.
+\end{chapterRecap}
+
+% ===========================================================================
+% CHAPTER 11: CKM AND CP VIOLATION
+% ===========================================================================
+\chapter{CKM Matrix and CP Violation}
+\label{ch:ckm_cp}
+
+\begin{quote}
+\textit{Quark mixing and CP violation follow from the same $\mathbb{Z}_3$ geometry
+that governs leptons. The CP phase emerges from $\mathbb{Z}_2$ selection within
+the $\mathbb{Z}_6$ lattice.}
+\end{quote}
+
+\input{sections/07_ckm_cp}
+
+% --- Chapter Recap ---
+\begin{chapterRecap}
+\textbf{What you learned:} CP phase $\delta \approx 60°$ from Z$_2$ selection (5° from PDG).
+Pure Z$_3$ gives $J_{CP} = 0$ (Phase Cancellation Theorem).
+
+\textbf{What was derived:} Phase Cancellation Theorem \tagDc{}.
+
+\textbf{What was identified:} $\delta = 60°$ \tagI{} from Z$_2$ selection.
+
+\textbf{What remains open:} Jarlskog invariant from geometry.
+
+\textbf{Full proofs:} Derivation Library, ``CP Phase Attempts'' archive.
+\end{chapterRecap}
+
+% ===========================================================================
+% CHAPTER 12: V-A STRUCTURE
+% ===========================================================================
+\chapter{V--A Structure from Chiral Localization}
+\label{ch:va_structure}
+
+\begin{quote}
+\textit{The V--A structure of weak currents is not postulated but emerges from
+5D chiral localization. Left-handed and right-handed modes have different profiles,
+leading to chiral selection at the boundary.}
+\end{quote}
+
+\input{sections/09_va_structure}
+
+% --- Chapter Recap ---
+\begin{chapterRecap}
+\textbf{What you learned:} V--A emerges from asymmetric L/R mode profiles.
+Boundary conditions project onto left-handed states.
+
+\textbf{What was derived:} Chiral selection mechanism \tagDc{}.
+
+\textbf{What was assumed:} Domain-wall mass profile \tagP{}.
+
+\textbf{What remains open:} Right-handed current suppression factor.
+
+\textbf{Full proofs:} Derivation Library, ``Chiral Localization'' section.
+\end{chapterRecap}
+
+% ###########################################################################
+%                        PART III: DERIVATION MACHINERY
+% ###########################################################################
+
+\part{Derivation Machinery}
+\label{part:machinery}
+
+\begin{quote}
+\textit{Part III contains the technical OPR (Open Problem Registry) derivation
+chain. This is specialist material. The key dependencies are:
+Scale Taxonomy (OPR-04) $\to$ BVP Framework (OPR-21) $\to$ Coupling Chain
+(OPR-19/20/22) $\to$ $G_F$ Closure.}
+\end{quote}
+
+% ===========================================================================
+% CHAPTER 13: SCALE TAXONOMY AND ANCHORS
+% ===========================================================================
+\chapter{Scale Taxonomy and Anchors}
+\label{ch:scale_taxonomy}
+
+\begin{quote}
+\textit{This chapter defines all length/energy scales precisely and derives
+the $\sigma \to M_0$ anchor. These definitions are prerequisites for the
+BVP framework in Chapter 14.}
+\end{quote}
+
+% OPR-04: Scale Taxonomy
+\section{OPR-04: Scale Taxonomy}
+\label{sec:opr04}
+
+\input{sections/ch16_opr04_delta_derivation}
+
+% OPR-01: Sigma Anchor
+\section{OPR-01: The $\sigma \to M_0$ Anchor}
+\label{sec:opr01}
+
+\input{sections/ch15_opr01_sigma_anchor_derivation}
+
+% --- Chapter Recap ---
+\begin{chapterRecap}
+\textbf{What you learned:} Four scales ($\Delta$, $\delta$, $\ell$, $R_\xi$) have
+distinct physical meanings. The $\sigma \to M_0$ anchor reduces free parameters.
+
+\textbf{What was derived:} Scale taxonomy \tagDer{}, $M_0$ formula \tagDer{}.
+
+\textbf{What was assumed:} Assumption labels (A1)--(A3) for scale identifications.
+
+\textbf{What remains open:} Which assumption (A1/A2/A3) nature chooses.
+
+\textbf{Full proofs:} Derivation Library, ``OPR Registry Summary''.
+\end{chapterRecap}
+
+% ===========================================================================
+% CHAPTER 14: BVP FRAMEWORK
+% ===========================================================================
+\chapter{BVP Framework}
+\label{ch:bvp_framework}
+
+\begin{quote}
+\textit{The Boundary Value Problem (BVP) is the mathematical core of EDC weak-sector
+predictions. This chapter specifies the problem and derives the Robin boundary
+conditions from action variation.}
+\end{quote}
+
+% Infrastructure
+\section{BVP Specification}
+\label{sec:bvp_spec}
+
+\input{sections/ch12_bvp_workpackage}
+
+% OPR-21: BVP Closure
+\section{OPR-21: BVP Closure}
+\label{sec:opr21}
+
+\input{sections/ch14_opr21_closure_derivation}
+
+% Electroweak Bridge
+\section{The Electroweak Bridge}
+\label{sec:electroweak_bridge}
+
+\input{sections/ch10_electroweak_bridge}
+
+% --- Chapter Recap ---
+\begin{chapterRecap}
+\textbf{What you learned:} BVP determines mode profiles, eigenvalues, and overlap
+integrals. Robin BC emerges from action variation. Three bound states achieved
+for $\mu \in [\mu_3^-, \mu_3^+]$.
+
+\textbf{What was derived:} Robin BC form \tagDer{}, eigenvalue structure \tagDer{}.
+
+\textbf{What was assumed:} Domain-wall potential shape \tagP{}.
+
+\textbf{What remains open:} $\alpha$ numerical value (OPR-20b).
+
+\textbf{Full proofs:} Derivation Library, ``Frozen Brane BC Complete Analysis''.
+\end{chapterRecap}
+
+% ===========================================================================
+% CHAPTER 15: COUPLING CHAIN
+% ===========================================================================
+\chapter{The Coupling Chain: $g_5 \to G_F$}
+\label{ch:coupling_chain}
+
+\begin{quote}
+\textit{This chapter completes the derivation of $G_F$ by assembling the coupling
+chain: 5D coupling $g_5$ $\to$ mediator mass $m_\phi$ $\to$ effective coupling
+$G_{\text{eff}}$.}
+\end{quote}
+
+% OPR-19: g5 from Action
+\section{OPR-19: The 5D Coupling $g_5$}
+\label{sec:opr19}
+
+\input{sections/ch17_opr19_g5_from_action}
+
+% OPR-20: Mediator Mass
+\section{OPR-20: Mediator Mass from Eigenvalue}
+\label{sec:opr20}
+
+\input{sections/ch18_opr20_mediator_mass_from_eigenvalue}
+
+% OPR-22: G_eff from Exchange
+\section{OPR-22: $G_{\text{eff}}$ from Exchange}
+\label{sec:opr22}
+
+\input{sections/ch19_opr22_geff_from_exchange}
+
+% --- Chapter Recap ---
+\begin{chapterRecap}
+\textbf{What you learned:} $G_F = g_5^2 |f_1(0)|^2 / (2 x_1^2)$ from mediator exchange.
+The ``weakness'' of weak interactions is overlap suppression.
+
+\textbf{What was derived:} $g_5$ normalization \tagDer{}, exchange formula \tagDer{}.
+
+\textbf{What was assumed:} Contact approximation \tagP{}.
+
+\textbf{What remains open:} OPR-20b ($\alpha$ provenance) has YELLOW status.
+
+\textbf{Full proofs:} Derivation Library, ``$G_F$ Non-Circular Chain''.
+\end{chapterRecap}
+
+% ===========================================================================
+% CHAPTER 16: CLOSURE STATUS
+% ===========================================================================
+\chapter{Closure Status and Open Problems}
+\label{ch:closure_status}
+
+\begin{quote}
+\textit{This chapter consolidates the epistemic status of all Part III derivations
+and catalogs remaining open problems.}
+\end{quote}
+
+\input{sections/ch20_epistemic_summary_closure_status}
+
+% --- Chapter Recap ---
+\begin{chapterRecap}
+\textbf{What you learned:} Most electroweak predictions achieve GREEN or YELLOW status.
+$G_F$ chain is structurally complete; numerical closure awaits BVP inputs.
+
+\textbf{Closure status:}
+\begin{itemize}[nosep]
+  \item $\sin^2\theta_W$: GREEN \tagDc{} (0.08\% error)
+  \item $M_W$: GREEN \tagDc{} (0.2\% error)
+  \item $\theta_{23}$: GREEN \tagDc{}
+  \item $G_F$: YELLOW \tagDc{} (structure complete, numerics pending)
+  \item OPR-20b ($\alpha$): YELLOW/RED-C (route A blocked)
+\end{itemize}
+
+\textbf{What remains open:} See OPR Registry in Derivation Library.
+\end{chapterRecap}
+
+% ###########################################################################
+%                           EPILOGUE
+% ###########################################################################
+
+\part*{Epilogue}
+\addcontentsline{toc}{part}{Epilogue}
+
+% ===========================================================================
+% CHAPTER 17: NUCLEAR APPLICATIONS PREVIEW
+% ===========================================================================
+\chapter{Nuclear Applications Preview}
+\label{ch:nuclear_preview}
+
+\begin{quote}
+\textit{This chapter previews nuclear applications developed in Book 3:
+the MN topology, the frustration-corrected Geiger--Nuttall law, and the
+44.7\% discrepancy resolution for alpha-decay lifetime predictions.}
+\end{quote}
+
+\input{sections/XX_teaser_book3_nuclear_mn_gn}
+
+% ---------------------------------------------------------------------------
+% BACK MATTER
+% ---------------------------------------------------------------------------
+\backmatter
+
+% Derivation Library
+\input{appendices/APPENDIX_DERIVATION_LIBRARY}
+
+% EDC vs SM Comparison (moved to appendix)
+\chapter*{Appendix: EDC vs Standard Model}
+\addcontentsline{toc}{chapter}{Appendix: EDC vs Standard Model}
+
+\begin{center}
+\begin{longtable}{p{4cm}p{5cm}p{5cm}}
+\toprule
+\textbf{Aspect} & \textbf{Standard Model} & \textbf{EDC} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Aspect} & \textbf{Standard Model} & \textbf{EDC} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+Spacetime & 4D Minkowski & 5D bulk + 4D brane \\
+Gauge structure & Postulated & Emerges from geometry \\
+$\sin^2\theta_W$ & Input (0.2312) & Derived: 0.2314 (0.08\%) \\
+$G_F$ & Input & Derived from overlap \\
+Why V--A? & Postulated & Chiral localization \\
+Why 3 generations? & No explanation & Z$_3$ + BVP spectrum \\
+\end{longtable}
+\end{center}
+
+% Notation
+\chapter*{Appendix: Notation and Symbols}
+\addcontentsline{toc}{chapter}{Appendix: Notation}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Symbol} & \textbf{Meaning} & \textbf{Typical Value} \\
+\midrule
+$\sigma$ & Membrane tension & $5.86 \times 10^{6}$ MeV/fm$^2$ \\
+$r_e$ & Lattice spacing & 2.82 fm \\
+$\delta$ & Boundary-layer scale & $\sim r_e$ \\
+$\Delta$ & Kink width & $\sim 10^{-3}$ fm \\
+$\ell$ & Domain support & $\sim 1$ fm \\
+$R_\xi$ & Diffusion scale & $\hbar c / M_Z$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% Bibliography
+\printbibliography[heading=bibintoc,title={References}]
+
+\end{document}

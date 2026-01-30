@@ -1241,3 +1241,128 @@ Removed entire Quarantine appendix from `EDC_Part_II_Weak_Sector_rebuild.tex`.
 - Pages: 606 → 604 (2 pages removed)
 - No internal file paths visible to reader
 - Audit trail remains in repo, not in published PDF
+
+---
+
+## 2026-01-29 — Complete "Repository artifact" Cleanup
+
+### Goal
+Per user request option "3": internalize key content from remaining
+"Repository artifact" footnotes and remove internal-only references.
+
+### Work Performed
+
+#### 1. OPR Registry Internalization
+Created appendix section with key OPR content:
+- `_shared/appendices/opr_registry_summary.tex` (standalone)
+- `_shared/appendices/opr_registry_summary.include.tex` (for Book2)
+- Contains: Scale Taxonomy, Assumption Labels (A1-A3), OPR Status Summary table
+- Added to Derivation Library as "Open Problem Registry" section
+- Label: `sec:DL-opr-registry`
+
+#### 2. Chapter Footnote Updates
+Replaced OPR_REGISTRY.md references with internal appendix links:
+- `ch16_opr04_delta_derivation.tex`: now points to Appendix
+- `ch20_epistemic_summary_closure_status.tex`: now points to Appendix
+
+#### 3. Internal Audit References Removed
+These were internal documentation, not reader-facing content:
+- `ch20_epistemic_summary_closure_status.tex`: 3 audit refs removed
+- `ch14_opr21_closure_derivation.tex`: 5 audit refs simplified
+- `12_epistemic_map.tex`: PREPUBLICATION_REVIEW_WARNING.md ref removed
+
+#### 4. Shared Boxes Cleaned
+All 6 remaining "Repository artifact" footnotes in boxes replaced:
+- `kchannel_spinchain_crossval_box.tex`: simplified to "Verified via..."
+- `gf_constraint_box.tex`: points to Part III
+- `gf_bvp_allgates_physical_priors_box.tex`: points to Derivation Library
+- `gf_bvp_tuning_box.tex`: points to Derivation Library
+- `ncell_renorm_box.tex`: points to Derivation Library
+- `gf_bvp_pipeline_box.tex`: points to Chapter 14
+
+### Verification
+- Artifact audit: ✓ PASS (0 reader-facing artifacts)
+- `grep "Repository artifact" main.log`: 0 matches
+- LaTeX compilation: ✓ PASS (602 pages)
+
+### Files Changed
+- `appendices/APPENDIX_DERIVATION_LIBRARY.tex` (added OPR section)
+- `sections/ch16_opr04_delta_derivation.tex`
+- `sections/ch20_epistemic_summary_closure_status.tex`
+- `sections/ch14_opr21_closure_derivation.tex`
+- `sections/12_epistemic_map.tex`
+- 6 boxes in `_shared/boxes/`
+
+### Files Created
+- `_shared/appendices/opr_registry_summary.tex`
+- `_shared/appendices/opr_registry_summary.include.tex`
+
+### Final Status
+**ALL "Repository artifact" footnotes eliminated from compiled PDF.**
+- OPR content internalized to appendix
+- Internal audit refs removed (not reader-facing)
+- All references now point to book sections or are simplified
+
+---
+
+## 2026-01-29 — Canonical Spine Creation (Reader-Facing Monograph)
+
+### Goal
+Create a reader-facing canonical spine for Book 2 that reads as a coherent monograph.
+This is narrative consolidation, not file reorganization.
+
+### Deliverables Created
+
+1. **`src/EDC_BOOK2_WEAK_CANON.tex`** — The canonical spine
+   - 17 chapters in 3 parts + epilogue
+   - Part I: Physical Picture (Ch 1-6)
+   - Part II: Predictions (Ch 7-12)
+   - Part III: Derivation Machinery (Ch 13-16)
+   - Epilogue: Nuclear Preview (Ch 17)
+   - "How to Read This Book" front matter with derivation chain map
+   - Chapter recaps with 5-line format
+
+2. **`docs/BOOK2_CANON_CONTENT_MAP.md`** — Topic mapping
+   - All topics → canonical location
+   - Duplicate registry
+   - Files moved to Derivation Library
+   - Dependency chain
+
+3. **`docs/BOOK2_CANON_SURGERY_LOG.md`** — Consolidation record
+   - What was merged/moved/removed
+   - Duplicate content registry
+   - Chapter recap format
+
+4. **`docs/BOOK2_CANON_BUILD_REPORT.md`** — Compilation status
+   - 439 pages
+   - 0 multiply-defined labels (fixed)
+   - 41 undefined references (needs section file updates)
+
+### Build Status
+
+| Metric | Value |
+|--------|-------|
+| Pages | 439 |
+| Multiply-defined | 0 ✓ |
+| Undefined refs | 41 (needs work) |
+| PDF generated | ✓ YES |
+
+### Key Consolidations
+
+1. **Ch 1 mega-chapter** → Split into Ch 1-6 case studies
+2. **GF closure attempts** (15 files) → Summary in Ch 15, details to Derivation Library
+3. **PMNS attempts** (6 files) → Summary in Ch 10, details to Derivation Library
+4. **Meta appendices** → Removed from reader path (editorial only)
+
+### Next Steps
+
+1. Fix 41 undefined references (update section files for new structure)
+2. Test reader path (read PDF start-to-finish)
+3. Final audit for internal references
+4. Publication review
+
+### Files Changed
+- Created: `src/EDC_BOOK2_WEAK_CANON.tex`
+- Created: `docs/BOOK2_CANON_CONTENT_MAP.md`
+- Created: `docs/BOOK2_CANON_SURGERY_LOG.md`
+- Created: `docs/BOOK2_CANON_BUILD_REPORT.md`
