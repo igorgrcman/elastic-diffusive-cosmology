@@ -1,6 +1,6 @@
 # CANON BUNDLE — P0 Mandatory Documents
 
-**Generated:** 2026-01-30 12:46
+**Generated:** 2026-01-30 12:53
 **Purpose:** Single file containing ALL P0 canonical documents for session loading.
 **Usage:** Read this file at the START of every CC session. MANDATORY.
 
@@ -79,10 +79,27 @@
 - [x] PMNS: DFT baseline falsified
 - [x] Test compilation: **120 pages** - SUCCESS
 
+## Week 4 Progress (COMPLETE)
+
+### Chapter 7 Leptons (Consolidated)
+- [x] Brane-dominant ontology for charged leptons
+- [x] Mode tower: n=0 (e), n=1 (μ), n=2 (τ)
+- [x] Electron stability as ground-state consequence
+- [x] 5D Mechanism box included
+- [x] Test compilation: SUCCESS
+
+### Chapter 11 CKM Matrix (Consolidated)
+- [x] DFT baseline falsified (×144 error)
+- [x] Overlap model: single parameter → Wolfenstein λ, λ², λ³
+- [x] CKM vs PMNS asymmetry explained
+- [x] Phase Cancellation Theorem: Z₃ gives J=0
+- [x] Z₂ resolution: δ = 60° (5° from PDG)
+- [x] Test compilation: **128 pages** - SUCCESS
+
 ### Pending
-- [ ] Week 4: Ch 7 Leptons, Ch 11 CKM
-- [ ] Week 5: Additional migration
-- [ ] Week 6-7: Polish and review
+- [ ] Week 5: Remaining chapters, G_F chain
+- [ ] Week 6: Appendices, cross-references
+- [ ] Week 7: Polish and final review
 
 ## Original Version
 Archived as:

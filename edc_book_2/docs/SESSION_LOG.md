@@ -69,10 +69,42 @@
 - Clear falsification criteria stated
 - DFT baseline for PMNS explicitly falsified
 
-### Next Steps (Week 4)
-- Ch 7: Leptons (mass candidates)
-- Ch 11: CKM structure
-- Additional 5D mechanism boxes throughout
+---
+
+## 2026-01-30: Week 4 - Leptons and CKM
+
+### Session Goals
+- Write Chapter 7 (Leptons) consolidating mass hierarchy
+- Write Chapter 11 (CKM) with overlap model derivation
+
+### Completed
+1. **Chapter 7 "Lepton Masses and Hierarchy"**:
+   - Brane-dominant ontology for charged leptons
+   - Mode tower structure: n=0 (e), n=1 (μ), n=2 (τ)
+   - Electron stability as ground-state consequence
+   - Muon/tau as excited states
+   - Connection to Z₃ generation structure
+
+2. **Chapter 11 "CKM Matrix Origin"**:
+   - DFT baseline computed and FALSIFIED (×144 error)
+   - Overlap model: single parameter produces Wolfenstein hierarchy
+   - λ, λ², λ³ from Δξ/2κ ≈ 1.5
+   - CKM vs PMNS asymmetry: localization width κ_q << κ_ℓ
+   - CP violation: Phase Cancellation Theorem + Z₂ resolution
+   - δ = 60° (5° from PDG 65°)
+
+### Compilation Status
+- **128 pages** SUCCESS (up from 120)
+
+### Key Results
+- CKM hierarchy derived from single geometric parameter
+- Quark/lepton mixing asymmetry explained by localization
+- Phase Cancellation Theorem proves Z₃ alone gives J=0
+
+### Next Steps (Week 5)
+- Remaining chapters and appendices
+- Additional 5D mechanism boxes
+- Cross-reference verification
 
 ---
 
