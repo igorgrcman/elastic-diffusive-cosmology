@@ -1,5 +1,36 @@
 # EDC Book 2 - Session Log
 
+## 2026-01-30: Epistemic Audit - Three Blocking Fixes
+
+### Session Goals
+- Fix [Der]→[Dc] boundary violations
+- Separate δ (brane) vs δ_CP (CKM phase) notation
+- Clarify R_ξ anchoring (M_Z vs M_W)
+
+### Completed
+
+**1. [Der]→[Dc] Tagging (3 fixes):**
+- chapter_05_case_studies.tex:303 - pion helicity ratio
+- chapter_06_electroweak.tex:115 - sin²θ_W comparison table
+- chapter_06_electroweak.tex:309 - summary table
+
+**2. δ→δ_CP Separation (5 fixes in CKM chapter):**
+- Lines 21, 27, 227, 261, 281 in chapter_11_ckm.tex
+- Added δ_CP to notation appendix
+
+**3. R_ξ Anchoring Clarified:**
+- NOT unified to single value (both are physically valid)
+- Added explanatory note in notation.tex:
+  - R_ξ = ℏc/M_Z = 2.16×10⁻³ fm [BL]
+  - R_ξ = ℏc/M_W = 2.46×10⁻³ fm [I]
+- Difference is 13% from M_Z/M_W = 1/cos(θ_W)
+
+### Compilation Status
+- **181 pages** SUCCESS
+- No new errors
+
+---
+
 ## 2026-01-30: Week 7 - Final Polish and Review
 
 ### Session Goals
