@@ -14,9 +14,13 @@
 - [x] Created appendix stubs (3 appendices)
 - [x] Test compilation: **62 pages** - SUCCESS
 
+### Day 3-4: Bridge Chapter 0 (COMPLETE)
+- [x] Wrote full content for Bridge Chapter 0
+- [x] Added all sections (Book 1 summary, particles, weak sector, reading strategy)
+- [x] Test compilation: **70 pages** - SUCCESS
+
 ### Pending
-- [ ] Day 3-4: Complete Bridge Chapter 0 content
-- [ ] Day 5-7: Begin content migration
+- [ ] Day 5-7: Begin content migration (Ch 1, Ch 10)
 
 ## Original Version
 Archived as:
