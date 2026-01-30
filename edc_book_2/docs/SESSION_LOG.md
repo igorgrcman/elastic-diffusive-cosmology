@@ -1,5 +1,29 @@
 # EDC Book 2 - Session Log
 
+## 2026-01-30: Epistemic Standard - Final Patched Version
+
+### Session Goals
+- Replace epistemic standard with consolidated final version
+- Incorporate all patches from audit discussion
+
+### Completed
+
+**New Epistemic Standard (EPISTEMIC_STANDARD_COMPLETE_FINAL.tex):**
+- "predicts" → "yields" (conditional language)
+- Three precision levels: [Der-Sym], [Der-Num], [Dc-Approx]
+- Mandatory error budget template for "match to data" claims
+- Sharp [Der] vs [Dc] boundary (non-negotiable rule)
+- Clear [I] vs [Cal] distinction
+- Neutral, non-defensive tone throughout
+
+**Additional fix:**
+- `5^\circ` → `$5^\circ$` in chapter_11_ckm.tex
+
+### Compilation Status
+- **179 pages** SUCCESS (0 errors)
+
+---
+
 ## 2026-01-30: Epistemic Audit - Three Blocking Fixes
 
 ### Session Goals
