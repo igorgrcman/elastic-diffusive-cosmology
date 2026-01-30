@@ -1,5 +1,31 @@
 # EDC Book 2 - Session Log
 
+## 2026-01-30: Chapters 6-7 Audit - [Der:Sym] vs [Dc] Split
+
+### Session Goals
+- Audit Part 1 Chapter 6 (Case Studies) - found no issues
+- Audit Part 2 Chapter 7 (Electroweak) - found [Der] vs [Dc] inconsistency
+
+### Fixes Applied
+
+**Chapter 6 (Case Studies):**
+- No changes needed - properly tagged throughout
+
+**Chapter 7 (Electroweak Parameters) - sin²θ_W split:**
+
+Problem: Lines 48, 94, 98 claimed [Der] but comparison table (line 115) used [Dc].
+
+Fix: Split the derivation:
+- Epistemic status box (lines 45-59): clarified ratio 1/4 is [Der:Sym], identification is [Dc]
+- Result box (lines 91-106): split into:
+  - Model result: g'²/(g²+g'²) = 1/4 [Der:Sym]
+  - Dictionary step: sin²θ_W ≡ g'²/(g²+g'²) [Dc]
+
+### Compilation Status
+- **183 pages** SUCCESS (0 errors)
+
+---
+
 ## 2026-01-30: Chapter 5 Audit - [M] vs [P]/[I] Boundary Fixes
 
 ### Session Goals
