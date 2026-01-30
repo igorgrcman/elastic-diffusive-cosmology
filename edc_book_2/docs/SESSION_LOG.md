@@ -1224,3 +1224,20 @@ From `aside_frozen_brane_bc_v1/`:
 ### Files Created
 - `_shared/derivations/frozen_brane_bc_complete.tex`
 - `_shared/derivations/frozen_brane_bc_complete.include.tex`
+
+---
+
+## 2026-01-29 — Remove Empty Quarantine Appendix
+
+### Issue
+"Appendix: Quarantined Content" in PDF referenced internal file path
+`quarantine/ch09_quarantine.tex` which contains NO quarantined content
+(just an audit report saying "all clear").
+
+### Fix
+Removed entire Quarantine appendix from `EDC_Part_II_Weak_Sector_rebuild.tex`.
+
+### Result
+- Pages: 606 → 604 (2 pages removed)
+- No internal file paths visible to reader
+- Audit trail remains in repo, not in published PDF
