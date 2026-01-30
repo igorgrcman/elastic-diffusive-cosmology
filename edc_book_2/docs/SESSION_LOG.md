@@ -1,5 +1,48 @@
 # EDC Book 2 - Session Log
 
+## 2026-01-30: Chapter 3 Audit - [Der] vs [P]/[I] Boundary Fixes
+
+### Session Goals
+- Fix ontological claims incorrectly tagged [Der] (should be [P] for postulates)
+- Fix identification claims incorrectly tagged [Der] (should be [I])
+- Split m_p/m_e derivation into model [Der:Sym] + dictionary [Dc]
+
+### Fixes Applied
+
+**Electron section (lines 60-79):**
+- "5D Structure" \tagDer → \tagP (topology is postulated)
+- "Stability" \tagDer → \tagM/\tagI (theorem is [M], application is [I])
+
+**Proton section (lines 86-108):**
+- "5D Structure" \tagDer → \tagP
+- Color/gluon identification now explicitly tagged \tagI
+- "Stability" \tagDer → \tagM/\tagI
+- **m_p/m_e = 6π⁵** split into:
+  - E_p/E_e = 6π⁵ \tagDerSym (model result)
+  - m_p/m_e ≡ E_p/E_e \tagDc (dictionary step)
+
+**Quarks section (lines 134-146):**
+- "arm = quark" now tagged \tagI (identification)
+- Confinement kept \tagDer (consequence of model)
+- "Color = arm label" → \tagI
+- SU(3) algebra \tagDer; identification with QCD \tagI
+
+**Gluons section (lines 190-201):**
+- "5D Structure" \tagDer → \tagP
+- "SU(3) emergence" → "SU(3) identification" \tagI
+
+**Summary table (lines 265-279):**
+- Electron: \tagDer → \tagP/\tagI
+- Proton: \tagDer → \tagP/\tagI
+- Quarks: \tagDer → \tagDer/\tagI
+- Gluons: \tagDer → \tagP/\tagI
+- Added tag interpretation note
+
+### Compilation Status
+- **181 pages** SUCCESS (0 errors)
+
+---
+
 ## 2026-01-30: Chapter 2 Audit - 7 Blocking Fixes
 
 ### Session Goals
