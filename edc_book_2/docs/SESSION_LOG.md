@@ -1,32 +1,46 @@
 # EDC Book 2 - Session Log
 
-## 2026-01-30: Week 2 - Chapter 1 Restructure
+## 2026-01-30: Week 2 - Content Consolidation Complete
 
 ### Session Goals
-- Restructure Chapter 1 with neutron lifetime front-loaded as "quick win"
-- Fix Unicode character issues
-- Continue Week 2 content migration
+- Restructure Chapter 1 with neutron lifetime front-loaded
+- Consolidate OPR-01, 04, 19 into Chapter 13 Foundation Params
+- Consolidate electroweak content into Chapter 6
 
 ### Completed
-1. Rewrote Chapter 1 "The Weak Interface" with new structure:
-   - Motivation: What SM Cannot Explain
-   - Quick Win: Neutron Lifetime from Geometry (front-loaded!)
-   - Physical Picture (5D junction relaxation)
-   - WKB Estimate
-   - Thick Brane Necessity
-   - General Framework: Bulk → Brane Transfer
-2. Fixed Unicode ✓ → `$\checkmark$`
-3. Tested compilation: **100 pages** SUCCESS
+1. **Chapter 1 "The Weak Interface"** (restructured):
+   - Front-loads neutron lifetime τ_n ~ 10³ s as "quick win"
+   - Physical mechanism before formal derivation
+   - Fixed Unicode ✓ → `$\checkmark$`
 
-### Chapter 1 Structure
-- Front-loads neutron lifetime τ_n ~ 10³ s as immediate "hook"
-- Explains physical mechanism before formal derivation
-- Uses mechanism boxes and status boxes
-- Proper epistemic tagging throughout
+2. **Chapter 13 "Foundation Parameters"** (consolidated):
+   - Scale Taxonomy (canonical reference for Δ, δ, ℓ, R_ξ)
+   - OPR-01: σ → M₀ anchor (460 lines consolidated)
+   - OPR-04: Δ from kink theory (598 lines consolidated)
+   - OPR-19: g₅ → g₄ reduction (480 lines consolidated)
+   - Parameter closure status table
+   - No-smuggling certification
 
-### Next Steps
-- Ch 13 Foundation Params (consolidate OPR-01, 04, 19)
-- Ch 6 Electroweak (consolidate scattered content)
+3. **Chapter 6 "Electroweak Parameters"** (consolidated):
+   - Weinberg angle sin²θ_W = 1/4 from Z₆ (tree level)
+   - Membrane thickness → mediator mass mechanism
+   - Robin BC and eigenvalue structure
+   - W/Z mass consistency check (not prediction)
+   - Clear epistemic tagging throughout
+
+### Compilation Status
+- **112 pages** SUCCESS (up from 62 page stubs)
+
+### Key Consolidation Results
+- OPR-01, 04, 19 now in single technical chapter
+- Electroweak mechanism fully explained with proper caveats
+- Scale Taxonomy established as canonical reference
+- No-smuggling certification for all derivations
+
+### Next Steps (Week 3)
+- Ch 7: Three Generations from μ-window
+- Ch 8: Neutrino Masses (edge modes)
+- Add 5D Mechanism boxes throughout
 
 ---
 

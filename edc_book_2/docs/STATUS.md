@@ -19,14 +19,37 @@
 - [x] Added all sections (Book 1 summary, particles, weak sector, reading strategy)
 - [x] Test compilation: **70 pages** - SUCCESS
 
-### Day 5-7: Content Migration Started (IN PROGRESS)
+### Day 5-7: Content Migration Started (COMPLETE)
 - [x] Ch 10 V-A Structure migrated (1184 lines, 24 pages)
 - [x] Fixed main.tex preamble for original chapter compatibility
 - [x] Test compilation: **94 pages** - SUCCESS
-- [ ] Ch 1 Weak Interface (restructure with neutron first)
+
+## Week 2 Progress (COMPLETE)
+
+### Chapter 1 Restructure
+- [x] Rewrote Chapter 1 "The Weak Interface" with neutron lifetime front-loaded
+- [x] Fixed Unicode character issues
+- [x] Test compilation: **100 pages** - SUCCESS
+
+### Chapter 13 Foundation Parameters (Consolidated)
+- [x] Consolidated OPR-01 (σ → M₀ anchor) - 460 lines
+- [x] Consolidated OPR-04 (Δ from kink theory) - 598 lines
+- [x] Consolidated OPR-19 (g₅ reduction) - 480 lines
+- [x] Added Scale Taxonomy as canonical reference
+- [x] Added no-smuggling certification
+- [x] Test compilation: **108 pages** - SUCCESS
+
+### Chapter 6 Electroweak Parameters (Consolidated)
+- [x] Weinberg angle from Z₆ symmetry (sin²θ_W = 1/4)
+- [x] Membrane thickness → mediator mechanism
+- [x] Robin BC eigenvalue structure
+- [x] W/Z mass consistency check
+- [x] Test compilation: **112 pages** - SUCCESS
 
 ### Pending
-- [ ] Week 2: Complete Ch 1, Ch 13 migration
+- [ ] Week 3: Ch 7 Generations, Ch 8 Neutrinos
+- [ ] Week 4-5: Additional migration
+- [ ] Week 6-7: Polish and review
 
 ## Original Version
 Archived as:

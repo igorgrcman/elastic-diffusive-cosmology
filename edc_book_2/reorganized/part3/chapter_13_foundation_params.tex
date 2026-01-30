@@ -1,19 +1,392 @@
 \chapter{Foundation Parameters}
 \label{ch:foundation_params}
 
-% TODO: CONSOLIDATE OPR-01, 04, 19 from scattered locations
+\begin{quote}
+\textit{This chapter consolidates the derivations of fundamental EDC parameters:
+membrane tension, brane thickness, and 5D gauge coupling. These are the building
+blocks for all weak-sector predictions.}
+\end{quote}
 
-\section{Introduction}
-[Content to be consolidated]
+% ════════════════════════════════════════════════════════════════════════════════
+\section{Introduction: The Parameter Problem}
+\label{sec:foundation_intro}
+% ════════════════════════════════════════════════════════════════════════════════
 
-\section{OPR-01: Membrane Tension}
-[Consolidate all content]
+The Standard Model has 19+ free parameters that are measured, not derived. EDC aims
+to reduce this by deriving parameters from 5D membrane geometry. This chapter addresses
+three foundational Open Problem Reports (OPRs):
 
-\section{OPR-04: Brane Thickness}
-[Consolidate all content]
+\begin{itemize}[nosep]
+\item \textbf{OPR-01}: The membrane tension $\sigma$ and its relation to the mass scale $M_0$
+\item \textbf{OPR-04}: The brane thickness $\Delta$ from scalar kink theory
+\item \textbf{OPR-19}: The 5D gauge coupling $g_5$ and its reduction to 4D
+\end{itemize}
 
-\section{OPR-19: Junction Extent}
-[Consolidate all content]
+\begin{statusbox}{Epistemic Framework}
+\textbf{What this chapter achieves:}
+\begin{itemize}[nosep]
+\item Derives \emph{relationships} between parameters (reducing freedom) \tagDc{}
+\item Establishes the Scale Taxonomy (canonical reference for all derivations)
+\item Provides no-smuggling certification for each derivation
+\end{itemize}
 
-\section{Summary: Parameter Closure Status}
-[Status table]
+\textbf{What remains open:}
+\begin{itemize}[nosep]
+\item Absolute values of primitive parameters ($\sigma$, $v$, $y$) remain \tagP{}
+\item Scale identifications (A1)--(A3) are assumptions, not derivations
+\end{itemize}
+\end{statusbox}
+
+% ════════════════════════════════════════════════════════════════════════════════
+\section{Scale Taxonomy (Canonical Reference)}
+\label{sec:scale_taxonomy}
+% ════════════════════════════════════════════════════════════════════════════════
+
+Before proceeding with parameter derivations, we establish the canonical distinction
+between four length scales that appear throughout EDC weak-sector derivations.
+\textbf{This section is the canonical reference; cite it when any scale identification
+is assumed.}
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=blue!40!black,
+    title=\textbf{EDC Scale Taxonomy --- Canonical Table}]
+\label{box:scale_taxonomy}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lllc}
+\toprule
+\textbf{Symbol} & \textbf{Name} & \textbf{Physical Role} & \textbf{Status} \\
+\midrule
+$\Delta$ & Kink width & Scalar wall microphysics: $\phi = v\tanh(\xi/\Delta)$ & \tagM{} \\
+$\delta$ & Boundary-layer & Transport/diffusion regularization for Robin BC & \tagP{} \\
+$\ell$ & Domain support & Sturm--Liouville interval for OPR-21: $\mu = M_0\ell$ & \tagP{} \\
+$R_\xi$ & Diffusion scale & Coordinate/correlation length: $R_\xi = \hbar c/M_Z$ & \tagBL{} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+\textbf{Key formulas:}
+\begin{itemize}[nosep]
+    \item $\Delta = 2/(v\sqrt{\lambda})$ \tagM{} --- from $\lambda\phi^4$ kink theory
+    \item $R_\xi \approx 2.16 \times 10^{-3}$ fm \tagBL{} --- anchored to $M_Z$
+    \item Unit conversion: $1\,\mathrm{fm} = 5.0677\,\mathrm{GeV}^{-1}$
+\end{itemize}
+\end{tcolorbox}
+
+\subsection{Assumption Labels for Scale Identifications}
+\label{subsec:assumption_labels}
+
+Throughout EDC derivations, the following identifications may be assumed.
+\textbf{Each must be explicitly labeled when invoked.}
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=orange!50!black,
+    title=\textbf{Scale Identification Assumptions}]
+\begin{description}[leftmargin=3em, style=nextline]
+    \item[\textbf{(A1)}] $\Delta = \delta$ --- Kink width equals boundary-layer scale
+    \item[\textbf{(A2)}] $\delta = R_\xi$ --- Boundary-layer scale equals diffusion scale
+    \item[\textbf{(A3)}] $\ell = n\Delta$ with $n = \mathcal{O}(1)$ --- Domain size proportional to kink width
+\end{description}
+
+\medskip
+\textbf{Rule:} No derivation may silently assume any of (A1)--(A3). When any
+is used, it must be tagged \tagP{} with explicit label (e.g., ``assuming (A2)'').
+\end{tcolorbox}
+
+% ════════════════════════════════════════════════════════════════════════════════
+\section{OPR-01: Membrane Tension and Mass Scale}
+\label{sec:opr01}
+% ════════════════════════════════════════════════════════════════════════════════
+
+\begin{tcolorbox}[edcGuardrail, title=\textbf{Epistemic Status: OPR-01}]
+This section derives the relationship between the bulk mass scale $M_0$ and the
+membrane tension $\sigma$:
+\begin{itemize}[nosep]
+    \item $M_0 = f(\sigma, \Delta, y)$ derived from domain-wall physics \tagDc{}
+    \item Domain-wall ansatz for $M(\xi)$ remains \tagP{}
+    \item Yukawa coupling $y$ remains \tagP{}
+\end{itemize}
+\textbf{What is NOT claimed:} We do not derive $\sigma$, $\Delta$, or $y$ from first
+principles. This derivation shows \emph{how} these parameters are related, converting
+three independent \tagP{} parameters into two independent + one derived \tagDc{}.
+\end{tcolorbox}
+
+\subsection{The Domain-Wall Ansatz}
+
+The thick brane in EDC is modeled as a domain wall generated by a scalar field
+$\phi(\xi)$ with a double-well potential \tagP{}:
+\begin{equation}
+    V(\phi) = \frac{\lambda}{4} \left(\phi^2 - v^2\right)^2
+    \label{eq:opr01_potential}
+\end{equation}
+
+The static kink solution interpolating between the two vacua $\phi = \pm v$ is \tagM{}:
+\begin{equation}
+    \phi(\xi) = v \tanh\left(\frac{\xi}{\Delta}\right)
+    \label{eq:opr01_kink}
+\end{equation}
+where the wall thickness is:
+\begin{equation}
+    \Delta = \frac{2}{v\sqrt{\lambda}}
+    \label{eq:opr01_Delta}
+\end{equation}
+
+The bulk fermion acquires a position-dependent mass through Yukawa coupling \tagP{}:
+\begin{equation}
+    M(\xi) = y \, \phi(\xi) = M_0 \tanh\left(\frac{\xi}{\Delta}\right)
+    \quad \text{with} \quad \boxed{M_0 = y v}
+    \label{eq:opr01_M0}
+\end{equation}
+
+\subsection{Domain-Wall Tension}
+
+The tension $\sigma$ is the integrated energy density per unit transverse area.
+Using the BPS condition (kinetic = potential energy throughout the wall) \tagM{}:
+\begin{equation}
+    \sigma = \int_{-\infty}^{\infty} T_{00}(\xi) \, d\xi = \frac{2\lambda v^4 \Delta}{3}
+\end{equation}
+
+Substituting $\lambda = 2/(\Delta^2 v^2)$:
+\begin{equation}
+    \boxed{\sigma \Delta = \frac{4 v^2}{3}}
+    \label{eq:opr01_sigmaDelta}
+\end{equation}
+
+This is a fundamental \textbf{BPS constraint} connecting tension, thickness, and scalar VEV \tagDc{}.
+
+\subsection{Main Result: $M_0$ from $\sigma$ and $\Delta$}
+
+Combining $v = M_0/y$ with the BPS constraint:
+\begin{equation}
+    \boxed{M_0 = \frac{\sqrt{3}}{2} \, y \, \sqrt{\sigma \Delta}}
+    \quad \tagDcSym{}
+    \label{eq:opr01_result}
+\end{equation}
+
+\textbf{Consequence for three generations (OPR-21):}
+The dimensionless parameter $\mu = M_0 \ell$ controls bound state count. If $\ell = n\Delta$
+(assumption A3) \tagP{}:
+\begin{equation}
+    \mu = \frac{\sqrt{3}}{2} \, y \, n \, \sqrt{\sigma \Delta^3}
+    \label{eq:opr01_mu}
+\end{equation}
+
+% ════════════════════════════════════════════════════════════════════════════════
+\section{OPR-04: Wall Thickness from Kink Theory}
+\label{sec:opr04}
+% ════════════════════════════════════════════════════════════════════════════════
+
+\begin{tcolorbox}[edcGuardrail, title=\textbf{Epistemic Status: OPR-04}]
+\textbf{Goal:} Derive the domain-wall thickness $\Delta$ from the scalar kink
+solution of $\lambda\phi^4$ theory.
+
+\textbf{Key result:} $\Delta = 2/(v\sqrt{\lambda})$ where $v$ is the vacuum
+expectation value and $\lambda$ is the self-coupling.
+
+\textbf{Status:} \tagDc{} (conditional on $v$, $\lambda$ remaining \tagP{})
+\end{tcolorbox}
+
+\subsection{Derivation from BPS Equation}
+
+The static kink satisfies the BPS equation \tagM{}:
+\begin{equation}
+    \frac{d\phi}{d\xi} = \pm \sqrt{2 V(\phi)}
+    \label{eq:opr04_BPS}
+\end{equation}
+
+Substituting the tanh ansatz and equating coefficients:
+\begin{equation}
+    \frac{v}{\Delta} = v^2 \sqrt{\frac{\lambda}{2}}
+    \quad \Rightarrow \quad
+    \boxed{\Delta = \frac{2}{v\sqrt{\lambda}} = \sqrt{\frac{2}{\lambda}} \cdot \frac{1}{v}}
+    \quad \tagM{}
+    \label{eq:opr04_result}
+\end{equation}
+
+\textbf{Physical interpretation:}
+\begin{itemize}[nosep]
+    \item Large $v$ $\to$ thin wall (higher VEV compresses the transition)
+    \item Large $\lambda$ $\to$ thin wall (stronger self-coupling steepens the potential)
+    \item The combination $v\sqrt{\lambda}$ sets the inverse length scale
+\end{itemize}
+
+\subsection{Parameter Reduction}
+
+The BPS relation $\sigma\Delta = 4v^2/3$ \textbf{eliminates $\lambda$} as an
+independent parameter. Once $\sigma$ and $v$ are specified, $\Delta$ is determined:
+\begin{equation}
+    \Delta = \frac{4 v^2}{3 \sigma}
+    \quad \tagDc{}
+    \label{eq:opr04_Delta_from_sigma}
+\end{equation}
+
+% ════════════════════════════════════════════════════════════════════════════════
+\section{OPR-19: 5D Gauge Coupling Reduction}
+\label{sec:opr19}
+% ════════════════════════════════════════════════════════════════════════════════
+
+\begin{tcolorbox}[edcGuardrail, title=\textbf{Epistemic Status: OPR-19}]
+\textbf{Goal:} Derive the canonical relation between the 5D gauge coupling $g_5$
+and the effective 4D coupling $g_4$ by explicit dimensional reduction.
+
+\textbf{Inputs:}
+\begin{itemize}[nosep]
+    \item A stated 5D metric ansatz (warped geometry) \tagP{}
+    \item The 5D gauge kinetic term with proper measure $\sqrt{-G}$
+    \item No SM observables used as anchors
+\end{itemize}
+
+\textbf{Status:} CONDITIONAL \tagDc{} --- formula derived; warp factor and domain remain \tagP{}.
+\end{tcolorbox}
+
+\subsection{The 5D Gauge Action}
+
+Starting from the 5D gauge field action with canonical normalization:
+\begin{equation}
+    S_{\text{gauge}}^{(5D)} = -\frac{1}{4g_5^2} \int d^5x \sqrt{-G} \,
+    G^{MA} G^{NB} F_{MN} F_{AB}
+    \label{eq:opr19_action}
+\end{equation}
+
+With the warped metric ansatz \tagP{}:
+\begin{equation}
+    ds^2 = e^{2A(\xi)} \eta_{\mu\nu} dx^\mu dx^\nu + d\xi^2
+    \label{eq:opr19_metric}
+\end{equation}
+
+\subsection{Critical Result: Warp Factor Cancellation}
+
+Decomposing into KK modes $A_\mu(x,\xi) = \sum_n a_\mu^{(n)}(x) f_n(\xi)$ and
+computing the 4D effective action:
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
+    title=\textbf{Warp Factor Cancellation}]
+\begin{equation}
+    \sqrt{-G} \cdot F_{\mu\nu} F^{\mu\nu} = f_{\mu\nu}^{(n)} f^{(n)\mu\nu} |f_n(\xi)|^2
+    \label{eq:opr19_cancellation}
+\end{equation}
+
+\textbf{The warp factors $e^{4A}$ from $\sqrt{-G}$ and $e^{-4A}$ from the
+index contractions exactly cancel!}
+
+The 4D gauge kinetic term has a \emph{flat measure} in the $\xi$-integral,
+regardless of the warp factor profile.
+\end{tcolorbox}
+
+\subsection{Main Result: $g_5 \to g_4$ Reduction}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black,
+    title=\textbf{Result: Coupling Reduction Formula}]
+\begin{equation}
+    \boxed{\frac{1}{g_{4,n}^2} = \frac{1}{g_5^2} \int_0^\ell d\xi \, |f_n(\xi)|^2}
+    \quad \tagDcSym{}
+    \label{eq:opr19_result}
+\end{equation}
+
+\textbf{Weight function:} $W(\xi) = 1$ (flat measure, due to warp cancellation).
+
+\textbf{Special case:} For flat zero mode $f_0 = 1/\sqrt{\ell}$:
+\begin{equation}
+    g_{4,0} = g_5
+    \label{eq:opr19_flat}
+\end{equation}
+\end{tcolorbox}
+
+% ════════════════════════════════════════════════════════════════════════════════
+\section{Parameter Closure Status}
+\label{sec:param_status}
+% ════════════════════════════════════════════════════════════════════════════════
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!50!black,
+    title=\textbf{Foundation Parameters: Closure Summary}]
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{llll}
+\toprule
+\textbf{Parameter} & \textbf{Status} & \textbf{OPR} & \textbf{Constraint/Relation} \\
+\midrule
+$\sigma$ & \tagP{} & OPR-01 & Primitive (membrane tension) \\
+$\Delta$ & \tagDc{} & OPR-04 & $= 2/(v\sqrt{\lambda})$ from kink theory \\
+$M_0$ & \tagDc{} & OPR-01 & $= (\sqrt{3}/2)\,y\sqrt{\sigma\Delta}$ \\
+$v$ & \tagP{} & OPR-01 & Primitive (scalar VEV) \\
+$\lambda$ & \tagDc{} & OPR-04 & Eliminated via BPS: $\sigma\Delta = 4v^2/3$ \\
+$y$ & \tagP{} & OPR-01 & Primitive (Yukawa coupling) \\
+$n$ & \tagP{} & --- & Primitive ($\ell/\Delta$ ratio) \\
+$g_5$ & \tagP{} & OPR-19 & Primitive (5D gauge coupling) \\
+$g_4$ & \tagDc{} & OPR-19 & $= g_5/\sqrt{\int|f|^2 d\xi}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+\textbf{Free primitives remaining:} 5 ($\sigma$, $v$, $y$, $n$, $g_5$)
+
+\textbf{Derived quantities:} 4 ($\Delta$, $M_0$, $\lambda$, $g_4$)
+
+\textbf{Key constraints:}
+\begin{itemize}[nosep]
+\item BPS: $\sigma\Delta = 4v^2/3$
+\item OPR-01: $M_0 = yv$
+\item OPR-21: $\mu = M_0\ell \in [\mu_3^-, \mu_3^+]$ for three generations
+\end{itemize}
+\end{tcolorbox}
+
+% ════════════════════════════════════════════════════════════════════════════════
+\section{No-Smuggling Certification}
+\label{sec:no_smuggling}
+% ════════════════════════════════════════════════════════════════════════════════
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!50!black,
+    title=\textbf{No-Smuggling Certification (Chapter 13)}]
+\textbf{This chapter does NOT use any of the following as inputs:}
+\begin{itemize}[nosep]
+    \item[$\times$] $M_W$, $M_Z$, or any electroweak boson masses
+    \item[$\times$] $G_F$ (Fermi constant)
+    \item[$\times$] $v = 246$ GeV (Higgs VEV)
+    \item[$\times$] $\sin^2\theta_W$ (measured value)
+    \item[$\times$] $\alpha(M_Z)$ or running couplings
+    \item[$\times$] PMNS/CKM matrix elements
+    \item[$\times$] Neutron lifetime $\tau_n$
+    \item[$\times$] Any CODATA-fitted constants
+\end{itemize}
+
+\textbf{Inputs used:}
+\begin{itemize}[nosep]
+    \item[$\checkmark$] Mathematical theorems: scalar kink theory, BPS relation \tagM{}
+    \item[$\checkmark$] Domain-wall ansatz $M(\xi) = M_0 \tanh(\xi/\Delta)$ \tagP{}
+    \item[$\checkmark$] Yukawa coupling ansatz \tagP{}
+    \item[$\checkmark$] Warped metric ansatz \tagP{}
+    \item[$\checkmark$] Membrane tension $\sigma$ as EDC primitive \tagP{}
+\end{itemize}
+
+\textbf{The only baseline input} is $M_Z$ for the $R_\xi$ anchor, which is \tagBL{}
+(external reference, not claimed as derived).
+\end{tcolorbox}
+
+% ════════════════════════════════════════════════════════════════════════════════
+\section{Chapter Summary}
+\label{sec:ch13_summary}
+% ════════════════════════════════════════════════════════════════════════════════
+
+\begin{statusbox}{Key Takeaways}
+\begin{enumerate}
+\item \textbf{Scale Taxonomy established}: Four distinct length scales ($\Delta$,
+      $\delta$, $\ell$, $R_\xi$) with explicit assumption labels (A1)--(A3).
+
+\item \textbf{OPR-01 closure}: $M_0 = (\sqrt{3}/2)\,y\sqrt{\sigma\Delta}$ relates
+      bulk mass scale to membrane tension. Status: \tagDc{}
+
+\item \textbf{OPR-04 closure}: $\Delta = 2/(v\sqrt{\lambda})$ derives wall thickness
+      from kink theory. BPS eliminates $\lambda$. Status: \tagDc{}
+
+\item \textbf{OPR-19 closure}: $1/g_4^2 = (1/g_5^2)\int|f|^2 d\xi$ with warp
+      cancellation. Status: \tagDc{}
+
+\item \textbf{Parameter count reduced}: From 9 naive parameters to 5 primitives + 4 derived.
+\end{enumerate}
+\end{statusbox}
+
+\textbf{Next}: Chapter~\ref{ch:opr21_closure} uses these foundation parameters to
+derive the three-generation structure from the bound-state window constraint.
+
