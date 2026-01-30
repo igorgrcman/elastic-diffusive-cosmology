@@ -1,5 +1,52 @@
 # EDC Book 2 - Session Log
 
+## 2026-01-30: Bridge Chapter Audit - Full Page-by-Page Fixes
+
+### Session Goals
+- Implement all A/B/C/D fixes from page-by-page audit of Chapter 1 (Bridge)
+- Enforce [Der:Sym] vs [Dc] boundary consistently
+- Neutralize overstated claims
+
+### Fixes Applied (PDF str. 15-29)
+
+**Intro (str. 15):**
+- Added dictionary boundary statement
+
+**mp/me (str. 16):**
+- Split E_p/E_e [Der:Sym] from m_p/m_e [Dc]
+- Neutralized statusbox ("NOT a coincidence" → "nontrivial consistency check")
+
+**alpha (str. 17):**
+- Split α_EDC [Der:Sym] from α ≡ α_EM [Dc]
+- Clarified 5/6 provenance as [Dc:Approx]
+
+**delta_mnp (str. 17):**
+- Split ΔE_np [Der:Sym] from Δm_np [Dc]
+
+**sigma (str. 17):**
+- Changed [Dc] → [Cal] (energy-scale anchor)
+- Clarified "all dimensionful quantities inherit this choice"
+
+**Particle structures (str. 18):**
+- Added "Given from Book 1" mini-table
+- Added dictionary step for "relaxation IS beta decay"
+
+**What Book 2 derives (str. 19-20):**
+- Replaced bullet list with table showing Model vs Identification
+
+**C_red (str. 21-22):**
+- Added specific range: C_red ∈ [0.99, 1.01] [I]
+- Added dominant systematic note
+
+**Epistemic standard (str. 23-29):**
+- Added scope guardrail for "no results in tension"
+- Added falsification/tension definitions
+
+### Compilation Status
+- **181 pages** SUCCESS (0 errors)
+
+---
+
 ## 2026-01-30: Epistemic Standard - Final Patched Version
 
 ### Session Goals
