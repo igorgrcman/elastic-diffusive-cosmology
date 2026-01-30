@@ -1,5 +1,95 @@
 # EDC Book 2 - Session Log
 
+## 2026-01-30: Week 5 - Complete All Remaining Stub Chapters
+
+### Session Goals
+- Write all remaining Part 1 stub chapters (2-5)
+- Write all remaining Part 3 stub chapters (12, 14-16)
+- Fix compilation warnings
+
+### Completed
+
+**Part 1 Foundations (4 new chapters):**
+1. **Chapter 2 "Particle Ontology in 5D"** (new):
+   - Fermionic defects: electron (B³ vortex), proton (Y-junction), neutron
+   - Bosonic modes: photon (bulk wave), W/Z (brane modes), gluons
+   - Hopf fibration S³→S²: connects internal and observed structure
+   - Dimensional pitfalls warning box
+
+2. **Chapter 3 "The Frozen Regime"** (new):
+   - Timescale separation hierarchy
+   - Frozen criterion Route A (instanton barrier)
+   - Frozen criterion Route B (topological superselection)
+   - Step function limit: C = 4π/3 exact
+   - Causality direction: 5D→3D (one-way)
+
+3. **Chapter 4 "The Z₆ Program"** (new):
+   - Crystallographic origin of discrete symmetry
+   - Z₃→three generations (angular sectors)
+   - Z₂→phase structure (factor 12)
+   - Mass hierarchy from broken Z₃
+   - Falsifiability: 4th generation invalidates model
+
+4. **Chapter 5 "Case Studies: Decay Processes"** (new):
+   - Neutron decay: full WKB analysis
+   - Muon decay: inter-generation transition
+   - Tau decay: scaling relations
+   - Pion decay: helicity suppression
+   - Common mechanism: barrier tunneling
+
+**Part 3 Technical (4 new chapters):**
+5. **Chapter 12 "The Coupling Chain: g₅→G_F"** (new):
+   - 5D coupling g₅ from membrane geometry
+   - Reduction g₅→g₄ via compactification
+   - Localization suppression (chiral)
+   - Complete error budget
+
+6. **Chapter 14 "BVP Framework"** (new):
+   - General BVP setup (thick brane domain)
+   - Robin boundary conditions
+   - Applications: M_W, fermion masses, neutrino suppression
+   - Numerical methods and standards
+   - OPR-21 status
+
+7. **Chapter 15 "M_W and G_F Derivation"** (new):
+   - M_W from brane localization
+   - M_Z/M_W ratio from sin²θ_W
+   - G_F consistency check
+   - Error budgets for both
+   - OPR-20, OPR-22 status
+
+8. **Chapter 16 "Epistemic Summary"** (new):
+   - Complete [Der] results (7)
+   - Conditional [Dc] results (12)
+   - Identified [I] patterns (5)
+   - Calibrations [Cal] (2)
+   - Open problems [Open] (27)
+   - Falsification criteria
+   - Confidence assessment
+
+**Bug Fixes:**
+- Fixed degree symbol warnings (° → $^\circ$)
+- Fixed undefined ch:va_structure reference
+- Fixed CD environment error (Hopf fibration)
+- Added \chapter command to V-A structure file
+
+### Compilation Status
+- **168 pages** SUCCESS (up from 128)
+
+### Progress Summary
+- Part 1: 5/5 chapters complete
+- Part 2: 6/6 chapters complete
+- Part 3: 5/5 chapters complete
+- Epilogue: 1/1 chapter stub
+- Total: 17/17 chapters have content
+
+### Next Steps (Week 6)
+- Appendices content
+- Cross-reference verification
+- Additional mechanism boxes
+
+---
+
 ## 2026-01-30: Week 2 - Content Consolidation Complete
 
 ### Session Goals

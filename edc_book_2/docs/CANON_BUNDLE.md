@@ -1,6 +1,6 @@
 # CANON BUNDLE — P0 Mandatory Documents
 
-**Generated:** 2026-01-30 12:53
+**Generated:** 2026-01-30 13:13
 **Purpose:** Single file containing ALL P0 canonical documents for session loading.
 **Usage:** Read this file at the START of every CC session. MANDATORY.
 
@@ -96,8 +96,28 @@
 - [x] Z₂ resolution: δ = 60° (5° from PDG)
 - [x] Test compilation: **128 pages** - SUCCESS
 
+## Week 5 Progress (COMPLETE)
+
+### Part 1 Stub Chapters Written
+- [x] Chapter 2 Ontology: Particle types in 5D (fermionic defects, bosonic modes)
+- [x] Chapter 3 Frozen Regime: Timescale separation, frozen criterion (Routes A & B)
+- [x] Chapter 4 Z₆ Program: Crystallographic origin, three generations from Z₃
+- [x] Chapter 5 Case Studies: Neutron, muon, tau, pion decay analyses
+- [x] Test compilation: SUCCESS
+
+### Part 3 Stub Chapters Written
+- [x] Chapter 12 G_F Chain: g₅ → g₄ → G_eff → G_F reduction chain
+- [x] Chapter 14 BVP Framework: Robin BC, eigenvalue equations, numerical methods
+- [x] Chapter 15 M_W/G_F Derivation: Error budgets, OPR-20/22 status
+- [x] Chapter 16 Epistemic Summary: Complete ledger of [Der]/[Dc]/[I]/[Cal]/[Open]
+- [x] Test compilation: **168 pages** - SUCCESS
+
+### Bug Fixes
+- [x] Fixed degree symbol warnings (° → $^\circ$)
+- [x] Fixed undefined ch:va_structure reference
+- [x] Fixed CD environment error (Hopf fibration diagram)
+
 ### Pending
-- [ ] Week 5: Remaining chapters, G_F chain
 - [ ] Week 6: Appendices, cross-references
 - [ ] Week 7: Polish and final review
 
