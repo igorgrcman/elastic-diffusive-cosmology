@@ -1,0 +1,182 @@
+% ============================================================
+% EDC EPISTEMIC MACROS (COMPLETE)
+% ============================================================
+% Version: 1.0 Final
+% Date: 2026-01-30
+% Purpose: LaTeX macros for consistent epistemic tagging
+% Integration: Add to preamble of Book 2 main.tex
+% ============================================================
+
+% Required packages
+\usepackage{xcolor}      % For colored tags (optional)
+\usepackage{amsmath}     % For math environments
+\usepackage{amssymb}     % For checkmark symbol
+
+% ============================================================
+% PRIMARY EPISTEMIC TAGS
+% ============================================================
+
+% Basic tags (no color)
+\newcommand{\tagM}{\textbf{[M]}}
+\newcommand{\tagP}{\textbf{[P]}}
+\newcommand{\tagDer}{\textbf{[Der]}}
+\newcommand{\tagDc}{\textbf{[Dc]}}
+\newcommand{\tagI}{\textbf{[I]}}
+\newcommand{\tagCal}{\textbf{[Cal]}}
+\newcommand{\tagBL}{\textbf{[BL]}}
+\newcommand{\tagOpen}{\textbf{[Open]}}
+
+% Colored tags (optional - uncomment if desired)
+% \renewcommand{\tagM}{\textcolor{blue}{\textbf{[M]}}}
+% \renewcommand{\tagP}{\textcolor{purple}{\textbf{[P]}}}
+% \renewcommand{\tagDer}{\textcolor{green!60!black}{\textbf{[Der]}}}
+% \renewcommand{\tagDc}{\textcolor{orange!80!black}{\textbf{[Dc]}}}
+% \renewcommand{\tagI}{\textcolor{cyan!60!black}{\textbf{[I]}}}
+% \renewcommand{\tagCal}{\textcolor{red!70!black}{\textbf{[Cal]}}}
+% \renewcommand{\tagBL}{\textcolor{gray}{\textbf{[BL]}}}
+% \renewcommand{\tagOpen}{\textcolor{red}{\textbf{[Open]}}}
+
+% ============================================================
+% SUBTAGS (PRECISION REFINEMENT)
+% ============================================================
+
+% Derivation subtags
+\newcommand{\tagDerSym}{\textbf{[Der:Sym]}}
+\newcommand{\tagDerNum}{\textbf{[Der:Num]}}
+
+% Conditional derivation subtags
+\newcommand{\tagDcSym}{\textbf{[Dc:Sym]}}
+\newcommand{\tagDcNum}{\textbf{[Dc:Num]}}
+\newcommand{\tagDcApprox}{\textbf{[Dc:Approx]}}
+
+% ============================================================
+% REDUCTION NORMALIZATION FACTOR
+% ============================================================
+
+% Generic reduction factor
+\newcommand{\Cred}{C_{\mathrm{red}}}
+
+% Specific reduction factors (by quantity)
+\newcommand{\Credm}{C_{\mathrm{red}}^{(m)}}           % mass ratio
+\newcommand{\Credalpha}{C_{\mathrm{red}}^{(\alpha)}}  % fine structure
+\newcommand{\CredGF}{C_{\mathrm{red}}^{(G_F)}}        % Fermi coupling
+\newcommand{\CredW}{C_{\mathrm{red}}^{(\theta_W)}}    % Weinberg angle
+
+% Generic parameterized version
+\newcommand{\Credgen}[1]{C_{\mathrm{red}}^{(#1)}}     % C_red^{(label)}
+
+% ============================================================
+% REFERENCE MACROS
+% ============================================================
+
+% Reference to baseline constants table
+\newcommand{\refBaseline}{Table~\ref{tab:baseline_constants}}
+
+% Reference to epistemic standard section
+\newcommand{\refEpistemic}{Section~\ref{sec:epistemic_standard}}
+
+% Reference to open problems register
+\newcommand{\refOPR}{Appendix~\ref{app:opr}}
+
+% Generic OPR reference
+\newcommand{\OPR}[1]{OPR-#1}  % Usage: \OPR{21} → OPR-21
+
+% ============================================================
+% STATUS BOXES
+% ============================================================
+
+% Requires tcolorbox package:
+% \usepackage{tcolorbox}
+
+% Status box environment
+\newenvironment{statusbox}[1]{%
+  \begin{tcolorbox}[colback=blue!5,colframe=blue!75!black,title=#1]
+}{%
+  \end{tcolorbox}
+}
+
+% Warning box environment
+\newenvironment{warningbox}[1]{%
+  \begin{tcolorbox}[colback=red!5,colframe=red!75!black,title=#1]
+}{%
+  \end{tcolorbox}
+}
+
+% Open problem box environment
+\newenvironment{openbox}[1]{%
+  \begin{tcolorbox}[colback=orange!5,colframe=orange!75!black,title={Open: #1}]
+}{%
+  \end{tcolorbox}
+}
+
+% ============================================================
+% COMMON ABBREVIATIONS
+% ============================================================
+
+% Observables
+\newcommand{\mpme}{\frac{m_p}{m_e}}           % Proton-electron mass ratio
+\newcommand{\alphaInv}{\alpha^{-1}}            % Fine structure inverse
+\newcommand{\sinThetaW}{\sin^2\theta_W}        % Weinberg angle
+\newcommand{\DeltaMnp}{\Delta m_{np}}          % Neutron-proton mass diff
+
+% Common symbols
+\newcommand{\Lzero}{L_0}                       % Junction extent
+\newcommand{\ellp}{\ell_p}                     % Proton length
+\newcommand{\Rxi}{R_\xi}                       % Compactification radius
+\newcommand{\tauN}{\tau_n}                     % Neutron lifetime
+
+% ============================================================
+% COMPARISON MACROS
+% ============================================================
+
+% Comparison statement (EDC vs BL)
+\newcommand{\comparison}[4]{%
+  % Usage: \comparison{quantity}{EDC_value}{BL_value}{error_percent}
+  \begin{align*}
+  \text{EDC:} \quad & #1 = #2 \\
+  \text{[BL]:} \quad & #1 = #3 \\
+  \text{Error:} \quad & #4\%
+  \end{align*}
+}
+
+% ============================================================
+% EPISTEMIC STATEMENT MACROS
+% ============================================================
+
+% Conditional statement (for [Dc] results)
+\newcommand{\conditional}[1]{%
+  \textit{Conditional on: #1}
+}
+
+% Mathematical precision statement
+\newcommand{\precision}[1]{%
+  \textit{Precision: #1}
+}
+
+% ============================================================
+% EXAMPLE USAGE
+% ============================================================
+
+% Example 1: Basic tagging
+% Result: $m_p/m_e = 6\pi^5$ \tagDcSym
+
+% Example 2: Reduction factor
+% Normalization: $\Credm \approx 1.0002$
+
+% Example 3: Comparison
+% \comparison{m_p/m_e}{6\pi^5 = 1836.118}{1836.153}{0.002}
+
+% Example 4: Reference
+% See \refBaseline for baseline data.
+
+% Example 5: OPR reference
+% This depends on \OPR{21} (brane boundary value problem).
+
+% Example 6: Status box
+% \begin{statusbox}{Current Status}
+% Result is \tagDcSym with 0.002\% agreement.
+% \end{statusbox}
+
+% ============================================================
+% End of Macros
+% ============================================================

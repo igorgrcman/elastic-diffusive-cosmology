@@ -1,0 +1,48 @@
+\section*{Numerical Verification Standards}
+
+All numerical results tagged \tagDerNum{} must satisfy the following verification protocol.
+
+\subsection*{Three-Method Verification}
+
+\begin{enumerate}
+\item \textbf{Grid refinement} (Richardson extrapolation)
+  \begin{itemize}
+  \item Double grid resolution
+  \item Verify convergence rate matches expected order
+  \item Extrapolate to zero grid spacing
+  \end{itemize}
+
+\item \textbf{Independent integrator cross-check}
+  \begin{itemize}
+  \item Use at least two independent numerical methods
+  \item E.g., Gauss-Kronrod vs Simpson vs Monte Carlo
+  \item Results must agree to stated tolerance
+  \end{itemize}
+
+\item \textbf{Asymptotic/analytic limit verification}
+  \begin{itemize}
+  \item Check known analytic limits
+  \item Verify boundary behavior
+  \item Compare to simplified cases where exact solutions exist
+  \end{itemize}
+\end{enumerate}
+
+\subsection*{Tolerance Standards}
+
+\begin{itemize}
+\item Default numerical tolerance: $10^{-10}$ relative error
+\item For highly oscillatory integrals: $10^{-8}$
+\item For stiff ODEs: adaptive tolerance, report actual achieved
+\end{itemize}
+
+\subsection*{Reporting Requirements}
+
+For each numerical result:
+\begin{enumerate}
+\item State the numerical method used
+\item Report convergence behavior
+\item List independent verification methods
+\item Quote final result with numerical uncertainty
+\end{enumerate}
+
+% TODO: Complete from epistemic standard document
