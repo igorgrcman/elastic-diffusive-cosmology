@@ -1,5 +1,45 @@
 # EDC Book 2 - Session Log
 
+## 2026-01-30: Chapter 2 Audit - 7 Blocking Fixes
+
+### Session Goals
+- Fix all blocking issues identified in page-by-page audit of Chapter 2 (Weak Interface)
+- Enforce [Der] vs [Dc] boundary in result table
+- Fix dimensional and numerical consistency issues
+
+### Fixes Applied (PDF str. 17-23)
+
+**Fix 1 (str. 17):**
+- "38 orders of magnitude" → verifiable statement with actual ratio
+
+**Fix 2 (str. 17):**
+- "no free parameters" → acknowledge [Cal] anchors explicitly
+
+**Fix 3 - BLOCKING (str. 18):**
+- WKB numerical consistency: S~10-20 cannot give τ_n~10³s
+- Fixed: S must be ~55 for τ_n~10³s with ω₀~10²¹ s⁻¹
+
+**Fix 4 (str. 19):**
+- Added ℏc to δ formula for correct dimensions
+- Added frozen BC preview reference
+
+**Fix 5 - BLOCKING (str. 20):**
+- G_F scaling dimensional error: g²/δ² → g²δ² ~ g²/M_W²
+- This is dimensional inversion (δ ~ 1/M_W, so g²δ² ~ g²/M_W²)
+
+**Fix 6 (str. 21):**
+- Added explicit dimensions for Π_pump (energy/time) and Γ_eff (1/time)
+
+**Fix 7 (str. 23):**
+- Table tag fixes:
+  - sin²θ_W = 1/4: [Der] → [Dc:Approx] (calling it "Weinberg angle" is dictionary)
+  - 3 generations: [Der] → [Der]/[Dc] split (math is [Der], "fermion generations" is [Dc])
+
+### Compilation Status
+- **181 pages** SUCCESS (0 errors)
+
+---
+
 ## 2026-01-30: Bridge Chapter Audit - Full Page-by-Page Fixes
 
 ### Session Goals
