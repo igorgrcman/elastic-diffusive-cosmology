@@ -1,5 +1,35 @@
 # EDC Book 2 - Session Log
 
+## 2026-01-30: Week 2 - Chapter 1 Restructure
+
+### Session Goals
+- Restructure Chapter 1 with neutron lifetime front-loaded as "quick win"
+- Fix Unicode character issues
+- Continue Week 2 content migration
+
+### Completed
+1. Rewrote Chapter 1 "The Weak Interface" with new structure:
+   - Motivation: What SM Cannot Explain
+   - Quick Win: Neutron Lifetime from Geometry (front-loaded!)
+   - Physical Picture (5D junction relaxation)
+   - WKB Estimate
+   - Thick Brane Necessity
+   - General Framework: Bulk → Brane Transfer
+2. Fixed Unicode ✓ → `$\checkmark$`
+3. Tested compilation: **100 pages** SUCCESS
+
+### Chapter 1 Structure
+- Front-loads neutron lifetime τ_n ~ 10³ s as immediate "hook"
+- Explains physical mechanism before formal derivation
+- Uses mechanism boxes and status boxes
+- Proper epistemic tagging throughout
+
+### Next Steps
+- Ch 13 Foundation Params (consolidate OPR-01, 04, 19)
+- Ch 6 Electroweak (consolidate scattered content)
+
+---
+
 ## 2026-01-30: Week 1 Day 5-7 - Content Migration Started
 
 ### Session Goals
