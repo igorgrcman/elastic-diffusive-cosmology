@@ -1366,3 +1366,69 @@ This is narrative consolidation, not file reorganization.
 - Created: `docs/BOOK2_CANON_CONTENT_MAP.md`
 - Created: `docs/BOOK2_CANON_SURGERY_LOG.md`
 - Created: `docs/BOOK2_CANON_BUILD_REPORT.md`
+
+---
+
+## 2026-01-29 — Undefined Reference Resolution
+
+### Goal
+Fix all 41 undefined references in the canonical Book 2 spine (EDC_BOOK2_WEAK_CANON.tex).
+
+### Read State (Start of Session)
+- BOOK2_CANON_BUILD_REPORT.md: 41 undefined refs, 0 multiply-defined
+- Previous session: Canonical spine created with 439 pages
+
+### Work Performed
+
+#### Label Aliases Added to Spine
+- `ch:z6_program` → `ch:electroweak` (Chapter 7)
+- `ch:bvp_master_key` → `ch:bvp_framework` (Chapter 14)
+- `ch:gf_derivation` → `ch:coupling_chain` (Chapter 15)
+- `ch:neutrinos_edge` → `ch:pmns` (Chapter 10)
+- `thm:steiner` → `thm:steiner_routeA` (in 04b_proton_anchor.tex)
+
+#### Files Added to Spine
+- `sections/12_epistemic_map.tex` (provides `sec:gate_registry`)
+
+#### Section Files Updated
+| File | Change |
+|------|--------|
+| 04b_proton_anchor.tex | Route B ref → Derivation Library |
+| 05b_neutron_dual_route.tex | Route B refs → Derivation Library |
+| 04_ontology.tex | Charged ground mode ref → Derivation Library |
+| 05_three_generations.tex | sec:step3 → ch:ontology |
+| 09_va_structure.tex | BVP subsection refs → Chapter/Library refs |
+| 06_neutrinos_edge_modes.tex | ch:lepton_candidates → ch:three_generations |
+| 11_gf_derivation.tex | ch:bvp_workpackage → ch:bvp_framework |
+| 12_epistemic_map.tex | Closure attempt refs → Chapter/Library refs |
+| ch14_opr21_closure_derivation.tex | Self-adjoint theorem → Derivation Library |
+| CH3_electroweak_parameters.tex | Theorem refs → inline descriptions |
+| _shared/overlap_integral_canon.tex | ch:bvp_workpackage → ch:bvp_framework |
+
+### Build Status (End of Session)
+- Pages: 453 (up from 439 due to 12_epistemic_map addition)
+- Undefined references: **0** (was 41) ✓
+- Multiply-defined labels: **0** ✓
+
+### Files Changed
+- edc_book_2/docs/BOOK2_CANON_BUILD_REPORT.md
+- edc_book_2/src/EDC_BOOK2_WEAK_CANON.tex
+- edc_book_2/src/CH3_electroweak_parameters.tex
+- edc_book_2/src/_shared/overlap_integral_canon.tex
+- edc_book_2/src/sections/04_ontology.tex
+- edc_book_2/src/sections/04b_proton_anchor.tex
+- edc_book_2/src/sections/05_three_generations.tex
+- edc_book_2/src/sections/05b_neutron_dual_route.tex
+- edc_book_2/src/sections/06_neutrinos_edge_modes.tex
+- edc_book_2/src/sections/09_va_structure.tex
+- edc_book_2/src/sections/11_gf_derivation.tex
+- edc_book_2/src/sections/12_epistemic_map.tex
+- edc_book_2/src/sections/ch14_opr21_closure_derivation.tex
+
+### Next Steps
+1. Test reader path — Read PDF from start to finish, verify coherence
+2. Final audit — Check for any remaining internal reference issues
+3. Optional: Fix Unicode Greek characters (cosmetic)
+
+### Open Questions
+None — all undefined references resolved.

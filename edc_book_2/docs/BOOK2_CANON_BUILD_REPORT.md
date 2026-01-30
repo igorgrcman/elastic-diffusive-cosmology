@@ -1,8 +1,8 @@
 # Book 2 Canonical Build Report
 
-**Build Date:** 2026-01-29
+**Build Date:** 2026-01-29 (updated)
 **Source File:** `src/EDC_BOOK2_WEAK_CANON.tex`
-**Status:** ✓ PASS (PDF generated)
+**Status:** ✓ PASS (PDF generated, all references resolved)
 
 ---
 
@@ -10,9 +10,9 @@
 
 | Metric | Value |
 |--------|-------|
-| **Pages** | 439 |
-| **PDF Size** | 1.8 MB |
-| **Undefined References** | 41 |
+| **Pages** | 453 |
+| **PDF Size** | ~2.0 MB |
+| **Undefined References** | 0 ✓ |
 | **Multiply-Defined Labels** | 0 ✓ |
 | **Missing Characters** | ~180 (Greek in non-math fonts) |
 | **Compilation Result** | **SUCCESS** |
@@ -28,7 +28,7 @@
 | **Front Matter** | How to Read, TOC | 10 |
 | **Part I: Physical Picture** | Ch 1-6 | ~120 |
 | **Part II: Predictions** | Ch 7-12 | ~100 |
-| **Part III: Machinery** | Ch 13-16 | ~150 |
+| **Part III: Machinery** | Ch 13-16 | ~170 |
 | **Epilogue** | Ch 17 | ~20 |
 | **Back Matter** | Appendices, Bibliography | ~40 |
 
@@ -54,38 +54,55 @@
 
 ---
 
-## Warnings Analysis
+## Reference Resolution (2026-01-29)
 
-### Multiply-Defined Labels (8)
+### Label Aliases Added to Spine
 
-These occur because section files define labels that are also defined in the spine:
+To maintain backwards compatibility with section files, the following label aliases were added:
 
-```
-sec:unified_pipeline
-sec:geometry_interface
-sec:proton_anchor
-sec:master_diagram
-sec:neutron_dual_route
-sec:case_electron
-sec:case_pion
-(+1 more)
-```
+| Alias | Points To | Purpose |
+|-------|-----------|---------|
+| `ch:z6_program` | `ch:electroweak` | Legacy Z6 program references |
+| `ch:bvp_master_key` | `ch:bvp_framework` | Legacy BVP references |
+| `ch:gf_derivation` | `ch:coupling_chain` | Legacy GF derivation references |
+| `ch:neutrinos_edge` | `ch:pmns` | Legacy neutrino chapter references |
+| `thm:steiner` | `thm:steiner_routeA` | Steiner theorem references |
 
-**Fix:** Remove redundant labels from spine file (use section file labels).
-**Priority:** LOW (cosmetic, doesn't affect reader)
+### Section Files Updated
 
-### Undefined References (40)
+References updated from legacy labels to canonical labels or Derivation Library:
 
-Most are cross-references to sections/equations not included in canonical spine:
+- `04b_proton_anchor.tex`: Route B → Derivation Library
+- `05b_neutron_dual_route.tex`: Route B → Derivation Library
+- `04_ontology.tex`: Charged ground mode → Derivation Library
+- `05_three_generations.tex`: Step3 → Chapter ref
+- `09_va_structure.tex`: BVP subsections → Chapter ref
+- `06_neutrinos_edge_modes.tex`: Lepton candidates → Three generations chapter
+- `11_gf_derivation.tex`: BVP workpackage → BVP framework
+- `12_epistemic_map.tex`: Multiple closure attempt refs → Chapter/Library refs
+- `ch14_opr21_closure_derivation.tex`: Self-adjoint theorem → Derivation Library
+- `CH3_electroweak_parameters.tex`: Theorem refs → inline descriptions
 
-- References to meta appendices (not included)
-- Forward references to OPR chapters in early sections
-- Legacy references to removed content
+### Files Added to Canonical Spine
 
-**Fix:** Update section files to use canonical spine references.
-**Priority:** MEDIUM (should fix before publication)
+- `sections/12_epistemic_map.tex` (provides `sec:gate_registry`)
 
-### Missing Characters (~180)
+---
+
+## Comparison with Previous Builds
+
+| Metric | Original (rebuild) | v1 Canonical | v2 (current) |
+|--------|-------------------|--------------|--------------|
+| Pages | 602 | 439 | 453 |
+| Chapters | 20+ | 17 | 17 |
+| Undefined refs | 0 | 41 | **0** ✓ |
+| Multiply-defined | 0 | 0 | **0** ✓ |
+
+**Note:** Page increase from 439 to 453 due to adding `12_epistemic_map.tex` (gate registry and consolidated status).
+
+---
+
+## Missing Characters (~180)
 
 Greek letters in non-math contexts using text fonts that lack them:
 - μ (mu)
@@ -94,23 +111,7 @@ Greek letters in non-math contexts using text fonts that lack them:
 - ✓ (checkmark)
 
 **Fix:** Use math mode `$\mu$` instead of Unicode μ.
-**Priority:** LOW (cosmetic)
-
----
-
-## Comparison with Original Build
-
-| Metric | Original (rebuild) | Canonical | Change |
-|--------|-------------------|-----------|--------|
-| Pages | 602 | 439 | -27% |
-| Chapters | 20+ | 17 | Consolidated |
-| Undefined refs | 0 | 40 | Needs cleanup |
-| Multiply-defined | 0 | 8 | Needs cleanup |
-
-**Note:** Page reduction reflects removal of:
-- Meta appendices (not reader-facing)
-- GF closure attempt details (moved to Derivation Library reference)
-- Duplicate content consolidation
+**Priority:** LOW (cosmetic, doesn't affect reader comprehension)
 
 ---
 
@@ -136,7 +137,7 @@ latexmk -xelatex -interaction=nonstopmode EDC_BOOK2_WEAK_CANON.tex
 
 ## Files Produced
 
-- `EDC_BOOK2_WEAK_CANON.pdf` (1.8 MB, 439 pages)
+- `EDC_BOOK2_WEAK_CANON.pdf` (~2.0 MB, 453 pages)
 - `EDC_BOOK2_WEAK_CANON.aux`
 - `EDC_BOOK2_WEAK_CANON.log`
 - `EDC_BOOK2_WEAK_CANON.toc`
@@ -144,13 +145,12 @@ latexmk -xelatex -interaction=nonstopmode EDC_BOOK2_WEAK_CANON.tex
 
 ---
 
-## Next Steps
+## Remaining Tasks
 
-1. **Fix multiply-defined labels** — Remove from spine, keep in section files
-2. **Fix undefined references** — Update section files for canonical structure
-3. **Test reader path** — Read PDF from start to finish, verify coherence
-4. **Final audit** — Check for any remaining internal references
-5. **Commit** — After all fixes pass
+1. ~~Fix undefined references~~ ✓ DONE
+2. **Test reader path** — Read PDF from start to finish, verify coherence
+3. **Final audit** — Check for any remaining internal references
+4. **Greek character fix** — Replace Unicode Greek with math mode (optional)
 
 ---
 
@@ -164,7 +164,7 @@ latexmk -xelatex -interaction=nonstopmode EDC_BOOK2_WEAK_CANON.tex
 | 17 chapters in order | ✓ PASS |
 | Chapter recaps present | ✓ PASS |
 | No repo artifacts in PDF | ✓ PASS |
-| Zero undefined refs | ✗ NEEDS FIX (41 refs) |
-| Zero multiply-defined | ✓ PASS (0 labels) |
+| Zero undefined refs | ✓ PASS |
+| Zero multiply-defined | ✓ PASS |
 
-**Overall:** BUILD SUCCESS with warnings. Ready for editorial review.
+**Overall:** BUILD SUCCESS. All critical issues resolved. Ready for editorial review.
