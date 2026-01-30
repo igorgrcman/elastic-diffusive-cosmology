@@ -1,48 +1,220 @@
-\section*{Numerical Verification Standards}
+\chapter{Numerical Verification Standards}
+\label{app:numerical_standards}
 
-All numerical results tagged \tagDerNum{} must satisfy the following verification protocol.
+All numerical results tagged \tagDerNum{} must satisfy the verification
+protocol described in this appendix.
 
-\subsection*{Three-Method Verification}
+% ════════════════════════════════════════════════════════════
+\section{Motivation}
+% ════════════════════════════════════════════════════════════
 
-\begin{enumerate}
-\item \textbf{Grid refinement} (Richardson extrapolation)
-  \begin{itemize}
-  \item Double grid resolution
-  \item Verify convergence rate matches expected order
-  \item Extrapolate to zero grid spacing
-  \end{itemize}
-
-\item \textbf{Independent integrator cross-check}
-  \begin{itemize}
-  \item Use at least two independent numerical methods
-  \item E.g., Gauss-Kronrod vs Simpson vs Monte Carlo
-  \item Results must agree to stated tolerance
-  \end{itemize}
-
-\item \textbf{Asymptotic/analytic limit verification}
-  \begin{itemize}
-  \item Check known analytic limits
-  \item Verify boundary behavior
-  \item Compare to simplified cases where exact solutions exist
-  \end{itemize}
-\end{enumerate}
-
-\subsection*{Tolerance Standards}
-
-\begin{itemize}
-\item Default numerical tolerance: $10^{-10}$ relative error
-\item For highly oscillatory integrals: $10^{-8}$
-\item For stiff ODEs: adaptive tolerance, report actual achieved
+Numerical calculations in physics can fail in subtle ways:
+\begin{itemize}[nosep]
+\item Truncation and rounding errors
+\item Algorithm instabilities
+\item Convergence to wrong solutions
+\item Implementation bugs
 \end{itemize}
 
-\subsection*{Reporting Requirements}
+To ensure reliability, EDC numerical results require independent verification
+through multiple methods.
 
-For each numerical result:
+% ════════════════════════════════════════════════════════════
+\section{Three-Method Verification Protocol}
+% ════════════════════════════════════════════════════════════
+
+Every numerical result must be verified by ALL THREE methods:
+
+\subsection{Method 1: Grid Refinement (Richardson Extrapolation)}
+
 \begin{enumerate}
-\item State the numerical method used
-\item Report convergence behavior
-\item List independent verification methods
-\item Quote final result with numerical uncertainty
+\item Compute result at grid spacing $h$: $R(h)$
+\item Compute result at grid spacing $h/2$: $R(h/2)$
+\item Compute result at grid spacing $h/4$: $R(h/4)$
+\item Verify convergence rate:
+\begin{equation}
+p = \log_2\left(\frac{R(h) - R(h/2)}{R(h/2) - R(h/4)}\right)
+\end{equation}
+\item $p$ should match expected order of method (e.g., $p = 2$ for 2nd-order)
+\item Extrapolate to $h \to 0$:
+\begin{equation}
+R_{\text{extrap}} = R(h/4) + \frac{R(h/4) - R(h/2)}{2^p - 1}
+\end{equation}
 \end{enumerate}
 
-% TODO: Complete from epistemic standard document
+\textbf{Pass criterion}: Convergence rate within 10\% of expected value.
+
+\subsection{Method 2: Independent Integrator Cross-Check}
+
+Use at least two independent numerical methods:
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Problem Type} & \textbf{Recommended Methods} \\
+\midrule
+1D integration & Gauss-Kronrod + Simpson \\
+Multi-D integration & Monte Carlo + Quasi-Monte Carlo \\
+ODE IVP & RK45 + Adams-Bashforth \\
+ODE BVP & Shooting + Finite Difference \\
+Eigenvalue & QR + Power iteration \\
+Root finding & Newton + Bisection \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Pass criterion}: Results agree to within stated tolerance.
+
+\subsection{Method 3: Asymptotic/Analytic Limit Verification}
+
+Check against known analytic results:
+
+\begin{enumerate}
+\item Identify limiting cases with exact solutions
+\item Verify numerical method reproduces these limits
+\item Check boundary behavior matches expectations
+\item Compare to simplified models where available
+\end{enumerate}
+
+\textbf{Pass criterion}: Agreement with all available analytic limits.
+
+% ════════════════════════════════════════════════════════════
+\section{Tolerance Standards}
+% ════════════════════════════════════════════════════════════
+
+\begin{center}
+\begin{tabular}{lc}
+\toprule
+\textbf{Calculation Type} & \textbf{Required Tolerance} \\
+\midrule
+Default (smooth functions) & $10^{-10}$ relative \\
+Highly oscillatory integrals & $10^{-8}$ relative \\
+Stiff ODEs & Adaptive, report achieved \\
+Monte Carlo & Statistical error reported \\
+Eigenvalues & $10^{-10}$ absolute \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Note}: If tolerance cannot be achieved, document why and
+report the achieved tolerance.
+
+% ════════════════════════════════════════════════════════════
+\section{Reporting Requirements}
+% ════════════════════════════════════════════════════════════
+
+For each numerical result, report:
+
+\begin{enumerate}
+\item \textbf{Method}: Primary algorithm used
+\item \textbf{Parameters}: Grid size, tolerance, iterations, etc.
+\item \textbf{Convergence}: Richardson extrapolation results
+\item \textbf{Cross-check}: Second method and agreement level
+\item \textbf{Limits}: Which analytic limits were verified
+\item \textbf{Result}: Final value with numerical uncertainty
+\end{enumerate}
+
+\textbf{Example format}:
+\begin{verbatim}
+Result: lambda_0 = 2.467401100(5)
+Method: Finite difference (N=1000)
+Convergence: p = 1.98 (expected 2.0)
+Cross-check: Shooting method agrees to 1e-9
+Limits: Dirichlet (kappa->inf) verified
+\end{verbatim}
+
+% ════════════════════════════════════════════════════════════
+\section{BVP-Specific Standards}
+% ════════════════════════════════════════════════════════════
+
+For boundary value problems (Chapter~\ref{ch:bvp}):
+
+\subsection{Eigenvalue Calculations}
+
+\begin{enumerate}
+\item Use at least $N = 100$ grid points initially
+\item Refine to $N = 200, 400$ for Richardson check
+\item Cross-check with shooting method
+\item Verify Dirichlet/Neumann limits
+\end{enumerate}
+
+\subsection{Robin BC Verification}
+
+The Robin eigenvalue equation (Eq.~\ref{eq:robin_eigenvalue}) provides
+an independent check:
+\begin{equation}
+\tan(k\delta) = \frac{k(\kappa_+ + \kappa_-)}{k^2 - \kappa_+\kappa_-}
+\end{equation}
+
+Numerical eigenvalues must satisfy this transcendental equation to
+tolerance $10^{-10}$.
+
+% ════════════════════════════════════════════════════════════
+\section{Reference Implementations}
+% ════════════════════════════════════════════════════════════
+
+\subsection{Python Standards}
+
+Recommended libraries:
+\begin{itemize}[nosep]
+\item \texttt{numpy}: Array operations
+\item \texttt{scipy.integrate}: Quadrature (quad, dblquad)
+\item \texttt{scipy.optimize}: Root finding (brentq, newton)
+\item \texttt{scipy.linalg}: Eigenvalue problems (eig, eigh)
+\end{itemize}
+
+\subsection{Example: Robin Eigenvalue}
+
+\begin{verbatim}
+import numpy as np
+from scipy.optimize import brentq
+
+def robin_eigenvalue(delta, kappa_p, kappa_m, n=0, tol=1e-12):
+    """
+    Solve Robin BC eigenvalue equation.
+
+    Returns: k^2 (eigenvalue lambda)
+    Verification: Richardson extrapolation built-in
+    """
+    def residual(k):
+        if abs(k**2 - kappa_p*kappa_m) < 1e-14:
+            return np.inf  # Avoid division by zero
+        lhs = np.tan(k * delta)
+        rhs = k * (kappa_p + kappa_m) / (k**2 - kappa_p*kappa_m)
+        return lhs - rhs
+
+    # Search interval for n-th eigenvalue
+    k_low = (n + 0.01) * np.pi / delta
+    k_high = (n + 0.99) * np.pi / delta
+
+    k_n = brentq(residual, k_low, k_high, xtol=tol)
+    return k_n**2
+\end{verbatim}
+
+% ════════════════════════════════════════════════════════════
+\section{Documentation Template}
+% ════════════════════════════════════════════════════════════
+
+For each numerical calculation in the main text, use this template:
+
+\begin{tcolorbox}[colback=blue!5, colframe=blue!50!black, title=Numerical Result Documentation]
+\textbf{Quantity}: [Name and equation reference]
+
+\textbf{Method}: [Algorithm name]
+
+\textbf{Parameters}: [Grid size, tolerance, etc.]
+
+\textbf{Convergence check}:
+\begin{itemize}[nosep]
+\item $R(h) = $ [value]
+\item $R(h/2) = $ [value]
+\item $R(h/4) = $ [value]
+\item Observed order $p = $ [value] (expected [value])
+\end{itemize}
+
+\textbf{Cross-check}: [Second method] agrees to [tolerance]
+
+\textbf{Analytic limits}: [Which limits verified]
+
+\textbf{Result}: [Final value] $\pm$ [uncertainty]
+\end{tcolorbox}

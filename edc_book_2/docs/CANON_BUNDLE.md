@@ -1,6 +1,6 @@
 # CANON BUNDLE — P0 Mandatory Documents
 
-**Generated:** 2026-01-30 13:13
+**Generated:** 2026-01-30 13:23
 **Purpose:** Single file containing ALL P0 canonical documents for session loading.
 **Usage:** Read this file at the START of every CC session. MANDATORY.
 
@@ -117,8 +117,26 @@
 - [x] Fixed undefined ch:va_structure reference
 - [x] Fixed CD environment error (Hopf fibration diagram)
 
+## Week 6 Progress (COMPLETE)
+
+### Appendices Expanded
+- [x] OPR Register: All 12 OPRs with dependencies, priorities, summary table
+- [x] Notation: Units, 5D/3D conventions, symbols, predictions, abbreviations
+- [x] Numerical Standards: Three-method verification, tolerances, BVP-specific, code examples
+- [x] Test compilation: SUCCESS
+
+### Epilogue Written
+- [x] Chapter 17 "Beyond the Weak Sector": Nuclear applications, experimental tests, philosophy
+- [x] Brief but substantive (not just placeholder)
+- [x] Test compilation: SUCCESS
+
+### Cross-Reference Fixes
+- [x] Fixed ch:bvp_master_key → ch:bvp (3 occurrences)
+- [x] Fixed ch:opr21_closure → ch:bvp
+- [x] Simplified BVP cross-references in V-A chapter
+- [x] Test compilation: **185 pages** - SUCCESS
+
 ### Pending
-- [ ] Week 6: Appendices, cross-references
 - [ ] Week 7: Polish and final review
 
 ## Original Version
