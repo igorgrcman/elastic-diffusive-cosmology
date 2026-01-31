@@ -1017,3 +1017,35 @@ Three TIER-1 gaps backfilled:
 ### Build Status
 - **153 pages** (up from 149)
 - Compiles clean, no new errors
+
+---
+
+## 2026-01-31: TIER-2 Backfill (GAP-8 + GAP-19)
+
+### Branch
+`backfill/tier2-v1` (from `backfill/tier1-v1`)
+
+### Completed
+Two TIER-2 gaps addressed:
+
+1. **GAP-8** (chapter_09_neutrinos.tex): PMNS θ₁₂ geometric candidate
+   - Formula: θ₁₂ = arctan(1/√2) ≈ 35.3° [Dc:Approx]
+   - sin²θ₁₂ = 1/3, 8.6% from PDG (GREEN status)
+   - Dictionary box clarifying scope
+   - Status: OPEN → DONE
+
+2. **GAP-19** (chapter_13_foundation_params.tex): g₅ derivation clarification
+   - Reduction formula g₅→g₄ already present [Dc]
+   - Added clarification: g₅ itself remains [P] (primitive)
+   - Analogy: g₅ like SM g (measured, not derived)
+   - Status: OPEN → PARTIAL
+
+### Files Modified
+- part2/chapter_09_neutrinos.tex (+35 lines)
+- part3/chapter_13_foundation_params.tex (+20 lines)
+- audit/gap_register_full.json (created/updated)
+- audit/backfill_report_tier2.md (new)
+
+### Build Status
+- **153 pages** (unchanged from TIER-1)
+- Compiles clean, no new errors
