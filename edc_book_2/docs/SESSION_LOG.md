@@ -929,3 +929,14 @@ Fix: Split the derivation:
 
 ### Branch
 `reorganization-epistemic-framework`
+
+---
+
+## 2026-01-30: Sanity Sweep (post-Pass 2)
+
+### Quick fixes
+1. **chapter_12**: Added clarification that R_ξ = weak-sector choice of generic ℓ
+2. **main.tex**: Updated page count from ~140 to ~145
+
+### Build Status
+- **145 pages**, compiles clean
