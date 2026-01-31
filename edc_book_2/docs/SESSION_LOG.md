@@ -995,3 +995,37 @@ Fix: Split the derivation:
 - No errors introduced by GAPFIX markers
 
 ### Branch: audit/prelet-scan-v1
+
+---
+
+## Session: 2026-01-31 – Gap Register (prioritized)
+
+### What was done:
+1. Received complete Gap Register from user (90 entries)
+2. Created `audit/gap_register_prioritized.md` with full register:
+   - Sorted by priority: C → B → A
+   - SM-risk + dictionary_step flagged at top
+   - Top 10 critical gaps identified
+
+### Gap breakdown:
+| Type | Count | SM-risk | dictionary_step | UNRESOLVED |
+|------|-------|---------|-----------------|------------|
+| C    | 22    | 9       | 17              | 0          |
+| B    | 56    | 7       | 12              | 1          |
+| A    | 12    | 0       | 0               | 3          |
+| Total| 90    | 16      | 29              | 4          |
+
+### Top 10 Critical (C + sm_risk + dictionary_step):
+1. C-2: Electron as B3 Vortex (str. 18)
+2. C-8: sin²θ_W identification (str. 63)
+3. C-11: PMNS interpretation (str. 93)
+4. C-12: V−A structural claim (str. 98)
+5. C-13: CKM hierarchy mechanism (str. 109)
+6. C-17: M_W and G_F closure claim (str. 138)
+
+### Note:
+- 602-str PDF does not exist in workspace
+- 461-str LaTeX sources available in edc_book_2/src/
+- UNRESOLVED entries need tex→tex mapping
+
+### Branch: audit/prelet-scan-v1
