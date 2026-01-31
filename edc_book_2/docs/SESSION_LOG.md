@@ -897,3 +897,35 @@ Fix: Split the derivation:
 ### Next Steps
 - Pass 2: Notation tripwires (symbol appears before definition)
 - Pass 3: Equation gloss (every key equation needs one-liner physical meaning)
+
+---
+
+## 2026-01-30: Pass 2 - Notation Tripwires + Equation Glosses
+
+### Session Goals
+- Remove notation tripwires (symbols used before defined)
+- Add one-line physical glosses for key equations
+- Resolve κ symbol ambiguity between chapters
+
+### Completed
+
+#### Layer A: Notation Tripwires Fixed
+1. **chapter_01**: Added "Key symbols (quick reference)" for σ, δ, V_B
+2. **chapter_09**: Added κ definition at first use (inverse localization length)
+3. **chapter_10**: Renamed κ → κ_T for fermion-stress coupling (disambiguation)
+4. **chapter_11**: Added note that κ = localization width (same as Ch.9)
+5. **chapter_12**: Added Scale Taxonomy reference for ℓ in Inputs box
+6. **notation.tex**: Added "Symbol Disambiguation" section for κ vs κ_T
+
+#### Layer B: Equation Glosses Added
+1. **chapter_06 (l.100)**: Coupling ratio 1/4 — boundary/interior volume ratio
+2. **chapter_11 (l.148)**: CKM overlap — exponential suppression from wavefunction separation
+3. **chapter_12 (l.103)**: g₄ = g₅/√R_ξ — dimensional dilution over compact dimension
+4. **chapter_13 (l.153)**: BPS constraint — tension×thickness fixed by potential
+
+### Build Status
+- **145 pages** (up from 143: added glosses increase content)
+- Compiles clean, no errors
+
+### Branch
+`reorganization-epistemic-framework`
