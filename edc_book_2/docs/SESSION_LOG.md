@@ -855,3 +855,45 @@ Fix: Split the derivation:
 ### Next Steps
 - Day 3-4: Complete Bridge Chapter 0 with full content
 - Day 5-7: Begin content migration
+
+---
+
+## 2026-01-30: Reader-Flow Pass + Front-Matter Polish
+
+### Session Goals
+- Final PDF pass for remaining "leak" points (language too strong, epistemic boundaries)
+- Add reader-flow guides (roadmaps, scope notes, inputs/outputs boxes)
+- Fix license/copyright wording contradiction
+- Add DOI and copyright page for Part II
+
+### Completed
+
+#### Epistemic Patches (5 locations)
+1. **chapter_09 (l.148)**: "Z₃ predicts exactly three" → split into [Der] (structure) + [Dc] (dictionary step)
+2. **chapter_09 (l.317)**: "predicts wrong θ₁₃" → "implies ... incompatible with data" + [Der:Sym]
+3. **chapter_11 (l.102)**: "This predicts all" → "Within DFT baseline, algebra [Der:Sym] yields"
+4. **chapter_11 (l.249)**: "predicts democratic" → "implies democratic" + [Der:Sym]
+5. **chapter_17 (l.111)**: "EDC predicts absolute stability" → "topological assumptions [P] would imply ... + quantitative disclaimer [Open]"
+
+#### Reader-Flow Additions (10 locations)
+1. **main.tex**: Updated page count (~140 pages), added epistemic tag list to features
+2. **copyright_page_DOI.tex**: New file with CC BY-NC-SA 4.0, DOI 10.5281/zenodo.18328508
+3. **chapter_01**: 3-step roadmap (barrier → WKB → dictionary)
+4. **chapter_06**: Scope note: SM identities [M] vs EDC claims [Dc≈]
+5. **chapter_09**: LEP experimental context (invisible Z width)
+6. **chapter_10**: "Edge mode" terminology disambiguation
+7. **chapter_11**: Claim scope: baseline [Der:Sym] → calibrated [Cal]
+8. **chapter_12**: Inputs/Outputs box for G_F chain
+9. **chapter_13**: "Why kink here?" motivation
+10. **chapter_14**: BVP physical role (mode spectrum + normalization)
+
+### Build Status
+- **143 pages** (including front matter)
+- Compiles clean, no errors
+
+### Branch
+`reorganization-epistemic-framework`
+
+### Next Steps
+- Pass 2: Notation tripwires (symbol appears before definition)
+- Pass 3: Equation gloss (every key equation needs one-liner physical meaning)
