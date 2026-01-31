@@ -985,3 +985,35 @@ Three TIER-0 gaps backfilled with donor content from src/:
 ### Build Status
 - **149 pages** (up from 145)
 - Compiles clean, no new errors
+
+---
+
+## 2026-01-31: TIER-1 Backfill (Gap Closure)
+
+### Branch
+`backfill/tier1-v1` (from `backfill/tier0-v1`)
+
+### Completed
+Three TIER-1 gaps backfilled:
+
+1. **GAP-5** (chapter_06_electroweak.tex): Mass mechanism dictionary
+   - EDC BVP eigenvalue vs SM Higgs SSB comparison [Dc/BL]
+   - Explicit table showing distinct frameworks
+
+2. **GAP-11** (chapter_07_leptons.tex): Yukawa from overlap integrals
+   - Overlap integral formula I_4 for fermion masses [Der]
+   - Dictionary: SM Yukawa ↔ EDC overlap [I]
+
+3. **GAP-14** (chapter_08_generations.tex): μ-window constraint
+   - Barrier parameter definition μ = ∫ m_eff/Λ dξ [Der]
+   - Stability window: μ₀,μ₁,μ₂ ≳ 5; μ₃ ≲ 1 [P/Open]
+
+### Files Modified
+- part2/chapter_06_electroweak.tex (+38 lines)
+- part2/chapter_07_leptons.tex (+40 lines)
+- part2/chapter_08_generations.tex (+38 lines)
+- audit/backfill_report_tier1.md (new)
+
+### Build Status
+- **153 pages** (up from 149)
+- Compiles clean, no new errors
