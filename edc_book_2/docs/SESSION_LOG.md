@@ -953,3 +953,36 @@ Fix: Split the derivation:
 - DOI: 10.5281/zenodo.18328508
 - Build: 145 pages, clean compile
 - Tag: edc-part2-v2.0
+
+---
+
+## 2026-01-31: Full Gap Register (Prelet Phrase Scan)
+
+### Goal
+Comprehensive prelet phrase scan + gap register for 145-page Book 2.
+Critique mode only — no patches.
+
+### Summary
+| Type | Count | Severity |
+|------|-------|----------|
+| Type C (Mechanism) | 10 | CRITICAL-MEDIUM |
+| Type B (Derivation) | 7 | CRITICAL-MEDIUM |
+| Type A (Definition) | 3 | HIGH-MEDIUM |
+| **Total** | **20** | |
+
+### Top 5 Critical Gaps
+1. GAP-4: Z₆ coupling ratio origin (sin²θ_W = 1/4)
+2. GAP-10: G_F reduction chain steps 2-3
+3. GAP-12: M_W derivation details
+4. GAP-7: Z₃ → three generations mechanism
+5. GAP-16: SU(3) ontological derivation
+
+### Gaps with NO Donor
+- GAP-15: Frozen regime two routes
+- GAP-20: Part I → Part II transition diagram
+
+### Outputs
+- audit/gap_register_full.md
+- audit/gap_register_full.json
+
+### Branch: audit/gap-register-full-v1
