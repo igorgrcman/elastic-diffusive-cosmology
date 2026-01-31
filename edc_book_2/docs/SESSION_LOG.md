@@ -986,3 +986,37 @@ Critique mode only — no patches.
 - audit/gap_register_full.json
 
 ### Branch: audit/gap-register-full-v1
+
+---
+
+## 2026-01-31: Donor Hunt Pass 2 (Systematic Repo Search)
+
+### Goal
+Locate donor content for all 17 GAP-XX entries with missing line ranges.
+
+### Results Summary
+| Status | Count |
+|--------|-------|
+| FOUND (HIGH) | 9 |
+| FOUND (MED) | 3 |
+| PARTIAL | 3 |
+| NO_MATCH | 2 |
+
+### Top 5 HIGH-Confidence Donors
+1. GAP-10 → 11_gf_derivation.tex:162-331
+2. GAP-12 → ch18_opr20_mediator_mass_from_eigenvalue.tex:136-405
+3. GAP-1 → 09_va_structure.tex:365-1030
+4. GAP-8 → 07_ckm_cp.tex:52-99
+5. GAP-7 → 05_three_generations.tex:40-100
+
+### Secondary Search Needed
+- GAP-9: neutrino counting (search 10_case_neutrino.tex)
+- GAP-14: kink model (check derivations/ or write original)
+- GAP-16: SU(3) (needs Part I material)
+- GAP-20: Part I→II transition (structural)
+
+### Outputs
+- audit/donor_hunt_pass2.md
+- audit/donor_hunt_pass2.json
+
+### Branch: audit/gap-register-full-v1
