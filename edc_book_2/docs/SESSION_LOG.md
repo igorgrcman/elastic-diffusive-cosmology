@@ -953,3 +953,45 @@ Fix: Split the derivation:
 - DOI: 10.5281/zenodo.18328508
 - Build: 145 pages, clean compile
 - Tag: edc-part2-v2.0
+
+---
+
+## Session: 2026-01-31 – Prelet Scan + GAPFIX Markers (v1)
+
+### What was done:
+1. Created `tools/prelet_scan.py` - page-by-page PDF scanner for narrative/derivation jumps
+2. Ran scan on main.pdf (145 pages), found 90 potential gaps
+3. Generated `audit/prelet_scan_report.md` and `audit/prelet_scan_findings.json`
+4. Created `tools/apply_gapfix_markers.py` - marker insertion script
+5. Applied 60 GAPFIX markers to 17 LaTeX source files
+6. 30 findings remain UNRESOLVED (no tex mapping) - require manual review
+
+### Gap types found:
+- Type A (missing definition): 12
+- Type B (missing derivation): 56
+- Type C (narrative/mechanism jump): 22
+
+### Files modified with GAPFIX markers:
+- main.tex (9 markers)
+- bridge/chapter_0_bridge.tex (2)
+- bridge/EPISTEMIC_STANDARD_COMPLETE_FINAL.tex (4)
+- part1/chapter_01_weak_interface.tex (7)
+- part1/chapter_02_ontology.tex (5)
+- part1/chapter_03_frozen.tex (1)
+- part1/chapter_04_z6_program.tex (3)
+- part2/chapter_06_electroweak.tex (1)
+- part2/chapter_08_generations.tex (5)
+- part2/chapter_09_neutrinos.tex (2)
+- part2/chapter_10_va_structure.tex (5)
+- part2/chapter_11_ckm.tex (4)
+- part3/chapter_12_gf_chain.tex (1)
+- part3/chapter_13_foundation_params.tex (4)
+- part3/chapter_16_epistemic_summary.tex (3)
+- epilogue/chapter_17_beyond.tex (3)
+- appendices/numerical_standards.tex (1)
+
+### Build verified:
+- LaTeX compiles cleanly: 145 pages
+- No errors introduced by GAPFIX markers
+
+### Branch: audit/prelet-scan-v1
