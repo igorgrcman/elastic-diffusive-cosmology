@@ -1017,3 +1017,46 @@ Three TIER-1 gaps backfilled:
 ### Build Status
 - **153 pages** (up from 149)
 - Compiles clean, no new errors
+
+---
+
+## 2026-01-31: Donor Hunt Pass 3 (Repo-Wide Gap Mapping)
+
+### Branch
+`audit/donor-hunt-pass3-v1`
+
+### Completed
+Repo-wide donor hunt mapping all 20 gaps to best donor blocks:
+
+**Gap Registry Created:**
+- `audit/gap_register_full.json`: 20 gaps with stable IDs
+
+**Donor Mapping Results:**
+- 6 gaps already closed (TIER-0/1)
+- 5 gaps have high-quality donors (ready for TIER-2)
+- 7 gaps have partial donors (need additional work)
+- 2 gaps have no donor available
+
+**Key Findings:**
+1. **GAP-8** (PMNS θ₁₂): Full donor in `ch6_pmns_attempt4_2_theta12_origin.tex`
+   - T1: arctan(1/√2) = 35.26° (8.6% error) [Dc]
+   - Ready for TIER-2 backfill
+
+2. **GAP-19** (g₅ derivation): Full donor in `ch17_opr19_g5_from_action.tex`
+   - 1/g₄² = (1/g₅²)∫|f(ξ)|²dξ derived [Dc]
+   - Warp factor cancellation proven
+
+3. **GAP-15** (SU(2)_L origin): NO_DONOR_FOUND
+   - Fundamental postulate, requires new theory
+
+4. **GAP-17** (Dirac/Majorana): NO_PREDICTION
+   - Framework-agnostic by design
+
+### Files Created
+- audit/gap_register_full.json
+- audit/donor_hunt_pass3.json
+- audit/donor_hunt_pass3.md
+
+### Next Steps
+- TIER-2 backfill for GAP-8, GAP-19
+- BVP closure to unblock GAP-12 → GAP-2 → GAP-20
