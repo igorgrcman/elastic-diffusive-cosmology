@@ -57,6 +57,19 @@
 - Added Part I citation box with DOI: 10.5281/zenodo.18176174
 - Fixed chapter references to match actual Part I structure (Ch.3-5)
 
+### Coordinate Unification (ξ vs y)
+
+**Notation appendix:**
+- Added "Transverse Coordinate Convention" section
+- Canonical: ξ, with y≡ξ alias for BVP
+- Clarified: local wall [-δ/2,+δ/2] vs compact bulk [0,ℓ]
+
+**Chapter 14:**
+- Added coordinate note: "y≡ξ, see Appendix"
+
+**Chapter 13:**
+- Added domain note in OPR-19: ξ∈[0,ℓ] distinct from BVP region
+
 ### Layout Changes
 
 - Font: 12pt → 11pt
