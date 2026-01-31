@@ -1029,3 +1029,30 @@ Fix: Split the derivation:
 - UNRESOLVED entries need tex→tex mapping
 
 ### Branch: audit/prelet-scan-v1
+
+---
+
+## Session: 2026-01-31 – Backfill Top 5 (tex→tex)
+
+### What was done:
+1. Created branch `backfill/top5-v1`
+2. Applied minimal backfill for 5/6 critical gaps (PMNS skipped - no donor):
+   - Gap 1: Electron/B3 — separated isoperimetric theorem from stability claim
+   - Gap 2: sin²θ_W — dictionary box for geometry→observable boundary
+   - Gap 4: V−A — chiral mode equations from domain-wall mechanism
+   - Gap 5: CKM — overlap integral derivation + calibration disclosure
+   - Gap 6: M_W/G_F — electroweak closure dictionary box
+3. Generated `audit/backfill_report_top5.md`
+
+### Changes:
+- +106 lines across 5 files
+- 4 dictionary boxes added
+- Build verified: 149 pages (was 145)
+
+### Tag changes applied:
+- Gap 1: Separated [M] (theorem) from [I]/[P] (physical interpretation)
+- Gap 2: Explicit [Der:Sym], [BL], [Dc] separation
+- Gap 5: Added [Cal] for Cabibbo calibration
+- Gap 6: Explicit [Der:Sym], [Cal], [BL] labels
+
+### Branch: backfill/top5-v1
