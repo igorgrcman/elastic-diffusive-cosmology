@@ -940,3 +940,16 @@ Fix: Split the derivation:
 
 ### Build Status
 - **145 pages**, compiles clean
+
+---
+
+## 2026-01-31: Release Prep v2.0
+
+### Completed
+1. Created CHANGELOG.md documenting all v2.0 changes
+2. Prepared for git tag and Zenodo deposit
+
+### Release artifacts
+- DOI: 10.5281/zenodo.18328508
+- Build: 145 pages, clean compile
+- Tag: edc-part2-v2.0
