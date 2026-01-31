@@ -1056,3 +1056,35 @@ Fix: Split the derivation:
 - Gap 6: Explicit [Der:Sym], [Cal], [BL] labels
 
 ### Branch: backfill/top5-v1
+
+---
+
+## Session: 2026-01-31 – PMNS Donor Hunt
+
+### Goal:
+Repo-wide search for PMNS/lepton-mixing derivation content to backfill Gap 3 (skipped in Top 5).
+
+### What was found:
+1. **7 candidate donor files** identified across repo
+2. **GREEN result for theta_23** — derived from Z_6 geometry (sin²θ_23 = 0.564, 3% from PDG)
+3. **YELLOW for theta_12/theta_13** — structure identified but values not derived
+
+### Key donor files:
+- `ch6_pmns_attempt2.tex` — theta_23 success box, stoplight tables
+- `ch6_pmns_attempt4_menu.tex` — A4-1 configuration, epistemic warning
+- `06_neutrinos_edge_modes.tex` — Framework 2.0 chapter structure
+
+### Outputs created:
+- `audit/donor_hunt_pmns.json` — machine-readable donor registry
+- `audit/donor_hunt_pmns_report.md` — full analysis report
+
+### Conclusion:
+**DONOR FOUND (partial)** — theta_23 can upgrade from RED to GREEN [Dc].
+PMNS section can upgrade from RED to YELLOW overall.
+
+### Next steps:
+1. Backfill theta_23 success box into chapter_09_neutrinos.tex
+2. Update stoplight table (theta_23 GREEN, others YELLOW)
+3. Add epistemic warning for [Dc] vs [I] vs [Cal] per angle
+
+### Branch: audit/donor-hunt-pmns-v1
