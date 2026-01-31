@@ -953,3 +953,29 @@ Fix: Split the derivation:
 - DOI: 10.5281/zenodo.18328508
 - Build: 145 pages, clean compile
 - Tag: edc-part2-v2.0
+
+---
+
+## 2026-01-31: PMNS theta_23 Backfill
+
+### Goal
+Minimal backfill for Gap 3 (PMNS) — only theta_23 GREEN result from donor hunt.
+
+### What was added (chapter_09_neutrinos.tex):
+1. **Success box** for sin²θ₂₃ = 0.564 derived from Z₆ geometry [Dc]
+2. **Epistemic warning box** clarifying per-angle status
+3. **Updated stoplight table** — theta_23 GREEN, theta_12/13 YELLOW
+
+### Key epistemic points:
+- Observable labeled explicitly as sin²θ₂₃ (not θ₂₃)
+- Inputs: Z₆ lattice [I], overlap ansatz [P]
+- Output: sin²θ₂₃ = 0.564 [Dc] (3% from PDG 0.546)
+- theta_12/theta_13 remain partial [I/Cal]
+
+### Files modified:
+- part2/chapter_09_neutrinos.tex (+40 lines)
+- audit/backfill_report_pmns_theta23.md (created)
+
+### Build: 145 pages (clean)
+
+### Branch: backfill/pmns-theta23-v1
