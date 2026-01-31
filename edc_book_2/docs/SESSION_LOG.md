@@ -953,3 +953,35 @@ Fix: Split the derivation:
 - DOI: 10.5281/zenodo.18328508
 - Build: 145 pages, clean compile
 - Tag: edc-part2-v2.0
+
+---
+
+## 2026-01-31: TIER-0 Backfill (Gap Closure)
+
+### Branch
+`backfill/tier0-v1`
+
+### Completed
+Three TIER-0 gaps backfilled with donor content from src/:
+
+1. **GAP-4** (chapter_06_electroweak.tex): Explicit Z₆ partition counting
+   - Added |Z₂|/(|Z₂|+|Z₆|) = 2/8 = 1/4 derivation [Der:Sym]
+   - Coupling ratio g'²/g² = |Z₂|/|Z₆| = 1/3
+
+2. **GAP-10** (chapter_12_gf_chain.tex): Mediator integration steps 2-3
+   - Added tree-level W exchange → G_eff derivation [Dc]
+   - Explicit effective Lagrangian formula
+
+3. **GAP-1** (chapter_10_va_structure.tex): V-A dictionary box
+   - Added EDC chirality ↔ SM V-A mapping [Dc]
+   - Clarified what is derived vs open
+
+### Files Modified
+- part2/chapter_06_electroweak.tex
+- part2/chapter_10_va_structure.tex
+- part3/chapter_12_gf_chain.tex
+- audit/backfill_report_tier0.md (new)
+
+### Build Status
+- **149 pages** (up from 145)
+- Compiles clean, no new errors
