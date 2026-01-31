@@ -57,7 +57,7 @@ is assumed.}
 \toprule
 \textbf{Symbol} & \textbf{Name} & \textbf{Physical Role} & \textbf{Status} \\
 \midrule
-$\Delta$ & Kink width & Scalar wall microphysics: $\phi = v\tanh(\xi/\Delta)$ & \tagM{} \\
+$\Delta$ & Kink width & Scalar wall microphysics: $\phi = v\tanh(\xi/\Delta)$ & \tagDer{} \\
 $\delta$ & Boundary-layer & Transport/diffusion regularization for Robin BC & \tagP{} \\
 $\ell$ & Domain support & Sturm--Liouville interval for OPR-21: $\mu = M_0\ell$ & \tagP{} \\
 $R_\xi$ & Diffusion scale & Coordinate/correlation length: $R_\xi = \hbar c/M_Z$ & \tagBL{} \\
@@ -68,7 +68,7 @@ $R_\xi$ & Diffusion scale & Coordinate/correlation length: $R_\xi = \hbar c/M_Z$
 \medskip
 \textbf{Key formulas:}
 \begin{itemize}[nosep]
-    \item $\Delta = 2/(v\sqrt{\lambda})$ \tagM{} --- from $\lambda\phi^4$ kink theory
+    \item $\Delta = 2/(v\sqrt{\lambda})$ \tagDer{} --- from $\lambda\phi^4$ kink theory (EOM solution)
     \item $R_\xi \approx 2.16 \times 10^{-3}$ fm \tagBL{} --- anchored to $M_Z$
     \item Unit conversion: $1\,\mathrm{fm} = 5.0677\,\mathrm{GeV}^{-1}$
 \end{itemize}
@@ -120,7 +120,9 @@ $\phi(\xi)$ with a double-well potential \tagP{}:
     \label{eq:opr01_potential}
 \end{equation}
 
-The static kink solution interpolating between the two vacua $\phi = \pm v$ is \tagM{}:
+The static kink solution interpolating between the two vacua $\phi = \pm v$
+is a standard consequence of the Euler--Lagrange equation for
+Eq.~(\ref{eq:opr01_potential}) \tagDer{}:
 \begin{equation}
     \phi(\xi) = v \tanh\left(\frac{\xi}{\Delta}\right)
     \label{eq:opr01_kink}
@@ -141,7 +143,7 @@ The bulk fermion acquires a position-dependent mass through Yukawa coupling \tag
 \subsection{Domain-Wall Tension}
 
 The tension $\sigma$ is the integrated energy density per unit transverse area.
-Using the BPS condition (kinetic = potential energy throughout the wall) \tagM{}:
+Assuming a BPS-saturated (minimum-tension) wall within this effective scalar model \tagP{}:
 \begin{equation}
     \sigma = \int_{-\infty}^{\infty} T_{00}(\xi) \, d\xi = \frac{2\lambda v^4 \Delta}{3}
 \end{equation}
@@ -152,7 +154,14 @@ Substituting $\lambda = 2/(\Delta^2 v^2)$:
     \label{eq:opr01_sigmaDelta}
 \end{equation}
 
-This is a fundamental \textbf{BPS constraint} connecting tension, thickness, and scalar VEV \tagDc{}.
+This is the \textbf{BPS constraint} connecting tension, thickness, and scalar VEV.
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!50!black,
+    title=\textbf{Dictionary Note (Scope)}]
+The relations in this subsection are \emph{exact within the scalar kink model}.
+Identifying $\sigma_{\text{kink}}$ with the EDC membrane tension $\sigma_{\text{EDC}}$
+is a conditional dictionary assumption \tagDc{} (not a pure theorem).
+\end{tcolorbox}
 
 \subsection{Main Result: $M_0$ from $\sigma$ and $\Delta$}
 
@@ -162,6 +171,10 @@ Combining $v = M_0/y$ with the BPS constraint:
     \quad \tagDcSym{}
     \label{eq:opr01_result}
 \end{equation}
+
+\textbf{Parameter status:} The Yukawa factor $y$ is not yet derived from geometry
+and is treated as \tagOpen{} (or \tagCal{} if later anchored). Therefore $M_0$ is a
+conditional scale \tagDc{}, not a prediction.
 
 \textbf{Consequence for three generations (OPR-21):}
 The dimensionless parameter $\mu = M_0 \ell$ controls bound state count. If $\ell = n\Delta$
@@ -188,7 +201,7 @@ expectation value and $\lambda$ is the self-coupling.
 
 \subsection{Derivation from BPS Equation}
 
-The static kink satisfies the BPS equation \tagM{}:
+The static kink satisfies the BPS equation (first-order reduction of EOM) \tagDer{}:
 \begin{equation}
     \frac{d\phi}{d\xi} = \pm \sqrt{2 V(\phi)}
     \label{eq:opr04_BPS}
@@ -199,7 +212,7 @@ Substituting the tanh ansatz and equating coefficients:
     \frac{v}{\Delta} = v^2 \sqrt{\frac{\lambda}{2}}
     \quad \Rightarrow \quad
     \boxed{\Delta = \frac{2}{v\sqrt{\lambda}} = \sqrt{\frac{2}{\lambda}} \cdot \frac{1}{v}}
-    \quad \tagM{}
+    \quad \tagDer{}
     \label{eq:opr04_result}
 \end{equation}
 
@@ -259,6 +272,13 @@ With the warped metric ansatz \tagP{}:
 Decomposing into KK modes $A_\mu(x,\xi) = \sum_n a_\mu^{(n)}(x) f_n(\xi)$ and
 computing the 4D effective action:
 
+\textbf{Scope assumptions (for the cancellation below):}
+\begin{itemize}[nosep]
+\item $A_5 = 0$ gauge; we keep only the $F_{\mu\nu}$ kinetic term.
+\item Zero-mode reduction with separable form $A_\mu(x,\xi)=a_\mu(x)f(\xi)$.
+\item Mode normalization is specified explicitly below (this choice affects the $g_5 \to g_4$ mapping).
+\end{itemize}
+
 \begin{tcolorbox}[colback=green!5!white, colframe=green!50!black,
     title=\textbf{Warp Factor Cancellation}]
 \begin{equation}
@@ -285,11 +305,24 @@ regardless of the warp factor profile.
 
 \textbf{Weight function:} $W(\xi) = 1$ (flat measure, due to warp cancellation).
 
-\textbf{Special case:} For flat zero mode $f_0 = 1/\sqrt{\ell}$:
+\textbf{Special case (flat zero-mode):}
+For $f_0 = 1/\sqrt{\ell}$ one has $\int_0^\ell d\xi\,|f_0|^2 = 1$, so
 \begin{equation}
-    g_{4,0} = g_5
+    \frac{1}{g_4^2} = \frac{1}{g_5^2} \cdot 1
+    \label{eq:opr19_flat_integral}
+\end{equation}
+
+\textbf{Dimensional convention:} In standard 5D normalization, $g_5$ has dimension
+$[\text{length}]^{1/2}$ (or $[\text{mass}]^{-1/2}$ in natural units).
+The \emph{dimensionless} 4D coupling is:
+\begin{equation}
+    \boxed{g_4 = \frac{g_5}{\sqrt{\ell}}} \quad \tagDer{}
     \label{eq:opr19_flat}
 \end{equation}
+
+\textbf{Alternative convention:} Defining $\tilde{g}_5 \equiv g_5/\sqrt{\ell}$
+(dimensionless), one may write $g_4 = \tilde{g}_5$. This convention is sometimes
+used implicitly; we use the standard (dimensionful $g_5$) convention throughout.
 \end{tcolorbox}
 
 % ════════════════════════════════════════════════════════════════════════════════
@@ -314,7 +347,7 @@ $\lambda$ & \tagDc{} & OPR-04 & Eliminated via BPS: $\sigma\Delta = 4v^2/3$ \\
 $y$ & \tagP{} & OPR-01 & Primitive (Yukawa coupling) \\
 $n$ & \tagP{} & --- & Primitive ($\ell/\Delta$ ratio) \\
 $g_5$ & \tagP{} & OPR-19 & Primitive (5D gauge coupling) \\
-$g_4$ & \tagDc{} & OPR-19 & $= g_5/\sqrt{\int|f|^2 d\xi}$ \\
+$g_4$ & \tagDc{} & OPR-19 & $= g_5/\sqrt{\ell}$ (flat zero-mode) \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -353,7 +386,7 @@ $g_4$ & \tagDc{} & OPR-19 & $= g_5/\sqrt{\int|f|^2 d\xi}$ \\
 
 \textbf{Inputs used:}
 \begin{itemize}[nosep]
-    \item[$\checkmark$] Mathematical theorems: scalar kink theory, BPS relation \tagM{}
+    \item[$\checkmark$] Standard results: scalar kink theory, BPS saturation \tagDer{} (from \tagM{} foundations)
     \item[$\checkmark$] Domain-wall ansatz $M(\xi) = M_0 \tanh(\xi/\Delta)$ \tagP{}
     \item[$\checkmark$] Yukawa coupling ansatz \tagP{}
     \item[$\checkmark$] Warped metric ansatz \tagP{}

@@ -1,5 +1,73 @@
 # EDC Book 2 - Session Log
 
+## 2026-01-30: Chapters 13-14 Audit + Book→Part Harmonization
+
+### Session Goals
+- Ch.13-14 epistemic fixes (kink/BPS scope, g₅→g₄ dimensions, BVP conventions)
+- Harmonize all "Book 1/Book 2" → "Part I/Part II" references
+- Add Part I full citation box in Bridge chapter
+- Layout improvements (11pt, 25/20mm margins, fancyhdr)
+
+### Ch.13 Foundation Parameters - Fixes Applied
+
+**Kink solution tag:**
+- [M] → [Der] + "Euler-Lagrange solution of Eq.(potential)"
+
+**BPS condition:**
+- [M] → [P] "BPS-saturated assumption"
+- Added Dictionary Note scope box: σ_kink ↔ σ_EDC is [Dc]
+
+**M₀ result:**
+- Added y [Open] note: "Yukawa factor y is not yet derived"
+- M₀ is conditional scale [Dc], not prediction
+
+**OPR-19 scope (CRITICAL):**
+- Added assumptions bullet: A₅=0 gauge, zero-mode, normalization explicit
+- **g₅→g₄ dimensional convention**: g₄ = g₅/√ℓ (standard)
+- Explicit: g₅ has dimension [length]^{1/2}
+
+**Scale taxonomy table:**
+- Δ [M] → [Der] (EOM solution, not pure math)
+
+**No-Smuggling certification:**
+- Clarified: "Standard results [Der] (from [M] foundations)"
+
+### Ch.14 BVP Framework - Fixes Applied
+
+**λ convention:**
+- Added explicit: λ ≡ (mc/ℏ)² (4D mass parameter squared)
+
+**Robin eigenvalue table:**
+- Fixed n ranges: Dirichlet n≥1, Neumann n≥0
+
+**Neutrino suppression:**
+- [Dc] → [I] + upgrade note (consistent with Ch.9)
+
+**Numerical standards:**
+- Added error metric: |Δλ|/λ ≤ 10⁻¹⁰
+
+### Book → Part Harmonization
+
+**Global replacements:**
+- "Book 1" → "Part I" (all files)
+- "Book 2" → "Part II" (all files)
+- "Book-1" → "Part~I"
+
+**Bridge chapter:**
+- Added Part I citation box with DOI: 10.5281/zenodo.18176174
+- Fixed chapter references to match actual Part I structure (Ch.3-5)
+
+### Layout Changes
+
+- Font: 12pt → 11pt
+- Margins: default → 25mm L/R, 20mm T/B
+- Headers: fancyhdr with "Chapter N: Title" format (not uppercase)
+
+### Compilation Status
+- **141 pages** SUCCESS (0 errors)
+
+---
+
 ## 2026-01-30: Chapters 15-17 Audit - Critical Epistemic Fixes
 
 ### Session Goals

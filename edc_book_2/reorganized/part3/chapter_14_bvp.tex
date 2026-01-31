@@ -53,7 +53,7 @@ For a field $\psi(y)$ confined to the brane:
 where:
 \begin{itemize}[nosep]
 \item $V(y)$: Effective potential from brane profile
-\item $\lambda$: Eigenvalue (related to 4D mass)
+\item $\lambda$: Eigenvalue. \textbf{Convention:} $\lambda \equiv (mc/\hbar)^2$ (4D mass parameter squared).
 \end{itemize}
 
 \subsection{Boundary Conditions}
@@ -107,13 +107,13 @@ where $k = \sqrt{\lambda}$ and $\lambda$ is the eigenvalue.
 \subsection{Limiting Cases}
 
 \begin{center}
-\begin{tabular}{lll}
+\begin{tabular}{llll}
 \toprule
-\textbf{Limit} & \textbf{Condition} & \textbf{Spectrum} \\
+\textbf{Limit} & \textbf{Condition} & \textbf{Spectrum} & \textbf{Mode range} \\
 \midrule
-$\kappa \to \infty$ & Dirichlet & $k_n = n\pi/\delta$ \\
-$\kappa \to 0$ & Neumann & $k_n = n\pi/\delta$ (shifted) \\
-Finite $\kappa$ & Robin & Transcendental equation \\
+$\kappa \to \infty$ & Dirichlet & $k_n = n\pi/\delta$ & $n \ge 1$ \\
+$\kappa \to 0$ & Neumann & $k_n = n\pi/\delta$ & $n \ge 0$ \\
+Finite $\kappa$ & Robin & Transcendental equation & $n \ge 0$ \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -174,8 +174,11 @@ Neutrinos are edge modes (Chapter~\ref{ch:neutrinos}), giving exponentially
 suppressed eigenvalues:
 \begin{equation}
 \lambda_\nu \sim e^{-2\kappa\delta} \quad \implies \quad
-m_\nu \sim m_e \cdot e^{-\kappa\delta} \quad \tagDc
+m_\nu \sim m_e \cdot e^{-\kappa\delta} \quad \tagI
 \end{equation}
+\textbf{Note}: This is tagged \tagI{} (identification) because the explicit overlap
+integral and $\kappa$ value are not yet derived; upgrade to \tagDc{} requires
+completing OPR-21.
 
 % ════════════════════════════════════════════════════════════
 \section{Numerical Methods}
@@ -203,7 +206,9 @@ As specified in Appendix~\ref{app:numerical_standards}:
 \item \textbf{Asymptotic}: Verify analytic limits ($\kappa \to 0, \infty$)
 \end{enumerate}
 
-\textbf{Tolerance}: $10^{-10}$ relative error for eigenvalues.
+\textbf{Error metric}: We report relative eigenvalue error $|\Delta\lambda|/\lambda$.
+
+\textbf{Target}: $|\Delta\lambda|/\lambda \le 10^{-10}$ for quoted benchmark values.
 
 \subsection{Reference Implementation}
 
