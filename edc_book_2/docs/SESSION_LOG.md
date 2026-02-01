@@ -1096,3 +1096,10 @@ Two TIER-2 gaps addressed:
 - Was accidentally replaced with 438-line simplified version
 - Original content (22 pages, full physics) now preserved
 - V7.8 audit package remains as reference documentation
+
+**V7.8 Integration Added (same session):**
+- Added new subsubsection 3.2.7: "Complementary Analysis: Coordination Distance d(n)"
+- Compares ε_f approach (R² = 0.9941) with d(n) approach (R² = 0.9805)
+- Includes robustness tests: permutation, CV, deformation proxy control
+- Interpretation: prefactor (S_α) enhancement mechanism
+- Document now 23 pages (was 22)
