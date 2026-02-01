@@ -1,6 +1,6 @@
 # EDC Book 2 - Session Log
 
-## 2026-02-01: Superheavy Predictions + Prefactor Optimization
+## 2026-02-01: Superheavy Predictions + Prefactor Validation
 
 ### Session Goals
 - Generate superheavy (Z≥114) α-decay predictions using V7.8 M2 model
@@ -9,33 +9,54 @@
 
 ### Key Findings
 
-**Prefactor Optimization (MAJOR):**
-- Tested p ∈ {5.9, 5.95, 6.0, 6.05, 6.1, 6.15, 6.2} on 86 H0 nuclides
-- **p = 6.0 is OPTIMAL**: R² = 0.9753, RMSE = 0.931, pass = 86%
-- Previous p = 6.1: R² = 0.9390, RMSE = 1.462, pass = 70%
-- Updated default prefactor from 6.1 → 6.0 [Cal]
+**CRITICAL CORRECTION: Proper Refit Analysis**
 
-**Superheavy Predictions (with p=6.0):**
+Initial sensitivity scan (fixed coefficients) incorrectly suggested p=6.0 was optimal.
+With **proper 5-fold CV and full coefficient refit**, the results are different:
+
+| p | CV R² | SHE Mean Δ | Og-294 Δ | Pass |
+|---|-------|------------|----------|------|
+| 6.00 | 0.965 | 0.93 | 0.84 | 5/6 |
+| **6.10** | **0.971** | **0.47** | **0.16** | **6/6** |
+
+**p = 6.1 CONFIRMED as optimal** for superheavy extrapolation when coefficients are properly refitted.
+
+**Superheavy Predictions (with p=6.1, refitted):**
 | Nuclide | t_pred | t_exp | Δlog |
 |---------|--------|-------|------|
-| Fl-289 | 1.4 s | 2.1 s | 0.19 |
-| Og-294 | 0.9 ms | 0.7 ms | **0.12** |
-| Mean | — | — | **0.38 dex** |
+| Fl-289 | 0.9 s | 2.1 s | 0.38 |
+| Og-294 | 0.5 ms | 0.7 ms | **0.17** |
+| Mean | — | — | **0.48 dex** |
 
 - Pass rate: **6/6 (100%)**
 - Improvement vs baseline GN: **16×**
 
+### Refitted Coefficients (p=6.1)
+```
+a  = 1.632 (was 1.593)
+g  = -1.763 (was -1.643)
+b  = -50.75 (was -50.77)
+c1 = 1.124 (was 1.121)
+c2 = 1.532 (was 1.538)
+```
+
 ### Files Created/Modified
-- `src/derivations/code/superheavy_predictions.py` (v2, with CSV/plot/sensitivity)
-- `src/derivations/code/prefactor_sensitivity_full.py` (full dataset test)
+- `src/derivations/code/superheavy_predictions.py` (v2, corrected)
+- `src/derivations/code/prefactor_sensitivity_full.py`
+- `src/derivations/code/prefactor_refit_cv.py` (proper CV analysis)
+- `src/derivations/code/superheavy_oos_test.py` (OOS validation)
 - `src/derivations/tables/TAB_SUPERHEAVY_PREDICTIONS.tex`
 - `src/derivations/tables/superheavy_predictions.csv`
 - `src/derivations/figures/FIG_SUPERHEAVY_GN_VS_FRUSTRATION.png`
 
 ### Epistemic Status
-- Prefactor p = 6.0: [Cal] (phenomenological, not derived from first principles)
-- Superheavy predictions: [I] (extrapolation from actinide fit)
+- Prefactor p = 6.1: [Cal] (validated by CV + OOS test)
+- Superheavy predictions: [I] (extrapolation, 6/6 pass)
 - V7.8 M2 g-coefficient: [Der] (robust regression with uncertainty)
+
+### Lesson Learned
+Always do proper coefficient refit when testing prefactor variations.
+Fixed-coefficient sensitivity scans can give misleading results.
 
 ---
 

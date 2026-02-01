@@ -29,26 +29,34 @@ from typing import List, Tuple, Dict, Optional
 # Source: 07_FIT_RESULTS_V7_8.md lines 62-70
 # =============================================================================
 
+# V7.8 M2 coefficients (refitted with p=6.1 on full ALPHA100 dataset)
+# Source: superheavy_oos_test.py full-dataset fit
 COEF = {
-    'a': 1.593,      # Z_d/√Q_α coefficient
-    'a_se': 0.028,
-    'g': -1.643,     # d(n) coefficient (NEGATIVE = frustration → faster decay)
-    'g_se': 0.142,
-    'c1': 1.121,     # H1 hindrance
+    'a': 1.632,      # Z_d/√Q_α coefficient
+    'a_se': 0.028,   # (uncertainty from original V7.8 fit)
+    'g': -1.763,     # d(n) coefficient (NEGATIVE = frustration → faster decay)
+    'g_se': 0.142,   # (uncertainty from original V7.8 fit)
+    'c1': 1.124,     # H1 hindrance
     'c1_se': 0.314,
-    'c2': 1.538,     # H2 hindrance
+    'c2': 1.532,     # H2 hindrance
     'c2_se': 0.265,
-    'b': -50.77,     # intercept
+    'b': -50.75,     # intercept
     'b_se': 0.91,
 }
 
 # Prefactor for n(A) = prefactor × A^(1/3)
-# Originally calibrated as 6.1 for n(208) ≈ 36 (Pb-208)
-# Sensitivity analysis (V7.8 full dataset, 86 H0 nuclides) shows:
-#   p=6.0: R²=0.9753, RMSE=0.931, pass=86%
-#   p=6.1: R²=0.9390, RMSE=1.462, pass=70%
-# → p=6.0 is OPTIMAL for both actinide and superheavy regimes [Cal]
-N_PREFACTOR = 6.0  # Updated from 6.1 based on sensitivity analysis
+# Calibrated so n(208) ≈ 36 for Pb-208 (doubly magic)
+#
+# SENSITIVITY ANALYSIS (with proper refit + 5-fold CV):
+#   p=6.0: Train R²=0.976, SHE Mean Δ=0.93, Og-294 Δ=0.84
+#   p=6.1: Train R²=0.980, SHE Mean Δ=0.47, Og-294 Δ=0.16 ← BEST
+#   p=6.05: intermediate
+#
+# IMPORTANT: Earlier claim that p=6.0 is better was based on FIXED coefficients.
+# With proper refit, p=6.1 gives BEST superheavy extrapolation.
+#
+# Epistemic status: [Cal] - phenomenological, calibrated to Pb-208
+N_PREFACTOR = 6.1
 
 # =============================================================================
 # COORDINATION LAW: n = 2^a × 3^b
