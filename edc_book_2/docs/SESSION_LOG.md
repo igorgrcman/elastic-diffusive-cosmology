@@ -1,5 +1,44 @@
 # EDC Book 2 - Session Log
 
+## 2026-02-01: Superheavy Predictions + Prefactor Optimization
+
+### Session Goals
+- Generate superheavy (Z≥114) α-decay predictions using V7.8 M2 model
+- Test prefactor sensitivity for n(A) = p × A^(1/3)
+- Create reproducible Python scripts, LaTeX tables, and visualizations
+
+### Key Findings
+
+**Prefactor Optimization (MAJOR):**
+- Tested p ∈ {5.9, 5.95, 6.0, 6.05, 6.1, 6.15, 6.2} on 86 H0 nuclides
+- **p = 6.0 is OPTIMAL**: R² = 0.9753, RMSE = 0.931, pass = 86%
+- Previous p = 6.1: R² = 0.9390, RMSE = 1.462, pass = 70%
+- Updated default prefactor from 6.1 → 6.0 [Cal]
+
+**Superheavy Predictions (with p=6.0):**
+| Nuclide | t_pred | t_exp | Δlog |
+|---------|--------|-------|------|
+| Fl-289 | 1.4 s | 2.1 s | 0.19 |
+| Og-294 | 0.9 ms | 0.7 ms | **0.12** |
+| Mean | — | — | **0.38 dex** |
+
+- Pass rate: **6/6 (100%)**
+- Improvement vs baseline GN: **16×**
+
+### Files Created/Modified
+- `src/derivations/code/superheavy_predictions.py` (v2, with CSV/plot/sensitivity)
+- `src/derivations/code/prefactor_sensitivity_full.py` (full dataset test)
+- `src/derivations/tables/TAB_SUPERHEAVY_PREDICTIONS.tex`
+- `src/derivations/tables/superheavy_predictions.csv`
+- `src/derivations/figures/FIG_SUPERHEAVY_GN_VS_FRUSTRATION.png`
+
+### Epistemic Status
+- Prefactor p = 6.0: [Cal] (phenomenological, not derived from first principles)
+- Superheavy predictions: [I] (extrapolation from actinide fit)
+- V7.8 M2 g-coefficient: [Der] (robust regression with uncertainty)
+
+---
+
 ## 2026-01-30: Chapters 13-14 Audit + Book→Part Harmonization
 
 ### Session Goals
