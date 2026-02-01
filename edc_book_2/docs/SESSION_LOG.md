@@ -1103,3 +1103,17 @@ Two TIER-2 gaps addressed:
 - Includes robustness tests: permutation, CV, deformation proxy control
 - Interpretation: prefactor (S_α) enhancement mechanism
 - Document now 23 pages (was 22)
+
+**V7.x FULL Integration (same session):**
+- Added complete V7.4-V7.8 content (not just summaries)
+- Document: 22 → 26 pages, 1150 → 1469 lines
+- New subsections:
+  - V7.4 Baseline Regression (full coefficient table)
+  - V7.5 Generalization Tests (CV, permutation, calibration, robust, within-element)  
+  - V7.6.1 Sign Resolution (T1, T2, T3 tests)
+  - V7.7 Prefactor Mechanism Model
+  - V7.7 Crystal Defect Analogy (mapping table)
+  - V7.7 Forbidden Alternatives Matrix (M1-M6 table)
+  - V7.8 Mediation Analysis (M0-M7 hierarchy)
+  - V7.8 Open Questions (kingpins, path to [Der])
+  - Comparison of ε_f and d(n) approaches

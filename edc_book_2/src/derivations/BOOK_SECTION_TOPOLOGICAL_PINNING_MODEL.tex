@@ -792,53 +792,323 @@ Superheavy predictions & [P] & Testable hypothesis \\
 \textbf{Key insight:} The frustration energy $\varepsilon_f$ is \emph{not} a free parameter—it is determined by the EDC topological model through the forbidden coordination $n = 43$. The only fitted quantities are the Geiger-Nuttall coefficients.
 
 % ============================================================================
-\subsubsection{Complementary Analysis: Coordination Distance $d(n)$ [I]}
-\label{subsubsec:dn-analysis}
+% NEW SECTION: V7.x COORDINATION DISTANCE ANALYSIS (Full Integration)
+% ============================================================================
+\subsection{Coordination Distance Analysis: V7.x Empirical Audit}
+\label{subsec:v7-audit}
 
-An alternative approach to quantifying topological frustration uses the \textbf{coordination distance} $d(n)$, defined as the distance from the effective coordination number to the nearest allowed value:
+The frustration energy $\varepsilon_f$ approach (Section~\ref{subsec:frustration-halflives}) provides one quantification of topological frustration. A complementary approach uses the \textbf{coordination distance} $d(n)$---the distance from $n(A)$ to the nearest allowed value. This section presents the full V7.4--V7.8 empirical audit.
+
+% ----------------------------------------------------------------------------
+\subsubsection{The Coordination Distance Metric [Der]}
+\label{subsubsec:dn-metric}
+
+The coordination distance is defined as:
 \begin{equation}
     d(n) = \min \left\{ |n(A) - n_{\text{allowed}}| : n_{\text{allowed}} \in \{2^a \times 3^b\} \right\}
+    \label{eq:d-n-definition}
 \end{equation}
-where $n(A) = 6.1 \times A^{1/3}$ maps mass number to effective coordination (calibrated so that $n(208) \approx 36$ for $^{208}$Pb).
+where $n(A) = 6.1 \times A^{1/3}$ maps mass number to effective coordination, calibrated so that $n(208) \approx 36$ for $^{208}$Pb.
 
-\begin{tcolorbox}[colback=green!5!white, colframe=green!75!black, title=V7.8 Audit Results {[Der]}]
-Analysis of 106 $\alpha$-emitters ($Z = 83$--100) with hindrance controls yields:
-\begin{align}
-    \log_{10}(t_{1/2}) &= a \frac{Z}{\sqrt{Q_\alpha}} + b + c_1 I(\text{H1}) + c_2 I(\text{H2}) + g \cdot d(n) \\
-    g &= -1.64 \pm 0.14, \quad p < 0.001, \quad R^2 = 0.9805 \nonumber
-\end{align}
-\textbf{Key finding}: The negative coefficient confirms that higher $d(n)$ (more frustration) correlates with \emph{faster} decay, consistent with the $\varepsilon_f$ analysis above.
+The \textbf{forbidden zone} $[37, 47]$ contains 11 consecutive integers, all failing the $2^a \times 3^b$ criterion. Heavy $\alpha$-emitters ($A = 206$--257) map into this zone with $d(n)$ ranging from 0 to $\sim 6$.
 
-\textbf{Robustness tests passed}:
-\begin{itemize}
-    \item Permutation test: $p_{\text{perm}} < 0.001$
-    \item Cross-validation: predictive improvement confirmed
-    \item Deformation proxy control: absorbed by $d(n)$ ($p = 0.67$ when both included)
-    \item Full model (M7): $g = -1.71$, only 4.2\% change from baseline
-\end{itemize}
+% ----------------------------------------------------------------------------
+\subsubsection{V7.4 Baseline Regression [Der]}
+\label{subsubsec:v74-regression}
 
-\textbf{Interpretation}: The effect is most consistent with \textbf{prefactor (S$_\alpha$) enhancement}, not barrier modification. Frustration enhances $\alpha$-cluster preformation probability.
+Analysis of 102 $\alpha$-emitting nuclides ($Z = 83$--100) yields:
 
-\textit{Source: audit/radioactivity\_v7\_8\_Salpha\_deformation/07\_FIT\_RESULTS\_V7\_8.md}
+\begin{tcolorbox}[colback=green!5!white, colframe=green!75!black, title=V7.4 Model M2: GN + Hindrance + d(n) {[Der]}]
+\begin{equation}
+    \log_{10}(t_{1/2}) = a \frac{Z}{\sqrt{Q_\alpha}} + b + c_1 I(\text{H1}) + c_2 I(\text{H2}) + g \cdot d(n)
+\end{equation}
+\begin{center}
+\begin{tabular}{lccccc}
+\hline
+\textbf{Parameter} & \textbf{Value} & \textbf{SE} & \textbf{t} & \textbf{p} & \textbf{95\% CI} \\
+\hline
+$a$ (Z/$\sqrt{Q}$) & 1.571 & 0.018 & 87.3 & $<$0.001 & [1.54, 1.61] \\
+$c_1$ (H1) & +0.68 & 0.27 & 2.52 & 0.013 & [0.15, 1.21] \\
+$c_2$ (H2) & +1.38 & 0.23 & 6.00 & $<$0.001 & [0.93, 1.83] \\
+$g$ (d(n)) & \textbf{--0.31} & \textbf{0.11} & \textbf{--2.82} & \textbf{0.006} & \textbf{[--0.53, --0.09]} \\
+\hline
+\end{tabular}
+\end{center}
+$R^2 = 0.9933$, $\Delta R^2 = 0.21\%$ vs M1, $\Delta$AIC = --8.2 vs M1.
 \end{tcolorbox}
 
-\textbf{Comparison of approaches:}
+\textbf{Interpretation}: The negative sign of $g$ indicates that higher coordination distance (more topological frustration) correlates with \emph{faster} decay (shorter half-life).
+
+% ----------------------------------------------------------------------------
+\subsubsection{V7.5 Generalization Tests [Der]}
+\label{subsubsec:v75-generalization}
+
+To verify robustness, V7.5 performed:
+
+\textbf{(1) 10-Fold Cross-Validation}:
+\begin{itemize}
+    \item All 10 folds favor M2 over M1
+    \item Out-of-sample improvement: $\Delta$RMSE = 0.043 (exceeds 0.02 threshold)
+    \item Conclusion: $d(n)$ improves prediction, not just in-sample fit
+\end{itemize}
+
+\textbf{(2) Permutation Test} (10,000 iterations):
+\begin{itemize}
+    \item Only 60/10,000 (0.6\%) as extreme as observed
+    \item Distribution-free $p_{\text{perm}} = 0.006$
+    \item Conclusion: Effect is not chance correlation
+\end{itemize}
+
+\textbf{(3) Calibration Sensitivity}:
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+\textbf{Calibration} & \textbf{g} & \textbf{Within 10\%?} \\
+\hline
+Baseline (6.1 $\times$ $A^{1/3}$) & --0.31 & --- \\
+Alt-A (Pb-208 anchor) & --0.30 & Yes \\
+Alt-B (SSE-minimized) & --0.34 & Yes \\
+Alt-C (piecewise) & --0.29 & Yes \\
+\hline
+\end{tabular}
+\end{center}
+Conclusion: Result not dependent on calibration choice.
+
+\textbf{(4) Robust Regression}:
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+\textbf{Method} & \textbf{g} & \textbf{p} \\
+\hline
+Standard OLS & --0.31 & 0.006 \\
+Robust SE (HC3) & --0.31 & 0.011 \\
+Huber M-estimator & --0.29 & 0.005 \\
+Bisquare & --0.28 & 0.012 \\
+\hline
+\end{tabular}
+\end{center}
+Conclusion: $g$ is not driven by outliers.
+
+\textbf{(5) Within-Element Analysis}:
+\begin{itemize}
+    \item Fixed effects model: $g = -0.28$, $p = 0.032$
+    \item All 9 elements (with $n \geq 4$) show negative $g$
+    \item Conclusion: Effect operates within elements, not just between
+\end{itemize}
+
+% ----------------------------------------------------------------------------
+\subsubsection{V7.6.1 Sign Resolution: Prefactor vs Barrier [Der]}
+\label{subsubsec:v761-sign}
+
+The negative sign of $g$ was initially surprising. Three tests were performed:
+
+\textbf{Test T1: Interaction with Hindrance Class}
+
+If $d(n)$ acts on barrier, effect should be strongest in H0 (unhindered).
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+\textbf{Hindrance Class} & \textbf{Effective g} & \textbf{Interpretation} \\
+\hline
+H0 (unhindered) & --0.34 & Full effect visible \\
+H1 ($\Delta J \leq 2$, parity) & --0.26 & Partially masked \\
+H2 ($\Delta J > 2$) & --0.22 & Most masked \\
+\hline
+\end{tabular}
+\end{center}
+Result: Effect strongest in H0, consistent with both mechanisms.
+
+\textbf{Test T2: Parity Control}
+
+After adding parity indicators (EE/EO/OE/OO): $g = -0.29$, $p = 0.016$.
+Result: Effect persists, not a pairing proxy.
+
+\textbf{Test T3: Model Comparison (Critical Test)}
+\begin{center}
+\begin{tabular}{lccc}
+\hline
+\textbf{Model} & \textbf{Placement} & \textbf{AIC} & \textbf{CV RMSE} \\
+\hline
+A (Prefactor) & $d(n)$ additive & 198.4 & 0.682 \\
+B (Barrier) & $d(n)$ modifies slope & 201.8 & 0.694 \\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Result}: Model A wins by $\Delta$AIC = 3.4. \textbf{Prefactor interpretation preferred.}
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=yellow!75!black, title=Sign Resolution {[I]}]
+\textbf{Physical picture}: Frustration (high $d(n)$) correlates with enhanced $\alpha$-preformation probability $S_\alpha$, not with barrier modification.
+
+\textbf{Mechanism}: Coordination frustration $\to$ enhanced surface dynamics $\to$ easier $\alpha$-cluster formation $\to$ higher $S_\alpha$ $\to$ faster decay.
+
+The ``paradox'' is resolved: \textbf{frustration destabilizes, it does not stabilize}. In decay physics, instability = faster decay.
+\end{tcolorbox}
+
+% ----------------------------------------------------------------------------
+\subsubsection{V7.7 Prefactor Mechanism Model [P]}
+\label{subsubsec:v77-prefactor}
+
+The standard $\alpha$-decay rate factors as:
+\begin{equation}
+    \lambda = \nu \times P_{\text{tunnel}} \times S_\alpha
+    \label{eq:decay-rate-factorization}
+\end{equation}
+where $\nu \approx 10^{21}$~s$^{-1}$ is the attempt frequency, $P_{\text{tunnel}}$ is the tunneling probability (captured by Geiger-Nuttall), and $S_\alpha$ is the preformation factor.
+
+If $g = -0.31$ acts entirely through $S_\alpha$:
+\begin{equation}
+    \log_{10}(S_\alpha) = k_0 + 0.31 \times d(n)
+\end{equation}
+For $d(n) = 0 \to 3$: $S_\alpha$ increases by factor $10^{0.31 \times 3} \approx 8$.
+
+This is within the plausible $S_\alpha$ range ($10^{-4}$ to $10^{-1}$).
+
+% ----------------------------------------------------------------------------
+\subsubsection{V7.7 Crystal Defect Analogy [I]}
+\label{subsubsec:v77-crystal}
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!75!black, title=Crystal--Nucleus Mapping]
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+\textbf{Crystal Concept} & \textbf{Nuclear Analog} & \textbf{Mapping} \\
+\hline
+Coordination number $n$ & M-topology $n(A)$ & [Der] \\
+Allowed coordinations & $n = 2^a \times 3^b$ & [Der] \\
+Lattice defects & Deviation from allowed $n$ & [I] \\
+Defect-enhanced diffusion & Frustration-enhanced $S_\alpha$ & [P] \\
+Grain boundary & Domain wall (M1 mechanism) & [I] \\
+Vacancy & Missing coordination (M2) & [P] \\
+Strain field & Frustration energy $\varepsilon_f$ & [I] \\
+\hline
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+
+\textbf{Key insight}: In crystals, defects (vacancies, dislocations, grain boundaries) generally \emph{enhance} atomic mobility, not reduce it. The nuclear analog: coordination frustration enhances $\alpha$-preformation.
+
+\textbf{Quantitative comparison}:
+\begin{itemize}
+    \item Crystal defect enhancement: $D_{\text{defect}}/D_{\text{bulk}} \approx 10^2$--$10^6$
+    \item Nuclear $S_\alpha$ enhancement: $S_\alpha(d=3)/S_\alpha(d=0) \approx 8$
+\end{itemize}
+The nuclear enhancement is at the low end of crystal values, suggesting the analogy is qualitative rather than quantitative.
+
+% ----------------------------------------------------------------------------
+\subsubsection{V7.7 Forbidden Alternatives Matrix [P]}
+\label{subsubsec:v77-forbidden}
+
+Each forbidden $n \in [37, 47]$ may be realized via different mechanisms:
+
+\begin{center}
+\small
+\begin{tabular}{ccccccc}
+\hline
+$n$ & M1 (Domain) & M2 (Defect) & M3 (Cluster) & M4 (Metastable) & M5 (Quasi) & M6 (Core) \\
+\hline
+37 & \textbf{Primary} & Secondary & --- & --- & --- & --- \\
+38 & \textbf{Primary} & Secondary & --- & --- & --- & --- \\
+39 & \textbf{Primary} & Secondary & Possible & --- & --- & --- \\
+40 & Secondary & --- & \textbf{Primary} & --- & --- & --- \\
+41 & Secondary & \textbf{Primary} & Possible & --- & --- & --- \\
+42 & \textbf{Primary} & --- & --- & Secondary & --- & --- \\
+44 & --- & --- & \textbf{Primary} & --- & Possible & --- \\
+45 & --- & --- & \textbf{Primary} & --- & --- & Secondary \\
+46 & --- & --- & Secondary & --- & --- & \textbf{Primary} \\
+47 & --- & --- & --- & --- & --- & \textbf{Primary} \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Legend}: M1 = domain mixing, M2 = defect structure, M3 = $\alpha$-clustering, M4 = metastable configuration, M5 = quasi-coordination, M6 = core-mantle structure.
+
+$n = 42$ has \textbf{maximum frustration} (equidistant from 36 and 48).
+
+% ----------------------------------------------------------------------------
+\subsubsection{V7.8 Mediation Analysis: Structural Controls [Der]}
+\label{subsubsec:v78-mediation}
+
+V7.8 tested whether $d(n)$ is merely a proxy for standard nuclear structure parameters:
+
+\textbf{Model hierarchy}:
+\begin{center}
+\begin{tabular}{llccc}
+\hline
+\textbf{Model} & \textbf{Predictors} & $g$ & $p$ & $R^2$ \\
+\hline
+M0 & GN only & --- & --- & 0.9522 \\
+M1 & + hindrance & --- & --- & 0.9547 \\
+\textbf{M2} & + $d(n)$ & \textbf{--1.64} & \textbf{$<$0.001} & \textbf{0.9805} \\
+M3 & + deform proxy & --- & --- & 0.9785 \\
+M4 & + $S_\alpha$ proxy & --- & --- & 0.9624 \\
+M5 & + $d(n)$ + deform & --1.46 & 0.001 & 0.9805 \\
+M6 & + $d(n)$ + $S_\alpha$ & --1.53 & $<$0.001 & 0.9812 \\
+\textbf{M7} & + $d(n)$ + both & \textbf{--1.71} & \textbf{$<$0.001} & 0.9812 \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Critical finding}: When $d(n)$ is included (M5), the deformation proxy becomes non-significant ($p = 0.67$). This means $d(n)$ \textbf{absorbs} deformation-related variance---it is not simply a deformation proxy.
+
+\textbf{Stability test}: From M2 to M7, $g$ changes by only 4.2\% ($-1.64 \to -1.71$).
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!75!black, title=V7.8 Verdict {[Der]}]
+$d(n)$ remains significant ($p < 0.001$) and stable (4\% change) after including both deformation and $S_\alpha$ proxies. The effect captures genuine topological information beyond standard nuclear structure parameters.
+\end{tcolorbox}
+
+% ----------------------------------------------------------------------------
+\subsubsection{Open Questions and Falsification Tests [Open]}
+\label{subsubsec:v78-open}
+
+\textbf{Path to [Der] Upgrade}: 4/7 tests complete.
+\begin{itemize}
+    \item[$\checkmark$] Robust regression (V7.5)
+    \item[$\checkmark$] Permutation test (V7.5)
+    \item[$\checkmark$] Cross-validation (V7.5)
+    \item[$\checkmark$] Deformation control (V7.8)
+    \item[$\square$] Independent $S_\alpha$ confirmation
+    \item[$\square$] Causal mechanism demonstration
+    \item[$\square$] Superheavy validation
+\end{itemize}
+
+\textbf{Current status}: Strong [P], approaching [I].
+
+\textbf{Priority kingpins}:
+\begin{center}
+\begin{tabular}{llc}
+\hline
+\textbf{ID} & \textbf{Kingpin} & \textbf{Priority} \\
+\hline
+K2 & Experimental $S_\alpha$ measurement & HIGH \\
+K10 & Causal mechanism demonstration & HIGH \\
+K11 & Alternative $S_\alpha$ measures & HIGH \\
+K1 & True $\beta_2$ deformation & MEDIUM \\
+K9 & Superheavy extension ($Z > 100$) & MEDIUM \\
+\hline
+\end{tabular}
+\end{center}
+
+% ----------------------------------------------------------------------------
+\subsubsection{Comparison of $\varepsilon_f$ and $d(n)$ Approaches}
+\label{subsubsec:comparison}
+
 \begin{center}
 \begin{tabular}{lcc}
 \hline
 \textbf{Metric} & $\varepsilon_f$ \textbf{(frustration energy)} & $d(n)$ \textbf{(coordination distance)} \\
 \hline
 Definition & Energy gap to optimal $n=43$ & Distance to nearest $2^a \times 3^b$ \\
-Fitted coefficient & $c = -2.40$ & $g = -1.64$ \\
+Fitted coefficient & $c = -2.40$ & $g = -1.64$ (V7.8) \\
 $R^2$ & 0.9941 & 0.9805 \\
 Sample size & 21 nuclei & 106 nuclei \\
 Physical interpretation & Energy penalty & Geometric displacement \\
 Sign interpretation & More frustration $\to$ faster decay & Same \\
+Robustness tests & --- & CV, permutation, proxy controls \\
 \hline
 \end{tabular}
 \end{center}
 
-Both approaches confirm the central prediction: \textbf{topological frustration accelerates $\alpha$-decay}.
+\textbf{Both approaches confirm the central prediction}: Topological frustration accelerates $\alpha$-decay.
 
 % ============================================================================
 \subsection{Physical Picture}
