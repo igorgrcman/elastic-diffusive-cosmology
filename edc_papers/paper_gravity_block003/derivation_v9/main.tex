@@ -1,0 +1,304 @@
+% ============================================================================
+% BLOCK-003 Derivation v9: NC-2 Attempt (DGP / Induced Gravity)
+% ============================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{physics}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+
+% Theorem environments
+\newtheorem{proposition}{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+% Epistemic tags
+\newcommand{\BL}{\textsc{[BL]}}
+\newcommand{\Post}{\textsc{[P]}}
+\newcommand{\Deriv}{\textsc{[Dc]}}
+\newcommand{\Open}{\textsc{[Open]}}
+
+% Boxes
+\newtcolorbox{outcomebox}[1][]{colback=green!5,colframe=green!50!black,
+  title=Outcome,fonttitle=\bfseries,#1}
+\newtcolorbox{statusbox}[1][]{colback=yellow!10,colframe=orange!80!black,
+  title=#1,fonttitle=\bfseries}
+
+% Header/footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small BLOCK-003 / Derivation v9}
+\fancyhead[R]{\small EDC Gravity Program}
+\fancyfoot[C]{\thepage}
+
+\title{\textbf{EDC BLOCK-003 (Derivation v9):}\\[0.3em]
+NC-2 Attempt: DGP / Induced Gravity\\[0.3em]
+\large Can Brane-Localized Curvature Break the Degeneracy?}
+\author{EDC Working Document\\[0.5em]
+\small 2026-02-02 --- Pivot attempt after NC-1 inconclusive}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Derivation v8 showed that NC-1 (zero-mode normalization) yields an identity
+rather than an independent equation: $C$ and $\sigma$ always appear in
+the same combination. This note tests NC-2: Dvali-Gabadadze-Porrati (DGP)
+induced gravity, where a brane-localized Einstein-Hilbert term provides
+an independent 4D Planck mass $M_4$ distinct from the bulk-derived contribution.
+\textbf{Outcome:} INCONCLUSIVE. DGP introduces a new scale $r_c = M_5^3/M_4^2$
+(crossover radius), but $M_4^2$ itself depends on unknown parameters
+($N$, $\Lambda_{\rm UV}$, regularization). The degeneracy is not broken;
+it is relocated from $C$ to the induced term coefficient.
+BLOCK-003 remains \Open.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ============================================================================
+\section{Motivation: Why NC-2 After NC-1?}
+% ============================================================================
+
+From v8, NC-1 (canonical KK reduction) produced:
+\begin{equation}
+G_N = \frac{C \sigma^{-3/4}}{8\pi R_\xi}
+\end{equation}
+where $C$ and $\sigma$ are degenerate --- they always appear together.
+This is a \textit{reparametrization}, not an independent equation.
+
+\textbf{NC-2 hypothesis:} In DGP-type models, 4D gravity emerges from a
+brane-localized curvature term, providing an \textit{independent} scale
+$M_4$ that could break the $C$--$\sigma$ degeneracy.
+
+% ============================================================================
+\section{DGP Setup}
+% ============================================================================
+
+\subsection{Action}
+
+The DGP action combines bulk and brane Einstein-Hilbert terms:
+\begin{equation}
+S = \underbrace{\frac{M_5^3}{2} \int_{\mathcal{M}^5} d^5X \sqrt{-g^{(5)}} R^{(5)}}_{S_{\rm bulk}}
++ \underbrace{\frac{M_4^2}{2} \int_{\Sigma^4} d^4x \sqrt{-h} R^{(4)}}_{S_{\rm brane}}
++ S_{\rm matter}
+\label{eq:dgp_action}
+\end{equation}
+where:
+\begin{itemize}
+\item $M_5^3 = 1/\kappa_5^2$ is the 5D Planck mass cubed
+\item $M_4^2$ is the 4D brane-localized Planck mass squared
+\item $R^{(5)}$, $R^{(4)}$ are 5D and 4D Ricci scalars
+\end{itemize}
+
+\subsection{Key Feature: Two Independent Scales}
+
+Unlike pure KK reduction (NC-1), DGP has \textit{two} independent mass scales:
+\begin{itemize}
+\item $M_5$: bulk gravitational scale
+\item $M_4$: brane gravitational scale
+\end{itemize}
+
+The crossover radius is:
+\begin{equation}
+r_c = \frac{M_5^3}{M_4^2}
+\label{eq:rc}
+\end{equation}
+
+At distances $r \ll r_c$: 4D gravity dominates ($G_N \sim 1/M_4^2$).
+
+At distances $r \gg r_c$: 5D gravity dominates (leakage into bulk).
+
+% ============================================================================
+\section{Effective 4D Newton Constant}
+% ============================================================================
+
+\subsection{DGP Graviton Propagator}
+
+The effective 4D gravitational coupling at distance $r$ is:
+\begin{equation}
+G_N^{\rm eff}(r) = \frac{1}{8\pi M_4^2} \cdot F(r/r_c)
+\end{equation}
+where $F(x) \to 1$ as $x \to 0$ (4D regime).
+
+In the 4D regime ($r \ll r_c$):
+\begin{equation}
+\boxed{G_N = \frac{1}{8\pi M_4^2}}
+\label{eq:gn_dgp}
+\end{equation}
+
+\subsection{Comparison to NC-1}
+
+In NC-1 (pure KK):
+\begin{equation}
+G_N^{\rm NC1} = \frac{\kappa_5^2}{8\pi L} = \frac{1}{8\pi M_5^3 L}
+\end{equation}
+
+In NC-2 (DGP):
+\begin{equation}
+G_N^{\rm NC2} = \frac{1}{8\pi M_4^2}
+\end{equation}
+
+\textbf{Key difference:} In DGP, $G_N$ is determined by $M_4$, not by $M_5$
+and $L$. This \textit{could} break the degeneracy if $M_4$ is independently
+specified.
+
+% ============================================================================
+\section{Where Does $M_4$ Come From?}
+% ============================================================================
+
+\subsection{Induced Gravity Mechanism}
+
+In Sakharov/Adler induced gravity, $M_4^2$ arises from quantum loops of
+brane-localized matter:
+\begin{equation}
+M_4^2 = \frac{N}{16\pi^2} \Lambda_{\rm UV}^2 \cdot f(\text{reg})
+\label{eq:m4_induced}
+\end{equation}
+where:
+\begin{itemize}
+\item $N$: number of matter species on the brane
+\item $\Lambda_{\rm UV}$: UV cutoff
+\item $f(\text{reg})$: regularization-dependent $\mathcal{O}(1)$ factor
+\end{itemize}
+
+\subsection{EDC Interpretation}
+
+For EDC, possible identifications:
+\begin{itemize}
+\item $\Lambda_{\rm UV} = \sigma^{1/4}$ (tension-derived cutoff) \Post
+\item $\Lambda_{\rm UV} = R_\xi^{-1}$ (weak scale cutoff) \Post
+\item $N = ?$ (unknown; EDC does not specify species count)
+\end{itemize}
+
+With $\Lambda_{\rm UV} = \sigma^{1/4}$:
+\begin{equation}
+M_4^2 \sim \frac{N}{16\pi^2} \sigma^{1/2}
+\end{equation}
+
+Then:
+\begin{equation}
+G_N = \frac{1}{8\pi M_4^2} \sim \frac{16\pi^2}{8\pi N \sigma^{1/2}}
+= \frac{2\pi}{N \sigma^{1/2}}
+\label{eq:gn_dgp_sigma}
+\end{equation}
+
+% ============================================================================
+\section{Does NC-2 Break the Degeneracy?}
+% ============================================================================
+
+\begin{proposition}[NC-2 Degeneracy Relocation]
+In DGP/induced gravity, the unknown constant $C$ from NC-1 is replaced by
+the unknown species count $N$ (and regularization factor $f$). The degeneracy
+is relocated, not eliminated.
+\end{proposition}
+
+\begin{proof}
+From Eq.~\eqref{eq:gn_dgp_sigma}:
+\[
+G_N \sim \frac{2\pi}{N \sigma^{1/2}}
+\]
+To predict $G_N$, we need $N$ and $\sigma$. Neither is specified by EDC:
+\begin{itemize}
+\item $\sigma$: brane tension (same unknown as NC-1)
+\item $N$: species count (new unknown, replaces $C$)
+\end{itemize}
+The product $N \sigma^{1/2}$ is degenerate, just as $C \sigma^{3/4}$ was
+in NC-1.
+\end{proof}
+
+\subsection{Comparison of Degeneracies}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{Approach} & \textbf{$G_N$ Formula} & \textbf{Unknown Combination} \\
+\midrule
+NC-1 (KK) & $C \sigma^{-3/4} / (8\pi R_\xi)$ & $C \sigma^{-3/4}$ \\
+NC-2 (DGP) & $2\pi / (N \sigma^{1/2})$ & $N \sigma^{1/2}$ \\
+\bottomrule
+\end{tabular}
+\caption{Both approaches have one degenerate combination.}
+\end{table}
+
+% ============================================================================
+\section{What Would Fix NC-2?}
+% ============================================================================
+
+For NC-2 to close BLOCK-003, EDC would need to specify:
+
+\begin{enumerate}
+\item \textbf{Species count $N$:} How many field species live on the brane?
+EDC's Z$_6$ structure suggests discrete particle content, but $N$ is not
+derived.
+
+\item \textbf{Regularization scheme:} The factor $f(\text{reg})$ is
+scheme-dependent. A canonical choice (e.g., dimensional regularization)
+would fix this to $\mathcal{O}(1)$.
+
+\item \textbf{Brane tension $\sigma$:} Same requirement as NC-1.
+\end{enumerate}
+
+\textbf{Minimal fix:} If $N$ is small and known (e.g., $N = 1$ for a
+single Plenum field), and $\sigma$ is specified, then $G_N$ becomes
+predictable.
+
+% ============================================================================
+\section{Outcome}
+% ============================================================================
+
+\begin{outcomebox}
+\textbf{Status: INCONCLUSIVE}
+
+\textbf{What was achieved:}
+\begin{itemize}
+\item DGP framework applied to EDC \Deriv
+\item $G_N = 2\pi / (N \sigma^{1/2})$ derived (with $\Lambda_{\rm UV} = \sigma^{1/4}$)
+\item Identified that degeneracy is \textit{relocated}, not eliminated
+\end{itemize}
+
+\textbf{What was not achieved:}
+\begin{itemize}
+\item $N$ is not specified by EDC
+\item Regularization factor remains $\mathcal{O}(1)$ uncertainty
+\item $\sigma$ still required (same as NC-1)
+\end{itemize}
+
+\textbf{Conclusion:}
+NC-2 does not break the degeneracy. The unknown $C$ is replaced by unknown
+$N$. BLOCK-003 remains \Open.
+\end{outcomebox}
+
+% ============================================================================
+\section{Implications for BLOCK-003}
+% ============================================================================
+
+\begin{statusbox}[Diagnosis]
+Both NC-1 and NC-2 fail for the same structural reason: EDC lacks a
+\textbf{normalization anchor}---a first-principles way to fix one
+dimensionless number ($C$, $N$, or equivalent).
+
+\textbf{Possible interpretations:}
+\begin{enumerate}
+\item \textbf{Genuine underdetermination:} The 5D framework inherently
+has one free parameter that must be fixed by observation (calibration).
+\item \textbf{Missing physics:} A stabilization mechanism (modulus fixing,
+topological quantization) is needed but not present in current EDC.
+\item \textbf{Tautology:} The derivation is circular---4D gravity was
+presupposed somewhere in the axioms.
+\end{enumerate}
+
+\textbf{Recommendation:} Perform tautology audit (derivation v10) before
+attempting further normalization candidates.
+\end{statusbox}
+
+\end{document}
