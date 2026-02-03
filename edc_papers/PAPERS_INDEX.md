@@ -25,6 +25,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v14/` | Derivation v14: I from EDC Warp Candidates | `EDC_BLOCK003_DERIVATION_V14_I_FROM_EDC_WARP_CANDIDATES.pdf` | PARTIAL BRIDGE | 2026-02-02 |
 | `paper_gravity_block003/derivation_v15/` | Derivation v15: Calibrated Closure with ℓ_P | `EDC_BLOCK003_DERIVATION_V15_CALIBRATED_CLOSURE_LP.pdf` | CLOSED | 2026-02-02 |
 | `paper_gravity_block003/derivation_v16/` | Derivation v16: R_ξ Determination | `EDC_BLOCK003_DERIVATION_V16_R_XI_DETERMINATION.pdf` | A:NO-GO B:CLOSED | 2026-02-02 |
+| `paper_gravity_block003/derivation_v17/` | Derivation v17: EW Calibration Robustness | `EDC_BLOCK003_DERIVATION_V17_EW_CALIBRATION_ROBUSTNESS.pdf` | ROBUST | 2026-02-02 |
 
 ---
 
@@ -335,6 +336,27 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Track B outcome** | CLOSED: R_ξ = ℏc/M_Z^obs = 2.165 × 10⁻¹⁸ m; M₅ = 2.4 × 10¹³ GeV (GUT scale) |
 | **Error budget** | δM₅/M₅ ≈ 1.1 × 10⁻⁵ (~0.001%); M_Z dominates via R_ξ |
 | **Final closure** | BLOCK-003 CLOSED with 2 baseline inputs: M_Pl^obs [BL], M_Z^obs [BL] |
+
+---
+
+## Detailed Entry: Derivation v17
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v17/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V17_EW_CALIBRATION_ROBUSTNESS.pdf` |
+| **Pages** | 4 |
+| **Date** | 2026-02-02 |
+| **Status** | ROBUST (calibration stable) |
+| **MD5 (main.tex)** | `472d4e70886fcf8e02230b9afa712c7c` |
+| **MD5 (main.pdf)** | `ba56deb942dc799c48365262715aca6c` |
+| **MD5 (export PDF)** | `ba56deb942dc799c48365262715aca6c` |
+| **Scope** | Stress-test v16 Track B by replacing R_ξ = ℏc/M_Z with calibration family R_ξ = ℏc/M_* |
+| **Candidates tested** | M_Z (91.2 GeV), M_W (80.4 GeV), v_EW (246.2 GeV) |
+| **Robustness verdict** | All choices give M₅ ∈ (2.3–3.4) × 10¹³ GeV — same decade |
+| **Canonical choice** | M_Z (best precision, definitional stability, independence) |
+| **Internal derivation** | Still NO-GO (from v16 Track A) |
 
 ---
 
