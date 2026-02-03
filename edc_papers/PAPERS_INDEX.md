@@ -30,6 +30,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v19/` | Derivation v19: Derivation-First Writeup | `EDC_BLOCK003_DERIVATION_V19_DERIVATION_FIRST.pdf` | DERIVATION | 2026-02-02 |
 | `paper_gravity_block003/derivation_v20/` | Derivation v20: Factor & Normalization Audit | `EDC_BLOCK003_DERIVATION_V20_FACTOR_AUDIT.pdf` | AUDIT | 2026-02-03 |
 | `paper_gravity_block003/derivation_v21/` | Derivation v21: KK Mass Gap to R_xi Identification | `EDC_BLOCK003_DERIVATION_V21_KK_GAP_TO_RXI.pdf` | [I]+[BL] UPGRADE | 2026-02-03 |
+| `paper_gravity_block003/derivation_v22/` | Derivation v22: KK Conventions Unification | `EDC_BLOCK003_DERIVATION_V22_KK_CONVENTIONS_UNIFICATION.pdf` | CONVENTION | 2026-02-03 |
 
 ---
 
@@ -447,6 +448,28 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Figure** | TikZ 2-panel (mode shapes + mass ladder) |
 | **Equations** | 42 environments, 44 labeled |
 | **Open item** | Internal R_ξ derivation remains NO-GO |
+
+---
+
+## Detailed Entry: Derivation v22
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v22/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V22_KK_CONVENTIONS_UNIFICATION.pdf` |
+| **Pages** | 10 |
+| **Date** | 2026-02-03 |
+| **Status** | CONVENTION / CLOSED |
+| **MD5 (main.tex)** | `a9af81f872545420d0c92880b5254c1e` |
+| **MD5 (main.pdf)** | `8544a62d20362acd4773212e492a502b` |
+| **MD5 (export PDF)** | `8544a62d20362acd4773212e492a502b` |
+| **Scope** | KK conventions unification; interval vs circle vs orbifold; π-factor resolution |
+| **Derived** | Case A/B/C spectra, equivalence L = πR, conventions dictionary |
+| **Decision** | R_ξ ≡ L (interval length) adopted as canonical |
+| **Key result** | π difference is purely definitional, not physical |
+| **Equations** | 63 environments |
+| **Impact** | v15–v20 compatible under R_ξ^(old) = R = L/π interpretation |
 
 ---
 
