@@ -26,6 +26,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v15/` | Derivation v15: Calibrated Closure with ℓ_P | `EDC_BLOCK003_DERIVATION_V15_CALIBRATED_CLOSURE_LP.pdf` | CLOSED | 2026-02-02 |
 | `paper_gravity_block003/derivation_v16/` | Derivation v16: R_ξ Determination | `EDC_BLOCK003_DERIVATION_V16_R_XI_DETERMINATION.pdf` | A:NO-GO B:CLOSED | 2026-02-02 |
 | `paper_gravity_block003/derivation_v17/` | Derivation v17: EW Calibration Robustness | `EDC_BLOCK003_DERIVATION_V17_EW_CALIBRATION_ROBUSTNESS.pdf` | ROBUST | 2026-02-02 |
+| `paper_gravity_block003/derivation_v18/` | Derivation v18: Gravity Closure Summary | `EDC_BLOCK003_DERIVATION_V18_GRAVITY_CLOSURE_SUMMARY.pdf` | CONSOLIDATION | 2026-02-02 |
 
 ---
 
@@ -357,6 +358,27 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Robustness verdict** | All choices give M₅ ∈ (2.3–3.4) × 10¹³ GeV — same decade |
 | **Canonical choice** | M_Z (best precision, definitional stability, independence) |
 | **Internal derivation** | Still NO-GO (from v16 Track A) |
+
+---
+
+## Detailed Entry: Derivation v18
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v18/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V18_GRAVITY_CLOSURE_SUMMARY.pdf` |
+| **Pages** | 4 |
+| **Date** | 2026-02-02 |
+| **Status** | CONSOLIDATION / CLOSED (calibrated) |
+| **MD5 (main.tex)** | `5eb5a3c7f644ee3e541c2ed85104298e` |
+| **MD5 (main.pdf)** | `30f8ba5ef4395d0c8d392d8d4aaced08` |
+| **MD5 (export PDF)** | `30f8ba5ef4395d0c8d392d8d4aaced08` |
+| **Scope** | Consolidation of v13–v17; reader contract; epistemic ledger; pipeline figure |
+| **New results** | NONE — consolidation document only |
+| **Reader contract** | [D] derivations, [I] identifications, [BL] baselines, NO-GO items explicitly stated |
+| **Final closure** | M₅ = 2.41 × 10¹³ GeV (GUT scale) ± 0.001% under [BL] inputs |
+| **Open item** | Internal derivation of R_ξ remains NO-GO |
 
 ---
 
