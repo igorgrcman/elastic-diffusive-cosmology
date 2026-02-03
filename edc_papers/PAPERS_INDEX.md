@@ -36,6 +36,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v25/` | Derivation v25: Alternative Gap Identifications + Robustness | `EDC_BLOCK003_DERIVATION_V25_PROXY_ROBUSTNESS.pdf` | ROBUSTNESS | 2026-02-03 |
 | `paper_gravity_block003/derivation_v26/` | Derivation v26: Gap Derivability Program | `EDC_BLOCK003_DERIVATION_V26_GAP_DERIVABILITY_PROGRAM.pdf` | PROGRAM | 2026-02-03 |
 | `paper_gravity_block003/derivation_v27/` | Derivation v27: Brane Mass from Brane Tension | `EDC_BLOCK003_DERIVATION_V27_MB_FROM_SIGMA_PINNING.pdf` | [Dc]+[P] | 2026-02-03 |
+| `paper_gravity_block003/derivation_v28/` | Derivation v28: λ-Pinning from Self-Adjointness | `EDC_BLOCK003_DERIVATION_V28_LAMBDA_PINNING_DERIVATION.pdf` | [D]+[Dc/P] | 2026-02-03 |
 
 ---
 
@@ -602,6 +603,30 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Python script** | `recompute.py` — ALL 12 CHECKS PASSED |
 | **Equations** | 85 environments |
 | **TikZ figure** | 2-panel (σ→m_b→gap schematic + x_1 vs log b) |
+
+---
+
+## Detailed Entry: Derivation v28
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v28/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V28_LAMBDA_PINNING_DERIVATION.pdf` |
+| **Pages** | 19 |
+| **Date** | 2026-02-03 |
+| **Status** | [D]+[Dc/P] |
+| **MD5 (main.tex)** | `9c2ef29b0146e1193415bba7da44e35c` |
+| **MD5 (main.pdf)** | `d510d7e315cae3ccbd57a3c0d713158c` |
+| **MD5 (export PDF)** | `d510d7e315cae3ccbd57a3c0d713158c` |
+| **Scope** | Derives SA extension theory [D], topological λ = c_λ n quantization [Dc/P] |
+| **Track A** | Self-adjointness: b = m_b L as SA parameter [D] |
+| **Track B** | Topological: λ = c_λ n with n ∈ Z+ [Dc/P] |
+| **c_λ options** | {1/(2π), 1, π, 2π} — mechanism-dependent [OPEN] |
+| **Gap status** | Remains [I]+[BL] (reduced to discrete freedom) |
+| **Python script** | `recompute.py` — ALL 15 CHECKS PASSED |
+| **Equations** | 100 environments |
+| **TikZ figure** | 2-panel (SA classification + x_1 vs b with discrete n) |
 
 ---
 
