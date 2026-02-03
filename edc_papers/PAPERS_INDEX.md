@@ -24,6 +24,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v13/` | Derivation v13: Weak-Field 5D→4D Matching | `EDC_BLOCK003_DERIVATION_V13_WEAKFIELD_MATCHING.pdf` | BRIDGE SLOT | 2026-02-02 |
 | `paper_gravity_block003/derivation_v14/` | Derivation v14: I from EDC Warp Candidates | `EDC_BLOCK003_DERIVATION_V14_I_FROM_EDC_WARP_CANDIDATES.pdf` | PARTIAL BRIDGE | 2026-02-02 |
 | `paper_gravity_block003/derivation_v15/` | Derivation v15: Calibrated Closure with ℓ_P | `EDC_BLOCK003_DERIVATION_V15_CALIBRATED_CLOSURE_LP.pdf` | CLOSED | 2026-02-02 |
+| `paper_gravity_block003/derivation_v16/` | Derivation v16: R_ξ Determination | `EDC_BLOCK003_DERIVATION_V16_R_XI_DETERMINATION.pdf` | A:NO-GO B:CLOSED | 2026-02-02 |
 
 ---
 
@@ -313,6 +314,27 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **MD5 (export PDF)** | `24dc6a17a2fd1bb594953cc37293ad09` |
 | **Scope** | Calibrated closure of BLOCK-003 using M_Pl^obs [BL]; error budget; 5D scale inference |
 | **Outcome** | CLOSED: M₅ = M_Pl^{2/3} R_ξ^{-1/3}; fully predictive closure requires deriving R_ξ |
+
+---
+
+## Detailed Entry: Derivation v16
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v16/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V16_R_XI_DETERMINATION.pdf` |
+| **Pages** | 7 |
+| **Date** | 2026-02-02 |
+| **Status** | Track A: NO-GO, Track B: CLOSED |
+| **MD5 (main.tex)** | `d32e4821d2df6df5705f817a9000a8bf` |
+| **MD5 (main.pdf)** | `457462de321d6a772c311e2f60eb8b0d` |
+| **MD5 (export PDF)** | `457462de321d6a772c311e2f60eb8b0d` |
+| **Scope** | Two-track determination of R_ξ: internal derivation (Track A) vs minimal baseline (Track B) |
+| **Track A outcome** | NO-GO: R_ξ not derivable from EDC axioms; all candidates either use R_ξ as input or are postulates |
+| **Track B outcome** | CLOSED: R_ξ = ℏc/M_Z^obs = 2.165 × 10⁻¹⁸ m; M₅ = 2.4 × 10¹³ GeV (GUT scale) |
+| **Error budget** | δM₅/M₅ ≈ 1.1 × 10⁻⁵ (~0.001%); M_Z dominates via R_ξ |
+| **Final closure** | BLOCK-003 CLOSED with 2 baseline inputs: M_Pl^obs [BL], M_Z^obs [BL] |
 
 ---
 
