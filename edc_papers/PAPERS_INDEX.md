@@ -38,6 +38,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v27/` | Derivation v27: Brane Mass from Brane Tension | `EDC_BLOCK003_DERIVATION_V27_MB_FROM_SIGMA_PINNING.pdf` | [Dc]+[P] | 2026-02-03 |
 | `paper_gravity_block003/derivation_v28/` | Derivation v28: λ-Pinning from Self-Adjointness | `EDC_BLOCK003_DERIVATION_V28_LAMBDA_PINNING_DERIVATION.pdf` | [D]+[Dc/P] | 2026-02-03 |
 | `paper_gravity_block003/derivation_v29/` | Derivation v29: β Control Parameter (σL²/M̄_Pl²) | `EDC_BLOCK003_DERIVATION_V29_BETA_DERIVATION.pdf` | [D]+[BL] | 2026-02-03 |
+| `paper_gravity_block003/derivation_v30/` | Derivation v30: Derive L from β+λ (No Identification) | `EDC_BLOCK003_DERIVATION_V30_DERIVE_L_FROM_BETA_LAMBDA.pdf` | [D]+[P]+[BL]/[OPEN] | 2026-02-03 |
 
 ---
 
@@ -653,6 +654,34 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Reviewer Traps** | 10 traps with explicit equation mapping |
 | **Gap status** | Remains [I]+[BL] |
 | **Python script** | `recompute.py` — ALL 10 CHECKS PASSED |
+| **Equations** | 91 environments |
+| **TikZ figure** | Dependency graph (fig:dependency) |
+
+---
+
+## Detailed Entry: Derivation v30
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v30/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V30_DERIVE_L_FROM_BETA_LAMBDA.pdf` |
+| **Pages** | 19 |
+| **Date** | 2026-02-03 |
+| **Status** | [D]+[P]+[BL] for structure; [OPEN] for point selection |
+| **MD5 (main.tex)** | `2d87047853100e0d5446573c7156bb89` |
+| **MD5 (main.pdf)** | `abbb55333f9ca0aa42afbc256ab1f92b` |
+| **MD5 (export PDF)** | `abbb55333f9ca0aa42afbc256ab1f92b` |
+| **Scope** | Derive or constrain L from β + λ WITHOUT identification |
+| **Route C** | Variational: E_eff(L) stationarity [D] |
+| **Route D** | Spectral: tan(x) = -b/x with λ via b = λβ [D] |
+| **Main result** | L = ℏc/(β·M̄_Pl²) [D]+[BL] |
+| **k-branches** | Discrete family from λ = \|k\|/(2π) [P] |
+| **Weak closure** | Achieved: L constrained to k-branches |
+| **Strong closure** | NOT achieved: point selection [OPEN] |
+| **NO identification** | M_Z, M_W, v_EW, ℓ_P, G_N NOT used |
+| **AC-P38-16** | Inputs table passes — no forbidden values |
+| **Python script** | `recompute.py` — ALL 15 CHECKS PASSED |
 | **Equations** | 91 environments |
 | **TikZ figure** | Dependency graph (fig:dependency) |
 
