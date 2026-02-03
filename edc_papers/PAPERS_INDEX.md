@@ -19,6 +19,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v8/` | Derivation v8: NC-1 attempt (zero-mode norm.) | `EDC_BLOCK003_DERIVATION_V8_FIX_C_ATTEMPT_NC1.pdf` | INCONCLUSIVE | 2026-02-02 |
 | `paper_gravity_block003/derivation_v9/` | Derivation v9: NC-2 attempt (DGP/induced gravity) | `EDC_BLOCK003_DERIVATION_V9_NC2_DGP_ATTEMPT.pdf` | INCONCLUSIVE | 2026-02-02 |
 | `paper_gravity_block003/derivation_v10/` | Derivation v10: Tautology audit + O(M) check | `EDC_BLOCK003_DERIVATION_V10_TAUTOLOGY_AUDIT.pdf` | DIAGNOSTIC | 2026-02-02 |
+| `paper_gravity_block003/derivation_v11/` | Derivation v11: Derive σ from EDC field equations | `EDC_BLOCK003_DERIVATION_V11_SIGMA_FROM_FIELD_EQS.pdf` | NO-GO | 2026-02-02 |
 
 ---
 
@@ -217,6 +218,24 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **MD5 (export PDF)** | `a283ca8f99cec77177174449959cf9db` |
 | **Scope** | Two-part diagnostic: (A) Tautology audit of G_N derivation, (B) Order-of-magnitude sanity check |
 | **Outcome** | Tautology risk MEDIUM (no strict circularity); σ ~ 10⁵³ GeV⁴ (GUT-scale) reproduces G_N^obs; problem is underdetermination not circularity |
+
+---
+
+## Detailed Entry: Derivation v11
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v11/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V11_SIGMA_FROM_FIELD_EQS.pdf` |
+| **Pages** | 5 |
+| **Date** | 2026-02-02 |
+| **Status** | NO-GO |
+| **MD5 (main.tex)** | `ece236848d842eb4c27df5c9fd32d469` |
+| **MD5 (main.pdf)** | `0400bf45970d7cdf9f4a1303f3462431` |
+| **MD5 (export PDF)** | `0400bf45970d7cdf9f4a1303f3462431` |
+| **Scope** | Attempt to derive σ from EDC-internal field equations; systematic search for closure constraints |
+| **Outcome** | NO-GO: σ is calibrated from observed ℏ (or α), not derived; no independent normalization principle exists in EDC |
 
 ---
 
