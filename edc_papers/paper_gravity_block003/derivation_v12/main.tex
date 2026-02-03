@@ -1,0 +1,299 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{tcolorbox}
+\geometry{margin=2.5cm}
+
+\title{Derivation v12: Part I Gravity \& Mercury Precession Back-Reference Audit\\
+\large BLOCK-003 Bridge Map}
+\author{EDC Research Program}
+\date{2026-02-02}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\textbf{One-line outcome:} \textsc{NO BRIDGE}: Part I imports 4D gravity as [I]/[P]; BLOCK-003 remains open.
+
+This audit examines how gravity was introduced in EDC Book Part I, specifically: (1) what was assumed/identified/postulated to obtain a 4D Newtonian/GR-like limit, and (2) how Mercury perihelion precession was computed. We produce a bridge map showing which steps can be derived from the strict 5D setup (EH+GHY+Israel) and which steps are ``imported GR.''
+
+\textbf{Finding:} Part I obtains gravity through a combination of dimensional analysis identification [I] and flow ansatz postulate [P]. The G formula $G = \ell_P^2 c^4/(\sigma r_e^3)$ uses observed $\ell_P$ as input---explicitly acknowledged as ``not an independent prediction.'' The Mercury precession uses the standard GR formula with observed constants [BL]. No derivation from 5D field equations exists. BLOCK-003 (derive $\kappa_5^2$ or equivalently fix C) remains open.
+\end{abstract}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{What Part I Did: Gravity Sector}
+\label{sec:what-part1-did}
+
+\subsection{Chapter 7: Emergent Gravity from Plenum Dynamics}
+
+Part I Chapter 7 introduces gravity through the following chain:
+
+\begin{enumerate}
+    \item \textbf{Third parameter introduced:} $\rho_{\text{Plenum}} \sim 10^{97}$ J/m$^3$ (Planck density scale)
+    \item \textbf{Physical mechanism:} Archimedean/Bjerknes attraction of pressure deficits
+    \item \textbf{G formula proposed:}
+    \begin{equation}
+    G = \frac{\ell_P^2 c^4}{\sigma r_e^3}
+    \label{eq:g-part1}
+    \end{equation}
+    \item \textbf{Numerical check:} $G_{\text{calc}} = 6.71 \times 10^{-11}$ vs $G_{\text{obs}} = 6.674 \times 10^{-11}$ (1\% agreement)
+\end{enumerate}
+
+\begin{tcolorbox}[colback=red!5,colframe=red!50!black,title=Critical Caveat from Chapter 7]
+The chapter explicitly states (line 371):
+\begin{quote}
+``taking $\ell_*$ to coincide with the measured Planck length $\ell_P$ makes this computation a \textbf{restatement of the chosen input scale, not an independent prediction}. A genuine prediction of $G$ would require deriving $\ell_*$ (or its analogue) from EDC dynamics without inserting $\hbar$ or $G$ as inputs.''
+\end{quote}
+\end{tcolorbox}
+
+\subsection{Chapter 8: The River Model}
+
+Chapter 8 introduces relativistic corrections via the ``River Model'':
+
+\begin{enumerate}
+    \item \textbf{Flow ansatz:} $v(r) = \sqrt{2GM/r}$ (Plenum flow toward mass)
+    \item \textbf{Acoustic metric:} Unruh's result applied to Plenum $\to$ Painlev\'e-Gullstrand metric
+    \item \textbf{Schwarzschild equivalence:} Coordinate transformation gives standard Schwarzschild
+    \item \textbf{Mercury precession:} Standard GR formula applied
+\end{enumerate}
+
+\begin{tcolorbox}[colback=yellow!5,colframe=yellow!50!black,title=Critical Caveat from Chapter 8]
+The chapter explicitly states (line 278):
+\begin{quote}
+``once a Plenum flow ansatz ($v = \sqrt{2GM/r}$) is adopted, the Schwarzschild metric follows necessarily. The classical weak-field tests (perihelion precession, light bending, Shapiro delay) then emerge as \textit{consistency checks}---they confirm that the mathematical structure is correct, but do not distinguish EDC from standard GR.''
+\end{quote}
+\end{tcolorbox}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Mercury Precession: Formula and Inputs}
+\label{sec:mercury}
+
+\subsection{The Formula Used}
+
+Part I uses the \textbf{standard Einstein formula} for perihelion advance:
+\begin{equation}
+\Delta\phi = \frac{6\pi GM}{c^2 a(1-e^2)}
+\label{eq:precession}
+\end{equation}
+
+This is derived from the Schwarzschild effective potential, which itself comes from the flow ansatz.
+
+\subsection{Input Constants}
+
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+\textbf{Constant} & \textbf{Value} & \textbf{Source} \\
+\hline
+$G$ & $6.674 \times 10^{-11}$ m$^3$/(kg$\cdot$s$^2$) & Observed [BL] \\
+$M_\odot$ & $1.989 \times 10^{30}$ kg & Observed [BL] \\
+$c$ & $2.998 \times 10^8$ m/s & Defined [BL] \\
+$a$ (Mercury) & $5.79 \times 10^{10}$ m & Observed [BL] \\
+$e$ (Mercury) & 0.2056 & Observed [BL] \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{The Derivation Chain}
+
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+\textbf{Step} & \textbf{Tag} & \textbf{Content} \\
+\hline
+Flow ansatz & [P] & $v(r) = \sqrt{2GM/r}$ postulated \\
+Acoustic metric & [M] & Unruh 1981, mathematical theorem \\
+Painlev\'e-Gullstrand & [D] & Follows from acoustic metric + flow \\
+Schwarzschild & [D] & Coordinate transform from P-G \\
+Orbit equation & [D] & Geodesic in Schwarzschild \\
+Precession formula & [D] & Perturbation analysis \\
+Numerical result & [BL] & Uses observed $G$, $M_\odot$, $a$, $e$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Result:} 42.9''/century (vs observed 43.0''/century, 0.2\% agreement)
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Epistemic Classification Table}
+\label{sec:epistemic}
+
+\begin{center}
+\begin{tabular}{|l|l|c|p{6cm}|}
+\hline
+\textbf{Element} & \textbf{Location} & \textbf{Tag} & \textbf{Justification} \\
+\hline
+\hline
+\multicolumn{4}{|c|}{\textit{Parameters}} \\
+\hline
+$\sigma \approx 1.41 \times 10^{18}$ J/m$^2$ & Ch.6 & [I] & Extracted from $\alpha$, $m_e$, $r_e$ \\
+$r_e \approx 2.82 \times 10^{-15}$ m & Ch.6 & [BL] & Classical electron radius \\
+$\rho_{\text{Plenum}} \sim 10^{97}$ J/m$^3$ & Ch.7 & [P] & Postulated $\sim \rho_{\text{Planck}}$ \\
+$\ell_P \approx 1.6 \times 10^{-35}$ m & Ch.7 & [BL] & Observed Planck length \\
+\hline
+\multicolumn{4}{|c|}{\textit{Gravity Mechanism}} \\
+\hline
+Archimedean analogy & Ch.7 & [P] & Physical motivation, not derivation \\
+$G = \ell_P^2 c^4/(\sigma r_e^3)$ & Ch.7 & [I] & Dimensional identification; uses $\ell_P^{\text{obs}}$ \\
+Plenum flow ansatz & Ch.8 & [P] & $v = \sqrt{2GM/r}$ adopted \\
+Schwarzschild metric & Ch.8 & [D] & From acoustic metric + flow ansatz \\
+\hline
+\multicolumn{4}{|c|}{\textit{Mercury Precession}} \\
+\hline
+Precession formula & Ch.8 & [D] & $\Delta\phi = 6\pi GM/[c^2 a(1-e^2)]$ \\
+Numerical inputs & Ch.8 & [BL] & $G$, $M_\odot$, $a$, $e$ observed \\
+Result: 42.98''/century & Ch.8 & [D]+[BL] & Derived formula + baseline data \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Legend:}
+\begin{itemize}
+    \item \textbf{[M]} --- Mathematical (pure geometry/theorem)
+    \item \textbf{[D]} --- Derived (follows from axioms/equations)
+    \item \textbf{[Dc]} --- Derived conditional (requires postulates)
+    \item \textbf{[P]} --- Postulate (assumed, not derived)
+    \item \textbf{[I]} --- Identified (definition/correspondence)
+    \item \textbf{[BL]} --- Baseline (calibration from measurement)
+\end{itemize}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Bridge-to-5D Map}
+\label{sec:bridge}
+
+\begin{center}
+\small
+\begin{tabular}{|p{2.5cm}|p{3cm}|c|p{3cm}|c|p{2.5cm}|}
+\hline
+\textbf{Part I Step} & \textbf{Assertion} & \textbf{Tag} & \textbf{5D Counterpart} & \textbf{Status} & \textbf{What Would Fix} \\
+\hline
+\hline
+$\rho_{\text{Plenum}}$ & $\sim \rho_{\text{Planck}}$ & [P] & Bulk cosmological constant $\Lambda_5$ & OPEN & Derive from 5D action \\
+\hline
+$\sigma$ identification & $\sigma = m_e c^2/(\alpha r_e^2)$ & [I] & Israel junction: $[K_{\mu\nu}] = -\kappa_5^2 (S_{\mu\nu} - \frac{1}{3}g_{\mu\nu}S)$ & OPEN & Need $\kappa_5^2$ principle \\
+\hline
+$G$ formula & $G = \ell_P^2 c^4/(\sigma r_e^3)$ & [I] & $G_N = \kappa_5^2/(8\pi L)$ from KK & OPEN & Derive $\ell_P$ from EDC \\
+\hline
+Flow ansatz & $v = \sqrt{2GM/r}$ & [P] & Weak-field limit of 5D EH & OPEN & 5D perturbation theory \\
+\hline
+Schwarzschild & From acoustic metric & [D] & 4D induced metric from 5D & CLOSED & (conditional on ansatz) \\
+\hline
+Precession & $\Delta\phi = 6\pi GM/[c^2 a(1-e^2)]$ & [D] & Same formula if Schwarzschild holds & CLOSED & (conditional on metric) \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Gap Analysis}
+
+The bridge map reveals the following gaps between Part I and the strict 5D program:
+
+\begin{enumerate}
+    \item \textbf{No $\kappa_5^2$ derivation:} Part I does not derive the 5D gravitational coupling from EDC field equations. The formula $G = \ell_P^2 c^4/(\sigma r_e^3)$ uses observed $\ell_P$.
+
+    \item \textbf{No EH+GHY+Israel chain:} Part I does not use the Einstein-Hilbert action, Gibbons-Hawking-York boundary term, or Israel junction conditions to obtain 4D gravity.
+
+    \item \textbf{Flow ansatz is postulated:} The key step $v = \sqrt{2GM/r}$ is adopted by analogy, not derived from 5D hydrodynamics or field equations.
+
+    \item \textbf{$\rho_{\text{Plenum}}$ is postulated:} The Plenum density is assumed to be $\sim \rho_{\text{Planck}}$, not derived.
+\end{enumerate}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Does Part I Fix $\kappa_5^2$ or C?}
+\label{sec:kappa-analysis}
+
+\subsection{The BLOCK-003 Question}
+
+BLOCK-003 asks: Can we derive $G_N$ from EDC parameters $(\sigma, R_\xi, \rho_{\text{Plenum}})$ without circular reference to $G_N^{\text{obs}}$ or $\ell_P^{\text{obs}}$?
+
+The standard brane-world result is:
+\begin{equation}
+G_N = \frac{\kappa_5^2}{8\pi L}
+\end{equation}
+where $\kappa_5^2$ is the 5D gravitational coupling and $L$ is the compactification scale.
+
+From v3--v4, we found $\kappa_5^2 = C \cdot \sigma^{-3/4}$ where $C$ is an unfixed constant.
+
+\subsection{What Part I Provides}
+
+Part I provides the formula:
+\begin{equation}
+G = \frac{\ell_P^2 c^4}{\sigma r_e^3}
+\end{equation}
+
+\textbf{Question:} Does this fix $\kappa_5^2$ or $C$?
+
+\textbf{Analysis:} Since $\ell_P^2 = \hbar G/c^3$, the formula becomes:
+\begin{equation}
+G = \frac{\hbar G}{c^3} \cdot \frac{c^4}{\sigma r_e^3} = \frac{\hbar G c}{\sigma r_e^3}
+\end{equation}
+
+This is an identity (G cancels), not a constraint. It reduces to:
+\begin{equation}
+\sigma r_e^3 = \hbar c
+\end{equation}
+
+But Part I also uses $\hbar = \sigma R_\xi^3/c$ (from Chapter 6), giving $\sigma R_\xi^3 = \hbar c$.
+
+These are consistent only if $r_e = R_\xi$, which is \textbf{not the case} ($r_e \sim 10^{-15}$ m, $R_\xi \sim 10^{-18}$ m).
+
+\textbf{Conclusion:} The Part I formula uses $\ell_P^{\text{obs}}$ as input, not as output. It does not derive $G$ or fix $\kappa_5^2/C$.
+
+\subsection{Verdict}
+
+\begin{tcolorbox}[colback=red!10,colframe=red!60!black,title=BLOCK-003 Status]
+\textbf{Part I does NOT implicitly fix $\kappa_5^2$ or C.}
+
+\begin{itemize}
+    \item The G formula uses observed $\ell_P$ as input [BL]
+    \item The flow ansatz is postulated [P], not derived from 5D
+    \item Mercury precession uses observed $G$, $M_\odot$ [BL]
+    \item No derivation from EH+GHY+Israel exists in Part I
+\end{itemize}
+
+\textbf{BLOCK-003 remains OPEN.}
+\end{tcolorbox}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Conclusion}
+\label{sec:conclusion}
+
+\subsection{Summary}
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Question} & \textbf{Answer} \\
+\hline
+How does Part I get gravity? & Dimensional identification [I] + flow ansatz [P] \\
+Is G derived from 5D? & No --- uses observed $\ell_P$ \\
+Is Schwarzschild derived from 5D? & No --- from flow ansatz, not 5D EH \\
+Is Mercury precession EDC-specific? & No --- standard GR formula with observed inputs \\
+Does Part I fix $\kappa_5^2$/C? & No --- BLOCK-003 remains open \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{One-Line Outcome}
+
+\begin{tcolorbox}[colback=gray!10,colframe=black]
+\textbf{NO BRIDGE:} Part I imports 4D gravity as [I]/[P]; BLOCK-003 remains open.
+\end{tcolorbox}
+
+\subsection{Implications for BLOCK-003}
+
+To close BLOCK-003, the following is needed:
+\begin{enumerate}
+    \item Derive $\kappa_5^2$ from EDC action (EH+GHY+Israel)
+    \item Or equivalently, derive $\ell_P$ (or $\ell_*$) from EDC dynamics
+    \item This requires a normalization principle for the 5D coupling
+    \item Part I explicitly acknowledges this gap (Chapter 7 caveat)
+\end{enumerate}
+
+The Mercury precession result (42.98''/century) is a \textbf{consistency check}, not a prediction---it confirms that the adopted Schwarzschild geometry is internally consistent, but does not distinguish EDC from GR or close the derivation chain.
+
+\end{document}

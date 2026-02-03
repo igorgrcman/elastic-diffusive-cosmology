@@ -20,6 +20,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v9/` | Derivation v9: NC-2 attempt (DGP/induced gravity) | `EDC_BLOCK003_DERIVATION_V9_NC2_DGP_ATTEMPT.pdf` | INCONCLUSIVE | 2026-02-02 |
 | `paper_gravity_block003/derivation_v10/` | Derivation v10: Tautology audit + O(M) check | `EDC_BLOCK003_DERIVATION_V10_TAUTOLOGY_AUDIT.pdf` | DIAGNOSTIC | 2026-02-02 |
 | `paper_gravity_block003/derivation_v11/` | Derivation v11: Derive σ from EDC field equations | `EDC_BLOCK003_DERIVATION_V11_SIGMA_FROM_FIELD_EQS.pdf` | NO-GO | 2026-02-02 |
+| `paper_gravity_block003/derivation_v12/` | Derivation v12: Part I Gravity & Mercury Audit | `EDC_BLOCK003_DERIVATION_V12_PART1_GRAVITY_AUDIT.pdf` | AUDIT | 2026-02-02 |
 
 ---
 
@@ -239,12 +240,31 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 
 ---
 
+## Detailed Entry: Derivation v12
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v12/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V12_PART1_GRAVITY_AUDIT.pdf` |
+| **Pages** | 5 |
+| **Date** | 2026-02-02 |
+| **Status** | AUDIT |
+| **MD5 (main.tex)** | `1e0d0f6049e8cb3d143f9134a49b1d90` |
+| **MD5 (main.pdf)** | `1ab7dc2ec3257cfc437fd8c91a3afa66` |
+| **MD5 (export PDF)** | `1ab7dc2ec3257cfc437fd8c91a3afa66` |
+| **Scope** | Back-reference audit of Part I gravity treatment; Mercury precession formula; bridge map to 5D |
+| **Outcome** | NO BRIDGE: Part I imports 4D gravity as [I]/[P]; BLOCK-003 remains OPEN |
+
+---
+
 ## Status Legend
 
 - **FROZEN** — Reviewer-ready; no further edits unless critical fix required
 - **WORKING** — Active derivation attempt; may contain OPEN steps
 - **NO-GO** — Proven impossibility result; documents what cannot be done
 - **OPTIONS** — Choice catalog; documents available paths without selecting one
+- **AUDIT** — Back-reference audit; documents what existing material does/does not provide
 - **Program** — Derivation roadmap, not closed results
 - **Results** — Completed derivations with numerical predictions
 - **Draft** — Work in progress
