@@ -28,6 +28,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v17/` | Derivation v17: EW Calibration Robustness | `EDC_BLOCK003_DERIVATION_V17_EW_CALIBRATION_ROBUSTNESS.pdf` | ROBUST | 2026-02-02 |
 | `paper_gravity_block003/derivation_v18/` | Derivation v18: Gravity Closure Summary | `EDC_BLOCK003_DERIVATION_V18_GRAVITY_CLOSURE_SUMMARY.pdf` | CONSOLIDATION | 2026-02-02 |
 | `paper_gravity_block003/derivation_v19/` | Derivation v19: Derivation-First Writeup | `EDC_BLOCK003_DERIVATION_V19_DERIVATION_FIRST.pdf` | DERIVATION | 2026-02-02 |
+| `paper_gravity_block003/derivation_v20/` | Derivation v20: Factor & Normalization Audit | `EDC_BLOCK003_DERIVATION_V20_FACTOR_AUDIT.pdf` | AUDIT | 2026-02-03 |
 
 ---
 
@@ -401,6 +402,27 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Displayed equations** | 35+ in Sections 2–5 |
 | **Result** | M₅ = 2.41 × 10¹³ GeV under [BL] inputs |
 | **Open item** | Internal R_ξ derivation remains NO-GO |
+
+---
+
+## Detailed Entry: Derivation v20
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v20/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V20_FACTOR_AUDIT.pdf` |
+| **Pages** | 7 |
+| **Date** | 2026-02-03 |
+| **Status** | AUDIT / CLOSED (calibrated) |
+| **MD5 (main.tex)** | `08a0862cc82b6f2b94f22560347992ab` |
+| **MD5 (main.pdf)** | `956d3832cf1b79f762b314643e7b3c1a` |
+| **MD5 (export PDF)** | `956d3832cf1b79f762b314643e7b3c1a` |
+| **Scope** | Forensic audit of all numerical factors: ½, 8π, orbifold, 2πR, warp exponent |
+| **Factors tracked** | Action ½, Newton 8π, orbifold doubling, circle circumference, warp exponent |
+| **Conversion table** | Reduced ↔ Original Planck mass mapping |
+| **Results** | M₅ = 8.1 × 10¹² GeV (reduced) or 2.4 × 10¹³ GeV (original) |
+| **Factor Audit Box** | Complete with all 5 ambiguity sources |
 
 ---
 
