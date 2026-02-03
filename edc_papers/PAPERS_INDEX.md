@@ -33,6 +33,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v22/` | Derivation v22: KK Conventions Unification | `EDC_BLOCK003_DERIVATION_V22_KK_CONVENTIONS_UNIFICATION.pdf` | CONVENTION | 2026-02-03 |
 | `paper_gravity_block003/derivation_v23/` | Derivation v23: Canonical Closure Packet | `EDC_BLOCK003_DERIVATION_V23_CANONICAL_CLOSURE_PACKET.pdf` | CLOSURE | 2026-02-03 |
 | `paper_gravity_block003/derivation_v24/` | Derivation v24: Reproducibility & Unit/Convention Audit | `EDC_BLOCK003_DERIVATION_V24_REPRODUCIBILITY_AUDIT.pdf` | AUDIT | 2026-02-03 |
+| `paper_gravity_block003/derivation_v25/` | Derivation v25: Alternative Gap Identifications + Robustness | `EDC_BLOCK003_DERIVATION_V25_PROXY_ROBUSTNESS.pdf` | ROBUSTNESS | 2026-02-03 |
 
 ---
 
@@ -521,6 +522,33 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Error budget** | δM₅/M₅ = 1.07 × 10⁻⁵ |
 | **Equations** | 48 environments |
 | **Regression table** | v15–v24 values mapped to canonical convention |
+
+---
+
+## Detailed Entry: Derivation v25
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v25/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V25_PROXY_ROBUSTNESS.pdf` |
+| **Pages** | 17 |
+| **Date** | 2026-02-03 |
+| **Status** | ROBUSTNESS / CLOSED |
+| **MD5 (main.tex)** | `55be74db749c2b07a4ea2995253951fe` |
+| **MD5 (main.pdf)** | `5244ab2717281847b705edb9142a9426` |
+| **MD5 (export PDF)** | `5244ab2717281847b705edb9142a9426` |
+| **MD5 (recompute.py)** | `6dbb0403c4792f87e79f281fe86f013f` |
+| **Scope** | Proxy family robustness analysis: M_Z vs M_W vs v_EW |
+| **Python script** | `recompute.py` — ALL CHECKS PASSED (15 checks) |
+| **Proxies tested** | M_Z = 91.19 GeV, M_W = 80.37 GeV, v_EW = 246.2 GeV |
+| **M₅ range (red)** | [5.33, 7.75] × 10¹² GeV |
+| **M₅ range (orig)** | [1.56, 2.27] × 10¹³ GeV |
+| **Total spread** | Δlog₁₀(M₅) = 0.162 (factor 1.45) |
+| **Robustness verdict** | GUT-scale M₅ robust against proxy selection |
+| **Metrological justification** | M_Z selected: best precision, pole stability, minimal EDC dependence |
+| **Equations** | 79 environments |
+| **TikZ figure** | 2-panel (M₅ values + Δlog₁₀ spread) |
 
 ---
 
