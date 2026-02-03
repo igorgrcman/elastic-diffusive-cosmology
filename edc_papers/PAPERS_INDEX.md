@@ -35,6 +35,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v24/` | Derivation v24: Reproducibility & Unit/Convention Audit | `EDC_BLOCK003_DERIVATION_V24_REPRODUCIBILITY_AUDIT.pdf` | AUDIT | 2026-02-03 |
 | `paper_gravity_block003/derivation_v25/` | Derivation v25: Alternative Gap Identifications + Robustness | `EDC_BLOCK003_DERIVATION_V25_PROXY_ROBUSTNESS.pdf` | ROBUSTNESS | 2026-02-03 |
 | `paper_gravity_block003/derivation_v26/` | Derivation v26: Gap Derivability Program | `EDC_BLOCK003_DERIVATION_V26_GAP_DERIVABILITY_PROGRAM.pdf` | PROGRAM | 2026-02-03 |
+| `paper_gravity_block003/derivation_v27/` | Derivation v27: Brane Mass from Brane Tension | `EDC_BLOCK003_DERIVATION_V27_MB_FROM_SIGMA_PINNING.pdf` | [Dc]+[P] | 2026-02-03 |
 
 ---
 
@@ -577,6 +578,30 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Python script** | `recompute.py` — ALL 11 CHECKS PASSED |
 | **Equations** | 82 environments |
 | **TikZ figure** | 2-panel (mode shapes + gap vs m_b·L) |
+
+---
+
+## Detailed Entry: Derivation v27
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v27/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V27_MB_FROM_SIGMA_PINNING.pdf` |
+| **Pages** | 19 |
+| **Date** | 2026-02-03 |
+| **Status** | [Dc]+[P] |
+| **MD5 (main.tex)** | `2877cb654034d1411213a3c15949593f` |
+| **MD5 (main.pdf)** | `793d95f468ae4089706542b6f0489f34` |
+| **MD5 (export PDF)** | `793d95f468ae4089706542b6f0489f34` |
+| **Scope** | Derives m_b = λσ/M_5³ from dimensional and action-level arguments |
+| **Primary relation** | m_b = λσ/M_5³ [Dc] |
+| **Control parameter** | b = m_b·L = λσL²/M̄_Pl² [Dc] |
+| **Topological pinning** | λ = πn or 2πn candidate [P] |
+| **Gap status** | Remains [I]+[BL] until λ and L fixed |
+| **Python script** | `recompute.py` — ALL 12 CHECKS PASSED |
+| **Equations** | 85 environments |
+| **TikZ figure** | 2-panel (σ→m_b→gap schematic + x_1 vs log b) |
 
 ---
 
