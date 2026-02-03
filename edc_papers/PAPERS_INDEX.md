@@ -31,6 +31,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v20/` | Derivation v20: Factor & Normalization Audit | `EDC_BLOCK003_DERIVATION_V20_FACTOR_AUDIT.pdf` | AUDIT | 2026-02-03 |
 | `paper_gravity_block003/derivation_v21/` | Derivation v21: KK Mass Gap to R_xi Identification | `EDC_BLOCK003_DERIVATION_V21_KK_GAP_TO_RXI.pdf` | [I]+[BL] UPGRADE | 2026-02-03 |
 | `paper_gravity_block003/derivation_v22/` | Derivation v22: KK Conventions Unification | `EDC_BLOCK003_DERIVATION_V22_KK_CONVENTIONS_UNIFICATION.pdf` | CONVENTION | 2026-02-03 |
+| `paper_gravity_block003/derivation_v23/` | Derivation v23: Canonical Closure Packet | `EDC_BLOCK003_DERIVATION_V23_CANONICAL_CLOSURE_PACKET.pdf` | CLOSURE | 2026-02-03 |
 
 ---
 
@@ -470,6 +471,30 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Key result** | π difference is purely definitional, not physical |
 | **Equations** | 63 environments |
 | **Impact** | v15–v20 compatible under R_ξ^(old) = R = L/π interpretation |
+
+---
+
+## Detailed Entry: Derivation v23
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v23/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V23_CANONICAL_CLOSURE_PACKET.pdf` |
+| **Pages** | 15 |
+| **Date** | 2026-02-03 |
+| **Status** | CLOSURE / REVIEWER-READY |
+| **MD5 (main.tex)** | `e404b92c3603f8537b722a3eedc3414c` |
+| **MD5 (main.pdf)** | `249f36e895cdbbc3201d565b3a3770ba` |
+| **MD5 (export PDF)** | `249f36e895cdbbc3201d565b3a3770ba` |
+| **Scope** | Canonical closure packet; post-v22 conventions + post-v20 factors |
+| **Derived** | Full chain from 5D action to G_N; normalization integral; bridge relation |
+| **Conventions** | R_ξ ≡ L, both Planck mass conventions, (8π)^{1/3} conversion |
+| **Results** | M₅ = 5.6 × 10¹² GeV (reduced) or 1.6 × 10¹³ GeV (original) |
+| **Error budget** | δM₅/M₅ ≈ 1.1 × 10⁻⁵ |
+| **Equations** | 97 environments |
+| **Compatibility** | Maps v15–v21 to canonical via R_ξ^(canon) = π R_ξ^(old) |
+| **Epistemic ledger** | Complete [D]/[I]/[BL]/NO-GO/OPEN tagging |
 
 ---
 

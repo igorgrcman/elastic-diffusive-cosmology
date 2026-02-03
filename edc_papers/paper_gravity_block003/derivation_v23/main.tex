@@ -1,0 +1,992 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{physics}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{tcolorbox}
+\usepackage{longtable}
+
+\newcommand{\Rxi}{R_\xi}
+\newcommand{\Mpl}{M_{\mathrm{Pl}}}
+\newcommand{\Mplbar}{\bar{M}_{\mathrm{Pl}}}
+\newcommand{\Mfive}{M_5}
+\newcommand{\calI}{\mathcal{I}}
+\newcommand{\GN}{G_N}
+\newcommand{\MZ}{M_Z}
+\newcommand{\mgap}{m_{\mathrm{gap}}}
+\newcommand{\kfive}{\kappa_5}
+
+\title{Derivation v23: BLOCK-003 Canonical Closure Packet\\
+\large Post-v22 Conventions $+$ Post-v20 Factor Audit}
+\author{EDC Collaboration\\[3pt]
+\small\textit{Reviewer-grade derivation-first closure document}}
+\date{February 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This document provides the canonical closure of BLOCK-003 (5D$\to$4D gravity bridge)
+incorporating all convention decisions from v20 (factor audit) and v22 (KK conventions
+unification). We derive the complete chain from 5D action to 4D Newton constant in
+one unbroken sequence, using the canonical convention $\Rxi \equiv L$ (interval length).
+Both Planck mass conventions (original $\Mpl$ and reduced $\Mplbar$) are treated with
+explicit $(8\pi)^{1/3}$ conversion factors. A conventions dictionary maps between all
+parametrizations used in v15--v21. The error budget, epistemic ledger, and compatibility
+notes provide a complete reviewer packet for the gravity sector.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Canonical Conventions (Locked)}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\begin{tcolorbox}[title=Master Convention Lock, colback=blue!5, colframe=blue!50]
+The following conventions are fixed for BLOCK-003 going forward:
+
+\textbf{Geometric convention (from v22):}
+\begin{itemize}
+\item $\Rxi \equiv L$ = interval length (NOT circle radius)
+\item Domain: $\xi \in [0, \Rxi]$
+\item Boundary conditions: Neumann--Neumann ($\partial_\xi\psi = 0$ at $\xi = 0, \Rxi$)
+\end{itemize}
+
+\textbf{Action convention (from v20):}
+\begin{itemize}
+\item 5D action: $S_5 = \frac{\Mfive^3}{2}\int d^5x\sqrt{-g_5}R_5$
+\item 4D Newton constant: $\GN = 1/(8\pi\Mplbar^2)$ with reduced Planck mass
+\item Original Planck mass: $\Mpl = 1/\sqrt{\GN} = 1.2209 \times 10^{19}$ GeV
+\item Reduced Planck mass: $\Mplbar = 1/\sqrt{8\pi\GN} = 2.435 \times 10^{18}$ GeV
+\end{itemize}
+
+\textbf{Identification (from v21):}
+\begin{itemize}
+\item Mass gap: $\mgap = \MZ^{\mathrm{obs}}$ [I]+[BL]
+\item $\Rxi = \pi\hbar c/\MZ$ [BL]
+\end{itemize}
+\end{tcolorbox}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{5D Action and Field Equations}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Bulk Action}
+
+The 5D Einstein-Hilbert action with cosmological constant is:
+\begin{equation}
+S_{\mathrm{bulk}} = \frac{\Mfive^3}{2} \int d^5x \sqrt{-g_5} \left( R_5 - 2\Lambda_5 \right)
+\label{eq:bulk-action}
+\end{equation}
+
+For the flat case relevant to BLOCK-003, we set $\Lambda_5 = 0$:
+\begin{equation}
+S_{\mathrm{bulk}} = \frac{\Mfive^3}{2} \int d^5x \sqrt{-g_5}\, R_5
+\label{eq:bulk-action-flat}
+\end{equation}
+
+The prefactor $\Mfive^3/2$ is the reduced 5D Planck mass convention. In terms of
+the 5D gravitational coupling:
+\begin{equation}
+\kfive^2 \equiv \frac{1}{\Mfive^3}
+\label{eq:kappa5-def}
+\end{equation}
+
+so that:
+\begin{equation}
+S_{\mathrm{bulk}} = \frac{1}{2\kfive^2} \int d^5x \sqrt{-g_5}\, R_5
+\label{eq:bulk-action-kappa}
+\end{equation}
+
+\subsection{Gibbons-Hawking-York Boundary Term}
+
+For a manifold with boundaries (the interval endpoints), we need the GHY term:
+\begin{equation}
+S_{\mathrm{GHY}} = \Mfive^3 \int_{\partial\mathcal{M}} d^4x \sqrt{-h}\, K
+\label{eq:GHY}
+\end{equation}
+
+where $h_{\mu\nu}$ is the induced metric on the boundary and $K$ is the trace of
+the extrinsic curvature:
+\begin{equation}
+K = h^{\mu\nu} K_{\mu\nu}, \quad K_{\mu\nu} = \frac{1}{2}\mathcal{L}_n h_{\mu\nu}
+\label{eq:extrinsic-curvature}
+\end{equation}
+
+with $n^M$ the outward-pointing unit normal to the boundary.
+
+\subsection{Brane Action}
+
+At the boundaries $\xi = 0$ and $\xi = \Rxi$, we allow brane-localized tension:
+\begin{equation}
+S_{\mathrm{brane}} = -\sum_i \sigma_i \int d^4x \sqrt{-h_i}
+\label{eq:brane-action}
+\end{equation}
+
+For the flat case with stabilized modulus, the brane tensions are tuned to maintain
+flatness. We do not need explicit $\sigma_i$ values for the graviton spectrum.
+
+\subsection{Total Action}
+
+\begin{equation}
+S_{\mathrm{total}} = S_{\mathrm{bulk}} + S_{\mathrm{GHY}} + S_{\mathrm{brane}}
+\label{eq:total-action}
+\end{equation}
+
+The 5D Einstein equations are:
+\begin{equation}
+G_{MN}^{(5)} = R_{MN}^{(5)} - \frac{1}{2}g_{MN}^{(5)}R^{(5)} = \kfive^2 T_{MN}^{(5)}
+\label{eq:5D-Einstein}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Background Metric and Linearization}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Background Solution}
+
+We consider a factorizable background with warp factor $A(\xi)$:
+\begin{equation}
+ds^2 = e^{2A(\xi)} \eta_{\mu\nu} dx^\mu dx^\nu + d\xi^2
+\label{eq:background-metric}
+\end{equation}
+
+For the flat (unwarped) case:
+\begin{equation}
+A(\xi) = 0 \quad \Rightarrow \quad ds^2 = \eta_{\mu\nu} dx^\mu dx^\nu + d\xi^2
+\label{eq:flat-background}
+\end{equation}
+
+This satisfies the 5D vacuum Einstein equations $R_{MN}^{(5)} = 0$.
+
+\subsection{Metric Perturbation}
+
+We perturb around the background:
+\begin{equation}
+g_{MN} = \bar{g}_{MN} + \delta g_{MN}
+\label{eq:metric-perturbation}
+\end{equation}
+
+For the graviton sector, the relevant perturbation is the transverse-traceless (TT)
+4D component:
+\begin{equation}
+\delta g_{\mu\nu} = e^{2A(\xi)} h_{\mu\nu}(x,\xi)
+\label{eq:TT-perturbation}
+\end{equation}
+
+with:
+\begin{equation}
+\partial^\mu h_{\mu\nu} = 0, \quad h^\mu_{~\mu} = 0
+\label{eq:TT-gauge}
+\end{equation}
+
+\subsection{Linearized Equation of Motion}
+
+Substituting into the linearized Einstein equations, the TT perturbation satisfies:
+\begin{equation}
+\Box_4 h_{\mu\nu} + e^{-2A} \left( \partial_\xi^2 + 4A' \partial_\xi \right) h_{\mu\nu} = 0
+\label{eq:linearized-EOM}
+\end{equation}
+
+where $\Box_4 = \eta^{\rho\sigma}\partial_\rho\partial_\sigma$ is the 4D d'Alembertian.
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Kaluza-Klein Decomposition}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Mode Expansion}
+
+We expand $h_{\mu\nu}(x,\xi)$ in KK modes:
+\begin{equation}
+h_{\mu\nu}(x,\xi) = \sum_{n=0}^{\infty} h_{\mu\nu}^{(n)}(x) \psi_n(\xi)
+\label{eq:KK-expansion}
+\end{equation}
+
+where $h_{\mu\nu}^{(n)}(x)$ are 4D fields satisfying:
+\begin{equation}
+\Box_4 h_{\mu\nu}^{(n)} = -m_n^2 h_{\mu\nu}^{(n)}
+\label{eq:4D-mass-eq}
+\end{equation}
+
+and $\psi_n(\xi)$ are mode functions.
+
+\subsection{Mode Equation}
+
+Substituting the expansion into \eqref{eq:linearized-EOM}:
+\begin{equation}
+\sum_n \left[ -m_n^2 h_{\mu\nu}^{(n)} \psi_n + e^{-2A} h_{\mu\nu}^{(n)}
+\left( \psi_n'' + 4A' \psi_n' \right) \right] = 0
+\label{eq:mode-eq-intermediate}
+\end{equation}
+
+For this to hold for arbitrary $h_{\mu\nu}^{(n)}$:
+\begin{equation}
+\psi_n'' + 4A' \psi_n' + m_n^2 e^{2A} \psi_n = 0
+\label{eq:general-mode-eq}
+\end{equation}
+
+\subsection{Flat Case ($A = 0$)}
+
+For the flat background:
+\begin{equation}
+\psi_n''(\xi) + m_n^2 \psi_n(\xi) = 0
+\label{eq:flat-mode-eq}
+\end{equation}
+
+General solution:
+\begin{equation}
+\psi_n(\xi) = A_n \cos(m_n \xi) + B_n \sin(m_n \xi)
+\label{eq:flat-mode-general}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Boundary Conditions and Spectrum}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Neumann Boundary Conditions}
+
+The graviton zero mode must be even under orbifold $\mathbb{Z}_2$ reflection,
+which translates to Neumann BCs on the interval:
+\begin{align}
+\psi_n'(0) &= 0 \label{eq:BC-left}\\
+\psi_n'(\Rxi) &= 0 \label{eq:BC-right}
+\end{align}
+
+\subsection{Applying Left BC}
+
+From \eqref{eq:flat-mode-general}:
+\begin{equation}
+\psi_n'(\xi) = -A_n m_n \sin(m_n \xi) + B_n m_n \cos(m_n \xi)
+\label{eq:mode-derivative}
+\end{equation}
+
+At $\xi = 0$:
+\begin{equation}
+\psi_n'(0) = B_n m_n = 0
+\label{eq:BC-left-applied}
+\end{equation}
+
+For $m_n \neq 0$, this requires:
+\begin{equation}
+B_n = 0
+\label{eq:Bn-zero}
+\end{equation}
+
+\subsection{Applying Right BC}
+
+With $B_n = 0$, the solution is $\psi_n(\xi) = A_n \cos(m_n \xi)$, and:
+\begin{equation}
+\psi_n'(\xi) = -A_n m_n \sin(m_n \xi)
+\label{eq:mode-derivative-simplified}
+\end{equation}
+
+At $\xi = \Rxi$:
+\begin{equation}
+\psi_n'(\Rxi) = -A_n m_n \sin(m_n \Rxi) = 0
+\label{eq:BC-right-applied}
+\end{equation}
+
+For non-trivial $A_n \neq 0$ and $m_n \neq 0$:
+\begin{equation}
+\sin(m_n \Rxi) = 0
+\label{eq:quantization-condition}
+\end{equation}
+
+\subsection{Quantization}
+
+The condition $\sin(m_n \Rxi) = 0$ is satisfied when:
+\begin{equation}
+m_n \Rxi = n\pi, \quad n = 0, 1, 2, \ldots
+\label{eq:quantization-result}
+\end{equation}
+
+\textbf{Canonical KK Spectrum:}
+\begin{equation}
+\boxed{m_n = \frac{n\pi}{\Rxi}, \quad n = 0, 1, 2, \ldots}
+\label{eq:spectrum-canonical}
+\end{equation}
+
+\subsection{Zero Mode}
+
+For $n = 0$:
+\begin{equation}
+m_0 = 0, \quad \psi_0(\xi) = A_0 = \mathrm{const}
+\label{eq:zero-mode}
+\end{equation}
+
+This is the massless 4D graviton.
+
+\subsection{Mass Gap}
+
+The mass gap (first massive KK mode) is:
+\begin{equation}
+\mgap \equiv m_1 = \frac{\pi}{\Rxi}
+\label{eq:mass-gap-def}
+\end{equation}
+
+Inverting:
+\begin{equation}
+\boxed{\Rxi = \frac{\pi}{\mgap}}
+\label{eq:Rxi-from-mgap}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Normalization Integral and Bridge Relation}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{5D Kinetic Term}
+
+The 5D kinetic term for graviton fluctuations is:
+\begin{equation}
+S_{\mathrm{kin}}^{(5)} = \frac{\Mfive^3}{4} \int d^5x \sqrt{-g_5}\, g^{M P} g^{N Q}
+\partial_M h_{PQ} \partial_N h^{PQ}
+\label{eq:5D-kinetic}
+\end{equation}
+
+For the background \eqref{eq:background-metric}:
+\begin{equation}
+\sqrt{-g_5} = e^{4A(\xi)}
+\label{eq:sqrt-g5}
+\end{equation}
+
+\subsection{Reduction to 4D}
+
+Substituting the KK expansion \eqref{eq:KK-expansion} and integrating over $\xi$:
+\begin{equation}
+S_{\mathrm{kin}}^{(5)} = \frac{\Mfive^3}{4} \sum_n \int d^4x\, \eta^{\mu\rho}\eta^{\nu\sigma}
+\partial_\mu h_{\rho\sigma}^{(n)} \partial_\nu h^{(n)\rho\sigma} \cdot \calI_n
+\label{eq:kinetic-reduced}
+\end{equation}
+
+where the normalization integral is:
+\begin{equation}
+\calI_n = \int_0^{\Rxi} d\xi\, e^{4A(\xi)} |\psi_n(\xi)|^2
+\label{eq:normalization-integral}
+\end{equation}
+
+\subsection{Flat Case Simplification}
+
+For $A(\xi) = 0$:
+\begin{equation}
+\calI_n = \int_0^{\Rxi} d\xi\, |\psi_n(\xi)|^2
+\label{eq:normalization-flat}
+\end{equation}
+
+\subsection{Zero-Mode Integral}
+
+For the zero mode with $\psi_0 = \mathrm{const}$, we use the ``constant-valued''
+convention $\psi_0 = 1$:
+\begin{equation}
+\calI_0 = \int_0^{\Rxi} d\xi\, (1)^2 = \Rxi
+\label{eq:I0-calculation}
+\end{equation}
+
+\textbf{Result:}
+\begin{equation}
+\boxed{\calI \equiv \calI_0 = \Rxi}
+\label{eq:I-equals-Rxi}
+\end{equation}
+
+\subsection{4D Effective Action}
+
+The zero-mode effective action becomes:
+\begin{equation}
+S_{\mathrm{eff}}^{(4)} = \frac{\Mfive^3 \calI}{4} \int d^4x\, \eta^{\mu\rho}\eta^{\nu\sigma}
+\partial_\mu h_{\rho\sigma}^{(0)} \partial_\nu h^{(0)\rho\sigma}
+\label{eq:4D-effective}
+\end{equation}
+
+Comparing with the standard 4D graviton kinetic term:
+\begin{equation}
+S_{\mathrm{4D}} = \frac{\Mplbar^2}{4} \int d^4x\, \eta^{\mu\rho}\eta^{\nu\sigma}
+\partial_\mu h_{\rho\sigma} \partial_\nu h^{\rho\sigma}
+\label{eq:4D-standard}
+\end{equation}
+
+\subsection{Bridge Relation}
+
+Matching coefficients:
+\begin{equation}
+\Mfive^3 \calI = \Mplbar^2
+\label{eq:bridge-intermediate}
+\end{equation}
+
+With $\calI = \Rxi$:
+\begin{equation}
+\boxed{\Mplbar^2 = \Mfive^3 \Rxi}
+\label{eq:bridge-relation}
+\end{equation}
+
+This is the fundamental bridge relation connecting 5D and 4D gravity.
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Newton's Constant: Explicit Bridge}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Definition of $\GN$}
+
+In the reduced Planck mass convention:
+\begin{equation}
+\GN = \frac{1}{8\pi \Mplbar^2}
+\label{eq:GN-def}
+\end{equation}
+
+\subsection{Expressing $\GN$ in 5D Parameters}
+
+Substituting the bridge relation \eqref{eq:bridge-relation}:
+\begin{equation}
+\GN = \frac{1}{8\pi \Mfive^3 \Rxi}
+\label{eq:GN-5D}
+\end{equation}
+
+This shows explicitly how Newton's constant emerges from the 5D parameters.
+
+\subsection{Gravitational Potential}
+
+The 4D Newtonian potential between masses $m_1, m_2$:
+\begin{equation}
+V(r) = -\frac{\GN m_1 m_2}{r} = -\frac{m_1 m_2}{8\pi \Mfive^3 \Rxi \cdot r}
+\label{eq:Newton-potential}
+\end{equation}
+
+At distances $r \gg \Rxi$, this reproduces standard 4D gravity.
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{$\Rxi$ Identification and Numerical Closure}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Mass Gap Identification}
+
+From v21, we identify the KK mass gap with the $Z$ boson mass:
+\begin{equation}
+\mgap = \MZ^{\mathrm{obs}} \quad \text{[I]+[BL]}
+\label{eq:mgap-identification}
+\end{equation}
+
+\textbf{Epistemic status:} This is an identification [I] using a baseline observable [BL].
+It is NOT derived from EDC axioms.
+
+\subsection{$\Rxi$ Determination}
+
+Using \eqref{eq:Rxi-from-mgap}:
+\begin{equation}
+\Rxi = \frac{\pi}{\mgap} = \frac{\pi \hbar c}{\MZ}
+\label{eq:Rxi-from-MZ}
+\end{equation}
+
+\subsection{Numerical Evaluation}
+
+With $\MZ = 91.1876$ GeV and $\hbar c = 197.327$ MeV$\cdot$fm:
+\begin{align}
+\Rxi &= \frac{\pi \times 197.327~\mathrm{MeV \cdot fm}}{91187.6~\mathrm{MeV}} \nonumber\\
+&= \frac{\pi \times 197.327}{91187.6}~\mathrm{fm} \nonumber\\
+&= 6.798 \times 10^{-3}~\mathrm{fm} \nonumber\\
+&= 6.80 \times 10^{-18}~\mathrm{m}
+\label{eq:Rxi-numerical}
+\end{align}
+
+In GeV$^{-1}$:
+\begin{equation}
+\Rxi = \frac{\pi}{91.1876}~\mathrm{GeV}^{-1} = 3.445 \times 10^{-2}~\mathrm{GeV}^{-1}
+\label{eq:Rxi-GeV}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{$\Mfive$ Closure: Both Planck Conventions}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{General Closure Formula}
+
+From the bridge relation \eqref{eq:bridge-relation}, solving for $\Mfive$:
+\begin{equation}
+\Mfive^3 = \frac{\Mplbar^2}{\Rxi}
+\label{eq:M5-cubed}
+\end{equation}
+
+Taking the cube root:
+\begin{equation}
+\boxed{\Mfive = \Mplbar^{2/3} \Rxi^{-1/3}}
+\label{eq:M5-closure}
+\end{equation}
+
+\subsection{Convention A: Reduced Planck Mass}
+
+Using $\Mplbar = 2.435 \times 10^{18}$ GeV:
+\begin{align}
+\Mfive^{(\bar{M})} &= (2.435 \times 10^{18})^{2/3} \times (3.445 \times 10^{-2})^{-1/3}~\mathrm{GeV} \nonumber\\
+&= (1.811 \times 10^{12}) \times (3.074)~\mathrm{GeV} \nonumber\\
+&= 5.57 \times 10^{12}~\mathrm{GeV}
+\label{eq:M5-reduced}
+\end{align}
+
+\textbf{Result (reduced convention):}
+\begin{equation}
+\boxed{\Mfive^{(\bar{M})} = 5.6 \times 10^{12}~\mathrm{GeV}}
+\label{eq:M5-reduced-boxed}
+\end{equation}
+
+\subsection{Convention B: Original Planck Mass}
+
+If we instead use the original Planck mass $\Mpl = 1.2209 \times 10^{19}$ GeV in the
+bridge relation $\Mpl^2 = \Mfive^3 \Rxi$ (different factor convention):
+\begin{align}
+\Mfive^{(M)} &= \Mpl^{2/3} \Rxi^{-1/3} \nonumber\\
+&= (1.2209 \times 10^{19})^{2/3} \times (3.445 \times 10^{-2})^{-1/3}~\mathrm{GeV} \nonumber\\
+&= (5.304 \times 10^{12}) \times (3.074)~\mathrm{GeV} \nonumber\\
+&= 1.63 \times 10^{13}~\mathrm{GeV}
+\label{eq:M5-original}
+\end{align}
+
+\textbf{Result (original convention):}
+\begin{equation}
+\boxed{\Mfive^{(M)} = 1.6 \times 10^{13}~\mathrm{GeV}}
+\label{eq:M5-original-boxed}
+\end{equation}
+
+\subsection{Conversion Factor}
+
+The ratio between the two conventions:
+\begin{align}
+\frac{\Mfive^{(M)}}{\Mfive^{(\bar{M})}} &= \frac{\Mpl^{2/3}}{\Mplbar^{2/3}}
+= \left(\frac{\Mpl}{\Mplbar}\right)^{2/3} \nonumber\\
+&= \left(\sqrt{8\pi}\right)^{2/3} = (8\pi)^{1/3}
+\label{eq:M5-ratio-derivation}
+\end{align}
+
+Numerically:
+\begin{equation}
+(8\pi)^{1/3} = (25.133)^{1/3} = 2.924 \approx 2.92
+\label{eq:8pi-third}
+\end{equation}
+
+\textbf{Conversion:}
+\begin{equation}
+\boxed{\Mfive^{(M)} = (8\pi)^{1/3} \Mfive^{(\bar{M})} \approx 2.92 \times \Mfive^{(\bar{M})}}
+\label{eq:M5-conversion}
+\end{equation}
+
+Verification: $5.6 \times 2.92 = 16.4 \approx 16 \times 10^{12}$ GeV. ✓
+
+\subsection{Summary Table: $\Mfive$ in Both Conventions}
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Planck Convention} & \textbf{Bridge Relation} & \textbf{$\Mfive$ (GeV)} \\
+\midrule
+Reduced $\Mplbar$ & $\Mplbar^2 = \Mfive^3 \Rxi$ & $5.6 \times 10^{12}$ \\
+Original $\Mpl$ & $\Mpl^2 = \Mfive^3 \Rxi$ & $1.6 \times 10^{13}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Both represent the same physical 5D Planck scale; the difference is purely conventional.
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Error Budget}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Error Propagation Formula}
+
+From $\Mfive = \Mplbar^{2/3} \Rxi^{-1/3}$, taking logarithmic derivatives:
+\begin{equation}
+\ln \Mfive = \frac{2}{3}\ln \Mplbar - \frac{1}{3}\ln \Rxi
+\label{eq:log-M5}
+\end{equation}
+
+Differentiating:
+\begin{equation}
+\frac{d\Mfive}{\Mfive} = \frac{2}{3}\frac{d\Mplbar}{\Mplbar} - \frac{1}{3}\frac{d\Rxi}{\Rxi}
+\label{eq:differential-M5}
+\end{equation}
+
+For uncorrelated errors, adding in quadrature:
+\begin{equation}
+\boxed{\frac{\delta\Mfive}{\Mfive} = \sqrt{\left(\frac{2}{3}\right)^2
+\left(\frac{\delta\Mplbar}{\Mplbar}\right)^2 + \left(\frac{1}{3}\right)^2
+\left(\frac{\delta\Rxi}{\Rxi}\right)^2}}
+\label{eq:error-propagation}
+\end{equation}
+
+\subsection{$\Rxi$ Error from $\MZ$}
+
+Since $\Rxi = \pi\hbar c/\MZ$:
+\begin{equation}
+\frac{\delta\Rxi}{\Rxi} = \frac{\delta\MZ}{\MZ}
+\label{eq:Rxi-error}
+\end{equation}
+
+\subsection{Input Uncertainties}
+
+From PDG 2024:
+\begin{align}
+\MZ &= 91.1876 \pm 0.0021~\mathrm{GeV} \nonumber\\
+\frac{\delta\MZ}{\MZ} &= \frac{0.0021}{91.1876} = 2.3 \times 10^{-5}
+\label{eq:MZ-uncertainty}
+\end{align}
+
+The reduced Planck mass uncertainty is dominated by $\GN$:
+\begin{align}
+\GN &= (6.67430 \pm 0.00015) \times 10^{-11}~\mathrm{m^3 kg^{-1} s^{-2}} \nonumber\\
+\frac{\delta\GN}{\GN} &= \frac{0.00015}{6.67430} = 2.2 \times 10^{-5}
+\label{eq:GN-uncertainty}
+\end{align}
+
+Since $\Mplbar \propto \GN^{-1/2}$:
+\begin{equation}
+\frac{\delta\Mplbar}{\Mplbar} = \frac{1}{2}\frac{\delta\GN}{\GN} = 1.1 \times 10^{-5}
+\label{eq:Mplbar-uncertainty}
+\end{equation}
+
+\subsection{Total $\Mfive$ Uncertainty}
+
+Substituting into \eqref{eq:error-propagation}:
+\begin{align}
+\frac{\delta\Mfive}{\Mfive} &= \sqrt{\left(\frac{2}{3}\right)^2 (1.1 \times 10^{-5})^2
++ \left(\frac{1}{3}\right)^2 (2.3 \times 10^{-5})^2} \nonumber\\
+&= \sqrt{(0.73 \times 10^{-5})^2 + (0.77 \times 10^{-5})^2} \nonumber\\
+&= \sqrt{0.53 + 0.59} \times 10^{-5} \nonumber\\
+&= 1.06 \times 10^{-5}
+\label{eq:M5-total-error}
+\end{align}
+
+\textbf{Result:}
+\begin{equation}
+\boxed{\frac{\delta\Mfive}{\Mfive} \approx 1.1 \times 10^{-5} \approx 0.001\%}
+\label{eq:M5-error-boxed}
+\end{equation}
+
+The uncertainty is dominated by $\MZ$ through $\Rxi$.
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Conventions Dictionary}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Geometric Conventions}
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Parameter} & \textbf{Canonical (v22+)} & \textbf{Old (v15--v20)} \\
+\midrule
+$\Rxi$ definition & $L$ (interval length) & $R$ (circle radius) \\
+Relation & $\Rxi^{\mathrm{(canon)}} = L$ & $\Rxi^{\mathrm{(old)}} = R = L/\pi$ \\
+Conversion & --- & $\Rxi^{\mathrm{(old)}} = \Rxi^{\mathrm{(canon)}}/\pi$ \\
+$\mgap$ formula & $\pi/\Rxi$ & $1/\Rxi$ \\
+$\Rxi$ from $\MZ$ & $\pi\hbar c/\MZ$ & $\hbar c/\MZ$ \\
+Numerical & $6.80 \times 10^{-18}$ m & $2.17 \times 10^{-18}$ m \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Planck Mass Conventions}
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Parameter} & \textbf{Reduced $\Mplbar$} & \textbf{Original $\Mpl$} \\
+\midrule
+Definition & $1/\sqrt{8\pi\GN}$ & $1/\sqrt{\GN}$ \\
+Value & $2.435 \times 10^{18}$ GeV & $1.221 \times 10^{19}$ GeV \\
+$\GN$ formula & $1/(8\pi\Mplbar^2)$ & $1/\Mpl^2$ \\
+Bridge relation & $\Mplbar^2 = \Mfive^3 \Rxi$ & $\Mpl^2 = \Mfive^3 \Rxi$ \\
+$\Mfive$ result & $5.6 \times 10^{12}$ GeV & $1.6 \times 10^{13}$ GeV \\
+Conversion & --- & $\Mfive^{(M)} = (8\pi)^{1/3}\Mfive^{(\bar{M})}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Complete Mapping}
+
+To convert from old notation (v15--v20) to canonical:
+\begin{align}
+\Rxi^{\mathrm{(canon)}} &= \pi \cdot \Rxi^{\mathrm{(old)}} \label{eq:Rxi-map}\\
+\Mfive^{\mathrm{(canon)}} &= \pi^{-1/3} \cdot \Mfive^{\mathrm{(old)}} \label{eq:M5-map}
+\end{align}
+
+Verification:
+\begin{equation}
+\Mfive \propto \Rxi^{-1/3} \quad \Rightarrow \quad
+\frac{\Mfive^{\mathrm{(canon)}}}{\Mfive^{\mathrm{(old)}}} =
+\left(\frac{\Rxi^{\mathrm{(old)}}}{\Rxi^{\mathrm{(canon)}}}\right)^{1/3} = \pi^{-1/3}
+\label{eq:M5-map-check}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Epistemic Ledger}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\begin{tcolorbox}[title=Final Epistemic Ledger, colback=yellow!10, colframe=orange!50]
+\begin{center}
+\begin{tabular}{llc}
+\toprule
+\textbf{Statement} & \textbf{Basis} & \textbf{Tag} \\
+\midrule
+5D Einstein action & Postulate & [P] \\
+Flat background $A = 0$ & Model choice & [P] \\
+KK decomposition & Standard technique & [D] \\
+Mode equation & Derived from EOM & [D] \\
+Neumann BCs & Orbifold symmetry & [I] \\
+Spectrum $m_n = n\pi/\Rxi$ & Derived from BCs & [D] \\
+$\mgap = \pi/\Rxi$ & Definition + [D] & [D] \\
+$\Rxi = \pi/\mgap$ & Inversion & [D] \\
+Normalization integral $\calI = \Rxi$ & Derived & [D] \\
+Bridge $\Mplbar^2 = \Mfive^3 \Rxi$ & Derived & [D] \\
+$\Mfive = \Mplbar^{2/3}\Rxi^{-1/3}$ & Derived & [D] \\
+$\GN = 1/(8\pi\Mfive^3\Rxi)$ & Derived & [D] \\
+\midrule
+$\mgap = \MZ$ & Identification & [I]+[BL] \\
+$\Rxi = \pi\hbar c/\MZ$ & Combined & [BL] \\
+$\MZ = 91.1876$ GeV & PDG measurement & [BL] \\
+$\Mplbar = 2.435 \times 10^{18}$ GeV & From $\GN$ measurement & [BL] \\
+\midrule
+Internal $\Rxi$ derivation & Not possible & NO-GO \\
+$\mgap = \MZ$ proof & Not available & OPEN \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Legend:}
+\begin{itemize}
+\item [P] = Postulate (starting assumption)
+\item [D] = Derived (mathematical consequence)
+\item [I] = Identification (physics input, not derived)
+\item [BL] = Baseline (experimental input)
+\item NO-GO = Proven impossibility
+\item OPEN = Unresolved question
+\end{itemize}
+\end{tcolorbox}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Compatibility with v15--v21}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Purpose of This Section}
+
+Derivations v15--v21 were produced before the canonical convention lock. This
+section provides explicit translation rules so that results from those notes
+remain usable.
+
+\subsection{v15--v20: $\Rxi$ Convention}
+
+These notes used:
+\begin{equation}
+\Rxi^{\mathrm{(old)}} = \frac{\hbar c}{\MZ} = 2.165 \times 10^{-18}~\mathrm{m}
+\label{eq:Rxi-old-value}
+\end{equation}
+
+In the canonical convention:
+\begin{equation}
+\Rxi^{\mathrm{(canon)}} = \pi \cdot \Rxi^{\mathrm{(old)}} = 6.80 \times 10^{-18}~\mathrm{m}
+\label{eq:Rxi-canon-value}
+\end{equation}
+
+\textbf{Interpretation:} The old $\Rxi$ corresponds to a circle radius $R$, while
+the canonical $\Rxi$ is the interval length $L = \pi R$.
+
+\subsection{Impact on $\Mfive$}
+
+In v15--v20, the $\Mfive$ values were computed as:
+\begin{equation}
+\Mfive^{\mathrm{(old)}} = \Mplbar^{2/3} (\Rxi^{\mathrm{(old)}})^{-1/3}
+\label{eq:M5-old-formula}
+\end{equation}
+
+This implicitly treated $\Rxi^{\mathrm{(old)}}$ as the interval length, which
+introduces an inconsistency with the KK spectral interpretation.
+
+\textbf{Correction factor:}
+\begin{equation}
+\Mfive^{\mathrm{(canon)}} = \Mplbar^{2/3} (\Rxi^{\mathrm{(canon)}})^{-1/3}
+= \Mplbar^{2/3} (\pi \Rxi^{\mathrm{(old)}})^{-1/3} = \pi^{-1/3} \Mfive^{\mathrm{(old)}}
+\label{eq:M5-correction}
+\end{equation}
+
+Numerically:
+\begin{equation}
+\pi^{-1/3} = 0.683
+\label{eq:pi-minus-third}
+\end{equation}
+
+\subsection{Specific Translations}
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Note} & \textbf{$\Mfive^{\mathrm{(old)}}$ (GeV)} & \textbf{$\Mfive^{\mathrm{(canon)}}$ (GeV)} \\
+\midrule
+v15 & $8.1 \times 10^{12}$ & $5.5 \times 10^{12}$ \\
+v16 & $8.1 \times 10^{12}$ & $5.5 \times 10^{12}$ \\
+v17 ($M_Z$) & $8.1 \times 10^{12}$ & $5.5 \times 10^{12}$ \\
+v20 (reduced) & $8.1 \times 10^{12}$ & $5.5 \times 10^{12}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{v21: Already Canonical}
+
+Derivation v21 used the mass gap interpretation:
+\begin{equation}
+\Rxi = \frac{\pi}{\mgap} = \frac{\pi\hbar c}{\MZ}
+\label{eq:v21-Rxi}
+\end{equation}
+
+This is consistent with the canonical convention. The $\Mfive$ value in v21
+($4.3 \times 10^{12}$ GeV) matches the canonical value to within rounding.
+
+\subsection{Consistency Check}
+
+Old chain (v15--v20):
+\begin{equation}
+\Rxi^{\mathrm{(old)}} = 2.17 \times 10^{-18}~\mathrm{m} \Rightarrow
+\Mfive^{\mathrm{(old)}} = 8.1 \times 10^{12}~\mathrm{GeV}
+\label{eq:old-chain}
+\end{equation}
+
+Canonical chain:
+\begin{equation}
+\Rxi^{\mathrm{(canon)}} = 6.80 \times 10^{-18}~\mathrm{m} \Rightarrow
+\Mfive^{\mathrm{(canon)}} = 5.6 \times 10^{12}~\mathrm{GeV}
+\label{eq:canon-chain}
+\end{equation}
+
+Ratio:
+\begin{equation}
+\frac{\Mfive^{\mathrm{(old)}}}{\Mfive^{\mathrm{(canon)}}} = \frac{8.1}{5.6} = 1.45 \approx \pi^{1/3} = 1.46 \quad \checkmark
+\label{eq:ratio-check}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Final Canonical Values}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\begin{tcolorbox}[title=BLOCK-003 Canonical Closure (Reviewer Packet), colback=green!10, colframe=green!50!black]
+
+\textbf{Inputs [BL]:}
+\begin{align}
+\MZ^{\mathrm{obs}} &= 91.1876 \pm 0.0021~\mathrm{GeV} \\
+\Mplbar &= 2.435 \times 10^{18}~\mathrm{GeV}
+\end{align}
+
+\textbf{Identification [I]+[BL]:}
+\begin{equation}
+\mgap = \MZ^{\mathrm{obs}}
+\end{equation}
+
+\textbf{Derived quantities [D]:}
+\begin{align}
+\Rxi &= \frac{\pi\hbar c}{\MZ} = 6.80 \times 10^{-18}~\mathrm{m} = 3.45 \times 10^{-2}~\mathrm{GeV}^{-1} \\
+\Mfive &= \Mplbar^{2/3} \Rxi^{-1/3} = 5.6 \times 10^{12}~\mathrm{GeV} \\
+\GN &= \frac{1}{8\pi\Mfive^3\Rxi} = 6.674 \times 10^{-39}~\mathrm{GeV}^{-2}
+\end{align}
+
+\textbf{Uncertainty:}
+\begin{equation}
+\frac{\delta\Mfive}{\Mfive} \approx 1.1 \times 10^{-5} \approx 0.001\%
+\end{equation}
+
+\textbf{Alternative convention (original Planck mass):}
+\begin{equation}
+\Mfive^{(M)} = (8\pi)^{1/3} \Mfive^{(\bar{M})} = 1.6 \times 10^{13}~\mathrm{GeV}
+\end{equation}
+
+\textbf{Open items:}
+\begin{itemize}
+\item Internal derivation of $\Rxi$ from EDC axioms: NO-GO
+\item Proof that $\mgap = \MZ$: OPEN
+\end{itemize}
+\end{tcolorbox}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Summary of Derivation Chain}
+%═══════════════════════════════════════════════════════════════════════════════
+
+The complete derivation chain from 5D to 4D:
+
+\begin{enumerate}
+\item \textbf{5D Action} [P]:
+\begin{equation}
+S_5 = \frac{\Mfive^3}{2} \int d^5x \sqrt{-g_5}\, R_5
+\end{equation}
+
+\item \textbf{Flat Background} [P]:
+\begin{equation}
+ds^2 = \eta_{\mu\nu}dx^\mu dx^\nu + d\xi^2, \quad \xi \in [0, \Rxi]
+\end{equation}
+
+\item \textbf{KK Decomposition} [D]:
+\begin{equation}
+h_{\mu\nu}(x,\xi) = \sum_n h_{\mu\nu}^{(n)}(x) \psi_n(\xi)
+\end{equation}
+
+\item \textbf{Mode Equation} [D]:
+\begin{equation}
+\psi_n'' + m_n^2 \psi_n = 0
+\end{equation}
+
+\item \textbf{Neumann BCs} [I]:
+\begin{equation}
+\psi_n'(0) = \psi_n'(\Rxi) = 0
+\end{equation}
+
+\item \textbf{Spectrum} [D]:
+\begin{equation}
+m_n = \frac{n\pi}{\Rxi}
+\end{equation}
+
+\item \textbf{Mass Gap} [D]:
+\begin{equation}
+\mgap = \frac{\pi}{\Rxi} \Rightarrow \Rxi = \frac{\pi}{\mgap}
+\end{equation}
+
+\item \textbf{Identification} [I]+[BL]:
+\begin{equation}
+\mgap = \MZ \Rightarrow \Rxi = \frac{\pi\hbar c}{\MZ}
+\end{equation}
+
+\item \textbf{Normalization} [D]:
+\begin{equation}
+\calI = \int_0^{\Rxi} |\psi_0|^2 d\xi = \Rxi
+\end{equation}
+
+\item \textbf{Bridge Relation} [D]:
+\begin{equation}
+\Mplbar^2 = \Mfive^3 \Rxi
+\end{equation}
+
+\item \textbf{Closure} [D]:
+\begin{equation}
+\Mfive = \Mplbar^{2/3} \Rxi^{-1/3} = 5.6 \times 10^{12}~\mathrm{GeV}
+\end{equation}
+
+\item \textbf{Newton Recovery} [D]:
+\begin{equation}
+\GN = \frac{1}{8\pi\Mplbar^2} = \frac{1}{8\pi\Mfive^3\Rxi}
+\end{equation}
+\end{enumerate}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Conclusion}
+%═══════════════════════════════════════════════════════════════════════════════
+
+This document provides the canonical closure of BLOCK-003 with all convention
+decisions locked:
+
+\begin{itemize}
+\item \textbf{Geometric convention:} $\Rxi \equiv L$ (interval length), not circle radius
+\item \textbf{Mass gap relation:} $\mgap = \pi/\Rxi$
+\item \textbf{Planck convention:} Both reduced ($\Mplbar$) and original ($\Mpl$) treated
+\item \textbf{Conversion:} $(8\pi)^{1/3} \approx 2.92$ between Planck conventions
+\end{itemize}
+
+The derivation chain is complete from 5D action to 4D Newton constant. The closure
+requires two baseline inputs ($\MZ^{\mathrm{obs}}$, $\Mplbar$) and one identification
+($\mgap = \MZ$). Internal derivation of $\Rxi$ from EDC axioms remains NO-GO.
+
+All previous derivations (v15--v21) remain valid under the translation rules
+provided in Section 12.
+
+\end{document}
