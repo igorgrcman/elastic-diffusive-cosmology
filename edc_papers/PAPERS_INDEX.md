@@ -22,6 +22,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v11/` | Derivation v11: Derive σ from EDC field equations | `EDC_BLOCK003_DERIVATION_V11_SIGMA_FROM_FIELD_EQS.pdf` | NO-GO | 2026-02-02 |
 | `paper_gravity_block003/derivation_v12/` | Derivation v12: Part I Gravity & Mercury Audit | `EDC_BLOCK003_DERIVATION_V12_PART1_GRAVITY_AUDIT.pdf` | AUDIT | 2026-02-02 |
 | `paper_gravity_block003/derivation_v13/` | Derivation v13: Weak-Field 5D→4D Matching | `EDC_BLOCK003_DERIVATION_V13_WEAKFIELD_MATCHING.pdf` | BRIDGE SLOT | 2026-02-02 |
+| `paper_gravity_block003/derivation_v14/` | Derivation v14: I from EDC Warp Candidates | `EDC_BLOCK003_DERIVATION_V14_I_FROM_EDC_WARP_CANDIDATES.pdf` | PARTIAL BRIDGE | 2026-02-02 |
 
 ---
 
@@ -277,6 +278,25 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 
 ---
 
+## Detailed Entry: Derivation v14
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v14/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V14_I_FROM_EDC_WARP_CANDIDATES.pdf` |
+| **Pages** | 6 |
+| **Date** | 2026-02-02 |
+| **Status** | PARTIAL BRIDGE |
+| **MD5 (main.tex)** | `74f2add8b3498b2cb3e53f8124796f43` |
+| **MD5 (main.pdf)** | `2c4e485d8ecef56e8a6bd6b6917315bc` |
+| **MD5 (export PDF)** | `2c4e485d8ecef56e8a6bd6b6917315bc` |
+| **Scope** | EDC candidates for warp profile A(ξ) and zero-mode ψ₀; two models (compact, warped) |
+| **Outcome** | PARTIAL BRIDGE: I = R_ξ (Model A) or I = 1/k (Model B); requires 1 calibration scale |
+| **Preferred** | Model A (I = R_ξ) — lower circularity risk |
+
+---
+
 ## Status Legend
 
 - **FROZEN** — Reviewer-ready; no further edits unless critical fix required
@@ -285,6 +305,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 - **OPTIONS** — Choice catalog; documents available paths without selecting one
 - **AUDIT** — Back-reference audit; documents what existing material does/does not provide
 - **BRIDGE SLOT** — Identifies where theory must supply input; functional form established
+- **PARTIAL BRIDGE** — Functional form determined up to one parameter; requires calibration
 - **Program** — Derivation roadmap, not closed results
 - **Results** — Completed derivations with numerical predictions
 - **Draft** — Work in progress
