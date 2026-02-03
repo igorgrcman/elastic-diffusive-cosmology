@@ -27,6 +27,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v16/` | Derivation v16: R_ξ Determination | `EDC_BLOCK003_DERIVATION_V16_R_XI_DETERMINATION.pdf` | A:NO-GO B:CLOSED | 2026-02-02 |
 | `paper_gravity_block003/derivation_v17/` | Derivation v17: EW Calibration Robustness | `EDC_BLOCK003_DERIVATION_V17_EW_CALIBRATION_ROBUSTNESS.pdf` | ROBUST | 2026-02-02 |
 | `paper_gravity_block003/derivation_v18/` | Derivation v18: Gravity Closure Summary | `EDC_BLOCK003_DERIVATION_V18_GRAVITY_CLOSURE_SUMMARY.pdf` | CONSOLIDATION | 2026-02-02 |
+| `paper_gravity_block003/derivation_v19/` | Derivation v19: Derivation-First Writeup | `EDC_BLOCK003_DERIVATION_V19_DERIVATION_FIRST.pdf` | DERIVATION | 2026-02-02 |
 
 ---
 
@@ -379,6 +380,27 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Reader contract** | [D] derivations, [I] identifications, [BL] baselines, NO-GO items explicitly stated |
 | **Final closure** | M₅ = 2.41 × 10¹³ GeV (GUT scale) ± 0.001% under [BL] inputs |
 | **Open item** | Internal derivation of R_ξ remains NO-GO |
+
+---
+
+## Detailed Entry: Derivation v19
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v19/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V19_DERIVATION_FIRST.pdf` |
+| **Pages** | 7 |
+| **Date** | 2026-02-02 |
+| **Status** | DERIVATION / CLOSED (calibrated) |
+| **MD5 (main.tex)** | `61a3791ca8e34a4c4b9b8f8e84a9d194` |
+| **MD5 (main.pdf)** | `84efbda6036d3177cadb25a4f220c239` |
+| **MD5 (export PDF)** | `84efbda6036d3177cadb25a4f220c239` |
+| **Scope** | Derivation-first writeup; explicit steps from 5D action to 4D Newton law |
+| **Derived explicitly** | Bridge relation, mode equation, zero-mode, normalization integral, Newton bridge |
+| **Displayed equations** | 35+ in Sections 2–5 |
+| **Result** | M₅ = 2.41 × 10¹³ GeV under [BL] inputs |
+| **Open item** | Internal R_ξ derivation remains NO-GO |
 
 ---
 
