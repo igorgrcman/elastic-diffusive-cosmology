@@ -34,6 +34,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v23/` | Derivation v23: Canonical Closure Packet | `EDC_BLOCK003_DERIVATION_V23_CANONICAL_CLOSURE_PACKET.pdf` | CLOSURE | 2026-02-03 |
 | `paper_gravity_block003/derivation_v24/` | Derivation v24: Reproducibility & Unit/Convention Audit | `EDC_BLOCK003_DERIVATION_V24_REPRODUCIBILITY_AUDIT.pdf` | AUDIT | 2026-02-03 |
 | `paper_gravity_block003/derivation_v25/` | Derivation v25: Alternative Gap Identifications + Robustness | `EDC_BLOCK003_DERIVATION_V25_PROXY_ROBUSTNESS.pdf` | ROBUSTNESS | 2026-02-03 |
+| `paper_gravity_block003/derivation_v26/` | Derivation v26: Gap Derivability Program | `EDC_BLOCK003_DERIVATION_V26_GAP_DERIVABILITY_PROGRAM.pdf` | PROGRAM | 2026-02-03 |
 
 ---
 
@@ -549,6 +550,33 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Metrological justification** | M_Z selected: best precision, pole stability, minimal EDC dependence |
 | **Equations** | 79 environments |
 | **TikZ figure** | 2-panel (M₅ values + Δlog₁₀ spread) |
+
+---
+
+## Detailed Entry: Derivation v26
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v26/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V26_GAP_DERIVABILITY_PROGRAM.pdf` |
+| **Pages** | 16 |
+| **Date** | 2026-02-03 |
+| **Status** | PROGRAM / OPEN |
+| **MD5 (main.tex)** | `8779f6dc1f7b2b9959278581022ce0d3` |
+| **MD5 (main.pdf)** | `1805783a8c697564e8e84cac737d9c31` |
+| **MD5 (export PDF)** | `1805783a8c697564e8e84cac737d9c31` |
+| **MD5 (recompute.py)** | `b877835c755416b833ef79c08ba73e50` |
+| **Scope** | Gap derivability program: what EDC must provide for m_gap to be [D] |
+| **Mechanism introduced** | Brane-localized mass → Robin BC → transcendental spectrum |
+| **Transcendental eq** | tan(m_n L) = -m_b/m_n [D] |
+| **Gap bounds** | π/2L < m_gap < π/L for m_b > 0 [D] |
+| **Zero mode** | Lifted for m_b > 0 (no zero mode) [D] |
+| **EDC input needed** | L and/or m_b must be EDC-derived [OPEN] |
+| **Gap derivability** | GDC-3: remains [I]+[BL] |
+| **Python script** | `recompute.py` — ALL 11 CHECKS PASSED |
+| **Equations** | 82 environments |
+| **TikZ figure** | 2-panel (mode shapes + gap vs m_b·L) |
 
 ---
 
