@@ -32,6 +32,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v21/` | Derivation v21: KK Mass Gap to R_xi Identification | `EDC_BLOCK003_DERIVATION_V21_KK_GAP_TO_RXI.pdf` | [I]+[BL] UPGRADE | 2026-02-03 |
 | `paper_gravity_block003/derivation_v22/` | Derivation v22: KK Conventions Unification | `EDC_BLOCK003_DERIVATION_V22_KK_CONVENTIONS_UNIFICATION.pdf` | CONVENTION | 2026-02-03 |
 | `paper_gravity_block003/derivation_v23/` | Derivation v23: Canonical Closure Packet | `EDC_BLOCK003_DERIVATION_V23_CANONICAL_CLOSURE_PACKET.pdf` | CLOSURE | 2026-02-03 |
+| `paper_gravity_block003/derivation_v24/` | Derivation v24: Reproducibility & Unit/Convention Audit | `EDC_BLOCK003_DERIVATION_V24_REPRODUCIBILITY_AUDIT.pdf` | AUDIT | 2026-02-03 |
 
 ---
 
@@ -495,6 +496,31 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Equations** | 97 environments |
 | **Compatibility** | Maps v15–v21 to canonical via R_ξ^(canon) = π R_ξ^(old) |
 | **Epistemic ledger** | Complete [D]/[I]/[BL]/NO-GO/OPEN tagging |
+
+---
+
+## Detailed Entry: Derivation v24
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v24/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V24_REPRODUCIBILITY_AUDIT.pdf` |
+| **Pages** | 10 |
+| **Date** | 2026-02-03 |
+| **Status** | AUDIT / CLOSED |
+| **MD5 (main.tex)** | `f3bc9f99d44a28982535d5dd7ced5e32` |
+| **MD5 (main.pdf)** | `2d2649d3be82424e04663c38a9081ab4` |
+| **MD5 (export PDF)** | `2d2649d3be82424e04663c38a9081ab4` |
+| **MD5 (recompute.py)** | `83447eaf24a15134d572de1cf988d5d6` |
+| **Scope** | Reproducibility audit: numerical verification of v23 values + π-map + Planck-map |
+| **Python script** | `recompute.py` — ALL CHECKS PASSED |
+| **Values reproduced** | R_ξ^canon = 6.798e-18 m, M₅^red = 5.56e12 GeV, M₅^orig = 1.63e13 GeV |
+| **π-map verified** | R_ξ^canon = π × R_ξ^old, M₅^canon = π^{-1/3} × M₅^old |
+| **Planck-map verified** | M₅^orig = (8π)^{1/3} × M₅^red ≈ 2.929 × M₅^red |
+| **Error budget** | δM₅/M₅ = 1.07 × 10⁻⁵ |
+| **Equations** | 48 environments |
+| **Regression table** | v15–v24 values mapped to canonical convention |
 
 ---
 
