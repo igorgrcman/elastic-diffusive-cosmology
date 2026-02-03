@@ -37,6 +37,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v26/` | Derivation v26: Gap Derivability Program | `EDC_BLOCK003_DERIVATION_V26_GAP_DERIVABILITY_PROGRAM.pdf` | PROGRAM | 2026-02-03 |
 | `paper_gravity_block003/derivation_v27/` | Derivation v27: Brane Mass from Brane Tension | `EDC_BLOCK003_DERIVATION_V27_MB_FROM_SIGMA_PINNING.pdf` | [Dc]+[P] | 2026-02-03 |
 | `paper_gravity_block003/derivation_v28/` | Derivation v28: λ-Pinning from Self-Adjointness | `EDC_BLOCK003_DERIVATION_V28_LAMBDA_PINNING_DERIVATION.pdf` | [D]+[Dc/P] | 2026-02-03 |
+| `paper_gravity_block003/derivation_v29/` | Derivation v29: β Control Parameter (σL²/M̄_Pl²) | `EDC_BLOCK003_DERIVATION_V29_BETA_DERIVATION.pdf` | [D]+[BL] | 2026-02-03 |
 
 ---
 
@@ -627,6 +628,33 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Python script** | `recompute.py` — ALL 15 CHECKS PASSED |
 | **Equations** | 100 environments |
 | **TikZ figure** | 2-panel (SA classification + x_1 vs b with discrete n) |
+
+---
+
+## Detailed Entry: Derivation v29
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v29/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V29_BETA_DERIVATION.pdf` |
+| **Pages** | 18 |
+| **Date** | 2026-02-03 |
+| **Status** | [D]+[BL] |
+| **MD5 (main.tex)** | `0a01e2508ca8463ae8ea28b4e4670259` |
+| **MD5 (main.pdf)** | `cc8472c62aa1ac014ed85f7c7bf47d40` |
+| **MD5 (export PDF)** | `cc8472c62aa1ac014ed85f7c7bf47d40` |
+| **Scope** | Comprehensive derivation of β = σL²/M̄_Pl² with two routes + reviewer traps |
+| **Route A** | Direct: β = ℏc/(L M̄_Pl²) [BL] |
+| **Route B** | Via spectral: β = b/λ [Dc] |
+| **Numeric value** | β = 4.89 × 10⁻³⁶ [I]+[BL] |
+| **Uncertainty** | δβ/β = 3.2 × 10⁻⁵ |
+| **Control Law** | k → λ(k) → b(k) → x₁(b) → m_gap |
+| **Reviewer Traps** | 10 traps with explicit equation mapping |
+| **Gap status** | Remains [I]+[BL] |
+| **Python script** | `recompute.py` — ALL 10 CHECKS PASSED |
+| **Equations** | 91 environments |
+| **TikZ figure** | Dependency graph (fig:dependency) |
 
 ---
 
