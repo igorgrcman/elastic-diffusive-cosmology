@@ -23,6 +23,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v12/` | Derivation v12: Part I Gravity & Mercury Audit | `EDC_BLOCK003_DERIVATION_V12_PART1_GRAVITY_AUDIT.pdf` | AUDIT | 2026-02-02 |
 | `paper_gravity_block003/derivation_v13/` | Derivation v13: Weak-Field 5D→4D Matching | `EDC_BLOCK003_DERIVATION_V13_WEAKFIELD_MATCHING.pdf` | BRIDGE SLOT | 2026-02-02 |
 | `paper_gravity_block003/derivation_v14/` | Derivation v14: I from EDC Warp Candidates | `EDC_BLOCK003_DERIVATION_V14_I_FROM_EDC_WARP_CANDIDATES.pdf` | PARTIAL BRIDGE | 2026-02-02 |
+| `paper_gravity_block003/derivation_v15/` | Derivation v15: Calibrated Closure with ℓ_P | `EDC_BLOCK003_DERIVATION_V15_CALIBRATED_CLOSURE_LP.pdf` | CLOSED | 2026-02-02 |
 
 ---
 
@@ -297,6 +298,24 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 
 ---
 
+## Detailed Entry: Derivation v15
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v15/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V15_CALIBRATED_CLOSURE_LP.pdf` |
+| **Pages** | 6 |
+| **Date** | 2026-02-02 |
+| **Status** | CLOSED (calibrated) |
+| **MD5 (main.tex)** | `5320488f52d55ae58b4a1e1c681446fb` |
+| **MD5 (main.pdf)** | `24dc6a17a2fd1bb594953cc37293ad09` |
+| **MD5 (export PDF)** | `24dc6a17a2fd1bb594953cc37293ad09` |
+| **Scope** | Calibrated closure of BLOCK-003 using M_Pl^obs [BL]; error budget; 5D scale inference |
+| **Outcome** | CLOSED: M₅ = M_Pl^{2/3} R_ξ^{-1/3}; fully predictive closure requires deriving R_ξ |
+
+---
+
 ## Status Legend
 
 - **FROZEN** — Reviewer-ready; no further edits unless critical fix required
@@ -306,6 +325,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 - **AUDIT** — Back-reference audit; documents what existing material does/does not provide
 - **BRIDGE SLOT** — Identifies where theory must supply input; functional form established
 - **PARTIAL BRIDGE** — Functional form determined up to one parameter; requires calibration
+- **CLOSED** — Derivation complete under stated calibration; result usable
 - **Program** — Derivation roadmap, not closed results
 - **Results** — Completed derivations with numerical predictions
 - **Draft** — Work in progress
