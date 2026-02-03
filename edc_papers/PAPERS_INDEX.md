@@ -21,6 +21,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v10/` | Derivation v10: Tautology audit + O(M) check | `EDC_BLOCK003_DERIVATION_V10_TAUTOLOGY_AUDIT.pdf` | DIAGNOSTIC | 2026-02-02 |
 | `paper_gravity_block003/derivation_v11/` | Derivation v11: Derive σ from EDC field equations | `EDC_BLOCK003_DERIVATION_V11_SIGMA_FROM_FIELD_EQS.pdf` | NO-GO | 2026-02-02 |
 | `paper_gravity_block003/derivation_v12/` | Derivation v12: Part I Gravity & Mercury Audit | `EDC_BLOCK003_DERIVATION_V12_PART1_GRAVITY_AUDIT.pdf` | AUDIT | 2026-02-02 |
+| `paper_gravity_block003/derivation_v13/` | Derivation v13: Weak-Field 5D→4D Matching | `EDC_BLOCK003_DERIVATION_V13_WEAKFIELD_MATCHING.pdf` | BRIDGE SLOT | 2026-02-02 |
 
 ---
 
@@ -258,6 +259,24 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 
 ---
 
+## Detailed Entry: Derivation v13
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v13/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V13_WEAKFIELD_MATCHING.pdf` |
+| **Pages** | 5 |
+| **Date** | 2026-02-02 |
+| **Status** | BRIDGE SLOT |
+| **MD5 (main.tex)** | `3b5f7766d01f1d5ee876901bfc6e12bd` |
+| **MD5 (main.pdf)** | `c1de40de06bc0e645945cc4c92c32742` |
+| **MD5 (export PDF)** | `c1de40de06bc0e645945cc4c92c32742` |
+| **Scope** | Weak-field 5D→4D matching; normalization extractor M_Pl² = M₅³ I; bridge slot identification |
+| **Outcome** | BRIDGE SLOT FOUND: G_N reduces to M₅³ I; EDC must compute I or provide one calibration scale |
+
+---
+
 ## Status Legend
 
 - **FROZEN** — Reviewer-ready; no further edits unless critical fix required
@@ -265,6 +284,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 - **NO-GO** — Proven impossibility result; documents what cannot be done
 - **OPTIONS** — Choice catalog; documents available paths without selecting one
 - **AUDIT** — Back-reference audit; documents what existing material does/does not provide
+- **BRIDGE SLOT** — Identifies where theory must supply input; functional form established
 - **Program** — Derivation roadmap, not closed results
 - **Results** — Completed derivations with numerical predictions
 - **Draft** — Work in progress
