@@ -29,6 +29,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v18/` | Derivation v18: Gravity Closure Summary | `EDC_BLOCK003_DERIVATION_V18_GRAVITY_CLOSURE_SUMMARY.pdf` | CONSOLIDATION | 2026-02-02 |
 | `paper_gravity_block003/derivation_v19/` | Derivation v19: Derivation-First Writeup | `EDC_BLOCK003_DERIVATION_V19_DERIVATION_FIRST.pdf` | DERIVATION | 2026-02-02 |
 | `paper_gravity_block003/derivation_v20/` | Derivation v20: Factor & Normalization Audit | `EDC_BLOCK003_DERIVATION_V20_FACTOR_AUDIT.pdf` | AUDIT | 2026-02-03 |
+| `paper_gravity_block003/derivation_v21/` | Derivation v21: KK Mass Gap to R_xi Identification | `EDC_BLOCK003_DERIVATION_V21_KK_GAP_TO_RXI.pdf` | [I]+[BL] UPGRADE | 2026-02-03 |
 
 ---
 
@@ -423,6 +424,29 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Conversion table** | Reduced ↔ Original Planck mass mapping |
 | **Results** | M₅ = 8.1 × 10¹² GeV (reduced) or 2.4 × 10¹³ GeV (original) |
 | **Factor Audit Box** | Complete with all 5 ambiguity sources |
+
+---
+
+## Detailed Entry: Derivation v21
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v21/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V21_KK_GAP_TO_RXI.pdf` |
+| **Pages** | 9 |
+| **Date** | 2026-02-03 |
+| **Status** | [I]+[BL] UPGRADE / CLOSED |
+| **MD5 (main.tex)** | `a5ac4dff15d26fef557c55e15d6341b2` |
+| **MD5 (main.pdf)** | `a507432f6f9eb885fbd6da96a6af255f` |
+| **MD5 (export PDF)** | `a507432f6f9eb885fbd6da96a6af255f` |
+| **Scope** | KK mass gap derivation; R_ξ from m_gap = π/R_ξ; epistemic upgrade |
+| **Derived** | BC1/BC2/BC3 spectra, m_n = nπ/R_ξ, inversion R_ξ = π/m_gap |
+| **Identification** | m_gap = M_Z [I]+[BL] |
+| **Results** | R_ξ = 6.80 × 10⁻¹⁸ m, M₅ = 4.3 × 10¹² GeV |
+| **Figure** | TikZ 2-panel (mode shapes + mass ladder) |
+| **Equations** | 42 environments, 44 labeled |
+| **Open item** | Internal R_ξ derivation remains NO-GO |
 
 ---
 
