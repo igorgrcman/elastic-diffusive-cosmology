@@ -393,9 +393,9 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Pages** | 7 |
 | **Date** | 2026-02-02 |
 | **Status** | DERIVATION / CLOSED (calibrated) |
-| **MD5 (main.tex)** | `61a3791ca8e34a4c4b9b8f8e84a9d194` |
-| **MD5 (main.pdf)** | `84efbda6036d3177cadb25a4f220c239` |
-| **MD5 (export PDF)** | `84efbda6036d3177cadb25a4f220c239` |
+| **MD5 (main.tex)** | `5d94b968e0250b295e779faded8013ae` |
+| **MD5 (main.pdf)** | `5730860942c63a09678ba54b7d65be60` |
+| **MD5 (export PDF)** | `5730860942c63a09678ba54b7d65be60` |
 | **Scope** | Derivation-first writeup; explicit steps from 5D action to 4D Newton law |
 | **Derived explicitly** | Bridge relation, mode equation, zero-mode, normalization integral, Newton bridge |
 | **Displayed equations** | 35+ in Sections 2–5 |

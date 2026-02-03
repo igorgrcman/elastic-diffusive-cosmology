@@ -28,9 +28,9 @@ $M_5 = 2.41 \times 10^{13}$ GeV; internal $R_\xi$ derivation NO-GO preserved.
 
 | File | MD5 |
 |------|-----|
-| `main.tex` | `61a3791ca8e34a4c4b9b8f8e84a9d194` |
-| `main.pdf` | `84efbda6036d3177cadb25a4f220c239` |
-| `EDC_BLOCK003_DERIVATION_V19_DERIVATION_FIRST.pdf` | `84efbda6036d3177cadb25a4f220c239` |
+| `main.tex` | `5d94b968e0250b295e779faded8013ae` |
+| `main.pdf` | `5730860942c63a09678ba54b7d65be60` |
+| `EDC_BLOCK003_DERIVATION_V19_DERIVATION_FIRST.pdf` | `5730860942c63a09678ba54b7d65be60` |
 
 ---
 
