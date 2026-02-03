@@ -292,9 +292,14 @@ The Steiner minimum hypothesis provides the **proton geometry and mass ratio**, 
 
 ### SI 2019 Redefinition Impact
 
-Since 2019, the Planck constant is defined exactly:
+Since 2019, the Planck constant h is defined exactly by SI:
 ```
-ℏ ≡ 1.054571817... × 10⁻³⁴ J·s  (exact, by definition)
+h ≡ 6.62607015 × 10⁻³⁴ J·s  (exact, by SI definition)
+```
+
+The reduced Planck constant inherits exactness:
+```
+ℏ = h/(2π)  →  ℏ exact (since 2π is mathematical)
 ```
 
 In EDC:
@@ -306,6 +311,20 @@ Therefore:
 ```
 σ R_ξ³ = ℏc = EXACT (zero measurement error)
 ```
+
+### Critical Distinction: Metrological vs Theoretical
+
+**Zero measurement error ≠ Zero theoretical freedom**
+
+| Aspect | What ℏ calibration provides | What it does NOT provide |
+|--------|----------------------------|--------------------------|
+| **Metrological** | No input error propagation | — |
+| **Theoretical** | Fixes product σ R_ξ³ | Does NOT fix σ or R_ξ separately |
+| **BLOCK-003** | — | Does NOT fix κ₅² or constant C |
+
+Choosing ℏ as calibration is **metrologically optimal** (zero input error), but it remains a **calibration of absolute scale**, not a derivation from EDC field equations.
+
+BLOCK-003 requires deriving G_N, which needs κ₅² = C·σ^(-3/4). Even with σ known, the constant C remains unfixed. **ℏ calibration does not solve BLOCK-003.**
 
 ### Candidate Analysis
 
@@ -336,7 +355,8 @@ Therefore:
 │                                                             │
 │  PRIMARY: ℏ (Planck constant)                              │
 │  ─────────────────────────────                              │
-│  • Error contribution: ZERO (exact by SI definition)       │
+│  • Error contribution: ZERO (h exact by SI 2019)           │
+│  • ℏ = h/(2π) inherits exactness                           │
 │  • Fixes: σ R_ξ³ = ℏc                                      │
 │                                                             │
 │  SECONDARY: EDC geometric relations                         │
@@ -348,6 +368,9 @@ Therefore:
 │  RESULT: All EDC predictions have error only from          │
 │          theory itself (e.g., 19 ppm for m_p/m_e),         │
 │          NOT from input calibration.                        │
+│                                                             │
+│  ⚠️  CAVEAT: This is METROLOGICAL optimization.            │
+│      It does NOT close BLOCK-003 (κ₅²/C still unfixed).   │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -364,12 +387,17 @@ Therefore:
 
 **ℏ is the metrologically optimal calibration point** because it introduces zero measurement uncertainty into EDC predictions.
 
-The electron mass m_e is a natural "physical" choice (fundamental, stable, lowest energy), but **metrologically ℏ is superior** since the 2019 SI redefinition made it exact by definition.
+The electron mass m_e is a natural "physical" choice (fundamental, stable, lowest energy), but **metrologically ℏ is superior** since the 2019 SI redefinition fixed h exactly, and ℏ = h/(2π) inherits that exactness.
 
 Using ℏ as input:
 - σ R_ξ³ = ℏc is fixed exactly
 - All derived quantities inherit zero calibration error
 - Remaining discrepancies (e.g., 19 ppm in m_p/m_e) reflect theory accuracy, not input precision
+
+**Important caveat:** Metrological optimization ≠ theoretical closure.
+- ℏ calibration minimizes **error propagation** (metrological goal)
+- It does NOT provide **derivation of G_N** (BLOCK-003 goal)
+- The constant C in κ₅² = C·σ^(-3/4) remains unfixed regardless of calibration choice
 
 ---
 
@@ -402,6 +430,10 @@ Using ℏ as input:
 > **EDC has no independent normalization principle for the absolute energy scale.**
 > This is structural, not a failure — analogous to QCD needing Λ_QCD.
 > The metrologically optimal calibration point is ℏ (exact since SI 2019).
+>
+> **Metrological optimum ≠ Theoretical closure.**
+> Choosing ℏ minimizes input error but does not solve BLOCK-003.
+> G_N derivation requires fixing κ₅² (or C), which remains open.
 
 ---
 
