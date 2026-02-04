@@ -77,6 +77,25 @@ $ grep -E "91\.19|80\.38|246\.2|1\.616.*10|6\.674.*10|1/137" main.tex
 | AC-P41-13 | Robin spectrum formula | PASS |
 | AC-P41-14 | Vacuum energy structure | PASS |
 
+## J) Vacuum Energy Invariance Protocol (MUST-FIX v37)
+
+| ID | Criterion | Status |
+|----|-----------|--------|
+| AC-v37-V1 | ΔE_vac(BC) = E_vac(BC) - E_vac(BC_ref) definition present | PASS (Def. 6.3, Eq. 6.9) |
+| AC-v37-V2 | Three regulators: zeta, heat-kernel, exponential cutoff | PASS (Sec. 6.5.1) |
+| AC-v37-V3 | Lemma on regulator-invariance of finite part | PASS (Lemma 6.5) |
+| AC-v37-V4 | "Allowed local counterterms" table | PASS (Box in Sec. 6.5.2) |
+| AC-v37-V5 | Tie-breaker policy for degeneracy | PASS (Box 6.6) |
+
+**Verification:**
+- Definition 6.3 establishes reference BC and relative vacuum energy ✓
+- Three regularization protocols in Sec. 6.5.1: zeta (Eq. 6.10), heat-kernel (Eq. 6.11), exponential (Eq. 6.12) ✓
+- Heat-kernel expansion structure with coefficients a_0, a_{1/2}, a_1 ✓
+- Counterterms table: bulk CC, brane tension, brane kinetic/mass ✓
+- Lemma 6.5: regulator-independence of ΔE_vac^finite ✓
+- Tie-breaker box: symmetry > stability > simplicity > physics ✓
+- Selector 4 formula updated to use ΔE_vac^finite ✓
+
 ---
 
 ## Build Verification

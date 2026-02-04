@@ -542,6 +542,123 @@ E_{\text{vac}} \propto -\frac{\pi^2}{6L^4} + O(m^2/L^2)
 
 \tagBL
 
+%-----------------------------------------------------------------------------
+\subsection{Vacuum Energy: Definition, Renormalization, and Invariance Protocol}
+\label{sec:vac-protocol}
+%-----------------------------------------------------------------------------
+
+\begin{definition}[Reference BC and Relative Vacuum Energy]
+\label{def:delta-E}
+Fix a reference boundary condition $\text{BC}_{\text{ref}}$ (typically Neumann/Neumann).
+The \textbf{relative vacuum energy} is:
+\begin{equation}
+\label{eq:delta-E-def}
+\boxed{\Delta E_{\text{vac}}(\text{BC}) \equiv E_{\text{vac}}(\text{BC}) - E_{\text{vac}}(\text{BC}_{\text{ref}})}
+\end{equation}
+This subtraction cancels divergent bulk contributions, leaving a finite,
+regulator-independent quantity. \tagD
+\end{definition}
+
+\subsubsection{Regulator Protocol}
+
+We consider three regularization schemes and verify regulator-independence:
+
+\begin{enumerate}
+\item \textbf{Zeta-function regularization:}
+\begin{equation}
+\label{eq:reg-zeta}
+E_{\text{vac}}^{(\zeta)} = \frac{\mu^{2s}}{2} \sum_n m_n^{1-2s} \bigg|_{s \to 0}^{\text{analytic}}
+\end{equation}
+
+\item \textbf{Heat-kernel regularization:}
+\begin{equation}
+\label{eq:reg-heat}
+E_{\text{vac}}^{(\text{HK})} = -\frac{1}{2} \frac{\partial}{\partial s} \left. \frac{1}{\Gamma(s)}
+\int_0^\infty dt\, t^{s-1} \Tr(e^{-t\hat{O}}) \right|_{s \to 0}
+\end{equation}
+where $\hat{O} = -\partial_y^2 + \text{BC}$ is the KK operator.
+
+\item \textbf{Exponential cutoff:}
+\begin{equation}
+\label{eq:reg-exp}
+E_{\text{vac}}^{(\Lambda)} = \frac{1}{2} \sum_n m_n \, e^{-m_n/\Lambda}
+\end{equation}
+with $\Lambda \to \infty$ after subtracting divergent terms.
+\end{enumerate}
+
+\tagBL
+
+\subsubsection{Structure of Divergences}
+
+The heat-kernel expansion gives:
+\begin{equation}
+\label{eq:heat-kernel-exp}
+\Tr(e^{-t\hat{O}}) = \frac{1}{(4\pi t)^{1/2}} \left( a_0 + a_{1/2} t^{1/2} + a_1 t + O(t^{3/2}) \right)
+\end{equation}
+
+where the heat-kernel coefficients are:
+\begin{align}
+\label{eq:a0}
+a_0 &= L \quad \text{(bulk volume)} \\
+\label{eq:a12}
+a_{1/2} &= c_0 + c_L \quad \text{(boundary contribution, BC-dependent)} \\
+\label{eq:a1}
+a_1 &= \int_0^L dy\, V(y) + \text{brane mass terms}
+\end{align}
+
+The divergent structure:
+\begin{equation}
+\label{eq:div-structure}
+E_{\text{vac}}^{\text{div}} = \frac{\Lambda^2}{2} a_0 + \Lambda \cdot a_{1/2} + \ln(\Lambda/\mu) \cdot a_1 + \ldots
+\end{equation}
+\tagBL
+
+\subsubsection{Local Counterterms}
+
+Divergences are removed by local counterterms:
+
+\begin{selectorbox}
+\textbf{Allowed Local Counterterms}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Divergence} & \textbf{Counterterm} & \textbf{Physical Meaning} \\
+\midrule
+$\Lambda^2 a_0$ & $\int_0^L dy\, \delta\rho_{\text{bulk}}$ & Bulk cosmological constant \\
+$\Lambda \cdot a_{1/2}$ & $\delta\sigma_0 + \delta\sigma_L$ & Brane tension renormalization \\
+$\ln\Lambda \cdot a_1$ & $\int d^4x\, \delta c_i \phi^2|_{y_i}$ & Brane kinetic/mass renorm. \\
+\bottomrule
+\end{tabular}
+\end{center}
+\tagBL
+\end{selectorbox}
+
+\begin{lemma}[Regulator-Independence of Finite Part]
+\label{lem:regulator-inv}
+After subtracting local counterterms, the \textbf{finite part}
+$\Delta E_{\text{vac}}^{\text{finite}}(\text{BC})$ is independent of the regularization scheme:
+\begin{equation}
+\label{eq:finite-invariance}
+\Delta E_{\text{vac}}^{(\zeta),\text{fin}} = \Delta E_{\text{vac}}^{(\text{HK}),\text{fin}}
+= \Delta E_{\text{vac}}^{(\Lambda),\text{fin}}
+\end{equation}
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+All three regulators give the same heat-kernel coefficients $a_0$, $a_{1/2}$, $a_1$.
+The difference between any two regulators is a polynomial in the cutoff/mass scale,
+which is canceled by the same local counterterms. The finite remainder
+$\Delta E_{\text{vac}}^{\text{finite}}$ is uniquely determined by the spectrum $\{m_n\}$
+alone. \tagD
+\end{proof}
+
+\begin{remark}
+The \textbf{relative} vacuum energy $\Delta E_{\text{vac}}$ automatically cancels
+the bulk $a_0$ and common boundary $a_{1/2}$ contributions. Only BC-dependent
+differences survive.
+\end{remark}
+
 \subsection{BC-Dependent Vacuum Functional}
 
 \begin{definition}[Vacuum Energy Functional]
@@ -572,10 +689,34 @@ The spectrum $\{m_n\}$ depends continuously on $m_b$. \tagD
 Among topologically allowed BCs, nature \textbf{selects} the minimum:
 \begin{equation}
 \label{eq:vac-selector}
-\boxed{\text{BC}_{\text{selected}} = \arg\min_{\text{BC} \in \mathcal{B}_{\text{topo}}} \mathcal{E}_{\text{vac}}(\text{BC})}
+\boxed{\text{BC}_{\text{selected}} = \arg\min_{\text{BC} \in \mathcal{B}_{\text{topo}}} \Delta E_{\text{vac}}^{\text{finite}}(\text{BC})}
 \end{equation}
-\tagP
+where $\Delta E_{\text{vac}}^{\text{finite}}$ is the regulator-invariant finite part
+(Lemma~\ref{lem:regulator-inv}). \tagP
 \end{selectorbox}
+
+\subsubsection{Tie-Breaker Policy for Degeneracy}
+
+If two or more BCs give the same minimum vacuum energy:
+
+\begin{resultbox}[Tie-Breaker Policy]
+\label{box:tiebreaker}
+\textbf{Priority order for degenerate minima}:
+\begin{enumerate}
+\item \textbf{Symmetry}: Prefer the BC preserving largest residual symmetry
+\item \textbf{Stability}: Prefer the BC with smallest second derivative (flattest potential)
+\item \textbf{Simplicity}: Prefer discrete (N/D) over continuous (Robin) if equal energy
+\item \textbf{Physics}: If degeneracy persists, both BCs are physical---nature may select dynamically
+\end{enumerate}
+\tagP
+\end{resultbox}
+
+\begin{remark}
+Exact degeneracy is non-generic. Quantum corrections, higher-loop effects, or
+additional matter content typically lift degeneracies. The tie-breaker policy
+applies only when the degeneracy survives all corrections within the calculational
+precision.
+\end{remark}
 
 \subsection{Formal Variation}
 
