@@ -48,6 +48,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v37/` | Derivation v37: BC Selection Principle Sketch | `EDC_BLOCK003_DERIVATION_V37_BC_SELECTION_PRINCIPLE.pdf` | [D]+[P]+[OPEN] | 2026-02-03 |
 | `paper_gravity_block003/derivation_v38/` | Derivation v38: Hosotani Closure Roadmap | `EDC_BLOCK003_DERIVATION_V38_HOSOTANI_CLOSURE_ROADMAP.pdf` | [D]+[OPEN] | 2026-02-03 |
 | `paper_gravity_block003/derivation_v39/` | Derivation v39: BC Selector Applied to GUT Survivor Map | `EDC_BLOCK003_DERIVATION_V39_BC_SELECTOR_GUT_SURVIVOR_MAP.pdf` | [D]+[Dc]+[OPEN] | 2026-02-04 |
+| `paper_gravity_block003/derivation_v40/` | Derivation v40: Numerical ΔE_vac Track Ranking | `EDC_BLOCK003_DERIVATION_V40_NUMERICAL_DELTA_EVAC_TRACK_RANKING.pdf` | [D]+[P]+[OPEN] | 2026-02-04 |
 
 ---
 
@@ -946,6 +947,34 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Python script** | `recompute.py` — ALL 15 CHECKS PASSED |
 | **Equations** | 93 environments |
 | **Reviewer Traps** | 15 items (all resolved) |
+
+---
+
+## Detailed Entry: Derivation v40
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v40/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V40_NUMERICAL_DELTA_EVAC_TRACK_RANKING.pdf` |
+| **Pages** | 22 |
+| **Date** | 2026-02-04 |
+| **Status** | [D]+[P]+[OPEN] (ranking established, tiebreaker open) |
+| **Scope** | Numerical computation of ΔE_vac^finite for four GUT tracks |
+| **Regulator protocol** | Zeta + heat-kernel with invariance proof [D] |
+| **Mode spectrum tables** | NN/DD/ND/Robin for gauge, fermion, scalar [D] |
+| **Matter content** | Minimal sets per track [P] |
+| **Gauge-only ranking** | SU(5) = PS = E_6 = 0 < SO(10) = 3π/(4L) [D] |
+| **Key result** | Only mixed (ND) BCs contribute to ΔE [D] |
+| **Tiebreaker** | Hierarchy: symmetry > stability > simplicity > pheno [P] |
+| **Tiebreaker resolution** | [OPEN] - criteria conflict |
+| **12-survivor check** | PASS for all tracks [D] |
+| **Charged tower check** | PASS (W± always present) [D] |
+| **G_F hook** | Operational (non-empty tower) [D] |
+| **NO forbidden** | M_Z, M_W, v_EW, ℓ_P, G_N, α_EM NOT used |
+| **Python script** | `recompute.py` — ALL 17 CHECKS PASSED |
+| **Equations** | 91 environments |
+| **Reviewer Traps** | 16 items (all resolved) |
 
 ---
 
