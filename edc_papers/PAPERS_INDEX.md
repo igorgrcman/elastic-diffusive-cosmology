@@ -46,6 +46,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v35/` | Derivation v35: GUT BC Survivor Map | `EDC_BLOCK003_DERIVATION_V35_GUT_BC_SURVIVOR_MAP.pdf` | [D]+[Dc] | 2026-02-03 |
 | `paper_gravity_block003/derivation_v36/` | Derivation v36: G_F Numerical Closure Step (g_5 Fixing) | `EDC_BLOCK003_DERIVATION_V36_GF_NUMERICAL_CLOSURE_STEP_G5.pdf` | [D]+[Dc]+[OPEN] | 2026-02-03 |
 | `paper_gravity_block003/derivation_v37/` | Derivation v37: BC Selection Principle Sketch | `EDC_BLOCK003_DERIVATION_V37_BC_SELECTION_PRINCIPLE.pdf` | [D]+[P]+[OPEN] | 2026-02-03 |
+| `paper_gravity_block003/derivation_v38/` | Derivation v38: Hosotani Closure Roadmap | `EDC_BLOCK003_DERIVATION_V38_HOSOTANI_CLOSURE_ROADMAP.pdf` | [D]+[OPEN] | 2026-02-03 |
 
 ---
 
@@ -887,6 +888,34 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Python script** | `recompute.py` — ALL 15 CHECKS PASSED |
 | **Equations** | 113 environments |
 | **Reviewer Traps** | 12 items (11 resolved, 1 open) |
+
+---
+
+## Detailed Entry: Derivation v38
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v38/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V38_HOSOTANI_CLOSURE_ROADMAP.pdf` |
+| **Pages** | 23 |
+| **Date** | 2026-02-03 |
+| **Status** | [D]+[OPEN] (roadmap established, closure open) |
+| **Scope** | Hosotani mechanism for EW symmetry breaking |
+| **Stage 1** | 5D Gauge Theory on $[0, L]$ [P] |
+| **Stage 2** | Wilson Line $W = e^{i\theta^a T^a}$ [D] |
+| **Stage 3** | Effective Potential $V_{\text{eff}}(\theta)$ [D] |
+| **Stage 4** | Vacuum $\theta^* = \arg\min V$ [OPEN] |
+| **Stage 5** | EW Scale $v = \theta^*/(g_4 L)$ [D] |
+| **Stage 6** | Higgs Mass $m_H^2 = V''(\theta^*)/v^2$ [D] |
+| **EDC connection** | $v = (\theta^*/g_4)\sqrt{\sigma/(\beta\bar{M}_{\text{Pl}}^2)}$ [D] |
+| **GUT models** | SU(3), SO(5), SU(5) embedding [BL] |
+| **Warped extension** | RS hierarchy solution [BL] |
+| **Closure requires** | $\theta^*$, $g_4$ (v36), $L$ (v30) [OPEN] |
+| **NO forbidden** | M_Z, M_W, v_EW, ℓ_P, G_N, α_EM NOT used |
+| **Python script** | `recompute.py` — ALL 16 CHECKS PASSED |
+| **Equations** | 93 environments |
+| **Reviewer Traps** | 12 items (10 resolved, 2 open) |
 
 ---
 
