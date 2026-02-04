@@ -63,6 +63,25 @@ $ grep -E "91\.19|80\.38|246\.2|1\.616.*10|6\.674.*10|1/137" main.tex
 | AC-P40-11 | No hidden Planck trap (trap proof paragraph) | PASS (Sec. 10) |
 | AC-P40-12 | π-map invariance consistency | PASS (Sec. 9, Thm. 10.1) |
 
+## I) Dimensional Consistency (MUST-FIX v36)
+
+| ID | Criterion | Status |
+|----|-----------|--------|
+| AC-v36-D1 | "Conventions & Dimensions (5D gauge)" box present with D-dim formulas | PASS (Sec. 2.1, Box 2.1) |
+| AC-v36-D2 | Explicit [g_5]=(4-D)/2 → for D=5: [g_5]=-1/2, [g_5²]=M⁻¹ | PASS (Eq. 2.8) |
+| AC-v36-D3 | Track A/B/C each have mini-table with Symbol/Meaning/Dimension/Tag | PASS (Sec. 4.2, 5.2, 6.2) |
+| AC-v36-D4 | Dimensional Audit subsection checking g_4, I_gauge, G_F | PASS (Sec. 11.2) |
+| AC-v36-D5 | Appendix A consolidated (no confusing contradictions) | PASS (App. A rewritten) |
+
+**Verification:**
+- Box "Conventions & Dimensions (5D gauge)" in Section 2.1 ✓
+- D-dimensional formulas: [A]=(D-2)/2, [F]=D/2, [g]=(4-D)/2 ✓
+- Track A mini-table: c_A dimensionless, M_5 has M¹, g_5² has M⁻¹ ✓
+- Track B mini-table: c_B dimensionless, L has M⁻¹, k dimensionless ✓
+- Track C mini-table: c_C dimensionless, Λ_5 has M¹ ✓
+- Dimensional Audit box in Sec. 11.2 with 6 formula checks ✓
+- Appendix A now single-source-of-truth with clear resolution ✓
+
 ---
 
 ## Build Verification

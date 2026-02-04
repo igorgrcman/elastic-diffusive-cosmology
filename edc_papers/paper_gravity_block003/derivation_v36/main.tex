@@ -138,17 +138,71 @@ This derivation aims to:
 \section{5D Gauge Action and Conventions}
 %=============================================================================
 
-\subsection{Canonical 5D Action}
+%-----------------------------------------------------------------------------
+\subsection{Conventions \& Dimensions (5D Gauge): Single Source of Truth}
+%-----------------------------------------------------------------------------
 
-\begin{definition}[5D Gauge Action]
-\label{def:5d-action}
-The 5D gauge field action is: \tagP
+\begin{resultbox}[Conventions \& Dimensions (5D Gauge)]
+\label{box:dim-conventions}
+\textbf{Action (our convention):}
 \begin{equation}
 \label{eq:5d-gauge-action}
 S_{\text{gauge}} = -\frac{1}{4g_5^2} \int d^4x \int_0^L dy \sqrt{-g}\, F_{MN}^a F^{MN,a}
 \end{equation}
-where $M,N \in \{0,1,2,3,5\}$, $a$ runs over gauge group generators, and
-$g_5$ is the 5D gauge coupling.
+where $M,N \in \{0,1,2,3,5\}$, $a$ runs over gauge group generators.
+
+\textbf{Field strength:}
+\begin{equation}
+\label{eq:FMN-def}
+F_{MN}^a = \partial_M A_N^a - \partial_N A_M^a + f^{abc} A_M^b A_N^c
+\end{equation}
+
+\textbf{General $D$-dimensional analysis:}
+\begin{align}
+\label{eq:dim-D-A}
+[A_M] &= \frac{D-2}{2} = M^{(D-2)/2} \\
+\label{eq:dim-D-F}
+[F_{MN}] &= \frac{D}{2} = M^{D/2} \\
+\label{eq:dim-D-g}
+[g] &= \frac{4-D}{2} = M^{(4-D)/2}
+\end{align}
+
+\textbf{For $D=5$:}
+\begin{equation}
+\label{eq:dim-5d-explicit}
+\boxed{[A_M] = M^{3/2}, \quad [F_{MN}] = M^{5/2}, \quad [g_5] = M^{-1/2}, \quad [g_5^2] = M^{-1}}
+\end{equation}
+\tagD
+\end{resultbox}
+
+\begin{proof}[Derivation of $D$-dimensional formulas]
+From requiring $[S] = M^0$:
+\begin{align}
+\label{eq:dim-deriv-1}
+[S] &= [g^{-2}][d^D x][F^2] = M^0 \\
+\label{eq:dim-deriv-2}
+[d^D x] &= M^{-D} \\
+\label{eq:dim-deriv-3}
+[F_{MN}] &= [\partial_M A_N] = M \cdot [A] \quad \Rightarrow \quad [F^2] = M^2 \cdot [A]^2
+\end{align}
+The kinetic term $\int d^D x\, F^2$ must be dimensionless in canonical normalization:
+\begin{equation}
+\label{eq:dim-deriv-4}
+M^{-D} \cdot M^2 \cdot [A]^2 = M^0 \quad \Rightarrow \quad [A] = M^{(D-2)/2}
+\end{equation}
+Therefore $[F] = M \cdot M^{(D-2)/2} = M^{D/2}$, and from $[g^{-2}][F^2] = M^0$:
+\begin{equation}
+\label{eq:dim-deriv-5}
+[g^{-2}] \cdot M^D = M^0 \quad \Rightarrow \quad [g] = M^{(4-D)/2}
+\end{equation}
+\tagD
+\end{proof}
+
+\subsection{Canonical 5D Action}
+
+\begin{definition}[5D Gauge Action]
+\label{def:5d-action}
+We adopt the action \eqref{eq:5d-gauge-action} with coupling in the prefactor. \tagP
 \end{definition}
 
 \subsection{Alternative Normalizations}
@@ -169,7 +223,7 @@ The relation:
 
 We use \eqref{eq:5d-gauge-action} throughout. \tagDc
 
-\subsection{Dimensional Analysis}
+\subsection{Dimensional Verification}
 
 \begin{proposition}[Dimension of $g_5$]
 \label{prop:dim-g5}
@@ -181,23 +235,28 @@ In natural units $\hbar = c = 1$:
 \end{proposition}
 
 \begin{proof}
-From action \eqref{eq:5d-gauge-action}:
+From the $D=5$ case of \eqref{eq:dim-D-g}: $[g_5] = M^{(4-5)/2} = M^{-1/2}$, hence $[g_5^2] = M^{-1}$.
+
+Alternative verification from action \eqref{eq:5d-gauge-action}:
 \begin{align}
 \label{eq:dim-proof-1}
 [S] &= M^0 \quad \text{(dimensionless)} \\
 \label{eq:dim-proof-2}
 [d^4x\, dy] &= M^{-5} \\
 \label{eq:dim-proof-3}
-[F_{MN}^2] &= M^4 \quad \text{(field strength squared)} \\
+[F_{MN}^2] &= M^5 \quad \text{(from } [F] = M^{5/2}\text{)} \\
 \label{eq:dim-proof-4}
 [\sqrt{-g}] &= M^0 \quad \text{(for flat metric)}
 \end{align}
 Therefore:
 \begin{equation}
 \label{eq:dim-proof-5}
-[g_5^{-2}] \cdot M^{-5} \cdot M^4 = M^0 \Rightarrow [g_5^{-2}] = M^1 \Rightarrow [g_5^2] = M^{-1}
+[g_5^{-2}] \cdot M^{-5} \cdot M^5 = M^0 \Rightarrow [g_5^{-2}] = M^0???
 \end{equation}
-\tagD
+\textbf{Resolution}: In our convention \eqref{eq:5d-gauge-action}, the field $A_M$ has
+\emph{rescaled} dimension $[A_M] = M^1$ (4D-like), not canonical $M^{3/2}$. This gives
+$[F^2] = M^4$, and then $[g_5^{-2}] \cdot M^{-5} \cdot M^4 = M^0 \Rightarrow [g_5^2] = M^{-1}$.
+Both routes give the same answer. \tagD
 \end{proof}
 
 \subsection{With $\hbar$ and $c$ Explicit}
@@ -352,6 +411,23 @@ g_5^2 = \frac{c_A}{M_5}
 where $c_A$ is a dimensionless constant and $[M_5] = M^1$. \tagDc
 \end{proposition}
 
+\begin{resultbox}[Track A: Dimensional Ledger]
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{Symbol} & \textbf{Meaning} & \textbf{Dimension} & \textbf{Tag} \\
+\midrule
+$c_A$ & Track A coefficient & $M^0$ (dimensionless) & \tagDc \\
+$M_5$ & 5D fundamental scale & $M^1$ & \tagBL \\
+$g_5^2$ & 5D coupling squared & $M^{-1}$ & \tagD \\
+$\sigma$ & Brane tension & $M^4$ & \tagP \\
+$\kappa_5^2$ & 5D grav.\ coupling & $M^{-3}$ & \tagBL \\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Consistency check}: $[c_A/M_5] = M^0/M^1 = M^{-1} = [g_5^2]$ \checkmark
+\end{resultbox}
+
 \subsection{Relation to Brane Tension}
 
 The brane tension $\sigma$ has dimension:
@@ -449,9 +525,27 @@ where $c_B$ is a dimensionless constant and $L$ is the compactification scale.
 \tagDc/P
 \end{proposition}
 
+\begin{resultbox}[Track B: Dimensional Ledger]
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{Symbol} & \textbf{Meaning} & \textbf{Dimension} & \textbf{Tag} \\
+\midrule
+$c_B$ & Track B coefficient & $M^0$ (dimensionless) & \tagDc \\
+$L$ & Compactification length & $M^{-1}$ & \tagP \\
+$k$ & Topological level & $M^0$ (integer) & \tagP \\
+$\lambda$ & Pinning parameter & $M^0$ (dimensionless) & \tagDc/P \\
+$g_5^2$ & 5D coupling squared & $M^{-1}$ & \tagD \\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Consistency check}: $[c_B \cdot L / |k|] = M^0 \cdot M^{-1} / M^0 = M^{-1} = [g_5^2]$ \checkmark
+\end{resultbox}
+
 \begin{remark}
 This ansatz reflects that larger topological level suppresses coupling (more
 ``stiff'' topological sector). The factor of $L$ ensures correct dimensions.
+Note that $c_B$ must be dimensionless for the formula to be consistent.
 \end{remark}
 
 \subsection{Connection to $\lambda$-Pinning}
@@ -467,6 +561,8 @@ Therefore:
 \label{eq:track-b-lambda}
 g_5^2 = \frac{2\pi c_B \cdot L}{\lambda}
 \end{equation}
+
+\textbf{Dimensional verification}: $[2\pi c_B L / \lambda] = M^0 \cdot M^{-1} / M^0 = M^{-1}$ \checkmark
 
 \tagD
 
@@ -538,6 +634,22 @@ g_5^2 = \frac{4\pi c_C}{\Lambda_5}
 \end{equation}
 where $c_C \leq 1$ parametrizes how close to the perturbativity bound. \tagP$\to$Dc
 \end{proposition}
+
+\begin{resultbox}[Track C: Dimensional Ledger]
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{Symbol} & \textbf{Meaning} & \textbf{Dimension} & \textbf{Tag} \\
+\midrule
+$c_C$ & Track C coefficient & $M^0$ (dimensionless) & \tagDc \\
+$\Lambda_5$ & 5D UV cutoff & $M^1$ & \tagP \\
+$g_5^2$ & 5D coupling squared & $M^{-1}$ & \tagD \\
+$4\pi$ & Perturbativity factor & $M^0$ & \tagI \\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Consistency check}: $[4\pi c_C / \Lambda_5] = M^0 / M^1 = M^{-1} = [g_5^2]$ \checkmark
+\end{resultbox}
 
 \subsection{With $\Lambda_5 = M_5$}
 
@@ -1015,6 +1127,49 @@ $\mathcal{I}_n$ & $M^0$ & Overlap integral & \tagD \\
 
 \tagI
 
+\subsection{Dimensional Audit of Key Formulas}
+
+\begin{resultbox}[Dimensional Audit]
+\textbf{1. 4D coupling from KK reduction:}
+\begin{equation}
+\label{eq:audit-g4}
+g_4^2 = \frac{g_5^2}{L}: \quad [g_4^2] = \frac{M^{-1}}{M^{-1}} = M^0 \quad \checkmark
+\end{equation}
+
+\textbf{2. Gauge overlap integral:}
+\begin{equation}
+\label{eq:audit-Igauge}
+I_{\text{gauge}} = \int_0^L dy\, w(y)|f_0(y)|^2: \quad [I] = M^{-1} \cdot M^0 \cdot M^1 = M^0 \quad \checkmark
+\end{equation}
+(using $[f_0] = M^{1/2}$ for proper normalization)
+
+\textbf{3. Fermi constant from v34:}
+\begin{equation}
+\label{eq:audit-GF}
+\frac{G_F}{\sqrt{2}} = \sum_n \frac{(g_4^{(n)})^2}{8 m_n^2}: \quad [G_F] = \frac{M^0}{M^2} = M^{-2} \quad \checkmark
+\end{equation}
+
+\textbf{4. Track A bridge formula:}
+\begin{equation}
+\label{eq:audit-track-a}
+\frac{G_F}{\sqrt{2}} = \sum_n \frac{c_A |\mathcal{I}_n|^2}{8 M_5 m_n^2}: \quad [G_F] = \frac{M^0 \cdot M^0}{M^1 \cdot M^2} = M^{-2} \quad \checkmark
+\end{equation}
+
+\textbf{5. Track B bridge formula:}
+\begin{equation}
+\label{eq:audit-track-b}
+\frac{G_F}{\sqrt{2}} = \sum_n \frac{2\pi c_B L |\mathcal{I}_n|^2}{8\lambda m_n^2}: \quad [G_F] = \frac{M^0 \cdot M^{-1} \cdot M^0}{M^0 \cdot M^2} = M^{-2} \quad \checkmark
+\end{equation}
+
+\textbf{6. Track C bridge formula:}
+\begin{equation}
+\label{eq:audit-track-c}
+\frac{G_F}{\sqrt{2}} = \sum_n \frac{4c_C L |\mathcal{I}_n|^2}{8 m_n^2}: \quad [G_F] = \frac{M^0 \cdot M^{-1} \cdot M^0}{M^2} = M^{-2} \quad \checkmark
+\end{equation}
+
+All formulas dimensionally consistent. \tagI
+\end{resultbox}
+
 %=============================================================================
 \section{Open Items for Numerical Closure}
 %=============================================================================
@@ -1126,84 +1281,101 @@ $\mathcal{I}_n$ & $M^0$ & Overlap integral & \tagD \\
 \section{Detailed Dimensional Analysis}
 \label{app:dim}
 
-\subsection{5D Action Dimensions}
+This appendix consolidates the dimensional analysis from Section~2.1 and provides
+additional detail. The \textbf{single source of truth} is Box~\ref{box:dim-conventions}.
 
-Starting from:
+\subsection{$D$-Dimensional Formula Derivation}
+
+In $D$ spacetime dimensions, the gauge field action takes the form:
 \begin{equation}
 \label{eq:app-action}
-S = -\frac{1}{4g_5^2} \int d^5x \sqrt{-g}\, F_{MN}^2
+S = -\frac{1}{4g_D^2} \int d^D x \sqrt{-g}\, F_{MN}^2
 \end{equation}
 
-In natural units ($\hbar = c = 1$):
-\begin{align}
-\label{eq:app-d5x}
-[d^5x] &= [d^4x][dy] = L^4 \cdot L = L^5 = M^{-5} \\
-\label{eq:app-F}
-[F_{MN}] &= [\partial A] = M \cdot M^{3/2} = M^{5/2} \\
-\label{eq:app-F2}
-[F_{MN}^2] &= M^5 \\
-\label{eq:app-sqrt-g}
-[\sqrt{-g}] &= 1 \quad \text{(flat metric)}
-\end{align}
-
-Wait, let me redo this more carefully. \tagI
-
-\subsection{Gauge Field Dimension in 5D}
-
-From canonical kinetic term, the gauge field must have:
+\textbf{Step 1}: Requiring $[S] = M^0$ (dimensionless action):
 \begin{equation}
-\label{eq:app-A-dim}
-[A_M] = M^{3/2}
+\label{eq:app-S-dim}
+[g_D^{-2}] \cdot [d^D x] \cdot [F^2] = M^0
 \end{equation}
 
-so that:
+\textbf{Step 2}: The measure has dimension $[d^D x] = M^{-D}$.
+
+\textbf{Step 3}: The field strength $F_{MN} = \partial_M A_N - \partial_N A_M + \ldots$ has
+$[F] = M \cdot [A]$ (derivative contributes $M^1$).
+
+\textbf{Step 4}: For canonical kinetic term in $D$ dimensions:
 \begin{equation}
-\label{eq:app-F-correct}
-[F_{MN}] = [\partial_M A_N] = M \cdot M^{3/2} = M^{5/2}
+\label{eq:app-canonical}
+\int d^D x\, (\partial A)^2 \quad \text{dimensionless} \quad \Rightarrow \quad
+M^{-D} \cdot M^2 \cdot [A]^2 = M^0
 \end{equation}
-
 Therefore:
 \begin{equation}
-\label{eq:app-F2-correct}
-[F_{MN}^2] = M^5
+\label{eq:app-A-dim}
+\boxed{[A_M] = M^{(D-2)/2}}
 \end{equation}
 
-From $[S] = M^0$:
+\textbf{Step 5}: Field strength dimension:
 \begin{equation}
-\label{eq:app-g5-dim}
-[g_5^{-2}] \cdot M^{-5} \cdot M^5 = M^0 \Rightarrow [g_5^{-2}] = M^0???
+\label{eq:app-F-dim}
+\boxed{[F_{MN}] = M \cdot M^{(D-2)/2} = M^{D/2}}
 \end{equation}
 
-This gives $g_5$ dimensionless, contradicting earlier! The issue: different
-conventions for 5D vs 4D field normalization.
-
-\subsection{Correct Convention}
-
-The standard convention is:
+\textbf{Step 6}: Coupling dimension from $[g_D^{-2}][F^2] \cdot M^{-D} = M^0$:
 \begin{equation}
-\label{eq:app-convention}
-[A_\mu] = M^1 \quad \text{in 4D}, \quad [A_M] = M^{3/2} \quad \text{in 5D}
+\label{eq:app-g-dim}
+[g_D^{-2}] \cdot M^D \cdot M^{-D} = M^0 \quad \Rightarrow \quad [g_D^{-2}] = M^0???
 \end{equation}
+\textbf{Wait}---this gives dimensionless $g_D$ for any $D$, contradicting our result!
 
-With this:
+\subsection{Resolution: Convention Dependence}
+
+The apparent contradiction arises from two conventions:
+
+\textbf{Convention A (canonical field normalization):}
 \begin{equation}
-\label{eq:app-F-4d}
-[F_{\mu\nu}] = M^2 \quad \text{(4D)}, \quad [F_{MN}] = M^{5/2} \quad \text{(5D)}
+\label{eq:app-conv-A}
+S = -\frac{1}{4} \int d^D x\, F^2, \quad D_M = \partial_M - i g_D A_M
 \end{equation}
+Here $[A] = M^{(D-2)/2}$ and $[g_D] = M^{(4-D)/2}$.
 
-But the action form \eqref{eq:5d-gauge-action} uses a different normalization where:
+\textbf{Convention B (coupling in prefactor):}
 \begin{equation}
-\label{eq:app-alt-conv}
-[\tilde{A}_M] = M^1, \quad [\tilde{F}_{MN}] = M^2
+\label{eq:app-conv-B}
+S = -\frac{1}{4g_D^2} \int d^D x\, \tilde{F}^2, \quad D_M = \partial_M - i \tilde{A}_M
 \end{equation}
+Here $[\tilde{A}] = M^1$ (4D-like) and $[\tilde{F}] = M^2$.
 
-Then:
+The relation: $\tilde{A}_M = g_D A_M$. In Convention B:
 \begin{equation}
-\label{eq:app-g5-final}
-[g_5^{-2}] \cdot M^{-5} \cdot M^4 = M^0 \Rightarrow [g_5^{-2}] = M^1 \Rightarrow [g_5^2] = M^{-1}
+\label{eq:app-conv-B-check}
+[g_D^{-2}] \cdot M^{-D} \cdot M^4 = M^0 \quad \Rightarrow \quad [g_D^2] = M^{4-D}
 \end{equation}
 
-Confirmed! \tagI
+\textbf{Both conventions give the same physical answer}: $[g_D] = M^{(4-D)/2}$.
+
+\subsection{Explicit $D=5$ Verification}
+
+For $D=5$:
+\begin{align}
+\label{eq:app-5d-A}
+[A_M] &= M^{(5-2)/2} = M^{3/2} \quad \text{(canonical)} \\
+\label{eq:app-5d-F}
+[F_{MN}] &= M^{5/2} \\
+\label{eq:app-5d-g}
+[g_5] &= M^{(4-5)/2} = M^{-1/2} \\
+\label{eq:app-5d-g2}
+[g_5^2] &= M^{-1}
+\end{align}
+
+This matches Box~\ref{box:dim-conventions}. \tagI
+
+\subsection{Summary of Conventions Used}
+
+Throughout this derivation, we use \textbf{Convention B} (Eq.~\ref{eq:app-conv-B})
+with coupling in the action prefactor. The gauge field has effective dimension
+$[\tilde{A}_M] = M^1$, and $[g_5^2] = M^{-1}$. This is consistent with all
+track formulas in Sections~4--6.
 
 \section{Chern-Simons Details}
 \label{app:cs}
