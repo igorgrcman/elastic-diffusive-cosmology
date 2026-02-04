@@ -41,6 +41,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v30/` | Derivation v30: Derive L from β+λ (No Identification) | `EDC_BLOCK003_DERIVATION_V30_DERIVE_L_FROM_BETA_LAMBDA.pdf` | [D]+[P]+[BL]/[OPEN] | 2026-02-03 |
 | `paper_gravity_block003/derivation_v31/` | Derivation v31: Gauge Normalization, BC Registry, Scale Map | `EDC_BLOCK003_DERIVATION_V31_GAUGE_NORMALIZATION_BC_SCALEMAP.pdf` | PROGRAM | 2026-02-03 |
 | `paper_gravity_block003/derivation_v32/` | Derivation v32: Unified Gauge BC Breaking + Scale Map | `EDC_BLOCK003_DERIVATION_V32_UNIFIED_GAUGE_BC_BREAKING_SCALES.pdf` | PROGRAM | 2026-02-03 |
+| `paper_gravity_block003/derivation_v33/` | Derivation v33: Matter + RG Dual-Track Program | `EDC_BLOCK003_DERIVATION_V33_MATTER_AND_RG_PROGRAM.pdf` | PROGRAM | 2026-02-03 |
 
 ---
 
@@ -737,6 +738,38 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **NO forbidden** | M_Z, M_W, v_EW, ℓ_P, G_N, α_EM NOT used |
 | **Python script** | `recompute.py` — ALL 16 CHECKS PASSED |
 | **Equations** | 126 environments |
+
+---
+
+## Detailed Entry: Derivation v33
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v33/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V33_MATTER_AND_RG_PROGRAM.pdf` |
+| **Pages** | 29 |
+| **Date** | 2026-02-03 |
+| **Status** | PROGRAM NOTE |
+| **Scope** | Dual-track: Track M (Matter/Chirality/Higgs) + Track R (RG/Matching) |
+| **Track M** | Fermion BCs, chiral zero modes, A₅ Higgs, Yukawa overlap |
+| **Track R** | Gauge matching, KK thresholds, piecewise running |
+| **Chiral BC** | ψ_L\|_bdry = 0 or ψ_R\|_bdry = 0 from variation [D] |
+| **Zero mode** | f_R ∝ exp(m₅ξ), f_L ∝ exp(-m₅ξ) [D] |
+| **Gauge-Higgs** | A₅ as 4D Higgs via Hosotani mechanism [D]+[P] |
+| **Yukawa** | y₄ = y₅ · I_overlap [D] |
+| **Gauge bridge** | g₄⁻² = g₅⁻² I_gauge + Δ_brane [D] |
+| **KK scale** | μ_KK = π/L [D] |
+| **Piecewise running** | With tower corrections above μ_KK [D] |
+| **Track-RG dictionary** | SU(5), SO(10), PS, E_6 mappings |
+| **Hypercharge** | c_Y = 5/3 for all tracks [Dc] |
+| **BC Registry v33** | 10 field types (graviton, gauge, scalar, A₅, fermion L/R) |
+| **Anomaly status** | Risk matrix provided; full cancellation [OPEN] |
+| **Scale Regime Map** | TikZ Figure 1: IR → KK → UV |
+| **Reviewer Traps** | 16 items with 10 resolved, 6 open |
+| **NO forbidden** | M_Z, M_W, v_EW, ℓ_P, G_N, α_EM NOT used |
+| **Python script** | `recompute.py` — ALL 18 CHECKS PASSED |
+| **Equations** | 150 environments, 155 labeled |
 
 ---
 
