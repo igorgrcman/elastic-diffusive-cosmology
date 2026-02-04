@@ -45,6 +45,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v34/` | Derivation v34: G_F from KK Tower Exchange | `EDC_BLOCK003_DERIVATION_V34_GF_FROM_KK_EXCHANGE.pdf` | [D]+[OPEN] | 2026-02-03 |
 | `paper_gravity_block003/derivation_v35/` | Derivation v35: GUT BC Survivor Map | `EDC_BLOCK003_DERIVATION_V35_GUT_BC_SURVIVOR_MAP.pdf` | [D]+[Dc] | 2026-02-03 |
 | `paper_gravity_block003/derivation_v36/` | Derivation v36: G_F Numerical Closure Step (g_5 Fixing) | `EDC_BLOCK003_DERIVATION_V36_GF_NUMERICAL_CLOSURE_STEP_G5.pdf` | [D]+[Dc]+[OPEN] | 2026-02-03 |
+| `paper_gravity_block003/derivation_v37/` | Derivation v37: BC Selection Principle Sketch | `EDC_BLOCK003_DERIVATION_V37_BC_SELECTION_PRINCIPLE.pdf` | [D]+[P]+[OPEN] | 2026-02-03 |
 
 ---
 
@@ -855,6 +856,37 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Python script** | `recompute.py` — ALL 17 CHECKS PASSED |
 | **Equations** | 140 environments |
 | **Reviewer Traps** | 14 items (all resolved) |
+
+---
+
+## Detailed Entry: Derivation v37
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v37/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V37_BC_SELECTION_PRINCIPLE.pdf` |
+| **Pages** | 25 |
+| **Date** | 2026-02-03 |
+| **Status** | [D]+[P]+[OPEN] (principle established, minimum open) |
+| **Scope** | BC selection as a principle, not catalog |
+| **Selector 1** | Variational: boundary term = 0 [D] |
+| **Selector 2** | Self-Adjointness: Green's identity [D] |
+| **Selector 3** | Topological: λ = \|k\|/(2π) quantization [Dc/P] |
+| **Selector 4** | Vacuum Energy: min 𝓔_vac(BC) [P] |
+| **Pipeline** | 𝓑 → 𝓑_var → 𝓑_SA → 𝓑_topo → BC* [D] |
+| **Hook 1** | m_gap from Robin parameter [D] |
+| **Hook 2** | Gauge survivors from parities [D] |
+| **Hook 3** | G_F from full BC pattern [D] |
+| **Hook 4** | Higgs/EW from A_5 BC [D]+[BL] |
+| **SA verification** | NN, DD, RR all pass [D] |
+| **Robin spectrum** | tan(mL) = 2m·m_b/(m²-m_b²) [D] |
+| **Vacuum structure** | 𝓔_vac = ½Σm_n, zeta-regularized [D]+[BL] |
+| **What's open** | Vacuum minimum location [OPEN] |
+| **NO forbidden** | M_Z, M_W, v_EW, ℓ_P, G_N, α_EM NOT used |
+| **Python script** | `recompute.py` — ALL 15 CHECKS PASSED |
+| **Equations** | 113 environments |
+| **Reviewer Traps** | 12 items (11 resolved, 1 open) |
 
 ---
 
