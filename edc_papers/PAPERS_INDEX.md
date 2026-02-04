@@ -47,6 +47,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v36/` | Derivation v36: G_F Numerical Closure Step (g_5 Fixing) | `EDC_BLOCK003_DERIVATION_V36_GF_NUMERICAL_CLOSURE_STEP_G5.pdf` | [D]+[Dc]+[OPEN] | 2026-02-03 |
 | `paper_gravity_block003/derivation_v37/` | Derivation v37: BC Selection Principle Sketch | `EDC_BLOCK003_DERIVATION_V37_BC_SELECTION_PRINCIPLE.pdf` | [D]+[P]+[OPEN] | 2026-02-03 |
 | `paper_gravity_block003/derivation_v38/` | Derivation v38: Hosotani Closure Roadmap | `EDC_BLOCK003_DERIVATION_V38_HOSOTANI_CLOSURE_ROADMAP.pdf` | [D]+[OPEN] | 2026-02-03 |
+| `paper_gravity_block003/derivation_v39/` | Derivation v39: BC Selector Applied to GUT Survivor Map | `EDC_BLOCK003_DERIVATION_V39_BC_SELECTOR_GUT_SURVIVOR_MAP.pdf` | [D]+[Dc]+[OPEN] | 2026-02-04 |
 
 ---
 
@@ -916,6 +917,35 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Python script** | `recompute.py` — ALL 16 CHECKS PASSED |
 | **Equations** | 93 environments |
 | **Reviewer Traps** | 12 items (10 resolved, 2 open) |
+
+---
+
+## Detailed Entry: Derivation v39
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v39/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V39_BC_SELECTOR_GUT_SURVIVOR_MAP.pdf` |
+| **Pages** | 23 |
+| **Date** | 2026-02-04 |
+| **Status** | [D]+[Dc]+[OPEN] (structural closure, numerical open) |
+| **Scope** | Apply BC selection pipeline (v37) to GUT survivor map (v35) with G_F hook (v34) |
+| **BC Candidate Class** | B_G = {(P_0, P_L) : constraints} for each GUT track [D] |
+| **Scoring Function** | S[C] = ΔE_vac^finite(C) - ΔE_vac^finite(C_ref) [D] |
+| **Selection Result** | Standard BC giving 12 SM survivors per track [D]+[Dc] |
+| **G_F Hook** | G_F/√2 = Σ(g_4^(n))²/(8m_n²) per track [D] |
+| **GUT Tracks** | SU(5), SO(10), Pati-Salam, E_6 [D]+[Dc] |
+| **Projector Closure** | dim(g^(+,+)) = 8 + 3 + 1 = 12 for all tracks [D] |
+| **Zero-Mode Rule** | (+,+) ↔ zero-mode ↔ (N,N) BC [D] |
+| **KK Scale** | μ_KK = π/L (π-map invariant) [D] |
+| **Charged Tower** | T_charged ≠ ∅ for all tracks (W± minimum) [D] |
+| **Free Knobs** | β, λ, c_A/c_B/c_C, (intermediate scales) [Dc] |
+| **What's open** | Numerical ΔE_vac, L determination, track coefficients [OPEN] |
+| **NO forbidden** | M_Z, M_W, v_EW, ℓ_P, G_N, α_EM NOT used |
+| **Python script** | `recompute.py` — ALL 15 CHECKS PASSED |
+| **Equations** | 93 environments |
+| **Reviewer Traps** | 15 items (all resolved) |
 
 ---
 
