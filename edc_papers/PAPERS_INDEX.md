@@ -42,6 +42,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v31/` | Derivation v31: Gauge Normalization, BC Registry, Scale Map | `EDC_BLOCK003_DERIVATION_V31_GAUGE_NORMALIZATION_BC_SCALEMAP.pdf` | PROGRAM | 2026-02-03 |
 | `paper_gravity_block003/derivation_v32/` | Derivation v32: Unified Gauge BC Breaking + Scale Map | `EDC_BLOCK003_DERIVATION_V32_UNIFIED_GAUGE_BC_BREAKING_SCALES.pdf` | PROGRAM | 2026-02-03 |
 | `paper_gravity_block003/derivation_v33/` | Derivation v33: Matter + RG Dual-Track Program | `EDC_BLOCK003_DERIVATION_V33_MATTER_AND_RG_PROGRAM.pdf` | PROGRAM | 2026-02-03 |
+| `paper_gravity_block003/derivation_v34/` | Derivation v34: G_F from KK Tower Exchange | `EDC_BLOCK003_DERIVATION_V34_GF_FROM_KK_EXCHANGE.pdf` | [D]+[OPEN] | 2026-02-03 |
 
 ---
 
@@ -770,6 +771,34 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **NO forbidden** | M_Z, M_W, v_EW, ℓ_P, G_N, α_EM NOT used |
 | **Python script** | `recompute.py` — ALL 18 CHECKS PASSED |
 | **Equations** | 150 environments, 155 labeled |
+
+---
+
+## Detailed Entry: Derivation v34
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v34/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V34_GF_FROM_KK_EXCHANGE.pdf` |
+| **Pages** | 24 |
+| **Date** | 2026-02-03 |
+| **Status** | [D]+[OPEN] (structural closure, numerical open) |
+| **Scope** | Derive G_F from 5D→4D KK tower exchange |
+| **Main result** | G_F/√2 = Σ_n (g_4^(n))²/(8 m_n²) [D] |
+| **4D coupling** | g_4^(n) = g_5 ∫ w(y) |χ_0|² f_n dy [D] |
+| **Factor 1/8** | 8 = 2×2×2 (CC × SU(2) × Fierz) [D] |
+| **Tower convergence** | Σ 1/n² = π²/6 [I] |
+| **Dominant mode** | First mode = 61% of tower [D] |
+| **Truncation error** | < 1/N for N modes [D] |
+| **Flat profile problem** | g_4^(n) = 0 for flat χ_0 (requires localization) |
+| **EDC connection** | G_F(g_5, β, k) parametric form [D]+[BL] |
+| **What's open** | g_5, β, k selection [OPEN] |
+| **NO forbidden** | M_Z, M_W, v_EW, ℓ_P, G_N, α_EM NOT used |
+| **Postdiction** | Order-of-magnitude consistent (App L) |
+| **Python script** | `recompute.py` — ALL 15 CHECKS PASSED |
+| **Equations** | 118 environments |
+| **Reviewer Traps** | 16 items (14 resolved, 2 open) |
 
 ---
 
