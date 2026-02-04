@@ -40,6 +40,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v29/` | Derivation v29: β Control Parameter (σL²/M̄_Pl²) | `EDC_BLOCK003_DERIVATION_V29_BETA_DERIVATION.pdf` | [D]+[BL] | 2026-02-03 |
 | `paper_gravity_block003/derivation_v30/` | Derivation v30: Derive L from β+λ (No Identification) | `EDC_BLOCK003_DERIVATION_V30_DERIVE_L_FROM_BETA_LAMBDA.pdf` | [D]+[P]+[BL]/[OPEN] | 2026-02-03 |
 | `paper_gravity_block003/derivation_v31/` | Derivation v31: Gauge Normalization, BC Registry, Scale Map | `EDC_BLOCK003_DERIVATION_V31_GAUGE_NORMALIZATION_BC_SCALEMAP.pdf` | PROGRAM | 2026-02-03 |
+| `paper_gravity_block003/derivation_v32/` | Derivation v32: Unified Gauge BC Breaking + Scale Map | `EDC_BLOCK003_DERIVATION_V32_UNIFIED_GAUGE_BC_BREAKING_SCALES.pdf` | PROGRAM | 2026-02-03 |
 
 ---
 
@@ -710,6 +711,32 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **NO identification** | α_EM, M_Z, M_W, v_EW NOT used |
 | **Python script** | `recompute.py` — ALL 15 CHECKS PASSED |
 | **Equations** | 97 environments |
+
+---
+
+## Detailed Entry: Derivation v32
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v32/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V32_UNIFIED_GAUGE_BC_BREAKING_SCALES.pdf` |
+| **Pages** | 26 |
+| **Date** | 2026-02-03 |
+| **Status** | PROGRAM NOTE |
+| **Scope** | Unified gauge BC breaking: SU(5), SO(10), E_6, Pati-Salam |
+| **Four Tracks** | Track S (SU(5)), Track O (SO(10)), Track E (E_6), Track P (PS) |
+| **Gauge bridge** | g₄⁻² = g₅⁻² I_gauge [D] |
+| **BC Registry** | Table covering graviton, gauge, scalar, fermion |
+| **Scale Map** | TikZ Figure 1: UV → KK threshold → IR |
+| **SU(5) Breaking** | 24 = 12 (SM) + 12 (broken), closure proof |
+| **SO(10) Breaking** | 45 = 12 (SM) + 33 (broken), closure proof |
+| **E_6 Breaking** | 78 = 45 (SO(10)) + 33 (broken) |
+| **Pati-Salam** | Y = T₃R + (B-L)/2, 45 = 21 (PS) + 24 (coset) |
+| **Hypercharge** | c_Y = 5/3 normalization [Dc] |
+| **NO forbidden** | M_Z, M_W, v_EW, ℓ_P, G_N, α_EM NOT used |
+| **Python script** | `recompute.py` — ALL 16 CHECKS PASSED |
+| **Equations** | 126 environments |
 
 ---
 
