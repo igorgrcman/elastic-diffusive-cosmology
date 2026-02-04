@@ -43,6 +43,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v32/` | Derivation v32: Unified Gauge BC Breaking + Scale Map | `EDC_BLOCK003_DERIVATION_V32_UNIFIED_GAUGE_BC_BREAKING_SCALES.pdf` | PROGRAM | 2026-02-03 |
 | `paper_gravity_block003/derivation_v33/` | Derivation v33: Matter + RG Dual-Track Program | `EDC_BLOCK003_DERIVATION_V33_MATTER_AND_RG_PROGRAM.pdf` | PROGRAM | 2026-02-03 |
 | `paper_gravity_block003/derivation_v34/` | Derivation v34: G_F from KK Tower Exchange | `EDC_BLOCK003_DERIVATION_V34_GF_FROM_KK_EXCHANGE.pdf` | [D]+[OPEN] | 2026-02-03 |
+| `paper_gravity_block003/derivation_v35/` | Derivation v35: GUT BC Survivor Map | `EDC_BLOCK003_DERIVATION_V35_GUT_BC_SURVIVOR_MAP.pdf` | [D]+[Dc] | 2026-02-03 |
 
 ---
 
@@ -799,6 +800,34 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Python script** | `recompute.py` — ALL 15 CHECKS PASSED |
 | **Equations** | 118 environments |
 | **Reviewer Traps** | 16 items (14 resolved, 2 open) |
+
+---
+
+## Detailed Entry: Derivation v35
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v35/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V35_GUT_BC_SURVIVOR_MAP.pdf` |
+| **Pages** | 21 |
+| **Date** | 2026-02-03 |
+| **Status** | [D]+[Dc] (structural closure) |
+| **Scope** | BC-based selection of residual gauge group in 5D→4D |
+| **Survivor Rule** | Zero-mode ⇔ (N,N) or (+,+) BCs [D] |
+| **Projector Algebra** | 𝔥 = 𝔤^(+,+) = {T : P₀TP₀⁻¹=+T, P_LTP_L⁻¹=+T} [D] |
+| **SU(5)** | P = diag(+1,+1,+1,-1,-1) → SM (12 survivors) [Dc] |
+| **SO(10)** | P₀≠P_L for rank reduction 5→4 → SM [Dc] |
+| **Pati-Salam** | Y = T³ᴿ + (B-L)/2 → SM [D] |
+| **E₆** | Two-step cascade E₆→SO(10)×U(1)→SM [D] |
+| **Scale Map** | TikZ UV/KK/IR regime diagram [D] |
+| **BC Dictionary** | SM generators (N,N), broken (D,D) or mixed [D] |
+| **Matter Stub** | Chiral rule + minimal embeddings + anomaly [OPEN] |
+| **What's open** | BC selection principle, anomaly verification [OPEN] |
+| **NO forbidden** | M_Z, M_W, v_EW, ℓ_P, G_N, α_EM NOT used |
+| **Python script** | `recompute.py` — ALL 15 CHECKS PASSED |
+| **Equations** | 108 environments |
+| **Reviewer Traps** | 14 items (12 resolved, 2 open) |
 
 ---
 
