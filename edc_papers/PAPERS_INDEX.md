@@ -44,6 +44,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v33/` | Derivation v33: Matter + RG Dual-Track Program | `EDC_BLOCK003_DERIVATION_V33_MATTER_AND_RG_PROGRAM.pdf` | PROGRAM | 2026-02-03 |
 | `paper_gravity_block003/derivation_v34/` | Derivation v34: G_F from KK Tower Exchange | `EDC_BLOCK003_DERIVATION_V34_GF_FROM_KK_EXCHANGE.pdf` | [D]+[OPEN] | 2026-02-03 |
 | `paper_gravity_block003/derivation_v35/` | Derivation v35: GUT BC Survivor Map | `EDC_BLOCK003_DERIVATION_V35_GUT_BC_SURVIVOR_MAP.pdf` | [D]+[Dc] | 2026-02-03 |
+| `paper_gravity_block003/derivation_v36/` | Derivation v36: G_F Numerical Closure Step (g_5 Fixing) | `EDC_BLOCK003_DERIVATION_V36_GF_NUMERICAL_CLOSURE_STEP_G5.pdf` | [D]+[Dc]+[OPEN] | 2026-02-03 |
 
 ---
 
@@ -828,6 +829,32 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Python script** | `recompute.py` — ALL 15 CHECKS PASSED |
 | **Equations** | 108 environments |
 | **Reviewer Traps** | 14 items (12 resolved, 2 open) |
+
+---
+
+## Detailed Entry: Derivation v36
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v36/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V36_GF_NUMERICAL_CLOSURE_STEP_G5.pdf` |
+| **Pages** | 25 |
+| **Date** | 2026-02-03 |
+| **Status** | [D]+[Dc]+[OPEN] (three tracks, coefficients open) |
+| **Scope** | Fix g_5 from 5D action to enable G_F numerical closure |
+| **[g_5²] dimension** | M⁻¹ [D] |
+| **Track A** | g_5² = c_A/M_5 from stiffness/brane-tension scaling [Dc] |
+| **Track B** | g_5² = 2πc_BL/λ from topological level [Dc/P] |
+| **Track C** | g_5² = 4πc_C/Λ_5 from self-consistency [P→Dc] |
+| **Bridge formulas** | g_5 → g_4^(n) → G_F for each track [D] |
+| **π-map invariance** | Proven for Track B (L-independent) [D] |
+| **Planck trap check** | No hidden G_N or ℓ_P via M̄_Pl [D] |
+| **What's open** | Coefficients c_A, c_B, c_C; scale L or M_5 [OPEN] |
+| **NO forbidden** | M_Z, M_W, v_EW, ℓ_P, G_N, α_EM NOT used |
+| **Python script** | `recompute.py` — ALL 17 CHECKS PASSED |
+| **Equations** | 140 environments |
+| **Reviewer Traps** | 14 items (all resolved) |
 
 ---
 
