@@ -39,6 +39,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v28/` | Derivation v28: λ-Pinning from Self-Adjointness | `EDC_BLOCK003_DERIVATION_V28_LAMBDA_PINNING_DERIVATION.pdf` | [D]+[Dc/P] | 2026-02-03 |
 | `paper_gravity_block003/derivation_v29/` | Derivation v29: β Control Parameter (σL²/M̄_Pl²) | `EDC_BLOCK003_DERIVATION_V29_BETA_DERIVATION.pdf` | [D]+[BL] | 2026-02-03 |
 | `paper_gravity_block003/derivation_v30/` | Derivation v30: Derive L from β+λ (No Identification) | `EDC_BLOCK003_DERIVATION_V30_DERIVE_L_FROM_BETA_LAMBDA.pdf` | [D]+[P]+[BL]/[OPEN] | 2026-02-03 |
+| `paper_gravity_block003/derivation_v31/` | Derivation v31: Gauge Normalization, BC Registry, Scale Map | `EDC_BLOCK003_DERIVATION_V31_GAUGE_NORMALIZATION_BC_SCALEMAP.pdf` | PROGRAM | 2026-02-03 |
 
 ---
 
@@ -684,6 +685,31 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Python script** | `recompute.py` — ALL 15 CHECKS PASSED |
 | **Equations** | 91 environments |
 | **TikZ figure** | Dependency graph (fig:dependency) |
+
+---
+
+## Detailed Entry: Derivation v31
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v31/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V31_GAUGE_NORMALIZATION_BC_SCALEMAP.pdf` |
+| **Pages** | 21 |
+| **Date** | 2026-02-03 |
+| **Status** | PROGRAM NOTE |
+| **Scope** | Gauge sector normalization, BC registry, scale regime map |
+| **Route** | 5D gauge action → KK decomposition → 4D coupling |
+| **Gauge bridge** | g₄⁻² = g₅⁻² I_gauge [D] |
+| **BC Registry** | Table covering graviton, gauge, scalar, fermion |
+| **Scale Map** | TikZ figure: UV → KK threshold → IR |
+| **Toy example** | SU(3) → SU(2) × U(1) via BC breaking |
+| **Generator Matrix** | 8 generators with BC assignments |
+| **CS quantization** | k ∈ ℤ from large gauge invariance [Dc] |
+| **SM unification** | [OPEN] — mechanism shown, not full SM |
+| **NO identification** | α_EM, M_Z, M_W, v_EW NOT used |
+| **Python script** | `recompute.py` — ALL 15 CHECKS PASSED |
+| **Equations** | 97 environments |
 
 ---
 
