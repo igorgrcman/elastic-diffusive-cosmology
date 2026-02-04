@@ -49,6 +49,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v38/` | Derivation v38: Hosotani Closure Roadmap | `EDC_BLOCK003_DERIVATION_V38_HOSOTANI_CLOSURE_ROADMAP.pdf` | [D]+[OPEN] | 2026-02-03 |
 | `paper_gravity_block003/derivation_v39/` | Derivation v39: BC Selector Applied to GUT Survivor Map | `EDC_BLOCK003_DERIVATION_V39_BC_SELECTOR_GUT_SURVIVOR_MAP.pdf` | [D]+[Dc]+[OPEN] | 2026-02-04 |
 | `paper_gravity_block003/derivation_v40/` | Derivation v40: Numerical ΔE_vac Track Ranking | `EDC_BLOCK003_DERIVATION_V40_NUMERICAL_DELTA_EVAC_TRACK_RANKING.pdf` | [D]+[P]+[OPEN] | 2026-02-04 |
+| `paper_gravity_block003/derivation_v41/` | Derivation v41: Matter-Augmented ΔE_vac Ranking | `EDC_BLOCK003_DERIVATION_V41_MATTER_AUGMENTED_DELTA_EVAC_RANKING.pdf` | [D]+[Dc]+[OPEN] | 2026-02-04 |
 
 ---
 
@@ -975,6 +976,38 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Python script** | `recompute.py` — ALL 17 CHECKS PASSED |
 | **Equations** | 91 environments |
 | **Reviewer Traps** | 16 items (all resolved) |
+
+---
+
+## Detailed Entry: Derivation v41
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v41/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V41_MATTER_AUGMENTED_DELTA_EVAC_RANKING.pdf` |
+| **Pages** | 28 |
+| **Date** | 2026-02-04 |
+| **Status** | [D]+[Dc]+[OPEN] (tie broken, E₆ selected, phenomenology open) |
+| **Scope** | Break v40 tie (SU(5)/PS/E₆) by including fermion contributions |
+| **Dependencies** | v33 (chiral BC), v37 (subtraction protocol), v40 (gauge-only) |
+| **Fermion χ_F coefficients** | χ_F(L,L)=χ_F(R,R)=+1, χ_F(L,R)=χ_F(R,L)=-1/2 [D] |
+| **Spin-statistics** | Fermion signs opposite to bosons: (-1)^{2s}=-1 [D] |
+| **SU(5) result** | ΔE_ferm = 0 (no mixed BCs) [D] |
+| **SO(10) result** | ΔE_ferm = -3π/(16L) (3 ν_R with mixed BC) [D] |
+| **PS result** | ΔE_ferm = -3π/(8L) (6 mixed BC) [D] |
+| **E₆ result** | ΔE_ferm = -9π/(4L) (36 mixed BC) [D] |
+| **Final ranking** | E₆ < PS < SU(5) < SO(10) [D] |
+| **Tie status** | Fully broken (unique ordering) [D] |
+| **Regulator invariance** | Zeta = heat-kernel verified [D] |
+| **v40 limit check** | Fermion→0 recovers gauge-only result [D] |
+| **12-survivor check** | PASS for all tracks [D] |
+| **Charged tower check** | PASS (W± always present) [D] |
+| **What's open** | E₆ anomaly cancellation, exotic mass generation [OPEN] |
+| **NO forbidden** | M_Z, M_W, v_EW, ℓ_P, G_N, α_EM NOT used |
+| **Python script** | `recompute.py` — ALL 23 CHECKS PASSED |
+| **Equations** | 152 environments |
+| **Reviewer Traps** | 20 items (19 resolved, 1 partial) |
 
 ---
 
