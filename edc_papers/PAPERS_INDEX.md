@@ -53,6 +53,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v42/` | Derivation v42: E₆ Anomaly Audit + Exotics Mass Gating | `EDC_BLOCK003_DERIVATION_V42_E6_ANOMALY_AUDIT_EXOTICS_MASS_GATING.pdf` | [D]+[Dc]+[OPEN] | 2026-02-04 |
 | `paper_gravity_block003/derivation_v43/` | Derivation v43: PS Chirality Closure + Anomaly Gate (P44 cleaned) | `EDC_BLOCK003_DERIVATION_V43_PS_CHIRALITY_ANOMALY_CLOSURE.pdf` | [D]+[Dc] | 2026-02-05 |
 | `paper_gravity_block003/derivation_v44/` | Derivation v44: Anomaly One-Shot SoT Lock | `EDC_BLOCK003_DERIVATION_V44_ANOMALY_ONESHOT_SOT_LOCK.pdf` | [D]+[Dc] | 2026-02-05 |
+| `paper_gravity_block003/derivation_v45/` | Derivation v45: SoT-Lock Track Compiler (Anomalies + ΔE_vac + Mass Gating) | `EDC_BLOCK003_DERIVATION_V45_SOT_LOCK_TRACK_COMPILER.pdf` | [D]+[Dc] | 2026-02-05 |
 
 ---
 
