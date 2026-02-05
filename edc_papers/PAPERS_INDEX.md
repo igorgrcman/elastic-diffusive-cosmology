@@ -50,6 +50,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v39/` | Derivation v39: BC Selector Applied to GUT Survivor Map | `EDC_BLOCK003_DERIVATION_V39_BC_SELECTOR_GUT_SURVIVOR_MAP.pdf` | [D]+[Dc]+[OPEN] | 2026-02-04 |
 | `paper_gravity_block003/derivation_v40/` | Derivation v40: Numerical ΔE_vac Track Ranking | `EDC_BLOCK003_DERIVATION_V40_NUMERICAL_DELTA_EVAC_TRACK_RANKING.pdf` | [D]+[P]+[OPEN] | 2026-02-04 |
 | `paper_gravity_block003/derivation_v41/` | Derivation v41: Matter-Augmented ΔE_vac Ranking | `EDC_BLOCK003_DERIVATION_V41_MATTER_AUGMENTED_DELTA_EVAC_RANKING.pdf` | [D]+[Dc]+[OPEN] | 2026-02-04 |
+| `paper_gravity_block003/derivation_v42/` | Derivation v42: E₆ Anomaly Audit + Exotics Mass Gating | `EDC_BLOCK003_DERIVATION_V42_E6_ANOMALY_AUDIT_EXOTICS_MASS_GATING.pdf` | [D]+[Dc]+[OPEN] | 2026-02-04 |
 
 ---
 
@@ -1008,6 +1009,37 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Python script** | `recompute.py` — ALL 23 CHECKS PASSED |
 | **Equations** | 152 environments |
 | **Reviewer Traps** | 20 items (19 resolved, 1 partial) |
+
+---
+
+## Detailed Entry: Derivation v42
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v42/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V42_E6_ANOMALY_AUDIT_EXOTICS_MASS_GATING.pdf` |
+| **Pages** | 33 |
+| **Date** | 2026-02-04 |
+| **Status** | [D]+[Dc]+[OPEN] (E₆ passes anomaly gate, mass gating conditional) |
+| **Scope** | Audit E₆ selection from v41: anomaly cancellation + exotic decoupling |
+| **Dependencies** | v33 (chiral BC), v35 (survivor map), v37 (subtraction), v40, v41 |
+| **Anomaly audit** | SU(5): PASS, SO(10): PASS, PS: CONDITIONAL, E₆: PASS [D] |
+| **Mass gating theorem** | Sufficient conditions for exotic decoupling (KK/bulk/Wilson) [D] |
+| **SU(5) gating** | SAFE (no exotics) [D] |
+| **SO(10) gating** | SAFE (3 exotics, simple condition) [D] |
+| **PS gating** | SAFE (6 exotics, same condition) [D] |
+| **E₆ gating** | CONDITIONAL (36 exotics, requires μ_KK ≫ μ_IR) [Dc] |
+| **3-stage pipeline** | BC Selection → Anomaly Gate → Mass Gate [D] |
+| **Final admissibility** | SU(5)/SO(10): ADMISSIBLE, PS/E₆: CONDITIONAL [D] |
+| **Trade-off** | E₆ wins vacuum energy but has strictest gating requirements [D] |
+| **Cross-derivation** | v41/v42 fermion counts match [D] |
+| **What's open** | E₆ loop corrections, PS hypercharge embedding, numerical L constraints [OPEN] |
+| **NO forbidden** | M_Z, M_W, v_EW, ℓ_P, G_N, α_EM NOT used |
+| **Python script** | `recompute.py` — ALL 27 CHECKS PASSED |
+| **Equations** | 160 environments |
+| **Labels** | 292 |
+| **Reviewer Traps** | 32 items |
 
 ---
 
