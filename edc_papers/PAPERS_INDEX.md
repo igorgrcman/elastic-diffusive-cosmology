@@ -51,6 +51,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v40/` | Derivation v40: Numerical ΔE_vac Track Ranking | `EDC_BLOCK003_DERIVATION_V40_NUMERICAL_DELTA_EVAC_TRACK_RANKING.pdf` | [D]+[P]+[OPEN] | 2026-02-04 |
 | `paper_gravity_block003/derivation_v41/` | Derivation v41: Matter-Augmented ΔE_vac Ranking | `EDC_BLOCK003_DERIVATION_V41_MATTER_AUGMENTED_DELTA_EVAC_RANKING.pdf` | [D]+[Dc]+[OPEN] | 2026-02-04 |
 | `paper_gravity_block003/derivation_v42/` | Derivation v42: E₆ Anomaly Audit + Exotics Mass Gating | `EDC_BLOCK003_DERIVATION_V42_E6_ANOMALY_AUDIT_EXOTICS_MASS_GATING.pdf` | [D]+[Dc]+[OPEN] | 2026-02-04 |
+| `paper_gravity_block003/derivation_v43/` | Derivation v43: PS Chirality Closure + Anomaly Gate (P44 cleaned) | `EDC_BLOCK003_DERIVATION_V43_PS_CHIRALITY_ANOMALY_CLOSURE.pdf` | [D]+[Dc] | 2026-02-05 |
 
 ---
 
