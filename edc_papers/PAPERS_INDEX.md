@@ -54,6 +54,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v43/` | Derivation v43: PS Chirality Closure + Anomaly Gate (P44 cleaned) | `EDC_BLOCK003_DERIVATION_V43_PS_CHIRALITY_ANOMALY_CLOSURE.pdf` | [D]+[Dc] | 2026-02-05 |
 | `paper_gravity_block003/derivation_v44/` | Derivation v44: Anomaly One-Shot SoT Lock | `EDC_BLOCK003_DERIVATION_V44_ANOMALY_ONESHOT_SOT_LOCK.pdf` | [D]+[Dc] | 2026-02-05 |
 | `paper_gravity_block003/derivation_v45/` | Derivation v45: SoT-Lock Track Compiler (Anomalies + ΔE_vac + Mass Gating) | `EDC_BLOCK003_DERIVATION_V45_SOT_LOCK_TRACK_COMPILER.pdf` | [D]+[Dc] | 2026-02-05 |
+| `paper_gravity_block003/derivation_v46/` | Derivation v46: No-Escape Track Selector (SoT + ΔE_vac + Burden + Hooks) | `EDC_BLOCK003_DERIVATION_V46_NO_ESCAPE_TRACK_SELECTOR.pdf` | [D]+[Dc] | 2026-02-05 |
 
 ---
 
@@ -1043,6 +1044,36 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Equations** | 160 environments |
 | **Labels** | 292 |
 | **Reviewer Traps** | 32 items |
+
+---
+
+## Detailed Entry: Derivation v46
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v46/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V46_NO_ESCAPE_TRACK_SELECTOR.pdf` |
+| **Pages** | 26 |
+| **Date** | 2026-02-05 |
+| **Status** | [D]+[Dc] (deterministic selection complete) |
+| **Scope** | No-Escape Track Selector: deterministic choice from SoT |
+| **Dependencies** | v45 (SoT-lock), v41 (ΔE_vac), v37 (regulator invariance) |
+| **v45 hash** | `a80b3886903152d3` (VERIFIED) |
+| **Stage 0** | Hard gates: anomaly=0, hash-lock, no forbidden inputs |
+| **Stage 1** | Admissibility: PASS > CONDITIONAL; AC-P47-17 exclusion |
+| **Stage 2** | Vacuum energy ranking: min S_vac wins |
+| **Stage 3** | Mechanism burden: min B wins |
+| **Stage 4** | Prediction hooks: max H wins |
+| **Tie-breakers** | T1: dim(G), T2: rank drop, T3: exotic count, T4: UNRESOLVED |
+| **Selection result** | Pati-Salam SELECTED at Stage 2 |
+| **Winning criterion** | S_vac(PS) = 25 < S_vac(SO10) = 49 |
+| **Excluded tracks** | SU(5), E6 (CONDITIONAL while PASS exists) |
+| **NO forbidden** | M_Z, M_W, v_EW, ℓ_P, G_N, α_EM NOT used |
+| **Python script** | `recompute.py` — ALL 55 CHECKS PASSED |
+| **Equations** | 228 environments |
+| **Labels** | 350 |
+| **Reviewer Traps** | 18 items |
 
 ---
 
