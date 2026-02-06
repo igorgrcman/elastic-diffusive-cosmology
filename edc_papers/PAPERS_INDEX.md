@@ -56,6 +56,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v45/` | Derivation v45: SoT-Lock Track Compiler (Anomalies + ΔE_vac + Mass Gating) | `EDC_BLOCK003_DERIVATION_V45_SOT_LOCK_TRACK_COMPILER.pdf` | [D]+[Dc] | 2026-02-05 |
 | `paper_gravity_block003/derivation_v46/` | Derivation v46: No-Escape Track Selector (SoT + ΔE_vac + Burden + Hooks) | `EDC_BLOCK003_DERIVATION_V46_NO_ESCAPE_TRACK_SELECTOR.pdf` | [D]+[Dc] | 2026-02-05 |
 | `paper_gravity_block003/derivation_v47/` | Derivation v47: PS Canonicalization (Coupling Matching + Weinberg Hook + G_F Readiness) | `EDC_BLOCK003_DERIVATION_V47_PS_COUPLING_MATCHING_WEINBERG_HOOK_GF_READINESS.pdf` | [D]+[Dc] | 2026-02-05 |
+| `paper_gravity_block003/derivation_v48/` | Derivation v48: PS G_F Numerical Closure (g_5 + L Fix + KK Convergence + BKT) | `EDC_BLOCK003_DERIVATION_V48_PS_GF_NUMERICAL_CLOSURE_G5_L_KK_CONVERGENCE.pdf` | [D]+[Dc] | 2026-02-05 |
 
 ---
 
@@ -1074,6 +1075,35 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Python script** | `recompute.py` — ALL 55 CHECKS PASSED |
 | **Equations** | 228 environments |
 | **Labels** | 350 |
+| **Reviewer Traps** | 18 items |
+
+---
+
+## Detailed Entry: Derivation v48
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v48/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V48_PS_GF_NUMERICAL_CLOSURE_G5_L_KK_CONVERGENCE.pdf` |
+| **Pages** | 27 |
+| **Date** | 2026-02-05 |
+| **Status** | [D]+[Dc] (G_F closure complete) |
+| **Scope** | PS G_F numerical closure: g_5 fix, L determination, KK convergence, BKT sensitivity |
+| **Dependencies** | v45 (SoT), v46 (PS selection), v47 (PS canonicalization), v34 (G_F sum), v36 (g_5) |
+| **v45 hash** | `a80b3886903152d3` (VERIFIED) |
+| **v46 hash** | `2742edea37e863ac` (VERIFIED) |
+| **v47 hash** | `7a9682f333d5349e` (VERIFIED) |
+| **v48 tables hash** | `c4f114aa0c662b66` |
+| **g_5 fixing** | Route A (tension) + Route C (cutoff) = ADMISSIBLE |
+| **L determination** | L = M̄_Pl √(β/σ) — STRUCTURALLY_CLOSED |
+| **KK convergence** | ζ(2)=π²/6 — REGULATOR_INVARIANT |
+| **BKT sensitivity** | r_B/L < 0.01 for sub-2% — BOUNDED_PERTURBATION |
+| **G_F closure** | G_F = (√2/48) g_5² L — CLOSED |
+| **NO forbidden** | M_Z, M_W, v_EW, ℓ_P, G_N, α_EM NOT used |
+| **Python script** | `recompute.py` — ALL 49 CHECKS PASSED |
+| **Equations** | 333 environments |
+| **Labels** | 297 |
 | **Reviewer Traps** | 18 items |
 
 ---
