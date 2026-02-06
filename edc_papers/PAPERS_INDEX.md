@@ -55,6 +55,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v44/` | Derivation v44: Anomaly One-Shot SoT Lock | `EDC_BLOCK003_DERIVATION_V44_ANOMALY_ONESHOT_SOT_LOCK.pdf` | [D]+[Dc] | 2026-02-05 |
 | `paper_gravity_block003/derivation_v45/` | Derivation v45: SoT-Lock Track Compiler (Anomalies + ΔE_vac + Mass Gating) | `EDC_BLOCK003_DERIVATION_V45_SOT_LOCK_TRACK_COMPILER.pdf` | [D]+[Dc] | 2026-02-05 |
 | `paper_gravity_block003/derivation_v46/` | Derivation v46: No-Escape Track Selector (SoT + ΔE_vac + Burden + Hooks) | `EDC_BLOCK003_DERIVATION_V46_NO_ESCAPE_TRACK_SELECTOR.pdf` | [D]+[Dc] | 2026-02-05 |
+| `paper_gravity_block003/derivation_v47/` | Derivation v47: PS Canonicalization (Coupling Matching + Weinberg Hook + G_F Readiness) | `EDC_BLOCK003_DERIVATION_V47_PS_COUPLING_MATCHING_WEINBERG_HOOK_GF_READINESS.pdf` | [D]+[Dc] | 2026-02-05 |
 
 ---
 
@@ -1073,6 +1074,35 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Python script** | `recompute.py` — ALL 55 CHECKS PASSED |
 | **Equations** | 228 environments |
 | **Labels** | 350 |
+| **Reviewer Traps** | 18 items |
+
+---
+
+## Detailed Entry: Derivation v47
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v47/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V47_PS_COUPLING_MATCHING_WEINBERG_HOOK_GF_READINESS.pdf` |
+| **Pages** | 26 |
+| **Date** | 2026-02-05 |
+| **Status** | [D]+[Dc] (PS canonicalization complete) |
+| **Scope** | Pati-Salam canonical track: coupling matching + Weinberg hook + G_F readiness |
+| **Dependencies** | v45 (SoT-lock), v46 (PS selection), v34 (G_F structure), v36 (g_5 fixing) |
+| **v45 hash** | `a80b3886903152d3` (VERIFIED) |
+| **v46 hash** | `2742edea37e863ac` (VERIFIED) |
+| **v47 tables hash** | `7a9682f333d5349e` |
+| **Hard rule** | HR-P48-N0: Zero-handwave normalization (all factors derived from traces) |
+| **Coupling matching** | `1/g_Y^2 = 3/(5g_R^2) + 4/(5g_{B-L}^2)` |
+| **Weinberg hook** | `sin^2(θ_W) = 1/(1 + g_L^2(3/5g_R^2 + 4/5g_{B-L}^2))` (structural) |
+| **Trace ledger** | Tr(T_L)=1/2, Tr(T_R)=1/2, Tr(T_3R)=1/2, Tr(B-L)=4/3, Tr(Y)=5/6 |
+| **G_F readiness** | 10 items; 3 blocking: g_5 fixing, L determination, KK convergence |
+| **Dimension sentinels** | g_4=0, g_5²=-1, G_F=-2, L=-1, m_n=1, I_overlap=0 (ALL PASS) |
+| **NO forbidden** | M_Z, M_W, v_EW, ℓ_P, G_N, α_EM, sin²θ_W numerical NOT used |
+| **Python script** | `recompute.py` — ALL 38 CHECKS PASSED |
+| **Equations** | 194 environments |
+| **Labels** | 303 |
 | **Reviewer Traps** | 18 items |
 
 ---
