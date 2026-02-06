@@ -59,6 +59,37 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v48/` | Derivation v48: PS G_F Numerical Closure (g_5 + L Fix + KK Convergence + BKT) | `EDC_BLOCK003_DERIVATION_V48_PS_GF_NUMERICAL_CLOSURE_G5_L_KK_CONVERGENCE.pdf` | [D]+[Dc] | 2026-02-05 |
 | `paper_gravity_block003/derivation_v49/` | Derivation v49: PS Weinberg Angle Numerical Closure (RG + KK Thresholds + BKT) | `EDC_BLOCK003_DERIVATION_V49_PS_WEINBERG_ANGLE_NUMERICAL_CLOSURE.pdf` | [D]+[Dc] | 2026-02-06 |
 | `paper_gravity_block003/derivation_v50/` | Derivation v50: PS → IR Matching & Physical-Scale Map | `EDC_BLOCK003_DERIVATION_V50_PS_TO_IR_MATCHING_SCALEMAP.pdf` | [D]+[Dc] | 2026-02-06 |
+| `paper_gravity_block003/derivation_v51/` | Derivation v51: Log Hygiene Lock + Unit-Change Invariance | `EDC_BLOCK003_DERIVATION_V51_LOG_HYGIENE_LOCK_UNIT_INVARIANCE.pdf` | [D]+[Dc] | 2026-02-06 |
+
+---
+
+## Detailed Entry: Derivation v51
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v51/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V51_LOG_HYGIENE_LOCK_UNIT_INVARIANCE.pdf` |
+| **Pages** | 27 |
+| **Equations** | 195 |
+| **Labels** | 346 |
+| **Date** | 2026-02-06 |
+| **Status** | [D]+[Dc] (Log hygiene + unit invariance complete) |
+| **Scope** | Engineering-grade protection: dimensionless logs, single reference scale, unit-change invariance |
+| **Dependencies** | v47-v50 (PS canonicalization chain) |
+| **v45 hash** | `a80b3886903152d3` (VERIFIED) |
+| **v46 hash** | `2742edea37e863ac` (VERIFIED) |
+| **v47 hash** | `7a9682f333d5349e` (VERIFIED) |
+| **v48 hash** | `c4f114aa0c662b66` (VERIFIED) |
+| **v49 hash** | `81010ef2faedcefd` (VERIFIED) |
+| **v50 hash** | `cebf3e5baf0de863` (VERIFIED) |
+| **v51 tables hash** | `ed8fa089897b2d8c` |
+| **Reference Scale** | μ_* := π/L (single, boxed) — CANONICAL |
+| **Log Scan** | 103 logs, 0 violations — ALL_DIMENSIONLESS |
+| **Unit Invariance** | S = 10^{-9} to 10^{12} — INVARIANT |
+| **NO forbidden** | M_Z, M_W, v_EW, α_EM, G_N, ℓ_P NOT used |
+| **Python script** | `recompute.py` — ALL 52 CHECKS PASSED |
+| **Reviewer Traps** | 18 items |
 
 ---
 
