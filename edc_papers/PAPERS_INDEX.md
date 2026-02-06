@@ -58,6 +58,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v47/` | Derivation v47: PS Canonicalization (Coupling Matching + Weinberg Hook + G_F Readiness) | `EDC_BLOCK003_DERIVATION_V47_PS_COUPLING_MATCHING_WEINBERG_HOOK_GF_READINESS.pdf` | [D]+[Dc] | 2026-02-05 |
 | `paper_gravity_block003/derivation_v48/` | Derivation v48: PS G_F Numerical Closure (g_5 + L Fix + KK Convergence + BKT) | `EDC_BLOCK003_DERIVATION_V48_PS_GF_NUMERICAL_CLOSURE_G5_L_KK_CONVERGENCE.pdf` | [D]+[Dc] | 2026-02-05 |
 | `paper_gravity_block003/derivation_v49/` | Derivation v49: PS Weinberg Angle Numerical Closure (RG + KK Thresholds + BKT) | `EDC_BLOCK003_DERIVATION_V49_PS_WEINBERG_ANGLE_NUMERICAL_CLOSURE.pdf` | [D]+[Dc] | 2026-02-06 |
+| `paper_gravity_block003/derivation_v50/` | Derivation v50: PS → IR Matching & Physical-Scale Map | `EDC_BLOCK003_DERIVATION_V50_PS_TO_IR_MATCHING_SCALEMAP.pdf` | [D]+[Dc] | 2026-02-06 |
 
 ---
 
@@ -1076,6 +1077,37 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Python script** | `recompute.py` — ALL 55 CHECKS PASSED |
 | **Equations** | 228 environments |
 | **Labels** | 350 |
+| **Reviewer Traps** | 18 items |
+
+---
+
+## Detailed Entry: Derivation v50
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v50/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V50_PS_TO_IR_MATCHING_SCALEMAP.pdf` |
+| **Pages** | 24 |
+| **Equations** | 296 |
+| **Date** | 2026-02-06 |
+| **Status** | [D]+[Dc] (PS → IR matching scaffold complete) |
+| **Scope** | PS → IR matching & physical-scale map: scheme invariance, threshold corrections, exotics gating, notation lock |
+| **Dependencies** | v47 (coupling matching, Weinberg hook), v48 (G_F closure, L determination), v49 (Weinberg angle at KK scale) |
+| **v45 hash** | `a80b3886903152d3` (VERIFIED) |
+| **v46 hash** | `2742edea37e863ac` (VERIFIED) |
+| **v47 hash** | `7a9682f333d5349e` (VERIFIED) |
+| **v48 hash** | `c4f114aa0c662b66` (VERIFIED) |
+| **v49 hash** | `81010ef2faedcefd` (VERIFIED) |
+| **v50 tables hash** | `cebf3e5baf0de863` |
+| **Two-Panel Scale Map** | Panel A: Energy regimes (Λ_5 → μ_KK → μ_IR), Panel B: Coupling flow (g_5 → g_i → g_Y) |
+| **Matching Stack** | PS matching + RG running + threshold corrections (boxed) |
+| **Scheme Invariance** | T1/T2 two-route framework with Lemma, invariant I = 1/g_Y² - 1/g_2² |
+| **Exotics Gating** | BC-gating mechanism, μ_gate ≥ μ_KK, dimensionless b = m_b L ≥ π |
+| **Notation Registry** | 30+ symbols with meaning, dimension, tag — authoritative (no drift) |
+| **Red-Team Objections** | 10 structural objections with responses (no experimental numbers) |
+| **NO forbidden** | Electroweak masses, VEV, Newton's constant, Planck length NOT used |
+| **Python script** | `recompute.py` — ALL 37 CHECKS PASSED |
 | **Reviewer Traps** | 18 items |
 
 ---
