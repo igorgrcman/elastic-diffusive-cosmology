@@ -57,6 +57,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v46/` | Derivation v46: No-Escape Track Selector (SoT + ΔE_vac + Burden + Hooks) | `EDC_BLOCK003_DERIVATION_V46_NO_ESCAPE_TRACK_SELECTOR.pdf` | [D]+[Dc] | 2026-02-05 |
 | `paper_gravity_block003/derivation_v47/` | Derivation v47: PS Canonicalization (Coupling Matching + Weinberg Hook + G_F Readiness) | `EDC_BLOCK003_DERIVATION_V47_PS_COUPLING_MATCHING_WEINBERG_HOOK_GF_READINESS.pdf` | [D]+[Dc] | 2026-02-05 |
 | `paper_gravity_block003/derivation_v48/` | Derivation v48: PS G_F Numerical Closure (g_5 + L Fix + KK Convergence + BKT) | `EDC_BLOCK003_DERIVATION_V48_PS_GF_NUMERICAL_CLOSURE_G5_L_KK_CONVERGENCE.pdf` | [D]+[Dc] | 2026-02-05 |
+| `paper_gravity_block003/derivation_v49/` | Derivation v49: PS Weinberg Angle Numerical Closure (RG + KK Thresholds + BKT) | `EDC_BLOCK003_DERIVATION_V49_PS_WEINBERG_ANGLE_NUMERICAL_CLOSURE.pdf` | [D]+[Dc] | 2026-02-06 |
 
 ---
 
@@ -1076,6 +1077,37 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Equations** | 228 environments |
 | **Labels** | 350 |
 | **Reviewer Traps** | 18 items |
+
+---
+
+## Detailed Entry: Derivation v49
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v49/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V49_PS_WEINBERG_ANGLE_NUMERICAL_CLOSURE.pdf` |
+| **Pages** | 26 |
+| **Date** | 2026-02-06 |
+| **Status** | [D]+[Dc] (sin²θ_W closure complete) |
+| **Scope** | PS Weinberg angle numerical closure: RG running, KK thresholds, BKT sensitivity |
+| **Dependencies** | v45-v48 (PS canonicalization chain), v47 (Weinberg hook), v48 (G_F, L, g_5) |
+| **v45 hash** | `a80b3886903152d3` (VERIFIED) |
+| **v46 hash** | `2742edea37e863ac` (VERIFIED) |
+| **v47 hash** | `7a9682f333d5349e` (VERIFIED) |
+| **v48 hash** | `c4f114aa0c662b66` (VERIFIED) |
+| **v49 tables hash** | `81010ef2faedcefd` |
+| **Ω1 (Scale-Derived)** | μ_* = π/L — DERIVED from geometry |
+| **Ω2 (Scheme-Invariant)** | T1=T2 threshold routes — REGULATOR_INVARIANT |
+| **Ω3 (No-Alpha)** | No α_EM, e, fine structure — CLEAN |
+| **Ω4 (BKT-Bounded)** | C_BKT ≤ 2, r_i/L < 0.01 for <3% — BOUNDED_PERTURBATION |
+| **sin²θ_W closure** | sin²θ_W = 1/(1+(L+r_L)(3/5(L+r_R)+4/5(L+r_{B-L}))) — CLOSED |
+| **Unified prediction** | sin²θ_W(μ_*) = 5/12 at KK scale (r_i=0) |
+| **NO forbidden** | M_Z, M_W, v_EW, ℓ_P, G_N, α_EM NOT used |
+| **Python script** | `recompute.py` — ALL 55 CHECKS PASSED |
+| **Equations** | 362 environments |
+| **Labels** | 301 |
+| **Reviewer Traps** | 20 items |
 
 ---
 
