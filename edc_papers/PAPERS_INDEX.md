@@ -61,6 +61,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v50/` | Derivation v50: PS → IR Matching & Physical-Scale Map | `EDC_BLOCK003_DERIVATION_V50_PS_TO_IR_MATCHING_SCALEMAP.pdf` | [D]+[Dc] | 2026-02-06 |
 | `paper_gravity_block003/derivation_v51/` | Derivation v51: Log Hygiene Lock + Unit-Change Invariance | `EDC_BLOCK003_DERIVATION_V51_LOG_HYGIENE_LOCK_UNIT_INVARIANCE.pdf` | [D]+[Dc] | 2026-02-06 |
 | `paper_gravity_block003/derivation_v52/` | Derivation v52: PS Prediction Pack (sin²θ_W + G_F + IR Translation) | `EDC_BLOCK003_DERIVATION_V52_PS_PREDICTION_PACK_MUSTHAVE_IR_TRANSLATION.pdf` | [D]+[Dc] | 2026-02-06 |
+| `paper_gravity_block003/derivation_v53/` | Derivation v53: PS Observable Interface Without Contamination | `EDC_BLOCK003_DERIVATION_V53_PS_OBSERVABLE_INTERFACE_NO_CONTAMINATION.pdf` | [D]+[Dc] | 2026-02-06 |
 
 ---
 
@@ -97,6 +98,52 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **NO forbidden** | M_Z, M_W, v_EW, α_EM, G_N, ℓ_P NOT used |
 | **Python script** | `recompute.py` — ALL 61 CHECKS PASSED |
 | **Reviewer Traps** | 21 items |
+
+---
+
+## Detailed Entry: Derivation v53
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v53/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V53_PS_OBSERVABLE_INTERFACE_NO_CONTAMINATION.pdf` |
+| **Pages** | 25 |
+| **Equations** | 222 |
+| **Labels** | 380 |
+| **Date** | 2026-02-06 |
+| **Status** | [D]+[Dc] (Observable interface complete) |
+| **Scope** | Two-layer architecture for external data comparison without canonical chain contamination |
+| **Dependencies** | v45-v52 (complete PS canonicalization chain) |
+| **v45 hash** | `a80b3886903152d3` (VERIFIED) |
+| **v46 hash** | `2742edea37e863ac` (VERIFIED) |
+| **v47 hash** | `7a9682f333d5349e` (VERIFIED) |
+| **v48 hash** | `c4f114aa0c662b66` (VERIFIED) |
+| **v49 hash** | `81010ef2faedcefd` (VERIFIED) |
+| **v50 hash** | `cebf3e5baf0de863` (VERIFIED) |
+| **v51 hash** | `ed8fa089897b2d8c` (VERIFIED) |
+| **v52 hash** | `ed92d9bc43b8d26b` (VERIFIED) |
+| **v53 tables hash** | `89a4854b0bdfd332` |
+| **Layer A** | Canonical theory (hash-locked) — VERIFIED |
+| **Layer B** | External data adapter (quarantined) — DEFINED |
+| **Hash Firewall** | Layer B cannot modify Layer A — ENFORCED |
+| **API-1** | μ_* := π/L (reference scale) — DEFINITION |
+| **API-2** | sin²θ_W(μ_*) = 5/12 — PREDICTION |
+| **API-3** | sin²θ_W RG running connector — DEFINED |
+| **API-4** | I(μ) evolution — INVARIANT |
+| **API-5** | sin²θ_W ↔ couplings mapping — DEFINED |
+| **API-6** | G_F(μ_*) formula — PREDICTION |
+| **API-7** | G_F running connector — DEFINED |
+| **API-8** | α_3 structure — OPEN |
+| **Table 1** | Predictions (structure-only) — SEPARATED |
+| **Table 2** | Conditionals (parameter-dependent) — SEPARATED |
+| **Table 3** | External Anchors (QUARANTINED) — FORBIDDEN |
+| **Log Scan** | 135 logs, 0 violations — ALL_DIMENSIONLESS |
+| **Unit Invariance** | S = 10^{-9} to 10^{12} — INVARIANT |
+| **Scheme Invariance** | T1 = T2 (two-route verification) — MATCH |
+| **Regulator Invariance** | Zeta = Heat kernel = (1/2)ln(2π) — MATCH |
+| **NO forbidden** | M_Z, M_W, v_EW, α_EM, G_N, ℓ_P NOT used in Layer A |
+| **Python script** | `recompute.py` — ALL 54 CHECKS PASSED |
 
 ---
 
