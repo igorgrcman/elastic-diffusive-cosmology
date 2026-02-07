@@ -68,6 +68,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v57/` | Derivation v57: Layer B Adapter α₃(M_Z) Comparison | `EDC_BLOCK004_DERIVATION_V57_LAYERB_ADAPTER_ALPHA3_MZ_COMPARISON_QUARANTINED.pdf` | [QUARANTINED] | 2026-02-07 |
 | `paper_gravity_block003/derivation_v58/` | Derivation v58: Layer B Λ_QCD Extraction + Two-Route | `EDC_BLOCK004_DERIVATION_V58_LAYERB_LAMBDAQCD_EXTRACTION_TWOROUTE_QUARANTINED.pdf` | [QUARANTINED] | 2026-02-07 |
 | `paper_gravity_block003/derivation_v59/` | Derivation v59: Formal Λ_QCD Two-Route (No Handwave) | `EDC_BLOCK004_DERIVATION_V59_LAYERB_LAMBDAQCD_FORMAL_TWOROUTE_NOHANDWAVE_QUARANTINED.pdf` | [QUARANTINED] | 2026-02-07 |
+| `paper_gravity_block003/derivation_v60/` | Derivation v60: BLOCK-004 Canonical Single Document | `EDC_BLOCK004_DERIVATION_V60_BLOCK004_CANONICAL_SINGLE_DOCUMENT.pdf` | **BLOCK004 CLOSED** | 2026-02-07 |
 
 ---
 
@@ -1535,6 +1536,41 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Equations** | 194 environments |
 | **Labels** | 303 |
 | **Reviewer Traps** | 18 items |
+
+---
+
+## Detailed Entry: Derivation v60
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v60/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK004_DERIVATION_V60_BLOCK004_CANONICAL_SINGLE_DOCUMENT.pdf` |
+| **Pages** | 36 |
+| **Equations** | 212 |
+| **Labels** | 556 |
+| **Date** | 2026-02-07 |
+| **Status** | **BLOCK004 CLOSED** (v60 VERIFIED) |
+| **Scope** | Consolidates v55-v59 into readable canonical reference |
+| **Dependencies** | v55-v59 (complete BLOCK-004 chain) |
+| **v55 hash** | `1794377561879613` (VERIFIED) |
+| **v56 hash** | `61869b6fddb68c16` (VERIFIED) |
+| **v57 hash** | `fadd71e1e0adfa69` (VERIFIED) |
+| **v58 hash** | `67ce04beef9f7f79` (VERIFIED) |
+| **v59 hash** | `b07b904c96267465` (VERIFIED) |
+| **v60 SoT hash** | `4985a938f5558447` **(VERIFIED)** |
+| **Layer A** | α₃(μ*) = 1/σ̃ — HASH-LOCKED |
+| **Layer B** | RG running + Λ extraction — QUARANTINED |
+| **No Backflow v3** | L_B ∩ L_A = ∅ — THEOREM |
+| **No-Fit Policy** | σ̃ swept, not fitted — ENFORCED |
+| **Forbidden Gate** | Experimental values only in QUARANTINED — VERIFIED |
+| **Route Λ₁** | 1-loop analytic — EXPLICIT |
+| **Route Λ₂** | 2-loop power correction — EXPLICIT |
+| **Threshold Invariance** | T1/T2 < 5% — VERIFIED |
+| **Log Hygiene** | 7 USED + 5 TEMPLATE — COMPLIANT |
+| **Python script** | `recompute.py` — ALL 98 CHECKS PASSED |
+| **Reviewer Traps** | 10 items |
+| **Release bundle** | `release/` directory with full package |
 
 ---
 
