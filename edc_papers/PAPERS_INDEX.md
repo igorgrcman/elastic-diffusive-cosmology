@@ -67,6 +67,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v56/` | Derivation v56: BLOCK-004 α₃(μ*) Numerical Closure | `EDC_BLOCK004_DERIVATION_V56_ALPHA3_MUSTHAVE_NUMERICAL_CLOSURE_NO_CONTAMINATION.pdf` | [D]+[Dc]+[P] | 2026-02-07 |
 | `paper_gravity_block003/derivation_v57/` | Derivation v57: Layer B Adapter α₃(M_Z) Comparison | `EDC_BLOCK004_DERIVATION_V57_LAYERB_ADAPTER_ALPHA3_MZ_COMPARISON_QUARANTINED.pdf` | [QUARANTINED] | 2026-02-07 |
 | `paper_gravity_block003/derivation_v58/` | Derivation v58: Layer B Λ_QCD Extraction + Two-Route | `EDC_BLOCK004_DERIVATION_V58_LAYERB_LAMBDAQCD_EXTRACTION_TWOROUTE_QUARANTINED.pdf` | [QUARANTINED] | 2026-02-07 |
+| `paper_gravity_block003/derivation_v59/` | Derivation v59: Formal Λ_QCD Two-Route (No Handwave) | `EDC_BLOCK004_DERIVATION_V59_LAYERB_LAMBDAQCD_FORMAL_TWOROUTE_NOHANDWAVE_QUARANTINED.pdf` | [QUARANTINED] | 2026-02-07 |
 
 ---
 
@@ -251,6 +252,38 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **External inputs** | M_Z, α_s(M_Z), m_t, m_b, m_c, m_τ, M_W, G_F, v_EW, Λ_MS — ALL QUARANTINED |
 | **Python script** | `recompute.py` — ALL 57 CHECKS PASSED |
 | **Reviewer Traps** | 15 items |
+
+---
+
+## Detailed Entry: Derivation v59
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v59/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK004_DERIVATION_V59_LAYERB_LAMBDAQCD_FORMAL_TWOROUTE_NOHANDWAVE_QUARANTINED.pdf` |
+| **Pages** | 31 |
+| **Equations** | 184 |
+| **Labels** | 374 |
+| **Date** | 2026-02-07 |
+| **Status** | [QUARANTINED] (Formal Λ_QCD extraction — no narrative, no handwave) |
+| **Scope** | De-handwave v58: explicit formulas for both routes |
+| **Dependencies** | v58 (Λ extraction), v45-v57 (BLOCK-003/004 chain) |
+| **v58 hash** | `67ce04beef9f7f79` (VERIFIED) |
+| **v59 SoT hash** | `b07b904c96267465` |
+| **Route Λ₁** | Explicit 1-loop: Λ = μ·exp(-2π/(b₀αₛ)) — VERIFIED |
+| **Route Λ₂** | Explicit 2-loop: Λ₂ = Λ₁·(b₀αₛ/(2π))^(2c₁) — VERIFIED |
+| **Newton Solver** | Formal specification with objective, bracket, convergence — SPECIFIED |
+| **USED LOGS** | 7 forms with equation references — VERIFIED |
+| **TEMPLATE LOGS** | 6 forms marked NOT USED — VERIFIED |
+| **No Backflow v3** | L_B ∩ L_A = ∅ (grep verified) — THEOREM |
+| **No-Fit Policy** | σ̃ swept, not fitted — EXPLICIT |
+| **Layer A** | UNCHANGED (hash-locked) |
+| **Layer B** | QUARANTINED (all values [Q]-tagged) |
+| **No narrative** | All "wait/issue" language removed — VERIFIED |
+| **External inputs** | M_Z, α_s(M_Z), m_t, m_b, m_c, m_τ, M_W, G_F, v_EW, Λ_MS — ALL QUARANTINED |
+| **Python script** | `recompute.py` — ALL 75 CHECKS PASSED |
+| **Reviewer Traps** | 18 items |
 
 ---
 
