@@ -65,6 +65,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v54/` | Derivation v54: BLOCK-003 Canonical Single Document | `EDC_BLOCK003_DERIVATION_V54_BLOCK003_CANONICAL_SINGLE_DOCUMENT.pdf` | **BLOCK003 CLOSED** | 2026-02-07 |
 | `paper_gravity_block003/derivation_v55/` | Derivation v55: BLOCK-004 PS → QCD (α₃) Structural Closure | `EDC_BLOCK004_DERIVATION_V55_PS_TO_QCD_ALPHA3_STRUCTURAL_CLOSURE.pdf` | **BLOCK004 INIT** | 2026-02-07 |
 | `paper_gravity_block003/derivation_v56/` | Derivation v56: BLOCK-004 α₃(μ*) Numerical Closure | `EDC_BLOCK004_DERIVATION_V56_ALPHA3_MUSTHAVE_NUMERICAL_CLOSURE_NO_CONTAMINATION.pdf` | [D]+[Dc]+[P] | 2026-02-07 |
+| `paper_gravity_block003/derivation_v57/` | Derivation v57: Layer B Adapter α₃(M_Z) Comparison | `EDC_BLOCK004_DERIVATION_V57_LAYERB_ADAPTER_ALPHA3_MZ_COMPARISON_QUARANTINED.pdf` | [QUARANTINED] | 2026-02-07 |
 
 ---
 
@@ -180,6 +181,40 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **NO forbidden** | α_s(M_Z), M_Z, M_W, v_EW, Λ_QCD, m_t, G_N, ℓ_P NOT used in Layer A |
 | **Python script** | `recompute.py` — ALL 99 CHECKS PASSED |
 | **Reviewer Traps** | 15 items |
+
+---
+
+## Detailed Entry: Derivation v57
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v57/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK004_DERIVATION_V57_LAYERB_ADAPTER_ALPHA3_MZ_COMPARISON_QUARANTINED.pdf` |
+| **Pages** | 25 |
+| **Equations** | 160+ |
+| **Labels** | 280 |
+| **Date** | 2026-02-07 |
+| **Status** | [QUARANTINED] (Layer B adapter — no Layer A contamination) |
+| **Scope** | Layer B external-data adapter for α₃(M_Z) comparison |
+| **Dependencies** | v56 (α₃ numerical closure), v45-v55 (BLOCK-003/004 chain) |
+| **v56 hash** | `61869b6fddb68c16` (VERIFIED) |
+| **v57 SoT hash** | `fadd71e1e0adfa69` |
+| **B-API1** | (σ̃, ε) → α₃(μ*) — READ-ONLY |
+| **B-API2** | RG running μ* → M_Z — QUARANTINED |
+| **B-API3** | Threshold corrections — QUARANTINED |
+| **B-API4** | Residual Δ vs PDG — QUARANTINED |
+| **Two-Route RG** | T1 = T2 within tolerance — VERIFIED |
+| **No Backflow** | L_B ∩ L_A = ∅ (Hash Firewall) — THEOREM |
+| **No-Fit Policy** | σ̃ swept, not fitted — EXPLICIT |
+| **Layer A** | UNCHANGED (hash-locked) |
+| **Layer B** | QUARANTINED (external data adapter) |
+| **Forbidden in non-quarantine** | 0 hits — VERIFIED |
+| **Experimental in abstract** | 0 — VERIFIED |
+| **Experimental in title** | 0 — VERIFIED |
+| **External inputs** | M_Z, α_s(M_Z), m_t, m_b, m_c, m_τ, M_W, G_F, Λ_MS — ALL QUARANTINED |
+| **Python script** | `recompute.py` — ALL 51 CHECKS PASSED |
+| **Reviewer Traps** | 10 items |
 
 ---
 
