@@ -63,6 +63,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v52/` | Derivation v52: PS Prediction Pack (sin²θ_W + G_F + IR Translation) | `EDC_BLOCK003_DERIVATION_V52_PS_PREDICTION_PACK_MUSTHAVE_IR_TRANSLATION.pdf` | [D]+[Dc] | 2026-02-06 |
 | `paper_gravity_block003/derivation_v53/` | Derivation v53: PS Observable Interface Without Contamination | `EDC_BLOCK003_DERIVATION_V53_PS_OBSERVABLE_INTERFACE_NO_CONTAMINATION.pdf` | [D]+[Dc] | 2026-02-06 |
 | `paper_gravity_block003/derivation_v54/` | Derivation v54: BLOCK-003 Canonical Single Document | `EDC_BLOCK003_DERIVATION_V54_BLOCK003_CANONICAL_SINGLE_DOCUMENT.pdf` | **BLOCK003 CLOSED** | 2026-02-07 |
+| `paper_gravity_block003/derivation_v55/` | Derivation v55: BLOCK-004 PS → QCD (α₃) Structural Closure | `EDC_BLOCK004_DERIVATION_V55_PS_TO_QCD_ALPHA3_STRUCTURAL_CLOSURE.pdf` | **BLOCK004 INIT** | 2026-02-07 |
 
 ---
 
@@ -103,6 +104,40 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **NO forbidden** | M_Z, M_W, v_EW, α_EM, G_N, ℓ_P NOT used in Layer A |
 | **Python script** | `recompute.py` — ALL 83 CHECKS PASSED |
 | **Reviewer Traps** | 18 items |
+
+---
+
+## Detailed Entry: Derivation v55
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v55/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK004_DERIVATION_V55_PS_TO_QCD_ALPHA3_STRUCTURAL_CLOSURE.pdf` |
+| **Pages** | 34 |
+| **Equations** | 180 |
+| **Labels** | 306 |
+| **Date** | 2026-02-07 |
+| **Status** | **BLOCK004 INIT** (PS → QCD α₃ structural closure) |
+| **Scope** | Derive PS → QCD coupling matching and establish α₃(μ*) observable |
+| **Dependencies** | v54 (BLOCK-003 complete), v45-v53 (PS canonicalization chain) |
+| **v54 hash** | `19c69e794c9703b7` (VERIFIED) |
+| **v55 SoT hash** | `1794377561879613` |
+| **Result R1** | c_C = 1 (trace normalization) — DERIVED |
+| **Result R2** | 1/g₃² = 1/g_{4C}² + Δ_brane^(C) — COLOR MATCHING |
+| **Result R3** | α₃(μ*) = g₃²(μ*)/(4π) — DEFINITION |
+| **Result R4** | α₃⁻¹(μ) = α₃⁻¹(μ*) + (7/2π)ln(μ/μ*) — RG CONNECTOR |
+| **API-C1** | μ* := π/L (canonical scale) — INHERITED |
+| **API-C2** | α₃(μ*) definition — ESTABLISHED |
+| **API-C3** | RG connector (symbolic) — DEFINED |
+| **API-C4** | Threshold hooks — TEMPLATE |
+| **Layer A** | Canonical theory (hash-locked) — VERIFIED |
+| **Layer B** | External data adapter (quarantined) — DEFINED |
+| **Two-Route** | T1 = T2 for c_C — VERIFIED |
+| **Log Hygiene** | 6 USED + 7 TEMPLATE — COMPLIANT |
+| **NO forbidden** | α_s(M_Z), M_Z, M_W, v_EW, Λ_MS, m_t, G_N, ℓ_P NOT used in Layer A |
+| **Python script** | `recompute.py` — ALL 73 CHECKS PASSED |
+| **Reviewer Traps** | 30 items |
 
 ---
 
