@@ -60,6 +60,43 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v49/` | Derivation v49: PS Weinberg Angle Numerical Closure (RG + KK Thresholds + BKT) | `EDC_BLOCK003_DERIVATION_V49_PS_WEINBERG_ANGLE_NUMERICAL_CLOSURE.pdf` | [D]+[Dc] | 2026-02-06 |
 | `paper_gravity_block003/derivation_v50/` | Derivation v50: PS → IR Matching & Physical-Scale Map | `EDC_BLOCK003_DERIVATION_V50_PS_TO_IR_MATCHING_SCALEMAP.pdf` | [D]+[Dc] | 2026-02-06 |
 | `paper_gravity_block003/derivation_v51/` | Derivation v51: Log Hygiene Lock + Unit-Change Invariance | `EDC_BLOCK003_DERIVATION_V51_LOG_HYGIENE_LOCK_UNIT_INVARIANCE.pdf` | [D]+[Dc] | 2026-02-06 |
+| `paper_gravity_block003/derivation_v52/` | Derivation v52: PS Prediction Pack (sin²θ_W + G_F + IR Translation) | `EDC_BLOCK003_DERIVATION_V52_PS_PREDICTION_PACK_MUSTHAVE_IR_TRANSLATION.pdf` | [D]+[Dc] | 2026-02-06 |
+
+---
+
+## Detailed Entry: Derivation v52
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v52/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V52_PS_PREDICTION_PACK_MUSTHAVE_IR_TRANSLATION.pdf` |
+| **Pages** | 28 |
+| **Equations** | 204 |
+| **Labels** | 395 |
+| **Date** | 2026-02-06 |
+| **Status** | [D]+[Dc] (PS prediction pack complete) |
+| **Scope** | Consolidates v47-v51 into auditable prediction pack with IR translation protocol |
+| **Dependencies** | v45-v51 (complete PS canonicalization chain) |
+| **v45 hash** | `a80b3886903152d3` (VERIFIED) |
+| **v46 hash** | `2742edea37e863ac` (VERIFIED) |
+| **v47 hash** | `7a9682f333d5349e` (VERIFIED) |
+| **v48 hash** | `c4f114aa0c662b66` (VERIFIED) |
+| **v49 hash** | `81010ef2faedcefd` (VERIFIED) |
+| **v50 hash** | `cebf3e5baf0de863` (VERIFIED) |
+| **v51 hash** | `ed8fa089897b2d8c` (VERIFIED) |
+| **v52 tables hash** | `ed92d9bc43b8d26b` |
+| **Result R1** | μ_* := π/L (reference scale) — CANONICAL |
+| **Result R2** | G_F = (√2 ζ(2)/48)(g_5²/μ_*²L) — PREDICTION |
+| **Result R3** | sin²θ_W(μ_*) = 5/12 — PREDICTION |
+| **Result R4** | IR Translation: RG + thresholds — SCHEME_INVARIANT |
+| **Result R5** | Predictions vs Conditionals table — SEPARATED |
+| **Log Scan** | 101 logs, 0 violations — ALL_DIMENSIONLESS |
+| **Unit Invariance** | S = 10^{-9} to 10^{12} — INVARIANT |
+| **Scheme Invariance** | T1 = T2 (two-route verification) — MATCH |
+| **NO forbidden** | M_Z, M_W, v_EW, α_EM, G_N, ℓ_P NOT used |
+| **Python script** | `recompute.py` — ALL 61 CHECKS PASSED |
+| **Reviewer Traps** | 21 items |
 
 ---
 
