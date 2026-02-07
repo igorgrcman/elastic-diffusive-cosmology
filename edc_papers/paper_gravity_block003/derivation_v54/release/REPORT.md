@@ -128,37 +128,7 @@ $ cp main.pdf EDC_BLOCK003_DERIVATION_V54_BLOCK003_CANONICAL_SINGLE_DOCUMENT.pdf
 | v51 | Log Hygiene + Unit Inv | ed8fa089897b2d8c | VERIFIED |
 | v52 | PS Prediction Pack | ed92d9bc43b8d26b | VERIFIED |
 | v53 | Observable Interface | 89a4854b0bdfd332 | VERIFIED |
-| v54 | Canonical Single Document | 19c69e794c9703b7 | **VERIFIED** |
-
----
-
-## Artifact Manifest (Forensic)
-
-| File | SHA-256 | Role | Layer |
-|------|---------|------|-------|
-| main.tex | 499db6c51e52fc19... | LaTeX source | A |
-| main.pdf | 60eb03b066b9e2fb... | Compiled PDF | A |
-| recompute.py | dfca8ae5ccc91cd9... | Verification | A |
-| REPORT.md | (this file) | Documentation | A |
-| ACCEPTANCE.md | 20de525601ba2039... | Criteria | A |
-| README.md | 331112cff3852051... | Documentation | A |
-
-### Forbidden Grep Report
-
-```bash
-$ grep -E "91\.19|80\.38|246.*GeV|1/137|6\.674.*10.*-11|Planck length" main.tex \
-    | grep -v "FORBIDDEN|QUARANTINED|not.*0.231|Search for|ZERO HITS"
-# Result: 0 hits (CLEAN)
-```
-
-**Status**: No forbidden anchors in Layer A.
-
-### Build Reproducibility
-
-- **TeX Engine**: pdflatex (TeX Live 2025)
-- **Key packages**: amsmath, amssymb, tcolorbox, hyperref, cleveref, booktabs
-- **Build command**: `pdflatex -interaction=nonstopmode main.tex` (2 passes)
-- **Output**: 33 pages, ~591 KB
+| v54 | Canonical Single Document | 19c69e794c9703b7 | COMPUTED |
 
 ---
 
@@ -200,31 +170,4 @@ The v54 canonical single document successfully consolidates the complete BLOCK-0
 
 **Export:** `EDC_BLOCK003_DERIVATION_V54_BLOCK003_CANONICAL_SINGLE_DOCUMENT.pdf`
 
----
-
-## BLOCK-003 CLOSED
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                      BLOCK-003 CLOSED                           │
-├─────────────────────────────────────────────────────────────────┤
-│ Status: v45→v54 derivation chain CLOSED and VERIFIED            │
-│                                                                 │
-│ PROVEN/CLOSED:                                                  │
-│   • Unique PS track selection via PASS > CONDITIONAL scoring    │
-│   • sin²θ_W(μ_*) = 5/12 (structural prediction)                 │
-│   • G_F formula (structural, no numerical inputs)               │
-│   • Full invariance suite (scheme, unit, log, regulator)        │
-│   • Layer A/B separation with hash firewall                     │
-│                                                                 │
-│ OUT OF SCOPE:                                                   │
-│   • α_3 structure → BLOCK-004 (Strong Sector)                   │
-│   • Proton decay rate → BLOCK-004                               │
-│   • Neutrino masses → BLOCK-005 (Fermion Masses)                │
-│   • Dark matter coupling → Future work                          │
-│                                                                 │
-│ Canonical v54 hash: 19c69e794c9703b7 [VERIFIED]                 │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-Date: 2026-02-07
+Date: 2026-02-06

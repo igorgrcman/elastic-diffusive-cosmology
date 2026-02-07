@@ -57,22 +57,18 @@ v54 tables hash: 19c69e794c9703b7
 
 ## Hash Chain
 
-| Version | Topic | Hash | Status |
-|---------|-------|------|--------|
-| v45 | SoT Lock Track Compiler | a80b3886903152d3 | VERIFIED |
-| v46 | No-Escape Track Selector | 2742edea37e863ac | VERIFIED |
-| v47 | PS Coupling Matching | 7a9682f333d5349e | VERIFIED |
-| v48 | G_F Numerical Closure | c4f114aa0c662b66 | VERIFIED |
-| v49 | Weinberg Angle Closure | 81010ef2faedcefd | VERIFIED |
-| v50 | PS→IR Matching Scalemap | cebf3e5baf0de863 | VERIFIED |
-| v51 | Log Hygiene + Unit Inv | ed8fa089897b2d8c | VERIFIED |
-| v52 | PS Prediction Pack | ed92d9bc43b8d26b | VERIFIED |
-| v53 | Observable Interface | 89a4854b0bdfd332 | VERIFIED |
-| v54 | Canonical Single Document | 19c69e794c9703b7 | **VERIFIED** |
-
-## Status
-
-**BLOCK-003 CLOSED** — All acceptance criteria satisfied. Canonical v54 hash verified.
+| Version | Topic | Hash |
+|---------|-------|------|
+| v45 | SoT Lock Track Compiler | a80b3886903152d3 |
+| v46 | No-Escape Track Selector | 2742edea37e863ac |
+| v47 | PS Coupling Matching | 7a9682f333d5349e |
+| v48 | G_F Numerical Closure | c4f114aa0c662b66 |
+| v49 | Weinberg Angle Closure | 81010ef2faedcefd |
+| v50 | PS→IR Matching Scalemap | cebf3e5baf0de863 |
+| v51 | Log Hygiene + Unit Inv | ed8fa089897b2d8c |
+| v52 | PS Prediction Pack | ed92d9bc43b8d26b |
+| v53 | Observable Interface | 89a4854b0bdfd332 |
+| v54 | Canonical Single Document | 19c69e794c9703b7 |
 
 ## Export
 
