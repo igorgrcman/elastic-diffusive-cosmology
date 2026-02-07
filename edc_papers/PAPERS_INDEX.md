@@ -64,6 +64,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v53/` | Derivation v53: PS Observable Interface Without Contamination | `EDC_BLOCK003_DERIVATION_V53_PS_OBSERVABLE_INTERFACE_NO_CONTAMINATION.pdf` | [D]+[Dc] | 2026-02-06 |
 | `paper_gravity_block003/derivation_v54/` | Derivation v54: BLOCK-003 Canonical Single Document | `EDC_BLOCK003_DERIVATION_V54_BLOCK003_CANONICAL_SINGLE_DOCUMENT.pdf` | **BLOCK003 CLOSED** | 2026-02-07 |
 | `paper_gravity_block003/derivation_v55/` | Derivation v55: BLOCK-004 PS → QCD (α₃) Structural Closure | `EDC_BLOCK004_DERIVATION_V55_PS_TO_QCD_ALPHA3_STRUCTURAL_CLOSURE.pdf` | **BLOCK004 INIT** | 2026-02-07 |
+| `paper_gravity_block003/derivation_v56/` | Derivation v56: BLOCK-004 α₃(μ*) Numerical Closure | `EDC_BLOCK004_DERIVATION_V56_ALPHA3_MUSTHAVE_NUMERICAL_CLOSURE_NO_CONTAMINATION.pdf` | [D]+[Dc]+[P] | 2026-02-07 |
 
 ---
 
@@ -138,6 +139,47 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **NO forbidden** | α_s(M_Z), M_Z, M_W, v_EW, Λ_MS, m_t, G_N, ℓ_P NOT used in Layer A |
 | **Python script** | `recompute.py` — ALL 73 CHECKS PASSED |
 | **Reviewer Traps** | 30 items |
+
+---
+
+## Detailed Entry: Derivation v56
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v56/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK004_DERIVATION_V56_ALPHA3_MUSTHAVE_NUMERICAL_CLOSURE_NO_CONTAMINATION.pdf` |
+| **Pages** | 31 |
+| **Equations** | 200+ |
+| **Labels** | 316 |
+| **Date** | 2026-02-07 |
+| **Status** | [D]+[Dc]+[P] (α₃ numerical closure) |
+| **Scope** | Upgrade α₃(μ*) from structural to numerical/bounded closure |
+| **Dependencies** | v55 (PS → QCD structural), v45-v54 (BLOCK-003 complete) |
+| **v55 hash** | `1794377561879613` (VERIFIED) |
+| **v56 SoT hash** | `61869b6fddb68c16` |
+| **Result R1** | g₅^(C) = g₅^(L) = g₅^PS — UNIFICATION HOOK [P] |
+| **Result R2** | (g₅^PS)² = 4π/M₅ — ROUTE A [Dc+P] |
+| **Result R3** | (g₅^PS)² = 4π/Λ₅ — ROUTE C [Dc+P] |
+| **Result R4** | α₃(μ*) = 1/(M̄_Pl·L)^{2/3} = 1/σ̃ — PREDICTION |
+| **Result R5** | α₃(μ*) = (1/σ̃)·(1 ± ε_max) — BOUNDED |
+| **API-C1** | μ* := π/L — CANONICAL |
+| **API-C2** | α₃(μ*) — PREDICTION |
+| **API-C3** | RG connector — STRUCTURAL |
+| **API-C4** | Threshold hooks — TEMPLATE |
+| **API-C5** | α_PS(μ*) = α₃(μ*) — POSTULATE |
+| **API-C6** | α₃(M_Z) adapter — QUARANTINED |
+| **Two-Route** | T1 = T2 for α₃(μ*) — VERIFIED |
+| **Route Consistency** | β = σ̃⁴ — VERIFIED |
+| **Brane Bound** | |ε| < ε_max — POSTULATE |
+| **Layer A** | Canonical theory (hash-locked) — VERIFIED |
+| **Layer B** | External data adapter (quarantined) — DEFINED |
+| **Log Hygiene** | 6 USED + 7 TEMPLATE — COMPLIANT |
+| **Unit Invariance** | S = 10⁻⁹ to 10¹² — INVARIANT |
+| **Regulator Invariance** | Zeta = Heat kernel — VERIFIED |
+| **NO forbidden** | α_s(M_Z), M_Z, M_W, v_EW, Λ_QCD, m_t, G_N, ℓ_P NOT used in Layer A |
+| **Python script** | `recompute.py` — ALL 99 CHECKS PASSED |
+| **Reviewer Traps** | 15 items |
 
 ---
 
