@@ -66,6 +66,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v55/` | Derivation v55: BLOCK-004 PS → QCD (α₃) Structural Closure | `EDC_BLOCK004_DERIVATION_V55_PS_TO_QCD_ALPHA3_STRUCTURAL_CLOSURE.pdf` | **BLOCK004 INIT** | 2026-02-07 |
 | `paper_gravity_block003/derivation_v56/` | Derivation v56: BLOCK-004 α₃(μ*) Numerical Closure | `EDC_BLOCK004_DERIVATION_V56_ALPHA3_MUSTHAVE_NUMERICAL_CLOSURE_NO_CONTAMINATION.pdf` | [D]+[Dc]+[P] | 2026-02-07 |
 | `paper_gravity_block003/derivation_v57/` | Derivation v57: Layer B Adapter α₃(M_Z) Comparison | `EDC_BLOCK004_DERIVATION_V57_LAYERB_ADAPTER_ALPHA3_MZ_COMPARISON_QUARANTINED.pdf` | [QUARANTINED] | 2026-02-07 |
+| `paper_gravity_block003/derivation_v58/` | Derivation v58: Layer B Λ_QCD Extraction + Two-Route | `EDC_BLOCK004_DERIVATION_V58_LAYERB_LAMBDAQCD_EXTRACTION_TWOROUTE_QUARANTINED.pdf` | [QUARANTINED] | 2026-02-07 |
 
 ---
 
@@ -215,6 +216,41 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **External inputs** | M_Z, α_s(M_Z), m_t, m_b, m_c, m_τ, M_W, G_F, Λ_MS — ALL QUARANTINED |
 | **Python script** | `recompute.py` — ALL 51 CHECKS PASSED |
 | **Reviewer Traps** | 10 items |
+
+---
+
+## Detailed Entry: Derivation v58
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v58/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK004_DERIVATION_V58_LAYERB_LAMBDAQCD_EXTRACTION_TWOROUTE_QUARANTINED.pdf` |
+| **Pages** | 29 |
+| **Equations** | 180+ |
+| **Labels** | 278 |
+| **Date** | 2026-02-07 |
+| **Status** | [QUARANTINED] (Layer B Λ_QCD extraction — no Layer A contamination) |
+| **Scope** | Two-route Λ_QCD extraction with threshold invariance verification |
+| **Dependencies** | v57 (Layer B adapter), v45-v56 (BLOCK-003/004 chain) |
+| **v57 hash** | `fadd71e1e0adfa69` (VERIFIED) |
+| **v58 SoT hash** | `67ce04beef9f7f79` |
+| **Route Λ₁** | 1-loop analytic inversion — VERIFIED |
+| **Route Λ₂** | Numeric/2-loop — VERIFIED |
+| **Two-Route Consistency** | \|Λ₁ - Λ₂\|/Λ₁ < 0.15 — VERIFIED |
+| **Policy T1** | Step-function decoupling — VERIFIED |
+| **Policy T2** | Matched continuity — VERIFIED |
+| **Threshold Invariance** | \|Λ^(T1) - Λ^(T2)\|/Λ^(T1) < 0.05 — VERIFIED |
+| **No Backflow v2** | L_B ∩ L_A = ∅ (Hash Firewall v2) — THEOREM |
+| **No-Fit Policy** | σ̃ swept, not fitted — EXPLICIT |
+| **Layer A** | UNCHANGED (hash-locked) |
+| **Layer B** | QUARANTINED (all values [Q]-tagged) |
+| **Forbidden in non-quarantine** | 0 hits — VERIFIED |
+| **Experimental in abstract** | 0 — VERIFIED |
+| **Experimental in title** | 0 — VERIFIED |
+| **External inputs** | M_Z, α_s(M_Z), m_t, m_b, m_c, m_τ, M_W, G_F, v_EW, Λ_MS — ALL QUARANTINED |
+| **Python script** | `recompute.py` — ALL 57 CHECKS PASSED |
+| **Reviewer Traps** | 15 items |
 
 ---
 
