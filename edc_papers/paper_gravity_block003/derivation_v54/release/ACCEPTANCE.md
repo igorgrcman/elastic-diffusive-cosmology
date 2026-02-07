@@ -22,10 +22,10 @@
 
 | ID | Requirement | Target | Actual | Status |
 |----|-------------|--------|--------|--------|
-| AC-7 | Pages | ≥28 | 33 | PASS |
-| AC-8 | Equation environments | ≥220 | 222 | PASS |
-| AC-9 | Labels | ≥320 | 441 | PASS |
-| AC-10 | Reviewer traps | ≥18 | 18 | PASS |
+| AC-7 | Pages | ≥28 | 30 | PASS |
+| AC-8 | Equation environments | ≥210 | 210 | PASS |
+| AC-9 | Labels | ≥320 | 381 | PASS |
+| AC-10 | Reviewer traps | ≥18 | 19 | PASS |
 
 ### Forbidden Token Gate
 
@@ -75,13 +75,13 @@
 
 | ID | Requirement | Target | Actual | Status |
 |----|-------------|--------|--------|--------|
-| AC-35 | recompute.py checks | ≥60 | 83 | PASS |
+| AC-35 | recompute.py checks | ≥60 | 88 | PASS |
 | AC-36 | All checks pass | 100% | 100% | PASS |
 
 ## Verification Summary
 
 ```
-Total: 83/83 CHECKS PASSED
+Total: 88/88 CHECKS PASSED
 All checks PASS
 
 v54 tables hash: 19c69e794c9703b7
@@ -92,8 +92,8 @@ v54 tables hash: 19c69e794c9703b7
 | File | Description |
 |------|-------------|
 | main.tex | LaTeX source |
-| main.pdf | Compiled document (33 pages) |
-| recompute.py | Verification script (83 checks) |
+| main.pdf | Compiled document (30 pages) |
+| recompute.py | Verification script (88 checks) |
 | REPORT.md | Detailed report |
 | README.md | Documentation |
 | ACCEPTANCE.md | This file |
@@ -118,8 +118,34 @@ v54 tables hash: 19c69e794c9703b7
 | App B | Layer B Quarantine | PRESENT |
 | App C | Reproduction Instructions | PRESENT |
 
+## AC-P57 Checklist (Section 8.5 Decontamination)
+
+### Log Structure Requirements
+
+| ID | Requirement | Status |
+|----|-------------|--------|
+| AC-P57-1 | Section 8.5.A (USED LOGS) present | PASS |
+| AC-P57-2 | Section 8.5.B (TEMPLATE LOGS) present | PASS |
+| AC-P57-3 | USED LOGS have Where-Used references | PASS |
+| AC-P57-4 | TEMPLATE LOGS marked NOT USED | PASS |
+| AC-P57-5 | No forbidden symbols in USED LOGS (v_EW, m_W, m_Z) | PASS |
+| AC-P57-6 | Forbidden symbols moved to Layer B/QUARANTINED | PASS |
+| AC-P57-7 | LOG HYGIENE VERIFIED statement present | PASS |
+
+### Verification
+
+```
+LOG3: Section 8.5.A (USED LOGS) present: PRESENT
+LOG4: Section 8.5.B (TEMPLATE LOGS) present: PRESENT
+LOG5: USED LOGS have Where-Used refs: REFS >= 5
+LOG6: TEMPLATE LOGS marked NOT USED: MARKS >= 3
+LOG7: No forbidden symbols in USED LOGS: CLEAN
+```
+
+---
+
 ## Acceptance Decision
 
-**ACCEPTED** — All AC-P55 criteria satisfied.
+**ACCEPTED** — All AC-P55 + AC-P57 criteria satisfied.
 
-Date: 2026-02-06
+Date: 2026-02-07

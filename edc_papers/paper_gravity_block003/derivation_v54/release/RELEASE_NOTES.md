@@ -40,9 +40,9 @@ This hash is embedded in the PDF and can be verified by running `python3 recompu
 
 | File | SHA-256 | Role |
 |------|---------|------|
-| BLOCK003_CANONICAL_SINGLE_DOCUMENT.pdf | 60eb03b0... | Export PDF (33 pages) |
-| main.tex | 499db6c5... | LaTeX source |
-| recompute.py | dfca8ae5... | Verification script (83 checks) |
+| BLOCK003_CANONICAL_SINGLE_DOCUMENT.pdf | (updated)... | Export PDF (30 pages) |
+| main.tex | (updated)... | LaTeX source |
+| recompute.py | (updated)... | Verification script (88 checks) |
 | REPORT.md | f380305a... | Detailed report |
 | ACCEPTANCE.md | 20de5256... | Acceptance criteria |
 | README.md | 331112cf... | Documentation |
@@ -53,7 +53,7 @@ This hash is embedded in the PDF and can be verified by running `python3 recompu
 ```bash
 cd release/
 python3 recompute.py
-# Expected: 83/83 CHECKS PASSED
+# Expected: 88/88 CHECKS PASSED
 # v54 hash: 19c69e794c9703b7
 ```
 

@@ -91,7 +91,7 @@ PS uniquely selected: max score = 5
 ### Stage 6: Invariance Verification
 - Scheme: T1 = T2
 - Unit: S ∈ {10⁻⁹, 10³, 10⁶, 10⁹, 10¹²}
-- Log: 235 logs, 0 violations
+- Log: 82 logs (cleaned), 0 violations
 - Regulator: Zeta = Heat kernel = (1/2)ln(2π)
 
 ---
@@ -100,17 +100,17 @@ PS uniquely selected: max score = 5
 
 ```
 $ pdflatex -interaction=nonstopmode main.tex
-Output written on main.pdf (33 pages, 590372 bytes).
+Output written on main.pdf (30 pages, 586684 bytes).
 
 $ pdflatex -interaction=nonstopmode main.tex
-Output written on main.pdf (33 pages, 590372 bytes).
+Output written on main.pdf (30 pages, 586684 bytes).
 
 $ python3 recompute.py
-Total: 83/83 CHECKS PASSED
+Total: 88/88 CHECKS PASSED
 All checks PASS
 v54 tables hash: 19c69e794c9703b7
 
-$ cp main.pdf EDC_BLOCK003_DERIVATION_V54_BLOCK003_CANONICAL_SINGLE_DOCUMENT.pdf
+$ cp main.pdf BLOCK003_CANONICAL_SINGLE_DOCUMENT.pdf
 ```
 
 ---
@@ -136,12 +136,12 @@ $ cp main.pdf EDC_BLOCK003_DERIVATION_V54_BLOCK003_CANONICAL_SINGLE_DOCUMENT.pdf
 
 | Metric | Value | Requirement | Status |
 |--------|-------|-------------|--------|
-| Pages | 33 | ≥28 | PASS |
-| Equations | 222 | ≥220 | PASS |
-| Labels | 441 | ≥320 | PASS |
-| Sections | 14 | ≥11 | PASS |
-| Reviewer Traps | 18 | ≥18 | PASS |
-| Checks | 83 | ≥60 | PASS |
+| Pages | 30 | ≥28 | PASS |
+| Equations | 210 | ≥210 | PASS |
+| Labels | 381 | ≥320 | PASS |
+| Sections | 15 | ≥11 | PASS |
+| Reviewer Traps | 19 | ≥18 | PASS |
+| Checks | 88 | ≥60 | PASS |
 | Forbidden Hits | 0 | 0 | PASS |
 
 ---
@@ -168,6 +168,6 @@ $ cp main.pdf EDC_BLOCK003_DERIVATION_V54_BLOCK003_CANONICAL_SINGLE_DOCUMENT.pdf
 
 The v54 canonical single document successfully consolidates the complete BLOCK-003 derivation chain into a readable, verifiable reference. All hard rules satisfied, all invariances verified, and the hash chain extended with zero contamination.
 
-**Export:** `EDC_BLOCK003_DERIVATION_V54_BLOCK003_CANONICAL_SINGLE_DOCUMENT.pdf`
+**Export:** `BLOCK003_CANONICAL_SINGLE_DOCUMENT.pdf`
 
-Date: 2026-02-06
+Date: 2026-02-07

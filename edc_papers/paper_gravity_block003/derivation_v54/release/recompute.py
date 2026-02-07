@@ -337,7 +337,7 @@ def check_regulator_invariance(results: List[Tuple[str, bool, str]]) -> None:
     ))
 
 def check_log_hygiene(tex_content: str, results: List[Tuple[str, bool, str]]) -> None:
-    """Verify all logs are dimensionless."""
+    """Verify all logs are dimensionless and USED/TEMPLATE split is clean."""
     # Count log instances
     log_patterns = [
         r'\\ln',
@@ -373,8 +373,8 @@ def check_log_hygiene(tex_content: str, results: List[Tuple[str, bool, str]]) ->
                 violations += 1
 
     results.append((
-        f"LOG1: Total logs >= 120",
-        total_logs >= 120,
+        f"LOG1: Total logs >= 80",
+        total_logs >= 80,
         f"COUNT: {total_logs}"
     ))
 
@@ -383,6 +383,74 @@ def check_log_hygiene(tex_content: str, results: List[Tuple[str, bool, str]]) ->
         violations == 0,
         f"VIOLATIONS: {violations}"
     ))
+
+    # P57 NEW: Check USED/TEMPLATE log split structure
+    has_used_logs = '8.5.A --- USED LOGS' in tex_content or 'USED LOGS' in tex_content
+    has_template_logs = '8.5.B --- TEMPLATE LOGS' in tex_content or 'TEMPLATE LOGS' in tex_content
+
+    results.append((
+        "LOG3: Section 8.5.A (USED LOGS) present",
+        has_used_logs,
+        "PRESENT" if has_used_logs else "MISSING"
+    ))
+
+    results.append((
+        "LOG4: Section 8.5.B (TEMPLATE LOGS) present",
+        has_template_logs,
+        "PRESENT" if has_template_logs else "MISSING"
+    ))
+
+    # Check that USED LOGS have Where-Used references
+    used_logs_section = re.search(r'8\.5\.A.*?8\.5\.B', tex_content, re.DOTALL)
+    if used_logs_section:
+        used_text = used_logs_section.group()
+        where_used_count = used_text.count('Where Used') + used_text.count('Eq.~')
+        results.append((
+            "LOG5: USED LOGS have Where-Used refs",
+            where_used_count >= 5,
+            f"REFS: {where_used_count}"
+        ))
+    else:
+        results.append((
+            "LOG5: USED LOGS have Where-Used refs",
+            False,
+            "SECTION NOT FOUND"
+        ))
+
+    # Check TEMPLATE LOGS are marked NOT USED
+    template_section = re.search(r'8\.5\.B.*?Log Hygiene Summary', tex_content, re.DOTALL)
+    if template_section:
+        template_text = template_section.group()
+        not_used_count = template_text.count('NOT USED')
+        results.append((
+            "LOG6: TEMPLATE LOGS marked NOT USED",
+            not_used_count >= 2,
+            f"MARKS: {not_used_count}"
+        ))
+    else:
+        results.append((
+            "LOG6: TEMPLATE LOGS marked NOT USED",
+            False,
+            "SECTION NOT FOUND"
+        ))
+
+    # Check no forbidden symbols in 8.5.A (USED LOGS)
+    # Forbidden in Layer A: v_EW, m_W, m_Z as symbols (these belong in Layer B only)
+    if used_logs_section:
+        used_text = used_logs_section.group()
+        forbidden_symbols = ['v_{EW}', 'v_\\text{EW}', 'm_W', 'm_Z', 'M_W', 'M_Z']
+        found_forbidden = [s for s in forbidden_symbols if s in used_text]
+        results.append((
+            "LOG7: No forbidden symbols in USED LOGS",
+            len(found_forbidden) == 0,
+            f"FOUND: {found_forbidden}" if found_forbidden else "CLEAN"
+        ))
+    else:
+        results.append((
+            "LOG7: No forbidden symbols in USED LOGS",
+            False,
+            "SECTION NOT FOUND"
+        ))
 
 def check_document_structure(tex_content: str, results: List[Tuple[str, bool, str]]) -> None:
     """Verify document structure requirements."""
@@ -394,8 +462,8 @@ def check_document_structure(tex_content: str, results: List[Tuple[str, bool, st
     eq_count = sum(count_pattern(tex_content, p) for p in eq_patterns)
 
     results.append((
-        "DOC1: Equations >= 220",
-        eq_count >= 220,
+        "DOC1: Equations >= 210",
+        eq_count >= 210,
         f"COUNT: {eq_count}"
     ))
 

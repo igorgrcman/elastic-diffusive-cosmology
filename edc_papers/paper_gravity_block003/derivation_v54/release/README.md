@@ -35,9 +35,9 @@ This derivation consolidates the complete BLOCK-003 chain (v45–v53) into a sin
 
 | File | Description |
 |------|-------------|
-| main.tex | LaTeX source (33 pages) |
+| main.tex | LaTeX source (30 pages) |
 | main.pdf | Compiled document |
-| recompute.py | Verification script (83 checks) |
+| recompute.py | Verification script (88 checks) |
 | REPORT.md | Detailed report |
 | README.md | This file |
 | ACCEPTANCE.md | Acceptance criteria |
@@ -50,7 +50,7 @@ python3 recompute.py
 
 Expected output:
 ```
-Total: 83/83 CHECKS PASSED
+Total: 88/88 CHECKS PASSED
 All checks PASS
 v54 tables hash: 19c69e794c9703b7
 ```
