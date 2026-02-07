@@ -62,6 +62,47 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v51/` | Derivation v51: Log Hygiene Lock + Unit-Change Invariance | `EDC_BLOCK003_DERIVATION_V51_LOG_HYGIENE_LOCK_UNIT_INVARIANCE.pdf` | [D]+[Dc] | 2026-02-06 |
 | `paper_gravity_block003/derivation_v52/` | Derivation v52: PS Prediction Pack (sin²θ_W + G_F + IR Translation) | `EDC_BLOCK003_DERIVATION_V52_PS_PREDICTION_PACK_MUSTHAVE_IR_TRANSLATION.pdf` | [D]+[Dc] | 2026-02-06 |
 | `paper_gravity_block003/derivation_v53/` | Derivation v53: PS Observable Interface Without Contamination | `EDC_BLOCK003_DERIVATION_V53_PS_OBSERVABLE_INTERFACE_NO_CONTAMINATION.pdf` | [D]+[Dc] | 2026-02-06 |
+| `paper_gravity_block003/derivation_v54/` | Derivation v54: BLOCK-003 Canonical Single Document | `EDC_BLOCK003_DERIVATION_V54_BLOCK003_CANONICAL_SINGLE_DOCUMENT.pdf` | [D]+[Dc] | 2026-02-06 |
+
+---
+
+## Detailed Entry: Derivation v54
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v54/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK003_DERIVATION_V54_BLOCK003_CANONICAL_SINGLE_DOCUMENT.pdf` |
+| **Pages** | 33 |
+| **Equations** | 222 |
+| **Labels** | 441 |
+| **Date** | 2026-02-06 |
+| **Status** | [D]+[Dc] (Canonical single document complete) |
+| **Scope** | Consolidates v45-v53 into readable canonical reference |
+| **Dependencies** | v45-v53 (complete PS canonicalization chain) |
+| **v45 hash** | `a80b3886903152d3` (VERIFIED) |
+| **v46 hash** | `2742edea37e863ac` (VERIFIED) |
+| **v47 hash** | `7a9682f333d5349e` (VERIFIED) |
+| **v48 hash** | `c4f114aa0c662b66` (VERIFIED) |
+| **v49 hash** | `81010ef2faedcefd` (VERIFIED) |
+| **v50 hash** | `cebf3e5baf0de863` (VERIFIED) |
+| **v51 hash** | `ed8fa089897b2d8c` (VERIFIED) |
+| **v52 hash** | `ed92d9bc43b8d26b` (VERIFIED) |
+| **v53 hash** | `89a4854b0bdfd332` (VERIFIED) |
+| **v54 tables hash** | `19c69e794c9703b7` |
+| **Track Selection** | PS uniquely selected (PASS > CONDITIONAL) |
+| **Prediction P1** | sin²θ_W(μ_*) = 5/12 — STRUCTURAL |
+| **Prediction P2** | G_F = (√2 ζ(2)/48)(g_5²/μ_*² L) — STRUCTURAL |
+| **Prediction P3** | c_R + c_{B-L} = 7/5 — DERIVED |
+| **Layer A** | Canonical theory (hash-locked) — VERIFIED |
+| **Layer B** | External data adapter (quarantined) — DEFINED |
+| **Scheme Invariance** | T1 = T2 — MATCH |
+| **Unit Invariance** | S ∈ {10⁻⁹, 10³, 10⁶, 10⁹, 10¹²} — INVARIANT |
+| **Log Hygiene** | 235 logs, 0 violations — ALL_DIMENSIONLESS |
+| **Regulator Invariance** | Zeta = Heat kernel — MATCH |
+| **NO forbidden** | M_Z, M_W, v_EW, α_EM, G_N, ℓ_P NOT used in Layer A |
+| **Python script** | `recompute.py` — ALL 83 CHECKS PASSED |
+| **Reviewer Traps** | 18 items |
 
 ---
 
