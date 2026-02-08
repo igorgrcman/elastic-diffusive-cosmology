@@ -41,6 +41,11 @@
   - radioactivity_v7_*: V7.1-V7.8 model development audit trail
   - radioactivity_forbidden_*: Exploratory research archives
   - FORENSIC_INVENTORY_REPORT.md
+- Upload/repro bundles (43 files)
+  - UPLOAD_BUNDLE/: Complete upload package
+  - repro_pack/: Reproducibility scripts and data
+  - REPRO_MANIFEST.json/md, EXPORT_TO_UPLOAD.pdf/tex
+  - edc_part2_v2.0_source.zip
 
 ---
 
