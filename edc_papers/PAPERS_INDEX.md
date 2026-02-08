@@ -1594,3 +1594,37 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 
 - The nuclear pinning monograph lives in `edc_book_2/`, not here.
 - See `EXPORT_NAMING_POLICY.md` for naming conventions.
+
+---
+
+## Detailed Entry: Derivation v61
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v61/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK004_DERIVATION_V61_PROTON_DECAY_PROGRAM_NOTE_PS_NO_CONTAMINATION.pdf` |
+| **Pages** | 22 |
+| **Date** | 2026-02-07 |
+| **Status** | PROGRAM NOTE — OPEN (until M_X derived) |
+| **Scope** | Pati-Salam proton decay structural framework |
+| **v61 SoT hash** | `353955cb1eacc053` |
+| **PS Group** | SU(4)_C × SU(2)_L × SU(2)_R [D] |
+| **Breaking chain** | PS → SM → QCD×QED at M_X [Dc] |
+| **Leptoquarks** | X_μ^α with Q = ±4/3 [D] |
+| **Dim-6 operators** | 6 independent ΔB=1 structures [D] |
+| **Lifetime formula** | τ_p = 32πM_X⁴/(g_PS⁴|C_CG|²|α_H|²) × K [D] |
+| **API-PD1** | Proton lifetime from PS parameters [D] |
+| **API-PD2** | Dimension-6 operator coefficients [D] |
+| **Layer A** | Group theory, operators, scaling — HASH-LOCKED |
+| **Layer B** | Experimental bounds framework — QUARANTINED |
+| **No Backflow** | L_B ∩ L_A = ∅ — THEOREM |
+| **No-Fit Policy** | M_X NOT fitted to τ_p bounds — ENFORCED |
+| **Forbidden Gate** | No numeric τ_p, m_p, α_H in Layer A — VERIFIED |
+| **What's open** | M_X from EDC PS breaking [OPEN] |
+| **Dependencies** | v55-v60 (gauge coupling structure) |
+| **Python script** | `recompute.py` — ALL 35 CHECKS PASSED |
+| **Equations** | 128 environments |
+| **Labels** | 246 |
+| **Reviewer Traps** | 12 items |
+| **Release bundle** | `release/` directory with full package |
