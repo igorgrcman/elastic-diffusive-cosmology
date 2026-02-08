@@ -72,6 +72,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v61/` | Derivation v61: Proton Decay Program Note (PS) | `EDC_BLOCK004_DERIVATION_V61_PROTON_DECAY_PROGRAM_NOTE_PS_NO_CONTAMINATION.pdf` | PROGRAM NOTE — OPEN | 2026-02-07 |
 | `paper_gravity_block003/derivation_v62/` | Derivation v62: PS Breaking Scale M_X (Two-Route) | `EDC_BLOCK004_DERIVATION_V62_PS_BREAKING_SCALE_MX_NO_CONTAMINATION.pdf` | CONDITIONAL CLOSURE | 2026-02-08 |
 | `paper_gravity_block003/derivation_v63/` | Derivation v63: Proton Decay τ_p Structural Interface | `EDC_BLOCK004_DERIVATION_V63_PROTON_DECAY_TAUP_STRUCTURAL_INTERFACE_NO_CONTAMINATION.pdf` | STRUCTURAL INTERFACE | 2026-02-08 |
+| `paper_gravity_block003/derivation_v64/` | Derivation v64: Proton Decay Coupling Lane g_X(M_X) | `EDC_BLOCK004_DERIVATION_V64_PROTON_DECAY_COUPLING_LANE_GX_FROM_ALPHA3_AND_MX_NO_CONTAMINATION.pdf` | COUPLING LANE CLOSED | 2026-02-08 |
 
 ---
 
@@ -1699,5 +1700,47 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Python script** | `recompute.py` — ALL 52 CHECKS PASSED |
 | **Equations** | 125 environments |
 | **Labels** | 257 |
+| **Reviewer Traps** | 12 items |
+| **Release bundle** | `release/` directory with full package |
+
+---
+
+### Derivation v64: Proton Decay Coupling Lane g_X(M_X)
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v64/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK004_DERIVATION_V64_PROTON_DECAY_COUPLING_LANE_GX_FROM_ALPHA3_AND_MX_NO_CONTAMINATION.pdf` |
+| **Pages** | 29 |
+| **Date** | 2026-02-08 |
+| **Status** | COUPLING LANE CLOSED |
+| **Scope** | g_X(M_X) from α3-chain + M_X(σ̃) |
+| **v64 SoT hash** | `a7f3e2d9c8b10456` |
+| **Parent hash (v63)** | `1eb0b781afa6bb6a` |
+| **Parent hash (v62)** | `7a3d22e813e05675` |
+| **Parent hash (v60)** | `4985a938f5558447` |
+| **Parent hash (v55)** | `1794377561879613` |
+| **Core result g_X** | g_X = √(4π/σ̃) · (1 ± ε_g) [D] |
+| **Core result τ_p** | τ_p = (C_X⁴/16π²) · μ*⁴σ̃⁴/H_p [D] |
+| **Route T1** | QCD RG from μ* to M_X [D] |
+| **Route T2** | PS Direct RG with b_{4C} template [T] |
+| **Consistency** | g_X^(T1)/g_X^(T2) = 1 ± 0.05 [D] |
+| **Scaling law** | τ_p ∝ σ̃⁴ [D] |
+| **Open Surface** | σ̃ [P], H_p (symbolic) [P] |
+| **Template params** | ε_g ≤ 0.15 [T], b_{4C} ∈ [-12,-8] [T] |
+| **v63 closure** | g_X dependency absorbed [D] |
+| **API-GX1** | Coupling calculator from σ̃ [D] |
+| **API-GX2** | Fourth power calculator [D] |
+| **API-TAU3** | Lifetime with g_X absorbed [D] |
+| **API-GAMMA1** | Decay rate calculator [D] |
+| **Layer A** | Coupling identity, matching, RG, consistency — HASH-LOCKED |
+| **Layer B** | Illustrative sweeps — QUARANTINED |
+| **No Backflow** | L_B ∩ L_A = ∅ — THEOREM |
+| **No-Fit Policy** | σ̃ swept, b_{4C} template — ENFORCED |
+| **Dependencies** | v55 (α3), v60 (canonical), v62 (M_X), v63 (τ_p interface) |
+| **Python script** | `recompute.py` — ALL 104 CHECKS PASSED |
+| **Equations** | 152 environments |
+| **Labels** | 279 |
 | **Reviewer Traps** | 12 items |
 | **Release bundle** | `release/` directory with full package |
