@@ -1,0 +1,48 @@
+Appendix C
+
+Numerical Verification Standards
+
+All numerical results tagged [Der:Num] must satisfy the verification protocol described in this
+appendix.
+
+
+C.1     Motivation
+Numerical calculations in physics can fail in subtle ways:
+   • Truncation and rounding errors
+   • Algorithm instabilities
+   • Convergence to wrong solutions
+   • Implementation bugs
+   To ensure reliability, EDC numerical results require independent verification through multiple
+methods.
+
+
+C.2     Three-Method Verification Protocol
+Every numerical result must be verified by ALL THREE methods:
+
+C.2.1    Method 1: Grid Refinement (Richardson Extrapolation)
+  1. Compute result at grid spacing h: R(h)
+
+  2. Compute result at grid spacing h/2: R(h/2)
+
+  3. Compute result at grid spacing h/4: R(h/4)
+
+  4. Verify convergence rate:                                       
+                                                    R(h) − R(h/2)
+                                    p = log2                                               (C.1)
+                                                   R(h/2) − R(h/4)
+
+  5. p should match expected order of method (e.g., p = 2 for 2nd-order)
+
+  6. Extrapolate to h → 0:
+
+                                                       R(h/4) − R(h/2)
+                                Rextrap = R(h/4) +                                         (C.2)
+                                                           2p − 1
+
+   Pass criterion: Convergence rate within 10% of expected value.
+
+C.2.2    Method 2: Independent Integrator Cross-Check
+Use at least two independent numerical methods:
+
+                                               125
+

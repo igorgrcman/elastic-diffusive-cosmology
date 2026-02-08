@@ -1,0 +1,55 @@
+C.5: BVP-Specific Standards                                                                127
+
+
+C.5     BVP-Specific Standards
+For boundary value problems (Chapter 15):
+
+C.5.1   Eigenvalue Calculations
+  1. Use at least N = 100 grid points initially
+
+  2. Refine to N = 200, 400 for Richardson check
+
+  3. Cross-check with shooting method
+
+  4. Verify Dirichlet/Neumann limits
+
+C.5.2   Robin BC Verification
+The Robin eigenvalue equation (Eq. 15.5) provides an independent check:
+
+                                                  k(κ+ + κ− )
+                                    tan(kδ) =                                             (C.3)
+                                                  k 2 − κ+ κ−
+
+   Numerical eigenvalues must satisfy this transcendental equation to tolerance 10−10 .
+
+
+C.6     Reference Implementations
+C.6.1   Python Standards
+Recommended libraries:
+   • numpy: Array operations
+   • scipy.integrate: Quadrature (quad, dblquad)
+   • scipy.optimize: Root finding (brentq, newton)
+   • scipy.linalg: Eigenvalue problems (eig, eigh)
+
+C.6.2   Example: Robin Eigenvalue
+import numpy as np
+from scipy.optimize import brentq
+
+def robin_eigenvalue(delta, kappa_p, kappa_m, n=0, tol=1e-12):
+    """
+    Solve Robin BC eigenvalue equation.
+
+    Returns: k^2 (eigenvalue lambda)
+    Verification: Richardson extrapolation built-in
+    """
+    def residual(k):
+        if abs(k**2 - kappa_p*kappa_m) < 1e-14:
+            return np.inf # Avoid division by zero
+        lhs = np.tan(k * delta)
+        rhs = k * (kappa_p + kappa_m) / (k**2 - kappa_p*kappa_m)
+        return lhs - rhs
+
+    # Search interval for n-th eigenvalue
+    k_low = (n + 0.01) * np.pi / delta
+    k_high = (n + 0.99) * np.pi / delta
+

@@ -50,6 +50,12 @@
   - aside_archive/: Retracted derivations with README
   - aside_p2_closure_v3/: Sign, monotonicity, core repulsion proofs
   - aside_redteam/: Attack trees, automated checks, obligations
+- Remaining misc artifacts (211 files)
+  - P5.1/P5.3 audit .md files
+  - UPLOAD_BUNDLE.zip, _local_patches/, files/, screenshots/
+  - reorganized/audit/ reports
+  - src/derivations/ compile outputs, monograph, test scripts
+  - tools/regenerate_canon_bundle.sh
 
 ---
 

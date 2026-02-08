@@ -1,0 +1,52 @@
+126                                                  Chapter C: Numerical Verification Standards
+
+
+                     Problem Type           Recommended Methods
+                     1D integration         Gauss-Kronrod + Simpson
+                     Multi-D integration    Monte Carlo + Quasi-Monte Carlo
+                     ODE IVP                RK45 + Adams-Bashforth
+                     ODE BVP                Shooting + Finite Difference
+                     Eigenvalue             QR + Power iteration
+                     Root finding           Newton + Bisection
+
+      Pass criterion: Results agree to within stated tolerance.
+
+C.2.3      Method 3: Asymptotic/Analytic Limit Verification
+Check against known analytic results:
+
+  1. Identify limiting cases with exact solutions
+  2. Verify numerical method reproduces these limits
+  3. Check boundary behavior matches expectations
+  4. Compare to simplified models where available
+
+      Pass criterion: Agreement with all available analytic limits.
+
+
+C.3       Tolerance Standards
+                      Calculation Type                Required Tolerance
+                      Default (smooth functions)           10−10 relative
+                      Highly oscillatory integrals         10−8 relative
+                      Stiff ODEs                     Adaptive, report achieved
+                      Monte Carlo                    Statistical error reported
+                      Eigenvalues                         10−10 absolute
+
+      Note: If tolerance cannot be achieved, document why and report the achieved tolerance.
+
+
+C.4       Reporting Requirements
+For each numerical result, report:
+
+  1. Method: Primary algorithm used
+  2. Parameters: Grid size, tolerance, iterations, etc.
+  3. Convergence: Richardson extrapolation results
+  4. Cross-check: Second method and agreement level
+  5. Limits: Which analytic limits were verified
+  6. Result: Final value with numerical uncertainty
+
+      Example format:
+Result: lambda_0 = 2.467401100(5)
+Method: Finite difference (N=1000)
+Convergence: p = 1.98 (expected 2.0)
+Cross-check: Shooting method agrees to 1e-9
+Limits: Dirichlet (kappa->inf) verified
+

@@ -1,0 +1,54 @@
+15.5: Numerical Methods                                                                            97
+
+       • Boundary: Robin BC with κ ∼ 1/δ
+       • Potential: Zero inside brane (simplest model)
+       Result: The ground state of Eq. (15.3) gives:
+
+                                       π2
+                                λ0 ≈      + O(κδ) [Dc:Approx]                             (15.7)
+                                       4
+       Mass prediction:
+                                       πℏc
+                             MW ≈          ∼ 80 GeV [Dc:Approx]                           (15.8)
+                                       2δ
+  (with δ ∼ 2.5 × 10−3 fm)
+
+
+15.4.2     Fermion Mass Tower
+The three lepton generations correspond to the first three eigenvalues:
+
+                                Mode      Generation      Particle
+                                n=0           1st            e
+                                n=1           2nd            µ
+                                n=2           3rd            τ
+
+15.4.3     Neutrino Suppression
+Neutrinos are edge modes (Chapter 10), giving exponentially suppressed eigenvalues:
+
+                           λν ∼ e−2κδ     =⇒        mν ∼ me · e−κδ   [I]                    (15.9)
+
+Note: This is tagged [I] (identification) because the explicit overlap integral and κ value are not
+yet derived; upgrade to [Dc] requires completing OPR-21.
+
+
+15.5      Numerical Methods
+15.5.1     Standard Approach
+For arbitrary V (y), Eq. (15.3) must be solved numerically.
+   Methods:
+  1. Shooting method: Integrate from boundaries, match in middle
+  2. Finite differences: Discretize y, solve matrix eigenvalue problem
+  3. Spectral methods: Expand in basis functions, solve algebraically
+
+15.5.2     Numerical Standards
+As specified in Appendix C:
+  1. Grid refinement: Richardson extrapolation to verify convergence
+  2. Cross-check: Compare shooting vs finite difference
+  3. Asymptotic: Verify analytic limits (κ → 0, ∞)
+   Error metric: We report relative eigenvalue error |∆λ|/λ.
+   Target: |∆λ|/λ ≤ 10−10 for quoted benchmark values.
+
+15.5.3     Reference Implementation
+# Python pseudocode for Robin BC eigenvalue
+def robin_eigenvalue(delta, kappa_p, kappa_m, n=0):
+    """
+

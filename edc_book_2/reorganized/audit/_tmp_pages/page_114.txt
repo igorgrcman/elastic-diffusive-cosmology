@@ -1,0 +1,56 @@
+98                                                                Chapter 15: BVP Framework
+
+
+      Solve transcendental equation for n-th eigenvalue
+      with Robin BC: psi’ + kappa*psi = 0
+      """
+      from scipy.optimize import brentq
+
+      def residual(k):
+          lhs = np.tan(k * delta)
+          rhs = k * (kappa_p + kappa_m) / (k**2 - kappa_p*kappa_m)
+          return lhs - rhs
+
+      # Search in appropriate interval
+      k_low = n * np.pi / delta + 0.01
+      k_high = (n + 1) * np.pi / delta - 0.01
+
+      k_n = brentq(residual, k_low, k_high)
+      return k_n**2 # Return eigenvalue lambda
+
+
+15.6      Convergence Analysis
+15.6.1     Grid Refinement
+For finite-difference solutions, we verify:
+
+                                  λN → λexact + O(hp ) as h → 0                         (15.10)
+
+     where h = δ/N is the grid spacing and p is the order of the method.
+     Standard check: Halve h, verify error reduces by factor 2p .
+
+
+15.6.2     Stability Analysis
+Eigenvalues are stable if:
+                                     ∂λ              ∂λ
+                                        < ∞ and         <∞                              (15.11)
+                                     ∂κ              ∂δ
+     Observed: All physical eigenvalues show smooth parameter dependence.
+
+
+15.7      Status: OPR-21
+OPR-21 concerns the complete solution of the coupled BVP system for all particle masses.
+
+     OPR-21: Boundary Value Problem
+
+     Goal: Solve the full coupled BVP to derive all mass eigenvalues from 5D geometry.
+     Current status:
+       • Single-field BVP: Solved [Der]
+       • Robin eigenvalue equation: Derived [Der]
+       • Numerical implementation: Complete
+       • Cross-validation: Passed
+     Remaining:
+       • Coupled equations (multiple fields): [Open]
+       • Non-trivial V (y) from brane profile: [Open]
+       • Complete spectrum (all generations): [Open]
+     Path forward: Solve coupled system once brane profile is specified (depends on OPR-04).
+
