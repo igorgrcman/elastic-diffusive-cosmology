@@ -46,6 +46,10 @@
   - repro_pack/: Reproducibility scripts and data
   - REPRO_MANIFEST.json/md, EXPORT_TO_UPLOAD.pdf/tex
   - edc_part2_v2.0_source.zip
+- Aside proof libraries (20 files)
+  - aside_archive/: Retracted derivations with README
+  - aside_p2_closure_v3/: Sign, monotonicity, core repulsion proofs
+  - aside_redteam/: Attack trees, automated checks, obligations
 
 ---
 
