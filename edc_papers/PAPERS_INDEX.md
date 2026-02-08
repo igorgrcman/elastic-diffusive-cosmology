@@ -69,6 +69,8 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v58/` | Derivation v58: Layer B Λ_QCD Extraction + Two-Route | `EDC_BLOCK004_DERIVATION_V58_LAYERB_LAMBDAQCD_EXTRACTION_TWOROUTE_QUARANTINED.pdf` | [QUARANTINED] | 2026-02-07 |
 | `paper_gravity_block003/derivation_v59/` | Derivation v59: Formal Λ_QCD Two-Route (No Handwave) | `EDC_BLOCK004_DERIVATION_V59_LAYERB_LAMBDAQCD_FORMAL_TWOROUTE_NOHANDWAVE_QUARANTINED.pdf` | [QUARANTINED] | 2026-02-07 |
 | `paper_gravity_block003/derivation_v60/` | Derivation v60: BLOCK-004 Canonical Single Document | `EDC_BLOCK004_DERIVATION_V60_BLOCK004_CANONICAL_SINGLE_DOCUMENT.pdf` | **BLOCK004 CLOSED** | 2026-02-07 |
+| `paper_gravity_block003/derivation_v61/` | Derivation v61: Proton Decay Program Note (PS) | `EDC_BLOCK004_DERIVATION_V61_PROTON_DECAY_PROGRAM_NOTE_PS_NO_CONTAMINATION.pdf` | PROGRAM NOTE — OPEN | 2026-02-07 |
+| `paper_gravity_block003/derivation_v62/` | Derivation v62: PS Breaking Scale M_X (Two-Route) | `EDC_BLOCK004_DERIVATION_V62_PS_BREAKING_SCALE_MX_NO_CONTAMINATION.pdf` | CONDITIONAL CLOSURE | 2026-02-08 |
 
 ---
 
@@ -1626,5 +1628,39 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Python script** | `recompute.py` — ALL 35 CHECKS PASSED |
 | **Equations** | 128 environments |
 | **Labels** | 246 |
+| **Reviewer Traps** | 12 items |
+| **Release bundle** | `release/` directory with full package |
+
+---
+
+## Detailed Entry: Derivation v62
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v62/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK004_DERIVATION_V62_PS_BREAKING_SCALE_MX_NO_CONTAMINATION.pdf` |
+| **Pages** | 26 |
+| **Date** | 2026-02-08 |
+| **Status** | CONDITIONAL CLOSURE (until σ̃ derived) |
+| **Scope** | PS breaking scale M_X from EDC internal quantities |
+| **v62 SoT hash** | `7a3d22e813e05675` |
+| **Route A** | Geometric/topological (brane configuration) [D] |
+| **Route B** | EFT matching from gauge sector (v55-v60) [D] |
+| **Consistency** | M_X^(A)/M_X^(B) = 1 ± 0.1 [D] |
+| **Boxed M_X** | M_X = 0.516 · μ* · σ̃^(1/2) [D] |
+| **Geometric factor** | G = √(4/15) ≈ 0.516 [Dc] |
+| **Open Surface** | σ̃ = σL²/M̄_Pl² [P] |
+| **v61 closure** | M_X open variable resolved [D] |
+| **API-MX1** | M_X calculator from σ̃ [D] |
+| **Layer A** | Group theory, geometry, RG — HASH-LOCKED |
+| **Layer B** | Experimental comparison hooks — QUARANTINED |
+| **No Backflow** | L_B ∩ L_A = ∅ — THEOREM |
+| **No-Fit Policy** | M_X NOT fitted to experiment — ENFORCED |
+| **Forbidden Gate** | No numeric M_X, τ_p bounds in Layer A — VERIFIED |
+| **Dependencies** | v51-v61 (gauge coupling + proton decay structure) |
+| **Python script** | `recompute.py` — ALL 35 CHECKS PASSED |
+| **Equations** | 131 environments |
+| **Labels** | 245 |
 | **Reviewer Traps** | 12 items |
 | **Release bundle** | `release/` directory with full package |
