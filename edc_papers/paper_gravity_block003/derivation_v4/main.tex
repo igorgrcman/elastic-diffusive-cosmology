@@ -1,0 +1,502 @@
+% ============================================================================
+% BLOCK-003 Derivation Attempt v4: Fix Constant C in κ₅² = C·σ^(-3/4)
+% ============================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{fancyhdr}
+
+% Theorem environments
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{attempt}{Attempt}
+
+% Epistemic tags
+\newcommand{\BL}{\textsc{[BL]}}
+\newcommand{\Ident}{\textsc{[I]}}
+\newcommand{\Post}{\textsc{[P]}}
+\newcommand{\Deriv}{\textsc{[Dc]}}
+\newcommand{\Open}{\textsc{[Open]}}
+
+% Header/footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small BLOCK-003 / Derivation v4}
+\fancyhead[R]{\small EDC Gravity Program}
+\fancyfoot[C]{\thepage}
+
+\title{\textbf{BLOCK-003 Derivation Attempt v4:}\\[0.3em]
+Can EDC-Internal Principles Fix the Constant $C$\\
+in $\kappa_5^2 = C \cdot \sigma^{-3/4}$?}
+\author{EDC Working Document}
+\date{2026-02-02}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Derivation v3 established that dimensional analysis uniquely determines
+$\kappa_5^2 = C \cdot \sigma^{-3/4}$ from brane tension $\sigma$ alone, but leaves
+the dimensionless constant $C$ unfixed. This document tests three EDC-internal
+approaches to fix $C$ without fitting to the observed Newton constant $G_N^{\rm obs}$:
+(A) pressure-balance closure using $\sigma = 2\pi R_\xi^2 \rho_P$,
+(B) induced gravity with EDC UV cutoff, and
+(C) junction curvature normalization.
+\textbf{Outcome:} All three attempts fail to uniquely fix $C$. We prove a
+\textbf{No-Go Lemma}: $\sigma$, $\rho_P$, and $R_\xi$ together provide only
+two independent scales, insufficient to determine the dimensionless ratio
+$C = \kappa_5^2 \sigma^{3/4}$ without an additional normalization principle.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ============================================================================
+\section{Setup and Goal}
+% ============================================================================
+
+\subsection{Problem Statement}
+
+From derivation v3, dimensional analysis yields the unique consistent form:
+\begin{equation}
+\kappa_5^2 = C \cdot \sigma^{-3/4}
+\label{eq:kappa_sigma}
+\end{equation}
+where $[\kappa_5^2] = L^3$ and $[\sigma] = L^{-4}$ in natural units ($\hbar = c = 1$).
+
+\textbf{Goal:} Determine whether EDC-internal quantities can fix the dimensionless
+constant $C$ without using $G_N^{\rm obs}$ as input.
+
+\subsection{Available EDC Inputs}
+
+From EDC Part I and program documents, we have:
+
+\begin{enumerate}
+\item \textbf{Brane tension} $\sigma$ with $[\sigma] = M L^{-3} T^{-2} = L^{-4}$ \hfill \BL
+\item \textbf{Plenum energy density} $\rho_P$ with $[\rho_P] = L^{-4}$ \hfill \Post
+\item \textbf{Weak length scale} $R_\xi = \hbar c / M_Z$ with $[R_\xi] = L$ \hfill \BL
+\item \textbf{Pressure-balance relation} \Post:
+\begin{equation}
+\sigma = 2\pi R_\xi^2 \rho_P
+\label{eq:pressure_balance}
+\end{equation}
+assuming membrane thickness $\delta \sim R_\xi$.
+\end{enumerate}
+
+\subsection{Anti-Circularity Ledger}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{llll}
+\toprule
+\textbf{Quantity} & \textbf{Proposed Source} & \textbf{Status} & \textbf{Used to Fit?} \\
+\midrule
+$\sigma$ & Brane tension (5D action input) & \BL & NO \\
+$\rho_P$ & Plenum energy density & \Post & NO \\
+$R_\xi$ & $\hbar c / M_Z$ (weak scale) & \BL & NO \\
+$\kappa_5^2$ & To be derived & \Open & NO \\
+$C$ & To be derived & \Open & NO \\
+$G_N^{\rm obs}$ & Cavendish experiment & \BL & \textbf{FORBIDDEN} \\
+\bottomrule
+\end{tabular}
+\caption{Anti-circularity ledger for derivation v4.}
+\label{tab:ledger}
+\end{table}
+
+% ============================================================================
+\section{Attempt A: Pressure-Balance Closure}
+\label{sec:attempt_a}
+% ============================================================================
+
+\begin{attempt}[Pressure-Balance Route]
+Use Eq.~\eqref{eq:pressure_balance} to express $\rho_P$ in terms of $\sigma$ and $R_\xi$,
+then interpret $\rho_P$ as an effective 5D cosmological constant $\Lambda_5$ to obtain
+$\kappa_5^2$ from the bulk Einstein equations.
+\end{attempt}
+
+\subsection{Step A1: Express $\rho_P$ from Pressure Balance}
+
+From Eq.~\eqref{eq:pressure_balance}:
+\begin{equation}
+\rho_P = \frac{\sigma}{2\pi R_\xi^2}
+\label{eq:rhoP_from_sigma}
+\end{equation}
+
+\textbf{Dimensional check:}
+\[
+[\rho_P] = \frac{[\sigma]}{[R_\xi]^2} = \frac{L^{-4}}{L^2} = L^{-6} \quad \text{(WRONG!)}
+\]
+
+\textbf{Problem:} The dimensions do not match. We need $[\rho_P] = L^{-4}$, but
+$[\sigma/R_\xi^2] = L^{-6}$.
+
+\subsection{Step A2: Corrected Dimensional Form}
+
+The pressure-balance relation must include a thickness scale $\delta$:
+\begin{equation}
+\sigma \sim \rho_P \cdot \delta
+\label{eq:pressure_correct}
+\end{equation}
+With the EDC postulate $\delta \sim R_\xi$:
+\begin{equation}
+\sigma = \alpha \cdot \rho_P \cdot R_\xi
+\label{eq:sigma_rhoP_Rxi}
+\end{equation}
+where $\alpha$ is a dimensionless constant (the ``$2\pi$'' in the original EDC formula
+likely absorbed other factors).
+
+\textbf{Dimensional check:}
+\[
+[\sigma] = [\rho_P][R_\xi] = L^{-4} \cdot L = L^{-3} \quad \text{(STILL WRONG!)}
+\]
+
+\subsection{Step A3: Fundamental Dimensional Incompatibility}
+
+The issue is that $[\sigma] = L^{-4}$ (energy per 4-volume on the brane) while
+$[\rho_P \cdot \delta] = L^{-4} \cdot L = L^{-3}$ (energy per 3-volume).
+
+For dimensional consistency, we need:
+\begin{equation}
+\sigma = \rho_P \cdot \delta^{-1} \cdot (\text{4D factor})
+\end{equation}
+or the original relation Eq.~\eqref{eq:pressure_balance} must be reinterpreted as:
+\begin{equation}
+\sigma = 2\pi R_\xi^2 \cdot \rho_P \quad \Rightarrow \quad [\sigma] = L^2 \cdot L^{-4} = L^{-2}
+\end{equation}
+which is inconsistent with $[\sigma] = L^{-4}$.
+
+\textbf{Resolution \Post:} The EDC relation $\sigma = 2\pi R_\xi^2 \rho_P$ must use
+different unit conventions (e.g., $\sigma$ as surface tension $[L^{-2}]$ rather than
+4D brane tension $[L^{-4}]$). This requires clarification from EDC source documents.
+
+\subsection{Step A4: Interpret $\rho_P$ as $\Lambda_5$}
+
+Assuming we can express $\rho_P$ in terms of $\sigma$ and $R_\xi$ with correct dimensions,
+we would identify:
+\begin{equation}
+\Lambda_5 = 8\pi G_5 \rho_P = \kappa_5^2 \rho_P
+\end{equation}
+where we used $\kappa_5^2 = 8\pi G_5$.
+
+However, this gives:
+\begin{equation}
+\kappa_5^2 = \frac{\Lambda_5}{\rho_P}
+\end{equation}
+which is circular: we need $\Lambda_5$ to find $\kappa_5^2$, but $\Lambda_5$ is
+defined via $\kappa_5^2$.
+
+\begin{proposition}[Attempt A Failure]
+The pressure-balance relation cannot fix $\kappa_5^2$ because:
+\begin{enumerate}
+\item The dimensional form requires clarification of EDC conventions.
+\item Even with correct dimensions, linking $\rho_P$ to $\Lambda_5$ introduces
+circularity ($\Lambda_5 \sim \kappa_5^2 \rho_P$).
+\item No new dimensionless ratio emerges to fix $C$.
+\end{enumerate}
+\end{proposition}
+
+\textbf{Status:} \Open\ --- Attempt A fails to fix $C$.
+
+% ============================================================================
+\section{Attempt B: Induced Gravity with EDC UV Cutoff}
+\label{sec:attempt_b}
+% ============================================================================
+
+\begin{attempt}[Induced Gravity / Sakharov-Style]
+If EDC has no fundamental Einstein-Hilbert term, gravity could emerge as an
+induced effect from quantum fluctuations of matter fields. The induced gravitational
+coupling scales as $\kappa_5^{-2} \sim N \Lambda_{\rm UV}^3$ in 5D, where $N$ counts
+field species and $\Lambda_{\rm UV}$ is the UV cutoff.
+\end{attempt}
+
+\subsection{Step B1: Induced Gravity in 5D}
+
+In the Sakharov/Adler approach, integrating out matter fields with UV cutoff
+$\Lambda_{\rm UV}$ generates an effective Einstein-Hilbert term:
+\begin{equation}
+S_{\rm induced} = \frac{1}{2\kappa_5^2} \int d^5X \sqrt{-g^{(5)}} R^{(5)}
+\end{equation}
+with the induced coupling:
+\begin{equation}
+\kappa_5^{-2} \sim \frac{N}{(4\pi)^{5/2}} \Lambda_{\rm UV}^3
+\label{eq:induced_5D}
+\end{equation}
+where the numerical factor depends on regularization scheme.
+
+\textbf{Dimensional check:}
+\[
+[\kappa_5^{-2}] = [\Lambda_{\rm UV}]^3 = L^{-3} \quad \checkmark
+\]
+
+\subsection{Step B2: Map $\Lambda_{\rm UV}$ to EDC Scale}
+
+EDC provides two candidate UV cutoffs:
+
+\textbf{Option B2a:} $\Lambda_{\rm UV} = R_\xi^{-1}$ (weak scale)
+\begin{equation}
+\kappa_5^{-2} \sim N R_\xi^{-3} \quad \Rightarrow \quad \kappa_5^2 \sim \frac{R_\xi^3}{N}
+\end{equation}
+
+\textbf{Option B2b:} $\Lambda_{\rm UV} = \sigma^{1/4}$ (tension-derived scale)
+\begin{equation}
+\kappa_5^{-2} \sim N \sigma^{3/4} \quad \Rightarrow \quad \kappa_5^2 \sim \frac{1}{N \sigma^{3/4}}
+\end{equation}
+
+Option B2b matches the form $\kappa_5^2 = C \sigma^{-3/4}$ with $C = 1/N$.
+
+\subsection{Step B3: Can $N$ Be Fixed?}
+
+To fix $C = 1/N$, we need EDC to specify the number of field species $N$.
+
+\textbf{Problem:} EDC does not provide a first-principles count of $N$. Possible
+interpretations:
+\begin{itemize}
+\item $N = 1$ (single Plenum field) $\Rightarrow C \sim 1$
+\item $N \sim 10^2$ (Standard Model species) $\Rightarrow C \sim 10^{-2}$
+\item $N \sim ?$ (unknown EDC spectrum)
+\end{itemize}
+
+\subsection{Step B4: Numerical Factors}
+
+Even fixing $N = 1$, the induced gravity formula contains scheme-dependent
+numerical factors:
+\begin{equation}
+\kappa_5^{-2} = \frac{N}{(4\pi)^{5/2}} \cdot f(\text{regularization}) \cdot \Lambda_{\rm UV}^3
+\end{equation}
+where $f$ depends on cutoff procedure (hard cutoff, dimensional regularization, etc.).
+
+\begin{proposition}[Attempt B Partial Success]
+Induced gravity with $\Lambda_{\rm UV} = \sigma^{1/4}$ reproduces the form
+$\kappa_5^2 = C \sigma^{-3/4}$ and identifies:
+\begin{equation}
+C = \frac{(4\pi)^{5/2}}{N \cdot f}
+\end{equation}
+However, $C$ remains undetermined because:
+\begin{enumerate}
+\item $N$ (species count) is not fixed by EDC.
+\item $f$ (regularization factor) is scheme-dependent.
+\item EDC does not specify whether fundamental EH term exists (if it does,
+induced contribution is subleading).
+\end{enumerate}
+\end{proposition}
+
+\textbf{Status:} \Open\ --- Attempt B fixes $C$ only up to $\mathcal{O}(1)$ factors.
+
+% ============================================================================
+\section{Attempt C: Junction Curvature Normalization}
+\label{sec:attempt_c}
+% ============================================================================
+
+\begin{attempt}[Junction Curvature Route]
+From the Israel junction conditions, the characteristic extrinsic curvature scale is
+$k \sim \kappa_5^2 \sigma$. If EDC geometry specifies $k$ in terms of intrinsic scales
+(e.g., $k \sim R_\xi^{-1}$), we can solve for $\kappa_5^2$.
+\end{attempt}
+
+\subsection{Step C1: Junction-Derived Curvature}
+
+From derivation v3, the Israel conditions with $\mathbb{Z}_2$ symmetry give:
+\begin{equation}
+K_{\mu\nu} = -\frac{\kappa_5^2}{2}\left(S_{\mu\nu} - \frac{1}{3}h_{\mu\nu}S\right)
+\end{equation}
+For a pure-tension brane ($S_{\mu\nu} = -\sigma h_{\mu\nu}$):
+\begin{equation}
+K_{\mu\nu} = \frac{\kappa_5^2 \sigma}{6} h_{\mu\nu} \equiv k \, h_{\mu\nu}
+\end{equation}
+Thus the curvature scale is:
+\begin{equation}
+k = \frac{\kappa_5^2 \sigma}{6}
+\label{eq:k_junction}
+\end{equation}
+
+Using $\kappa_5^2 = C \sigma^{-3/4}$:
+\begin{equation}
+k = \frac{C \sigma^{1/4}}{6} = \frac{C}{6 \ell_\sigma}
+\label{eq:k_ell_sigma}
+\end{equation}
+where $\ell_\sigma = \sigma^{-1/4}$ is the tension-derived length scale.
+
+\subsection{Step C2: Attempt to Fix $k$ from EDC Geometry}
+
+\textbf{Hypothesis \Post:} The extrinsic curvature scale $k$ equals the intrinsic
+curvature of the EDC membrane:
+\begin{equation}
+k \stackrel{?}{=} \frac{1}{R_\xi}
+\label{eq:k_Rxi}
+\end{equation}
+
+Combining Eqs.~\eqref{eq:k_ell_sigma} and \eqref{eq:k_Rxi}:
+\begin{equation}
+\frac{C}{6 \ell_\sigma} = \frac{1}{R_\xi} \quad \Rightarrow \quad
+C = \frac{6 \ell_\sigma}{R_\xi} = 6 \cdot \frac{\sigma^{-1/4}}{R_\xi}
+\label{eq:C_attempt}
+\end{equation}
+
+\textbf{Dimensional check:}
+\[
+[C] = \frac{[\sigma^{-1/4}]}{[R_\xi]} = \frac{L}{L} = 1 \quad \checkmark
+\]
+
+\subsection{Step C3: Is Eq.~\eqref{eq:C_attempt} a Closure?}
+
+Eq.~\eqref{eq:C_attempt} expresses $C$ in terms of $\sigma$ and $R_\xi$:
+\begin{equation}
+\boxed{C = 6 \cdot \sigma^{-1/4} R_\xi^{-1}}
+\end{equation}
+
+This would give:
+\begin{equation}
+\kappa_5^2 = C \sigma^{-3/4} = 6 \sigma^{-1/4} R_\xi^{-1} \cdot \sigma^{-3/4}
+= \frac{6}{\sigma R_\xi}
+\label{eq:kappa_attempt_c}
+\end{equation}
+
+\textbf{Dimensional check:}
+\[
+[\kappa_5^2] = \frac{1}{[\sigma][R_\xi]} = \frac{1}{L^{-4} \cdot L} = L^3 \quad \checkmark
+\]
+
+\subsection{Step C4: Why This Is Not a True Closure}
+
+The ``closure'' in Eq.~\eqref{eq:kappa_attempt_c} is \textbf{illusory} because:
+
+\begin{enumerate}
+\item \textbf{Hypothesis \eqref{eq:k_Rxi} is not derived.} The identification
+$k = 1/R_\xi$ is a \textit{postulate}, not a consequence of EDC equations of motion.
+
+\item \textbf{Circular reasoning.} If we \textit{define} $k = 1/R_\xi$, we are
+effectively choosing $C$ to make this true. This is equivalent to fitting $\kappa_5^2$
+to produce a desired curvature scale.
+
+\item \textbf{No dynamical justification.} EDC does not provide an equation that
+determines the embedding curvature from $\sigma$ and $R_\xi$ alone.
+\end{enumerate}
+
+\begin{proposition}[Attempt C Failure]
+The junction curvature route produces a dimensionally consistent expression for $C$,
+but relies on the unproven postulate $k = 1/R_\xi$. Without a dynamical derivation
+of this relation, Attempt C does not constitute a true closure.
+\end{proposition}
+
+\textbf{Status:} \Open\ --- Attempt C fails without additional EDC input.
+
+% ============================================================================
+\section{No-Go Lemma}
+\label{sec:nogo}
+% ============================================================================
+
+\begin{lemma}[Dimensional Counting No-Go]
+\label{lem:nogo}
+Let the available EDC inputs be $\{\sigma, \rho_P, R_\xi\}$ with dimensions:
+\[
+[\sigma] = L^{-4}, \quad [\rho_P] = L^{-4}, \quad [R_\xi] = L
+\]
+subject to the constraint $\sigma = \alpha \cdot \rho_P \cdot R_\xi^n$ for some
+$n$ and dimensionless $\alpha$.
+
+Then the number of independent dimensionful parameters is at most 2, while
+determining $\kappa_5^2$ and $C$ independently requires 3 scales.
+
+\textbf{Conclusion:} $\sigma$, $\rho_P$, and $R_\xi$ cannot uniquely fix $C$
+without an additional normalization principle.
+\end{lemma}
+
+\begin{proof}
+The pressure-balance relation ties $\sigma$, $\rho_P$, and $R_\xi$:
+\[
+\sigma \sim \rho_P \cdot R_\xi^n
+\]
+For dimensional consistency with $[\sigma] = [\rho_P] = L^{-4}$, we need $n = 0$,
+implying $\sigma \propto \rho_P$ (no independent information from $R_\xi$).
+
+Alternatively, if $[\sigma] \neq [\rho_P]$, then $n \neq 0$ and we have:
+\[
+\sigma = f(\rho_P, R_\xi)
+\]
+reducing three parameters to two independent ones.
+
+To construct the dimensionless $C = \kappa_5^2 \sigma^{3/4}$, we need:
+\[
+C = g\left(\frac{\sigma}{\rho_P}, \frac{\sigma^{1/4}}{R_\xi^{-1}}, \ldots\right)
+\]
+But all such ratios are fixed by the pressure-balance constraint, leaving $C$
+undetermined up to a constant of order unity.
+\end{proof}
+
+% ============================================================================
+\section{Summary and Outcome}
+\label{sec:summary}
+% ============================================================================
+
+\subsection{Results by Attempt}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{llll}
+\toprule
+\textbf{Attempt} & \textbf{Method} & \textbf{Result} & \textbf{Status} \\
+\midrule
+A & Pressure-balance $\to \Lambda_5$ & Dimensional issues + circularity & FAIL \\
+B & Induced gravity & $C \sim 1/N$ but $N$ unfixed & PARTIAL \\
+C & Junction curvature & $C = 6\sigma^{-1/4}/R_\xi$ but unproven postulate & FAIL \\
+\bottomrule
+\end{tabular}
+\caption{Summary of Attempt outcomes.}
+\end{table}
+
+\subsection{One-Line Outcome}
+
+\begin{center}
+\fbox{\parbox{0.9\textwidth}{
+\textbf{NO-GO:} The EDC parameters $\sigma$, $\rho_P$, and $R_\xi$ provide only
+two independent scales. The dimensionless constant $C$ in $\kappa_5^2 = C\sigma^{-3/4}$
+cannot be fixed without an additional normalization principle or dynamical equation.
+}}
+\end{center}
+
+\subsection{What Would Fix $C$?}
+
+To close BLOCK-003, one of the following is needed:
+
+\begin{enumerate}
+\item \textbf{Additional dimensionless input:} A pure number from EDC topology
+(e.g., winding number, Euler characteristic, species count $N$).
+
+\item \textbf{Dynamical equation for embedding curvature:} An EDC equation of motion
+that determines $k$ from $\sigma$ and bulk geometry.
+
+\item \textbf{Normalization convention:} A canonical definition of $\sigma$ that
+fixes the proportionality constant (e.g., $\sigma$ defined such that $\ell_\sigma = R_\xi$).
+
+\item \textbf{Alternative route:} Abandon $\kappa_5^2 = C\sigma^{-3/4}$ and derive
+$\kappa_5^2$ from a different principle (e.g., holographic, entropic).
+\end{enumerate}
+
+\subsection{BLOCK-003 Status}
+
+\textbf{Remains OPEN.}
+
+The missing element has been narrowed from ``derive $\kappa_5^2$'' to
+``provide one additional normalization principle.''
+
+% ============================================================================
+\section*{Acknowledgments}
+% ============================================================================
+
+This derivation attempt follows the BLOCK-003 program established in
+\texttt{paper\_gravity\_block003/main.tex} and builds on results from
+derivation v1 ($G_N = \kappa_5^2/(6\pi L)$), v2 ($L = R_\xi$), and
+v3 ($\kappa_5^2 = C\sigma^{-3/4}$, $C$ undetermined).
+
+\end{document}
