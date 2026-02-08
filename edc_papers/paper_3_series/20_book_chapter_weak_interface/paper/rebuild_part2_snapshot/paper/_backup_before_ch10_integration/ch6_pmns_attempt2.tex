@@ -1,0 +1,255 @@
+% ==============================================================================
+% Chapter 6 Subsection: PMNS Attempt 2 — Overlap/Localization Model
+% Status: Partial success — Z6 submixing captures theta23, fails theta12/theta13
+% OPR-05 status: YELLOW (upgraded from RED)
+% ==============================================================================
+
+\subsection{Attempt PMNS-2: Overlap Model for Neutrino Mixing}
+\label{sec:ch6_pmns_attempt2}
+
+\begin{tcolorbox}[edcGuardrail, title=\textbf{Purpose}]
+This subsection applies the overlap/localization model (successful for CKM hierarchy
+in Chapter~\ref{sec:ch7_ckm}) to the PMNS matrix. The goal is to determine whether
+$\mathbb{Z}_6$ geometry can produce the observed pattern: \textbf{large}
+$\theta_{12}$, $\theta_{23}$ and \textbf{small} $\theta_{13}$.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Model Setup}
+\label{sec:ch6_overlap_setup}
+
+\paragraph{Overlap matrix ansatz.}
+Following the CKM approach, we construct an overlap matrix between flavor eigenstates
+(at positions $z_\alpha$) and mass eigenstates (at positions $z_i$) \tagP{}:
+\begin{equation}
+    O_{\alpha i} = \exp\left( -\frac{|z_\alpha - z_i|}{2\kappa} \right)
+    \label{eq:ch6_overlap_ansatz}
+\end{equation}
+where $\kappa$ is the localization scale. The PMNS matrix is obtained by unitarizing
+$O$ via SVD decomposition: $O = U\Sigma V^T \Rightarrow U_{\text{PMNS}} = UV^T$ \tagDc{}.
+
+\paragraph{Track A vs.\ Track B.}
+\begin{itemize}[nosep]
+    \item \textbf{Track A:} No free parameters. Flavor and mass positions determined
+          purely by $\mathbb{Z}_3$ or $\mathbb{Z}_6$ geometry.
+    \item \textbf{Track B:} One calibrated parameter (e.g., flavor weights or
+          localization asymmetry).
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Tested Variants}
+\label{sec:ch6_variants}
+
+We test four Track A variants and three Track B variants:
+
+\begin{table}[ht]
+\centering
+\caption{PMNS Attempt 2: Tested model variants}
+\label{tab:ch6_variants}
+\begin{tabular}{p{3.5cm}p{5.0cm}p{2.5cm}}
+\toprule
+\textbf{Variant} & \textbf{Description} & \textbf{Free params} \\
+\midrule
+\multicolumn{3}{c}{\textit{Track A (no calibration)}} \\
+\midrule
+DFT baseline & All $|U_{\alpha i}|^2 = 1/3$ (Attempt 1) & 0 \\
+A1: Uniform $\mathbb{Z}_3$ & Flavor and mass aligned at $\mathbb{Z}_3$ positions & 0 \\
+A2: $\mathbb{Z}_3$ offset & Mass basis rotated by $\pi/3$ relative to flavor & 0 \\
+A3: $\mathbb{Z}_6$ submixing & Flavor at $\mathbb{Z}_3$, mass at $\mathbb{Z}_6$ subset & 0 \\
+\midrule
+\multicolumn{3}{c}{\textit{Track B (one calibrated parameter)}} \\
+\midrule
+B1: $\nu_e$ suppression & Different $\kappa$ for electron neutrino & 1 \\
+B2: Hierarchical spacing & Non-uniform mass eigenstate positions & 1 \\
+B3: Flavor weights & Flavor-dependent overlap weights & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Results: Track A}
+\label{sec:ch6_track_a}
+
+The key finding is that \textbf{variant A3 ($\mathbb{Z}_6$ submixing) achieves
+partial success}:
+
+\begin{table}[ht]
+\centering
+\caption{Track A results vs.\ PDG 2024 \tagBL{}}
+\label{tab:ch6_track_a_results}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Variant} & $\sin^2\theta_{12}$ & $\sin^2\theta_{23}$ & $\sin^2\theta_{13}$
+    & \textbf{Score} & \textbf{Status} \\
+\midrule
+PDG 2024 \tagBL{} & 0.307 & 0.546 & 0.022 & --- & --- \\
+\midrule
+DFT baseline & 0.500 & 0.500 & 0.333 & 0.91 & \textcolor{red}{RED} \\
+A1: Uniform $\mathbb{Z}_3$ & 0.000 & 0.000 & 0.000 & 1.00 & \textcolor{red}{RED} \\
+A2: Offset & 0.120 & 0.120 & 0.043 & 0.76 & \textcolor{red}{RED} \\
+\textbf{A3: $\mathbb{Z}_6$ submixing} & 0.137 & \textbf{0.564} & 0.008 & 0.23 & \textcolor{orange}{YELLOW} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Key observation.}
+Variant A3 produces $\sin^2\theta_{23} = 0.564$, within 3\% of the observed value
+0.546 --- a \textbf{GREEN} result for atmospheric mixing \tagDc{}.
+
+\begin{tcolorbox}[colback=green!5, colframe=green!50!black,
+    title=\textbf{Success: $\theta_{23}$ from $\mathbb{Z}_6$ Geometry}]
+The near-maximal atmospheric mixing angle ($\theta_{23} \approx 45°$) emerges
+\textbf{naturally} from the $\mathbb{Z}_6 = \mathbb{Z}_2 \times \mathbb{Z}_3$
+submixing structure without any free parameters \tagDc{}.
+
+\textbf{Physical interpretation:} The $\mathbb{Z}_6$ structure places mass
+eigenstates at finer angular resolution than $\mathbb{Z}_3$ flavor states,
+producing maximal mixing in the $\mu$--$\tau$ sector.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Results: Track B}
+\label{sec:ch6_track_b}
+
+Counterintuitively, Track B variants perform \textbf{worse} than Track A:
+
+\begin{table}[ht]
+\centering
+\caption{Track B results (best parameter values)}
+\label{tab:ch6_track_b_results}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Variant} & \textbf{Cal.\ param} & $\sin^2\theta_{12}$ & $\sin^2\theta_{23}$
+    & $\sin^2\theta_{13}$ & \textbf{Score} & \textbf{Status} \\
+\midrule
+B1: $\nu_e$ supp.\ & $\epsilon = 1.5$ & 0.004 & 0.000 & 0.003 & 0.95 & \textcolor{red}{RED} \\
+B2: Spacing & $\delta = 0.3$ & 0.077 & 0.032 & 0.003 & 0.85 & \textcolor{red}{RED} \\
+B3: Weights & $w_e = 0.1$ & 0.031 & 0.000 & 0.000 & 0.96 & \textcolor{red}{RED} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Why Track B fails.}
+Introducing localization asymmetry to suppress $\theta_{13}$ also suppresses
+$\theta_{12}$ and $\theta_{23}$, destroying the large mixing that PMNS requires.
+\textbf{The overlap model naturally produces either democratic mixing (all large)
+or hierarchical mixing (all small), not the observed asymmetric pattern.}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Contrast with CKM}
+\label{sec:ch6_ckm_contrast}
+
+\begin{table}[ht]
+\centering
+\caption{Why overlap works for CKM but not PMNS}
+\label{tab:ch6_ckm_pmns_contrast}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Property} & \textbf{CKM (quarks)} & \textbf{PMNS (leptons)} \\
+\midrule
+Diagonal elements & $\sim 1$ & $\sim 0.5$ \\
+Off-diagonal pattern & Small ($\lambda$, $\lambda^2$, $\lambda^3$) & Large ($\theta_{12} \sim 33°$, $\theta_{23} \sim 45°$) \\
+One small element & None (all follow hierarchy) & Yes ($\theta_{13} \sim 8°$) \\
+Overlap model & Natural fit (exponential suppression) & Poor fit (requires breaking) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Conclusion:} The overlap model's success for CKM (hierarchical small mixing)
+does not transfer to PMNS (large mixing with asymmetric suppression).
+
+% ------------------------------------------------------------------------------
+\subsubsection{Updated Stoplight: PMNS Mechanism}
+\label{sec:ch6_pmns_stoplight_attempt2}
+
+\begin{table}[ht]
+\centering
+\caption{PMNS mixing audit (post-Attempt 2)}
+\label{tab:ch6_pmns_stoplight_v3}
+\begin{tabular}{lccl}
+\toprule
+\textbf{Claim} & \textbf{Status} & \textbf{Tag} & \textbf{Note} \\
+\midrule
+$U_{\text{PMNS}}$ exists & GREEN & \tagBL{} & Observed \\
+$\mathbb{Z}_3$ DFT baseline & FALSIFIED & \tagDc{} & $\theta_{13}$ off by $\times 15$ (Attempt 1) \\
+$\mathbb{Z}_6$ overlap model & YELLOW & \tagDc{} & $\theta_{23}$ correct, others fail \\
+$\theta_{23}$ from geometry & \textcolor{green!50!black}{\textbf{GREEN}} & \tagDc{} & Within 3\% (A3 variant) \\
+$\theta_{12}$ from geometry & RED & (open) & Factor 2 off \\
+$\theta_{13}$ from geometry & YELLOW & \tagDc{} & Closer than DFT ($\times 3$ vs $\times 15$) \\
+Breaking mechanism & YELLOW & \tagP{} & Now specifically identified \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Implications for OPR-05}
+\label{sec:ch6_opr05_update}
+
+The PMNS Attempt 2 results upgrade OPR-05 from RED to \textbf{YELLOW} with a
+computed partial success:
+
+\begin{tcolorbox}[colback=orange!5, colframe=orange!50!black,
+    title=\textbf{OPR-05 Status Update}]
+\textbf{Before (Attempt 1):} Pure $\mathbb{Z}_3$ symmetry predicts democratic mixing,
+falsified by $\theta_{13}$.
+
+\textbf{After (Attempt 2):}
+\begin{itemize}[nosep]
+    \item $\mathbb{Z}_6$ submixing \textbf{derives} $\theta_{23} \approx 45°$ \tagDc{}
+    \item Solar angle $\theta_{12}$ requires additional mechanism \tagP{}
+    \item Reactor angle $\theta_{13}$ improved but not reproduced \tagP{}
+\end{itemize}
+
+\textbf{Required physics:} A mechanism that breaks the $\nu_e$--$\nu_1$ overlap
+while preserving $\nu_\mu$--$\nu_3$ maximal mixing.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Summary: PMNS Attempt 2 Verdict}
+\label{sec:ch6_pmns_attempt2_summary}
+
+\begin{tcolorbox}[colback=blue!5, colframe=blue!50!black,
+    title=\textbf{Attempt PMNS-2: Final Verdict}]
+\textbf{Track A (no free params):}
+\begin{itemize}[nosep]
+    \item Best variant: A3 ($\mathbb{Z}_6$ submixing)
+    \item Overall score: 0.23 (YELLOW)
+    \item $\theta_{23}$: \textcolor{green!50!black}{\textbf{GREEN}} (0.564 vs 0.546)
+    \item $\theta_{12}$: \textcolor{red}{RED} (0.137 vs 0.307)
+    \item $\theta_{13}$: \textcolor{red}{RED} (0.008 vs 0.022)
+\end{itemize}
+
+\textbf{Track B (one Cal param):}
+All variants RED. Calibration destroys large mixing structure.
+
+\textbf{Key success:} Atmospheric mixing $\theta_{23}$ derived from geometry.
+
+\textbf{Key failure:} Solar mixing $\theta_{12}$ not reproduced by overlap model.
+
+\textbf{Epistemic upgrade:} OPR-05 now YELLOW with explicit breaking requirements.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Implications for Future Work}
+\label{sec:ch6_future_work}
+
+The partial success of $\mathbb{Z}_6$ submixing suggests that the EDC geometric
+framework captures \emph{part} of the PMNS structure, but additional physics
+is needed for the solar sector.
+
+\paragraph{\texorpdfstring{Candidate mechanisms for $\theta_{12}$.}{Candidate mechanisms for theta-12.}}
+\begin{enumerate}[nosep]
+    \item \textbf{Non-abelian extension:} The abelian $\mathbb{Z}_6$ cannot generate
+          the non-abelian structures ($A_4$, $S_4$) known to produce tri-bimaximal
+          mixing. An extended symmetry at the EDC action level might be required.
+
+    \item \textbf{Higgs profile anisotropy:} Different Higgs couplings to different
+          $\mathbb{Z}_3$ sectors could break the solar mixing toward 0.31.
+
+    \item \textbf{Charged lepton corrections:} The PMNS matrix is
+          $U_{\text{PMNS}} = U_\ell^\dagger U_\nu$. If charged lepton mixing is
+          non-trivial, it could contribute the missing $\theta_{12}$.
+\end{enumerate}
+
+\textbf{Status:} All candidates are \tagP{} and remain (open) for future work.
+

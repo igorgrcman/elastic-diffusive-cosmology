@@ -1,0 +1,216 @@
+% ==============================================================================
+% Chapter 6 Subsection: PMNS Attempt 1 — Z₃ Symmetry Baseline
+% Status: Negative result — DFT baseline falsified by θ₁₃
+% ==============================================================================
+
+\subsection{Attempt PMNS-1: Symmetry Baseline and Minimal Breaking}
+\label{sec:ch6_pmns_attempt1}
+
+\begin{tcolorbox}[edcGuardrail, title=\textbf{Purpose}]
+This subsection computes what the PMNS matrix would be under \textbf{exact
+$\mathbb{Z}_3$ symmetry}. The goal is to close the logical loop: either
+$\mathbb{Z}_3$ predicts the observed mixing, or it doesn't (requiring breaking).
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{The Discrete Fourier Transform Baseline}
+\label{sec:ch6_dft_baseline}
+
+Under the identification of three neutrino flavors with $\mathbb{Z}_3$ elements
+(Section~\ref{sec:ch6_three_flavors}), we assign angular positions:
+\begin{equation}
+    \phi_\alpha = \frac{2\pi\alpha}{3}, \qquad \alpha \in \{0, 1, 2\}
+    \quad\leftrightarrow\quad (\nu_e, \nu_\mu, \nu_\tau)
+    \label{eq:ch6_z3_positions}
+\end{equation}
+
+\paragraph{Hypothesis (minimal symmetric assumption).}
+If the Higgs/mass mechanism is $\mathbb{Z}_3$-invariant, the mass eigenstates
+are the \textbf{delocalized} Fourier modes \tagP{}:
+\begin{equation}
+    |\nu_i\rangle = \frac{1}{\sqrt{3}} \sum_{\alpha=0}^{2} \omega^{-\alpha i} |\nu_\alpha\rangle,
+    \qquad \omega = e^{2\pi i/3}
+    \label{eq:ch6_fourier_modes}
+\end{equation}
+
+This is the discrete Fourier transform (DFT) on $\mathbb{Z}_3$. The PMNS matrix
+becomes \tagDc{}:
+\begin{equation}
+    U_{\alpha i}^{\text{DFT}} = \langle\nu_\alpha|\nu_i\rangle
+    = \frac{1}{\sqrt{3}} \omega^{-\alpha i}
+    \label{eq:ch6_dft_pmns}
+\end{equation}
+
+Explicitly, with $\omega = e^{2\pi i/3}$ and $\omega^* = \omega^2 = e^{-2\pi i/3}$:
+\begin{equation}
+    U^{\text{DFT}} = \frac{1}{\sqrt{3}}
+    \begin{pmatrix}
+        1 & 1 & 1 \\
+        1 & \omega^* & \omega \\
+        1 & \omega & \omega^*
+    \end{pmatrix}
+    \label{eq:ch6_dft_matrix}
+\end{equation}
+
+\paragraph{Key property.}
+All elements have equal magnitude:
+\begin{equation}
+    |U_{\alpha i}^{\text{DFT}}|^2 = \frac{1}{3} \quad \forall\, \alpha, i
+    \label{eq:ch6_democratic}
+\end{equation}
+This is the ``democratic'' or ``trimaximal'' pattern.
+
+% ------------------------------------------------------------------------------
+\subsubsection{Predicted Mixing Angles}
+\label{sec:ch6_dft_angles}
+
+Using the standard PMNS parametrization \tagBL{}:
+\begin{align}
+    \sin^2\theta_{13} &= |U_{e3}|^2 \\
+    \sin^2\theta_{12} &= \frac{|U_{e2}|^2}{1 - |U_{e3}|^2} \\
+    \sin^2\theta_{23} &= \frac{|U_{\mu3}|^2}{1 - |U_{e3}|^2}
+\end{align}
+
+For the DFT matrix with $|U_{\alpha i}|^2 = 1/3$:
+\begin{align}
+    \sin^2\theta_{13}^{\text{DFT}} &= \frac{1}{3} \approx 0.333
+    \label{eq:ch6_theta13_dft} \\
+    \sin^2\theta_{12}^{\text{DFT}} &= \frac{1/3}{1 - 1/3} = \frac{1}{2} = 0.5
+    \label{eq:ch6_theta12_dft} \\
+    \sin^2\theta_{23}^{\text{DFT}} &= \frac{1/3}{1 - 1/3} = \frac{1}{2} = 0.5
+    \label{eq:ch6_theta23_dft}
+\end{align}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Comparison with PDG Data}
+\label{sec:ch6_dft_comparison}
+
+\begin{table}[ht]
+\centering
+\caption{DFT baseline vs.\ observed PMNS angles}
+\label{tab:ch6_dft_comparison}
+\begin{tabular}{lcccl}
+\toprule
+\textbf{Angle} & \textbf{DFT Prediction} & \textbf{PDG 2024} \tagBL{} & \textbf{Ratio} & \textbf{Status} \\
+\midrule
+$\sin^2\theta_{13}$ & 0.333 & $0.0220 \pm 0.0007$ & $\times 15$ & \textcolor{red}{\textbf{FALSIFIED}} \\
+$\sin^2\theta_{12}$ & 0.500 & $0.307 \pm 0.013$ & $\times 1.6$ & \textcolor{orange}{\textbf{OFF}} \\
+$\sin^2\theta_{23}$ & 0.500 & $0.546 \pm 0.021$ & $\times 0.9$ & \textcolor{green!50!black}{\textbf{OK}} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{tcolorbox}[colback=red!5, colframe=red!50!black,
+    title=\textbf{Verdict: DFT Baseline FALSIFIED}]
+The exact $\mathbb{Z}_3$ symmetric (DFT) mixing pattern predicts
+$\sin^2\theta_{13} = 1/3$, which is \textbf{15 times larger} than the observed
+value of $\approx 0.022$.
+
+\textbf{Conclusion:} The observed small $\theta_{13}$ \emph{requires breaking
+of the naive $\mathbb{Z}_3$ symmetry}.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Implications: What Breaking Is Needed?}
+\label{sec:ch6_breaking}
+
+The failure of the DFT baseline identifies the key requirement: the electron
+neutrino must have \textbf{suppressed coupling} to the third mass eigenstate
+($|U_{e3}|^2 \ll 1/3$).
+
+\paragraph{Candidate breaking mechanisms.}
+\begin{enumerate}[nosep]
+    \item \textbf{$\mathbb{Z}_2$ breaking from $\mathbb{Z}_6$:}
+          The full hexagonal symmetry is $\mathbb{Z}_6 = \mathbb{Z}_2 \times \mathbb{Z}_3$.
+          The $\mathbb{Z}_2$ factor distinguishes even/odd modes and could
+          selectively suppress $U_{e3}$ \tagP{}.
+
+    \item \textbf{Localization asymmetry:}
+          If $\nu_e$ is more localized than $\nu_\mu, \nu_\tau$ (different
+          penetration depths $\kappa_\alpha^{-1}$), the overlap with the third
+          mass eigenstate could be suppressed \tagP{}.
+
+    \item \textbf{Higgs profile anisotropy:}
+          If the Higgs/mass mechanism couples differently to different $\mathbb{Z}_3$
+          sectors, the democratic mixing is broken \tagP{}.
+\end{enumerate}
+
+\paragraph{Minimal perturbation estimate.}
+To reduce $\sin^2\theta_{13}$ from $1/3$ to $\sim 0.02$, we need:
+\begin{equation}
+    |U_{e3}|^2 \approx \frac{1}{3} \cdot \epsilon^2, \qquad
+    \epsilon \approx \sqrt{\frac{0.022}{0.333}} \approx 0.26
+    \label{eq:ch6_epsilon}
+\end{equation}
+A $\sim 25\%$ breaking of $\mathbb{Z}_3$ symmetry in the $\nu_e$--$\nu_3$
+coupling would suffice.
+
+\begin{tcolorbox}[edcGuardrail, title=\textbf{Status}]
+The breaking mechanism is \textbf{postulated} \tagP{}, not derived.
+Explicit computation of $\epsilon$ from EDC geometry remains (open).
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Alternative: Tri-Bimaximal as Target}
+\label{sec:ch6_tbm}
+
+For reference, the tri-bimaximal (TBM) mixing pattern \tagBL{}:
+\begin{equation}
+    U^{\text{TBM}} =
+    \begin{pmatrix}
+        \sqrt{2/3} & 1/\sqrt{3} & 0 \\
+        -1/\sqrt{6} & 1/\sqrt{3} & 1/\sqrt{2} \\
+        1/\sqrt{6} & -1/\sqrt{3} & 1/\sqrt{2}
+    \end{pmatrix}
+    \label{eq:ch6_tbm}
+\end{equation}
+predicts $\theta_{13} = 0$, $\sin^2\theta_{12} = 1/3$, $\sin^2\theta_{23} = 1/2$.
+
+TBM arises from discrete flavor symmetries like $A_4$ or $S_4$ \tagBL{}.
+However, $\mathbb{Z}_6$ is abelian and \textbf{cannot contain} the non-abelian
+$A_4$ as a subgroup \tagM{}. Therefore:
+
+\begin{tcolorbox}[colback=orange!5, colframe=orange!50!black,
+    title=\textbf{Structural Limitation}]
+The EDC $\mathbb{Z}_6$ hexagonal symmetry alone \textbf{cannot derive}
+tri-bimaximal mixing. TBM-like patterns would require additional structure
+beyond $\mathbb{Z}_6$ \tagP{}.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+\subsubsection{Updated Stoplight: PMNS Mechanism}
+\label{sec:ch6_pmns_stoplight_updated}
+
+\begin{table}[ht]
+\centering
+\caption{Updated PMNS mixing audit (post-Attempt 1)}
+\label{tab:ch6_pmns_stoplight_v2}
+\begin{tabular}{lccl}
+\toprule
+\textbf{Claim} & \textbf{Status} & \textbf{Tag} & \textbf{Note} \\
+\midrule
+$U_{\text{PMNS}}$ exists & GREEN & \tagBL{} & Observed \\
+$\mathbb{Z}_3$ DFT baseline computed & GREEN & \tagDc{} & Eq.~\eqref{eq:ch6_dft_matrix} \\
+DFT predicts $\theta_{13}$ & COMPUTED & \tagDc{} & $\sin^2\theta_{13} = 1/3$ \\
+DFT vs.\ PDG comparison & \textcolor{red}{FALSIFIED} & --- & Factor 15 off \\
+Breaking mechanism identified & YELLOW & \tagP{} & $\sim 25\%$ anisotropy needed \\
+Explicit $\epsilon$ derivation & RED & (open) & Not computed \\
+$\theta_{12}, \theta_{23}$ from geometry & RED & (open) & Requires breaking model \\
+CP phase $\delta$ & RED & (open) & Not addressed \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Overall verdict.}
+The PMNS attempt upgrades from pure RED to \textbf{YELLOW with a computed
+negative baseline}:
+\begin{itemize}[nosep]
+    \item We now know what $\mathbb{Z}_3$ symmetry predicts (DFT matrix) \tagDc{}
+    \item We know it fails for $\theta_{13}$ by a factor of 15 \tagDc{}
+    \item We know breaking is required at the $\sim 25\%$ level \tagI{}
+    \item The specific breaking mechanism remains open \tagP{}
+\end{itemize}
+
+This closes the logical loop: the question ``what does $\mathbb{Z}_3$ predict
+for PMNS?'' now has a concrete, falsified answer.
+
