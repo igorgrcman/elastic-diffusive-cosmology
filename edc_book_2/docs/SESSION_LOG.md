@@ -28,6 +28,12 @@
   - M5 → Z6 symmetry proof and axiom extraction
   - ADDENDUM_V_r_DERIVATION.md, AXIOM_EXTRACT.md, COMPATIBLE_SYMMETRIES.md
   - M5_TO_Z6_PROOF.md, PATCH_IMPACT_NOTE.md, SHORT_SUMMARY.txt
+- `src/derivations/*.md` (23 files)
+  - DERIVE_* series (9): L0, κ, ω₀, M, prefactor A derivations
+  - M6_* series (9): Topological model exploration, sensitivity, geometry
+  - INSTANTON_DERIVATION_CHAIN.md, EPISTEMIC_CORRECTION_L0_MAP.md
+  - NEUTRON_LIFETIME_NARRATIVE_SYNTHESIS.md, ROUTE_F_STATUS_BOX.md
+  - SESSION_LOG_NEUTRON_LIFETIME.md
 
 ---
 
