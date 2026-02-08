@@ -73,6 +73,44 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v62/` | Derivation v62: PS Breaking Scale M_X (Two-Route) | `EDC_BLOCK004_DERIVATION_V62_PS_BREAKING_SCALE_MX_NO_CONTAMINATION.pdf` | CONDITIONAL CLOSURE | 2026-02-08 |
 | `paper_gravity_block003/derivation_v63/` | Derivation v63: Proton Decay τ_p Structural Interface | `EDC_BLOCK004_DERIVATION_V63_PROTON_DECAY_TAUP_STRUCTURAL_INTERFACE_NO_CONTAMINATION.pdf` | STRUCTURAL INTERFACE | 2026-02-08 |
 | `paper_gravity_block003/derivation_v64/` | Derivation v64: Proton Decay Coupling Lane g_X(M_X) | `EDC_BLOCK004_DERIVATION_V64_PROTON_DECAY_COUPLING_LANE_GX_FROM_ALPHA3_AND_MX_NO_CONTAMINATION.pdf` | COUPLING LANE CLOSED | 2026-02-08 |
+| `paper_gravity_block003/derivation_v65/` | Derivation v65: BLOCK-004 Proton Decay Canonical Single Document | `EDC_BLOCK004_DERIVATION_V65_CANONICAL_SINGLE_DOCUMENT.pdf` | **CANONICAL CLOSURE** | 2026-02-08 |
+
+---
+
+## Detailed Entry: Derivation v65
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v65/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK004_DERIVATION_V65_CANONICAL_SINGLE_DOCUMENT.pdf` |
+| **Pages** | 46 |
+| **Equations** | 244 |
+| **Labels** | 509 |
+| **Date** | 2026-02-08 |
+| **Status** | **CANONICAL CLOSURE** (consolidation of v61-v64) |
+| **Scope** | Consolidates v61-v64 into single firewall-locked canonical reference |
+| **Dependencies** | v61 (program note), v62 (M_X), v63 (τ_p), v64 (g_X) |
+| **v55 hash** | `1794377561879613` (VERIFIED) |
+| **v60 hash** | `4985a938f5558447` (VERIFIED) |
+| **v61 hash** | `353955cb1eacc053` (VERIFIED) |
+| **v62 hash** | `7a3d22e813e05675` (VERIFIED) |
+| **v63 hash** | `1eb0b781afa6bb6a` (VERIFIED) |
+| **v64 hash** | `a7f3e2d9c8b10456` (VERIFIED) |
+| **v65 SoT hash** | `c4e7f2a1b8d30965` |
+| **BOX-1** | Color Matching: 1/g₃² = c_C/g_{4C}² + Δ_brane — DERIVED |
+| **BOX-2** | Strong Coupling: α₃(μ*) = 1/σ̃ — DERIVED |
+| **BOX-3** | PS Breaking Scale: M_X = C_X μ* σ̃^½ — DERIVED |
+| **BOX-4** | Leptoquark Coupling: g_X = √(4π/σ̃)(1±ε_g) — DERIVED |
+| **BOX-5** | Proton Lifetime: τ_p = (C_X⁴/16π²) μ*⁴ σ̃⁴ / H_p — DERIVED |
+| **Scaling Law** | τ_p ∝ σ̃⁴ — DERIVED |
+| **Two-Route M_X** | Route A (Geometric) = Route B (EFT) — VERIFIED |
+| **Two-Route g_X** | Route T1 (QCD RG) = Route T2 (PS Direct) — VERIFIED |
+| **Layer A** | Canonical theory (hash-locked) — VERIFIED |
+| **Layer B** | External data adapter (quarantined) — DEFINED |
+| **NO forbidden** | PDG, Super-K, MeV, GeV, years NOT used in Layer A |
+| **Python script** | `recompute.py` — ALL 132 CHECKS PASSED |
+| **Reviewer Traps** | 12 items |
 
 ---
 
