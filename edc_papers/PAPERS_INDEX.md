@@ -71,6 +71,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v60/` | Derivation v60: BLOCK-004 Canonical Single Document | `EDC_BLOCK004_DERIVATION_V60_BLOCK004_CANONICAL_SINGLE_DOCUMENT.pdf` | **BLOCK004 CLOSED** | 2026-02-07 |
 | `paper_gravity_block003/derivation_v61/` | Derivation v61: Proton Decay Program Note (PS) | `EDC_BLOCK004_DERIVATION_V61_PROTON_DECAY_PROGRAM_NOTE_PS_NO_CONTAMINATION.pdf` | PROGRAM NOTE — OPEN | 2026-02-07 |
 | `paper_gravity_block003/derivation_v62/` | Derivation v62: PS Breaking Scale M_X (Two-Route) | `EDC_BLOCK004_DERIVATION_V62_PS_BREAKING_SCALE_MX_NO_CONTAMINATION.pdf` | CONDITIONAL CLOSURE | 2026-02-08 |
+| `paper_gravity_block003/derivation_v63/` | Derivation v63: Proton Decay τ_p Structural Interface | `EDC_BLOCK004_DERIVATION_V63_PROTON_DECAY_TAUP_STRUCTURAL_INTERFACE_NO_CONTAMINATION.pdf` | STRUCTURAL INTERFACE | 2026-02-08 |
 
 ---
 
@@ -1662,5 +1663,41 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **Python script** | `recompute.py` — ALL 35 CHECKS PASSED |
 | **Equations** | 131 environments |
 | **Labels** | 245 |
+| **Reviewer Traps** | 12 items |
+| **Release bundle** | `release/` directory with full package |
+
+---
+
+### Derivation v63: Proton Decay τ_p Structural Interface
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v63/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK004_DERIVATION_V63_PROTON_DECAY_TAUP_STRUCTURAL_INTERFACE_NO_CONTAMINATION.pdf` |
+| **Pages** | 27 |
+| **Date** | 2026-02-08 |
+| **Status** | STRUCTURAL INTERFACE |
+| **Scope** | Proton lifetime τ_p as function of σ̃ |
+| **v63 SoT hash** | `1eb0b781afa6bb6a` |
+| **Parent hash (v62)** | `7a3d22e813e05675` |
+| **Parent hash (v61)** | `353955cb1eacc053` |
+| **Core result** | τ_p = (C_X⁴/16π²) · μ*⁴ · σ̃⁴ / H_p |
+| **Scaling law** | τ_p ∝ σ̃⁴ [D] |
+| **Operator catalog** | 6 dimension-6 operators (LLLL, RRRR, LLRR, RRLL, LRLR, RLRL) [D] |
+| **v62 import** | M_X = C_X · μ* · σ̃^(1/2) [D] |
+| **v55 import** | g_X = √(4π/σ̃) [D] |
+| **Open Surface** | σ̃ [P], H_p (symbolic) [P] |
+| **v61 closure** | M_X open variable resolved via v62 [D] |
+| **API-TAU1** | τ_p calculator from σ̃ [D] |
+| **API-TAU2** | Γ_p calculator from σ̃ [D] |
+| **Layer A** | Operator catalog, rate structure, M_X import — HASH-LOCKED |
+| **Layer B** | Parameter sweep, experimental comparison — QUARANTINED |
+| **No Backflow** | L_B ∩ L_A = ∅ — THEOREM |
+| **No-Fit Policy** | σ̃ swept, NOT fitted — ENFORCED |
+| **Dependencies** | v55 (g_PS), v61 (proton decay program), v62 (M_X) |
+| **Python script** | `recompute.py` — ALL 52 CHECKS PASSED |
+| **Equations** | 125 environments |
+| **Labels** | 257 |
 | **Reviewer Traps** | 12 items |
 | **Release bundle** | `release/` directory with full package |
