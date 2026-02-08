@@ -34,6 +34,8 @@
   - INSTANTON_DERIVATION_CHAIN.md, EPISTEMIC_CORRECTION_L0_MAP.md
   - NEUTRON_LIFETIME_NARRATIVE_SYNTHESIS.md, ROUTE_F_STATUS_BOX.md
   - SESSION_LOG_NEUTRON_LIFETIME.md
+- `P*_REPORT.md` and `P*_CHANGELOG.md` (17 files)
+  - P2-P5 compliance reports, changelogs, and review documentation
 
 ---
 
