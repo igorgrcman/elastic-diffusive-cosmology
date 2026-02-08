@@ -23,6 +23,12 @@
 - Added LaTeX build artifact patterns to `.gitignore`
 - Created forensic patch snapshots in `_local_patches/P65/`
 
+### Files Added
+- `src/aside_m5_to_z6_proof/` (6 files)
+  - M5 → Z6 symmetry proof and axiom extraction
+  - ADDENDUM_V_r_DERIVATION.md, AXIOM_EXTRACT.md, COMPATIBLE_SYMMETRIES.md
+  - M5_TO_Z6_PROOF.md, PATCH_IMPACT_NOTE.md, SHORT_SUMMARY.txt
+
 ---
 
 ## 2026-02-01: Superheavy Predictions + Prefactor Validation
