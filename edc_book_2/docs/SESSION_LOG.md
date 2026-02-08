@@ -36,6 +36,11 @@
   - SESSION_LOG_NEUTRON_LIFETIME.md
 - `P*_REPORT.md` and `P*_CHANGELOG.md` (17 files)
   - P2-P5 compliance reports, changelogs, and review documentation
+- `audit/` directory (222 files)
+  - jsonl_mining/: Claude session extraction tools and reports
+  - radioactivity_v7_*: V7.1-V7.8 model development audit trail
+  - radioactivity_forbidden_*: Exploratory research archives
+  - FORENSIC_INVENTORY_REPORT.md
 
 ---
 
