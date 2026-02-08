@@ -509,7 +509,7 @@ def plot_superheavy_comparison(results: List[Dict], output_path: str = None):
     ax.set_title('Superheavy α-Decay: GN vs Frustration-Corrected Model', fontsize=11)
     ax.grid(True, alpha=0.3)
 
-    # Add annotation box
+    # Add annotation box (positioned to avoid data overlap)
     textstr = '\n'.join([
         'Model: V7.8 M2',
         f'g = {COEF["g"]:.2f} ± {COEF["g_se"]:.2f}',
@@ -517,8 +517,8 @@ def plot_superheavy_comparison(results: List[Dict], output_path: str = None):
         'Improvement: 5.3×'
     ])
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.8)
-    ax.text(0.02, 0.02, textstr, transform=ax.transAxes, fontsize=9,
-            verticalalignment='bottom', bbox=props)
+    ax.text(0.98, 0.02, textstr, transform=ax.transAxes, fontsize=9,
+            verticalalignment='bottom', horizontalalignment='right', bbox=props)
 
     # --- RIGHT PLOT: Residuals by d(n) ---
     ax2 = ax2
@@ -544,7 +544,7 @@ def plot_superheavy_comparison(results: List[Dict], output_path: str = None):
     ax2.set_xlabel(r'd(n) coordination distance', fontsize=12)
     ax2.set_ylabel(r'Residual: $\log_{10}(t_{exp}) - \log_{10}(t_{pred})$', fontsize=12)
     ax2.set_title('Residuals vs Coordination Distance\n(±1.5 dex pass criterion)', fontsize=11)
-    ax2.legend(loc='upper right')
+    ax2.legend(loc='center right')  # Moved down from upper right
     ax2.grid(True, alpha=0.3)
 
     plt.tight_layout()

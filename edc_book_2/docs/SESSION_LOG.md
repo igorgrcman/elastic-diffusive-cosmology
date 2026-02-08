@@ -1,5 +1,30 @@
 # EDC Book 2 - Session Log
 
+## 2026-02-07: V7.8 Topological Pinning Integration + Repo Hygiene
+
+### Session Goals
+- Integrate V7.8 M2 topological pinning model updates into book section
+- Update superheavy predictions figure with improved layout
+- Clean up repository LaTeX build artifacts
+
+### Files Modified
+- `src/derivations/BOOK_SECTION_TOPOLOGICAL_PINNING_MODEL.tex` (+365 lines)
+  - Added "What this document is" section with epistemic scope
+  - Added "Epistemic ledger" with [BL], [I], [Dc], [Cal], [P] tags
+  - Updated Results Snapshot table to V7.8 M2 Model
+  - Added V7.8 M2 superheavy validation section
+- `src/derivations/code/superheavy_predictions.py` (layout fixes)
+  - Repositioned annotation box to avoid data overlap
+  - Changed legend position from 'upper right' to 'center right'
+- `src/derivations/figures/FIG_SUPERHEAVY_GN_VS_FRUSTRATION.png` (regenerated)
+- `reorganized/main.pdf` (canonical output updated)
+
+### Repo Hygiene
+- Added LaTeX build artifact patterns to `.gitignore`
+- Created forensic patch snapshots in `_local_patches/P65/`
+
+---
+
 ## 2026-02-01: Superheavy Predictions + Prefactor Validation
 
 ### Session Goals
