@@ -2,7 +2,7 @@
 """
 recompute.py - Verification checks for cosmology σ̃ export lane
 
-Runs >= 35 checks and exits nonzero on failure.
+Runs >= 48 checks and exits nonzero on failure.
 No external packages required.
 """
 
@@ -30,7 +30,26 @@ REQUIRED_FILES = [
     "SIGMA_TILDE_EXPORT_CONTRACT.md",
     "build_sigma_tilde_stub.py",
     "recompute.py",
-    "TSTAR_DEFINITION.md"
+    "TSTAR_DEFINITION.md",
+    "TSTAR_DERIVATION_5D.md",
+    "REPORT.md"
+]
+
+# Additional forbidden patterns for no-backflow guard
+NOBACKFLOW_FORBIDDEN = [
+    "PDG", "Super-K", "SuperK", "Kamiokande", "SK",
+    "experimental", "lattice", "bound", "limit",
+    "fit", "optimiz"
+]
+
+# Required headings in TSTAR_DERIVATION_5D.md
+DERIVATION_REQUIRED_HEADINGS = [
+    "Conventions",
+    "5D Action",
+    "Israel Junction",
+    "Route A",
+    "Route B",
+    "Dimensional Checks"
 ]
 
 
@@ -380,9 +399,96 @@ def main():
     print()
 
     # ============================================================
-    # Section 8: Path/Scope Verification (3 checks)
+    # Section 8: 5D Derivation Content (6 checks)
     # ============================================================
-    print("Section 8: Path/Scope Verification")
+    print("Section 8: 5D Derivation Content")
+    print("-" * 40)
+
+    # Read TSTAR_DERIVATION_5D.md content
+    deriv_path = LANE_DIR / "TSTAR_DERIVATION_5D.md"
+    deriv_content = ""
+    if deriv_path.exists():
+        try:
+            with open(deriv_path, "r", encoding="utf-8") as f:
+                deriv_content = f.read()
+        except IOError:
+            pass
+
+    # Check for required headings
+    for heading in DERIVATION_REQUIRED_HEADINGS:
+        total += 1
+        has_heading = heading in deriv_content
+        passed += check(f"D5-{DERIVATION_REQUIRED_HEADINGS.index(heading)+1:03d}: Contains '{heading}' section", has_heading)
+
+    print()
+
+    # ============================================================
+    # Section 9: 5D Derivation Equations (3 checks)
+    # ============================================================
+    print("Section 9: 5D Derivation Equations")
+    print("-" * 40)
+
+    # Check for T_* = pattern
+    total += 1
+    import re
+    has_tstar_eq = bool(re.search(r"T_\*\s*=", deriv_content) or "T_*^{(A)}" in deriv_content or "T_*^{(B)}" in deriv_content)
+    passed += check("DE-001: Contains T_* = equation", has_tstar_eq)
+
+    # Check for Israel/K_{μν} junction equation
+    total += 1
+    has_israel = "K_μν" in deriv_content or "K_{μν}" in deriv_content or "[K_" in deriv_content or "Israel" in deriv_content
+    passed += check("DE-002: Contains Israel junction / K_μν", has_israel)
+
+    # Check for σ̃ = σ / T_* in derivation
+    total += 1
+    has_sigma_ratio = "σ̃ = σ / T_*" in deriv_content or "σ/T_*" in deriv_content or "σ̃ = σ/T_*" in deriv_content
+    passed += check("DE-003: Contains σ̃ = σ / T_* formula", has_sigma_ratio)
+
+    print()
+
+    # ============================================================
+    # Section 10: No-Backflow Guard (NB-001)
+    # ============================================================
+    print("Section 10: No-Backflow Guard")
+    print("-" * 40)
+
+    # Scan all lane documents for forbidden patterns
+    nb_files = [
+        "TSTAR_DERIVATION_5D.md",
+        "TSTAR_DEFINITION.md",
+        "SIGMA_TILDE_EXPORT_CONTRACT.md",
+        "README.md"
+    ]
+
+    total += 1
+    nb_pass = True
+    nb_violations = []
+    for fname in nb_files:
+        fpath = LANE_DIR / fname
+        if fpath.exists():
+            ok, pattern = check_forbidden_in_file(fpath, NOBACKFLOW_FORBIDDEN)
+            if not ok:
+                nb_pass = False
+                nb_violations.append(f"{fname}: '{pattern}'")
+
+    passed += check("NB-001: No-backflow guard (all docs)", nb_pass)
+    if not nb_pass:
+        for v in nb_violations:
+            print(f"         Violation: {v}")
+
+    # Also check TSTAR_DERIVATION_5D.md in firewall
+    total += 1
+    ok, pattern = check_forbidden_in_file(deriv_path, FORBIDDEN_PATTERNS)
+    passed += check("FP-006: TSTAR_DERIVATION_5D.md clean (firewall)", ok)
+    if not ok and pattern != "FILE_ERROR":
+        print(f"         Found: '{pattern}'")
+
+    print()
+
+    # ============================================================
+    # Section 11: Path/Scope Verification (3 checks)
+    # ============================================================
+    print("Section 11: Path/Scope Verification")
     print("-" * 40)
 
     total += 1

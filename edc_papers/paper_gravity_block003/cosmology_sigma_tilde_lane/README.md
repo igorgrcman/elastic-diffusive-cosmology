@@ -19,8 +19,11 @@ parameter σ̃ (sigma-tilde) from EDC cosmology to BLOCK-004 proton decay predic
 |------|-------------|
 | `sigma_tilde_schema.json` | JSON Schema for export format |
 | `SIGMA_TILDE_EXPORT_CONTRACT.md` | Interface contract (A-APIσ1/2/3) |
+| `TSTAR_DEFINITION.md` | T_* definition and derivation roadmap |
+| `TSTAR_DERIVATION_5D.md` | T_* derivation from 5D action (two-route) |
 | `build_sigma_tilde_stub.py` | Generates stub JSON with TBD values |
-| `recompute.py` | Verification checks (≥25) |
+| `recompute.py` | Verification checks (≥48) |
+| `REPORT.md` | Acceptance criteria and status |
 
 ## Consumer
 
