@@ -1,8 +1,8 @@
 # Activation Gate — BLOCK-004 v67
 
-## Version: 1.0
+## Version: 1.1
 ## Date: 2026-02-09
-## Status: IMPLEMENTED
+## Status: ACTIVE (DERIVED)
 
 ---
 
