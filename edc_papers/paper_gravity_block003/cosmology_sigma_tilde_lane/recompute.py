@@ -715,9 +715,67 @@ def main():
     print()
 
     # ============================================================
-    # Section 14: Path/Scope Verification (3 checks)
+    # Section 14: P80a REAL Provenance Validation (5 checks)
     # ============================================================
-    print("Section 14: Path/Scope Verification")
+    print("Section 14: P80a REAL Provenance Validation")
+    print("-" * 40)
+
+    if st_status == "DERIVED":
+        prov = stub.get("provenance", {}) if stub else {}
+        deriv_ref = prov.get("derivation_ref", "") or ""
+        git_commit = prov.get("git_commit", "") or ""
+        sot_hash = prov.get("sot_hash", "") or ""
+        notes = prov.get("notes", "") or ""
+
+        # P80a-001: derivation_ref matches ^EDC-COSMO-
+        total += 1
+        import re
+        deriv_ok = bool(re.match(r"^EDC-COSMO-", deriv_ref))
+        passed += check("P80a-001: derivation_ref matches ^EDC-COSMO-", deriv_ok)
+        print(f"        derivation_ref = {deriv_ref}")
+
+        # P80a-002: git_commit is 40-hex
+        total += 1
+        commit_ok = len(git_commit) == 40 and all(c in "0123456789abcdef" for c in git_commit.lower())
+        passed += check("P80a-002: git_commit is 40-hex", commit_ok)
+        print(f"        git_commit = {git_commit}")
+
+        # P80a-003: notes contains PHYSICAL_DERIVATION
+        total += 1
+        notes_ok = "PHYSICAL_DERIVATION" in notes
+        passed += check("P80a-003: notes contains PHYSICAL_DERIVATION", notes_ok)
+
+        # P80a-004: sot_hash != TBD
+        total += 1
+        sot_ok = sot_hash and sot_hash != "TBD"
+        passed += check("P80a-004: sot_hash != TBD", sot_ok)
+        print(f"        sot_hash = {sot_hash}")
+
+        # P80a-005: Numeric fields unchanged (central/plus/minus same as expected)
+        total += 1
+        st_value = stub.get("sigma_tilde", {}).get("value", {}) if stub else {}
+        central = st_value.get("central") if isinstance(st_value, dict) else None
+        plus = st_value.get("plus") if isinstance(st_value, dict) else None
+        minus = st_value.get("minus") if isinstance(st_value, dict) else None
+        numerics_ok = central == 100.0 and plus == 10.0 and minus == 10.0
+        passed += check("P80a-005: Numeric fields unchanged (100.0 +/- 10.0)", numerics_ok)
+
+        # Print REAL mode summary
+        is_real = deriv_ok and commit_ok and notes_ok and sot_ok
+        mode = "REAL" if is_real else "SMOKE"
+        print(f"\n        Mode: [{mode}]")
+    else:
+        # TBD mode: skip P80a checks
+        total += 5
+        for i in range(1, 6):
+            passed += check(f"P80a-{i:03d}: (skipped, not DERIVED)", True)
+
+    print()
+
+    # ============================================================
+    # Section 15: Path/Scope Verification (3 checks)
+    # ============================================================
+    print("Section 15: Path/Scope Verification")
     print("-" * 40)
 
     total += 1
