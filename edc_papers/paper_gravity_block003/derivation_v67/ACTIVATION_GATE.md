@@ -1,8 +1,28 @@
 # Activation Gate — BLOCK-004 v67
 
-## Version: 1.1
+## Version: 1.2
 ## Date: 2026-02-09
 ## Status: ACTIVE (DERIVED)
+
+---
+
+> **WARNING: SMOKE-TEST MODE — NUMERICS ARE INTEGRATION-ONLY UNTIL REAL PROVENANCE**
+>
+> See `SMOKE_TEST_POLICY.md` for REAL vs SMOKE criteria.
+
+---
+
+## 0. REAL/SMOKE Mode Matrix
+
+| Gate Status | Mode | Layer B Numeric | Citation Allowed |
+|-------------|------|-----------------|------------------|
+| TBD | N/A | BLOCKED | NO |
+| DERIVED | SMOKE | Allowed (test only) | NO |
+| DERIVED | REAL | Allowed (physical) | YES |
+| IMPORTED | SMOKE | Allowed (test only) | NO |
+| IMPORTED | REAL | Allowed (physical) | YES |
+
+**Current mode:** SMOKE (provenance.notes lacks `PHYSICAL_DERIVATION`)
 
 ---
 

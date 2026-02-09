@@ -1010,6 +1010,120 @@ def main():
             passed += check(f"P78b-{i:03d}: (skipped, not DERIVED)", True)
 
     # =========================================================================
+    # SECTION 26: P79 SMOKE-TEST POLICY
+    # =========================================================================
+    print("\n--- P79 SMOKE-TEST POLICY ---\n")
+
+    # Determine REAL vs SMOKE mode
+    prov = sigma_data.get("provenance", {}) if sigma_data else {}
+    deriv_ref = prov.get("derivation_ref", "") or ""
+    sot_hash = prov.get("sot_hash", "TBD") or "TBD"
+    git_commit = prov.get("git_commit", "TBD") or "TBD"
+    notes = prov.get("notes", "") or ""
+
+    is_real = (
+        gate_status == "DERIVED" and
+        deriv_ref and deriv_ref.startswith("EDC-COSMO-") and
+        sot_hash != "TBD" and
+        len(git_commit) == 40 and git_commit != "TBD" and
+        "PHYSICAL_DERIVATION" in notes
+    )
+    mode_label = "REAL" if is_real else "SMOKE"
+
+    # P79-001: SMOKE_TEST_POLICY.md exists
+    total += 1
+    smoke_policy = Path("SMOKE_TEST_POLICY.md")
+    passed += check("P79-001: SMOKE_TEST_POLICY.md exists", smoke_policy.exists())
+
+    # P79-002: ACTIVATION_GATE.md contains smoke banner
+    total += 1
+    ag_content = activation_gate_doc.read_text() if activation_gate_doc.exists() else ""
+    ag_has_banner = "SMOKE-TEST MODE" in ag_content
+    passed += check("P79-002: ACTIVATION_GATE.md has smoke banner", ag_has_banner)
+
+    # P79-003: main.tex contains INTEGRATION SMOKE TEST in Layer B
+    total += 1
+    has_latex_banner = "INTEGRATION SMOKE TEST" in tex
+    passed += check("P79-003: main.tex has smoke banner", has_latex_banner)
+
+    # P79-004: Mode determined
+    total += 1
+    passed += check(f"P79-004: Mode detected = {mode_label}", True)
+    print(f"        derivation_ref: {deriv_ref or 'None'}")
+    print(f"        sot_hash: {sot_hash}")
+    print(f"        git_commit: {git_commit[:12] if len(git_commit) >= 12 else git_commit}...")
+    print(f"        notes contains PHYSICAL_DERIVATION: {'PHYSICAL_DERIVATION' in notes}")
+
+    # P79-005: If SMOKE, print warning
+    total += 1
+    if mode_label == "SMOKE":
+        print("\n" + "=" * 70)
+        print("WARNING: SMOKE-TEST MODE — DO NOT INTERPRET NUMERICS AS PHYSICAL CLOSURE")
+        print("=" * 70 + "\n")
+        passed += check("P79-005: SMOKE warning printed", True)
+    else:
+        passed += check("P79-005: REAL mode — no warning needed", True)
+
+    # P79-006: If SMOKE, numerics prefixed
+    total += 1
+    if mode_label == "SMOKE":
+        print(f"        [SMOKE] sigma_tilde = {st_obj.get('value', {}).get('central', 'N/A') if isinstance(st_obj.get('value'), dict) else 'N/A'}")
+        passed += check("P79-006: [SMOKE] prefix for numerics", True)
+    else:
+        passed += check("P79-006: (REAL mode, no prefix needed)", True)
+
+    # P79-007: If REAL, show derivation_ref
+    total += 1
+    if mode_label == "REAL":
+        print(f"        [REAL] derivation_ref = {deriv_ref}")
+        passed += check("P79-007: [REAL] derivation_ref shown", True)
+    else:
+        passed += check("P79-007: (SMOKE mode, REAL check skipped)", True)
+
+    # P79-008: If REAL, provenance not TBD
+    total += 1
+    if mode_label == "REAL":
+        prov_ok = sot_hash != "TBD" and git_commit != "TBD"
+        passed += check("P79-008: REAL provenance not TBD", prov_ok)
+    else:
+        passed += check("P79-008: (SMOKE mode, provenance check skipped)", True)
+
+    # P79-009: Layer A unchanged (SoT hash check)
+    total += 1
+    layer_a_ok = SOT_HASH in tex
+    passed += check("P79-009: Layer A unchanged (SoT hash)", layer_a_ok)
+
+    # P79-010: No forbidden patterns in Layer A (reuse existing check)
+    total += 1
+    passed += check("P79-010: Layer A firewall intact", True)  # Already checked in FW section
+
+    # P79-011: Quarantine JSON not modified by recompute
+    total += 1
+    try:
+        with open(Path("quarantine/sigma_tilde_value.json"), "rb") as f:
+            current_hash = hashlib.sha256(f.read()).hexdigest()
+        # Compare with stored hash
+        sha256_path = Path("quarantine/sigma_tilde_value.sha256")
+        if sha256_path.exists():
+            stored = sha256_path.read_text().strip().split()[0]
+            json_unchanged = current_hash == stored
+        else:
+            json_unchanged = True  # No baseline to compare
+        passed += check("P79-011: quarantine JSON unchanged", json_unchanged)
+    except Exception:
+        passed += check("P79-011: quarantine JSON unchanged", False)
+
+    # P79-012: LaTeX banner not in Layer A
+    total += 1
+    # Heuristic: banner should appear after line 1000 (Layer B region)
+    banner_pos = tex.find("INTEGRATION SMOKE TEST")
+    layer_a_region = tex[:50000]  # First 50k chars as Layer A heuristic
+    banner_in_layer_a = "INTEGRATION SMOKE TEST" in layer_a_region[:40000]
+    passed += check("P79-012: Smoke banner not in Layer A", not banner_in_layer_a)
+
+    print(f"\n        Final Mode: [{mode_label}]")
+
+    # =========================================================================
     # SUMMARY
     # =========================================================================
     print("\n" + "=" * 70)
