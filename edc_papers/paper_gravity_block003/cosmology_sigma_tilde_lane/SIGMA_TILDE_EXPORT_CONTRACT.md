@@ -137,4 +137,17 @@ Before consumption, BLOCK-004 must verify:
 
 ---
 
+## 8. Supporting Documents
+
+| Document | Purpose |
+|----------|---------|
+| `TSTAR_DEFINITION.md` | Defines T_* and derivation roadmap |
+| `sigma_tilde_schema.json` | JSON Schema for export format |
+| `build_sigma_tilde_stub.py` | Generates TBD stub |
+| `recompute.py` | Verification checks |
+
+The `t_star.definition_ref` field must point to `TSTAR_DEFINITION.md`.
+
+---
+
 **Contract Hash:** TBD (to be set on first production export)

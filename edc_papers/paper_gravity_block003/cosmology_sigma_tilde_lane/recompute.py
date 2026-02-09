@@ -2,7 +2,7 @@
 """
 recompute.py - Verification checks for cosmology σ̃ export lane
 
-Runs >= 25 checks and exits nonzero on failure.
+Runs >= 35 checks and exits nonzero on failure.
 No external packages required.
 """
 
@@ -29,7 +29,8 @@ REQUIRED_FILES = [
     "sigma_tilde_schema.json",
     "SIGMA_TILDE_EXPORT_CONTRACT.md",
     "build_sigma_tilde_stub.py",
-    "recompute.py"
+    "recompute.py",
+    "TSTAR_DEFINITION.md"
 ]
 
 
@@ -320,12 +321,68 @@ def main():
     if not ok and pattern != "FILE_ERROR":
         print(f"         Found: '{pattern}'")
 
+    # Check TSTAR_DEFINITION.md
+    total += 1
+    tstar_path = LANE_DIR / "TSTAR_DEFINITION.md"
+    ok, pattern = check_forbidden_in_file(tstar_path, FORBIDDEN_PATTERNS)
+    passed += check("FP-005: TSTAR_DEFINITION.md clean (no forbidden)", ok)
+    if not ok and pattern != "FILE_ERROR":
+        print(f"         Found: '{pattern}'")
+
     print()
 
     # ============================================================
-    # Section 7: Path/Scope Verification (3 checks)
+    # Section 7: T_* Definition Content (5 checks)
     # ============================================================
-    print("Section 7: Path/Scope Verification")
+    print("Section 7: T_* Definition Content")
+    print("-" * 40)
+
+    # Read TSTAR_DEFINITION.md content
+    tstar_content = ""
+    if tstar_path.exists():
+        try:
+            with open(tstar_path, "r", encoding="utf-8") as f:
+                tstar_content = f.read()
+        except IOError:
+            pass
+
+    # Check for σ̃ = σ / T_* formula (various forms)
+    total += 1
+    formula_variants = [
+        "σ̃ = σ / T_*",
+        "σ̃ = σ/T_*",
+        "sigma_tilde = sigma / T_*",
+        "σ/T_*"
+    ]
+    has_formula = any(v in tstar_content for v in formula_variants)
+    passed += check("TD-001: Contains σ̃ = σ / T_* formula", has_formula)
+
+    # Check for [P] epistemic tag
+    total += 1
+    has_pending_tag = "[P]" in tstar_content
+    passed += check("TD-002: Contains [P] epistemic tag", has_pending_tag)
+
+    # Check for [Dc] epistemic tag
+    total += 1
+    has_contract_tag = "[Dc]" in tstar_content
+    passed += check("TD-003: Contains [Dc] epistemic tag", has_contract_tag)
+
+    # Check for [I] invariant tag
+    total += 1
+    has_invariant_tag = "[I]" in tstar_content
+    passed += check("TD-004: Contains [I] epistemic tag", has_invariant_tag)
+
+    # Check for No-Backflow statement
+    total += 1
+    has_backflow = "No-Backflow" in tstar_content or "no-backflow" in tstar_content.lower()
+    passed += check("TD-005: Contains No-Backflow statement", has_backflow)
+
+    print()
+
+    # ============================================================
+    # Section 8: Path/Scope Verification (3 checks)
+    # ============================================================
+    print("Section 8: Path/Scope Verification")
     print("-" * 40)
 
     total += 1
