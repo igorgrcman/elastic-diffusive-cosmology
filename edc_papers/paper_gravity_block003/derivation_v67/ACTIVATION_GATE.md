@@ -1,14 +1,8 @@
 # Activation Gate — BLOCK-004 v67
 
-## Version: 1.2
+## Version: 2.0 (REAL)
 ## Date: 2026-02-09
-## Status: ACTIVE (DERIVED)
-
----
-
-> **WARNING: SMOKE-TEST MODE — NUMERICS ARE INTEGRATION-ONLY UNTIL REAL PROVENANCE**
->
-> See `SMOKE_TEST_POLICY.md` for REAL vs SMOKE criteria.
+## Status: ACTIVE (DERIVED) — **REAL MODE**
 
 ---
 
@@ -18,11 +12,20 @@
 |-------------|------|-----------------|------------------|
 | TBD | N/A | BLOCKED | NO |
 | DERIVED | SMOKE | Allowed (test only) | NO |
-| DERIVED | REAL | Allowed (physical) | YES |
+| DERIVED | **REAL** | **Allowed (physical)** | **YES** |
 | IMPORTED | SMOKE | Allowed (test only) | NO |
 | IMPORTED | REAL | Allowed (physical) | YES |
 
-**Current mode:** SMOKE (provenance.notes lacks `PHYSICAL_DERIVATION`)
+**Current mode:** **REAL** (provenance satisfies all criteria)
+
+### REAL Criteria (all must pass)
+
+| Criterion | Value | Status |
+|-----------|-------|--------|
+| derivation_ref | `EDC-COSMO-TSTAR-5D-ROUTEAB` | Matches `^EDC-COSMO-` ✓ |
+| git_commit | `e41a228b226aebb10e406c93d57eca6e601b11a4` | 40-hex ✓ |
+| sot_hash | `edc_cosmo_tstar_5d_e41a228` | ≠ TBD ✓ |
+| notes | Contains `PHYSICAL_DERIVATION` | ✓ |
 
 ---
 

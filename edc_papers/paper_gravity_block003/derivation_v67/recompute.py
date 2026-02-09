@@ -1035,11 +1035,17 @@ def main():
     smoke_policy = Path("SMOKE_TEST_POLICY.md")
     passed += check("P79-001: SMOKE_TEST_POLICY.md exists", smoke_policy.exists())
 
-    # P79-002: ACTIVATION_GATE.md contains smoke banner
+    # P79-002: ACTIVATION_GATE.md smoke banner (required in SMOKE, absent in REAL)
     total += 1
     ag_content = activation_gate_doc.read_text() if activation_gate_doc.exists() else ""
     ag_has_banner = "SMOKE-TEST MODE" in ag_content
-    passed += check("P79-002: ACTIVATION_GATE.md has smoke banner", ag_has_banner)
+    if is_real:
+        # In REAL mode, smoke banner should be removed
+        p79_002_ok = not ag_has_banner
+        passed += check("P79-002: ACTIVATION_GATE.md smoke banner removed (REAL)", p79_002_ok)
+    else:
+        # In SMOKE mode, smoke banner should be present
+        passed += check("P79-002: ACTIVATION_GATE.md has smoke banner (SMOKE)", ag_has_banner)
 
     # P79-003: main.tex contains INTEGRATION SMOKE TEST in Layer B
     total += 1
@@ -1122,6 +1128,90 @@ def main():
     passed += check("P79-012: Smoke banner not in Layer A", not banner_in_layer_a)
 
     print(f"\n        Final Mode: [{mode_label}]")
+
+    # =========================================================================
+    # SECTION 27: P80b REAL MODE VALIDATION
+    # =========================================================================
+    print("\n--- P80b REAL MODE VALIDATION ---\n")
+
+    # Get provenance fields for P80b checks
+    prov = sigma_data.get("provenance", {}) if sigma_data else {}
+    p80_deriv_ref = prov.get("derivation_ref", "")
+    p80_git_commit = prov.get("git_commit", "")
+    p80_sot_hash = prov.get("sot_hash", "")
+    p80_notes = prov.get("notes", "")
+
+    # P80b-001: Mode detection returns REAL (not SMOKE)
+    total += 1
+    p80_is_real = (
+        bool(re.match(r"^EDC-COSMO-", p80_deriv_ref or "")) and
+        len(p80_git_commit or "") == 40 and
+        all(c in "0123456789abcdefABCDEF" for c in (p80_git_commit or "")) and
+        "PHYSICAL_DERIVATION" in (p80_notes or "") and
+        p80_sot_hash and p80_sot_hash != "TBD"
+    )
+    passed += check("P80b-001: Mode detection = REAL", p80_is_real)
+    if p80_is_real:
+        print("        [REAL] All REAL criteria satisfied")
+    else:
+        print("        [SMOKE] One or more REAL criteria failed")
+
+    # P80b-002: derivation_ref matches ^EDC-COSMO-
+    total += 1
+    p80_deriv_ok = bool(re.match(r"^EDC-COSMO-", p80_deriv_ref or ""))
+    passed += check(f"P80b-002: derivation_ref matches ^EDC-COSMO-", p80_deriv_ok)
+    print(f"        derivation_ref = {p80_deriv_ref}")
+
+    # P80b-003: git_commit is 40-hex
+    total += 1
+    p80_commit_ok = (
+        len(p80_git_commit or "") == 40 and
+        all(c in "0123456789abcdefABCDEF" for c in (p80_git_commit or ""))
+    )
+    passed += check("P80b-003: git_commit is 40-hex", p80_commit_ok)
+    print(f"        git_commit = {p80_git_commit}")
+
+    # P80b-004: notes contains PHYSICAL_DERIVATION
+    total += 1
+    p80_notes_ok = "PHYSICAL_DERIVATION" in (p80_notes or "")
+    passed += check("P80b-004: notes contains PHYSICAL_DERIVATION", p80_notes_ok)
+
+    # P80b-005: sot_hash != TBD
+    total += 1
+    p80_sot_ok = p80_sot_hash and p80_sot_hash != "TBD"
+    passed += check("P80b-005: sot_hash != TBD", p80_sot_ok)
+    print(f"        sot_hash = {p80_sot_hash}")
+
+    # P80b-006: SHA256 match (quarantine vs expected)
+    total += 1
+    expected_sha = "1724182407e50f0e69e1027a9c47867c731aefcb5072ff80eae4fe37a03004f6"
+    sha_file = Path("quarantine/sigma_tilde_value.sha256")
+    if sha_file.exists():
+        sha_content = sha_file.read_text().strip().split()[0]
+        sha_match = sha_content == expected_sha
+    else:
+        sha_match = False
+    passed += check("P80b-006: SHA256 matches REAL source", sha_match)
+    print(f"        expected = {expected_sha[:16]}...")
+
+    # P80b-007: Layer A unchanged (SoT hash consistency)
+    total += 1
+    layer_a_sot_ok = SOT_HASH == "d8e9f0a1b2c34567"
+    passed += check("P80b-007: Layer A SoT hash unchanged", layer_a_sot_ok)
+
+    # P80b-008: No-backflow intact (quarantine is read-only)
+    total += 1
+    prov_link = Path("quarantine/PROVENANCE_LINK.md")
+    if prov_link.exists():
+        prov_link_content = prov_link.read_text()
+        no_backflow_ok = "read-only" in prov_link_content.lower()
+    else:
+        no_backflow_ok = False
+    passed += check("P80b-008: No-backflow statement intact", no_backflow_ok)
+
+    # Final P80b mode assertion
+    p80b_mode = "REAL" if p80_is_real else "SMOKE"
+    print(f"\n        P80b Final Mode: [{p80b_mode}]")
 
     # =========================================================================
     # SUMMARY
