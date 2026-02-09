@@ -75,7 +75,7 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v64/` | Derivation v64: Proton Decay Coupling Lane g_X(M_X) | `EDC_BLOCK004_DERIVATION_V64_PROTON_DECAY_COUPLING_LANE_GX_FROM_ALPHA3_AND_MX_NO_CONTAMINATION.pdf` | COUPLING LANE CLOSED | 2026-02-08 |
 | `paper_gravity_block003/derivation_v65/` | Derivation v65: BLOCK-004 Proton Decay Canonical Single Document | `EDC_BLOCK004_DERIVATION_V65_CANONICAL_SINGLE_DOCUMENT.pdf` | **CANONICAL CLOSURE** | 2026-02-08 |
 | `paper_gravity_block003/derivation_v66/` | Derivation v66: Layer B τ_p(σ̃) Bounds Comparison (QUARANTINED) | `EDC_BLOCK004_DERIVATION_V66_LAYER_B_TAU_P_BOUNDS.pdf` | LAYER B ADAPTER | 2026-02-08 |
-| `paper_gravity_block003/derivation_v67/` | Derivation v67: σ̃ Import Contract + Closure Map (CONDITIONAL) | `EDC_BLOCK004_DERIVATION_V67_SIGMATILDE_COSMOLOGY_IMPORT_CONTRACT_CLOSURE_MAP.pdf` | CONDITIONAL CLOSURE | 2026-02-08 |
+| `paper_gravity_block003/derivation_v67/` | Derivation v67: σ̃ Import Contract + Closure Map (**REAL CLOSED**) | `EDC_BLOCK004_DERIVATION_V67_REAL_CLOSED.pdf` | **REAL CLOSED** | 2026-02-09 |
 
 ---
 
@@ -85,12 +85,16 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 |-------|-------|
 | **Path** | `edc_papers/paper_gravity_block003/derivation_v67/` |
 | **Main source** | `main.tex` |
-| **Canonical PDF** | `EDC_BLOCK004_DERIVATION_V67_SIGMATILDE_COSMOLOGY_IMPORT_CONTRACT_CLOSURE_MAP.pdf` |
+| **Canonical PDF** | `EDC_BLOCK004_DERIVATION_V67_REAL_CLOSED.pdf` |
 | **Pages** | 29 |
 | **Equations** | 155 |
 | **Labels** | 316 |
-| **Date** | 2026-02-08 |
-| **Status** | CONDITIONAL CLOSURE (awaiting σ̃ from cosmology) |
+| **Date** | 2026-02-09 |
+| **Status** | **REAL CLOSED** (σ̃ imported with REAL provenance) |
+| **Tag** | `BLOCK004_V67_REAL_CLOSED` |
+| **Release doc** | [`RELEASE_P83_REAL_CLOSURE.md`](paper_gravity_block003/derivation_v67/RELEASE_P83_REAL_CLOSURE.md) |
+| **Audit doc** | [`AUDIT_P82_REAL_FIREWALL.md`](paper_gravity_block003/derivation_v67/AUDIT_P82_REAL_FIREWALL.md) |
+| **Hardening commit** | `15a45fe` (P82) |
 | **Scope** | σ̃ import contract from cosmology + closure map to τ_p |
 | **v67 SoT hash** | `d8e9f0a1b2c34567` |
 | **Parent hash (v65)** | `c4e7f2a1b8d30965` |
@@ -104,11 +108,11 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | **BOX-5** | τ_p = (C_X⁴/16π²) μ*⁴ σ̃⁴ / H_p — IMPORTED |
 | **Closure Map** | σ̃ → α₃ → M_X → g_X → τ_p — COMPLETE |
 | **Scaling** | α₃~σ̃^-1, M_X~σ̃^{1/2}, g_X~σ̃^{-1/2}, τ_p~σ̃^4 — VERIFIED |
-| **Conditional Closure** | Template mode if σ̃ unavailable — ENABLED |
-| **Plug-in Slot** | sigma_tilde_value.json — DEFINED |
+| **REAL Mode** | σ̃ = 100 ± 10 imported with REAL provenance — ACTIVE |
+| **Plug-in Slot** | sigma_tilde_value.json — IMPORTED |
 | **Layer A** | Import contract, closure boxes — HASH-LOCKED |
-| **Firewall** | No PDG/Super-K/experimental values in Layer A — VERIFIED |
-| **Python script** | `recompute.py` — ALL 123 CHECKS PASSED |
+| **Firewall** | No PDG/Super-K/experimental values in Layer A — VERIFIED (P82) |
+| **Python script** | `recompute.py` — ALL 193 CHECKS PASSED |
 | **Reviewer Traps** | 12 items |
 | **Release bundle** | `release/` directory with canonical PDF |
 
