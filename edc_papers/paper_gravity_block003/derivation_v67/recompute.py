@@ -46,12 +46,33 @@ def read_tex():
         return f.read()
 
 def read_sigma_tilde():
-    """Read sigma_tilde_value.json if it exists."""
+    """Read sigma_tilde_value.json from quarantine if it exists."""
+    quarantine_path = Path("quarantine/sigma_tilde_value.json")
     try:
-        with open("sigma_tilde_value.json", "r") as f:
+        with open(quarantine_path, "r") as f:
             return json.load(f)
     except:
         return None
+
+
+def check_forbidden_patterns(filepath, patterns):
+    """Check if file contains forbidden patterns."""
+    try:
+        with open(filepath, "r") as f:
+            content = f.read()
+        for p in patterns:
+            if re.search(p, content, re.IGNORECASE):
+                return False, p
+        return True, None
+    except:
+        return False, "FILE_ERROR"
+
+
+# P76 forbidden patterns for firewall
+P76_FORBIDDEN = [
+    r"PDG", r"Super-?K", r"lattice", r"experimental",
+    r"\bfit\b", r"optimi[sz]"
+]
 
 def main():
     print("=" * 70)
@@ -66,8 +87,11 @@ def main():
     passed = 0
     total = 0
 
-    # Check mode
-    if sigma_data and sigma_data.get("sigma_tilde") is not None:
+    # Check mode - P76 fix: check status field, not just existence
+    st_obj = sigma_data.get("sigma_tilde", {}) if sigma_data else {}
+    st_status = st_obj.get("status") if isinstance(st_obj, dict) else None
+    st_value = st_obj.get("value") if isinstance(st_obj, dict) else None
+    if st_status in ("DERIVED", "IMPORTED") and st_value is not None:
         print("MODE: NUMERICAL CLOSURE\n")
         numerical_mode = True
     else:
@@ -560,7 +584,8 @@ def main():
     print("\n--- NUMERICAL MODE CHECK ---\n")
 
     if numerical_mode and sigma_data:
-        st = sigma_data.get("sigma_tilde", 100)
+        # P76 fix: get value from sigma_tilde object, not the object itself
+        st = sigma_data["sigma_tilde"]["value"]
 
         # NUM-001: Compute α3
         total += 1
@@ -742,6 +767,73 @@ def main():
     # UPC-006: ε_brane contribution
     total += 1
     passed += check("UPC-006: 4ε_brane = 0.40 for τ_p", abs(4 * EPSILON_BRANE_MAX - 0.40) < EPS)
+
+    # =========================================================================
+    # SECTION 23: P76 IMPORT VALIDATION
+    # =========================================================================
+    print("\n--- P76 IMPORT VALIDATION ---\n")
+
+    # P76-001: quarantine folder exists
+    total += 1
+    quarantine_dir = Path("quarantine")
+    passed += check("P76-001: quarantine folder exists", quarantine_dir.exists())
+
+    # P76-002: sigma_tilde_value.json exists in quarantine
+    total += 1
+    quarantine_json = Path("quarantine/sigma_tilde_value.json")
+    passed += check("P76-002: quarantine/sigma_tilde_value.json exists", quarantine_json.exists())
+
+    # P76-003: PROVENANCE_LINK.md exists
+    total += 1
+    prov_link = Path("quarantine/PROVENANCE_LINK.md")
+    passed += check("P76-003: quarantine/PROVENANCE_LINK.md exists", prov_link.exists())
+
+    # P76-004: IMPORT_CONTRACT.md exists
+    total += 1
+    import_contract = Path("IMPORT_CONTRACT.md")
+    passed += check("P76-004: IMPORT_CONTRACT.md exists", import_contract.exists())
+
+    # P76-005: sigma_data is valid JSON
+    total += 1
+    passed += check("P76-005: sigma_tilde_value.json is valid JSON", sigma_data is not None)
+
+    # P76-006: sigma_data has required keys
+    total += 1
+    required_keys = ["schema_version", "sigma_tilde", "t_star", "provenance", "firewall"]
+    has_keys = sigma_data and all(k in sigma_data for k in required_keys)
+    passed += check("P76-006: Required keys present", has_keys)
+
+    # P76-007: Status check (TBD = CONDITIONAL)
+    total += 1
+    st_status = sigma_data.get("sigma_tilde", {}).get("status") if sigma_data else None
+    if st_status == "TBD":
+        passed += check("P76-007: Status TBD → CONDITIONAL mode", True)
+    elif st_status == "DERIVED":
+        passed += check("P76-007: Status DERIVED → NUMERICAL mode", True)
+    else:
+        passed += check("P76-007: Status check", False)
+
+    # P76-008: No-backflow statement in IMPORT_CONTRACT.md
+    total += 1
+    ic_has_backflow = False
+    if import_contract.exists():
+        ic_content = import_contract.read_text()
+        ic_has_backflow = "No-Backflow" in ic_content or "read-only" in ic_content.lower()
+    passed += check("P76-008: No-Backflow in IMPORT_CONTRACT.md", ic_has_backflow)
+
+    # P76-009: Firewall check on IMPORT_CONTRACT.md
+    total += 1
+    ok, pattern = check_forbidden_patterns("IMPORT_CONTRACT.md", P76_FORBIDDEN)
+    passed += check("P76-009: IMPORT_CONTRACT.md firewall clean", ok)
+    if not ok and pattern != "FILE_ERROR":
+        print(f"        Found: '{pattern}'")
+
+    # P76-010: Firewall check on quarantine JSON (forbidden patterns)
+    total += 1
+    ok2, pattern2 = check_forbidden_patterns("quarantine/sigma_tilde_value.json", P76_FORBIDDEN)
+    passed += check("P76-010: quarantine JSON firewall clean", ok2)
+    if not ok2 and pattern2 != "FILE_ERROR":
+        print(f"        Found: '{pattern2}'")
 
     # =========================================================================
     # SUMMARY
