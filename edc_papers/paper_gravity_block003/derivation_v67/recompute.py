@@ -1275,6 +1275,127 @@ def main():
     print(f"\n        P81 Final Status: REAL FREEZE {'COMPLETE' if p81_is_real else 'INCOMPLETE'}")
 
     # =========================================================================
+    # SECTION 29: P82 REAL FIREWALL HARDENING
+    # =========================================================================
+    print("\n--- P82 REAL FIREWALL HARDENING ---\n")
+
+    # P82-001: AUDIT_P82_REAL_FIREWALL.md exists
+    total += 1
+    audit_p82 = Path("AUDIT_P82_REAL_FIREWALL.md")
+    passed += check("P82-001: AUDIT_P82_REAL_FIREWALL.md exists", audit_p82.exists())
+
+    # P82-002: Audit doc mentions tag BLOCK004_V67_REAL_CLOSED
+    total += 1
+    if audit_p82.exists():
+        audit_content = audit_p82.read_text()
+        has_tag_ref = "BLOCK004_V67_REAL_CLOSED" in audit_content
+    else:
+        audit_content = ""
+        has_tag_ref = False
+    passed += check("P82-002: Audit doc mentions tag", has_tag_ref)
+
+    # P82-003: REAL MODE banner still present in main.tex
+    total += 1
+    has_real_banner = "REAL MODE" in tex and "PROVENANCE SEALED" in tex
+    passed += check("P82-003: REAL MODE banner in main.tex", has_real_banner)
+
+    # P82-004: SMOKE banner absent from main.tex
+    total += 1
+    smoke_banner_absent = "INTEGRATION SMOKE TEST" not in tex
+    passed += check("P82-004: SMOKE banner absent from main.tex", smoke_banner_absent)
+
+    # P82-005: Layer A clean of numeric payload patterns
+    # Define Layer A region: everything before \appendix or first 50000 chars
+    total += 1
+    appendix_marker = tex.find("\\appendix")
+    if appendix_marker > 0:
+        layer_a_tex = tex[:appendix_marker]
+    else:
+        layer_a_tex = tex[:50000]
+
+    # Forbidden patterns in Layer A (but allowed in quarantine/ and Layer B)
+    forbidden_layer_a = [
+        r'sigma_tilde\s*=\s*\d',  # sigma_tilde = number
+        r'"central"\s*:\s*\d',    # JSON "central": number
+        r'"plus"\s*:\s*\d',       # JSON "plus": number
+        r'"minus"\s*:\s*\d',      # JSON "minus": number
+    ]
+    layer_a_clean = True
+    for pattern in forbidden_layer_a:
+        if re.search(pattern, layer_a_tex):
+            layer_a_clean = False
+            print(f"        VIOLATION: Found pattern '{pattern}' in Layer A")
+            break
+    passed += check("P82-005: Layer A clean of numeric patterns", layer_a_clean)
+
+    # P82-006: quarantine/sigma_tilde_value.json exists and valid
+    total += 1
+    q_json = Path("quarantine/sigma_tilde_value.json")
+    json_valid = False
+    if q_json.exists():
+        try:
+            with open(q_json) as f:
+                q_data = json.load(f)
+            # Check required structure
+            json_valid = (
+                "sigma_tilde" in q_data and
+                "value" in q_data["sigma_tilde"] and
+                "provenance" in q_data
+            )
+        except:
+            json_valid = False
+    passed += check("P82-006: quarantine JSON exists and valid", json_valid)
+
+    # P82-007: quarantine SHA256 matches computed
+    total += 1
+    q_sha = Path("quarantine/sigma_tilde_value.sha256")
+    sha_match = False
+    if q_json.exists() and q_sha.exists():
+        import hashlib
+        with open(q_json, "rb") as f:
+            computed_sha = hashlib.sha256(f.read()).hexdigest()
+        stored_sha = q_sha.read_text().strip().split()[0]
+        sha_match = computed_sha == stored_sha
+        print(f"        Computed: {computed_sha[:16]}...")
+        print(f"        Stored:   {stored_sha[:16]}...")
+    passed += check("P82-007: quarantine SHA256 matches", sha_match)
+
+    # P82-008: No JSON payload (central/plus/minus keys) outside quarantine
+    total += 1
+    # Check main.tex for JSON-like structures with these keys
+    json_pattern = r'\{\s*"central"\s*:'
+    json_outside_quarantine = bool(re.search(json_pattern, tex))
+    # Also check ACTIVATION_GATE.md and other docs
+    other_docs_clean = True
+    for doc in ["ACTIVATION_GATE.md", "IMPORT_CONTRACT.md", "SMOKE_TEST_POLICY.md"]:
+        doc_path = Path(doc)
+        if doc_path.exists():
+            doc_content = doc_path.read_text()
+            if re.search(json_pattern, doc_content):
+                other_docs_clean = False
+                print(f"        VIOLATION: JSON payload found in {doc}")
+    p82_008_ok = not json_outside_quarantine and other_docs_clean
+    passed += check("P82-008: No JSON payload outside quarantine", p82_008_ok)
+
+    # P82-009: Layer A SoT hash unchanged
+    total += 1
+    p82_sot_ok = SOT_HASH == "d8e9f0a1b2c34567"
+    passed += check("P82-009: Layer A SoT hash unchanged", p82_sot_ok)
+
+    # P82-010: Audit doc readable (< 250 lines)
+    total += 1
+    if audit_p82.exists():
+        audit_lines = len(audit_content.split('\n'))
+        audit_readable = audit_lines < 250
+        print(f"        Audit doc: {audit_lines} lines")
+    else:
+        audit_readable = False
+        audit_lines = 0
+    passed += check(f"P82-010: Audit doc readable (<250 lines)", audit_readable)
+
+    print(f"\n        P82 REAL FIREWALL: {'HARDENED' if layer_a_clean and sha_match else 'INCOMPLETE'}")
+
+    # =========================================================================
     # SUMMARY
     # =========================================================================
     print("\n" + "=" * 70)
