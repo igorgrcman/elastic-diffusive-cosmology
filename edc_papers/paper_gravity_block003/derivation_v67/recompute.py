@@ -1472,6 +1472,45 @@ def main():
     print(f"\n        P83a RELEASE PACK: {'COMPLETE' if sha_all_match and has_tag else 'INCOMPLETE'}")
 
     # =========================================================================
+    # SECTION 31: P84 VERIFIER SCRIPT VALIDATION
+    # =========================================================================
+    print("\n--- P84 VERIFIER SCRIPT VALIDATION ---\n")
+
+    # P84-001: VERIFY_P84.sh exists and is executable
+    total += 1
+    verify_script = Path("VERIFY_P84.sh")
+    script_exists = verify_script.exists()
+    if script_exists:
+        import os
+        script_executable = os.access(verify_script, os.X_OK)
+    else:
+        script_executable = False
+    passed += check("P84-001: VERIFY_P84.sh exists and executable", script_exists and script_executable)
+
+    # P84-002: Script contains TAG string
+    total += 1
+    if script_exists:
+        script_content = verify_script.read_text()
+        has_tag_str = "BLOCK004_V67_REAL_CLOSED" in script_content
+    else:
+        script_content = ""
+        has_tag_str = False
+    passed += check("P84-002: Script contains TAG string", has_tag_str)
+
+    # P84-003: Script references manifest.sha256
+    total += 1
+    has_manifest_ref = "manifest.sha256" in script_content
+    passed += check("P84-003: Script references manifest.sha256", has_manifest_ref)
+
+    # P84-004: Script references release PDF filename
+    total += 1
+    has_pdf_ref = "EDC_BLOCK004_DERIVATION_V67_REAL_CLOSED.pdf" in script_content
+    passed += check("P84-004: Script references release PDF", has_pdf_ref)
+
+    p84_ok = script_exists and script_executable and has_tag_str and has_manifest_ref and has_pdf_ref
+    print(f"\n        P84 VERIFIER SCRIPT: {'READY' if p84_ok else 'INCOMPLETE'}")
+
+    # =========================================================================
     # SUMMARY
     # =========================================================================
     print("\n" + "=" * 70)
