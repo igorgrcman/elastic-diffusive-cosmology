@@ -1511,6 +1511,30 @@ def main():
     print(f"\n        P84 VERIFIER SCRIPT: {'READY' if p84_ok else 'INCOMPLETE'}")
 
     # =========================================================================
+    # SECTION 32: P85 ZENODO CHECKLIST VALIDATION
+    # =========================================================================
+    print("\n--- P85 ZENODO CHECKLIST VALIDATION ---\n")
+
+    # P85-001: ZENODO_P85_CHECKLIST.md exists
+    total += 1
+    zenodo_checklist = Path("ZENODO_P85_CHECKLIST.md")
+    checklist_exists = zenodo_checklist.exists()
+    passed += check("P85-001: ZENODO_P85_CHECKLIST.md exists", checklist_exists)
+
+    # P85-002: Checklist mentions VERIFY_P84.sh and tag
+    total += 1
+    if checklist_exists:
+        checklist_content = zenodo_checklist.read_text()
+        has_verifier_ref = "VERIFY_P84.sh" in checklist_content
+        has_tag_ref = "BLOCK004_V67_REAL_CLOSED" in checklist_content
+        checklist_ok = has_verifier_ref and has_tag_ref
+    else:
+        checklist_ok = False
+    passed += check("P85-002: Checklist mentions verifier and tag", checklist_ok)
+
+    print(f"\n        P85 ZENODO CHECKLIST: {'READY' if checklist_exists and checklist_ok else 'INCOMPLETE'}")
+
+    # =========================================================================
     # SUMMARY
     # =========================================================================
     print("\n" + "=" * 70)
