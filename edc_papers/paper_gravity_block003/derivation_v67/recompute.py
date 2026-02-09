@@ -1396,6 +1396,82 @@ def main():
     print(f"\n        P82 REAL FIREWALL: {'HARDENED' if layer_a_clean and sha_match else 'INCOMPLETE'}")
 
     # =========================================================================
+    # SECTION 30: P83a RELEASE PACK VALIDATION
+    # =========================================================================
+    print("\n--- P83a RELEASE PACK VALIDATION ---\n")
+
+    # P83a-001: Release PDF exists
+    total += 1
+    release_pdf = Path("release/EDC_BLOCK004_DERIVATION_V67_REAL_CLOSED.pdf")
+    passed += check("P83a-001: Release PDF exists", release_pdf.exists())
+
+    # P83a-002: Manifest exists
+    total += 1
+    manifest_path = Path("release/manifest.sha256")
+    manifest_exists = manifest_path.exists()
+    passed += check("P83a-002: manifest.sha256 exists", manifest_exists)
+
+    # P83a-003: Manifest contains all required entries
+    total += 1
+    required_entries = [
+        "main.pdf", "main.tex", "ACTIVATION_GATE.md",
+        "AUDIT_P82_REAL_FIREWALL.md", "quarantine/sigma_tilde_value.json",
+        "quarantine/sigma_tilde_value.sha256", "quarantine/PROVENANCE_LINK.md"
+    ]
+    if manifest_exists:
+        manifest_content = manifest_path.read_text()
+        all_entries = all(entry in manifest_content for entry in required_entries)
+    else:
+        all_entries = False
+        manifest_content = ""
+    passed += check("P83a-003: Manifest contains all required entries", all_entries)
+
+    # P83a-004: SHA256 of files matches manifest lines
+    total += 1
+    import hashlib
+    sha_match_count = 0
+    sha_total = 0
+    if manifest_exists:
+        for line in manifest_content.strip().split('\n'):
+            if line.strip():
+                parts = line.split()
+                if len(parts) >= 2:
+                    expected_hash = parts[0]
+                    filepath = parts[1]
+                    fpath = Path(filepath)
+                    if fpath.exists():
+                        sha_total += 1
+                        with open(fpath, "rb") as f:
+                            actual_hash = hashlib.sha256(f.read()).hexdigest()
+                        if actual_hash == expected_hash:
+                            sha_match_count += 1
+                        else:
+                            print(f"        MISMATCH: {filepath}")
+    sha_all_match = sha_match_count == sha_total and sha_total > 0
+    passed += check(f"P83a-004: SHA256 matches ({sha_match_count}/{sha_total})", sha_all_match)
+
+    # P83a-005: RELEASE_P83_REAL_CLOSURE.md exists and mentions tag
+    total += 1
+    release_doc = Path("RELEASE_P83_REAL_CLOSURE.md")
+    if release_doc.exists():
+        release_content = release_doc.read_text()
+        has_tag = "BLOCK004_V67_REAL_CLOSED" in release_content
+        release_lines = len(release_content.split('\n'))
+    else:
+        has_tag = False
+        release_content = ""
+        release_lines = 0
+    passed += check("P83a-005: Release doc exists and mentions tag", release_doc.exists() and has_tag)
+
+    # P83a-006: Release doc length < 250 lines
+    total += 1
+    release_readable = release_lines < 250
+    print(f"        Release doc: {release_lines} lines")
+    passed += check("P83a-006: Release doc readable (<250 lines)", release_readable)
+
+    print(f"\n        P83a RELEASE PACK: {'COMPLETE' if sha_all_match and has_tag else 'INCOMPLETE'}")
+
+    # =========================================================================
     # SUMMARY
     # =========================================================================
     print("\n" + "=" * 70)
