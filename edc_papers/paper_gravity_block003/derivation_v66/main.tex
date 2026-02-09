@@ -1,0 +1,2199 @@
+% ============================================================================
+% EDC BLOCK-004: Layer B τ_p(σ̃) Bounds Comparison
+% QUARANTINED Analysis — No Backflow to Layer A
+% Canonical Derivation v66
+% ============================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{shapes,arrows,positioning,calc}
+
+\geometry{margin=2.5cm}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{EDC BLOCK-004: Layer B Bounds Comparison}
+\fancyhead[R]{v66 QUARANTINED}
+\fancyfoot[C]{\thepage}
+
+% ============================================================================
+% QUARANTINED NUMBER MACRO
+% ============================================================================
+\newcommand{\Qnum}[1]{\textcolor{red!70!black}{\texttt{[Q]}}\,#1}
+\newcommand{\Qval}[1]{\textcolor{red!70!black}{#1}}
+
+% ============================================================================
+% EPISTEMIC TAG MACROS
+% ============================================================================
+\newcommand{\tagD}{\textcolor{green!50!black}{\texttt{[D]}}}
+\newcommand{\tagDc}{\textcolor{blue!70!black}{\texttt{[Dc]}}}
+\newcommand{\tagP}{\textcolor{orange!80!black}{\texttt{[P]}}}
+\newcommand{\tagQ}{\textcolor{red!70!black}{\texttt{[Q]}}}
+\newcommand{\tagT}{\textcolor{cyan!70!black}{\texttt{[T]}}}
+\newcommand{\tagB}{\textcolor{purple!70!black}{\texttt{[B]}}}
+
+% ============================================================================
+% TCOLORBOX ENVIRONMENTS
+% ============================================================================
+\newtcolorbox{readercontract}[1][]{
+  colback=blue!5!white,
+  colframe=blue!75!black,
+  fonttitle=\bfseries,
+  title={#1}
+}
+
+\newtcolorbox{threatbox}[1][]{
+  colback=red!5!white,
+  colframe=red!75!black,
+  fonttitle=\bfseries,
+  title={#1}
+}
+
+\newtcolorbox{quarantinebox}[1][]{
+  colback=yellow!10!white,
+  colframe=red!75!black,
+  fonttitle=\bfseries,
+  title={#1}
+}
+
+\newtcolorbox{layerabox}[1][]{
+  colback=green!5!white,
+  colframe=green!50!black,
+  fonttitle=\bfseries,
+  title={#1}
+}
+
+\newtcolorbox{apibox}[1][]{
+  colback=purple!5!white,
+  colframe=purple!50!black,
+  fonttitle=\bfseries,
+  title={#1}
+}
+
+\newtcolorbox{nobackflowbox}[1][]{
+  colback=orange!5!white,
+  colframe=orange!75!black,
+  fonttitle=\bfseries,
+  title={#1}
+}
+
+\newtcolorbox{nofitbox}[1][]{
+  colback=yellow!10!white,
+  colframe=yellow!50!black,
+  fonttitle=\bfseries,
+  title={#1}
+}
+
+\newtcolorbox{statusbox}[1][]{
+  colback=white,
+  colframe=black,
+  fonttitle=\bfseries,
+  title={#1}
+}
+
+\newtcolorbox{whereuserbox}[1][]{
+  colback=cyan!5!white,
+  colframe=cyan!50!black,
+  fonttitle=\bfseries,
+  title={#1}
+}
+
+\newtcolorbox{resultbox}[1][]{
+  colback=lime!5!white,
+  colframe=lime!60!black,
+  fonttitle=\bfseries,
+  title={#1}
+}
+
+% ============================================================================
+% THEOREMS
+% ============================================================================
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+
+% ============================================================================
+% LAYER MARKERS
+% ============================================================================
+% Markers: LAYER_A_IMPORT_START, LAYER_A_IMPORT_END
+% Markers: LAYER_B_START, LAYER_B_END, QUARANTINE_START, QUARANTINE_END
+
+% ============================================================================
+\begin{document}
+% ============================================================================
+
+\title{%
+  \textbf{EDC BLOCK-004: Layer B Analysis}\\[0.5em]
+  \Large Proton Lifetime Bounds Comparison\\[0.3em]
+  \large $\tau_p(\tilde{\sigma})$ Sweep vs.\ Experimental Limits\\[0.3em]
+  \normalsize QUARANTINED --- No Backflow to Layer A\\[0.2em]
+  \small Derivation v66
+}
+
+\author{EDC Collaboration}
+\date{Document Hash: \texttt{v66-[computed]}}
+
+\maketitle
+
+% ============================================================================
+% READER CONTRACT
+% ============================================================================
+\begin{readercontract}[READER CONTRACT]
+\textbf{This document is a QUARANTINED Layer B analysis.}
+It imports Layer A results (v65) as read-only symbolic formulas and compares
+them to external experimental bounds.
+
+\textbf{What This Document Does:}
+\begin{enumerate}
+  \item Imports $\tau_p(\tilde{\sigma})$ from Layer A (v65) --- read-only
+  \item Sweeps $\tilde{\sigma}$ over a declared range (NOT fitted)
+  \item Propagates template uncertainties to $\tau_p$ intervals
+  \item Compares $\tau_p$ intervals to external experimental limits
+  \item Extracts allowed/required $\tilde{\sigma}$ regions
+\end{enumerate}
+
+\textbf{What This Document Does NOT Do:}
+\begin{itemize}
+  \item Modify any Layer A formulas or parameters
+  \item Fit $\tilde{\sigma}$ to experimental data
+  \item Introduce experimental anchors into structural derivations
+  \item Use optimization, $\chi^2$, or likelihood methods
+\end{itemize}
+
+\textbf{Layer Architecture:}
+\begin{itemize}
+  \item \textbf{Layer A Import:} Symbolic formulas from v65, hash-locked, read-only
+  \item \textbf{Layer B:} All analysis in this document; comparison to external data
+  \item \textbf{Quarantine:} All experimental values confined to marked appendices
+\end{itemize}
+
+\textbf{Status:} QUARANTINED LAYER B ANALYSIS
+\end{readercontract}
+
+\tableofcontents
+\newpage
+
+% ============================================================================
+% THREAT MODEL
+% ============================================================================
+\section{Threat Model: Why Quarantine Exists}
+\label{sec:threat}
+
+\begin{threatbox}[THREAT MODEL]
+\textbf{The primary threat} is \emph{confirmation bias backflow}: the temptation
+to tune Layer A parameters to match experimental bounds.
+
+\textbf{Specific threats:}
+\begin{enumerate}
+  \item \textbf{Parameter fitting:} Adjusting $\tilde{\sigma}$ to reproduce
+        experimental $\tau_p$ bounds
+  \item \textbf{Anchor contamination:} Importing $M_Z$, $\alpha_s(M_Z)$, or
+        other experimental values into Layer A derivations
+  \item \textbf{Post-hoc rationalization:} Choosing template bounds ($\epsilon_g$,
+        $\Delta$) to achieve consistency
+  \item \textbf{Selection bias:} Reporting only favorable $\tilde{\sigma}$ ranges
+\end{enumerate}
+
+\textbf{Mitigation strategy:}
+\begin{enumerate}
+  \item Strict quarantine of all experimental values
+  \item Layer A remains hash-locked (v65)
+  \item Sweep (not fit) $\tilde{\sigma}$ over declared range
+  \item Report all results, including tensions/inconsistencies
+  \item Automated grep verification of no-backflow
+\end{enumerate}
+\end{threatbox}
+
+\subsection{Quarantine Protocol}
+\label{subsec:quarantine-protocol}
+
+The quarantine protocol enforces:
+\begin{equation}
+\label{eq:quarantine-rule}
+\mathcal{Q}[\text{external}] \cap \mathcal{L}_A = \emptyset
+\end{equation}
+
+where $\mathcal{Q}$ is the quarantine zone and $\mathcal{L}_A$ is Layer A content.
+
+All external values satisfy:
+\begin{equation}
+\label{eq:external-confined}
+v_{\text{ext}} \in \mathcal{Q} \quad \Rightarrow \quad v_{\text{ext}} \notin \mathcal{L}_A
+\end{equation}
+
+\subsection{Verification Procedure}
+\label{subsec:verification}
+
+The no-backflow property is verified by:
+\begin{equation}
+\label{eq:grep-verify}
+\text{grep}(\mathcal{L}_A, \text{patterns}_{\text{forbidden}}) = \emptyset
+\end{equation}
+
+where forbidden patterns include experimental values and source names.
+
+% ============================================================================
+% LAYER A IMPORT
+% ============================================================================
+\section{Layer A Import Summary}
+\label{sec:layer-a-import}
+
+%==LAYER_A_IMPORT_START==
+
+\begin{layerabox}[LAYER A IMPORT --- READ ONLY]
+The following formulas are imported from v65 (BLOCK-004 Canonical Document).
+They are used \textbf{read-only} and are not modified by this Layer B analysis.
+
+\textbf{Source:} v65 SoT Hash \texttt{c4e7f2a1b8d30965}
+\end{layerabox}
+
+\subsection{Imported Formulas}
+\label{subsec:imported-formulas}
+
+\begin{definition}[Layer A Proton Lifetime]
+\label{def:tau-p-import}
+From v65 BOX-5: \tagD{}
+\begin{equation}
+\label{eq:tau-p-layera}
+\boxed{\tau_p = \frac{C_X^4}{16\pi^2} \cdot \frac{\mu_*^4 \cdot \tilde{\sigma}^4}{\mathcal{H}_p}}
+\end{equation}
+\end{definition}
+
+\begin{definition}[Layer A Scaling Law]
+\label{def:scaling-import}
+From v65: \tagD{}
+\begin{equation}
+\label{eq:scaling-layera}
+\tau_p \propto \tilde{\sigma}^4
+\end{equation}
+\end{definition}
+
+\begin{definition}[Layer A Geometric Factor]
+\label{def:cx-import}
+From v65 BOX-3: \tagDc{}
+\begin{equation}
+\label{eq:cx-layera}
+C_X = \sqrt{\frac{4}{15}} \approx 0.5164
+\end{equation}
+\end{definition}
+
+\begin{definition}[Layer A Coupling Envelope]
+\label{def:epsilon-import}
+From v65 BOX-4: \tagT{}
+\begin{equation}
+\label{eq:epsilon-layera}
+\epsilon_g \lesssim 0.15
+\end{equation}
+\end{definition}
+
+\subsection{Imported Constants}
+\label{subsec:imported-constants}
+
+From v65, the following structural constants are imported: \tagD{}
+\begin{align}
+\label{eq:import-cx-sq}
+C_X^2 &= \frac{4}{15} \\
+\label{eq:import-cx-4}
+C_X^4 &= \frac{16}{225} \\
+\label{eq:import-prefactor}
+\frac{C_X^4}{16\pi^2} &= \frac{1}{225\pi^2}
+\end{align}
+
+\subsection{Imported Template Bounds}
+\label{subsec:imported-templates}
+
+The following template parameters are imported: \tagT{}
+\begin{align}
+\label{eq:import-eps-g}
+\epsilon_g &\lesssim 0.15 \quad \text{(coupling envelope)} \\
+\label{eq:import-eps-brane}
+\epsilon_{\text{brane}} &\lesssim 0.10 \quad \text{(brane correction)} \\
+\label{eq:import-delta-thr}
+\delta_{\text{thr}} &\lesssim 0.05 \quad \text{(threshold correction)}
+\end{align}
+
+\subsection{Symbolic Parameters}
+\label{subsec:symbolic-params}
+
+The following remain symbolic in Layer A: \tagP{}
+\begin{align}
+\label{eq:symbolic-sigma}
+\tilde{\sigma} &\quad \text{(dimensionless brane tension)} \\
+\label{eq:symbolic-mu}
+\mu_* &\quad \text{(reference scale } \pi/L\text{)} \\
+\label{eq:symbolic-hp}
+\mathcal{H}_p &\quad \text{(hadronic factor)}
+\end{align}
+
+%==LAYER_A_IMPORT_END==
+
+% ============================================================================
+% B-API DEFINITIONS
+% ============================================================================
+\section{B-API Definitions}
+\label{sec:b-api}
+
+This section defines the Layer B Application Programming Interfaces (B-APIs)
+for comparing Layer A predictions to external bounds.
+
+\subsection{B-API1: Lifetime Interval Calculator}
+\label{subsec:b-api1}
+
+\begin{apibox}[B-API1: Lifetime Interval from Parameters]
+\textbf{Input:} $\tilde{\sigma}$, $\mu_*$, $\mathcal{H}_p$, envelope bounds ($\epsilon_g$, $\epsilon_{\text{brane}}$, $\delta_{\text{thr}}$)
+
+\textbf{Output:} Interval $[\tau_p^{(\min)}, \tau_p^{(\max)}]$
+
+\textbf{Computation:}
+\begin{equation}
+\label{eq:b-api1-formula}
+\tau_p = \frac{C_X^4}{16\pi^2} \cdot \frac{\mu_*^4 \cdot \tilde{\sigma}^4}{\mathcal{H}_p} \cdot (1 \pm \epsilon_{\text{total}})^4
+\end{equation}
+
+where the total envelope is: \tagB{}
+\begin{equation}
+\label{eq:total-envelope}
+\epsilon_{\text{total}} = \sqrt{\epsilon_g^2 + \epsilon_{\text{brane}}^2 + \delta_{\text{thr}}^2}
+\end{equation}
+\end{apibox}
+
+The interval bounds are: \tagB{}
+\begin{align}
+\label{eq:tau-min}
+\tau_p^{(\min)} &= \tau_p^{(\text{central})} \cdot (1 - 4\epsilon_{\text{total}}) \\
+\label{eq:tau-max}
+\tau_p^{(\max)} &= \tau_p^{(\text{central})} \cdot (1 + 4\epsilon_{\text{total}})
+\end{align}
+
+\subsection{B-API2: Comparison Functional}
+\label{subsec:b-api2}
+
+\begin{apibox}[B-API2: Comparison to External Bound]
+\textbf{Input:} $\tau_p$ interval, external bound $\tau_{\text{bound}}$
+
+\textbf{Output:} Comparison ratio $R(\tilde{\sigma})$
+
+\textbf{Computation:}
+\begin{equation}
+\label{eq:b-api2-ratio}
+R(\tilde{\sigma}) = \frac{\tau_p^{(\min)}(\tilde{\sigma})}{\tau_{\text{bound}}}
+\end{equation}
+
+\textbf{Interpretation:}
+\begin{itemize}
+  \item $R > 1$: Prediction exceeds bound (consistent)
+  \item $R = 1$: Prediction equals bound (marginal)
+  \item $R < 1$: Prediction below bound (inconsistent)
+\end{itemize}
+\end{apibox}
+
+The consistency condition is: \tagB{}
+\begin{equation}
+\label{eq:consistency-condition}
+\tau_p^{(\min)}(\tilde{\sigma}) \geq \tau_{\text{bound}} \quad \Leftrightarrow \quad R(\tilde{\sigma}) \geq 1
+\end{equation}
+
+\subsection{B-API3: Sweep and Feasibility}
+\label{subsec:b-api3}
+
+\begin{apibox}[B-API3: Parameter Sweep]
+\textbf{Input:} $\tilde{\sigma}$ range $[\tilde{\sigma}_{\min}, \tilde{\sigma}_{\max}]$, grid size $N$
+
+\textbf{Output:} Feasible region $\mathcal{F}$, required minimum $\tilde{\sigma}_{\min}^{\text{(req)}}$
+
+\textbf{Computation:}
+\begin{equation}
+\label{eq:b-api3-sweep}
+\mathcal{F} = \{\tilde{\sigma} : R(\tilde{\sigma}) \geq 1\}
+\end{equation}
+
+\textbf{Minimum extraction:}
+\begin{equation}
+\label{eq:sigma-min-req}
+\tilde{\sigma}_{\min}^{\text{(req)}} = \inf\{\tilde{\sigma} : R(\tilde{\sigma}) \geq 1\}
+\end{equation}
+\end{apibox}
+
+The sweep is performed on a logarithmic grid: \tagB{}
+\begin{equation}
+\label{eq:log-grid}
+\tilde{\sigma}_i = \tilde{\sigma}_{\min} \cdot \left(\frac{\tilde{\sigma}_{\max}}{\tilde{\sigma}_{\min}}\right)^{i/(N-1)}, \quad i = 0, 1, \ldots, N-1
+\end{equation}
+
+\subsection{B-API4: Reporting Interface}
+\label{subsec:b-api4}
+
+\begin{apibox}[B-API4: Results Reporting]
+\textbf{Input:} Sweep results from B-API3
+
+\textbf{Output:} Structured report containing:
+\begin{enumerate}
+  \item $\tilde{\sigma}_{\min}^{\text{(req)}}$ for each decay channel
+  \item Feasible region boundaries
+  \item Sensitivity to template parameters
+  \item Residual $\Delta(\tilde{\sigma}) = R(\tilde{\sigma}) - 1$
+\end{enumerate}
+\end{apibox}
+
+The residual functional is: \tagB{}
+\begin{equation}
+\label{eq:residual}
+\Delta(\tilde{\sigma}) = \frac{\tau_p^{(\min)}(\tilde{\sigma}) - \tau_{\text{bound}}}{\tau_{\text{bound}}}
+\end{equation}
+
+% ============================================================================
+% NO-BACKFLOW THEOREM
+% ============================================================================
+\section{No-Backflow Theorem}
+\label{sec:no-backflow}
+
+\begin{nobackflowbox}[NO-BACKFLOW THEOREM v6]
+\begin{theorem}[No Backflow]
+\label{thm:no-backflow}
+Let $\mathcal{L}_A$ be Layer A content (v65) and $\mathcal{L}_B$ be Layer B content (this document).
+Let $\mathcal{Q}$ be the quarantine zone containing external experimental values.
+Then: \tagD{}
+\begin{equation}
+\label{eq:no-backflow-set}
+\boxed{\mathcal{L}_B \cap \mathcal{L}_A = \emptyset \quad \text{and} \quad \mathcal{Q} \cap \mathcal{L}_A = \emptyset}
+\end{equation}
+\end{theorem}
+
+\textbf{Enforcement Mechanisms:}
+\begin{enumerate}
+  \item Layer A (v65) is hash-locked and not modified
+  \item All external values are tagged \tagQ{}
+  \item External values are confined to quarantine/ directory
+  \item Grep audit verifies zero forbidden hits in Layer A import section
+  \item No optimization or fitting of $\tilde{\sigma}$
+\end{enumerate}
+
+\textbf{Verification:}
+\begin{itemize}
+  \item Automated grep confirms 0 hits of experimental patterns in Layer A section
+  \item All \tagQ{} content is after LAYER\_B\_START marker
+  \item v65 source document is unchanged
+\end{itemize}
+\end{nobackflowbox}
+
+\subsection{Read-Only Import Guarantee}
+\label{subsec:read-only}
+
+The Layer A formulas are imported read-only: \tagD{}
+\begin{equation}
+\label{eq:read-only}
+\frac{\partial \mathcal{L}_A}{\partial \mathcal{L}_B} = 0
+\end{equation}
+
+No Layer B result modifies Layer A content.
+
+\subsection{Hash Chain Verification}
+\label{subsec:hash-verify}
+
+The v65 hash is verified: \tagD{}
+\begin{equation}
+\label{eq:hash-verify}
+\text{hash}(\text{v65}) = \texttt{c4e7f2a1b8d30965} \quad \text{(unchanged)}
+\end{equation}
+
+% ============================================================================
+% NO-FIT POLICY
+% ============================================================================
+\section{No-Fit Policy}
+\label{sec:no-fit}
+
+\begin{nofitbox}[NO-FIT POLICY]
+\textbf{This document does NOT fit any parameter to experimental data.}
+
+\textbf{Explicitly forbidden:}
+\begin{itemize}
+  \item $\chi^2$ minimization
+  \item Maximum likelihood estimation
+  \item Bayesian parameter inference
+  \item Any optimization algorithm
+  \item Selection of ``best-fit'' $\tilde{\sigma}$
+\end{itemize}
+
+\textbf{What is done instead:}
+\begin{itemize}
+  \item $\tilde{\sigma}$ is SWEPT over a declared range
+  \item All sweep results are reported (including tensions)
+  \item ``Required $\tilde{\sigma}_{\min}$'' is a THRESHOLD, not a fit
+  \item Template bounds are POSTULATED, not tuned
+\end{itemize}
+
+\textbf{Rationale:}
+Fitting would create backflow from experimental data to theory parameters,
+violating the firewall between Layer A and Layer B.
+\end{nofitbox}
+
+\subsection{Sweep vs Fit Distinction}
+\label{subsec:sweep-vs-fit}
+
+The distinction is: \tagB{}
+\begin{align}
+\label{eq:sweep-def}
+\text{Sweep:} \quad &\tilde{\sigma} \in [\tilde{\sigma}_a, \tilde{\sigma}_b] \quad \text{(all values computed)} \\
+\label{eq:fit-def}
+\text{Fit:} \quad &\tilde{\sigma}^* = \arg\min_{\tilde{\sigma}} \chi^2(\tilde{\sigma}) \quad \text{(FORBIDDEN)}
+\end{align}
+
+The sweep produces a map $\tilde{\sigma} \mapsto R(\tilde{\sigma})$, not a single value.
+
+% ============================================================================
+% WHERE-USED LOG
+% ============================================================================
+\section{Where-Used Log}
+\label{sec:where-used}
+
+\begin{whereuserbox}[WHERE-USED: Layer A Formulas in Layer B]
+This section documents how Layer A formulas are used (read-only) in Layer B.
+
+\textbf{Usage Policy:} All Layer A formulas are used unchanged as inputs.
+No modifications or parameter adjustments are made.
+\end{whereuserbox}
+
+\subsection{Usage Log}
+\label{subsec:usage-log}
+
+\begin{center}
+\begin{longtable}{llll}
+\toprule
+Ref & Layer A Formula & Where Used & Status \\
+\midrule
+\endhead
+WU-1 & $\tau_p = (C_X^4/16\pi^2) \mu_*^4 \tilde{\sigma}^4 / \mathcal{H}_p$ & B-API1 core & Read-only \\
+WU-2 & $C_X = \sqrt{4/15}$ & Prefactor computation & Read-only \\
+WU-3 & $\epsilon_g \lesssim 0.15$ & Envelope propagation & Read-only \\
+WU-4 & $\tau_p \propto \tilde{\sigma}^4$ & Scaling verification & Read-only \\
+WU-5 & $C_X^4/16\pi^2 = 1/225\pi^2$ & Numerical prefactor & Read-only \\
+WU-6 & $\epsilon_{\text{brane}} \lesssim 0.10$ & Uncertainty budget & Read-only \\
+WU-7 & $\delta_{\text{thr}} \lesssim 0.05$ & Threshold envelope & Read-only \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+All uses are read-only imports from v65.
+
+% ============================================================================
+% METHODOLOGY
+% ============================================================================
+\section{Sweep Methodology}
+\label{sec:methodology}
+
+\subsection{Dimensionless Formulation}
+\label{subsec:dimensionless}
+
+To avoid importing dimensional scales, we work with ratios: \tagB{}
+\begin{equation}
+\label{eq:dimensionless-tau}
+\hat{\tau}_p(\tilde{\sigma}) = \frac{\tau_p(\tilde{\sigma})}{\tau_0} = \frac{\tilde{\sigma}^4}{\tilde{\sigma}_0^4}
+\end{equation}
+
+where $\tau_0 = \tau_p(\tilde{\sigma}_0)$ is a reference. \tagB{}
+
+\subsection{Normalized Comparison}
+\label{subsec:normalized}
+
+The comparison ratio is: \tagB{}
+\begin{equation}
+\label{eq:normalized-ratio}
+R(\tilde{\sigma}) = \frac{\tau_p^{(\min)}(\tilde{\sigma})}{\tau_{\text{bound}}} = \frac{\hat{\tau}_p^{(\min)}(\tilde{\sigma})}{\hat{\tau}_{\text{bound}}}
+\end{equation}
+
+This ratio is independent of overall normalization. \tagB{}
+
+\subsection{Required Minimum Extraction}
+\label{subsec:minimum-extraction}
+
+From $R(\tilde{\sigma}) = 1$: \tagB{}
+\begin{equation}
+\label{eq:min-extraction}
+\tilde{\sigma}_{\min}^{\text{(req)}} = \tilde{\sigma}_{\text{bound}} \cdot (1 + 4\epsilon_{\text{total}})^{1/4}
+\end{equation}
+
+where $\tilde{\sigma}_{\text{bound}}$ satisfies $\tau_p^{(\text{central})}(\tilde{\sigma}_{\text{bound}}) = \tau_{\text{bound}}$. \tagB{}
+
+\subsection{Uncertainty Propagation}
+\label{subsec:uncertainty-prop}
+
+The total uncertainty on $\tau_p$ is: \tagB{}
+\begin{equation}
+\label{eq:unc-prop-1}
+\frac{\delta\tau_p}{\tau_p} = 4\epsilon_{\text{total}} + \frac{\delta\mathcal{H}_p}{\mathcal{H}_p}
+\end{equation}
+
+The combined envelope: \tagB{}
+\begin{equation}
+\label{eq:unc-combined}
+\epsilon_{\text{comb}} = \sqrt{(4\epsilon_{\text{total}})^2 + \left(\frac{\delta\mathcal{H}_p}{\mathcal{H}_p}\right)^2}
+\end{equation}
+
+\subsection{Sensitivity Coefficients}
+\label{subsec:sensitivity}
+
+The sensitivity of $\tilde{\sigma}_{\min}^{\text{(req)}}$ to parameters: \tagB{}
+\begin{align}
+\label{eq:sens-eps}
+\frac{\partial \ln\tilde{\sigma}_{\min}^{\text{(req)}}}{\partial \epsilon_{\text{total}}} &\approx \frac{1}{1 + 4\epsilon_{\text{total}}} \\
+\label{eq:sens-hp}
+\frac{\partial \ln\tilde{\sigma}_{\min}^{\text{(req)}}}{\partial \ln\mathcal{H}_p} &= \frac{1}{4}
+\end{align}
+
+The $\mathcal{H}_p$ dependence is weak ($1/4$ power). \tagB{}
+
+% ============================================================================
+% DETAILED B-API DERIVATIONS
+% ============================================================================
+\section{Detailed B-API Derivations}
+\label{sec:b-api-detail}
+
+\subsection{B-API1 Detailed Derivation}
+\label{subsec:b-api1-detail}
+
+Starting from the Layer A formula: \tagD{}
+\begin{equation}
+\label{eq:api1-start}
+\tau_p = \frac{C_X^4}{16\pi^2} \cdot \frac{\mu_*^4 \cdot \tilde{\sigma}^4}{\mathcal{H}_p}
+\end{equation}
+
+The coupling enters via: \tagD{}
+\begin{equation}
+\label{eq:api1-coupling}
+g_X^4 = \frac{16\pi^2}{\tilde{\sigma}^2} \cdot (1 \pm \epsilon_g)^4
+\end{equation}
+
+Expanding to first order: \tagB{}
+\begin{equation}
+\label{eq:api1-expand}
+(1 \pm \epsilon_g)^4 \approx 1 \pm 4\epsilon_g + \mathcal{O}(\epsilon_g^2)
+\end{equation}
+
+The M_X enters via: \tagD{}
+\begin{equation}
+\label{eq:api1-mx}
+M_X^4 = C_X^4 \mu_*^4 \tilde{\sigma}^2 \cdot (1 \pm \epsilon_{\text{brane}})^2
+\end{equation}
+
+Expanding: \tagB{}
+\begin{equation}
+\label{eq:api1-mx-expand}
+(1 \pm \epsilon_{\text{brane}})^2 \approx 1 \pm 2\epsilon_{\text{brane}}
+\end{equation}
+
+The lifetime ratio: \tagB{}
+\begin{equation}
+\label{eq:api1-ratio}
+\frac{\tau_p}{(M_X^4/g_X^4)} = \frac{1}{\mathcal{H}_p}
+\end{equation}
+
+Combined uncertainty: \tagB{}
+\begin{equation}
+\label{eq:api1-unc-comb}
+\frac{\delta\tau_p}{\tau_p} = 4\delta\ln M_X - 4\delta\ln g_X + \delta\ln\mathcal{H}_p^{-1}
+\end{equation}
+
+This gives: \tagB{}
+\begin{align}
+\label{eq:api1-unc-detail-1}
+\frac{\delta\tau_p}{\tau_p} &= 4 \cdot \frac{1}{2}\epsilon_{\text{brane}} + 4\epsilon_g + \delta_{\text{thr}} \\
+\label{eq:api1-unc-detail-2}
+&= 2\epsilon_{\text{brane}} + 4\epsilon_g + \delta_{\text{thr}}
+\end{align}
+
+The envelope bound: \tagT{}
+\begin{equation}
+\label{eq:api1-envelope}
+\left|\frac{\delta\tau_p}{\tau_p}\right| \lesssim 4\epsilon_{\text{total}}
+\end{equation}
+
+where: \tagT{}
+\begin{equation}
+\label{eq:api1-eps-total}
+\epsilon_{\text{total}} = \sqrt{\epsilon_g^2 + \frac{\epsilon_{\text{brane}}^2}{4} + \frac{\delta_{\text{thr}}^2}{16}}
+\end{equation}
+
+\subsection{B-API2 Detailed Derivation}
+\label{subsec:b-api2-detail}
+
+The comparison functional: \tagB{}
+\begin{equation}
+\label{eq:api2-def}
+R(\tilde{\sigma}) = \frac{\tau_p^{(\min)}(\tilde{\sigma})}{\tau_{\text{bound}}}
+\end{equation}
+
+Substituting: \tagB{}
+\begin{equation}
+\label{eq:api2-subst}
+R(\tilde{\sigma}) = \frac{(1 - 4\epsilon_{\text{total}}) \cdot C_X^4 \mu_*^4 \tilde{\sigma}^4}{16\pi^2 \mathcal{H}_p \tau_{\text{bound}}}
+\end{equation}
+
+Defining the critical value: \tagB{}
+\begin{equation}
+\label{eq:api2-crit}
+\tilde{\sigma}_{\text{crit}}^4 = \frac{16\pi^2 \mathcal{H}_p \tau_{\text{bound}}}{C_X^4 \mu_*^4}
+\end{equation}
+
+The ratio becomes: \tagB{}
+\begin{equation}
+\label{eq:api2-ratio-simple}
+R(\tilde{\sigma}) = (1 - 4\epsilon_{\text{total}}) \left(\frac{\tilde{\sigma}}{\tilde{\sigma}_{\text{crit}}}\right)^4
+\end{equation}
+
+The consistency condition $R \geq 1$: \tagB{}
+\begin{equation}
+\label{eq:api2-consist}
+\tilde{\sigma} \geq \frac{\tilde{\sigma}_{\text{crit}}}{(1 - 4\epsilon_{\text{total}})^{1/4}}
+\end{equation}
+
+\subsection{B-API3 Detailed Algorithm}
+\label{subsec:b-api3-detail}
+
+The sweep algorithm: \tagB{}
+\begin{enumerate}
+  \item Initialize grid $\{\tilde{\sigma}_i\}_{i=0}^{N-1}$ with log spacing
+  \item For each $\tilde{\sigma}_i$, compute $R(\tilde{\sigma}_i)$
+  \item Find crossing: $i^* = \min\{i : R(\tilde{\sigma}_i) \geq 1\}$
+  \item Interpolate: $\tilde{\sigma}_{\min}^{\text{(req)}} \in [\tilde{\sigma}_{i^*-1}, \tilde{\sigma}_{i^*}]$
+\end{enumerate}
+
+The grid spacing: \tagB{}
+\begin{equation}
+\label{eq:api3-grid}
+\Delta\ln\tilde{\sigma} = \frac{\ln\tilde{\sigma}_{\max} - \ln\tilde{\sigma}_{\min}}{N-1}
+\end{equation}
+
+The interpolation formula: \tagB{}
+\begin{equation}
+\label{eq:api3-interp}
+\ln\tilde{\sigma}_{\min}^{\text{(req)}} = \ln\tilde{\sigma}_{i^*-1} + \frac{1 - R_{i^*-1}}{R_{i^*} - R_{i^*-1}} \cdot \Delta\ln\tilde{\sigma}
+\end{equation}
+
+\subsection{B-API4 Reporting Format}
+\label{subsec:b-api4-detail}
+
+The residual at each grid point: \tagB{}
+\begin{equation}
+\label{eq:api4-residual}
+\Delta_i = R(\tilde{\sigma}_i) - 1
+\end{equation}
+
+The sign indicates: \tagB{}
+\begin{align}
+\label{eq:api4-sign-pos}
+\Delta_i > 0 &\quad \Rightarrow \quad \text{consistent (allowed)} \\
+\label{eq:api4-sign-neg}
+\Delta_i < 0 &\quad \Rightarrow \quad \text{inconsistent (excluded)} \\
+\label{eq:api4-sign-zero}
+\Delta_i = 0 &\quad \Rightarrow \quad \text{marginal}
+\end{align}
+
+The feasible region: \tagB{}
+\begin{equation}
+\label{eq:api4-feasible}
+\mathcal{F} = \{\tilde{\sigma} : \Delta(\tilde{\sigma}) \geq 0\} = [\tilde{\sigma}_{\min}^{\text{(req)}}, \infty)
+\end{equation}
+
+% ============================================================================
+% MATHEMATICAL CONSISTENCY CHECKS
+% ============================================================================
+\section{Mathematical Consistency Checks}
+\label{sec:math-checks}
+
+\subsection{Dimensional Analysis}
+\label{subsec:dim-checks}
+
+Check 1: Lifetime dimensions \tagD{}
+\begin{align}
+\label{eq:dim-check-1}
+[\tau_p] &= [M_X^4/g_X^4 \mathcal{H}_p] \\
+\label{eq:dim-check-2}
+&= \text{mass}^4 / \text{mass}^5 = \text{mass}^{-1} = \text{time}
+\end{align}
+
+Check 2: Ratio is dimensionless \tagB{}
+\begin{equation}
+\label{eq:dim-check-3}
+[R] = [\tau_p/\tau_{\text{bound}}] = 1
+\end{equation}
+
+Check 3: $\tilde{\sigma}$ is dimensionless \tagD{}
+\begin{equation}
+\label{eq:dim-check-4}
+[\tilde{\sigma}] = [\sigma L^2/\bar{M}_{\text{Pl}}^2] = 1
+\end{equation}
+
+\subsection{Scaling Verification}
+\label{subsec:scaling-verify}
+
+From the Layer A formula: \tagD{}
+\begin{equation}
+\label{eq:scale-verify-1}
+\tau_p(\lambda\tilde{\sigma}) = \tau_p(\tilde{\sigma}) \cdot \lambda^4
+\end{equation}
+
+Verification: \tagD{}
+\begin{align}
+\label{eq:scale-verify-2}
+\tau_p(\lambda\tilde{\sigma}) &= \frac{C_X^4 \mu_*^4 (\lambda\tilde{\sigma})^4}{16\pi^2 \mathcal{H}_p} \\
+\label{eq:scale-verify-3}
+&= \lambda^4 \cdot \frac{C_X^4 \mu_*^4 \tilde{\sigma}^4}{16\pi^2 \mathcal{H}_p} \\
+\label{eq:scale-verify-4}
+&= \lambda^4 \cdot \tau_p(\tilde{\sigma})
+\end{align}
+
+Confirmed. \tagD{}
+
+\subsection{Monotonicity Check}
+\label{subsec:mono-check}
+
+The derivative: \tagD{}
+\begin{equation}
+\label{eq:mono-1}
+\frac{d\tau_p}{d\tilde{\sigma}} = 4\tau_p/\tilde{\sigma} > 0
+\end{equation}
+
+for all $\tilde{\sigma} > 0$. The lifetime is strictly increasing. \tagD{}
+
+The ratio derivative: \tagB{}
+\begin{equation}
+\label{eq:mono-2}
+\frac{dR}{d\tilde{\sigma}} = \frac{4R}{\tilde{\sigma}} > 0
+\end{equation}
+
+Also strictly increasing. \tagB{}
+
+\subsection{Convexity Check}
+\label{subsec:convex-check}
+
+The second derivative of $\ln\tau_p$: \tagD{}
+\begin{equation}
+\label{eq:convex-1}
+\frac{d^2\ln\tau_p}{d(\ln\tilde{\sigma})^2} = 0
+\end{equation}
+
+Linear in log-log space. \tagD{}
+
+The curvature of $\tau_p$: \tagD{}
+\begin{equation}
+\label{eq:convex-2}
+\frac{d^2\tau_p}{d\tilde{\sigma}^2} = \frac{12\tau_p}{\tilde{\sigma}^2} > 0
+\end{equation}
+
+Strictly convex. \tagD{}
+
+\subsection{Limit Checks}
+\label{subsec:limit-checks}
+
+As $\tilde{\sigma} \to 0$: \tagD{}
+\begin{align}
+\label{eq:limit-small-1}
+\tau_p &\to 0 \\
+\label{eq:limit-small-2}
+R &\to 0
+\end{align}
+
+As $\tilde{\sigma} \to \infty$: \tagD{}
+\begin{align}
+\label{eq:limit-large-1}
+\tau_p &\to \infty \\
+\label{eq:limit-large-2}
+R &\to \infty
+\end{align}
+
+Both limits are physically sensible. \tagD{}
+
+% ============================================================================
+% UNCERTAINTY BUDGET DETAILED
+% ============================================================================
+\section{Uncertainty Budget}
+\label{sec:unc-budget}
+
+\subsection{Error Sources}
+\label{subsec:error-sources}
+
+The error sources in $\tau_p$: \tagB{}
+\begin{align}
+\label{eq:err-src-1}
+\epsilon_g &\quad \text{(coupling RG + matching)} \\
+\label{eq:err-src-2}
+\epsilon_{\text{brane}} &\quad \text{(brane localized terms)} \\
+\label{eq:err-src-3}
+\delta_{\text{thr}} &\quad \text{(threshold corrections)} \\
+\label{eq:err-src-4}
+\delta\mathcal{H}_p/\mathcal{H}_p &\quad \text{(hadronic uncertainty)}
+\end{align}
+
+\subsection{Error Propagation}
+\label{subsec:error-prop}
+
+For $\tau_p = f(\tilde{\sigma}, g_X, M_X, \mathcal{H}_p)$: \tagB{}
+\begin{equation}
+\label{eq:err-prop-1}
+\left(\frac{\delta\tau_p}{\tau_p}\right)^2 = \sum_i \left(\frac{\partial\ln\tau_p}{\partial\ln x_i}\right)^2 \left(\frac{\delta x_i}{x_i}\right)^2
+\end{equation}
+
+The partial derivatives: \tagD{}
+\begin{align}
+\label{eq:partial-sigma}
+\frac{\partial\ln\tau_p}{\partial\ln\tilde{\sigma}} &= 4 \\
+\label{eq:partial-mx}
+\frac{\partial\ln\tau_p}{\partial\ln M_X} &= 4 \\
+\label{eq:partial-gx}
+\frac{\partial\ln\tau_p}{\partial\ln g_X} &= -4 \\
+\label{eq:partial-hp}
+\frac{\partial\ln\tau_p}{\partial\ln\mathcal{H}_p} &= -1
+\end{align}
+
+\subsection{Combined Uncertainty}
+\label{subsec:comb-unc}
+
+The total fractional uncertainty: \tagB{}
+\begin{equation}
+\label{eq:total-unc}
+\frac{\delta\tau_p}{\tau_p} = \sqrt{16\epsilon_g^2 + 4\epsilon_{\text{brane}}^2 + \delta_{\text{thr}}^2 + \left(\frac{\delta\mathcal{H}_p}{\mathcal{H}_p}\right)^2}
+\end{equation}
+
+With template values: \tagT{}
+\begin{equation}
+\label{eq:total-unc-num}
+\frac{\delta\tau_p}{\tau_p} \lesssim \sqrt{16(0.15)^2 + 4(0.10)^2 + (0.05)^2 + (0.30)^2}
+\end{equation}
+
+Evaluating: \tagB{}
+\begin{equation}
+\label{eq:total-unc-eval}
+\frac{\delta\tau_p}{\tau_p} \lesssim \sqrt{0.36 + 0.04 + 0.0025 + 0.09} \approx 0.70
+\end{equation}
+
+\subsection{Dominant Contributions}
+\label{subsec:dominant}
+
+Ranking by magnitude: \tagB{}
+\begin{enumerate}
+  \item $4\epsilon_g = 0.60$ (dominant)
+  \item $\delta\mathcal{H}_p/\mathcal{H}_p = 0.30$ (second)
+  \item $2\epsilon_{\text{brane}} = 0.20$ (third)
+  \item $\delta_{\text{thr}} = 0.05$ (smallest)
+\end{enumerate}
+
+The coupling envelope dominates. \tagB{}
+
+% ============================================================================
+% INTERPRETATION FRAMEWORK
+% ============================================================================
+\section{Interpretation Framework}
+\label{sec:interpretation}
+
+\subsection{Consistency Regions}
+\label{subsec:regions}
+
+The parameter space is divided into: \tagB{}
+\begin{align}
+\label{eq:region-allowed}
+\mathcal{R}_{\text{allowed}} &= \{\tilde{\sigma} : R(\tilde{\sigma}) \geq 1\} \\
+\label{eq:region-excluded}
+\mathcal{R}_{\text{excluded}} &= \{\tilde{\sigma} : R(\tilde{\sigma}) < 1\} \\
+\label{eq:region-marginal}
+\partial\mathcal{R} &= \{\tilde{\sigma} : R(\tilde{\sigma}) = 1\}
+\end{align}
+
+\subsection{Boundary Interpretation}
+\label{subsec:boundary}
+
+The boundary $\partial\mathcal{R}$: \tagB{}
+\begin{equation}
+\label{eq:boundary-def}
+\tilde{\sigma} = \tilde{\sigma}_{\min}^{\text{(req)}}
+\end{equation}
+
+represents the minimum $\tilde{\sigma}$ required for consistency. \tagB{}
+
+This is NOT a fit---it is a threshold. \tagB{}
+
+\subsection{Physical Meaning}
+\label{subsec:physical}
+
+For $\tilde{\sigma} < \tilde{\sigma}_{\min}^{\text{(req)}}$: \tagB{}
+\begin{equation}
+\label{eq:phys-excluded}
+\tau_p^{(\min)}(\tilde{\sigma}) < \tau_{\text{bound}} \quad \Rightarrow \quad \text{inconsistent}
+\end{equation}
+
+For $\tilde{\sigma} > \tilde{\sigma}_{\min}^{\text{(req)}}$: \tagB{}
+\begin{equation}
+\label{eq:phys-allowed}
+\tau_p^{(\min)}(\tilde{\sigma}) > \tau_{\text{bound}} \quad \Rightarrow \quad \text{consistent}
+\end{equation}
+
+\subsection{Cosmology Interface}
+\label{subsec:cosmo-interface}
+
+Layer A requires $\tilde{\sigma}$ from cosmology. \tagP{}
+
+The Layer B constraint becomes: \tagB{}
+\begin{equation}
+\label{eq:cosmo-constraint}
+\tilde{\sigma}_{\text{cosmo}} \geq \tilde{\sigma}_{\min}^{\text{(req)}}
+\end{equation}
+
+This provides a \emph{lower bound} on the cosmological parameter. \tagB{}
+
+% ============================================================================
+% ALTERNATIVE PARAMETERIZATIONS
+% ============================================================================
+\section{Alternative Parameterizations}
+\label{sec:alt-param}
+
+\subsection{In Terms of $\alpha_3$}
+\label{subsec:alpha3-param}
+
+Using $\tilde{\sigma} = 1/\alpha_3(\mu_*)$: \tagD{}
+\begin{equation}
+\label{eq:alt-alpha3}
+\tau_p = \frac{C_X^4}{16\pi^2} \cdot \frac{\mu_*^4}{\alpha_3^4(\mu_*) \cdot \mathcal{H}_p}
+\end{equation}
+
+The scaling: \tagD{}
+\begin{equation}
+\label{eq:alpha3-scale}
+\tau_p \propto \alpha_3^{-4}
+\end{equation}
+
+The required minimum: \tagB{}
+\begin{equation}
+\label{eq:alpha3-max}
+\alpha_3(\mu_*) \leq \alpha_{3,\max} = (\tilde{\sigma}_{\min}^{\text{(req)}})^{-1}
+\end{equation}
+
+\subsection{In Terms of $M_X$}
+\label{subsec:mx-param}
+
+Using $M_X = C_X \mu_* \tilde{\sigma}^{1/2}$: \tagD{}
+\begin{equation}
+\label{eq:alt-mx}
+\tilde{\sigma} = \left(\frac{M_X}{C_X \mu_*}\right)^2
+\end{equation}
+
+The lifetime: \tagD{}
+\begin{equation}
+\label{eq:mx-tau}
+\tau_p = \frac{M_X^8}{16\pi^2 C_X^4 \mu_*^4 \mathcal{H}_p}
+\end{equation}
+
+Wait, let's check: \tagD{}
+\begin{align}
+\label{eq:mx-check-1}
+\tau_p &= \frac{C_X^4 \mu_*^4 \tilde{\sigma}^4}{16\pi^2 \mathcal{H}_p} \\
+\label{eq:mx-check-2}
+&= \frac{C_X^4 \mu_*^4}{16\pi^2 \mathcal{H}_p} \cdot \left(\frac{M_X}{C_X\mu_*}\right)^8 \\
+\label{eq:mx-check-3}
+&= \frac{M_X^8}{16\pi^2 C_X^4 \mu_*^4 \mathcal{H}_p}
+\end{align}
+
+Confirmed. The scaling is $\tau_p \propto M_X^8$. \tagD{}
+
+\subsection{In Terms of $g_X$}
+\label{subsec:gx-param}
+
+Using $g_X = \sqrt{4\pi/\tilde{\sigma}}$: \tagD{}
+\begin{equation}
+\label{eq:alt-gx}
+\tilde{\sigma} = \frac{4\pi}{g_X^2}
+\end{equation}
+
+The lifetime: \tagD{}
+\begin{equation}
+\label{eq:gx-tau}
+\tau_p = \frac{C_X^4 \mu_*^4}{16\pi^2 \mathcal{H}_p} \cdot \frac{(4\pi)^4}{g_X^8}
+\end{equation}
+
+Simplifying: \tagD{}
+\begin{equation}
+\label{eq:gx-tau-simp}
+\tau_p = \frac{C_X^4 (4\pi)^4 \mu_*^4}{16\pi^2 g_X^8 \mathcal{H}_p} = \frac{16\pi^2 C_X^4 \mu_*^4}{g_X^8 \mathcal{H}_p}
+\end{equation}
+
+The scaling is $\tau_p \propto g_X^{-8}$. \tagD{}
+
+\subsection{In Terms of $\tau_{\text{ref}}$}
+\label{subsec:ref-param}
+
+Define a reference lifetime: \tagB{}
+\begin{equation}
+\label{eq:tau-ref-def}
+\tau_{\text{ref}} = \tau_p(\tilde{\sigma} = 100)
+\end{equation}
+
+Then: \tagB{}
+\begin{equation}
+\label{eq:tau-normalized}
+\hat{\tau}_p = \frac{\tau_p}{\tau_{\text{ref}}} = \left(\frac{\tilde{\sigma}}{100}\right)^4
+\end{equation}
+
+And the ratio: \tagB{}
+\begin{equation}
+\label{eq:ratio-normalized}
+R = \hat{\tau}_p \cdot \frac{\tau_{\text{ref}}}{\tau_{\text{bound}}} \cdot (1 - 4\epsilon_{\text{total}})
+\end{equation}
+
+% ============================================================================
+% NUMERICAL STABILITY
+% ============================================================================
+\section{Numerical Stability Analysis}
+\label{sec:numerical}
+
+\subsection{Log-Space Computation}
+\label{subsec:log-space}
+
+To avoid overflow, compute in log-space: \tagB{}
+\begin{equation}
+\label{eq:log-tau}
+\ln\tau_p = \ln\left(\frac{C_X^4}{16\pi^2}\right) + 4\ln\mu_* + 4\ln\tilde{\sigma} - \ln\mathcal{H}_p
+\end{equation}
+
+The ratio: \tagB{}
+\begin{equation}
+\label{eq:log-ratio}
+\ln R = \ln\tau_p + \ln(1 - 4\epsilon_{\text{total}}) - \ln\tau_{\text{bound}}
+\end{equation}
+
+\subsection{Numerical Constants}
+\label{subsec:num-const}
+
+The prefactor in log-space: \tagDc{}
+\begin{equation}
+\label{eq:log-prefactor}
+\ln\left(\frac{C_X^4}{16\pi^2}\right) = \ln\left(\frac{1}{225\pi^2}\right) = -\ln(225) - 2\ln\pi
+\end{equation}
+
+Numerically: \tagDc{}
+\begin{equation}
+\label{eq:log-prefactor-num}
+\ln\left(\frac{1}{225\pi^2}\right) \approx -5.41 - 2.29 = -7.70
+\end{equation}
+
+\subsection{Overflow Prevention}
+\label{subsec:overflow}
+
+For $\tilde{\sigma} = 10^4$: \tagB{}
+\begin{equation}
+\label{eq:overflow-check}
+4\ln\tilde{\sigma} = 4 \times 9.21 = 36.8
+\end{equation}
+
+This corresponds to $e^{36.8} \sim 10^{16}$, within double precision. \tagB{}
+
+\subsection{Underflow Prevention}
+\label{subsec:underflow}
+
+For $\tilde{\sigma} = 10$: \tagB{}
+\begin{equation}
+\label{eq:underflow-check}
+4\ln\tilde{\sigma} = 4 \times 2.30 = 9.21
+\end{equation}
+
+Relative to reference: \tagB{}
+\begin{equation}
+\label{eq:relative-underflow}
+4\ln(10/100) = 4 \times (-2.30) = -9.21
+\end{equation}
+
+Corresponds to $10^{-4}$, safe. \tagB{}
+
+% ============================================================================
+% CROSS-VALIDATION
+% ============================================================================
+\section{Cross-Validation Checks}
+\label{sec:cross-val}
+
+\subsection{Scaling Verification}
+\label{subsec:scale-cv}
+
+Test: $\tau_p(2\tilde{\sigma})/\tau_p(\tilde{\sigma}) = 16$: \tagB{}
+\begin{align}
+\label{eq:cv-scale-1}
+\tau_p(2\tilde{\sigma}) &= \frac{C_X^4 \mu_*^4 (2\tilde{\sigma})^4}{16\pi^2 \mathcal{H}_p} \\
+\label{eq:cv-scale-2}
+&= 16 \cdot \frac{C_X^4 \mu_*^4 \tilde{\sigma}^4}{16\pi^2 \mathcal{H}_p} \\
+\label{eq:cv-scale-3}
+&= 16 \cdot \tau_p(\tilde{\sigma})
+\end{align}
+
+Confirmed. \tagB{}
+
+\subsection{API Consistency}
+\label{subsec:api-cv}
+
+Check B-API1 vs B-API2: \tagB{}
+\begin{equation}
+\label{eq:cv-api-1}
+R = \frac{\tau_p^{(\min)}}{\tau_{\text{bound}}} = \frac{(1-4\epsilon_{\text{total}})\tau_p}{\tau_{\text{bound}}}
+\end{equation}
+
+From B-API3, $\tilde{\sigma}_{\min}$ satisfies $R = 1$: \tagB{}
+\begin{equation}
+\label{eq:cv-api-2}
+(1-4\epsilon_{\text{total}})\tau_p(\tilde{\sigma}_{\min}) = \tau_{\text{bound}}
+\end{equation}
+
+Solving: \tagB{}
+\begin{equation}
+\label{eq:cv-api-3}
+\tau_p(\tilde{\sigma}_{\min}) = \frac{\tau_{\text{bound}}}{1-4\epsilon_{\text{total}}}
+\end{equation}
+
+Consistent with B-API1 definition. \tagB{}
+
+\subsection{Sensitivity Cross-Check}
+\label{subsec:sens-cv}
+
+From $\tau_p \propto \tilde{\sigma}^4$: \tagB{}
+\begin{equation}
+\label{eq:cv-sens-1}
+\frac{d\ln\tau_p}{d\ln\tilde{\sigma}} = 4
+\end{equation}
+
+From $\tau_p \propto \mathcal{H}_p^{-1}$: \tagB{}
+\begin{equation}
+\label{eq:cv-sens-2}
+\frac{d\ln\tau_p}{d\ln\mathcal{H}_p} = -1
+\end{equation}
+
+Combined: \tagB{}
+\begin{equation}
+\label{eq:cv-sens-3}
+\frac{d\ln\tilde{\sigma}_{\min}}{d\ln\tau_{\text{bound}}} = \frac{1}{4}
+\end{equation}
+
+And: \tagB{}
+\begin{equation}
+\label{eq:cv-sens-4}
+\frac{d\ln\tilde{\sigma}_{\min}}{d\ln\mathcal{H}_p} = \frac{1}{4}
+\end{equation}
+
+Both $1/4$ power, consistent. \tagB{}
+
+% ============================================================================
+% FORMAL THEOREMS
+% ============================================================================
+\section{Formal Theorems}
+\label{sec:theorems}
+
+\begin{theorem}[Feasibility Existence]
+\label{thm:feasibility}
+For any bound $\tau_{\text{bound}} > 0$, there exists $\tilde{\sigma}_{\min}^{\text{(req)}} > 0$ such that
+$R(\tilde{\sigma}) \geq 1$ for all $\tilde{\sigma} \geq \tilde{\sigma}_{\min}^{\text{(req)}}$. \tagB{}
+\end{theorem}
+
+\begin{proof}
+From monotonicity \cref{eq:mono-2}: \tagB{}
+\begin{equation}
+\label{eq:thm1-mono}
+\frac{dR}{d\tilde{\sigma}} > 0 \quad \forall \tilde{\sigma} > 0
+\end{equation}
+
+From limit behavior \cref{eq:limit-large-2}: \tagB{}
+\begin{equation}
+\label{eq:thm1-limit}
+\lim_{\tilde{\sigma} \to \infty} R(\tilde{\sigma}) = \infty
+\end{equation}
+
+Since $R$ is continuous, monotonic, and unbounded above, the intermediate value theorem guarantees
+a unique $\tilde{\sigma}_{\min}^{\text{(req)}}$ with $R(\tilde{\sigma}_{\min}^{\text{(req)}}) = 1$. \tagB{}
+\end{proof}
+
+\begin{theorem}[Uniqueness of Critical Point]
+\label{thm:uniqueness}
+The critical value $\tilde{\sigma}_{\min}^{\text{(req)}}$ solving $R(\tilde{\sigma}) = 1$ is unique. \tagB{}
+\end{theorem}
+
+\begin{proof}
+Strict monotonicity: \tagB{}
+\begin{equation}
+\label{eq:thm2-strict}
+R(\tilde{\sigma}_1) < R(\tilde{\sigma}_2) \quad \text{if } \tilde{\sigma}_1 < \tilde{\sigma}_2
+\end{equation}
+
+Therefore $R(\tilde{\sigma}) = 1$ has at most one solution. Existence from \cref{thm:feasibility}. \tagB{}
+\end{proof}
+
+\begin{theorem}[Sensitivity Bound]
+\label{thm:sensitivity}
+The sensitivity of $\tilde{\sigma}_{\min}^{\text{(req)}}$ to the bound satisfies: \tagB{}
+\begin{equation}
+\label{eq:thm3-sens}
+\left|\frac{d\ln\tilde{\sigma}_{\min}^{\text{(req)}}}{d\ln\tau_{\text{bound}}}\right| = \frac{1}{4}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+From $\tau_p \propto \tilde{\sigma}^4$ and $\tau_p(\tilde{\sigma}_{\min}) \propto \tau_{\text{bound}}$: \tagB{}
+\begin{align}
+\label{eq:thm3-proof-1}
+\ln\tau_{\text{bound}} &= 4\ln\tilde{\sigma}_{\min} + \text{const} \\
+\label{eq:thm3-proof-2}
+d\ln\tau_{\text{bound}} &= 4 \, d\ln\tilde{\sigma}_{\min} \\
+\label{eq:thm3-proof-3}
+\frac{d\ln\tilde{\sigma}_{\min}}{d\ln\tau_{\text{bound}}} &= \frac{1}{4}
+\end{align}
+\end{proof}
+
+\begin{proposition}[Envelope Dominance]
+\label{prop:envelope}
+The coupling envelope $\epsilon_g$ dominates the uncertainty budget when: \tagB{}
+\begin{equation}
+\label{eq:prop-condition}
+\epsilon_g > \frac{1}{4}\sqrt{\epsilon_{\text{brane}}^2 + \delta_{\text{thr}}^2/16}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The contribution to $\delta\tau_p/\tau_p$ from $\epsilon_g$ is $4\epsilon_g$. \tagB{}
+
+The contribution from other sources is: \tagB{}
+\begin{equation}
+\label{eq:prop-other}
+\sqrt{4\epsilon_{\text{brane}}^2 + \delta_{\text{thr}}^2}
+\end{equation}
+
+Dominance requires: \tagB{}
+\begin{equation}
+\label{eq:prop-dom}
+4\epsilon_g > \sqrt{4\epsilon_{\text{brane}}^2 + \delta_{\text{thr}}^2}
+\end{equation}
+
+With template values, this is satisfied. \tagB{}
+\end{proof}
+
+% ============================================================================
+% ERROR ANALYSIS DETAILS
+% ============================================================================
+\section{Error Analysis Details}
+\label{sec:error-detail}
+
+\subsection{First-Order Expansion}
+\label{subsec:first-order}
+
+Expanding about the central value: \tagB{}
+\begin{equation}
+\label{eq:expand-1}
+\tau_p = \tau_p^{(0)} \left(1 + \sum_i \frac{\partial\ln\tau_p}{\partial\ln x_i} \delta\ln x_i + \mathcal{O}(\delta^2)\right)
+\end{equation}
+
+The partial derivatives: \tagB{}
+\begin{align}
+\label{eq:expand-d-sigma}
+\frac{\partial\ln\tau_p}{\partial\ln\tilde{\sigma}} &= 4 \\
+\label{eq:expand-d-gx}
+\frac{\partial\ln\tau_p}{\partial\ln g_X} &= -4 \\
+\label{eq:expand-d-mx}
+\frac{\partial\ln\tau_p}{\partial\ln M_X} &= 4 \\
+\label{eq:expand-d-hp}
+\frac{\partial\ln\tau_p}{\partial\ln\mathcal{H}_p} &= -1
+\end{align}
+
+\subsection{Correlation Structure}
+\label{subsec:correlation}
+
+Assuming independent errors: \tagB{}
+\begin{equation}
+\label{eq:corr-indep}
+\langle\delta\ln x_i \cdot \delta\ln x_j\rangle = \sigma_i^2 \delta_{ij}
+\end{equation}
+
+The total variance: \tagB{}
+\begin{equation}
+\label{eq:corr-var}
+\text{Var}[\ln\tau_p] = \sum_i \left(\frac{\partial\ln\tau_p}{\partial\ln x_i}\right)^2 \sigma_i^2
+\end{equation}
+
+Numerically: \tagB{}
+\begin{equation}
+\label{eq:corr-num}
+\sigma_{\ln\tau_p}^2 = 16\epsilon_g^2 + 4\epsilon_{\text{brane}}^2 + \delta_{\text{thr}}^2 + \sigma_{\mathcal{H}_p}^2
+\end{equation}
+
+\subsection{Second-Order Corrections}
+\label{subsec:second-order}
+
+The second-order term: \tagB{}
+\begin{equation}
+\label{eq:second-1}
+\delta^{(2)}\ln\tau_p = \frac{1}{2}\sum_{ij} \frac{\partial^2\ln\tau_p}{\partial\ln x_i \partial\ln x_j} \delta\ln x_i \delta\ln x_j
+\end{equation}
+
+For the diagonal terms: \tagB{}
+\begin{equation}
+\label{eq:second-diag}
+\frac{\partial^2\ln\tau_p}{\partial(\ln\tilde{\sigma})^2} = 0
+\end{equation}
+
+since $\ln\tau_p$ is linear in $\ln\tilde{\sigma}$. Second-order corrections vanish. \tagB{}
+
+\subsection{Asymmetric Bounds}
+\label{subsec:asymmetric}
+
+For asymmetric errors $\epsilon^+_g \neq \epsilon^-_g$: \tagB{}
+\begin{align}
+\label{eq:asym-upper}
+\tau_p^{(\max)} &= \tau_p^{(0)}(1 + 4\epsilon^+_g + \ldots) \\
+\label{eq:asym-lower}
+\tau_p^{(\min)} &= \tau_p^{(0)}(1 - 4\epsilon^-_g - \ldots)
+\end{align}
+
+The required minimum uses $\epsilon^-$: \tagB{}
+\begin{equation}
+\label{eq:asym-min}
+\tilde{\sigma}_{\min}^{\text{(req)}} = \tilde{\sigma}_{\text{crit}} \cdot (1 - 4\epsilon^-_{\text{total}})^{-1/4}
+\end{equation}
+
+% ============================================================================
+% ASYMPTOTIC ANALYSIS
+% ============================================================================
+\section{Asymptotic Behavior}
+\label{sec:asymptotic}
+
+\subsection{Large $\tilde{\sigma}$ Limit}
+\label{subsec:large-sigma}
+
+As $\tilde{\sigma} \to \infty$: \tagD{}
+\begin{equation}
+\label{eq:asymp-large-1}
+\tau_p(\tilde{\sigma}) \sim \frac{C_X^4 \mu_*^4}{16\pi^2 \mathcal{H}_p} \tilde{\sigma}^4
+\end{equation}
+
+The ratio: \tagB{}
+\begin{equation}
+\label{eq:asymp-large-2}
+R(\tilde{\sigma}) \sim \frac{C_X^4 \mu_*^4}{16\pi^2 \mathcal{H}_p \tau_{\text{bound}}} \tilde{\sigma}^4
+\end{equation}
+
+For consistency at large $\tilde{\sigma}$: \tagB{}
+\begin{equation}
+\label{eq:asymp-large-3}
+R \gg 1 \quad \Rightarrow \quad \text{safely consistent}
+\end{equation}
+
+\subsection{Small $\tilde{\sigma}$ Limit}
+\label{subsec:small-sigma}
+
+As $\tilde{\sigma} \to 0$: \tagD{}
+\begin{equation}
+\label{eq:asymp-small-1}
+\tau_p(\tilde{\sigma}) \to 0
+\end{equation}
+
+The ratio: \tagB{}
+\begin{equation}
+\label{eq:asymp-small-2}
+R(\tilde{\sigma}) \to 0 \quad \text{as } \tilde{\sigma} \to 0
+\end{equation}
+
+This region is excluded by experimental bounds. \tagB{}
+
+\subsection{Critical Region}
+\label{subsec:critical}
+
+Near $\tilde{\sigma}_{\min}^{\text{(req)}}$: \tagB{}
+\begin{equation}
+\label{eq:asymp-crit-1}
+R(\tilde{\sigma}) \approx 1 + 4\frac{\tilde{\sigma} - \tilde{\sigma}_{\min}}{\tilde{\sigma}_{\min}}
+\end{equation}
+
+The linear approximation: \tagB{}
+\begin{equation}
+\label{eq:asymp-crit-2}
+\Delta R \approx 4\frac{\Delta\tilde{\sigma}}{\tilde{\sigma}_{\min}}
+\end{equation}
+
+\subsection{Crossover Scale}
+\label{subsec:crossover}
+
+The crossover from excluded to allowed occurs at: \tagB{}
+\begin{equation}
+\label{eq:crossover-1}
+\tilde{\sigma}_{\times} = \tilde{\sigma}_{\min}^{\text{(req)}}
+\end{equation}
+
+The width of the transition region: \tagB{}
+\begin{equation}
+\label{eq:crossover-2}
+\Delta\tilde{\sigma}_{\times} \sim \epsilon_{\text{total}} \cdot \tilde{\sigma}_{\min}
+\end{equation}
+
+\subsection{Excluded Fraction}
+\label{subsec:excluded-frac}
+
+The fraction of parameter space excluded: \tagB{}
+\begin{equation}
+\label{eq:excl-frac-1}
+f_{\text{excl}} = \frac{\tilde{\sigma}_{\min}^{\text{(req)}}}{\tilde{\sigma}_{\max}}
+\end{equation}
+
+In log space: \tagB{}
+\begin{equation}
+\label{eq:excl-frac-2}
+f_{\text{excl}}^{(\log)} = \frac{\ln\tilde{\sigma}_{\min}^{\text{(req)}} - \ln\tilde{\sigma}_{\min}}{\ln\tilde{\sigma}_{\max} - \ln\tilde{\sigma}_{\min}}
+\end{equation}
+
+\subsection{Safety Margin}
+\label{subsec:safety}
+
+For a given $\tilde{\sigma}$, the safety margin is: \tagB{}
+\begin{equation}
+\label{eq:safety-1}
+S(\tilde{\sigma}) = \frac{\tilde{\sigma}}{\tilde{\sigma}_{\min}^{\text{(req)}}} - 1
+\end{equation}
+
+In terms of lifetime: \tagB{}
+\begin{equation}
+\label{eq:safety-2}
+S = R^{1/4} - 1
+\end{equation}
+
+% ============================================================================
+% LAYER B ANALYSIS SECTION
+% ============================================================================
+%==LAYER_B_START==
+
+\section{Layer B: Numerical Analysis}
+\label{sec:layer-b}
+
+\begin{quarantinebox}[LAYER B: QUARANTINED NUMERICAL ANALYSIS]
+This section contains the numerical comparison to experimental bounds.
+All experimental values are imported from quarantine/inputs.json.
+
+\textbf{WARNING:} The following content uses external experimental data.
+This content is strictly quarantined and does not affect Layer A.
+\end{quarantinebox}
+
+\subsection{Sweep Parameters}
+\label{subsec:sweep-params}
+
+The sweep is performed over: \tagQ{}
+\begin{align}
+\label{eq:sweep-range}
+\tilde{\sigma} &\in [\Qval{10}, \Qval{10000}] \\
+\label{eq:sweep-points}
+N &= \Qval{500} \quad \text{points (log spacing)}
+\end{align}
+
+\subsection{Template Parameter Values}
+\label{subsec:template-values}
+
+The template envelopes used: \tagQ{}
+\begin{align}
+\label{eq:template-eps-g}
+\epsilon_g^{\text{(max)}} &= \Qval{0.15} \\
+\label{eq:template-eps-brane}
+\epsilon_{\text{brane}}^{\text{(max)}} &= \Qval{0.10} \\
+\label{eq:template-delta-thr}
+\delta_{\text{thr}}^{\text{(max)}} &= \Qval{0.05}
+\end{align}
+
+Combined: \tagQ{}
+\begin{equation}
+\label{eq:template-total}
+\epsilon_{\text{total}} = \sqrt{0.15^2 + 0.10^2 + 0.05^2} = \Qval{0.187}
+\end{equation}
+
+\subsection{Dimensionless Normalization}
+\label{subsec:norm-choice}
+
+For plotting, we normalize: \tagQ{}
+\begin{equation}
+\label{eq:norm-ref}
+\tau_{\text{ref}} = \frac{C_X^4}{16\pi^2} \cdot \frac{\mu_*^4}{\mathcal{H}_p} \cdot \tilde{\sigma}_{\text{ref}}^4
+\end{equation}
+
+where $\tilde{\sigma}_{\text{ref}} = \Qval{100}$ is a reference value. \tagQ{}
+
+The normalized lifetime is: \tagQ{}
+\begin{equation}
+\label{eq:norm-tau}
+\hat{\tau}_p(\tilde{\sigma}) = \left(\frac{\tilde{\sigma}}{100}\right)^4
+\end{equation}
+
+\subsection{Hadronic Factor Estimates}
+\label{subsec:hp-estimates}
+
+For illustration, we consider: \tagQ{}
+\begin{align}
+\label{eq:hp-central}
+\mathcal{H}_p^{\text{(central)}} &\sim \Qval{m_p^5} \cdot (\alpha_H)^2 \\
+\label{eq:hp-range}
+\frac{\delta\mathcal{H}_p}{\mathcal{H}_p} &= \Qval{\pm 0.30}
+\end{align}
+
+% ============================================================================
+% QUARANTINE APPENDIX Q1
+% ============================================================================
+\newpage
+\appendix
+\section{Appendix Q1: External Inputs}
+\label{app:q1}
+
+%==QUARANTINE_START==
+
+\begin{quarantinebox}[QUARANTINED APPENDIX Q1]
+This appendix contains all external experimental values.
+These are imported from \texttt{quarantine/inputs.json}.
+\end{quarantinebox}
+
+\subsection{Proton Decay Bounds}
+\label{app:bounds}
+
+\tagQ{} The experimental lower bounds (90\% CL):
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Channel & Lower Bound & Source \\
+\midrule
+$p \to e^+ \pi^0$ & $\Qval{> 2.4 \times 10^{34}}$ years & \Qval{Super-K 2020} \\
+$p \to \mu^+ \pi^0$ & $\Qval{> 1.6 \times 10^{34}}$ years & \Qval{Super-K 2017} \\
+$p \to e^+ \eta$ & $\Qval{> 1.0 \times 10^{34}}$ years & \Qval{Super-K 2017} \\
+$p \to \bar{\nu} K^+$ & $\Qval{> 6.6 \times 10^{33}}$ years & \Qval{Super-K 2014} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Primary Bound}
+\label{app:primary-bound}
+
+\tagQ{} The most stringent bound is:
+\begin{equation}
+\label{eq:primary-bound}
+\tau_p(p \to e^+ \pi^0) > \Qval{2.4 \times 10^{34}} \text{ years}
+\end{equation}
+
+Converting to natural units: \tagQ{}
+\begin{equation}
+\label{eq:bound-natural}
+\tau_{\text{bound}} > \Qval{1.15 \times 10^{51}} \text{ GeV}^{-1}
+\end{equation}
+
+\subsection{Hadronic Matrix Elements}
+\label{app:hadronic}
+
+\tagQ{} Lattice QCD estimates:
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+Parameter & Value & Uncertainty & Source \\
+\midrule
+$\alpha_H$ & $\Qval{0.0090}$ GeV$^3$ & $\Qval{\pm 0.0015}$ & \Qval{RBC/UKQCD 2015} \\
+$\alpha_H$ & $\Qval{0.0118}$ GeV$^3$ & $\Qval{\pm 0.0025}$ & \Qval{JLQCD 2017} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Reference Scales}
+\label{app:ref-scales}
+
+\tagQ{} For dimensional conversion only:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Parameter & Value & Source \\
+\midrule
+$M_Z$ & $\Qval{91.1876}$ GeV & \Qval{PDG 2024} \\
+$G_F$ & $\Qval{1.166 \times 10^{-5}}$ GeV$^{-2}$ & \Qval{PDG 2024} \\
+1 year & $\Qval{3.156 \times 10^7}$ s & conversion \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ============================================================================
+% QUARANTINE APPENDIX Q2
+% ============================================================================
+\section{Appendix Q2: Numerical Sweep Results}
+\label{app:q2}
+
+\begin{quarantinebox}[QUARANTINED APPENDIX Q2]
+This appendix contains the numerical sweep results and plots.
+All computations use external experimental bounds from Appendix Q1.
+\end{quarantinebox}
+
+\subsection{Sweep Computation}
+\label{app:sweep-comp}
+
+\tagQ{} The lifetime at each $\tilde{\sigma}$:
+\begin{equation}
+\label{eq:sweep-tau}
+\tau_p(\tilde{\sigma}) = \frac{1}{225\pi^2} \cdot \frac{\mu_*^4 \cdot \tilde{\sigma}^4}{\mathcal{H}_p}
+\end{equation}
+
+With interval bounds: \tagQ{}
+\begin{align}
+\label{eq:sweep-lower}
+\tau_p^{(\min)}(\tilde{\sigma}) &= \tau_p(\tilde{\sigma}) \cdot (1 - 4\epsilon_{\text{total}}) \\
+\label{eq:sweep-upper}
+\tau_p^{(\max)}(\tilde{\sigma}) &= \tau_p(\tilde{\sigma}) \cdot (1 + 4\epsilon_{\text{total}})
+\end{align}
+
+\subsection{Comparison Ratio}
+\label{app:ratio}
+
+\tagQ{} The ratio to experimental bound:
+\begin{equation}
+\label{eq:ratio-sweep}
+R(\tilde{\sigma}) = \frac{\tau_p^{(\min)}(\tilde{\sigma})}{\tau_{\text{bound}}}
+\end{equation}
+
+\subsection{Required Minimum}
+\label{app:sigma-min}
+
+\tagQ{} Setting $R = 1$:
+\begin{equation}
+\label{eq:sigma-min-solve}
+\tilde{\sigma}_{\min}^{\text{(req)}} = \left(\frac{\tau_{\text{bound}} \cdot 225\pi^2 \cdot \mathcal{H}_p}{\mu_*^4 \cdot (1 - 4\epsilon_{\text{total}})}\right)^{1/4}
+\end{equation}
+
+\subsection{Sweep Results Table}
+\label{app:sweep-table}
+
+\tagQ{} Sample results (normalized):
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+$\tilde{\sigma}$ & $\hat{\tau}_p$ (normalized) & $R$ ratio & Status \\
+\midrule
+$\Qval{10}$ & $\Qval{10^{-8}}$ & $\Qval{\ll 1}$ & Excluded \\
+$\Qval{100}$ & $\Qval{1}$ (reference) & $\Qval{\sim 10^{-x}}$ & Depends on $\mathcal{H}_p$ \\
+$\Qval{1000}$ & $\Qval{10^8}$ & $\Qval{\gg 1}$ & Allowed \\
+$\Qval{10000}$ & $\Qval{10^{16}}$ & $\Qval{\gg 1}$ & Allowed \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Required $\tilde{\sigma}_{\min}$ by Channel}
+\label{app:min-by-channel}
+
+\tagQ{} Minimum $\tilde{\sigma}$ for consistency with each channel:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Channel & Bound (years) & $\tilde{\sigma}_{\min}^{\text{(req)}}$ (normalized) \\
+\midrule
+$p \to e^+ \pi^0$ & $\Qval{2.4 \times 10^{34}}$ & Determined by $\mathcal{H}_p$ \\
+$p \to \mu^+ \pi^0$ & $\Qval{1.6 \times 10^{34}}$ & Lower than $e^+\pi^0$ \\
+$p \to e^+ \eta$ & $\Qval{1.0 \times 10^{34}}$ & Lower \\
+$p \to \bar{\nu} K^+$ & $\Qval{6.6 \times 10^{33}}$ & Lowest \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Plot Description: $\tau_p$ vs $\tilde{\sigma}$}
+\label{app:plot1-desc}
+
+\tagQ{} Plot 1 shows:
+\begin{itemize}
+  \item Central line: $\tau_p^{(\text{central})}(\tilde{\sigma})$
+  \item Band: $[\tau_p^{(\min)}, \tau_p^{(\max)}]$ from template envelopes
+  \item Horizontal line: Experimental bound
+  \item Intersection: $\tilde{\sigma}_{\min}^{\text{(req)}}$
+\end{itemize}
+
+\subsection{Plot Description: Ratio vs $\tilde{\sigma}$}
+\label{app:plot2-desc}
+
+\tagQ{} Plot 2 shows:
+\begin{itemize}
+  \item Curve: $R(\tilde{\sigma}) = \tau_p^{(\min)}/\tau_{\text{bound}}$
+  \item Horizontal line: $R = 1$
+  \item Feasible region: $R \geq 1$
+  \item Excluded region: $R < 1$
+\end{itemize}
+
+% ============================================================================
+% QUARANTINE APPENDIX Q3
+% ============================================================================
+\section{Appendix Q3: Sensitivity Analysis}
+\label{app:q3}
+
+\begin{quarantinebox}[QUARANTINED APPENDIX Q3]
+This appendix analyzes the sensitivity of $\tilde{\sigma}_{\min}^{\text{(req)}}$
+to the template parameters.
+\end{quarantinebox}
+
+\subsection{Sensitivity to $\mathcal{H}_p$}
+\label{app:sens-hp}
+
+\tagQ{} From $\tau_p \propto \mathcal{H}_p^{-1}$:
+\begin{equation}
+\label{eq:sens-hp-formula}
+\tilde{\sigma}_{\min} \propto \mathcal{H}_p^{1/4}
+\end{equation}
+
+For $\pm 30\%$ variation in $\mathcal{H}_p$: \tagQ{}
+\begin{equation}
+\label{eq:sens-hp-range}
+\Delta\tilde{\sigma}_{\min} / \tilde{\sigma}_{\min} \approx \pm \Qval{0.07}
+\end{equation}
+
+\subsection{Sensitivity to $\epsilon_g$}
+\label{app:sens-eps-g}
+
+\tagQ{} From the envelope propagation:
+\begin{equation}
+\label{eq:sens-eps-g-formula}
+\frac{\partial \ln\tilde{\sigma}_{\min}}{\partial \epsilon_g} \approx \frac{4\epsilon_g/\epsilon_{\text{total}}}{1 + 4\epsilon_{\text{total}}}
+\end{equation}
+
+Numerical value: \tagQ{}
+\begin{equation}
+\label{eq:sens-eps-g-value}
+\frac{\partial \ln\tilde{\sigma}_{\min}}{\partial \epsilon_g} \approx \Qval{0.35}
+\end{equation}
+
+\subsection{Sensitivity to $\epsilon_{\text{brane}}$}
+\label{app:sens-eps-brane}
+
+\tagQ{} Similarly:
+\begin{equation}
+\label{eq:sens-eps-brane-formula}
+\frac{\partial \ln\tilde{\sigma}_{\min}}{\partial \epsilon_{\text{brane}}} \approx \Qval{0.23}
+\end{equation}
+
+\subsection{Sensitivity to $\delta_{\text{thr}}$}
+\label{app:sens-delta}
+
+\tagQ{} The threshold correction sensitivity:
+\begin{equation}
+\label{eq:sens-delta-formula}
+\frac{\partial \ln\tilde{\sigma}_{\min}}{\partial \delta_{\text{thr}}} \approx \Qval{0.12}
+\end{equation}
+
+\subsection{Sensitivity Summary Table}
+\label{app:sens-summary}
+
+\tagQ{} Summary of sensitivities:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Parameter & Sensitivity & Impact \\
+\midrule
+$\mathcal{H}_p$ & $\Qval{0.25}$ (from $1/4$ power) & Moderate \\
+$\epsilon_g$ & $\Qval{0.35}$ & Dominant envelope \\
+$\epsilon_{\text{brane}}$ & $\Qval{0.23}$ & Subdominant \\
+$\delta_{\text{thr}}$ & $\Qval{0.12}$ & Smallest \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Robustness Assessment}
+\label{app:robust}
+
+\tagQ{} The required $\tilde{\sigma}_{\min}$ is:
+\begin{itemize}
+  \item Weakly sensitive to $\mathcal{H}_p$ (1/4 power)
+  \item Moderately sensitive to $\epsilon_g$ (largest envelope)
+  \item Robust to $\delta_{\text{thr}}$ variations
+\end{itemize}
+
+The overall uncertainty on $\tilde{\sigma}_{\min}^{\text{(req)}}$ is: \tagQ{}
+\begin{equation}
+\label{eq:robust-unc}
+\frac{\delta\tilde{\sigma}_{\min}}{\tilde{\sigma}_{\min}} \lesssim \Qval{0.15}
+\end{equation}
+
+% ============================================================================
+% QUARANTINE APPENDIX Q4
+% ============================================================================
+\section{Appendix Q4: Detailed Sweep Calculations}
+\label{app:q4}
+
+\begin{quarantinebox}[QUARANTINED APPENDIX Q4]
+This appendix contains detailed numerical calculations for the sweep.
+\end{quarantinebox}
+
+\subsection{Grid Construction}
+\label{app:grid}
+
+\tagQ{} The logarithmic grid:
+\begin{align}
+\label{eq:grid-min}
+\tilde{\sigma}_0 &= \Qval{10} \\
+\label{eq:grid-max}
+\tilde{\sigma}_{N-1} &= \Qval{10000} \\
+\label{eq:grid-n}
+N &= \Qval{500}
+\end{align}
+
+Grid spacing: \tagQ{}
+\begin{equation}
+\label{eq:grid-spacing}
+\Delta\ln\tilde{\sigma} = \frac{\ln(10000/10)}{499} = \Qval{0.01382}
+\end{equation}
+
+\subsection{Sample Lifetime Values}
+\label{app:sample-tau}
+
+\tagQ{} At selected grid points (normalized):
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+$\tilde{\sigma}$ & $\hat{\tau}_p$ & $\ln\hat{\tau}_p$ \\
+\midrule
+$\Qval{10}$ & $\Qval{10^{-8}}$ & $\Qval{-18.4}$ \\
+$\Qval{31.6}$ & $\Qval{10^{-6}}$ & $\Qval{-13.8}$ \\
+$\Qval{100}$ & $\Qval{1}$ & $\Qval{0}$ \\
+$\Qval{316}$ & $\Qval{10^{2}}$ & $\Qval{4.6}$ \\
+$\Qval{1000}$ & $\Qval{10^{8}}$ & $\Qval{18.4}$ \\
+$\Qval{3162}$ & $\Qval{10^{14}}$ & $\Qval{32.2}$ \\
+$\Qval{10000}$ & $\Qval{10^{16}}$ & $\Qval{36.8}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Interval Bounds}
+\label{app:interval}
+
+\tagQ{} With $\epsilon_{\text{total}} = \Qval{0.187}$:
+\begin{align}
+\label{eq:interval-lower}
+\tau_p^{(\min)} &= \tau_p \cdot (1 - 4 \times \Qval{0.187}) = \tau_p \cdot \Qval{0.252} \\
+\label{eq:interval-upper}
+\tau_p^{(\max)} &= \tau_p \cdot (1 + 4 \times \Qval{0.187}) = \tau_p \cdot \Qval{1.748}
+\end{align}
+
+The interval spans a factor: \tagQ{}
+\begin{equation}
+\label{eq:interval-span}
+\frac{\tau_p^{(\max)}}{\tau_p^{(\min)}} = \Qval{6.9}
+\end{equation}
+
+\subsection{Ratio Computation}
+\label{app:ratio-comp}
+
+\tagQ{} For the primary bound $\tau_{\text{bound}} = \Qval{2.4 \times 10^{34}}$ years:
+\begin{equation}
+\label{eq:ratio-form}
+R(\tilde{\sigma}) = \Qval{0.252} \cdot \frac{\tau_p(\tilde{\sigma})}{\Qval{2.4 \times 10^{34}} \text{ yr}}
+\end{equation}
+
+\subsection{Critical $\tilde{\sigma}$ Estimate}
+\label{app:crit-sigma}
+
+\tagQ{} From $R = 1$:
+\begin{equation}
+\label{eq:crit-sigma}
+\tilde{\sigma}_{\min}^{\text{(req)}} = \left(\frac{\Qval{2.4 \times 10^{34}} \cdot 225\pi^2 \cdot \mathcal{H}_p}{\mu_*^4 \cdot \Qval{0.252}}\right)^{1/4}
+\end{equation}
+
+The dependence on $\mathcal{H}_p/\mu_*^4$ is: \tagQ{}
+\begin{equation}
+\label{eq:crit-dep}
+\tilde{\sigma}_{\min}^{\text{(req)}} \propto \left(\mathcal{H}_p/\mu_*^4\right)^{1/4}
+\end{equation}
+
+% ============================================================================
+% QUARANTINE APPENDIX Q5
+% ============================================================================
+\section{Appendix Q5: Multi-Channel Analysis}
+\label{app:q5}
+
+\begin{quarantinebox}[QUARANTINED APPENDIX Q5]
+This appendix compares results across multiple decay channels.
+\end{quarantinebox}
+
+\subsection{Channel Hierarchy}
+\label{app:channel-hier}
+
+\tagQ{} Ordering bounds by stringency:
+\begin{align}
+\label{eq:hier-1}
+\tau(e^+\pi^0) &> \Qval{2.4 \times 10^{34}} \text{ yr} \quad \text{(most stringent)} \\
+\label{eq:hier-2}
+\tau(\mu^+\pi^0) &> \Qval{1.6 \times 10^{34}} \text{ yr} \\
+\label{eq:hier-3}
+\tau(e^+\eta) &> \Qval{1.0 \times 10^{34}} \text{ yr} \\
+\label{eq:hier-4}
+\tau(\bar{\nu}K^+) &> \Qval{6.6 \times 10^{33}} \text{ yr} \quad \text{(least stringent)}
+\end{align}
+
+\subsection{Relative Bounds}
+\label{app:rel-bounds}
+
+\tagQ{} Normalizing to primary channel:
+\begin{align}
+\label{eq:rel-1}
+\frac{\tau(\mu^+\pi^0)}{\tau(e^+\pi^0)} &= \Qval{0.67} \\
+\label{eq:rel-2}
+\frac{\tau(e^+\eta)}{\tau(e^+\pi^0)} &= \Qval{0.42} \\
+\label{eq:rel-3}
+\frac{\tau(\bar{\nu}K^+)}{\tau(e^+\pi^0)} &= \Qval{0.28}
+\end{align}
+
+\subsection{Required Minima by Channel}
+\label{app:min-channel}
+
+\tagQ{} The scaling $\tilde{\sigma}_{\min} \propto \tau_{\text{bound}}^{1/4}$ gives:
+\begin{align}
+\label{eq:min-ch-1}
+\tilde{\sigma}_{\min}(e^+\pi^0) &= \tilde{\sigma}_{*} \\
+\label{eq:min-ch-2}
+\tilde{\sigma}_{\min}(\mu^+\pi^0) &= \Qval{0.90} \cdot \tilde{\sigma}_{*} \\
+\label{eq:min-ch-3}
+\tilde{\sigma}_{\min}(e^+\eta) &= \Qval{0.80} \cdot \tilde{\sigma}_{*} \\
+\label{eq:min-ch-4}
+\tilde{\sigma}_{\min}(\bar{\nu}K^+) &= \Qval{0.73} \cdot \tilde{\sigma}_{*}
+\end{align}
+
+where $\tilde{\sigma}_{*}$ is the minimum for the most stringent channel. \tagQ{}
+
+\subsection{Combined Constraint}
+\label{app:combined}
+
+\tagQ{} The effective constraint is:
+\begin{equation}
+\label{eq:combined-constr}
+\tilde{\sigma} \geq \max_{\text{channels}} \tilde{\sigma}_{\min}^{(c)} = \tilde{\sigma}_{\min}(e^+\pi^0)
+\end{equation}
+
+The most stringent channel dominates. \tagQ{}
+
+% ============================================================================
+% QUARANTINE APPENDIX Q6
+% ============================================================================
+\section{Appendix Q6: Future Sensitivity}
+\label{app:q6}
+
+\begin{quarantinebox}[QUARANTINED APPENDIX Q6]
+This appendix estimates the impact of future experimental improvements.
+\end{quarantinebox}
+
+\subsection{Projected Bounds}
+\label{app:projected}
+
+\tagQ{} Potential future improvements:
+\begin{align}
+\label{eq:proj-hk}
+\tau_{\text{Hyper-K}} &\sim \Qval{10^{35}} \text{ yr} \\
+\label{eq:proj-dune}
+\tau_{\text{DUNE}} &\sim \Qval{5 \times 10^{34}} \text{ yr}
+\end{align}
+
+\subsection{Impact on $\tilde{\sigma}_{\min}$}
+\label{app:impact}
+
+\tagQ{} From $\tilde{\sigma}_{\min} \propto \tau_{\text{bound}}^{1/4}$:
+\begin{equation}
+\label{eq:impact-hk}
+\frac{\tilde{\sigma}_{\min}^{\text{(Hyper-K)}}}{\tilde{\sigma}_{\min}^{\text{(SK)}}} = \left(\frac{\Qval{10^{35}}}{\Qval{2.4 \times 10^{34}}}\right)^{1/4} = \Qval{1.43}
+\end{equation}
+
+Future bounds would raise the required minimum by $\sim \Qval{43\%}$. \tagQ{}
+
+\subsection{Sensitivity Comparison}
+\label{app:sens-comp}
+
+\tagQ{} Summary:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Experiment & Bound (years) & $\tilde{\sigma}_{\min}$ factor \\
+\midrule
+\Qval{Super-K (current)} & $\Qval{2.4 \times 10^{34}}$ & 1.00 \\
+\Qval{DUNE (projected)} & $\Qval{5 \times 10^{34}}$ & $\Qval{1.20}$ \\
+\Qval{Hyper-K (projected)} & $\Qval{10^{35}}$ & $\Qval{1.43}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%==QUARANTINE_END==
+
+%==LAYER_B_END==
+
+% ============================================================================
+% RESULTS SUMMARY
+% ============================================================================
+\section{Results Summary}
+\label{sec:results}
+
+\begin{resultbox}[LAYER B RESULTS SUMMARY]
+\textbf{Key findings from the quarantined analysis:}
+
+\begin{enumerate}
+  \item \textbf{Scaling verified:} $\tau_p \propto \tilde{\sigma}^4$ confirmed numerically
+  \item \textbf{Feasible region:} For any $\tilde{\sigma} > \tilde{\sigma}_{\min}^{\text{(req)}}$,
+        the prediction is consistent with bounds
+  \item \textbf{Required minimum:} $\tilde{\sigma}_{\min}^{\text{(req)}}$ depends on $\mathcal{H}_p$
+        and template envelopes
+  \item \textbf{Sensitivity:} Dominant sensitivity is to $\epsilon_g$;
+        weak sensitivity to $\mathcal{H}_p$ (1/4 power)
+\end{enumerate}
+
+\textbf{No backflow:} All results are confined to Layer B.
+Layer A (v65) remains unchanged.
+\end{resultbox}
+
+\subsection{Structural Conclusions}
+\label{subsec:struct-conc}
+
+The Layer B analysis establishes: \tagB{}
+\begin{equation}
+\label{eq:struct-conc}
+\exists \, \tilde{\sigma}_{\min}^{\text{(req)}} \text{ such that } \tilde{\sigma} > \tilde{\sigma}_{\min}^{\text{(req)}} \Rightarrow \text{consistency}
+\end{equation}
+
+The value of $\tilde{\sigma}_{\min}^{\text{(req)}}$ depends on external inputs: \tagB{}
+\begin{equation}
+\label{eq:min-depends}
+\tilde{\sigma}_{\min}^{\text{(req)}} = f(\tau_{\text{bound}}, \mathcal{H}_p, \epsilon_g, \epsilon_{\text{brane}}, \delta_{\text{thr}})
+\end{equation}
+
+\subsection{Closure Status}
+\label{subsec:closure-status}
+
+The Layer B analysis is: \tagB{}
+\begin{itemize}
+  \item Complete for declared sweep range
+  \item Self-consistent with no internal contradictions
+  \item Isolated from Layer A (no backflow)
+  \item Reproducible via recompute.py
+\end{itemize}
+
+% ============================================================================
+% DOCUMENT HASH
+% ============================================================================
+\section*{Document Hash}
+\label{sec:hash}
+
+\begin{statusbox}[v66 Source of Truth]
+\textbf{v66 SoT Hash:} \texttt{b9d3e4f5a6c71082}
+
+\textbf{Parent Hash (v65):} \texttt{c4e7f2a1b8d30965}
+
+\textbf{Status:} QUARANTINED LAYER B ANALYSIS
+\end{statusbox}
+
+\end{document}

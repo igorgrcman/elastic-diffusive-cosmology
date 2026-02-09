@@ -74,6 +74,40 @@ Central registry of all papers in `edc_papers/` with their canonical export PDFs
 | `paper_gravity_block003/derivation_v63/` | Derivation v63: Proton Decay τ_p Structural Interface | `EDC_BLOCK004_DERIVATION_V63_PROTON_DECAY_TAUP_STRUCTURAL_INTERFACE_NO_CONTAMINATION.pdf` | STRUCTURAL INTERFACE | 2026-02-08 |
 | `paper_gravity_block003/derivation_v64/` | Derivation v64: Proton Decay Coupling Lane g_X(M_X) | `EDC_BLOCK004_DERIVATION_V64_PROTON_DECAY_COUPLING_LANE_GX_FROM_ALPHA3_AND_MX_NO_CONTAMINATION.pdf` | COUPLING LANE CLOSED | 2026-02-08 |
 | `paper_gravity_block003/derivation_v65/` | Derivation v65: BLOCK-004 Proton Decay Canonical Single Document | `EDC_BLOCK004_DERIVATION_V65_CANONICAL_SINGLE_DOCUMENT.pdf` | **CANONICAL CLOSURE** | 2026-02-08 |
+| `paper_gravity_block003/derivation_v66/` | Derivation v66: Layer B τ_p(σ̃) Bounds Comparison (QUARANTINED) | `EDC_BLOCK004_DERIVATION_V66_LAYER_B_TAU_P_BOUNDS.pdf` | LAYER B ADAPTER | 2026-02-08 |
+
+---
+
+## Detailed Entry: Derivation v66
+
+| Field | Value |
+|-------|-------|
+| **Path** | `edc_papers/paper_gravity_block003/derivation_v66/` |
+| **Main source** | `main.tex` |
+| **Canonical PDF** | `EDC_BLOCK004_DERIVATION_V66_LAYER_B_TAU_P_BOUNDS.pdf` |
+| **Pages** | 29 |
+| **Equations** | 162 |
+| **Labels** | 341 |
+| **Date** | 2026-02-08 |
+| **Status** | LAYER B ADAPTER (QUARANTINED) |
+| **Scope** | Compare τ_p(σ̃) to experimental bounds with no backflow to Layer A |
+| **v66 SoT hash** | `b9d3e4f5a6c71082` |
+| **Parent hash (v65)** | `c4e7f2a1b8d30965` |
+| **B-API1** | Template instantiation — DEFINED |
+| **B-API2** | Interval computation [τ_p^(min), τ_p^(max)] — DEFINED |
+| **B-API3** | Comparison ratio R(σ̃) = τ_bound/τ_p^(min) — DEFINED |
+| **B-API4** | Feasibility extraction σ̃_min^(req) — DEFINED |
+| **Scaling Law** | τ_p ∝ σ̃⁴ — IMPORTED |
+| **Sensitivity** | ∂ln(τ_p)/∂ln(σ̃) = 4 — VERIFIED |
+| **No-Backflow** | L_B ∩ L_A = ∅ and Q ∩ L_A = ∅ — THEOREM |
+| **No-Fit Policy** | σ̃ SWEPT, NOT fitted — ENFORCED |
+| **Quarantine** | All experimental values in quarantine/ directory |
+| **Experimental bounds** | Super-K, PDG — QUARANTINED |
+| **Hadronic matrix** | α_H from lattice QCD — QUARANTINED |
+| **Layer A** | Read-only import (hash-locked from v65) |
+| **Layer B** | B-API definitions, sweep methodology, feasibility |
+| **Python script** | `recompute.py` — ALL 104 CHECKS PASSED |
+| **Release bundle** | `release/` directory with canonical PDF |
 
 ---
 
