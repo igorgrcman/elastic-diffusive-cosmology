@@ -2,7 +2,7 @@
 """
 recompute.py - Verification checks for cosmology σ̃ export lane
 
-Runs >= 48 checks and exits nonzero on failure.
+Runs >= 56 checks and exits nonzero on failure.
 No external packages required.
 """
 
@@ -486,9 +486,55 @@ def main():
     print()
 
     # ============================================================
-    # Section 11: Path/Scope Verification (3 checks)
+    # Section 11: P75b Stub Validation (6 checks)
     # ============================================================
-    print("Section 11: Path/Scope Verification")
+    print("Section 11: P75b Stub Validation")
+    print("-" * 40)
+
+    # Check t_star.derivation_ref exists
+    total += 1
+    has_deriv_ref = stub and "derivation_ref" in stub.get("t_star", {})
+    passed += check("P75b-001: t_star.derivation_ref field exists", has_deriv_ref)
+
+    # Check t_star.definition_ref file exists
+    total += 1
+    def_ref = stub.get("t_star", {}).get("definition_ref", "") if stub else ""
+    def_ref_path = LANE_DIR / def_ref if def_ref else None
+    passed += check("P75b-002: t_star.definition_ref file exists",
+                    def_ref_path and def_ref_path.exists())
+
+    # Check t_star.derivation_ref file exists
+    total += 1
+    deriv_ref = stub.get("t_star", {}).get("derivation_ref", "") if stub else ""
+    deriv_ref_path = LANE_DIR / deriv_ref if deriv_ref else None
+    passed += check("P75b-003: t_star.derivation_ref file exists",
+                    deriv_ref_path and deriv_ref_path.exists())
+
+    # Check sigma_tilde.value is null when status=TBD
+    total += 1
+    st_status = stub.get("sigma_tilde", {}).get("status") if stub else None
+    st_value = stub.get("sigma_tilde", {}).get("value") if stub else "MISSING"
+    st_valid = (st_status != "TBD") or (st_value is None)
+    passed += check("P75b-004: sigma_tilde.value null when TBD", st_valid)
+
+    # Check t_star.value is null when status=TBD
+    total += 1
+    ts_status = stub.get("t_star", {}).get("status") if stub else None
+    ts_value = stub.get("t_star", {}).get("value") if stub else "MISSING"
+    ts_valid = (ts_status != "TBD") or (ts_value is None)
+    passed += check("P75b-005: t_star.value null when TBD", ts_valid)
+
+    # Check firewall.notes exists
+    total += 1
+    fw_notes = stub.get("firewall", {}).get("notes", "") if stub else ""
+    passed += check("P75b-006: firewall.notes field exists", bool(fw_notes))
+
+    print()
+
+    # ============================================================
+    # Section 12: Path/Scope Verification (3 checks)
+    # ============================================================
+    print("Section 12: Path/Scope Verification")
     print("-" * 40)
 
     total += 1

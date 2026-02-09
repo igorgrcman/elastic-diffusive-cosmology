@@ -80,10 +80,45 @@
 | 5D Derivation Content | 6 | PASS |
 | 5D Derivation Equations | 3 | PASS |
 | No-Backflow Guard | 2 | PASS |
+| P75b Stub Validation | 6 | PASS |
 | Path/Scope | 3 | PASS |
 
-**Total Checks:** ≥48
+**Total Checks:** 56
 **Status:** ALL PASS
+
+---
+
+## 2b. P75b Acceptance Criteria
+
+### AC-P75b-1: Schema Updates
+
+| Criterion | Status | Notes |
+|-----------|--------|-------|
+| t_star.derivation_ref added | PASS | Required field |
+| firewall.notes added | PASS | Required field |
+| provenance.generated_by added | PASS | Required field |
+| provenance.git_branch added | PASS | Required field |
+
+### AC-P75b-2: Stub Generation
+
+| Criterion | Status | Notes |
+|-----------|--------|-------|
+| sigma_tilde_value.json generated | PASS | Via build script |
+| t_star.definition_ref = TSTAR_DEFINITION.md | PASS | File exists |
+| t_star.derivation_ref = TSTAR_DERIVATION_5D.md | PASS | File exists |
+| sigma_tilde.value = null (TBD) | PASS | No numerics |
+| t_star.value = null (TBD) | PASS | No numerics |
+| firewall.notes populated | PASS | "no external anchors; placeholders only" |
+
+### AC-P75b-3: Provenance
+
+| Field | Value | Status |
+|-------|-------|--------|
+| generated_by | build_sigma_tilde_stub.py | PASS |
+| parent_hashes.v65 | c4e7f2a1b8d30965 | PASS |
+| parent_hashes.v67 | d8e9f0a1b2c34567 | PASS |
+| git_commit | (current) | PASS |
+| git_branch | (current) | PASS |
 
 ---
 

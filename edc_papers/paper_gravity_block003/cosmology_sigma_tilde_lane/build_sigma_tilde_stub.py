@@ -26,6 +26,20 @@ def get_git_commit():
         return "unknown"
 
 
+def get_git_branch():
+    """Get current git branch name."""
+    try:
+        result = subprocess.run(
+            ["git", "rev-parse", "--abbrev-ref", "HEAD"],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        return result.stdout.strip()
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return "unknown"
+
+
 def build_stub():
     """Build the sigma_tilde_value.json stub with TBD values."""
 
@@ -44,6 +58,7 @@ def build_stub():
         },
         "t_star": {
             "definition_ref": "TSTAR_DEFINITION.md",
+            "derivation_ref": "TSTAR_DERIVATION_5D.md",
             "value": None,
             "units": None,
             "status": "TBD"
@@ -55,18 +70,21 @@ def build_stub():
         },
         "provenance": {
             "method": "stub_generation",
+            "generated_by": "build_sigma_tilde_stub.py",
             "epistemic_tags": ["placeholder", "awaiting_derivation"],
             "parent_hashes": {
                 "v65": "c4e7f2a1b8d30965",
                 "v67": "d8e9f0a1b2c34567"
             },
             "sot_hash": "TBD",
-            "repo_commit": get_git_commit(),
+            "git_commit": get_git_commit(),
+            "git_branch": get_git_branch(),
             "notes": "Skeleton stub - no numeric values derived yet"
         },
         "firewall": {
             "layer": "A",
-            "forbidden_gate_pass": False
+            "forbidden_gate_pass": False,
+            "notes": "no external anchors; placeholders only"
         }
     }
 
@@ -87,7 +105,9 @@ def main():
     print(f"  schema_version: {stub['schema_version']}")
     print(f"  created_utc: {stub['created_utc']}")
     print(f"  sigma_tilde.status: {stub['sigma_tilde']['status']}")
-    print(f"  repo_commit: {stub['provenance']['repo_commit'][:12]}...")
+    print(f"  t_star.derivation_ref: {stub['t_star']['derivation_ref']}")
+    print(f"  git_commit: {stub['provenance']['git_commit'][:12]}...")
+    print(f"  git_branch: {stub['provenance']['git_branch']}")
 
     return 0
 

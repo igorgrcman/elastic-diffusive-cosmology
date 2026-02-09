@@ -66,12 +66,16 @@
     "t_star": {
       "type": "object",
       "description": "Characteristic scale for dimensionless conversion",
-      "required": ["definition_ref", "value", "units", "status"],
+      "required": ["definition_ref", "derivation_ref", "value", "units", "status"],
       "additionalProperties": false,
       "properties": {
         "definition_ref": {
           "type": "string",
           "description": "Path to TSTAR_DEFINITION.md"
+        },
+        "derivation_ref": {
+          "type": "string",
+          "description": "Path to TSTAR_DERIVATION_5D.md"
         },
         "value": {
           "type": ["number", "null"],
@@ -110,12 +114,16 @@
     "provenance": {
       "type": "object",
       "description": "Derivation provenance and audit trail",
-      "required": ["method", "epistemic_tags", "parent_hashes", "sot_hash", "repo_commit", "notes"],
+      "required": ["method", "generated_by", "epistemic_tags", "parent_hashes", "sot_hash", "git_commit", "git_branch", "notes"],
       "additionalProperties": false,
       "properties": {
         "method": {
           "type": "string",
           "description": "Derivation method description"
+        },
+        "generated_by": {
+          "type": "string",
+          "description": "Script or process that generated this file"
         },
         "epistemic_tags": {
           "type": "array",
@@ -131,9 +139,13 @@
           "type": "string",
           "description": "Source of Truth hash for this export"
         },
-        "repo_commit": {
+        "git_commit": {
           "type": "string",
           "description": "Git commit hash at generation time"
+        },
+        "git_branch": {
+          "type": "string",
+          "description": "Git branch at generation time"
         },
         "notes": {
           "type": "string",
@@ -144,7 +156,7 @@
     "firewall": {
       "type": "object",
       "description": "Layer A firewall compliance",
-      "required": ["layer", "forbidden_gate_pass"],
+      "required": ["layer", "forbidden_gate_pass", "notes"],
       "additionalProperties": false,
       "properties": {
         "layer": {
@@ -155,6 +167,10 @@
         "forbidden_gate_pass": {
           "type": "boolean",
           "description": "Must be false (no forbidden content)"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Firewall compliance notes"
         }
       }
     }
