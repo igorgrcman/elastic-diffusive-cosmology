@@ -1047,10 +1047,17 @@ def main():
         # In SMOKE mode, smoke banner should be present
         passed += check("P79-002: ACTIVATION_GATE.md has smoke banner (SMOKE)", ag_has_banner)
 
-    # P79-003: main.tex contains INTEGRATION SMOKE TEST in Layer B
+    # P79-003: main.tex banner (SMOKE in SMOKE mode, REAL in REAL mode)
     total += 1
-    has_latex_banner = "INTEGRATION SMOKE TEST" in tex
-    passed += check("P79-003: main.tex has smoke banner", has_latex_banner)
+    has_latex_smoke_banner = "INTEGRATION SMOKE TEST" in tex
+    has_latex_real_banner = "REAL MODE" in tex and "PROVENANCE SEALED" in tex
+    if is_real:
+        # In REAL mode, smoke banner should be replaced with REAL banner
+        p79_003_ok = not has_latex_smoke_banner and has_latex_real_banner
+        passed += check("P79-003: main.tex SMOKE→REAL banner (REAL)", p79_003_ok)
+    else:
+        # In SMOKE mode, smoke banner should be present
+        passed += check("P79-003: main.tex has smoke banner (SMOKE)", has_latex_smoke_banner)
 
     # P79-004: Mode determined
     total += 1
@@ -1212,6 +1219,60 @@ def main():
     # Final P80b mode assertion
     p80b_mode = "REAL" if p80_is_real else "SMOKE"
     print(f"\n        P80b Final Mode: [{p80b_mode}]")
+
+    # =========================================================================
+    # SECTION 28: P81 REAL FREEZE VALIDATION
+    # =========================================================================
+    print("\n--- P81 REAL FREEZE VALIDATION ---\n")
+
+    # P81-001: Mode detection == REAL
+    total += 1
+    p81_is_real = p80_is_real  # Reuse P80b's REAL detection
+    passed += check("P81-001: Mode detection == REAL", p81_is_real)
+
+    # P81-002: main.tex contains REAL MODE banner (not SMOKE banner)
+    total += 1
+    has_real_banner = "REAL MODE" in tex or "PROVENANCE SEALED" in tex
+    passed += check("P81-002: main.tex has REAL MODE banner", has_real_banner)
+
+    # P81-003: main.tex does NOT contain SMOKE warning box marker
+    total += 1
+    # The SMOKE banner had specific markers - check they're gone
+    has_smoke_banner = "INTEGRATION SMOKE TEST" in tex and "NOT PHYSICAL CLOSURE" in tex
+    passed += check("P81-003: main.tex SMOKE banner removed", not has_smoke_banner)
+
+    # P81-004: main.tex has no word "SMOKE" in Layer B (except policy refs)
+    total += 1
+    # Find Layer B region (after \appendix typically)
+    appendix_pos = tex.find("\\appendix")
+    layer_b_tex = tex[appendix_pos:] if appendix_pos > 0 else tex[-50000:]
+    # Count SMOKE occurrences - should only be in policy file references
+    smoke_in_layer_b = layer_b_tex.count("SMOKE")
+    # Allow up to 2 for SMOKE_TEST_POLICY.md references
+    smoke_ok = smoke_in_layer_b <= 2
+    passed += check(f"P81-004: SMOKE mentions in Layer B <= 2 (found {smoke_in_layer_b})", smoke_ok)
+
+    # P81-005: ACTIVATION_GATE.md has "REAL" in status line
+    total += 1
+    ag_path = Path("ACTIVATION_GATE.md")
+    if ag_path.exists():
+        ag_text = ag_path.read_text()
+        ag_has_real = "REAL MODE" in ag_text or "Status: ACTIVE (DERIVED) — **REAL MODE**" in ag_text
+    else:
+        ag_has_real = False
+    passed += check("P81-005: ACTIVATION_GATE.md shows REAL status", ag_has_real)
+
+    # P81-006: RELEASE_P81.md exists
+    total += 1
+    release_p81 = Path("RELEASE_P81.md")
+    passed += check("P81-006: RELEASE_P81.md exists", release_p81.exists())
+
+    # P81-007: Layer A unchanged (SoT hash consistency - redundant but explicit)
+    total += 1
+    p81_layer_a_ok = SOT_HASH == "d8e9f0a1b2c34567"
+    passed += check("P81-007: Layer A SoT hash unchanged", p81_layer_a_ok)
+
+    print(f"\n        P81 Final Status: REAL FREEZE {'COMPLETE' if p81_is_real else 'INCOMPLETE'}")
 
     # =========================================================================
     # SUMMARY

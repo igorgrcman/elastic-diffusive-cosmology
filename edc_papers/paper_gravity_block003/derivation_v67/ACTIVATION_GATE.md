@@ -170,4 +170,21 @@ The following checks are implemented in `recompute.py`:
 
 ---
 
-**Layer A unchanged; Layer B may compute only when DERIVED.**
+## 8. P81 Freeze Note
+
+| Attribute | Value |
+|-----------|-------|
+| Freeze date | 2026-02-09 |
+| Freeze prompt | P81 |
+| PDF message | REAL MODE banner (SMOKE banner removed) |
+| Gate status | REAL |
+| Tag | `BLOCK004_V67_REAL_CLOSED` |
+
+**Actions taken:**
+- Replaced P79 SMOKE warning banner with REAL MODE banner in main.tex
+- All P81 recompute checks pass
+- Layer A unchanged; no backflow
+
+---
+
+**Layer A unchanged; Layer B may compute only when DERIVED. Mode: REAL.**
