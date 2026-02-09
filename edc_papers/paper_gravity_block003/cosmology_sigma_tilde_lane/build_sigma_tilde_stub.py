@@ -41,12 +41,35 @@ def get_git_branch():
 
 
 def build_stub():
-    """Build the sigma_tilde_value.json stub with TBD values."""
+    """Build the sigma_tilde_value.json stub with TBD values.
+
+    For DERIVED mode (not generated here), value would be:
+    {
+        "sigma_tilde": {
+            "value": {
+                "central": <number > 0>,
+                "plus": <number >= 0>,
+                "minus": <number >= 0>
+            },
+            "uncertainty": { ... },
+            "status": "DERIVED"
+        },
+        "provenance": {
+            "method": "cosmology_derivation",
+            "derivation_ref": "path/to/derivation.md",
+            "generated_by": "derive_sigma_tilde.py",
+            "generated_at": "<ISO8601>",
+            "sot_hash": "<actual_hash>",  # NOT "TBD"
+            ...
+        }
+    }
+    """
 
     stub = {
         "schema_version": "1.0",
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "sigma_tilde": {
+            # TBD mode: value is null (v67 expects object only when DERIVED)
             "value": None,
             "uncertainty": {
                 "type": "interval",
@@ -70,16 +93,21 @@ def build_stub():
         },
         "provenance": {
             "method": "stub_generation",
+            # derivation_ref is null in TBD mode; must be populated when DERIVED
+            "derivation_ref": None,
             "generated_by": "build_sigma_tilde_stub.py",
+            "generated_at": None,  # Optional, populated when DERIVED
             "epistemic_tags": ["placeholder", "awaiting_derivation"],
             "parent_hashes": {
                 "v65": "c4e7f2a1b8d30965",
                 "v67": "d8e9f0a1b2c34567"
             },
+            # sot_hash = "TBD" in template mode; must be actual hash when DERIVED
             "sot_hash": "TBD",
             "git_commit": get_git_commit(),
             "git_branch": get_git_branch(),
-            "notes": "Skeleton stub - no numeric values derived yet"
+            "notes": "Skeleton stub - no numeric values derived yet",
+            "import_source": None  # Only used for IMPORTED status
         },
         "firewall": {
             "layer": "A",

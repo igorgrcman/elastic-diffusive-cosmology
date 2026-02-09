@@ -31,8 +31,33 @@
       "additionalProperties": false,
       "properties": {
         "value": {
-          "type": ["number", "null"],
-          "description": "Numeric value or null if TBD"
+          "oneOf": [
+            { "type": "null", "description": "Null when status=TBD" },
+            {
+              "type": "object",
+              "description": "Value object when status=DERIVED or IMPORTED",
+              "required": ["central", "plus", "minus"],
+              "additionalProperties": false,
+              "properties": {
+                "central": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Central value (must be > 0)"
+                },
+                "plus": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "Positive uncertainty (>= 0)"
+                },
+                "minus": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "Negative uncertainty (>= 0)"
+                }
+              }
+            }
+          ],
+          "description": "Null if TBD, or object with central/plus/minus if DERIVED"
         },
         "uncertainty": {
           "type": "object",
@@ -121,9 +146,18 @@
           "type": "string",
           "description": "Derivation method description"
         },
+        "derivation_ref": {
+          "type": ["string", "null"],
+          "description": "Path to derivation document (required when DERIVED, null when TBD)"
+        },
         "generated_by": {
           "type": "string",
           "description": "Script or process that generated this file"
+        },
+        "generated_at": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "Optional ISO8601 timestamp of derivation"
         },
         "epistemic_tags": {
           "type": "array",
@@ -150,6 +184,10 @@
         "notes": {
           "type": "string",
           "description": "Additional notes"
+        },
+        "import_source": {
+          "type": ["string", "null"],
+          "description": "External import source path (required when IMPORTED)"
         }
       }
     },

@@ -532,9 +532,76 @@ def main():
     print()
 
     # ============================================================
-    # Section 12: Path/Scope Verification (3 checks)
+    # Section 12: P77b v67 Activation Gate Compatibility (8 checks)
     # ============================================================
-    print("Section 12: Path/Scope Verification")
+    print("Section 12: P77b v67 Activation Gate Compatibility")
+    print("-" * 40)
+
+    # Get sigma_tilde status
+    st_status = stub.get("sigma_tilde", {}).get("status") if stub else None
+
+    # P77b-001: Status enum valid (TBD, DERIVED, IMPORTED)
+    total += 1
+    valid_statuses = ("TBD", "DERIVED", "IMPORTED")
+    passed += check("P77b-001: Status enum valid", st_status in valid_statuses)
+
+    # P77b-002: TBD mode has null value
+    total += 1
+    st_value = stub.get("sigma_tilde", {}).get("value") if stub else "MISSING"
+    tbd_value_ok = (st_status != "TBD") or (st_value is None)
+    passed += check("P77b-002: TBD mode → value is null", tbd_value_ok)
+
+    # P77b-003: DERIVED mode requires value object with central/plus/minus
+    total += 1
+    if st_status == "DERIVED":
+        is_obj = isinstance(st_value, dict)
+        has_keys = is_obj and all(k in st_value for k in ["central", "plus", "minus"])
+        passed += check("P77b-003: DERIVED mode → value.central/plus/minus", has_keys)
+    else:
+        passed += check("P77b-003: (skipped, not DERIVED)", True)
+
+    # P77b-004: uncertainty.units == "dimensionless"
+    total += 1
+    uncert = stub.get("sigma_tilde", {}).get("uncertainty", {}) if stub else {}
+    units_ok = uncert.get("units") == "dimensionless"
+    passed += check("P77b-004: uncertainty.units == dimensionless", units_ok)
+
+    # P77b-005: provenance.derivation_ref field exists
+    total += 1
+    prov = stub.get("provenance", {}) if stub else {}
+    has_deriv_ref_field = "derivation_ref" in prov
+    passed += check("P77b-005: provenance.derivation_ref field exists", has_deriv_ref_field)
+
+    # P77b-006: DERIVED mode requires derivation_ref not null
+    total += 1
+    deriv_ref = prov.get("derivation_ref")
+    if st_status == "DERIVED":
+        passed += check("P77b-006: DERIVED → derivation_ref not null", deriv_ref is not None)
+    else:
+        passed += check("P77b-006: (skipped, not DERIVED)", True)
+
+    # P77b-007: DERIVED mode requires sot_hash != "TBD"
+    total += 1
+    sot_hash = prov.get("sot_hash")
+    if st_status == "DERIVED":
+        sot_ok = sot_hash is not None and sot_hash != "TBD"
+        passed += check("P77b-007: DERIVED → sot_hash != TBD", sot_ok)
+    else:
+        passed += check("P77b-007: (skipped, not DERIVED)", True)
+
+    # P77b-008: Schema supports v67 value structure
+    total += 1
+    schema_st = schema.get("properties", {}).get("sigma_tilde", {}) if schema else {}
+    schema_value = schema_st.get("properties", {}).get("value", {})
+    has_oneof = "oneOf" in schema_value
+    passed += check("P77b-008: Schema value has oneOf (null | object)", has_oneof)
+
+    print()
+
+    # ============================================================
+    # Section 13: Path/Scope Verification (3 checks)
+    # ============================================================
+    print("Section 13: Path/Scope Verification")
     print("-" * 40)
 
     total += 1
