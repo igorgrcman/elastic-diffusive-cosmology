@@ -210,62 +210,98 @@ def main():
     print()
 
     # ============================================================
-    # Section 3: Stub Generation (5 checks)
+    # Section 3: sigma_tilde_value.json Loading (5 checks)
     # ============================================================
-    print("Section 3: Stub Generation")
+    print("Section 3: sigma_tilde_value.json Loading")
     print("-" * 40)
 
-    # Run build_sigma_tilde_stub.py
     stub_script = LANE_DIR / "build_sigma_tilde_stub.py"
     stub_output = LANE_DIR / "sigma_tilde_value.json"
 
-    try:
-        result = subprocess.run(
-            [sys.executable, str(stub_script)],
-            capture_output=True, text=True, cwd=str(LANE_DIR)
-        )
-        stub_ran = result.returncode == 0
-    except Exception:
-        stub_ran = False
+    # Check if DERIVED file already exists
+    existing_stub = load_json(stub_output) if stub_output.exists() else None
+    existing_status = existing_stub.get("sigma_tilde", {}).get("status") if existing_stub else None
+    is_derived_mode = existing_status == "DERIVED"
+
+    if is_derived_mode:
+        print("  [INFO] DERIVED sigma_tilde_value.json found - skipping stub generation")
+        stub = existing_stub
+        stub_ran = True
+        generated_stub = False
+    else:
+        # Run build_sigma_tilde_stub.py for TBD mode
+        try:
+            result = subprocess.run(
+                [sys.executable, str(stub_script)],
+                capture_output=True, text=True, cwd=str(LANE_DIR)
+            )
+            stub_ran = result.returncode == 0
+        except Exception:
+            stub_ran = False
+        stub = load_json(stub_output) if stub_output.exists() else None
+        generated_stub = True
 
     total += 1
-    passed += check("SG-001: Stub script runs without error", stub_ran)
+    passed += check("SG-001: Stub script runs or DERIVED exists", stub_ran or is_derived_mode)
 
     total += 1
-    passed += check("SG-002: sigma_tilde_value.json created", stub_output.exists())
-
-    stub = load_json(stub_output) if stub_output.exists() else None
+    passed += check("SG-002: sigma_tilde_value.json exists", stub_output.exists())
 
     total += 1
-    passed += check("SG-003: Stub file parses as JSON", stub is not None)
+    passed += check("SG-003: File parses as JSON", stub is not None)
 
     total += 1
-    passed += check("SG-004: Stub has schema_version field",
+    passed += check("SG-004: Has schema_version field",
                     stub and "schema_version" in stub)
 
     total += 1
-    passed += check("SG-005: Stub has created_utc field",
+    passed += check("SG-005: Has created_utc field",
                     stub and "created_utc" in stub)
 
     print()
 
+    # Determine mode for subsequent checks
+    st_status = stub.get("sigma_tilde", {}).get("status") if stub else None
+    print(f"  [MODE] sigma_tilde.status = {st_status}")
+    print()
+
     # ============================================================
-    # Section 4: Stub Content Validation (5 checks)
+    # Section 4: Content Validation (mode-dependent)
     # ============================================================
-    print("Section 4: Stub Content Validation")
+    print("Section 4: Content Validation")
     print("-" * 40)
 
-    total += 1
-    passed += check("SC-001: sigma_tilde.status == TBD",
-                    stub and stub.get("sigma_tilde", {}).get("status") == "TBD")
+    if st_status == "TBD":
+        # TBD mode checks
+        total += 1
+        passed += check("SC-001: sigma_tilde.status == TBD", True)
 
-    total += 1
-    passed += check("SC-002: sigma_tilde.value is null",
-                    stub and stub.get("sigma_tilde", {}).get("value") is None)
+        total += 1
+        passed += check("SC-002: sigma_tilde.value is null",
+                        stub and stub.get("sigma_tilde", {}).get("value") is None)
 
-    total += 1
-    passed += check("SC-003: t_star.status == TBD",
-                    stub and stub.get("t_star", {}).get("status") == "TBD")
+        total += 1
+        passed += check("SC-003: t_star.status == TBD",
+                        stub and stub.get("t_star", {}).get("status") == "TBD")
+    elif st_status == "DERIVED":
+        # DERIVED mode checks
+        total += 1
+        passed += check("SC-001: sigma_tilde.status == DERIVED", True)
+
+        st_value = stub.get("sigma_tilde", {}).get("value") if stub else None
+        total += 1
+        is_value_obj = isinstance(st_value, dict)
+        passed += check("SC-002: sigma_tilde.value is object (not null)", is_value_obj)
+
+        total += 1
+        t_star_status = stub.get("t_star", {}).get("status") if stub else None
+        passed += check("SC-003: t_star.status == DERIVED", t_star_status == "DERIVED")
+    else:
+        # Unknown status
+        total += 3
+        passed += check("SC-001: status valid", False)
+        passed += check("SC-002: value valid", False)
+        passed += check("SC-003: t_star valid", False)
 
     total += 1
     passed += check("SC-004: firewall.layer == A",
@@ -599,9 +635,89 @@ def main():
     print()
 
     # ============================================================
-    # Section 13: Path/Scope Verification (3 checks)
+    # Section 13: P78a DERIVED Mode Validation (10 checks)
     # ============================================================
-    print("Section 13: Path/Scope Verification")
+    print("Section 13: P78a DERIVED Mode Validation")
+    print("-" * 40)
+
+    if st_status == "DERIVED":
+        # P78a-001: value.central exists and > 0
+        st_value = stub.get("sigma_tilde", {}).get("value", {}) if stub else {}
+        total += 1
+        central = st_value.get("central") if isinstance(st_value, dict) else None
+        central_ok = isinstance(central, (int, float)) and central > 0
+        passed += check("P78a-001: value.central > 0", central_ok)
+
+        # P78a-002: value.plus exists and >= 0
+        total += 1
+        plus = st_value.get("plus") if isinstance(st_value, dict) else None
+        plus_ok = isinstance(plus, (int, float)) and plus >= 0
+        passed += check("P78a-002: value.plus >= 0", plus_ok)
+
+        # P78a-003: value.minus exists and >= 0
+        total += 1
+        minus = st_value.get("minus") if isinstance(st_value, dict) else None
+        minus_ok = isinstance(minus, (int, float)) and minus >= 0
+        passed += check("P78a-003: value.minus >= 0", minus_ok)
+
+        # P78a-004: uncertainty.units == dimensionless
+        total += 1
+        uncert = stub.get("sigma_tilde", {}).get("uncertainty", {}) if stub else {}
+        units_ok = uncert.get("units") == "dimensionless"
+        passed += check("P78a-004: uncertainty.units == dimensionless", units_ok)
+
+        # P78a-005: provenance.derivation_ref not null
+        total += 1
+        prov = stub.get("provenance", {}) if stub else {}
+        deriv_ref = prov.get("derivation_ref")
+        passed += check("P78a-005: provenance.derivation_ref not null", deriv_ref is not None)
+
+        # P78a-006: provenance.sot_hash != "TBD"
+        total += 1
+        sot_hash = prov.get("sot_hash")
+        sot_ok = sot_hash is not None and sot_hash != "TBD"
+        passed += check("P78a-006: provenance.sot_hash != TBD", sot_ok)
+
+        # P78a-007: provenance.generated_by exists
+        total += 1
+        gen_by = prov.get("generated_by")
+        passed += check("P78a-007: provenance.generated_by exists", gen_by is not None)
+
+        # P78a-008: SHA256 seal file exists
+        total += 1
+        sha256_path = LANE_DIR / "sigma_tilde_value.sha256"
+        passed += check("P78a-008: sigma_tilde_value.sha256 exists", sha256_path.exists())
+
+        # P78a-009: SHA256 matches computed hash
+        total += 1
+        import hashlib
+        try:
+            with open(stub_output, "rb") as f:
+                computed_hash = hashlib.sha256(f.read()).hexdigest()
+            with open(sha256_path, "r") as f:
+                stored_line = f.read().strip()
+                stored_hash = stored_line.split()[0]  # Handle "hash  filename" format
+            hash_match = computed_hash == stored_hash
+        except Exception:
+            hash_match = False
+        passed += check("P78a-009: SHA256 hash matches", hash_match)
+
+        # P78a-010: PROVENANCE_SEAL.md exists
+        total += 1
+        seal_path = LANE_DIR / "PROVENANCE_SEAL.md"
+        passed += check("P78a-010: PROVENANCE_SEAL.md exists", seal_path.exists())
+    else:
+        # TBD mode: skip P78a checks
+        total += 10
+        for i in range(1, 11):
+            passed += check(f"P78a-{i:03d}: (skipped, not DERIVED)", True)
+
+    print()
+
+    # ============================================================
+    # Section 14: Path/Scope Verification (3 checks)
+    # ============================================================
+    print("Section 14: Path/Scope Verification")
     print("-" * 40)
 
     total += 1
@@ -631,10 +747,12 @@ def main():
 
     if passed == total:
         print("\nALL CHECKS PASSED")
-        # Clean up generated stub if all passed
-        if stub_output.exists():
+        # Clean up generated stub if all passed (but NOT if DERIVED)
+        if generated_stub and stub_output.exists() and st_status == "TBD":
             stub_output.unlink()
             print("(Cleaned up generated sigma_tilde_value.json)")
+        elif st_status == "DERIVED":
+            print("(DERIVED sigma_tilde_value.json preserved)")
         return 0
     else:
         print(f"\nFAILED: {total - passed} check(s)")
