@@ -94,10 +94,25 @@ The `quarantine/` folder contains:
 
 ---
 
-## 6. References
+## 6. Activation Semantics
+
+**See:** `ACTIVATION_GATE.md` for full specification.
+
+| Status | Layer A | Layer B |
+|--------|---------|---------|
+| TBD | Unchanged | BLOCKED (SKIP_NUMERIC_CLOSURE_TBD) |
+| DERIVED | Unchanged | ACTIVE |
+| IMPORTED | Unchanged | ACTIVE |
+
+**Key principle:** Layer A structural derivations are always valid. Layer B numeric computations activate only when σ̃ value is available.
+
+---
+
+## 7. References
 
 | Document | Location |
 |----------|----------|
+| Activation gate | `ACTIVATION_GATE.md` |
 | Export contract | `cosmology_sigma_tilde_lane/SIGMA_TILDE_EXPORT_CONTRACT.md` |
 | Schema | `cosmology_sigma_tilde_lane/sigma_tilde_schema.json` |
 | T_* definition | `cosmology_sigma_tilde_lane/TSTAR_DEFINITION.md` |

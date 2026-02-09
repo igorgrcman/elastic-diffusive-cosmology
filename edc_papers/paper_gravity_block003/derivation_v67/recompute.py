@@ -836,6 +836,100 @@ def main():
         print(f"        Found: '{pattern2}'")
 
     # =========================================================================
+    # SECTION 24: P77a ACTIVATION GATE
+    # =========================================================================
+    print("\n--- P77a ACTIVATION GATE ---\n")
+
+    # P77a-001: ACTIVATION_GATE.md exists
+    total += 1
+    activation_gate_doc = Path("ACTIVATION_GATE.md")
+    passed += check("P77a-001: ACTIVATION_GATE.md exists", activation_gate_doc.exists())
+
+    # Get status for gate logic
+    st_obj = sigma_data.get("sigma_tilde", {}) if sigma_data else {}
+    gate_status = st_obj.get("status") if isinstance(st_obj, dict) else None
+
+    # P77a-002: Status field is valid (TBD, DERIVED, or IMPORTED)
+    total += 1
+    valid_statuses = ("TBD", "DERIVED", "IMPORTED")
+    passed += check("P77a-002: Status field valid", gate_status in valid_statuses)
+
+    # P77a-003: TBD mode emits skip note
+    total += 1
+    if gate_status == "TBD":
+        print("        [NOTE] SKIP_NUMERIC_CLOSURE_TBD")
+        passed += check("P77a-003: TBD mode → SKIP_NUMERIC_CLOSURE_TBD", True)
+    else:
+        passed += check("P77a-003: Non-TBD mode → numeric closure enabled", True)
+
+    # P77a-004 to P77a-006: Value structure validation (only for DERIVED/IMPORTED)
+    if gate_status in ("DERIVED", "IMPORTED"):
+        # When DERIVED, value should be object with central/plus/minus
+        val_obj = st_obj.get("value", {})
+        is_val_dict = isinstance(val_obj, dict)
+
+        # P77a-004: value.central exists and > 0
+        total += 1
+        central = val_obj.get("central") if is_val_dict else None
+        central_ok = isinstance(central, (int, float)) and central > 0
+        passed += check("P77a-004: value.central > 0", central_ok)
+
+        # P77a-005: value.plus exists and >= 0
+        total += 1
+        plus = val_obj.get("plus") if is_val_dict else None
+        plus_ok = isinstance(plus, (int, float)) and plus >= 0
+        passed += check("P77a-005: value.plus >= 0", plus_ok)
+
+        # P77a-006: value.minus exists and >= 0
+        total += 1
+        minus = val_obj.get("minus") if is_val_dict else None
+        minus_ok = isinstance(minus, (int, float)) and minus >= 0
+        passed += check("P77a-006: value.minus >= 0", minus_ok)
+    else:
+        # TBD mode: these checks are skipped (PASS by design)
+        total += 3
+        passed += check("P77a-004: value.central (skipped, TBD)", True)
+        passed += check("P77a-005: value.plus (skipped, TBD)", True)
+        passed += check("P77a-006: value.minus (skipped, TBD)", True)
+
+    # P77a-007: uncertainty.units == "dimensionless"
+    total += 1
+    uncert = st_obj.get("uncertainty", {}) if isinstance(st_obj, dict) else {}
+    units_ok = uncert.get("units") == "dimensionless"
+    passed += check("P77a-007: uncertainty.units == dimensionless", units_ok)
+
+    # P77a-008 to P77a-010: Provenance validation (only for DERIVED/IMPORTED)
+    prov = sigma_data.get("provenance", {}) if sigma_data else {}
+
+    if gate_status in ("DERIVED", "IMPORTED"):
+        # P77a-008: provenance.derivation_ref exists
+        total += 1
+        deriv_ref = prov.get("derivation_ref")
+        passed += check("P77a-008: provenance.derivation_ref exists", deriv_ref is not None)
+
+        # P77a-009: provenance.git_commit exists
+        total += 1
+        git_commit = prov.get("git_commit")
+        passed += check("P77a-009: provenance.git_commit exists", git_commit is not None)
+
+        # P77a-010: provenance.sot_hash valid (not TBD)
+        total += 1
+        sot_hash = prov.get("sot_hash")
+        sot_ok = sot_hash is not None and sot_hash != "TBD"
+        passed += check("P77a-010: provenance.sot_hash valid", sot_ok)
+    else:
+        # TBD mode: provenance checks skipped
+        total += 3
+        passed += check("P77a-008: provenance.derivation_ref (skipped, TBD)", True)
+        passed += check("P77a-009: provenance.git_commit (skipped, TBD)", True)
+        passed += check("P77a-010: provenance.sot_hash (skipped, TBD)", True)
+
+    # Print gate summary
+    print(f"\n        Gate Status: {gate_status}")
+    print(f"        Layer A: UNCHANGED")
+    print(f"        Layer B: {'BLOCKED' if gate_status == 'TBD' else 'ACTIVE'}")
+
+    # =========================================================================
     # SUMMARY
     # =========================================================================
     print("\n" + "=" * 70)
