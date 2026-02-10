@@ -1,0 +1,284 @@
+% EDC Book IV: Nuclear Structure from Topological Pinning
+% Preamble file — packages and macros
+% Date: 2026-02-09
+
+% ============================================================
+% PACKAGES
+% ============================================================
+
+% Encoding and fonts
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Mathematics
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{bm}  % Bold math
+
+% Layout
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    left=3cm,
+    right=3cm,
+    top=3cm,
+    bottom=3cm
+}
+
+% Headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\leftmark}
+\fancyhead[LO]{\rightmark}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+
+% Graphics
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+
+% Colors and boxes
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,skins,theorems}
+
+% Cross-references
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!70!black,
+    citecolor=green!50!black,
+    urlcolor=blue!80!black,
+    bookmarksnumbered=true,
+    bookmarksopen=true
+}
+\usepackage{cleveref}
+
+% Bibliography (if needed)
+% \usepackage[backend=biber,style=numeric-comp]{biblatex}
+
+% ============================================================
+% THEOREM ENVIRONMENTS
+% ============================================================
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}{Axiom}[chapter]
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+
+% ============================================================
+% EDC-SPECIFIC MACROS
+% ============================================================
+
+% Brane parameters
+\newcommand{\bsigma}{\sigma}           % Brane tension
+\newcommand{\bdelta}{\delta}           % 5D length scale
+\newcommand{\Lzero}{L_0}               % Characteristic length
+\newcommand{\Tstar}{T_*}               % Temperature scale
+\newcommand{\Mfive}{M_5}               % 5D Planck mass
+
+% Derived quantities
+\newcommand{\Kpin}{K}                  % Pinning constant
+\newcommand{\taun}{\tau_n}             % Neutron lifetime
+\newcommand{\VB}{V_B}                  % Barrier height
+\newcommand{\SE}{S_E}                  % Euclidean action
+\newcommand{\omegaz}{\omega_0}         % Oscillation frequency
+
+% Symmetry groups
+\newcommand{\Zsix}{\mathbb{Z}_6}
+\newcommand{\Zthree}{\mathbb{Z}_3}
+\newcommand{\Ztwo}{\mathbb{Z}_2}
+\newcommand{\pione}{\pi_1}             % Fundamental group
+
+% Topological
+\newcommand{\Sfive}{S^5}               % 5-sphere
+\newcommand{\Sone}{S^1}                % Circle
+
+% Coordination
+\newcommand{\ncoord}{n}                % Coordination number
+\newcommand{\dfrustration}{d(n)}       % Frustration distance
+
+% Units
+\newcommand{\MeV}{\,\mathrm{MeV}}
+\newcommand{\fm}{\,\mathrm{fm}}
+\newcommand{\second}{\,\mathrm{s}}
+
+% ============================================================
+% EPISTEMIC TAGS
+% ============================================================
+
+% Usage: \epistemictag{Der} or \epistemictag{P}
+\newcommand{\epistemictag}[1]{%
+    \textsuperscript{\textcolor{blue!70!black}{[#1]}}%
+}
+
+\newcommand{\tagDer}{\epistemictag{Der}}    % Derived
+\newcommand{\tagDc}{\epistemictag{Dc}}      % Derived with constraints
+\newcommand{\tagP}{\epistemictag{P}}        % Postulated
+\newcommand{\tagI}{\epistemictag{I}}        % Input
+\newcommand{\tagBL}{\epistemictag{BL}}      % Baseline
+\newcommand{\tagOpen}{\epistemictag{OPEN}}  % Open problem
+\newcommand{\tagCal}{\epistemictag{Cal}}    % Calibrated
+\newcommand{\tagM}{\epistemictag{M}}        % Model/Mechanism
+\newcommand{\tagDef}{\epistemictag{Def}}    % Definition
+
+% ============================================================
+% BOXES FOR SPECIAL CONTENT
+% ============================================================
+
+% Derivation box
+\newtcolorbox{derivationbox}[1][]{%
+    enhanced,
+    colback=blue!5,
+    colframe=blue!70!black,
+    fonttitle=\bfseries,
+    title=Derivation,
+    #1
+}
+
+% Result box
+\newtcolorbox{resultbox}[1][]{%
+    enhanced,
+    colback=green!5,
+    colframe=green!50!black,
+    fonttitle=\bfseries,
+    title=Result,
+    #1
+}
+
+% Warning/quarantine box
+\newtcolorbox{quarantinebox}[1][]{%
+    enhanced,
+    colback=red!5,
+    colframe=red!70!black,
+    fonttitle=\bfseries,
+    title=Quarantine: External Comparison,
+    #1
+}
+
+% Open problem box (renamed to avoid amsthm conflict)
+\newtcolorbox{edcopenbox}[1][]{%
+    enhanced,
+    colback=orange!5,
+    colframe=orange!70!black,
+    fonttitle=\bfseries,
+    title=Open Problem,
+    #1
+}
+% Chapter introduction box
+\newtcolorbox{chapterbox}[1][]{%
+    enhanced,
+    colback=gray!5,
+    colframe=gray!50!black,
+    fonttitle=\bfseries,
+    #1
+}
+
+% Chapter abstract environment (book class doesn't have this)
+\newenvironment{abstract}{%
+    \begin{quote}\small\itshape
+}{%
+    \end{quote}\medskip
+}
+
+% ============================================================
+% PROVENANCE TRACKING
+% ============================================================
+
+% Usage: \source{filename.md}
+% NOTE: Source tracking is for editorial use only — output is suppressed in PDF
+\newcommand{\source}[1]{}  % Suppressed: internal provenance only
+
+% Usage: \provenance{Ch.6}{INSTANTON_DERIVATION_CHAIN.md}
+% NOTE: Suppressed in final PDF
+\newcommand{\provenance}[2]{}  % Suppressed: internal provenance only
+
+% ============================================================
+% LAYER MARKERS
+% ============================================================
+
+\newcommand{\LayerA}{\textcolor{green!50!black}{\textbf{[Layer A]}}}
+\newcommand{\LayerB}{\textcolor{orange!70!black}{\textbf{[Layer B]}}}
+
+% ============================================================
+% EDC NATIVE ONTOLOGY MACROS
+% ============================================================
+% Canonical terminology for all EDC books. See ontology/EDC_ONTOLOGY_CANON.md
+% RULE: Use these macros in Layer A; do NOT type conventional particle names.
+
+% --- Core Object Macros (Layer A) ---
+
+% Junction states (baryonic)
+\newcommand{\AnchorJunction}{anchor junction}
+\newcommand{\MetastableJunction}{metastable junction}
+\newcommand{\Junction}{junction}
+\newcommand{\Constituent}{constituent}
+
+% Loop states (leptonic)
+\newcommand{\LoopState}{loop state}
+\newcommand{\AntiLoop}{anti-loop}
+\newcommand{\LoopExcitation}{loop excitation}
+
+% Mode excitations (bosonic)
+\newcommand{\EdgeMode}{edge-mode excitation}
+\newcommand{\BulkMode}{bulk mode}
+
+% Cluster states (nuclear)
+\newcommand{\ClusterState}{cluster state}
+\newcommand{\ClosedFour}{closed-4 unit}
+\newcommand{\PinningCluster}{pinning cluster}
+\newcommand{\HighCoordCluster}{high-coordination cluster}
+
+% --- Process Macros ---
+\newcommand{\JunctionTransition}{junction transition}
+\newcommand{\ClosedFourRelease}{closed-4 release}
+\newcommand{\Pinning}{pinning}
+\newcommand{\Frustration}{frustration}
+\newcommand{\BarrierTunneling}{barrier tunneling}
+
+% --- Adjective/Property Macros ---
+\newcommand{\HighCoord}{high-coordination}
+\newcommand{\ForbiddenZone}{forbidden zone}
+\newcommand{\StableCoord}{stable coordination}
+
+% --- Additional Symmetry Macros ---
+\newcommand{\Msix}{M_6}                % Coordination lattice
+
+% --- Policy Lock Sentence ---
+\newcommand{\EDCPolicyLockSentence}{%
+    \textit{This chapter uses EDC-native terminology exclusively. Conventional
+    particle names appear only in Appendix~\ref{app:analogies} (analogies) and
+    Appendix~\ref{app:quarantine} (calibration). See the Glossary for term
+    definitions.}%
+}
+
+% --- Analogy-Only Macros (APPENDIX X ONLY!) ---
+% WARNING: These macros are for Appendix X translation tables ONLY.
+% Do NOT use in Layer A chapters. Grep scan will flag direct use.
+\newcommand{\AnalogProton}{proton}            % APPENDIX X ONLY
+\newcommand{\AnalogNeutron}{neutron}          % APPENDIX X ONLY
+\newcommand{\AnalogElectron}{electron}        % APPENDIX X ONLY
+\newcommand{\AnalogNucleus}{nucleus}          % APPENDIX X ONLY
+\newcommand{\AnalogAlpha}{alpha particle}     % APPENDIX X ONLY
+\newcommand{\AnalogNuclear}{nuclear}          % APPENDIX X ONLY
+
+% ============================================================
+% END PREAMBLE
+% ============================================================
