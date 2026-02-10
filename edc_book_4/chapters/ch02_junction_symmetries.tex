@@ -1,0 +1,405 @@
+% ============================================================================
+% Chapter 2: Junction Symmetries
+% ============================================================================
+% Source: M6_GEOMETRY_DERIVATION.md, Z3_SYMMETRY_ANALYSIS_NEUTRON.md,
+%         04c_routeB_z6_steiner.tex
+% Status: FILLED from SoT
+% Contamination check: PASSED (no SM terms)
+% ============================================================================
+
+\chapter{Junction Symmetries}
+\label{ch:junction}
+
+\source{M6\_GEOMETRY\_DERIVATION.md, Z3\_SYMMETRY\_ANALYSIS\_NEUTRON.md}
+
+\EDCPolicyLockSentence
+
+\begin{abstract}
+How does the $\Zsix$ symmetry of the \AnchorJunction\ emerge from 5D topology?
+This chapter formalizes the crystallization mechanism: boundary conditions on
+$\Sfive$ select discrete symmetry groups via packing constraints. We derive
+the subgroup chain $\Zsix \supset \Zthree \supset \Ztwo$ and interpret each
+sector in EDC-native terms. The chapter closes by introducing the $\Msix$
+coordination lattice---the dual graph of the Steiner junction network---which
+bridges to the coordination and \Frustration\ framework of later chapters.
+\end{abstract}
+
+% ============================================================================
+\section{Crystallization from $\Sfive$}
+\label{sec:junction:crystallization}
+% ============================================================================
+
+\subsection{What ``Crystallization'' Means in EDC}
+
+In standard condensed-matter physics, crystallization refers to the emergence
+of discrete translational and rotational symmetries from continuous liquid
+disorder. In EDC, the analogous process occurs in the configuration space of
+brane defects:
+
+\begin{derivationbox}[title=Definition: Junction Crystallization]
+    \textbf{Junction crystallization} is the selection of a discrete symmetry
+    group $G_{\text{jun}}$ from continuous 5D diffeomorphism invariance via:
+    \begin{enumerate}
+        \item Boundary conditions on the brane worldvolume
+        \item Energy minimization (Nambu--Goto action)
+        \item Topological constraints (non-trivial $\pione$)
+    \end{enumerate}
+    \tagDef
+\end{derivationbox}
+
+The outcome: Y-junction configurations self-organize into a discrete lattice
+characterized by the symmetry group $G_{\text{jun}} \cong \Zsix$.
+
+\subsection{Route B Recap: From P2 to $\Zsix$}
+
+Chapter~\ref{ch:anchor} established the \AnchorJunction\ as a topological
+ground state via two convergent routes. Route B (crystallographic) provides
+the relevant framework here:
+
+\begin{enumerate}
+    \item \textbf{[P]} Postulate P2: Worldsheets have short-range repulsion
+          and long-range confinement, with minimum at characteristic
+          distance $d_0 > 0$.
+    \item \textbf{[M]} Kepler--Hales theorem: Optimal 2D packing of equal
+          circles is hexagonal, with packing fraction $\pi/(2\sqrt{3})$.
+    \item \textbf{[Dc]} Crystallization: Worldsheet defects arrange in
+          hexagonal lattice to minimize total energy.
+    \item \textbf{[Dc]} $\Zthree \subset \Zsix$ at Y-junctions: The
+          three-fold rotational symmetry of Y-vertices, combined with
+          hexagonal lattice symmetry, yields $\Zsix$.
+\end{enumerate}
+
+\subsection{The Crystallization Claim}
+
+\begin{resultbox}[title=Crystallization Result]
+    The junction symmetry group is:
+    \begin{equation}
+        G_{\text{jun}} \cong \Zsix
+        \label{eq:Gjun_Z6}
+    \end{equation}
+    This emerges from hexagonal packing of worldsheet defects on the
+    $\Sfive$ boundary under Postulate P2. \tagDc
+\end{resultbox}
+
+\begin{edcopenbox}[title=OPEN: Explicit $\Sfive$ Derivation]
+    Derive the explicit map from 5D action + thick-brane boundary conditions
+    to $\Zsix$ crystallization. Current status: the result follows from P2 +
+    Kepler--Hales, but a first-principles calculation from $\mathcal{E}[\Psi]$
+    remains open. \tagOpen
+\end{edcopenbox}
+
+% ============================================================================
+\section{Subgroup Structure}
+\label{sec:junction:subgroups}
+% ============================================================================
+
+\subsection{Mathematical Statement}
+
+The $\Zsix$ group has a well-known subgroup chain:
+
+\begin{derivationbox}[title=Subgroup Chain]
+    \begin{equation}
+        \Zsix \supset \Zthree \supset \{e\}
+        \quad\text{and}\quad
+        \Zsix \supset \Ztwo \supset \{e\}
+        \label{eq:subgroup_chain}
+    \end{equation}
+    Equivalently, $\Zsix \cong \Zthree \times \Ztwo$ (direct product for
+    coprime orders 3 and 2). \tagDer
+\end{derivationbox}
+
+\begin{proof}
+The group $\Zsix = \langle g \mid g^6 = e \rangle$ has order 6. By Lagrange's
+theorem, subgroups have orders dividing 6: $\{1, 2, 3, 6\}$. The unique
+subgroups are:
+\begin{itemize}
+    \item $\Zthree = \langle g^2 \rangle = \{e, g^2, g^4\}$ (index 2)
+    \item $\Ztwo = \langle g^3 \rangle = \{e, g^3\}$ (index 3)
+\end{itemize}
+Since $\gcd(2,3) = 1$, the Chinese Remainder Theorem gives
+$\Zsix \cong \Zthree \times \Ztwo$.
+\end{proof}
+
+\subsection{EDC-Native Interpretation}
+
+Each subgroup has a distinct physical meaning in the junction framework:
+
+\begin{table}[htbp]
+\centering
+\caption{Subgroup interpretation in junction space.}
+\label{tab:subgroup_interpret}
+\begin{tabular}{llll}
+    \toprule
+    \textbf{Group} & \textbf{Generator} & \textbf{Physical meaning} & \textbf{Tag} \\
+    \midrule
+    $\Zsix$ & $60°$ rotation & Full junction symmetry & [Dc] \\
+    $\Zthree$ & $120°$ rotation & Arm permutation (cyclic) & [Dc] \\
+    $\Ztwo$ & $180°$ rotation & Phase/parity sector & [P] \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{$\Zthree$: Arm Permutation Symmetry}
+
+The Y-junction has three arms emanating from the central hub. The $\Zthree$
+subgroup acts by cyclic permutation:
+
+\begin{derivationbox}[title=$\Zthree$ Action on Configurations]
+    Let $\mathcal{C} = (L_1, L_2, L_3, \theta_{12}, \theta_{23}, \theta_{31})$
+    denote a Y-junction configuration. The $\Zthree$ generator $g$ acts as:
+    \begin{align}
+        g \cdot (L_1, L_2, L_3) &= (L_2, L_3, L_1) \\
+        g \cdot (\theta_{12}, \theta_{23}, \theta_{31}) &= (\theta_{23}, \theta_{31}, \theta_{12})
+    \end{align}
+    The group is $\Zthree = \{e, g, g^2\}$ with $g^3 = e$. \tagDc
+\end{derivationbox}
+
+\textbf{Physical consequence:} A configuration is $\Zthree$-symmetric if and
+only if all three arms are equivalent: $L_1 = L_2 = L_3$ and
+$\theta_{12} = \theta_{23} = \theta_{31} = 120°$.
+
+\subsubsection{$\Ztwo$: Phase Sector}
+
+The $\Ztwo$ factor corresponds to a discrete parity or phase flip. Two
+interpretations are compatible with the mathematics:
+
+\begin{enumerate}
+    \item \textbf{Geometric:} $180°$ rotation about an axis perpendicular
+          to the junction plane (exchanges arm pairs).
+    \item \textbf{Topological:} Sign of the winding number or orientation
+          of the worldsheet.
+\end{enumerate}
+
+\begin{edcopenbox}[title=OPEN: $\Ztwo$ Carrier Identification]
+    The precise physical carrier of the $\Ztwo$ factor is not fully pinned
+    down. Candidate interpretations include worldsheet orientation, boundary
+    condition parity, or a discrete gauge sector. \tagOpen
+\end{edcopenbox}
+
+\subsection{Connection to Junction States}
+
+The subgroup structure maps to junction configurations:
+
+\begin{resultbox}[title=Junction--Subgroup Correspondence]
+    \begin{itemize}
+        \item \textbf{\AnchorJunction:} Full $\Zsix$ symmetry.
+              Ground state with Steiner $120°$ geometry.
+              (Chapter~\ref{ch:anchor})
+        \item \textbf{\MetastableJunction:} $\Zthree$ symmetric branch.
+              Excited state in double-well potential.
+              (Chapter~\ref{ch:metastable})
+        \item \textbf{$\Ztwo$ sector:} Distinguishes junction from anti-junction
+              (if applicable).
+    \end{itemize}
+    \tagDc
+\end{resultbox}
+
+The key point: the \MetastableJunction\ is not a ``different particle'' but
+a different \emph{configuration within the same junction space}, characterized
+by which subgroup symmetry it preserves.
+
+% ============================================================================
+\section{$\Msix$ Lattice Structure}
+\label{sec:junction:M6}
+% ============================================================================
+
+\subsection{From Junctions to Coordination}
+
+When multiple junctions interact, they form networks. The language of
+\emph{coordination}---how many neighbors each site has---provides the bridge
+from single-junction symmetry to multi-junction cluster physics.
+
+\begin{derivationbox}[title=Definition: $\Msix$ Coordination Lattice]
+    The \textbf{$\Msix$ lattice} is the dual graph $G^*$ of the Steiner
+    Y-junction network $G$:
+    \begin{itemize}
+        \item \textbf{Vertices of $G$:} Y-junctions (junction states)
+        \item \textbf{Edges of $G$:} Flux tube bonds (leg-to-hub contacts)
+        \item \textbf{Vertices of $G^*$:} Volumetric cells between junctions
+        \item \textbf{Edges of $G^*$:} Contacts between adjacent cells
+    \end{itemize}
+    \tagDef
+\end{derivationbox}
+
+\subsection{Why $n = 6$: The Duality Argument}
+
+The coordination number $n = 6$ in the $\Msix$ lattice is \emph{derived},
+not postulated, from Steiner geometry:
+
+\begin{derivationbox}[title=Derivation: $n = 6$ from Graph Duality]
+    \textbf{Claim:} Each vertex in the dual graph $G^*$ has degree 6.
+
+    \textbf{Proof:}
+    \begin{enumerate}
+        \item The primal graph $G$ is 3-valent (each Y-junction has 3 legs).
+        \item At each vertex of $G$, the three edges meet at $120°$ angles.
+        \item The exterior angle at each vertex is $180° - 120° = 60°$.
+        \item For a closed face, total exterior angle $= 360°$.
+        \item Minimum vertices per face $= 360°/60° = 6$.
+        \item Therefore, minimal faces of $G$ are \textbf{hexagons} (6-cycles).
+        \item By graph duality: degree of vertex in $G^*$ = edges of
+              corresponding face in $G$ = 6. \qed
+    \end{enumerate}
+    \tagDer
+    \label{deriv:n_equals_6}
+\end{derivationbox}
+
+\begin{figure}[htbp]
+\centering
+\begin{verbatim}
+      Primal G (3-valent)          Dual G* (6-valent)
+
+         J1 --- J2                     *---*---*
+        / |     | \                   / \ / \ / \
+      J6  |     |  J3                *---*---*---*
+        \ |     | /                   \ / \ / \ /
+         J5 --- J4                     *---*---*
+
+      Hexagonal faces             Each vertex has 6 neighbors
+\end{verbatim}
+\caption{Schematic of primal Steiner lattice $G$ and dual $\Msix$ lattice $G^*$.}
+\label{fig:primal_dual}
+\end{figure}
+
+\subsection{Sites, Edges, and Pinning}
+
+In the $\Msix$ language:
+
+\begin{table}[htbp]
+\centering
+\caption{$\Msix$ lattice vocabulary.}
+\label{tab:M6_vocab}
+\begin{tabular}{lll}
+    \toprule
+    \textbf{$\Msix$ term} & \textbf{Definition} & \textbf{Physical role} \\
+    \midrule
+    Site & Vertex of $G^*$ (cell in primal) & Location for \Pinning \\
+    Edge & Contact between adjacent cells & \Pinning\ interface \\
+    Coordination $\ncoord$ & Number of edges at a site & Cluster characterization \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+The \textbf{\Pinning} energy depends on how many contacts a cluster has with
+its environment. This motivates the coordination function $\ncoord(A)$
+developed in Chapter~\ref{ch:M6}.
+
+\subsection{Allowed Coordination Set}
+
+Not all integers are achievable as coordination numbers. The $\Msix$ topology
+constrains the allowed values:
+
+\begin{derivationbox}[title=Allowed Coordination Set]
+    The allowed coordination numbers form the set:
+    \begin{equation}
+        S = \{2^a \times 3^b \mid a, b \geq 0\}
+        = \{1, 2, 3, 4, 6, 8, 9, 12, 16, 18, 24, 27, 32, 36, \ldots\}
+        \label{eq:allowed_set}
+    \end{equation}
+    Integers not in $S$ correspond to \textbf{frustrated} configurations.
+    \tagDer
+\end{derivationbox}
+
+\textbf{Forward reference:} The derivation of $S$ from $\Msix$ topology and
+its physical consequences (frustration, forbidden zones) are developed in
+Chapters~\ref{ch:M6} and~\ref{ch:frustrated}.
+
+\subsection{The Forbidden Zone}
+
+A key prediction of the $\Msix$ framework is the existence of gaps in the
+allowed coordination spectrum:
+
+\begin{resultbox}[title=Forbidden Zone Preview]
+    The \ForbiddenZone\ $[37, 47]$ contains 11 consecutive integers, none
+    expressible as $2^a \times 3^b$. Clusters with coordination in this
+    range experience maximal \Frustration.
+    \tagDer\ (derived in Chapter~\ref{ch:frustrated})
+\end{resultbox}
+
+% ============================================================================
+\section{Summary}
+\label{sec:junction:summary}
+% ============================================================================
+
+\begin{resultbox}[title=Chapter 2 Summary: Junction Symmetries]
+    \textbf{Derivation chain:}
+    \[
+        \Sfive \text{ boundary} \xrightarrow{\text{P2 + packing}}
+        \text{crystallization} \xrightarrow{\text{hex lattice}}
+        \Zsix \text{ symmetry} \xrightarrow{\text{subgroups}}
+        \Zthree \text{ branch} \xrightarrow{\text{dual graph}}
+        \Msix \text{ coordination}
+    \]
+
+    \textbf{Key results:}
+    \begin{itemize}
+        \item $G_{\text{jun}} \cong \Zsix$ from hexagonal crystallization [Dc]
+        \item $\Zsix \cong \Zthree \times \Ztwo$ with distinct physical roles [Der]
+        \item \AnchorJunction\ = full $\Zsix$; \MetastableJunction\ = $\Zthree$ branch [Dc]
+        \item $\Msix$ = dual of Steiner lattice; coordination $n = 6$ [Der]
+        \item Allowed set $S = \{2^a \times 3^b\}$ [Der]
+    \end{itemize}
+
+    \textbf{Forward connections:}
+    \begin{itemize}
+        \item Chapter~\ref{ch:metastable}: $\Zthree$ branch and double-well dynamics
+        \item Chapter~\ref{ch:M6}: Full $\Msix$ coordination derivation
+        \item Chapter~\ref{ch:frustrated}: \Frustration\ correction from $d(\ncoord)$
+    \end{itemize}
+\end{resultbox}
+
+% ============================================================================
+\section{Epistemic Status}
+\label{sec:junction:epistemic}
+% ============================================================================
+
+\begin{table}[htbp]
+\centering
+\caption{Epistemic status of Chapter 2 claims.}
+\label{tab:ch2_epistemic}
+\begin{tabular}{llll}
+    \toprule
+    \textbf{Claim} & \textbf{Status} & \textbf{Reference} & \textbf{Source} \\
+    \midrule
+    Crystallization definition & [Def] & \S\ref{sec:junction:crystallization} & — \\
+    $G_{\text{jun}} \cong \Zsix$ & [Dc] & Eq.~\eqref{eq:Gjun_Z6} & P2 + Kepler--Hales \\
+    Subgroup chain $\Zsix \supset \Zthree$ & [Der] & Eq.~\eqref{eq:subgroup_chain} & Group theory \\
+    $\Zthree$ = arm permutation & [Dc] & \S\ref{sec:junction:subgroups} & Configuration analysis \\
+    $\Ztwo$ carrier identity & [P] & \S\ref{sec:junction:subgroups} & Interpretation \\
+    \midrule
+    $\Msix$ lattice definition & [Def] & \S\ref{sec:junction:M6} & — \\
+    $n = 6$ from duality & [Der] & Derivation~\ref{deriv:n_equals_6} & Graph duality \\
+    Allowed set $S = \{2^a 3^b\}$ & [Der] & Eq.~\eqref{eq:allowed_set} & $\Msix$ topology \\
+    \midrule
+    Explicit $\Sfive \to \Zsix$ map & [OPEN] & \S\ref{sec:junction:crystallization} & Future work \\
+    $\Ztwo$ physical carrier & [OPEN] & \S\ref{sec:junction:subgroups} & Future work \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================================
+\section{Notation Summary}
+\label{sec:junction:notation}
+% ============================================================================
+
+\begin{table}[htbp]
+\centering
+\caption{Chapter 2 notation dictionary.}
+\label{tab:ch2_notation}
+\begin{tabular}{lll}
+    \toprule
+    \textbf{Symbol} & \textbf{Meaning} & \textbf{Status} \\
+    \midrule
+    $G_{\text{jun}}$ & Junction symmetry group & [Dc] \\
+    $\Zsix$ & Hexagonal symmetry; $\cong \mathbb{Z}/6\mathbb{Z}$ & [Der] \\
+    $\Zthree$ & Arm permutation subgroup; $\cong \mathbb{Z}/3\mathbb{Z}$ & [Der] \\
+    $\Ztwo$ & Phase/parity subgroup; $\cong \mathbb{Z}/2\mathbb{Z}$ & [P] \\
+    $G$ & Primal Steiner graph (3-valent) & [Def] \\
+    $G^*$ & Dual graph = $\Msix$ lattice (6-valent) & [Def] \\
+    $\Msix$ & Coordination lattice & [Def] \\
+    $\ncoord$ & Coordination number & [Def] \\
+    $S$ & Allowed coordination set $\{2^a 3^b\}$ & [Der] \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
