@@ -1,0 +1,480 @@
+% ============================================================================
+% Chapter 13: Barrier-Limited Release Systematics
+% ============================================================================
+% Source: radioactivity_v7_1_alpha15/04_GN_FIT_AND_RESIDUALS.md
+% Status: FILLED from SoT
+% Contamination check: PASSED (no banned terms)
+% Contamination guard: 3D-model terminology routed to Appendix X/Q.
+% Layer A text uses EDC-native vocabulary only.
+% ============================================================================
+
+\chapter{Barrier-Limited Release Systematics}
+\label{ch:barrier_release}
+
+\source{radioactivity\_v7\_1\_alpha15}
+
+% ----------------------------------------------------------------------------
+\section*{Abstract}
+% ----------------------------------------------------------------------------
+
+This chapter establishes the \textbf{baseline scaling law} for barrier-limited
+release of closed-4 units from heavy coordination clusters. The baseline lane
+captures broad empirical regularities using two scalar parameters: a barrier
+parameter and a release-energy parameter. We explicitly mark the baseline as
+\textbf{[BL]}---it is not derived from EDC, but serves as the reference against
+which EDC corrections are measured. The chapter identifies where the baseline
+succeeds, where it systematically fails (high coordination frustration,
+high-A region), and sets up the interface to Chapter~\ref{ch:frustrated} (coordination
+frustration correction) and Chapter~\ref{ch:high_coord} (high-coordination predictions).
+
+% ============================================================================
+\section{Motivation: A Baseline Law for Barrier-Limited Release}
+\label{sec:gn:motivation}
+% ============================================================================
+
+\subsection{The Phenomenological Problem}
+
+Across a wide range of heavy coordination clusters (cluster size $A > 200$),
+the release of a closed-4 unit follows a striking empirical regularity:
+the logarithm of the release time correlates strongly with a simple combination
+of two parameters:
+
+\begin{enumerate}
+    \item A \textbf{barrier parameter} related to the cluster's charge boundary
+    \item A \textbf{release-energy parameter} related to the energy available
+          for the transition
+\end{enumerate}
+
+This regularity spans more than 20 orders of magnitude in release times,
+from sub-microsecond to cosmological timescales. \tagBL
+
+\subsection{Purpose of This Chapter}
+
+\begin{resultbox}
+    \textbf{Scope declaration:} This chapter establishes the \emph{baseline lane}
+    used for residual analysis. It is \textbf{not} an EDC derivation---the baseline
+    formula is an empirical regularity tagged [BL]. EDC enters only through
+    the correction term developed in Chapter~\ref{ch:frustrated}.
+    \tagBL
+\end{resultbox}
+
+The baseline lane serves as the ``null hypothesis'' against which structural
+effects (coordination frustration, boundary mismatch) are tested.
+
+% ============================================================================
+\section{Baseline Scaling Form}
+\label{sec:gn:baseline}
+% ============================================================================
+
+\subsection{The Baseline Lane [BL]}
+
+The empirical baseline law relates the release time $t_{1/2}$ to the barrier
+and release-energy parameters:
+
+\begin{derivationbox}
+    \textbf{Baseline lane formula:}
+    \begin{equation}
+        \log_{10}(t_{1/2}) = a \times X + b
+        \label{eq:baseline_lane}
+    \end{equation}
+    where the barrier-to-release ratio is:
+    \begin{equation}
+        X = \frac{Z_{\text{eff}}}{\sqrt{E_{\text{rel}}}}
+        \label{eq:barrier_ratio}
+    \end{equation}
+    \tagBL
+\end{derivationbox}
+
+\subsection{EDC-Native Variable Definitions}
+
+Table~\ref{tab:variables} defines the baseline variables in Book IV terminology.
+
+\begin{table}[h]
+\centering
+\caption{Baseline variables dictionary (EDC-native).}
+\label{tab:variables}
+\begin{tabular}{lp{7cm}c}
+    \toprule
+    Symbol & EDC-Native Definition & Tag \\
+    \midrule
+    $t_{1/2}$ & Release time: characteristic timescale for closed-4
+               emission from parent cluster & [BL] \\
+    $Z_{\text{eff}}$ & Barrier parameter: effective charge determining
+                       the height of the coordination boundary through
+                       which the closed-4 unit tunnels & [BL] \\
+    $E_{\text{rel}}$ & Release energy: kinetic energy available to the
+                       emitted closed-4 unit after barrier penetration & [BL] \\
+    $X$ & Barrier-to-release ratio: dimensionless combination
+          $Z_{\text{eff}}/\sqrt{E_{\text{rel}}}$ & [BL] \\
+    $a, b$ & Baseline coefficients (Appendix~Q) & [BL] \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Baseline Coefficients}
+
+The coefficients $a$ and $b$ are determined by regression on empirical data.
+
+\begin{quarantinebox}[title=Appendix Q: Coefficient Estimation]
+    The fitting procedure, dataset selection, regression method, and
+    coefficient values are documented in Appendix~Q. Layer A uses only
+    the functional form; numerical calibration is quarantined.
+\end{quarantinebox}
+
+For reference, typical values are $a \approx 1.5$ and $b \approx -47$,
+giving $R^2 \approx 0.99$ across representative datasets. \tagBL
+
+\begin{quarantinebox}[title=Appendix X: Conventional Notation]
+    In conventional literature, this scaling law is known by historical
+    names that we do not use in Layer A. The mapping to conventional
+    notation is provided in Appendix~X for reader orientation.
+\end{quarantinebox}
+
+% ============================================================================
+\section{Physical Picture (EDC-Native)}
+\label{sec:gn:picture}
+% ============================================================================
+
+\subsection{The Release Mechanism}
+
+In EDC terms, barrier-limited release occurs when:
+
+\begin{enumerate}
+    \item A \textbf{closed-4 unit} (the minimal closed topological unit from
+          Chapter~\ref{ch:helium4}) exists within a larger parent cluster
+    \item The closed-4 unit tunnels through an \textbf{effective barrier}
+          shaped by the parent cluster's coordination boundary
+    \item The tunneling rate is controlled by two parameters:
+          \begin{itemize}
+              \item Barrier height $\propto Z_{\text{eff}}$
+              \item Available energy $\propto E_{\text{rel}}$
+          \end{itemize}
+\end{enumerate}
+
+\subsection{What the Baseline Ignores}
+
+The baseline lane treats the parent cluster as \textbf{featureless} except
+for two scalar parameters. It ignores:
+
+\begin{itemize}
+    \item Internal coordination structure (how junctions are arranged)
+    \item Coordination frustration (mismatch between allowed and actual
+          coordination numbers)
+    \item Structural reconfiguration costs during emission
+    \item Preferred vs.\ forbidden emission channels
+\end{itemize}
+
+These omitted effects generate the \textbf{residuals} that motivate
+Chapter~\ref{ch:frustrated}. \tagP
+
+\subsection{Why a 1D Effective Barrier Works}
+
+The reduction to a single barrier-to-release ratio $X$ works because:
+
+\begin{enumerate}
+    \item The closed-4 unit is compact and rigid (Chapter~\ref{ch:helium4})
+    \item The tunneling probability is exponentially sensitive to $X$
+    \item Most structural details are ``averaged out'' by the exponential
+\end{enumerate}
+
+This 1D reduction is an approximation that captures $\sim 99\%$ of the
+variance in $\log_{10}(t_{1/2})$---but the remaining $\sim 1\%$ contains
+the coordination information. \tagP + \tagBL
+
+% ============================================================================
+\section{Why It Works (and Where It Must Fail)}
+\label{sec:gn:failure}
+% ============================================================================
+
+\subsection{Success of the Baseline}
+
+The baseline lane succeeds broadly because:
+
+\begin{enumerate}
+    \item \textbf{Exponential sensitivity:} Small changes in $X$ produce
+          large changes in $t_{1/2}$, dominating over structural corrections
+    \item \textbf{Universal emitter:} The closed-4 unit has fixed properties
+          (Chapter~\ref{ch:helium4}), so emission physics is reproducible
+    \item \textbf{Smooth barrier:} For most clusters, the coordination
+          boundary is sufficiently regular that a single effective height
+          captures the tunneling
+\end{enumerate}
+
+\begin{resultbox}
+    \textbf{Baseline success:} The two-parameter lane explains $\gtrsim 98\%$
+    of the variance in $\log_{10}(t_{1/2})$ across $\sim 20$ orders of magnitude.
+    \tagBL
+\end{resultbox}
+
+\subsection{Failure Modes (EDC-Native)}
+
+The baseline systematically fails when:
+
+\begin{enumerate}
+    \item \textbf{High coordination frustration:}
+          When the parent cluster's coordination number $n(A)$ deviates
+          significantly from the allowed set (Chapter~\ref{ch:frustrated}),
+          structural strain modifies the effective barrier.
+          \tagP
+
+    \item \textbf{Boundary mismatch:}
+          When the emitting closed-4 unit must cross a coordination boundary
+          with mismatched local structure, additional reconfiguration energy
+          is required.
+          \tagP
+
+    \item \textbf{Structural reconfiguration costs:}
+          When emission requires the parent cluster to rearrange its
+          junction network (not captured by baseline scalars).
+          \tagP
+
+    \item \textbf{Forbidden-zone cases:}
+          When the parent cluster lies in a topologically ``forbidden''
+          region where certain coordination numbers are inaccessible,
+          the emission dynamics differ qualitatively.
+          \tagP
+\end{enumerate}
+
+\subsection{Bridge to Chapter~\ref{ch:frustrated}}
+
+\begin{resultbox}
+    \textbf{Motivation for correction term:}
+    Residuals from the baseline lane correlate with coordination frustration
+    metrics. This motivates adding a structure-dependent correction in
+    Chapter~\ref{ch:frustrated}:
+    \begin{equation}
+        \log_{10}(t_{1/2}) = a X + b + g \times \dfrustration(n)
+        \label{eq:corrected_lane}
+    \end{equation}
+    where $\dfrustration(n)$ is the coordination frustration metric and $g$
+    is a coupling coefficient.
+    \tagP
+\end{resultbox}
+
+% ============================================================================
+\section{Baseline Residual Definition}
+\label{sec:gn:residual}
+% ============================================================================
+
+\subsection{Definition}
+
+The \textbf{baseline residual} measures the deviation of observed release
+times from baseline predictions:
+
+\begin{derivationbox}
+    \begin{equation}
+        \Delta = \log_{10}(t_{\text{obs}}) - \log_{10}(t_{\text{BL}})
+        \label{eq:residual_def}
+    \end{equation}
+    where $t_{\text{BL}}$ is the baseline prediction from Eq.~\eqref{eq:baseline_lane}.
+    \tagBL
+\end{derivationbox}
+
+\subsection{Interpretation}
+
+\begin{center}
+\begin{tabular}{cp{10cm}}
+    \toprule
+    $\Delta$ & Interpretation \\
+    \midrule
+    $\Delta > 0$ & Observed release is \textbf{slower} than baseline
+                   (``hindered'' emission) \\
+    $\Delta < 0$ & Observed release is \textbf{faster} than baseline
+                   (``favored'' emission) \\
+    $\Delta \approx 0$ & Baseline adequately describes the system \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Interface to Chapter~\ref{ch:frustrated}}
+
+Chapter~\ref{ch:frustrated} will show that:
+\begin{equation}
+    \Delta \approx g \times \dfrustration(n)
+    \label{eq:delta_d}
+\end{equation}
+
+The coupling $g$ and the frustration metric $\dfrustration(n)$ are defined
+and calibrated in Chapter~\ref{ch:frustrated}; any regression details are
+routed to Appendix~Q. \tagP
+
+% ============================================================================
+\section{Tables}
+\label{sec:gn:tables}
+% ============================================================================
+
+\subsection{Table 13.2: Baseline Formula and Epistemic Tags}
+
+\begin{table}[h]
+\centering
+\caption{Baseline formula components with epistemic tags.}
+\label{tab:formula}
+\begin{tabular}{lcc}
+    \toprule
+    Component & Formula & Tag \\
+    \midrule
+    Baseline lane & $\log_{10}(t_{1/2}) = a X + b$ & [BL] \\
+    Barrier ratio & $X = Z_{\text{eff}}/\sqrt{E_{\text{rel}}}$ & [BL] \\
+    Coefficients & $a \approx 1.5$, $b \approx -47$ & [BL] (Appendix Q) \\
+    Residual & $\Delta = \log_{10}(t_{\text{obs}}/t_{\text{BL}})$ & [BL] \\
+    Correction (Ch.~\ref{ch:frustrated}) & $+ g \times \dfrustration(n)$ & [P] \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Table 13.3: Failure/Residual Taxonomy}
+
+\begin{table}[h]
+\centering
+\caption{Baseline failure modes and EDC corrections.}
+\label{tab:failure}
+\begin{tabular}{p{4cm}p{5cm}cc}
+    \toprule
+    Failure Mode & EDC-Native Description & Chapter & Tag \\
+    \midrule
+    High coordination frustration &
+    $n(A)$ deviates from allowed coordination set &
+    \ref{ch:frustrated} & [P] \\
+    Boundary mismatch &
+    Coordination boundary incompatible with emission &
+    \ref{ch:frustrated} & [P] \\
+    Structural reconfiguration &
+    Parent must rearrange junctions during emission &
+    \ref{ch:frustrated} & [P] \\
+    Forbidden-zone emission &
+    Parent lies in topologically forbidden region &
+    \ref{ch:high_coord} & [P] \\
+    High-A anomalies &
+    Extreme coordination frustration in heavy clusters &
+    \ref{ch:high_coord} & [P] \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================================
+\section{Epistemic Status and Falsifiability}
+\label{sec:gn:epistemic}
+% ============================================================================
+
+\subsection{Epistemic Status Table}
+
+\begin{table}[h]
+\centering
+\caption{Epistemic status of Chapter~\ref{ch:barrier_release} claims.}
+\label{tab:gn:epistemic}
+\begin{tabular}{p{5.5cm}cc}
+    \toprule
+    Claim & Tag & Confidence \\
+    \midrule
+    Baseline lane formula (Eq.~\ref{eq:baseline_lane}) & [BL] & Established \\
+    Barrier ratio definition (Eq.~\ref{eq:barrier_ratio}) & [BL] & Established \\
+    $R^2 \gtrsim 0.98$ for baseline fit & [BL] & Established \\
+    1D reduction approximation & [P] & High \\
+    Residuals encode coordination information & [P] & Medium--High \\
+    Correction form $g \times \dfrustration$ & [P] & Medium \\
+    Failure modes taxonomy & [P] & Medium \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Falsifiability Hooks}
+
+\begin{edcopenbox}[title=Falsifiability Hooks]
+    \begin{enumerate}
+        \item \textbf{Residual-frustration correlation:}
+              If baseline residuals $\Delta$ do \emph{not} correlate with
+              the coordination frustration metric $\dfrustration(n)$,
+              the EDC correction hypothesis fails.
+
+        \item \textbf{Forbidden-zone outliers:}
+              Clusters in topologically ``forbidden'' zones must show
+              systematically large residuals under the baseline. If they
+              follow the baseline lane, the forbidden-zone concept is wrong.
+
+        \item \textbf{High-coordination systematic sign:}
+              In the high-A region, residuals must show a consistent
+              sign (faster or slower than baseline). Random scatter would
+              invalidate the coordination frustration mechanism.
+
+        \item \textbf{Closed-4 emission bias:}
+              The baseline assumes emission of the \emph{minimal} closed unit.
+              If alternative emission channels (closed-8, fragmentation)
+              dominate, the baseline formulation breaks.
+              (Forward-link to Chapter~\ref{ch:light_clusters} minimal-unit
+              concept.)
+
+        \item \textbf{Coefficient universality:}
+              If baseline coefficients $a$, $b$ vary systematically across
+              regions in a way not explained by EDC corrections, the
+              single-lane picture fails.
+    \end{enumerate}
+\end{edcopenbox}
+
+% ============================================================================
+% Observer-side projection
+% ============================================================================
+
+\begin{observerbox}
+Observer-side projection note: quoted terms are measurement labels for the
+3D/4D projection of the 5D objects defined in this chapter; they do not
+imply any conventional mechanism.
+
+\begin{itemize}
+    \item \ClosedFourRelease{} time $\leftrightarrow$ measured time proxy (projection label)
+    \item Barrier-to-release ratio $\leftrightarrow$ empirical scaling variable (projection label)
+\end{itemize}
+
+What the observer records: the baseline lane $\log_{10}(t) = a \times X + b$
+correlates 5D barrier parameters with measured release times. The residuals
+$\Delta$ provide the interface to coordination corrections.
+\end{observerbox}
+
+% ============================================================================
+\section{Summary and Forward Links}
+\label{sec:gn:summary}
+% ============================================================================
+
+\begin{resultbox}
+    \textbf{What this chapter provides:}
+    \begin{itemize}
+        \item Baseline lane for barrier-limited closed-4 emission [BL]
+        \item EDC-native variable definitions (barrier parameter, release
+              energy, barrier-to-release ratio)
+        \item Physical picture: 1D effective barrier with two-parameter
+              control
+        \item Residual definition as interface to coordination corrections
+        \item Failure mode taxonomy pointing to EDC structure terms
+    \end{itemize}
+
+    \textbf{What this chapter omits:}
+    \begin{itemize}
+        \item Derivation from EDC (baseline is empirical [BL])
+        \item Numerical coefficient values (Appendix Q)
+        \item Conventional terminology mapping (Appendix X)
+        \item Coordination frustration correction (Chapter~\ref{ch:frustrated})
+    \end{itemize}
+\end{resultbox}
+
+\bigskip
+\noindent
+\textbf{Forward references:}
+\begin{itemize}
+    \item Chapter~\ref{ch:frustrated}: Coordination frustration correction
+          $g \times \dfrustration(n)$
+    \item Chapter~\ref{ch:high_coord}: High-coordination predictions and extreme
+          frustration
+    \item Appendix~Q: Baseline regression details and coefficient calibration
+    \item Appendix~X: Mapping to conventional notation
+\end{itemize}
+
+\bigskip
+\noindent
+\textbf{Derivation chain position:}
+\begin{equation*}
+    \text{Baseline lane [BL]}
+    \xrightarrow{+ g \times \dfrustration}
+    \text{Corrected lane (Ch.~\ref{ch:frustrated})}
+    \xrightarrow{\text{predictions}}
+    \text{High-A (Ch.~\ref{ch:high_coord})}
+\end{equation*}
+

@@ -493,6 +493,57 @@ rg -l -i '\b(proton|neutron|nuclear)\b' appendices/*.tex | grep -vE 'appX|appQ'
 
 ---
 
+## OBSERVERBOX ALLOWANCE (Projection Labels Only)
+
+### Purpose
+
+The `observerbox` environment provides a controlled interface for mapping 5D EDC objects to 3D/4D observer measurement labels. This allows readers to connect EDC-native terminology to familiar labels WITHOUT introducing conventional mechanism explanations.
+
+### Rules
+
+1. **Exactly one observerbox per chapter** (ch01–ch17)
+2. **Projection labels allowed ONLY inside observerbox:**
+   - `proton`, `neutron`, `electron`, `positron`, `photon`
+   - `observer`, `projection`, `shadow`, `measurement label`, `3D/4D`, `effective`, `recorded`, `measured`
+3. **Forbidden EVERYWHERE (including observerbox):**
+   - ALL mechanism/model words: QCD, gauge, weak, beta, decay, nuclear, nucleus, shell, magic, Coulomb, isospin, CKM, PMNS, fermion, boson, quark, gluon, neutrino, electroweak, strong force, half-life, etc.
+   - The observerbox must NOT explain "why" using conventional theory
+4. **Scan ignores observerbox content by design** (see scan wrapper below)
+
+### Observerbox Template
+
+```latex
+\begin{observerbox}
+Observer-side projection note: quoted terms are measurement labels for the
+3D/4D projection of the 5D objects defined in this chapter; they do not
+imply any conventional mechanism.
+
+\begin{itemize}
+    \item \AnchorJunction{} $\leftrightarrow$ ``proton'' (projection label)
+    \item \MetastableJunction{} $\leftrightarrow$ ``neutron'' (projection label)
+\end{itemize}
+
+What the observer records: [description of measured quantity without forbidden words]
+\end{observerbox}
+```
+
+### Scan Wrapper (Strips Observerbox Before Grep)
+
+```bash
+# Run from edc_book_4/
+# Strips observerbox content, then runs contamination scan
+perl -0777 -pe 's/\\begin\{observerbox\}.*?\\end\{observerbox\}//sg' \
+    <(cat chapters/*.tex) | \
+    grep -nEi '\b(proton|neutron|nuclear|electron|photon|weak|strong force|alpha decay|beta decay|quark|gluon|QCD|shell|magic number)\b' \
+    || echo "PASS: 0 Layer-A violations (observerbox excluded)"
+```
+
+### Checklist Item
+
+- [ ] Exactly one observerbox per chapter (verify: `grep -c 'begin{observerbox}' chapters/*.tex`)
+
+---
+
 ## ONTOLOGY MACRO RULES (2026-02-10)
 
 ### Mandatory Macro Usage

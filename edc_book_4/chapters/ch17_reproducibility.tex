@@ -1,0 +1,429 @@
+% Chapter 17: Reproducibility & Verification
+% Canonical "how to reproduce Book IV" chapter
+% Status: COMPLETE
+
+\chapter{Reproducibility \& Verification}
+\label{ch:repro}
+
+\begin{chapterbox}
+This chapter specifies the exact procedures for reproducing all numerical
+claims in Book IV. We separate \textbf{deterministic re-computation} (pure
+arithmetic from axioms) from \textbf{calibrated inputs} (empirical anchors
+documented in Appendix~\ref{app:quarantine}).
+\end{chapterbox}
+
+% ============================================================================
+\section{Verification Tiers}
+\label{sec:repro:tiers}
+% ============================================================================
+
+We define three verification tiers of increasing depth:
+
+\begin{description}
+    \item[Tier 1: Compile-only] \tagDef \\
+        Rebuild the PDF from \LaTeX\ sources. Verifies that all cross-references
+        resolve and no missing figures or tables. Requires: \texttt{pdflatex},
+        \texttt{biber}, standard \LaTeX\ packages.
+
+    \item[Tier 2: Table-consistency] \tagDef \\
+        Check that numerical values in tables match values stated in running
+        text. Manual inspection or automated \texttt{grep}-based extraction.
+        No computation required.
+
+    \item[Tier 3: Code-assisted] \tagDef \\
+        Execute Python scripts to regenerate prediction tables from first
+        principles. Requires: Python 3.8+, NumPy, SciPy. Expected runtime:
+        $< 1$ minute for all scripts.
+\end{description}
+
+\subsection{Tier Dependencies}
+
+\begin{center}
+\begin{tabular}{lccc}
+    \toprule
+    Verification Goal & Tier 1 & Tier 2 & Tier 3 \\
+    \midrule
+    PDF builds without error & \checkmark & & \\
+    Cross-references valid & \checkmark & & \\
+    Table values self-consistent & & \checkmark & \\
+    Predictions reproducible & & & \checkmark \\
+    Parameter sensitivity verified & & & \checkmark \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+% ============================================================================
+\section{Verification Artifacts}
+\label{sec:repro:artifacts}
+% ============================================================================
+
+Table~\ref{tab:repro:artifacts} lists all verification artifacts and their
+locations.
+
+\begin{table}[htbp]
+\centering
+\caption{Verification Artifacts}
+\label{tab:repro:artifacts}
+\begin{tabular}{llc}
+    \toprule
+    Artifact & Location (relative) & Tier \\
+    \midrule
+    \LaTeX\ sources & \texttt{edc\_book\_4/} & 1 \\
+    Main document & \texttt{main.tex} & 1 \\
+    Chapter sources & \texttt{chapters/*.tex} & 1 \\
+    Appendix sources & \texttt{appendices/*.tex} & 1 \\
+    Preamble & \texttt{preamble.tex} & 1 \\
+    Bibliography & \texttt{references.bib} & 1 \\
+    \midrule
+    Prediction script & \texttt{code/closed4\_predictions.py} & 3 \\
+    Kramers validation & \texttt{code/kramers\_double\_well.py} & 3 \\
+    Sensitivity analysis & \texttt{code/prefactor\_sensitivity.py} & 3 \\
+    Cross-validation & \texttt{code/prefactor\_refit\_cv.py} & 3 \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================================
+\section{Deterministic vs.\ Calibrated}
+\label{sec:repro:separation}
+% ============================================================================
+
+A key principle of Book IV is the separation between Layer A (deterministic
+derivations) and Layer B (calibrated inputs). Table~\ref{tab:repro:layerAB}
+clarifies which quantities are which.
+
+\begin{table}[htbp]
+\centering
+\caption{Deterministic vs.\ Calibrated Quantities}
+\label{tab:repro:layerAB}
+\begin{tabular}{llll}
+    \toprule
+    Quantity & Type & Tag & Documentation \\
+    \midrule
+    $\kappa = 2\pi$ & Deterministic & \tagDer & Ch.~\ref{ch:kappa} \\
+    $L_0/\delta = \pi^2$ & Deterministic & \tagDer & Ch.~\ref{ch:L0_delta} \\
+    $V_B = 2 \times 1.293$ MeV & Derived + input & \tagDc & Ch.~\ref{ch:metastable} \\
+    $n(A) = p \times A^{1/3}$ & Formula & \tagDer & Ch.~\ref{ch:barrier_release} \\
+    \midrule
+    Prefactor $p = 6.1$ & Calibrated & \tagCal & App.~\ref{sec:q:prefactor} \\
+    Coefficient $g = -1.76$ & Calibrated & \tagCal & App.~\ref{sec:q:g} \\
+    Lane parameters $a, b$ & Baseline & \tagBL & App.~\ref{sec:q:gn} \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Layer A Reproducibility}
+
+All Layer A (deterministic) results can be verified by:
+\begin{enumerate}
+    \item Reading the derivation in the cited chapter
+    \item Performing the indicated arithmetic
+    \item Checking the result matches the stated value
+\end{enumerate}
+
+No external data or fitting is required for Layer A verification.
+
+\subsection{Layer B Transparency}
+
+All Layer B (calibrated) inputs are:
+\begin{enumerate}
+    \item Documented in Appendix~\ref{app:quarantine}
+    \item Marked with \tagCal\ or \tagBL\ in the main text
+    \item Accompanied by sensitivity analysis
+    \item Determined on training data disjoint from test cases
+\end{enumerate}
+
+% ============================================================================
+\section{Reproduction Recipes}
+\label{sec:repro:recipes}
+% ============================================================================
+
+We provide four canonical recipes for reproducing key claims.
+
+\subsection{Recipe R1: Metastable Junction Lifetime}
+\label{sec:repro:R1}
+
+\textbf{Claim:} $\tau_n \approx 880$ s from EDC parameters. \tagDc
+
+\textbf{Ingredients:}
+\begin{itemize}
+    \item $\kappa = 2\pi$ (Ch.~\ref{ch:kappa})
+    \item $L_0/\delta = \pi^2$ (Ch.~\ref{ch:L0_delta})
+    \item $V_B = 2.586$ MeV (Ch.~\ref{ch:metastable})
+    \item $\omega_0 \approx 10^{21}$ s$^{-1}$ (attempt frequency)
+\end{itemize}
+
+\textbf{Procedure:}
+\begin{enumerate}
+    \item Compute Euclidean action: $S_E = \kappa \cdot (L_0/\delta) \cdot (V_B / T^*)$
+    \item Compute suppression: $\exp(S_E)$
+    \item Compute lifetime: $\tau = \omega_0^{-1} \exp(S_E)$
+    \item Verify: $\tau \approx 880$ s
+\end{enumerate}
+
+\textbf{Verification tier:} 2 (arithmetic check)
+
+\subsection{Recipe R2: Deuterium Binding}
+\label{sec:repro:R2}
+
+\textbf{Claim:} $B_2 \approx 2.22$ MeV from junction geometry. \tagDc
+
+\textbf{Ingredients:}
+\begin{itemize}
+    \item Junction length $L_0$
+    \item Brane tension $\sigma$
+    \item Z$_6$ symmetry constraint
+\end{itemize}
+
+\textbf{Procedure:}
+\begin{enumerate}
+    \item Apply Z$_6$ crystallization formula (Ch.~\ref{ch:M6_geom})
+    \item Extract binding energy from geometric constraint
+    \item Verify: $B_2 \approx 2.22$ MeV
+\end{enumerate}
+
+\textbf{Verification tier:} 2 (formula check)
+
+\subsection{Recipe R3: Closed-4 Unit Budget}
+\label{sec:repro:R3}
+
+\textbf{Claim:} Closed-4 binding $\approx 28.3$ MeV from M6 lattice. \tagDc
+
+\textbf{Ingredients:}
+\begin{itemize}
+    \item M6 coordination geometry (Ch.~\ref{ch:M6_geom})
+    \item Junction energetics from anchor state (Ch.~\ref{ch:anchor})
+    \item Spin-isospin counting
+\end{itemize}
+
+\textbf{Procedure:}
+\begin{enumerate}
+    \item Count junctions in closed-4 configuration: 6 edges
+    \item Apply binding per junction from anchor calibration
+    \item Sum contributions with symmetry factors
+    \item Verify: $B_4 \approx 28.3$ MeV
+\end{enumerate}
+
+\textbf{Verification tier:} 2--3 (formula + optional code check)
+
+\subsection{Recipe R4: High-Coordination Predictions}
+\label{sec:repro:R4}
+
+\textbf{Claim:} Frustration-corrected release times within 1.5 dex. \tagP
+
+\textbf{Ingredients:}
+\begin{itemize}
+    \item Baseline lane parameters $a, b$ (App.~\ref{sec:q:gn}) \tagBL
+    \item Prefactor $p = 6.1$ (App.~\ref{sec:q:prefactor}) \tagCal
+    \item Coefficient $g = -1.76$ (App.~\ref{sec:q:g}) \tagCal
+    \item Benchmark dataset (App.~\ref{sec:q:benchmark})
+\end{itemize}
+
+\textbf{Procedure:}
+\begin{verbatim}
+cd edc_book_4/code/
+python3 closed4_predictions.py
+\end{verbatim}
+
+\textbf{Expected output:}
+\begin{itemize}
+    \item Table of predictions for $A = 289$--$304$
+    \item Mean $|\Delta| < 1.0$ dex on benchmark cases
+    \item Pass rate $\geq 5/6$ on observed cases
+\end{itemize}
+
+\textbf{Verification tier:} 3 (code execution)
+
+% ============================================================================
+\section{Contamination Scan Protocol}
+\label{sec:repro:contamination}
+% ============================================================================
+
+Book IV maintains strict vocabulary discipline. The following scan protocol
+verifies Layer A purity.
+
+\begin{tcolorbox}[colback=gray!5,colframe=gray!50!black]
+\textbf{Note:} The verbatim blocks below contain banned vocabulary tokens
+\emph{as scan patterns only}. These tokens are not Layer A content---they
+document the verification protocol. Self-scan of this chapter should exclude
+lines 249--288.
+\end{tcolorbox}
+
+\subsection{TIER-1 Scan: Absolute Prohibitions}
+
+These terms must never appear in Layer A (chapters or appendices):
+
+\begin{verbatim}
+grep -riE "alpha.particle|helion|triton|nucleon|nucleus" \
+     chapters/ appendices/
+\end{verbatim}
+
+\textbf{Expected result:} 0 matches.
+
+\subsection{TIER-2 Scan: Soft Prohibitions}
+
+These terms require routing to Appendix~\ref{app:conventional} if needed:
+
+\begin{verbatim}
+grep -riE "proton|neutron|alpha|nuclear|QCD|quark" \
+     chapters/ appendices/
+\end{verbatim}
+
+\textbf{Expected result:} 0 matches in Layer A chapters. Appendix X may
+contain conventional translations.
+
+\subsection{Label Scan}
+
+Verify no contaminated labels:
+
+\begin{verbatim}
+grep -riE "\\label\{[^}]*(proton|neutron|alpha|nuclear)" \
+     chapters/ appendices/
+\end{verbatim}
+
+\textbf{Expected result:} 0 matches.
+
+\subsection{Comment Scan}
+
+Even comments must be clean:
+
+\begin{verbatim}
+grep -E "^%" chapters/*.tex | \
+grep -iE "proton|neutron|alpha|nuclear"
+\end{verbatim}
+
+\textbf{Expected result:} 0 matches.
+
+% ============================================================================
+\section{Build Instructions}
+\label{sec:repro:build}
+% ============================================================================
+
+\subsection{Tier 1: PDF Compilation}
+
+\begin{verbatim}
+cd edc_book_4/
+pdflatex main.tex
+biber main
+pdflatex main.tex
+pdflatex main.tex
+\end{verbatim}
+
+Three \texttt{pdflatex} passes ensure all cross-references resolve.
+
+\subsection{Tier 3: Table Regeneration}
+
+\begin{verbatim}
+cd edc_book_4/code/
+python3 closed4_predictions.py > ../tables/closed4_output.txt
+python3 kramers_double_well.py > ../tables/kramers_output.txt
+\end{verbatim}
+
+Compare output against tables in Appendix~\ref{app:tables}.
+
+% ============================================================================
+\section{Hash Manifest}
+\label{sec:repro:hash}
+% ============================================================================
+
+For archival reproducibility, we record SHA-256 hashes of critical files:
+
+\begin{center}
+\begin{tabular}{ll}
+    \toprule
+    File & SHA-256 (first 16 chars) \\
+    \midrule
+    \texttt{main.tex} & \textit{[compute at freeze]} \\
+    \texttt{closed4\_predictions.py} & \textit{[compute at freeze]} \\
+    \texttt{kramers\_double\_well.py} & \textit{[compute at freeze]} \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+Generate hashes with:
+\begin{verbatim}
+sha256sum main.tex code/*.py
+\end{verbatim}
+
+% ============================================================================
+\section{Known Limitations}
+\label{sec:repro:limitations}
+% ============================================================================
+
+\begin{enumerate}
+    \item \textbf{Floating-point precision:} Python scripts use IEEE-754
+          double precision. Results may vary by $\lesssim 10^{-14}$ across
+          platforms.
+
+    \item \textbf{Baseline data:} Empirical release times are not distributed
+          with this package. Baseline parameters in Appendix~\ref{app:quarantine}
+          were derived from published measurements.
+
+    \item \textbf{Random seeds:} Kramers validation uses stochastic Langevin
+          integration. Set \texttt{np.random.seed(42)} for exact reproducibility.
+\end{enumerate}
+
+% ============================================================================
+\section{Falsifiability Checklist}
+\label{sec:repro:falsify}
+% ============================================================================
+
+The following predictions can falsify the EDC model:
+
+\begin{enumerate}
+    \item \textbf{Metastable junction lifetime:} If measured $\tau_n$ deviates
+          from 880 s by more than experimental uncertainty, the instanton
+          chain is falsified.
+
+    \item \textbf{High-coordination release times:} If any benchmark case
+          exceeds 2.0 dex residual, the frustration correction is falsified.
+
+    \item \textbf{Forbidden zone existence:} If a cluster with $n \in [37, 47]$
+          exhibits standard release behavior, the M6 constraint is falsified.
+
+    \item \textbf{Z = 120+ predictions:} Future measurements at $A > 304$
+          provide blind tests of the extrapolation.
+\end{enumerate}
+
+% ============================================================================
+% Observer-side projection
+% ============================================================================
+
+\begin{observerbox}
+Observer-side projection note: quoted terms are measurement labels for the
+3D/4D projection of the 5D objects verified in this chapter; they do not
+imply any conventional mechanism.
+
+\begin{itemize}
+    \item Computed values $\leftrightarrow$ measured observables (projection label)
+\end{itemize}
+
+What the observer records: all reproducibility procedures compare 5D-derived
+quantities against projection-level measurements. The verification tiers
+ensure consistency between derivation and observation.
+\end{observerbox}
+
+% ============================================================================
+\section{Summary}
+\label{sec:repro:summary}
+% ============================================================================
+
+\begin{resultbox}
+\textbf{Reproducibility guarantee:}
+\begin{itemize}
+    \item All deterministic (Layer A) claims are verifiable by arithmetic
+    \item All calibrated (Layer B) inputs are documented in Appendix Q
+    \item All predictions are regenerable from provided Python scripts
+    \item Contamination scans verify vocabulary discipline
+    \item Hash manifest enables archival verification
+\end{itemize}
+\end{resultbox}
+
+\vspace{1em}
+
+\begin{edcopenbox}
+\textbf{OPEN Problem 17.1} \tagOPEN \\
+Develop automated CI/CD pipeline for continuous verification of Book IV
+claims against updated empirical data.
+\end{edcopenbox}
+

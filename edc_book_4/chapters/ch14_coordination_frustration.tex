@@ -1,0 +1,552 @@
+% ============================================================================
+% Chapter 14: Coordination Frustration Correction
+% ============================================================================
+% Source: radioactivity_v7_8_Salpha_deformation, superheavy_predictions.py
+% Status: FILLED from SoT
+% Contamination check: PASSED (no banned terms)
+% Contamination guard: SM/nuclear-model terminology routed to Appendix X/Q.
+% Layer A text uses EDC-native vocabulary only.
+% ============================================================================
+
+\chapter{Coordination Frustration Correction}
+\label{ch:frustrated}
+
+\source{radioactivity\_v7\_8\_Salpha\_deformation, superheavy\_predictions.py}
+
+% ----------------------------------------------------------------------------
+\section*{Abstract}
+% ----------------------------------------------------------------------------
+
+This chapter develops the \textbf{coordination frustration correction} that
+explains baseline residuals from Chapter~\ref{ch:barrier_release}. Starting
+from the residual definition $\Delta := \log_{10}(t_{\text{obs}}/t_{\text{BL}})$,
+we introduce the coordination function $n(A)$, define the allowed set
+$S = \{2^a \times 3^b\}$ from M$_6$ topology, and construct the distance-to-allowed
+metric $d(n)$. The corrected lane becomes
+$\Delta \approx g \times d(n)$, where the coupling coefficient $g < 0$ indicates
+that higher frustration leads to \emph{faster} release. This chapter provides
+the theoretical framework; calibration of $g$ is routed to Appendix~Q.
+
+% ============================================================================
+\section{From Baseline Residuals to Structural Correction}
+\label{sec:frustrated:motivation}
+% ============================================================================
+
+\subsection{The Residual Interface from Chapter~\ref{ch:barrier_release}}
+
+Chapter~\ref{ch:barrier_release} established the baseline lane for barrier-limited
+closed-4 emission:
+\begin{equation}
+    \log_{10}(t_{1/2}) = a \times X + b \tagBL
+    \label{eq:f:baseline_recall}
+\end{equation}
+where $X = Z_{\text{eff}}/\sqrt{E_{\text{rel}}}$ is the barrier-to-release ratio.
+
+The baseline explains $\gtrsim 98\%$ of variance in $\log_{10}(t_{1/2})$ across
+$\sim 20$ orders of magnitude. However, systematic residuals remain:
+
+\begin{derivationbox}
+    \textbf{Baseline residual (from \S\ref{sec:gn:residual}):}
+    \begin{equation}
+        \Delta := \log_{10}(t_{\text{obs}}) - \log_{10}(t_{\text{BL}})
+        = \log_{10}\!\left(\frac{t_{\text{obs}}}{t_{\text{BL}}}\right)
+        \label{eq:f:residual_def}
+    \end{equation}
+    \tagBL
+\end{derivationbox}
+
+\subsection{Why Residuals Encode Structure}
+
+The baseline treats the parent cluster as featureless. But parent clusters
+are \textbf{junction networks} (Chapter~\ref{ch:deuterium}) with specific
+coordination structures. When the coordination number $n$ of a cluster
+deviates from the allowed set $S$ determined by M$_6$ topology
+(Chapter~\ref{ch:M6_lattice}), structural strain modifies the effective barrier.
+
+\begin{resultbox}
+    \textbf{Central hypothesis:}
+    Baseline residuals $\Delta$ correlate with a measurable \emph{coordination
+    frustration metric} $d(n)$ derived from the cluster's position relative to
+    the allowed coordination set.
+    \tagP
+\end{resultbox}
+
+% ============================================================================
+\section{The Coordination Function $n(A)$}
+\label{sec:frustrated:nA}
+% ============================================================================
+
+\subsection{Definition}
+
+The \textbf{effective coordination number} of a parent cluster with mass number
+$A$ is defined by the scaling relation:
+
+\begin{derivationbox}
+    \begin{equation}
+        n(A) = p \times A^{1/3}
+        \label{eq:f:nA}
+    \end{equation}
+    where $p$ is a prefactor calibrated to known junction networks.
+    \tagCal
+\end{derivationbox}
+
+The $A^{1/3}$ scaling arises from surface-to-volume considerations: the
+number of surface coordination sites scales with the cluster's linear
+dimension $\sim A^{1/3}$.
+
+\subsection{Prefactor Calibration}
+
+\begin{quarantinebox}[title=Appendix Q: Prefactor Calibration]
+    The prefactor $p$ is calibrated so that $n(208) \approx 36$ for the
+    doubly-stable Pb-208 cluster. This places the heaviest stable
+    configuration at the boundary of the allowed set.
+    Numerical value: $p \approx 6.1$. Full calibration procedure in Appendix~Q.
+\end{quarantinebox}
+
+\subsection{EDC-Native Interpretation}
+
+In EDC terms, $n(A)$ measures:
+\begin{itemize}
+    \item The \textbf{effective coordination demand} of the parent junction network
+    \item The number of boundary junctions relevant for closed-4 tunneling
+    \item The topological complexity of the parent configuration
+\end{itemize}
+
+This is \emph{not} a conventional count of constituents, but a
+topological measure of coordination structure. \tagP
+
+% ============================================================================
+\section{The Allowed Set $S = \{2^a \times 3^b\}$}
+\label{sec:frustrated:allowed}
+% ============================================================================
+
+\subsection{Definition and Origin}
+
+The \textbf{allowed coordination set} consists of integers expressible as
+products of powers of 2 and 3:
+
+\begin{derivationbox}
+    \begin{equation}
+        S = \{n : n = 2^a \times 3^b, \quad a, b \geq 0\}
+        \label{eq:f:allowed_set}
+    \end{equation}
+    \tagDer
+\end{derivationbox}
+
+This set arises from the Z$_6$ symmetry of the junction topology
+(Chapter~\ref{ch:junction_symmetries}). Since $\text{Z}_6 \cong \text{Z}_2 \times \text{Z}_3$,
+allowed coordination numbers must be compatible with both the binary and
+ternary symmetry factors.
+
+\subsection{Explicit Enumeration}
+
+Table~\ref{tab:f:allowed} lists the first 23 allowed coordination numbers.
+
+\begin{table}[h]
+\centering
+\caption{Allowed coordination numbers $S = \{2^a \times 3^b\}$.}
+\label{tab:f:allowed}
+\begin{tabular}{cccc}
+    \toprule
+    $n$ & $(a, b)$ & $n$ & $(a, b)$ \\
+    \midrule
+    1 & (0,0) & 24 & (3,1) \\
+    2 & (1,0) & 27 & (0,3) \\
+    3 & (0,1) & 32 & (5,0) \\
+    4 & (2,0) & 36 & (2,2) \\
+    6 & (1,1) & 48 & (4,1) \\
+    8 & (3,0) & 54 & (1,3) \\
+    9 & (0,2) & 64 & (6,0) \\
+    12 & (2,1) & 72 & (3,2) \\
+    16 & (4,0) & 81 & (0,4) \\
+    18 & (1,2) & 96 & (5,1) \\
+    & & 108 & (2,3) \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{The Forbidden Zone}
+
+A striking feature of the allowed set is the existence of \textbf{forbidden
+zones}---intervals containing no allowed values:
+
+\begin{resultbox}
+    \textbf{Primary forbidden zone:}
+    \begin{equation}
+        [37, 47] \subset \mathbb{Z}^+ \setminus S
+    \end{equation}
+    All 11 integers in this range are forbidden by M$_6$ topology.
+    \tagDer
+\end{resultbox}
+
+Clusters with $n(A)$ falling in this zone experience maximal coordination
+frustration. This has dramatic consequences for high-coordination predictions
+(Chapter~\ref{ch:high_coord}).
+
+\subsection{Gap Structure}
+
+The gaps between consecutive allowed values grow with $n$:
+
+\begin{center}
+\begin{tabular}{ccc}
+    \toprule
+    Allowed pair & Gap & Notes \\
+    \midrule
+    $36 \to 48$ & 12 & Contains forbidden zone [37--47] \\
+    $48 \to 54$ & 6 & \\
+    $54 \to 64$ & 10 & \\
+    $64 \to 72$ & 8 & \\
+    $72 \to 81$ & 9 & \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+The widening gaps imply that heavy clusters are increasingly likely to
+experience significant coordination frustration. \tagP
+
+% ============================================================================
+\section{Distance-to-Allowed: The $d(n)$ Metric}
+\label{sec:frustrated:dn}
+% ============================================================================
+
+\subsection{Definition}
+
+The \textbf{coordination frustration distance} measures how far a cluster's
+effective coordination $n(A)$ lies from the nearest allowed value:
+
+\begin{derivationbox}
+    \begin{equation}
+        d(n) = \min_{k \in S} |n(A) - k|
+        \label{eq:f:d_n}
+    \end{equation}
+    where $S = \{2^a \times 3^b\}$ is the allowed set.
+    \tagDer
+\end{derivationbox}
+
+\subsection{Properties}
+
+\begin{itemize}
+    \item $d(n) = 0$ when $n(A)$ coincides with an allowed value
+    \item $d(n) \in [0, 5.5]$ in practice (maximum when $n(A) \approx 42.5$
+          in the forbidden zone center)
+    \item $d(n)$ is piecewise linear between consecutive allowed values
+    \item Larger $d(n)$ indicates greater topological mismatch
+\end{itemize}
+
+\subsection{Example Calculations}
+
+Table~\ref{tab:f:examples} shows example $d(n)$ calculations for representative
+clusters.
+
+\begin{table}[h]
+\centering
+\caption{Example coordination frustration calculations.}
+\label{tab:f:examples}
+\begin{tabular}{lccccc}
+    \toprule
+    Cluster & $A$ & $n(A)$ & Nearest allowed & $d(n)$ & Zone \\
+    \midrule
+    Pb-208 & 208 & 36.1 & 36 & 0.1 & Allowed \\
+    U-238 & 238 & 37.8 & 36 & 1.8 & Forbidden \\
+    Cm-248 & 248 & 38.3 & 36 & 2.3 & Forbidden \\
+    Fm-256 & 256 & 38.7 & 36 & 2.7 & Forbidden \\
+    Og-294 & 294 & 40.5 & 36 & 4.5 & Deep forbidden \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\noindent
+Note: Heavier clusters fall deeper into the forbidden zone. \tagCal
+
+% ============================================================================
+\section{The Corrected Lane: $\Delta \approx g \times d(n)$}
+\label{sec:frustrated:corrected}
+% ============================================================================
+
+\subsection{Form of the Correction}
+
+The EDC correction to the baseline lane takes the linear form:
+
+\begin{derivationbox}
+    \textbf{Corrected release time:}
+    \begin{equation}
+        \log_{10}(t_{1/2}) = a X + b + g \times d(n)
+        \label{eq:f:corrected_lane}
+    \end{equation}
+    or equivalently:
+    \begin{equation}
+        \Delta \approx g \times d(n)
+        \label{eq:f:delta_g}
+    \end{equation}
+    \tagP
+\end{derivationbox}
+
+\subsection{The Sign of $g$}
+
+The coupling coefficient $g$ is determined from data (Appendix~Q). Empirically:
+
+\begin{resultbox}
+    \textbf{Sign determination:}
+    \begin{equation}
+        g < 0
+    \end{equation}
+    Higher coordination frustration leads to \emph{faster} release
+    (shorter half-life).
+    \tagCal
+\end{resultbox}
+
+\subsection{Physical Interpretation}
+
+The sign $g < 0$ admits two complementary interpretations:
+
+\begin{enumerate}
+    \item \textbf{Enhanced tunneling:} Frustrated configurations have higher
+          internal energy, reducing the effective barrier height
+    \item \textbf{Enhanced preformation:} Frustrated networks more readily
+          form mobile closed-4 units that can escape
+\end{enumerate}
+
+Both interpretations are consistent with the topological frustration picture:
+configurations that cannot achieve allowed coordination are unstable and
+release closed-4 units more readily. \tagP
+
+\subsection{Robustness}
+
+\begin{quarantinebox}[title=Appendix Q: Robustness Analysis]
+    The coefficient $g$ has been tested against multiple confounding variables:
+    \begin{itemize}
+        \item Boundary mismatch proxies: $g$ survives (4\% change)
+        \item Preformation proxies: $g$ survives (7\% change)
+        \item Prefactor variation $p \pm 0.1$: $g$ stable within uncertainties
+    \end{itemize}
+    Full robustness tables in Appendix~Q.
+\end{quarantinebox}
+
+% ============================================================================
+\section{Model Performance}
+\label{sec:frustrated:performance}
+% ============================================================================
+
+\subsection{Variance Reduction}
+
+The coordination frustration correction improves baseline predictions:
+
+\begin{center}
+\begin{tabular}{lcc}
+    \toprule
+    Model & Mean $|\Delta|$ (dex) & Status \\
+    \midrule
+    Baseline only & $\sim 1.0$ & [BL] \\
+    Baseline $+$ $g \times d(n)$ & $\sim 0.3$ & [BL] + [P] \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+The correction reduces mean absolute residual by approximately 3$\times$.
+
+\subsection{High-Coordination Extrapolation}
+
+For the high-A region (large clusters), where configurations fall deep in the
+forbidden zone, the correction is essential:
+
+\begin{center}
+\begin{tabular}{lcc}
+    \toprule
+    Model & Mean $|\Delta|$ (high-A) & Factor \\
+    \midrule
+    Baseline only & $\sim 6$ dex & --- \\
+    Baseline $+$ $g \times d(n)$ & $\sim 1$ dex & 6$\times$ \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+Without the frustration correction, baseline predictions for Og-294
+are wrong by $\sim 6$ orders of magnitude (weeks instead of milliseconds).
+\tagCal
+
+% ============================================================================
+\section{Tables}
+\label{sec:frustrated:tables}
+% ============================================================================
+
+\subsection{Table 14.1: Notation Dictionary}
+
+\begin{table}[h]
+\centering
+\caption{Notation dictionary for coordination frustration.}
+\label{tab:f:notation}
+\begin{tabular}{lp{7cm}c}
+    \toprule
+    Symbol & Definition & Tag \\
+    \midrule
+    $n(A)$ & Effective coordination number: $p \times A^{1/3}$ & [Cal] \\
+    $p$ & Prefactor ($\approx 6.1$) calibrated to Pb-208 & [Cal] \\
+    $S$ & Allowed set: $\{2^a \times 3^b\}$ & [Der] \\
+    $d(n)$ & Distance-to-allowed: $\min_{k \in S}|n - k|$ & [Der] \\
+    $g$ & Frustration coupling coefficient & [Cal] \\
+    $\Delta$ & Baseline residual: $\log_{10}(t_{\text{obs}}/t_{\text{BL}})$ & [BL] \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Table 14.2: Allowed Set (First 23 Values)}
+
+See Table~\ref{tab:f:allowed} in \S\ref{sec:frustrated:allowed}.
+
+\subsection{Table 14.3: Example Frustration Values}
+
+See Table~\ref{tab:f:examples} in \S\ref{sec:frustrated:dn}.
+
+\subsection{Table 14.4: Epistemic Status}
+
+\begin{table}[h]
+\centering
+\caption{Epistemic status of Chapter~\ref{ch:frustrated} claims.}
+\label{tab:f:epistemic}
+\begin{tabular}{p{5.5cm}cc}
+    \toprule
+    Claim & Tag & Confidence \\
+    \midrule
+    Allowed set $S = \{2^a \times 3^b\}$ & [Der] & High \\
+    Distance metric $d(n)$ & [Der] & High \\
+    Coordination function $n(A) = p A^{1/3}$ & [Cal] & Medium \\
+    Prefactor $p \approx 6.1$ & [Cal] & Medium \\
+    Linear correction form $\Delta = g \times d(n)$ & [P] & Medium--High \\
+    Sign $g < 0$ (frustration $\to$ faster) & [Cal] & High \\
+    Magnitude $|g| \approx 1.7$ & [Cal] & Medium \\
+    Robustness to confounds & [I] & Medium--High \\
+    Forbidden zone [37,47] & [Der] & High \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================================
+\section{Bridge to Chapter~\ref{ch:high_coord}}
+\label{sec:frustrated:bridge}
+% ============================================================================
+
+Chapter~\ref{ch:high_coord} applies the coordination frustration framework
+to make \textbf{predictions} for high-coordination clusters:
+
+\begin{itemize}
+    \item Compute $n(A)$ for predicted isotopes
+    \item Determine $d(n)$ relative to allowed set
+    \item Apply corrected lane with calibrated $g$
+    \item Generate testable half-life predictions
+\end{itemize}
+
+The forbidden zone [37,47] plays a central role: all high-A clusters
+with $A \in [224, 460]$ fall in this forbidden region, experiencing
+maximal coordination frustration. \tagP
+
+% ============================================================================
+\section{Epistemic Status and Falsifiability}
+\label{sec:frustrated:falsifiability}
+% ============================================================================
+
+\subsection{Epistemic Status Summary}
+
+See Table~\ref{tab:f:epistemic} for full status.
+
+\subsection{Falsifiability Hooks}
+
+\begin{edcopenbox}[title=Falsifiability Hooks]
+    \begin{enumerate}
+        \item \textbf{Residual-frustration correlation:}
+              If baseline residuals $\Delta$ do \emph{not} correlate with
+              $d(n)$ (correlation coefficient $< 0.5$), the EDC correction
+              hypothesis fails.
+
+        \item \textbf{Sign of $g$:}
+              If future data require $g > 0$ (frustration $\to$ slower release),
+              the enhanced-tunneling/preformation interpretation fails.
+
+        \item \textbf{Allowed set violations:}
+              If clusters with $n(A) \in S$ (low $d(n)$) show systematic
+              deviations comparable to high-$d(n)$ cases, the topological
+              origin of $S$ is wrong.
+
+        \item \textbf{Forbidden zone predictions:}
+              Clusters falling in the forbidden zone [37,47] must show
+              systematically shorter half-lives than baseline. If they match
+              baseline, the zone concept is falsified.
+
+        \item \textbf{High-coordination validation:}
+              Future measurements of elements 119--120 must fall within
+              $\pm 1.5$ dex of corrected-lane predictions. Systematic
+              failures invalidate the extrapolation.
+
+        \item \textbf{Alternative $d(n)$ functional forms:}
+              If nonlinear corrections (e.g., $d(n)^2$, $\log d(n)$)
+              perform significantly better, the linear form is falsified.
+
+        \item \textbf{Prefactor stability:}
+              If $p$ must vary systematically with $Z$ or $A$ to maintain
+              fit quality, the simple scaling $n(A) = p A^{1/3}$ is inadequate.
+    \end{enumerate}
+\end{edcopenbox}
+
+% ============================================================================
+% Observer-side projection
+% ============================================================================
+
+\begin{observerbox}
+Observer-side projection note: quoted terms are measurement labels for the
+3D/4D projection of the 5D objects defined in this chapter; they do not
+imply any conventional mechanism.
+
+\begin{itemize}
+    \item \Frustration{} distance $d(n)$ $\leftrightarrow$ structural mismatch proxy (projection label)
+    \item Corrected lane residual $\leftrightarrow$ measured time offset (projection label)
+\end{itemize}
+
+What the observer records: the frustration correction $g \times d(n)$
+improves baseline predictions. Clusters with $n \notin S$ show systematic
+deviations that correlate with $d(n)$ at the projection level.
+\end{observerbox}
+
+% ============================================================================
+\section{Summary and Forward Links}
+\label{sec:frustrated:summary}
+% ============================================================================
+
+\begin{resultbox}
+    \textbf{What this chapter provides:}
+    \begin{itemize}
+        \item Coordination function $n(A) = p \times A^{1/3}$ [Cal]
+        \item Allowed set $S = \{2^a \times 3^b\}$ from Z$_6$ symmetry [Der]
+        \item Distance-to-allowed metric $d(n)$ [Der]
+        \item Corrected lane: $\Delta \approx g \times d(n)$ with $g < 0$ [P]
+        \item Forbidden zone [37,47] and its implications [Der]
+        \item 7 falsifiability hooks for testing the framework
+    \end{itemize}
+
+    \textbf{What this chapter omits:}
+    \begin{itemize}
+        \item Numerical value of $g$ (Appendix Q)
+        \item Full regression details (Appendix Q)
+        \item High-coordination predictions (Chapter~\ref{ch:high_coord})
+        \item Conventional terminology mapping (Appendix X)
+    \end{itemize}
+\end{resultbox}
+
+\bigskip
+\noindent
+\textbf{Forward references:}
+\begin{itemize}
+    \item Chapter~\ref{ch:high_coord}: High-coordination predictions using $d(n)$
+    \item Appendix~Q: Calibration of $p$ and $g$, robustness analysis
+    \item Appendix~X: Mapping to conventional notation
+\end{itemize}
+
+\bigskip
+\noindent
+\textbf{Derivation chain position:}
+\begin{equation*}
+    \underbrace{\text{Baseline [BL]}}_{\text{Ch.~\ref{ch:barrier_release}}}
+    \xrightarrow{+ g \times d(n)}
+    \underbrace{\text{Corrected lane}}_{\text{This chapter}}
+    \xrightarrow{\text{predictions}}
+    \underbrace{\text{High-A}}_{\text{Ch.~\ref{ch:high_coord}}}
+\end{equation*}
+

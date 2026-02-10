@@ -1,0 +1,465 @@
+% ============================================================================
+% Chapter 16: Unified Picture
+% ============================================================================
+% Source: Synthesis of Chapters 1-15
+% Status: FILLED
+% Contamination check: PASSED (no banned terms)
+% Contamination guard: Layer A uses EDC-native vocabulary only.
+% ============================================================================
+
+\chapter{Unified Picture}
+\label{ch:unified}
+
+% ----------------------------------------------------------------------------
+\section*{Abstract}
+% ----------------------------------------------------------------------------
+
+This chapter synthesizes the derivation chain developed throughout Book IV.
+From a single geometric source---the brane tension $\sigma$ inherited from
+Book I---combined with 5D topology and the M$_6$ coordination lattice, we
+derive: (1) junction stability and metastable transition lifetimes,
+(2) pinning energies for small clusters, (3) closed-4 binding budgets,
+(4) barrier-limited release systematics, and (5) coordination frustration
+corrections that restore predictivity in the high-coordination regime.
+Layer A maintains strict EDC-native vocabulary throughout; all calibrated
+parameters are quarantined in Appendix~Q; and unresolved derivation gaps
+are flagged as [OPEN]. This chapter introduces no new physics---it only
+consolidates, cross-links, and assigns epistemic status to existing results.
+
+% ============================================================================
+\section{Ontology Recap}
+\label{sec:unified:ontology}
+% ============================================================================
+
+Table~\ref{tab:unified:glossary} defines the core objects used throughout
+Book IV in EDC-native terminology.
+
+\begin{table}[h]
+\centering
+\caption{EDC-native ontology for Book IV.}
+\label{tab:unified:glossary}
+\begin{tabular}{lp{9cm}}
+    \toprule
+    Term & Definition \\
+    \midrule
+    Anchor junction &
+    Z$_6$-symmetric Y-junction defect; topological ground state;
+    stable against transition (Ch.~\ref{ch:anchor}) \\
+    Metastable junction &
+    Z$_3$-symmetric branch state; excited configuration in double-well
+    potential; transitions to anchor via instanton tunneling (Ch.~\ref{ch:metastable}) \\
+    Closed-4 unit &
+    Minimal closed topological object with exceptional stability;
+    4-constituent pinning cluster (Ch.~\ref{ch:helium4}) \\
+    Pinning cluster &
+    M$_6$-coordinated junction network; binding via topological
+    localization (Ch.~\ref{ch:M6}) \\
+    Coordination function $n(A)$ &
+    Effective coordination number: $n(A) = p \cdot A^{1/3}$ (Ch.~\ref{ch:frustrated}) \\
+    Allowed set $S$ &
+    $\{2^a \times 3^b : a, b \geq 0\}$; coordination numbers compatible
+    with Z$_6$ symmetry (Ch.~\ref{ch:frustrated}) \\
+    Distance-to-allowed $d(n)$ &
+    $\min_{k \in S}|n(A) - k|$; coordination frustration metric
+    (Ch.~\ref{ch:frustrated}) \\
+    Baseline lane &
+    Empirical scaling law for barrier-limited release times [BL]
+    (Ch.~\ref{ch:barrier_release}) \\
+    Corrected lane &
+    Baseline + frustration correction $g \cdot d(n)$
+    (Ch.~\ref{ch:high_coord}) \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Inherited Parameters from Book I}
+
+Book IV uses four parameters from Book I:
+\begin{itemize}
+    \item $\sigma$: Brane tension [I]
+    \item $\delta$: 5D length scale [I]
+    \item $L_0$: Characteristic brane separation [I]
+    \item $T_*$: Temperature scale [I]
+\end{itemize}
+
+These are treated as inputs; their derivation belongs to Book I.
+
+% ============================================================================
+\section{The Derivation Tree}
+\label{sec:unified:tree}
+% ============================================================================
+
+Table~\ref{tab:unified:tree} presents the complete derivation ledger for
+Book IV, tracing how inputs propagate to observables.
+
+\begin{table}[htbp]
+\centering
+\caption{Derivation Tree Ledger. Columns: Node identifier, input dependencies,
+output result, source chapter, epistemic tags, and whether [Cal] is required.}
+\label{tab:unified:tree}
+\small
+\begin{tabular}{lp{2.5cm}p{3.5cm}ccc}
+    \toprule
+    Node & Input(s) & Output & Ch. & Tags & Cal? \\
+    \midrule
+    A & 5D geometry & Z$_6$ anchor junction (Steiner minimum) &
+        \ref{ch:anchor} & [Der] & N \\
+    B & Z$_6$ structure & Z$_3$ subgroup, double-well $V(q)$ &
+        \ref{ch:metastable} & [P] & N \\
+    C & Node B, $V_B$ & Barrier height conjecture &
+        \ref{ch:metastable} & [P] & N \\
+    D & 5D action, Node C & Instanton: $\tau = A(\hbar/\omega_0)\exp(S_E/\hbar)$ &
+        \ref{ch:instanton} & [Der] & N \\
+    E & $\pi_1(S^1) = \mathbb{Z}$ & $\kappa = 2\pi$ (winding number) &
+        \ref{ch:kappa} & [Dc] & N \\
+    F & 5D geometry & $L_0/\delta = \pi^2$ &
+        \ref{ch:L0delta} & [P] & N \\
+    G & Nodes D,E,F & $S_E/\hbar = 2\pi^3$; $\tau_n \approx 880$ s &
+        \ref{ch:tau_n} & [Dc]+[P] & Y \\
+    H & $\sigma$, M$_6$ & Pinning constant $K$ &
+        \ref{ch:sigma_K} & [Der] & N \\
+    I & Node H & $B_2 = N_{\text{bonds}} K$; $N_{\text{bonds}} = 3$ &
+        \ref{ch:deuterium} & [P] & N \\
+    J & Node H, geometry & Closed-4 budget: 4 terms &
+        \ref{ch:helium4} & [Der]+[P] & N \\
+    K & Nodes I,J & Composition principle, emission bias &
+        \ref{ch:light_clusters} & [Der]+[P] & N \\
+    L & Empirical data & Baseline lane: $\log t = aX + b$ &
+        \ref{ch:barrier_release} & [BL] & Y \\
+    M & Z$_6$ symmetry & Allowed set $S = \{2^a 3^b\}$ &
+        \ref{ch:frustrated} & [Der] & N \\
+    N & Node M & Distance $d(n)$; forbidden zone &
+        \ref{ch:frustrated} & [Der] & N \\
+    O & Nodes L,N & Corrected lane: $\Delta = g \cdot d(n)$ &
+        \ref{ch:frustrated} & [P]+[Cal] & Y \\
+    P & Node O & High-coordination predictions &
+        \ref{ch:high_coord} & [Dc] & Y \\
+    \bottomrule
+\end{tabular}
+
+\vspace{2mm}
+\footnotesize
+\textbf{Legend:}
+[Der] = derived from 5D; [Dc] = derived with constraints;
+[P] = postulated/conjectured; [BL] = baseline empirical;
+[Cal] = requires calibrated coefficients (Appendix~Q).
+\end{table}
+
+\subsection{Chain Segments}
+
+\textbf{Segment 1: Junction Ground State (Ch.~\ref{ch:anchor})}
+\begin{itemize}
+    \item The Z$_6$-symmetric Y-junction emerges as the Steiner minimum
+          of the 5D brane intersection problem [Der].
+    \item This establishes absolute stability: no lower-energy configuration
+          exists.
+\end{itemize}
+
+\textbf{Segment 2: Metastable Branch (Ch.~\ref{ch:metastable})}
+\begin{itemize}
+    \item Z$_3 \subset$ Z$_6$ identifies a higher-energy branch state [Der].
+    \item The reaction coordinate $q \in [0,1]$ and double-well potential
+          $V(q)$ are postulated [P].
+    \item Barrier height $V_B$ conjecture connects to 5D geometry [P].
+\end{itemize}
+
+\textbf{Segment 3: Instanton Chain (Ch.~\ref{ch:instanton}--\ref{ch:tau_n})}
+\begin{itemize}
+    \item Instanton formula: $\tau = A(\hbar/\omega_0)\exp(S_E/\hbar)$ [Der]
+    \item Topological factor: $\kappa = 2\pi$ from $\pi_1(S^1)$ [Dc]
+    \item Scale ratio: $L_0/\delta = \pi^2$ [P] + [OPEN]
+    \item Assembly: $S_E/\hbar = \kappa \cdot (L_0/\delta) = 2\pi^3$ [Dc]
+    \item Prefactor $A$, $\omega_0$: partially [Cal], partially [OPEN]
+    \item Result: $\tau_n \approx 880$ s [Dc]+[P]+[Cal]
+\end{itemize}
+
+\textbf{Segment 4: Pinning and Binding (Ch.~\ref{ch:deuterium}--\ref{ch:light_clusters})}
+\begin{itemize}
+    \item Pinning constant $K$ from $\sigma$ and contact geometry [Der]
+    \item $A = 2$: $B_2 = 3K$ with $N_{\text{bonds}} = 3$ [P]
+    \item $A = 4$: Four-term budget (localization + pinning + surface +
+          closure) [Der]+[P]+[OPEN]
+    \item Composition principle for $A \leq 10$ [Der]
+    \item Closed-4 emission bias [P]
+\end{itemize}
+
+\textbf{Segment 5: Release Systematics (Ch.~\ref{ch:barrier_release}--\ref{ch:high_coord})}
+\begin{itemize}
+    \item Baseline lane from empirical scaling [BL]
+    \item Allowed set $S$ from Z$_6$ symmetry [Der]
+    \item Distance $d(n)$ and forbidden zone [37,47] [Der]
+    \item Correction: $\Delta = g \cdot d(n)$ with $g < 0$ [P]+[Cal]
+    \item High-coordination predictions: 7$\times$ error reduction [Dc]
+\end{itemize}
+
+% ============================================================================
+\section{Epistemic Ledger Summary}
+\label{sec:unified:epistemic}
+% ============================================================================
+
+Table~\ref{tab:unified:epistemic} summarizes the epistemic status of all
+key quantities in Book IV.
+
+\begin{table}[htbp]
+\centering
+\caption{Epistemic Status Summary. [I] = input from Book I;
+[Der] = derived; [Dc] = derived with constraints; [P] = postulated;
+[Cal] = calibrated (Appendix~Q); [OPEN] = derivation gap.}
+\label{tab:unified:epistemic}
+\small
+\begin{tabular}{lccl}
+    \toprule
+    Quantity & Tag(s) & Cal? & Notes \\
+    \midrule
+    \multicolumn{4}{l}{\textit{Book I imports}} \\
+    $\sigma$ (brane tension) & [I] & N & Fundamental input \\
+    $\delta$ (5D scale) & [I] & N & Fundamental input \\
+    $L_0$ (separation) & [I] & N & Fundamental input \\
+    $T_*$ (temperature) & [I] & N & Fundamental input \\
+    \midrule
+    \multicolumn{4}{l}{\textit{Junction structure}} \\
+    Z$_6$ ground state & [Der] & N & Steiner minimum \\
+    Z$_3$ metastable & [Der] & N & Subgroup structure \\
+    Double-well $V(q)$ & [P] & N & Conjecture \\
+    Barrier $V_B$ & [P] & N & Conjecture \\
+    \midrule
+    \multicolumn{4}{l}{\textit{Instanton parameters}} \\
+    $\kappa = 2\pi$ & [Dc] & N & From homotopy \\
+    $L_0/\delta = \pi^2$ & [P]+[OPEN] & N & Geometry conjecture \\
+    $\omega_0$ (frequency) & [P]+[OPEN] & Y & Prefactor block \\
+    $A$ (attempt rate) & [P]+[OPEN] & Y & Prefactor block \\
+    $S_E/\hbar = 2\pi^3$ & [Dc] & N & Assembled \\
+    $\tau_n \approx 880$ s & [Dc]+[P] & Y & Final result \\
+    \midrule
+    \multicolumn{4}{l}{\textit{Pinning and binding}} \\
+    $K$ (pinning constant) & [Der] & N & From $\sigma$, geometry \\
+    $N_{\text{bonds}}(A{=}2) = 3$ & [P] & N & Bond count \\
+    Closed-4 localization & [Der] & N & 21 MeV term \\
+    Closed-4 pinning & [Der] & N & 5 MeV term \\
+    Closed-4 surface & [P]+[OPEN] & N & 2 MeV term \\
+    Closed-4 closure & [P]+[OPEN] & N & 2 MeV term \\
+    \midrule
+    \multicolumn{4}{l}{\textit{Release systematics}} \\
+    Baseline $a$, $b$ & [BL] & Y & Appendix~Q \\
+    Prefactor $p$ in $n(A)$ & [Cal] & Y & Appendix~Q \\
+    Allowed set $S$ & [Der] & N & From Z$_6$ \\
+    Distance $d(n)$ & [Der] & N & Algorithm \\
+    Coefficient $g$ & [Cal] & Y & Appendix~Q \\
+    Sign $g < 0$ & [P] & N & Frustration mechanism \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Promotion Paths}
+
+To promote [P] quantities to [Der], the following derivation gaps must
+be closed:
+
+\begin{enumerate}
+    \item \textbf{$L_0/\delta = \pi^2$:} Derive from 5D action with
+          explicit boundary conditions.
+    \item \textbf{Prefactor block ($A$, $\omega_0$):} Derive from
+          fluctuation determinant around the instanton.
+    \item \textbf{$N_{\text{bonds}} = 3$:} Prove from junction topology
+          for $A = 2$ pinning cluster.
+    \item \textbf{Closed-4 surface and closure terms:} Derive from
+          variational principle on M$_6$ lattice.
+    \item \textbf{Sign of $g$:} Derive from enhanced preformation or
+          barrier reduction mechanism.
+    \item \textbf{Prefactor $p$:} Derive $n(A) = p A^{1/3}$ from 5D
+          dynamics rather than calibration.
+\end{enumerate}
+
+% ============================================================================
+\section{What the Theory Explains}
+\label{sec:unified:explains}
+% ============================================================================
+
+\subsection{Explained (Layer A Derivations)}
+
+\begin{itemize}
+    \item \textbf{Anchor junction stability:} Z$_6$ Steiner minimum
+          provides absolute topological stability [Der].
+    \item \textbf{Metastable junction existence:} Z$_3$ subgroup identifies
+          the excited branch state [Der].
+    \item \textbf{Pinning mechanism:} Brane tension $\sigma$ generates
+          binding via topological localization [Der].
+    \item \textbf{Allowed coordination set:} $S = \{2^a \times 3^b\}$
+          follows from Z$_6$ symmetry [Der].
+    \item \textbf{Forbidden zone:} Gap [37,47] is a direct consequence
+          of allowed-set structure [Der].
+\end{itemize}
+
+\subsection{Partially Explained (Derivation + Postulate)}
+
+\begin{itemize}
+    \item \textbf{Metastable lifetime scale:} $\tau_n \approx 880$ s
+          from instanton chain, but prefactor block is [OPEN].
+    \item \textbf{$A = 2$ binding:} $B_2 = 3K$ matches observations, but
+          $N_{\text{bonds}} = 3$ is [P].
+    \item \textbf{Closed-4 binding budget:} 4-term decomposition, but
+          surface and closure terms are [P]+[OPEN].
+    \item \textbf{High-coordination predictivity:} 7$\times$ improvement
+          established [Dc], but $g$ mechanism is [P].
+\end{itemize}
+
+\subsection{Open (Not Yet Derived)}
+
+\begin{itemize}
+    \item Triangular ($A = 3$) binding energy derivation
+    \item Boundary reconfiguration dynamics
+    \item Alternative emission channel competition
+    \item First-principles derivation of $p$, $g$, and prefactor block
+\end{itemize}
+
+% ============================================================================
+\section{Open Problems Register}
+\label{sec:unified:open}
+% ============================================================================
+
+\begin{edcopenbox}[title=Consolidated Open Problems]
+\textbf{5D Action Derivations:}
+\begin{enumerate}
+    \item Derive $L_0/\delta = \pi^2$ from bulk + brane + GHY + Israel
+          junction conditions (Ch.~\ref{ch:L0delta}).
+    \item Derive double-well potential $V(q)$ and barrier height $V_B$
+          from 5D dynamics (Ch.~\ref{ch:metastable}).
+    \item Derive coordination function $n(A) = p A^{1/3}$ with $p$
+          determined by 5D geometry (Ch.~\ref{ch:frustrated}).
+\end{enumerate}
+
+\textbf{Prefactor Derivations:}
+\begin{enumerate}
+    \setcounter{enumi}{3}
+    \item Derive attempt frequency $\omega_0$ from brane fluctuation
+          spectrum (Ch.~\ref{ch:instanton}).
+    \item Derive prefactor $A$ from fluctuation determinant around
+          instanton (Ch.~\ref{ch:tau_n}).
+\end{enumerate}
+
+\textbf{Binding Structure:}
+\begin{enumerate}
+    \setcounter{enumi}{5}
+    \item Prove $N_{\text{bonds}} = 3$ for $A = 2$ from junction topology
+          (Ch.~\ref{ch:deuterium}).
+    \item Derive closed-4 surface and closure terms from variational
+          principle (Ch.~\ref{ch:helium4}).
+    \item Complete triangular ($A = 3$) binding derivation
+          (Ch.~\ref{ch:light_clusters}).
+\end{enumerate}
+
+\textbf{Release Mechanism:}
+\begin{enumerate}
+    \setcounter{enumi}{8}
+    \item Derive frustration coefficient $g$ and its sign from
+          preformation or barrier-reduction mechanism (Ch.~\ref{ch:frustrated}).
+    \item Explain boundary reconfiguration dynamics not captured by
+          scalar $d(n)$ (Ch.~\ref{ch:high_coord}).
+    \item Characterize alternative emission channel competition
+          (Ch.~\ref{ch:high_coord}).
+\end{enumerate}
+
+\textbf{Cross-Book:}
+\begin{enumerate}
+    \setcounter{enumi}{11}
+    \item Complete Book I $\to$ Book IV parameter flow with explicit
+          numerical chain from $\sigma$ to all observables.
+\end{enumerate}
+\end{edcopenbox}
+
+% ============================================================================
+\section{Reader Path}
+\label{sec:unified:path}
+% ============================================================================
+
+Table~\ref{tab:unified:path} suggests learning paths through Book IV
+depending on reader goals.
+
+\begin{table}[h]
+\centering
+\caption{Suggested reading paths.}
+\label{tab:unified:path}
+\begin{tabular}{lp{8cm}}
+    \toprule
+    Path & Chapters \\
+    \midrule
+    \textbf{Results only} &
+    Ch.~\ref{ch:anchor} (stability),
+    Ch.~\ref{ch:tau_n} (lifetime),
+    Ch.~\ref{ch:deuterium}--\ref{ch:helium4} (binding),
+    Ch.~\ref{ch:high_coord} (predictions),
+    Ch.~\ref{ch:unified} (synthesis) \\
+    \textbf{Full derivation} &
+    Ch.~\ref{ch:anchor}, \ref{ch:metastable},
+    Ch.~\ref{ch:instanton}--\ref{ch:tau_n},
+    Ch.~\ref{ch:deuterium}--\ref{ch:light_clusters},
+    Ch.~\ref{ch:barrier_release}--\ref{ch:high_coord},
+    Ch.~\ref{ch:unified} \\
+    \textbf{Calibration audit} &
+    Appendix~Q (all sections),
+    Ch.~\ref{ch:repro} (reproducibility) \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================================
+% Observer-side projection
+% ============================================================================
+
+\begin{observerbox}
+Observer-side projection note: quoted terms are measurement labels for the
+3D/4D projection of the 5D objects defined in this book; they do not
+imply any conventional mechanism.
+
+\begin{itemize}
+    \item \AnchorJunction{} $\leftrightarrow$ ``proton'' (projection label)
+    \item \MetastableJunction{} $\leftrightarrow$ ``neutron'' (projection label)
+    \item \ClusterState{} $\leftrightarrow$ bound system (projection label)
+    \item \ClosedFour{} $\leftrightarrow$ released unit (projection label)
+\end{itemize}
+
+What the observer records: the unified derivation chain maps 5D parameters
+to projection-level observables---masses, lifetimes, binding energies,
+and release times---providing consistency checks against measurement.
+\end{observerbox}
+
+% ============================================================================
+\section{Summary and Forward Links}
+\label{sec:unified:summary}
+% ============================================================================
+
+\begin{resultbox}
+    \textbf{Book IV Synthesis:}
+    \begin{itemize}
+        \item From brane tension $\sigma$ (Book I) + 5D topology + M$_6$
+              lattice, we derive junction stability, metastable lifetimes,
+              pinning energies, and release systematics.
+        \item The derivation tree (Table~\ref{tab:unified:tree}) traces
+              16 nodes from inputs to observables.
+        \item The epistemic ledger (Table~\ref{tab:unified:epistemic})
+              distinguishes [Der], [Dc], [P], [Cal], and [OPEN] claims.
+        \item 12 open problems are consolidated for future work.
+    \end{itemize}
+\end{resultbox}
+
+\bigskip
+\noindent
+\textbf{Forward references:}
+\begin{itemize}
+    \item Chapter~\ref{ch:repro}: Reproducibility procedures and
+          verification protocols.
+    \item Appendix~Q: All calibration details, datasets, and fitting
+          procedures are quarantined here.
+    \item Appendix~X: Optional mapping to conventional nomenclature
+          (non-binding, for reader orientation only).
+\end{itemize}
+
+\bigskip
+\noindent
+\textbf{Reader Contract:}
+Layer A of this book uses EDC-native vocabulary exclusively. All
+conventional mappings (junction $\leftrightarrow$ conventional labels,
+etc.) are optional and quarantined in Appendix~X. All calibrated
+parameters ([Cal]) are documented in Appendix~Q with anti-tuning
+guardrails.
+

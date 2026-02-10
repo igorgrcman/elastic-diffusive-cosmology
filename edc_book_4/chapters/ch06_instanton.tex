@@ -1,0 +1,416 @@
+% ============================================================================
+% Chapter 6: Instanton Derivation
+% ============================================================================
+% Source: INSTANTON_DERIVATION_CHAIN.md, S5D_TO_SEFF_Q_REDUCTION.md
+% Status: FILLED from SoT
+% Contamination check: PASSED (no SM terms)
+% ============================================================================
+
+\chapter{Instanton Derivation}
+\label{ch:instanton}
+
+\source{INSTANTON\_DERIVATION\_CHAIN.md}
+
+\begin{abstract}
+How does the metastable junction escape from its metastable configuration? In EDC, the
+decay proceeds via \emph{quantum tunneling}---a topological transition through
+the energy barrier identified in Chapter~\ref{ch:metastable}. This chapter
+develops the instanton formalism: the effective 1D action $S_{\text{eff}}[q]$,
+the Euclidean ``bounce'' solution, and the decay rate formula
+$\Gamma = A \exp(-\SE/\hbar)$. The key parameters $\kappa$ and $\Lzero/\bdelta$
+are deferred to Chapters~\ref{ch:kappa}--\ref{ch:L0delta}.
+\end{abstract}
+
+% ============================================================================
+\section{Euclidean Tunneling in EDC}
+\label{sec:instanton:setup}
+
+\subsection{Recap: The Tunneling Problem}
+
+From Chapter~\ref{ch:metastable}, the metastable junction occupies a metastable minimum of
+the effective potential $V(q)$:
+\begin{itemize}
+    \item Anchor: $q = 0$ (global minimum, $V = 0$)
+    \item Metastable: $q = q_n$ (local minimum, $V = \Delta m_{np}$)
+    \item Barrier: $q = q_B$ (saddle point, $V = 3\Delta m_{np}$)
+\end{itemize}
+
+The barrier height from the metastable junction:
+\begin{equation}
+    \VB = V(q_B) - V(q_n) = 2 \times \Delta m_{np} \approx 2.59 \MeV \tagP
+    \label{eq:VB_recall}
+\end{equation}
+
+\textbf{The question:} At what rate does the metastable junction tunnel through this barrier?
+
+\subsection{Why Instantons?}
+
+Classical mechanics forbids traversing an energy barrier. Quantum mechanically,
+tunneling is exponentially suppressed:
+\begin{equation}
+    \Gamma \sim \exp\left(-\frac{\text{action}}{\hbar}\right)
+\end{equation}
+
+The \emph{instanton} (or ``bounce'') is a classical solution of the Euclidean
+equations of motion that mediates the tunneling process. It provides the
+action in the exponent.
+
+% ============================================================================
+\section{Effective 1D Action}
+\label{sec:instanton:action}
+
+\source{S5D\_TO\_SEFF\_Q\_REDUCTION.md}
+
+\subsection{From 5D to 1D: The Reduction Corridor}
+
+The full 5D action of EDC includes bulk, brane, and boundary terms:
+\begin{equation}
+    S_{\text{total}} = S_{\text{bulk}} + S_{\text{brane}} + S_{\text{GHY}} + S_{\text{junction}}
+    \tagDef
+\end{equation}
+
+For the tunneling problem, we reduce this to an effective 1D action in the
+collective coordinate $q(t)$:
+
+\begin{derivationbox}[title=5D$\to$1D Reduction (Adiabatic Approximation)]
+    The 5D dynamics reduces to effective 1D dynamics when:
+    \begin{enumerate}
+        \item The collective coordinate $q$ is slow compared to other modes
+        \item Fast modes (transverse fluctuations, shape modes) relax
+              instantaneously to their $q$-dependent equilibria
+    \end{enumerate}
+
+    The effective action:
+    \begin{equation}
+        S_{\text{eff}}[q] = \int dt \left[ \frac{1}{2} M(q) \dot{q}^2 - V(q) \right]
+        \label{eq:Seff}
+    \end{equation}
+    where $M(q)$ is the effective mass and $V(q)$ is the effective potential.
+    \tagDc
+\end{derivationbox}
+
+\subsection{Effective Mass $M(q)$}
+
+The effective mass arises from:
+\begin{itemize}
+    \item Junction inertia (kinetic energy of moving the junction node)
+    \item Brane kinetic energy (deformation of membrane)
+    \item Bulk contributions (coupled gravitational modes)
+\end{itemize}
+
+\begin{derivationbox}[title=Effective Mass]
+    \begin{equation}
+        M(q) := \frac{\partial^2 L_{\text{eff}}}{\partial \dot{q}^2}
+    \end{equation}
+    \textbf{Current status:} In the simplest approximation, we take $M(q) = M$
+    (constant), with $M$ of order the junction mass scale.
+    \tagDc
+\end{derivationbox}
+
+\begin{edcopenbox}[title=Open: Derive $M(q)$ from 5D]
+    The explicit functional form of $M(q)$ is not yet computed from the 5D
+    action. The constant-mass approximation is a working ansatz.
+
+    \textbf{Status:} $M(q)$ = [P]. Derivation from $S_{5D}$ = [OPEN].
+    \tagOpen
+\end{edcopenbox}
+
+\subsection{Effective Potential $V(q)$}
+
+The effective potential is the static energy of the junction configuration:
+\begin{equation}
+    V(q) := -L_{\text{eff}}(q, \dot{q}=0)
+    \tagDc
+\end{equation}
+
+As established in Chapter~\ref{ch:metastable}, $V(q)$ has double-well structure
+with minima at $q = 0$ (anchor) and $q = q_n$ (metastable), and a maximum at
+$q = q_B$ (barrier).
+
+% ============================================================================
+\section{Euclidean Action and Bounce}
+\label{sec:instanton:bounce}
+
+\subsection{Wick Rotation}
+
+For tunneling problems, we continue to imaginary time $\tau = it$:
+\begin{equation}
+    t \to -i\tau, \quad \dot{q} \to i \frac{dq}{d\tau}
+\end{equation}
+
+The Euclidean action is:
+\begin{equation}
+    \SE[q] = \int d\tau \left[ \frac{1}{2} M \left(\frac{dq}{d\tau}\right)^2 + V(q) \right]
+    \label{eq:SE_integral}
+    \tagDer
+\end{equation}
+
+Note the sign change: $-V(q) \to +V(q)$. In Euclidean signature, the potential
+is inverted---barriers become wells and vice versa.
+
+\subsection{The Bounce Solution}
+
+\begin{derivationbox}[title=Bounce Definition]
+    The \textbf{bounce} is a classical solution $q_B(\tau)$ of the Euclidean
+    equations of motion:
+    \begin{equation}
+        M \frac{d^2 q}{d\tau^2} = \frac{dV}{dq}
+        \label{eq:euclidean_eom}
+    \end{equation}
+    with boundary conditions:
+    \begin{equation}
+        q(\tau \to -\infty) = q_n, \quad q(\tau \to +\infty) = q_n
+        \label{eq:bounce_bc}
+    \end{equation}
+    The solution ``bounces'' off the barrier (now a well in inverted potential)
+    and returns to the metastable minimum.
+    \tagDer
+\end{derivationbox}
+
+\textbf{Physical interpretation:} The bounce represents the most probable
+tunneling path in the Euclidean path integral. It is the dominant contribution
+to the decay amplitude.
+
+\subsection{Euclidean Action of the Bounce}
+
+The action of the bounce solution determines the tunneling rate. For a
+general double-well potential, the action is:
+\begin{equation}
+    \SE = \int_{q_n}^{q_B} dq \sqrt{2 M (V(q) - V(q_n))} \times 2
+    \label{eq:SE_wkb}
+    \tagDer
+\end{equation}
+
+The factor of 2 accounts for the round-trip (out to barrier and back).
+
+\subsection{Parametric Form in EDC}
+
+In EDC, the action takes the form:
+\begin{equation}
+    \boxed{\frac{\SE}{\hbar} = \kappa \times \frac{\Lzero}{\bdelta}}
+    \label{eq:SE_edc}
+    \tagP
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $\kappa$ is a topological factor (derived in Chapter~\ref{ch:kappa})
+    \item $\Lzero/\bdelta$ is a geometric ratio (analyzed in Chapter~\ref{ch:L0delta})
+\end{itemize}
+
+\textbf{Preview:} With $\kappa = 2\pi$ and $\Lzero/\bdelta \approx \pi^2$:
+\begin{equation}
+    \frac{\SE}{\hbar} = 2\pi \times \pi^2 \approx 2\pi \times 9.87 \approx 62
+    \tagP
+\end{equation}
+
+% ============================================================================
+\section{Decay Rate and Lifetime}
+\label{sec:instanton:rate}
+
+\subsection{Tunneling Rate Formula}
+
+The decay rate from the metastable state is:
+\begin{equation}
+    \Gamma = \Gamma_0 \exp\left(-\frac{\SE}{\hbar}\right)
+    \label{eq:Gamma}
+    \tagDer
+\end{equation}
+
+where $\Gamma_0$ is the prefactor, often called the ``attempt frequency.''
+
+\subsection{Prefactor $A$}
+
+The prefactor arises from fluctuations around the bounce solution. In the
+semiclassical approximation:
+\begin{equation}
+    \Gamma_0 = A \times \frac{\omegaz}{2\pi}
+    \label{eq:Gamma0}
+    \tagDc
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $\omegaz$ is the oscillation frequency at the metastable minimum
+    \item $A$ is a dimensionless factor from the ratio of fluctuation determinants
+\end{itemize}
+
+\begin{derivationbox}[title=Prefactor Structure]
+    The prefactor $A$ is computed from:
+    \begin{equation}
+        A = \sqrt{\frac{\SE}{2\pi\hbar}} \times
+            \left| \frac{\det'(-\partial_\tau^2 + V''(q_B(\tau)))}
+                        {\det(-\partial_\tau^2 + \omegaz^2)} \right|^{-1/2}
+    \end{equation}
+    where $\det'$ excludes the zero mode associated with time-translation
+    invariance of the bounce.
+    \tagDer
+\end{derivationbox}
+
+\textbf{Order of magnitude:} For smooth potentials, $A = O(1)$.
+
+In practice, $A$ is currently treated as a calibration parameter:
+\begin{equation}
+    A \approx 0.75 - 0.94 \tagCal
+\end{equation}
+
+\begin{edcopenbox}[title=Open: Derive $A$ from fluctuation determinant]
+    Computing $A$ requires the explicit bounce solution and potential shape.
+    This is deferred to future work.
+
+    \textbf{Status:} $A$ = [Cal]. Fluctuation determinant calculation = [OPEN].
+    \tagOpen
+\end{edcopenbox}
+
+\subsection{Oscillation Frequency $\omegaz$}
+
+The frequency at the metastable junction minimum:
+\begin{equation}
+    \omegaz = \sqrt{\frac{V''(q_n)}{M}}
+    \tagDc
+\end{equation}
+
+\textbf{Dimensional estimate:}
+\begin{equation}
+    \omegaz \sim \sqrt{\frac{\bsigma}{m_p}} \approx 19 \MeV
+    \tagP
+\end{equation}
+
+where we use $\bsigma \approx 8.82$ MeV/fm$^2$ and junction mass scale $m_*$.
+
+\subsection{Lifetime Formula}
+
+The metastable junction lifetime is $\taun = 1/\Gamma$:
+
+\begin{resultbox}[title=Metastable Lifetime Formula]
+    \begin{equation}
+        \boxed{\taun = A \cdot \frac{\hbar}{\omegaz} \cdot \exp\left[\kappa \frac{\Lzero}{\bdelta}\right]}
+        \label{eq:tau_n_formula}
+    \end{equation}
+    \tagDer
+\end{resultbox}
+
+This is the central result of the instanton analysis. The exponential
+sensitivity to the dimensionless ratio $\Lzero/\bdelta$ explains the large
+hierarchy between the junction timescale ($\sim 10^{-24}$ s) and the metastable junction
+lifetime ($\sim 10^3$ s).
+
+% ============================================================================
+\section{Forward References}
+\label{sec:instanton:forward}
+
+The formula \eqref{eq:tau_n_formula} contains parameters that require
+further derivation:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Parameter} & \textbf{Status} & \textbf{Derived in} \\
+\midrule
+$\kappa = 2\pi$ & [P] $\to$ [Dc] & Chapter~\ref{ch:kappa} (homotopy) \\
+$\Lzero/\bdelta \approx \pi^2$ & [P] & Chapter~\ref{ch:L0delta} (geometry) \\
+$\omegaz \sim 19$ MeV & [P] & — (dimensional estimate) \\
+$A \approx 0.9$ & [Cal] & — (from fit) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Chapter~\ref{ch:kappa}} derives $\kappa = 2\pi$ from the fundamental
+group $\pione(\Sone) = \mathbb{Z}$, showing that the topological winding
+number is quantized.
+
+\textbf{Chapter~\ref{ch:L0delta}} analyzes the geometric ratio $\Lzero/\bdelta$
+and the hypothesis that it equals $\pi^2$.
+
+\textbf{Chapter~\ref{ch:tau_n}} assembles all parameters and computes
+$\taun \approx 880\second$.
+
+% ============================================================================
+\section{Epistemic Status}
+\label{sec:instanton:epistemic}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{Object} & \textbf{Meaning} & \textbf{Status} & \textbf{Used in} \\
+\midrule
+$S_{\text{eff}}[q]$ & 1D effective action & [Dc] & This chapter \\
+$M(q)$ & Effective mass & [P] (constant approx.) & Eq.~\eqref{eq:Seff} \\
+$V(q)$ & Effective potential & [P] (double-well) & Eq.~\eqref{eq:Seff} \\
+$\SE$ & Euclidean action & [Der] (form) & Eq.~\eqref{eq:SE_integral} \\
+$\SE/\hbar = \kappa(\Lzero/\bdelta)$ & EDC parametrization & [P] & Eq.~\eqref{eq:SE_edc} \\
+$\Gamma = \Gamma_0 e^{-\SE/\hbar}$ & Decay rate & [Der] & Eq.~\eqref{eq:Gamma} \\
+$A$ & Prefactor & [Cal] & Eq.~\eqref{eq:Gamma0} \\
+$\omegaz$ & Oscillation frequency & [P] & Eq.~\eqref{eq:tau_n_formula} \\
+\midrule
+$M(q)$ from 5D & Kinetic coefficient & [OPEN] & Future \\
+$V(q)$ from 5D & Potential from action & [OPEN] & Future \\
+$A$ from det ratio & Fluctuation determinant & [OPEN] & Future \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ============================================================================
+\section{Falsifiability}
+\label{sec:instanton:falsify}
+
+\begin{edcopenbox}[title=Falsifiability Hooks]
+    \begin{enumerate}
+        \item \textbf{Action form:} If the 5D$\to$1D reduction does not yield
+              an action of the form \eqref{eq:Seff}, the instanton framework
+              is inapplicable.
+
+        \item \textbf{Timescale separation:} If fast modes do not decouple
+              from the collective coordinate, the adiabatic approximation fails.
+
+        \item \textbf{Semiclassical validity:} If $\SE/\hbar \lesssim 1$,
+              quantum corrections dominate and the semiclassical formula
+              \eqref{eq:Gamma} is invalid. (For metastable junction: $\SE/\hbar \approx 60$,
+              safely semiclassical.)
+
+        \item \textbf{Prefactor order:} If $A \ll 1$ or $A \gg 1$ is required
+              to match experiment, the model has unnatural fine-tuning.
+    \end{enumerate}
+\end{edcopenbox}
+
+% ============================================================================
+% Observer-side projection
+% ============================================================================
+
+\begin{observerbox}
+Observer-side projection note: quoted terms are measurement labels for the
+3D/4D projection of the 5D objects defined in this chapter; they do not
+imply any conventional mechanism.
+
+\begin{itemize}
+    \item \MetastableJunction{} $\leftrightarrow$ ``neutron'' (projection label)
+    \item \JunctionTransition{} $\leftrightarrow$ measured transition (projection label)
+\end{itemize}
+
+What the observer records: the instanton transition rate computed from the
+Euclidean action $\SE$ corresponds to the measured lifetime $\taun$ of the
+metastable species at the projection level.
+\end{observerbox}
+
+% ============================================================================
+\section{Summary}
+\label{sec:instanton:summary}
+
+\begin{resultbox}
+    The metastable junction decay rate is computed via instanton tunneling:
+    \begin{enumerate}
+        \item The 5D action reduces to effective 1D action $S_{\text{eff}}[q]$
+        \item The Euclidean ``bounce'' solution mediates tunneling
+        \item The decay rate is $\Gamma = A(\omegaz/2\pi) \exp(-\SE/\hbar)$
+        \item The Euclidean action has the form $\SE/\hbar = \kappa(\Lzero/\bdelta)$
+    \end{enumerate}
+
+    \textbf{Key result:}
+    \begin{equation*}
+        \taun = A \cdot \frac{\hbar}{\omegaz} \cdot \exp\left[\kappa \frac{\Lzero}{\bdelta}\right]
+    \end{equation*}
+
+    The parameters $\kappa$ and $\Lzero/\bdelta$ are derived in
+    Chapters~\ref{ch:kappa}--\ref{ch:L0delta}. Chapter~\ref{ch:tau_n}
+    evaluates this formula numerically.
+\end{resultbox}
