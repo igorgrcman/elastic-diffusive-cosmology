@@ -21,6 +21,22 @@ $\Gamma = A \exp(-\SE/\hbar)$. The key parameters $\kappa$ and $\Lzero/\bdelta$
 are deferred to Chapters~\ref{ch:kappa}--\ref{ch:L0delta}.
 \end{abstract}
 
+% ----------------------------------------------------------------------------
+% CHAPTER SPINE
+% ----------------------------------------------------------------------------
+\paragraph{Chapter Spine.}
+\textbf{Purpose:} Develop the instanton formalism for metastable junction tunneling;
+derive the effective 1D action and decay rate formula.
+\textbf{Inputs:} (i)~Double-well $V(q)$ from Ch.~\ref{ch:metastable}~[P],
+(ii)~barrier height $\VB = 2\Delta m_{np}$ from Ch.~\ref{ch:metastable}~[P],
+(iii)~5D action structure~[Def].
+\textbf{Outputs:} (i)~Effective action $S_{\text{eff}}[q]$~[Dc],
+(ii)~Euclidean action structure $\SE = \kappa \times (L_0/\delta) \times \VB/E_{\text{scale}}$~[Dc],
+(iii)~decay rate formula $\Gamma = A \exp(-\SE/\hbar)$~[Der].
+\textbf{Dependencies:} Ch.~\ref{ch:metastable} ($V(q)$ structure, $\VB$).
+\textbf{Forward links:} $\kappa$ from Ch.~\ref{ch:kappa}; $L_0/\delta$ from Ch.~\ref{ch:L0delta};
+assembly in Ch.~\ref{ch:tau_n}.
+
 % ============================================================================
 \section{Euclidean Tunneling in EDC}
 \label{sec:instanton:setup}
@@ -72,14 +88,22 @@ The full 5D action of EDC includes bulk, brane, and boundary terms:
 For the tunneling problem, we reduce this to an effective 1D action in the
 collective coordinate $q(t)$:
 
-\begin{derivationbox}[title=5D$\to$1D Reduction (Adiabatic Approximation)]
-    The 5D dynamics reduces to effective 1D dynamics when:
+\begin{assumptionbox}[title=Assumptions: 5D$\to$1D Reduction]
+    The reduction from 5D dynamics to effective 1D dynamics requires:
     \begin{enumerate}
-        \item The collective coordinate $q$ is slow compared to other modes
-        \item Fast modes (transverse fluctuations, shape modes) relax
-              instantaneously to their $q$-dependent equilibria
+        \item \textbf{Timescale separation} \tagP: The collective coordinate $q$ is slow
+              compared to all other modes (transverse fluctuations, shape modes).
+        \item \textbf{Adiabatic relaxation} \tagP: Fast modes relax instantaneously to
+              their $q$-dependent equilibria as $q$ evolves.
+        \item \textbf{Mode decoupling} \tagP: Cross-couplings between $q$ and transverse
+              modes are negligible at leading order.
     \end{enumerate}
+    These assumptions are standard for instanton calculations.
+    Verification from the full 5D EDC action: \tagOPEN.
+\end{assumptionbox}
 
+\begin{derivationbox}[title=5D$\to$1D Reduction (Adiabatic Approximation)]
+    Under the above assumptions, the 5D dynamics reduces to effective 1D dynamics.
     The effective action:
     \begin{equation}
         S_{\text{eff}}[q] = \int dt \left[ \frac{1}{2} M(q) \dot{q}^2 - V(q) \right]
@@ -414,3 +438,13 @@ metastable species at the projection level.
     Chapters~\ref{ch:kappa}--\ref{ch:L0delta}. Chapter~\ref{ch:tau_n}
     evaluates this formula numerically.
 \end{resultbox}
+
+% ----------------------------------------------------------------------------
+% BRIDGE TO NEXT CHAPTER
+% ----------------------------------------------------------------------------
+\paragraph{Bridge to Chapter~\ref{ch:kappa}.}
+The instanton formula $\SE/\hbar = \kappa(L_0/\delta)$ contains two
+undetermined factors. What fixes $\kappa$? Chapter~\ref{ch:kappa} derives
+$\kappa = 2\pi$ from the fundamental group of the circle---the compact
+topology of the fifth dimension quantizes the winding number and thereby
+fixes the instanton prefactor. This is a topological result, not a fit.

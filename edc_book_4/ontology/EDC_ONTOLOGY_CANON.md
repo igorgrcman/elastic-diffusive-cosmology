@@ -68,7 +68,7 @@ Use macro: `\EDCPolicyLockSentence`
 | EDC Term | Symbol | Definition | Conventional Analog |
 |----------|--------|------------|---------------------|
 | **Cluster state** | M₆ | Pinned junction network with M₆ coordination geometry | (nucleus) |
-| **Closed-4 unit** | — | Minimal closed junction network (tetrahedral topology) | (alpha particle) |
+| **Closed-4 unit** | — | Minimal closed junction network (complete $K_4$ contact graph) | (alpha particle) |
 | **Pinning cluster** | — | Generic bound junction configuration | (nuclear cluster) |
 | **High-coordination cluster** | n > 82 | Cluster with coordination exceeding Z = 82 threshold | (superheavy nucleus) |
 

@@ -28,6 +28,20 @@ $\sim 6$ dex to $\sim 1$ dex. All calibration details (coefficient extraction,
 dataset specification, cross-validation) are routed to Appendix~Q. This chapter
 presents the prediction pipeline and benchmark results in EDC-native language.
 
+% ----------------------------------------------------------------------------
+% CHAPTER SPINE
+% ----------------------------------------------------------------------------
+\paragraph{Chapter Spine.}
+\textbf{Purpose:} Apply the frustration correction to high-coordination clusters
+($A > 250$); demonstrate 7$\times$ error reduction over baseline.
+\textbf{Inputs:} (i)~Baseline lane from Ch.~\ref{ch:barrier_release}~[BL],
+(ii)~frustration correction $\Delta = g \times d(n)$ from Ch.~\ref{ch:frustrated}~[Dc],
+(iii)~calibration coefficients from App.~Q~[Cal].
+\textbf{Outputs:} (i)~Corrected predictions for high-coordination emitters~[Dc$\times$Cal],
+(ii)~7$\times$ error reduction vs.\ baseline~[Cal], (iii)~benchmark dataset results.
+\textbf{Dependencies:} Ch.~\ref{ch:frustrated} (frustration framework), Ch.~\ref{ch:barrier_release} (baseline).
+\textbf{Forward links:} Results synthesized in Ch.~\ref{ch:unified}.
+
 % ============================================================================
 \section{Recap: From Residual to Prediction}
 \label{sec:sh:recap}
@@ -264,7 +278,7 @@ Computation methodology in Appendix~Q. \tagDc
 
 The corrected lane reduces mean absolute error by a factor of:
 \begin{equation}
-    \frac{6.16}{0.88} \approx 7.0 \times \tagDc
+    \frac{6.16}{0.88} \approx 7.0 \times \tagCal
 \end{equation}
 
 This improvement is consistent with the forbidden-zone hypothesis: clusters
@@ -432,7 +446,7 @@ estimates. Future measurements will test these projections.
               \log_{10}(t_{\text{BL}}) + g \cdot d(n)$ [BL] + [Cal]
         \item Reproducible 5-step prediction pipeline [Der] + [Cal]
         \item Benchmark predictions table with 9 high-coordination cases
-        \item Performance summary: $7\times$ error reduction vs.\ baseline
+        \item Performance summary: $7\times$ error reduction vs.\ baseline \tagCal
         \item Failure modes and 3 open problems
         \item 7 falsifiability hooks for experimental testing
     \end{itemize}
@@ -478,4 +492,14 @@ estimates. Future measurements will test these projections.
     \xrightarrow{\text{test}}
     \underbrace{\text{Validation}}_{\text{Experiment}}
 \end{equation*}
+
+% ----------------------------------------------------------------------------
+% BRIDGE TO NEXT CHAPTER
+% ----------------------------------------------------------------------------
+\paragraph{Bridge to Chapter~\ref{ch:unified}.}
+All predictive machinery is now in place: baseline + frustration correction +
+high-coordination application. Chapter~\ref{ch:unified} steps back to present
+the complete derivation tree and epistemic ledger---a comprehensive map of
+what has been derived [Der], what has been derived-conditionally [Dc], what
+remains postulated [P] or calibrated [Cal], and what is still open [OPEN].
 

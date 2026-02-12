@@ -12,6 +12,20 @@ arithmetic from axioms) from \textbf{calibrated inputs} (empirical anchors
 documented in Appendix~\ref{app:quarantine}).
 \end{chapterbox}
 
+% ----------------------------------------------------------------------------
+% CHAPTER SPINE
+% ----------------------------------------------------------------------------
+\paragraph{Chapter Spine.}
+\textbf{Purpose:} Specify exact procedures for reproducing all numerical claims
+in Book IV; provide verification tiers and contamination scan protocols.
+\textbf{Inputs:} All results from Ch.~\ref{ch:anchor}--\ref{ch:high_coord};
+calibration data from App.~Q.
+\textbf{Outputs:} (i)~Verification tier definitions (Tier 1/2/3)~[Def],
+(ii)~reproduction recipes for each key result, (iii)~contamination scan protocol.
+\textbf{Dependencies:} Ch.~\ref{ch:unified} (synthesis).
+\textbf{Forward links:} None (final chapter).
+\textbf{Epistemic note:} This chapter is \emph{meta-procedural}---no new physics.
+
 % ============================================================================
 \section{Verification Tiers}
 \label{sec:repro:tiers}
@@ -68,7 +82,7 @@ locations.
     \toprule
     Artifact & Location (relative) & Tier \\
     \midrule
-    \LaTeX\ sources & \texttt{edc\_book\_4/} & 1 \\
+    \LaTeX\ sources & \texttt{./} (book root) & 1 \\
     Main document & \texttt{main.tex} & 1 \\
     Chapter sources & \texttt{chapters/*.tex} & 1 \\
     Appendix sources & \texttt{appendices/*.tex} & 1 \\
@@ -101,7 +115,7 @@ clarifies which quantities are which.
     Quantity & Type & Tag & Documentation \\
     \midrule
     $\kappa = 2\pi$ & Deterministic & \tagDer & Ch.~\ref{ch:kappa} \\
-    $L_0/\delta = \pi^2$ & Deterministic & \tagDer & Ch.~\ref{ch:L0_delta} \\
+    $L_0/\delta = \pi^2$ & Deterministic & \tagDer & Ch.~\ref{ch:L0delta} \\
     $V_B = 2 \times 1.293$ MeV & Derived + input & \tagDc & Ch.~\ref{ch:metastable} \\
     $n(A) = p \times A^{1/3}$ & Formula & \tagDer & Ch.~\ref{ch:barrier_release} \\
     \midrule
@@ -148,7 +162,7 @@ We provide four canonical recipes for reproducing key claims.
 \textbf{Ingredients:}
 \begin{itemize}
     \item $\kappa = 2\pi$ (Ch.~\ref{ch:kappa})
-    \item $L_0/\delta = \pi^2$ (Ch.~\ref{ch:L0_delta})
+    \item $L_0/\delta = \pi^2$ (Ch.~\ref{ch:L0delta})
     \item $V_B = 2.586$ MeV (Ch.~\ref{ch:metastable})
     \item $\omega_0 \approx 10^{21}$ s$^{-1}$ (attempt frequency)
 \end{itemize}
@@ -177,7 +191,7 @@ We provide four canonical recipes for reproducing key claims.
 
 \textbf{Procedure:}
 \begin{enumerate}
-    \item Apply Z$_6$ crystallization formula (Ch.~\ref{ch:M6_geom})
+    \item Apply Z$_6$ crystallization formula (Ch.~\ref{ch:junction})
     \item Extract binding energy from geometric constraint
     \item Verify: $B_2 \approx 2.22$ MeV
 \end{enumerate}
@@ -191,9 +205,9 @@ We provide four canonical recipes for reproducing key claims.
 
 \textbf{Ingredients:}
 \begin{itemize}
-    \item M6 coordination geometry (Ch.~\ref{ch:M6_geom})
+    \item M6 coordination geometry (Ch.~\ref{ch:junction})
     \item Junction energetics from anchor state (Ch.~\ref{ch:anchor})
-    \item Spin-isospin counting
+    \item Degeneracy accounting (junction-mode multiplicities)
 \end{itemize}
 
 \textbf{Procedure:}
@@ -221,7 +235,7 @@ We provide four canonical recipes for reproducing key claims.
 
 \textbf{Procedure:}
 \begin{verbatim}
-cd edc_book_4/code/
+cd code/
 python3 closed4_predictions.py
 \end{verbatim}
 
@@ -262,7 +276,7 @@ grep -riE "alpha.particle|helion|triton|nucleon|nucleus" \
 
 \subsection{TIER-2 Scan: Soft Prohibitions}
 
-These terms require routing to Appendix~\ref{app:conventional} if needed:
+These terms require routing to Appendix~\ref{app:analogies} if needed:
 
 \begin{verbatim}
 grep -riE "proton|neutron|alpha|nuclear|QCD|quark" \
@@ -302,7 +316,7 @@ grep -iE "proton|neutron|alpha|nuclear"
 \subsection{Tier 1: PDF Compilation}
 
 \begin{verbatim}
-cd edc_book_4/
+# From the book root directory:
 pdflatex main.tex
 biber main
 pdflatex main.tex
@@ -314,7 +328,7 @@ Three \texttt{pdflatex} passes ensure all cross-references resolve.
 \subsection{Tier 3: Table Regeneration}
 
 \begin{verbatim}
-cd edc_book_4/code/
+cd code/
 python3 closed4_predictions.py > ../tables/closed4_output.txt
 python3 kramers_double_well.py > ../tables/kramers_output.txt
 \end{verbatim}
