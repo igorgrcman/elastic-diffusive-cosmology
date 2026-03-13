@@ -1,0 +1,767 @@
+% ============================================================================
+% Appendix: Phase 2 N2 — Bulk Gravitational Backreaction Test
+% ============================================================================
+% Status: [Dc|model] derivation/bounding attempt within declared 5D model
+% Scope: Test whether the bulk gravitational response to junction displacement
+%        generates a non-geometric contribution V_bulk(q) to V(q).
+% Phase 2 / N2 WP2 deliverable
+% Governing documents: PHASE2_NEXTSTEP_PLAN_V1.md,
+%                      audit/N2_WP1_DONOR_NORMALIZATION.md
+% ============================================================================
+
+\chapter{Bulk Gravitational Backreaction Test for the Non-Geometric Sector}
+\label{app:P2_N2_bulk}
+
+% ============================================================================
+\section{Scope and Framing}
+\label{sec:P2N2:scope}
+% ============================================================================
+
+This appendix tests the \textbf{N2 bulk gravitational backreaction lane}
+as a source of non-geometric structure in the effective potential $V(q)$.
+It builds on the accepted geometric single-well baseline
+$V_{\mathrm{geom}}(q) = \tau L_{\mathrm{tot}}(q)$ \tagDc\
+(Appendix~\ref{app:vq_chosen_path}) and follows the N2~WP1 donor
+normalization and model boundary
+(\texttt{audit/N2\_WP1\_DONOR\_NORMALIZATION.md}).
+
+\textbf{What this appendix tests:}
+Does the bulk gravitational field response to a displaced Y-junction
+produce a $q$-dependent energy contribution $V_{\mathrm{bulk}}(q)$
+that can oppose the geometric restoring force and generate new
+structure in the combined potential?
+
+\textbf{What this appendix does not claim:}
+\begin{itemize}
+    \item It does not claim full closure of $V(q)$.
+    \item It does not resolve $M_5$, $\Lambda_5$, or the background
+          metric choice.
+    \item It does not derive $V_B$ or claim double-well existence.
+    \item A no-go or bounded insufficiency is an allowed outcome.
+\end{itemize}
+
+% ============================================================================
+\section{Donor Discipline}
+\label{sec:P2N2:donors}
+% ============================================================================
+
+\textbf{Allowed donor bundle} (from N2~WP1 normalization):
+\begin{itemize}
+    \item Put~C corridor structure (D-N2-1) \tagDef\ structural
+    \item $V_{\mathrm{geom}}(q) = \tau L_{\mathrm{tot}}(q)$ (D-N2-2) \tagDc
+    \item Variant~1--2 negative results (D-N2-3) \tagDc
+    \item $\sigma = 8.82\MeV/\fm^2$ \tagDc
+    \item $\kappa_5^2 = 8\pi G_5 = 8\pi/\Mfive^3$ \tagDef
+    \item $\Mfive$ \tagP\ (not derived; treated parametrically)
+    \item WP2 Israel no-go (F-N2-1) \tagDc\ constraint
+    \item N7 bounded insufficiency (F-N2-2) \tagDc\ constraint
+\end{itemize}
+
+\textbf{Forbidden imports:}
+\begin{itemize}
+    \item Phenomenological node-well shapes (Variant~3 Gaussian)
+    \item $V_B = 2\Delta m_{np}$ as derivation constraint
+    \item $\tau_n \approx 878\second$ as input
+    \item Background metric chosen post-hoc to produce double-well
+    \item $F_{\mathrm{bulk}}$ numerological formula for $G$ (different quantity)
+    \item Variant~2 warped scan as positive evidence (it is a negative result)
+    \item $C = 100$ or $E_0 = \sigma L_0^2$ (N7 lane quantities)
+\end{itemize}
+
+\textbf{Anti-smuggling test} (from N2~WP1 \S7.3):
+\emph{Delete all knowledge of $\tau_n$, $V_B$, the Variant~3 form,
+and the desired double-well shape. Does the linearized Einstein
+equation still yield the same $V_{\mathrm{bulk}}$?}
+
+% ============================================================================
+\section{Model-Class Setup}
+\label{sec:P2N2:model}
+% ============================================================================
+
+\subsection{Background Metric}
+
+\begin{assumptionbox}[title=N2 Model Assumptions (Declared Before Computation)]
+\begin{enumerate}
+    \item \textbf{Background metric} \tagP:
+    \begin{equation}
+        ds^2 = e^{2A(\xi)}\,\eta_{\mu\nu}\,dx^\mu dx^\nu + d\xi^2
+        \label{eq:N2_background}
+    \end{equation}
+    Two cases tested: (a)~flat ($A = 0$, $\Lambda_5 = 0$),
+    (b)~RS-like ($A = -k|\xi|$, $\Lambda_5 = -6k^2/\kappa_5^2$).
+
+    \item \textbf{5D Planck mass $\Mfive$} \tagP: not derived.
+    All results reported as functions of $\Mfive$.
+
+    \item \textbf{Compact direction}: $\xi \in [-\pi R_5, \pi R_5]$
+    with $\mathbb{Z}_2$ orbifold \tagP.
+
+    \item \textbf{Junction source}: thin-brane (distributional)
+    stress-energy on each arm worldsheet \tagDef.
+
+    \item \textbf{Collective coordinate $q$}: in-brane node
+    displacement (inherited from R3) \tagDc.
+
+    \item \textbf{Linearization}: metric perturbation
+    $h_{AB}(q) \ll \bar{g}_{AB}$ \tagP.
+
+    \item \textbf{Adiabatic approximation}: bulk modes relax at
+    fixed $q$ \tagP.
+\end{enumerate}
+\end{assumptionbox}
+
+\subsection{What ``Bulk Backreaction'' Means in N2}
+
+\textbf{Physical mechanism:} When the Y-junction node displaces by $q$,
+the brane stress-energy distribution $T_{AB}$ changes. The 5D bulk
+metric adjusts through the linearized Einstein equations:
+\begin{equation}
+    \delta G_{AB} = \kappa_5^2\, \delta T_{AB}
+    \label{eq:N2_linearized}
+\end{equation}
+The energy stored in the bulk metric perturbation $h_{AB}(q)$ defines
+$V_{\mathrm{bulk}}(q)$.
+
+\textbf{Distinction from N1 and N7:}
+\begin{itemize}
+    \item N1 (Israel): concerns matching conditions \emph{at} the brane
+          surface. Result: tension renormalization only. \textbf{Bounded no-go.}
+    \item N7 (thick core): concerns internal energy \emph{inside} the
+          junction vertex at scale $\delta$. Result: monotone profiles
+          reinforce $V_{\mathrm{geom}}$. \textbf{Bounded insufficiency.}
+    \item N2 (bulk): concerns gravitational field energy \emph{in the
+          5D bulk} away from the brane. This is the response of the
+          bulk geometry to the changed source.
+\end{itemize}
+
+\subsection{Scales and Couplings}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Symbol} & \textbf{Meaning} & \textbf{Tag} \\
+\midrule
+$\kappa_5^2 = 8\pi/\Mfive^3$ & 5D gravitational coupling & [Def] \\
+$\Mfive$ & 5D Planck mass & [P] \\
+$\sigma$ & Brane tension: $8.82\MeV/\fm^2$ & [Dc] \\
+$R$ & Y-junction arm length $\sim 1\fm$ & [Dc] \\
+$q$ & Node displacement from Steiner & [Dc] \\
+$R_5$ & Compactification radius & [P] \\
+$k$ & RS curvature parameter (if applicable) & [P] \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ============================================================================
+\section{Linearized Bulk Response: Structural Derivation}
+\label{sec:P2N2:derivation}
+% ============================================================================
+
+\subsection{Total Energy Decomposition}
+
+The total on-shell energy of the static brane-bulk system at junction
+displacement $q$ is:
+\begin{equation}
+    E_{\mathrm{total}}(q) = E_{\mathrm{brane}}(q) + E_{\mathrm{grav}}(q)
+    \label{eq:N2_Etotal}
+\end{equation}
+where $E_{\mathrm{brane}}(q) = V_{\mathrm{geom}}(q) = \tau L_{\mathrm{tot}}(q)$
+\tagDc\ is the Nambu--Goto brane energy, and $E_{\mathrm{grav}}(q)$ is the
+gravitational energy (bulk + GHY + junction terms evaluated on the
+solution to the Einstein equations). The N2 contribution is:
+\begin{equation}
+    V_{\mathrm{bulk}}(q) \equiv E_{\mathrm{grav}}(q) - E_{\mathrm{grav}}(0)
+    \label{eq:N2_Vbulk_def}
+\end{equation}
+
+\subsection{Perturbative Expansion}
+
+Let $\bar{g}_{AB}$ be the background metric solving the 5D Einstein
+equations with the Steiner brane configuration ($q = 0$) as source.
+When the junction displaces to $q > 0$:
+\begin{align}
+    T_{AB}(q) &= T_{AB}(0) + \delta T_{AB}(q) \label{eq:N2_deltaT} \\
+    g_{AB}(q) &= \bar{g}_{AB} + h_{AB}(q) \label{eq:N2_deltag}
+\end{align}
+where $h_{AB}(q)$ solves the linearized Einstein equations with
+source $\delta T_{AB}(q)$.
+
+The gravitational energy at second order in perturbation theory is
+(standard result in linearized gravity):
+\begin{equation}
+    V_{\mathrm{bulk}}(q) = \underbrace{-\int \delta T_{AB}\, \bar{h}^{AB}\,
+    d^5x}_{\text{cross-term with background}} \;-\;
+    \underbrace{\frac{1}{2}\int \delta T_{AB}\, \delta h^{AB}\,
+    d^5x}_{\text{self-energy of perturbation}}
+    \label{eq:N2_Vbulk_perturbative}
+\end{equation}
+where $\bar{h}^{AB}$ is the background metric perturbation (sourced by
+$T_{AB}(0)$) and $\delta h^{AB}$ is the perturbation sourced by
+$\delta T_{AB}(q)$. \tagDc\ (standard linearized gravity).
+
+\subsection{Cross-Term: Tension Renormalization}
+\label{sec:N2:cross}
+
+The first term in Eq.~\eqref{eq:N2_Vbulk_perturbative} involves the
+background gravitational field $\bar{h}_{AB}$ evaluated on the source
+perturbation $\delta T_{AB}$.
+
+\textbf{Key observation:} The background field $\bar{h}_{AB}$ is
+sourced by the Steiner brane configuration $T_{AB}(0)$. For a brane
+at fixed $\xi = \xi_0$ in a warped background, the Israel matching
+condition gives (Appendix~\ref{app:P2_WP2_Israel}):
+\begin{equation}
+    \bar{h}_{\mu\nu} \propto A'(\xi_0)\,e^{2A(\xi_0)}\,\eta_{\mu\nu}
+    \label{eq:N2_hbar}
+\end{equation}
+This is \textbf{independent of in-brane position}: the background
+gravitational field at $\xi = \xi_0$ is uniform across the brane
+plane. \tagDc
+
+Therefore, the cross-term evaluates to:
+\begin{equation}
+    -\int \delta T_{AB}\, \bar{h}^{AB}\, d^5x
+    \;\propto\; A'(\xi_0)\,\sigma \int_{\mathrm{brane}} \delta(\sqrt{h})\, d^4x
+    \;\propto\; \delta L_{\mathrm{tot}}(q)
+    \;\propto\; V_{\mathrm{geom}}(q) - V_{\mathrm{geom}}(0)
+    \label{eq:N2_cross_result}
+\end{equation}
+
+\begin{resultbox}[title=Cross-Term Result]
+The cross-term in the bulk backreaction is \textbf{proportional to}
+$V_{\mathrm{geom}}(q)$. It renormalizes the effective brane tension:
+\begin{equation}
+    V_{\mathrm{cross}}(q) = -c_{\mathrm{cr}}\,\kappa_5^2\,\sigma\,
+    A'(\xi_0)\;V_{\mathrm{geom}}(q)
+\end{equation}
+where $c_{\mathrm{cr}}$ is a positive dimensionless constant from the
+tensor contractions.
+
+\textbf{This does not change the single-well structure.} The renormalized
+potential $V_{\mathrm{geom}}^{\mathrm{ren}}(q) = (1 + \Delta\tau/\tau)\,
+V_{\mathrm{geom}}(q)$ has the same Steiner minimum and no secondary
+extremum.
+
+This result is \textbf{structurally identical} to the N1 finding
+(Appendix~\ref{app:P2_WP2_Israel}): the leading-order gravitational
+backreaction merely renormalizes the tension. \tagDc
+\end{resultbox}
+
+\subsection{Self-Energy Term: The Genuinely New N2 Contribution}
+\label{sec:N2:self}
+
+The second term in Eq.~\eqref{eq:N2_Vbulk_perturbative} is the
+gravitational self-energy of the source perturbation:
+\begin{equation}
+    V_{\mathrm{self}}(q) = -\frac{\kappa_5^2}{2}\int\!\!\int
+    \delta T_{AB}(x)\; G^{AB,CD}(x,x')\;
+    \delta T_{CD}(x')\; d^5x\, d^5x'
+    \label{eq:N2_Vself}
+\end{equation}
+where $G^{AB,CD}(x,x')$ is the linearized gravitational Green's
+function in the background $\bar{g}_{AB}$. This is the only term that
+could produce structure \emph{different from} $V_{\mathrm{geom}}$.
+\tagDc
+
+\subsubsection{Source Structure}
+
+The source perturbation $\delta T_{AB}(q)$ encodes the change in
+brane stress-energy when the junction displaces. For a Nambu--Goto
+brane:
+\begin{equation}
+    T^{AB}_{\mathrm{brane}} = -\sigma\, h^{AB}\,
+    \frac{\delta^{(1)}(\xi - \xi_0)}{\sqrt{g_{\xi\xi}}}
+    \label{eq:N2_Tbrane}
+\end{equation}
+where $h^{AB}$ is the induced metric on the brane worldsheet.
+
+When the junction node moves from $(0,0,\xi_0)$ to $(q,0,\xi_0)$,
+the three arm worldsheets rotate and change length. The perturbation
+$\delta T_{AB}$ is the \emph{difference} between the stress-energy
+of the displaced and Steiner configurations, localized on the brane
+at $\xi = \xi_0$.
+
+\textbf{Key property:} $\delta T_{AB}$ has compact support (it is
+nonzero only in the region where the arm worldsheets differ between
+$q$ and $0$) and has zero total ``charge'' in the sense that:
+\begin{equation}
+    \int_{\mathrm{brane}} \delta T_{AB}\, d^3x
+    \;\propto\; \sigma\,\delta L_{\mathrm{tot}}(q)
+    \label{eq:N2_deltaT_total}
+\end{equation}
+This is the total mass-energy change, already captured by $V_{\mathrm{geom}}$.
+The self-energy contribution depends on the \emph{spatial distribution}
+of $\delta T$, not just its total integral.
+
+\subsubsection{Self-Energy Decomposition}
+
+The self-energy~\eqref{eq:N2_Vself} receives contributions from:
+\begin{enumerate}
+    \item \textbf{Monopole term:} gravitational self-energy of the
+    total mass change $\delta M \propto \sigma\,\delta L_{\mathrm{tot}}$.
+    This scales as $\delta M^2 \propto (\delta L_{\mathrm{tot}})^2
+    \propto q^4/R^2$ at leading order (since $L'_{\mathrm{tot}}(0) = 0$
+    by Steiner optimality).
+
+    \item \textbf{Dipole and higher multipole terms:} gravitational
+    energy from the \emph{redistribution} of brane mass-energy
+    (arms rotating, node shifting). These are the shape-dependent
+    contributions.
+\end{enumerate}
+
+At leading order in $q$, the dipole contribution dominates because
+the Steiner displacement is a shift (dipole-like perturbation):
+\begin{equation}
+    V_{\mathrm{self}}(q) \approx -\frac{\kappa_5^2\,\sigma^2}{2}
+    \sum_{i,j=1}^{3}\int\!\!\int \delta_i(s)\; G_{\mathrm{red}}(r_i(s), r_j(s'))\;
+    \delta_j(s')\; ds\, ds'
+    \label{eq:N2_Vself_arms}
+\end{equation}
+where $\delta_i$ encodes the perturbation of arm $i$, $r_i(s)$ is the
+arm position, $s$ is the arc-length parameter, and $G_{\mathrm{red}}$
+is the Green's function reduced to the brane at $\xi = \xi_0$.
+
+\subsubsection{Leading-Order Scaling}
+
+\begin{derivationbox}[title=Self-Energy Scaling Argument]
+The self-energy integral~\eqref{eq:N2_Vself_arms} has the following
+dimensional structure:
+
+\textbf{Coupling:} $\kappa_5^2 = 8\pi/\Mfive^3$
+
+\textbf{Source strength:} $\sigma^2$ (brane tension squared)
+
+\textbf{Geometric integral:} involves the reduced Green's function
+$G_{\mathrm{red}}$, which for a compact extra dimension of size $R_5$
+gives:
+\begin{equation}
+    G_{\mathrm{red}}(r) = \frac{1}{R_5}\,G_{4D}(r)
+    + \sum_{n \geq 1} \frac{2}{R_5}\,
+    G_{4D}^{(m_n)}(r)
+    \label{eq:N2_Green_KK}
+\end{equation}
+where $G_{4D}(r) \sim 1/(4\pi^2 r^2)$ is the 4D (massless) scalar
+Green's function and $G_{4D}^{(m_n)}$ are the KK-massive contributions
+with $m_n = n/R_5$.
+
+\textbf{The zero-mode contribution:}
+\begin{equation}
+    V_{\mathrm{self}}^{(0)}(q) \sim -\frac{\kappa_5^2\,\sigma^2}{R_5}
+    \times R^2 \times \mathcal{F}(q/R)
+    \label{eq:N2_Vself_zero}
+\end{equation}
+where $\mathcal{F}$ is a dimensionless geometric function with
+$\mathcal{F}(0) = 0$ and $R^2$ arises from the integration over the
+arm extent $\sim R$ and the $1/r^2$ Green's function.
+
+Using $G_4 \equiv G_5/R_5 = 1/(\Mfive^3 R_5)$:
+\begin{equation}
+    V_{\mathrm{self}}^{(0)}(q) \sim -\frac{\sigma^2\, R^2}{\Mfive^3\, R_5}
+    \times \mathcal{F}(q/R)
+    \label{eq:N2_Vself_scaling}
+    \tagDc
+\end{equation}
+\end{derivationbox}
+
+\subsection{Leading-Order Area Dependence}
+\label{sec:N2:area}
+
+The self-energy of the brane configuration depends on the total brane
+area (arm length in the reduced problem). At leading order in the
+gravitational coupling:
+\begin{equation}
+    E_{\mathrm{grav}}(q) = -\frac{c_0\,\kappa_5^2\,\sigma^2}{R_5}\,
+    L_{\mathrm{tot}}(q) \times [\text{UV-dependent factor}]
+    \label{eq:N2_Egrav_LO}
+\end{equation}
+where $c_0$ is a positive constant from the tensor contractions and
+the UV-dependent factor involves $\log(R/\delta)$ or $R/\delta$
+depending on the codimension of the source.
+
+\begin{resultbox}[title=Leading-Order Structure]
+The leading-order gravitational self-energy is \textbf{proportional
+to the total arm length} $L_{\mathrm{tot}}(q)$, which is proportional
+to $V_{\mathrm{geom}}(q)$.
+
+\textbf{Physical reason:} at leading order, the gravitational
+self-energy depends on ``how much brane'' there is, not on its shape.
+More brane (longer arms at larger $q$) means more gravitational
+binding energy (more negative $E_{\mathrm{grav}}$).
+
+\textbf{Consequence:} the leading-order bulk backreaction produces
+another tension renormalization:
+\begin{equation}
+    V_{\mathrm{bulk}}^{(\mathrm{LO})}(q) \propto V_{\mathrm{geom}}(q)
+    \label{eq:N2_LO_prop}
+\end{equation}
+The single-well structure is preserved. \tagDc
+
+This is \textbf{structurally the same result} as N1 (Israel no-go,
+Appendix~\ref{app:P2_WP2_Israel}) and is consistent with it:
+both the junction matching and the leading bulk self-energy
+produce tension renormalization only.
+\end{resultbox}
+
+\subsection{Next-to-Leading Order: Shape-Dependent Correction}
+\label{sec:N2:NLO}
+
+The shape-dependent correction arises from the \emph{mutual}
+gravitational interaction between different parts of the brane:
+\begin{equation}
+    V_{\mathrm{bulk}}^{(\mathrm{NLO})}(q) = -\frac{\kappa_5^2\,\sigma^2}{2}
+    \sum_{i \neq j}\int\!\!\int
+    \bigl[\rho_i^{(q)}(s) - \rho_i^{(0)}(s)\bigr]\;
+    G_{\mathrm{red}}(r_i^{(q)}(s), r_j^{(q)}(s'))\;
+    \bigl[\rho_j^{(q)}(s') - \rho_j^{(0)}(s')\bigr]\;
+    ds\, ds'
+    \label{eq:N2_VNLO}
+\end{equation}
+where the sum runs over distinct arm pairs, and the Green's function
+evaluates the gravitational interaction between perturbations on
+different arms.
+
+\textbf{Sign of NLO term:} The sign depends on the geometry. When
+the junction displaces:
+\begin{itemize}
+    \item Arms~2 and~3 rotate toward each other (their angle narrows
+          from $120^\circ$). This brings parts of the brane closer
+          together, increasing the mutual gravitational binding
+          (more negative contribution).
+    \item Arm~1 moves away from arms~2 and~3. This decreases the
+          mutual gravitational binding (less negative contribution).
+\end{itemize}
+
+The net sign is determined by the competition between these effects.
+By the $\Zthree$ symmetry of the Steiner configuration, the leading
+$q$-dependent correction starts at $O(q^2)$:
+\begin{equation}
+    V_{\mathrm{bulk}}^{(\mathrm{NLO})}(q) = -\frac{\kappa_5^2\,\sigma^2\,R}{R_5}
+    \times c_{\mathrm{shape}} \times \frac{q^2}{R^2} + O(q^4)
+    \label{eq:N2_VNLO_expansion}
+\end{equation}
+where $c_{\mathrm{shape}}$ is a dimensionless constant whose sign
+depends on the detailed arm geometry. \tagDcI
+
+\textbf{Even if $c_{\mathrm{shape}} > 0$} (so the NLO term is
+attractive at small $q$, opposing $V_{\mathrm{geom}}''(0) > 0$),
+the magnitude is:
+\begin{equation}
+    \left|\frac{V_{\mathrm{bulk}}^{(\mathrm{NLO})}(q)}{V_{\mathrm{geom}}(q)}\right|
+    \sim \frac{\kappa_5^2\,\sigma\,R}{R_5}
+    = \frac{8\pi\,\sigma\,R}{\Mfive^3\,R_5}
+    \label{eq:N2_ratio}
+    \tagDc
+\end{equation}
+
+This is the \textbf{$\kappa_5^2$-suppression ratio} that determines
+whether the N2 lane can ever produce a relevant contribution.
+
+% ============================================================================
+\section{$\kappa_5^2$-Suppression Analysis}
+\label{sec:P2N2:suppression}
+% ============================================================================
+
+\subsection{Magnitude Estimate}
+
+Using $\sigma = 8.82\MeV/\fm^2$ and $R \approx 1\fm$:
+\begin{equation}
+    \frac{8\pi\,\sigma\,R}{\Mfive^3\,R_5}
+    = \frac{8\pi \times 8.82\MeV}{\Mfive^3 \times R_5 \times \fm}
+    \label{eq:N2_suppression_numeric}
+\end{equation}
+
+Converting to consistent units ($\hbar = c = 1$, where
+$1\fm = 1/(197.3\MeV)$):
+\begin{equation}
+    8\pi\,\sigma\, R = 8\pi \times 8.82 \times (197.3)^2 \times (1/197.3)\MeV
+    = 8\pi \times 8.82 \times 197.3\MeV^2
+    \approx 4.35 \times 10^4\MeV^2
+    \label{eq:N2_numerator}
+\end{equation}
+
+The suppression ratio becomes:
+\begin{equation}
+    \frac{V_{\mathrm{bulk}}^{(\mathrm{NLO})}}{V_{\mathrm{geom}}}
+    \sim \frac{4.35 \times 10^4}{\Mfive^3 \times R_5}
+    \label{eq:N2_suppression_ratio}
+\end{equation}
+where $\Mfive$ is in MeV and $R_5$ in MeV$^{-1}$.
+
+\subsection{$\Mfive$ Threshold for Relevance}
+
+For the bulk backreaction to be competitive with $V_{\mathrm{geom}}$
+(ratio $\gtrsim 0.1$), we need:
+\begin{equation}
+    \Mfive^3 \times R_5 \lesssim 4.35 \times 10^5\MeV^2
+    \label{eq:N2_threshold}
+\end{equation}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+$\Mfive$ & $R_5 = \pi\bdelta$ & $\Mfive^3 R_5$ & Suppression ratio \\
+\midrule
+$10\MeV$ & $1.67 \times 10^{-3}\MeV^{-1}$ & $1.67\MeV^2$ & $\sim 2.6 \times 10^4$ \\
+$100\MeV$ & $1.67 \times 10^{-3}\MeV^{-1}$ & $1.67 \times 10^3\MeV^2$ & $\sim 26$ \\
+$1\;\mathrm{GeV}$ & $1.67 \times 10^{-3}\MeV^{-1}$ & $1.67 \times 10^6\MeV^2$ & $\sim 0.026$ \\
+$10\;\mathrm{GeV}$ & $1.67 \times 10^{-3}\MeV^{-1}$ & $1.67 \times 10^9\MeV^2$ & $\sim 2.6 \times 10^{-5}$ \\
+$M_{\mathrm{Pl}} \approx 10^{18}\;\mathrm{GeV}$ & $1.67 \times 10^{-3}\MeV^{-1}$ & $\sim 10^{51}\MeV^2$ & $\sim 10^{-47}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{resultbox}[title=$\kappa_5^2$-Suppression Verdict]
+The shape-dependent (NLO) bulk backreaction is competitive with
+$V_{\mathrm{geom}}$ \textbf{only if $\Mfive \lesssim 100\MeV$}
+(for $R_5 = \pi\bdelta$).
+
+For any $\Mfive$ above $\sim 1\;\mathrm{GeV}$, the bulk backreaction
+is suppressed below the $1\%$ level relative to $V_{\mathrm{geom}}$.
+
+For $\Mfive \sim M_{\mathrm{Pl}}$ (standard Randall--Sundrum models):
+the suppression is $\sim 10^{-47}$ --- completely negligible.
+
+\textbf{$\Mfive$ is undetermined} \tagP. No derivation on any branch
+constrains $\Mfive$ from within EDC. The suppression threshold
+$\Mfive \lesssim 100\MeV$ is an unusually low 5D Planck mass ---
+far below the electroweak scale. Whether such a low $\Mfive$ is
+physically viable within EDC is an open question not addressed here.
+\tagOpen
+\end{resultbox}
+
+% ============================================================================
+\section{Comparison to Accepted Geometric Sector}
+\label{sec:P2N2:comparison}
+% ============================================================================
+
+\subsection{Structure Summary}
+
+\begin{center}
+\begin{tabular}{lllll}
+\toprule
+\textbf{Contribution} & \textbf{$q$-Dependence} & \textbf{Sign}
+& \textbf{Scaling} & \textbf{Creates well?} \\
+\midrule
+$V_{\mathrm{geom}}$ & $\tau L_{\mathrm{tot}}(q)$ & Repulsive
+& $\sigma R$ & NO (single-well) \\
+Cross-term (LO) & $\propto V_{\mathrm{geom}}(q)$ & Renormalizes $\tau$
+& $\kappa_5^2 \sigma^2 R / R_5$ & NO (same shape) \\
+LO self-energy & $\propto L_{\mathrm{tot}}(q)$ & Renormalizes $\tau$
+& $\kappa_5^2 \sigma^2 R / R_5$ & NO (same shape) \\
+NLO self-energy & shape-dependent $q^2 + \ldots$
+& Sign undetermined & $(\kappa_5^2 \sigma R/R_5) \times V_{\mathrm{geom}}$
+& Only if $\Mfive \lesssim 100\MeV$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Does $V_{\mathrm{bulk}}$ Oppose the Geometric Restoring Force?}
+
+\textbf{At leading order: NO.} The cross-term and LO self-energy are
+both proportional to $V_{\mathrm{geom}}(q)$. They renormalize the
+tension but preserve the single-well structure.
+
+\textbf{At NLO: POSSIBLY, but suppressed.} The shape-dependent NLO
+correction has undetermined sign ($c_{\mathrm{shape}}$ is not
+computed here). If $c_{\mathrm{shape}} > 0$, the NLO term could
+weaken the Steiner curvature $V''(0)$. But the weakening is
+suppressed by the ratio $\kappa_5^2 \sigma R / R_5 \ll 1$ for any
+physically reasonable $\Mfive$.
+
+\textbf{Can $V_{\mathrm{bulk}}$ create a secondary minimum?}
+For a secondary minimum, the NLO correction would need to
+\emph{dominate} $V_{\mathrm{geom}}$ at some $q > 0$. This requires
+the suppression ratio to be $\gtrsim 1$, which means
+$\Mfive \lesssim O(100\MeV)$ --- an extremely low 5D Planck mass.
+
+% ============================================================================
+\section{Structural vs.\ Numeric Closure Firewall}
+\label{sec:P2N2:firewall}
+% ============================================================================
+
+\textbf{What was structurally derived:}
+\begin{itemize}
+    \item The decomposition of $V_{\mathrm{bulk}}(q)$ into cross-term
+          + LO self-energy + NLO self-energy \tagDc
+    \item The cross-term $\propto V_{\mathrm{geom}}(q)$ (tension
+          renormalization) \tagDc
+    \item The LO self-energy $\propto L_{\mathrm{tot}}(q)$ (tension
+          renormalization) \tagDc
+    \item The $\kappa_5^2$-suppression scaling of the NLO contribution
+          \tagDc
+    \item The suppression threshold $\Mfive \lesssim 100\MeV$ \tagDc
+\end{itemize}
+
+\textbf{What remains parameterized:}
+\begin{itemize}
+    \item The 5D Planck mass $\Mfive$ \tagP\ (not derived)
+    \item The sign of $c_{\mathrm{shape}}$ (NLO geometric coefficient)
+          \tagOpen
+    \item The compactification radius $R_5$ \tagP
+    \item The background metric $A(\xi)$ \tagP
+    \item Whether $\Mfive \lesssim 100\MeV$ is physically viable
+          in EDC \tagOpen
+\end{itemize}
+
+\textbf{Why no background tuning was used:} The background metrics
+(flat and RS-like) were declared \tagP\ before computation
+(\S\ref{sec:P2N2:model}). The $\kappa_5^2$-suppression scaling
+holds for \emph{both} backgrounds --- it is a structural feature of
+linearized 5D gravity, not a consequence of a specific metric choice.
+
+\textbf{Why Variant~2 warped scans are negative prior, not positive
+evidence:} The Variant~2 scan (D-N2-3) tested different fixed
+background metrics, not junction-sourced perturbations. The present
+derivation addresses the perturbative response but confirms the
+structural expectation: the response is $\kappa_5^2$-suppressed.
+
+\textbf{Why node-well matching was not used:} $V_B$, $\tau_n$,
+$\Delta m_{np}$ appear nowhere in this derivation. The
+$\kappa_5^2$-suppression result is independent of these target values.
+
+% ============================================================================
+\section{Honest Outcome Classification}
+\label{sec:P2N2:outcome}
+% ============================================================================
+
+\begin{resultbox}[title=N2 WP2 Outcome: Bounded Insufficiency
+    (Structural $\kappa_5^2$-Suppression)]
+
+\textbf{Classification:} Bounded insufficiency within the admissible
+N2 model class.
+
+\textbf{What was established:}
+\begin{enumerate}
+    \item \textbf{Cross-term [Dc]:} The interaction of the source
+    perturbation with the background gravitational field is
+    \emph{proportional to} $V_{\mathrm{geom}}(q)$. It renormalizes
+    the brane tension but preserves the single-well structure.
+    Structurally identical to the N1 (Israel) result.
+
+    \item \textbf{Leading-order self-energy [Dc]:} The gravitational
+    self-energy of the displaced brane is proportional to the total
+    arm length $L_{\mathrm{tot}}(q)$. Another tension renormalization.
+    No new structure.
+
+    \item \textbf{NLO shape-dependent correction [Dc]:} The first
+    correction with potentially new $q$-structure scales as
+    $\kappa_5^2 \sigma R / R_5 \sim \sigma R / (\Mfive^3 R_5)$.
+    This is suppressed below the $1\%$ level for any
+    $\Mfive \gtrsim 1\;\mathrm{GeV}$.
+
+    \item \textbf{Threshold [Dc]:} The NLO correction can compete
+    with $V_{\mathrm{geom}}$ only if $\Mfive \lesssim 100\MeV$,
+    an unusually low 5D Planck mass.
+
+    \item \textbf{Sign [OPEN]:} The sign of the NLO shape coefficient
+    $c_{\mathrm{shape}}$ is not determined. Even if it opposes
+    $V_{\mathrm{geom}}$, the magnitude is suppressed.
+\end{enumerate}
+
+\textbf{Why ``bounded insufficiency'' not ``no-go'':}
+The $\kappa_5^2$-suppression is parametric, not absolute. If
+$\Mfive$ is very low ($\lesssim 100\MeV$), the bulk backreaction
+could in principle contribute. But:
+\begin{itemize}
+    \item $\Mfive$ is undetermined [P] --- no branch derives it.
+    \item $\Mfive \lesssim 100\MeV$ is far below any scale
+          appearing elsewhere in EDC ($\sigma$, $1/\bdelta$, etc.
+          correspond to $\sim\mathrm{GeV}$ scales).
+    \item Even with a low $\Mfive$, the NLO sign is undetermined.
+\end{itemize}
+
+The lane is not dead (a low-$\Mfive$ model is not excluded within
+EDC), but it requires an additional hypothesis ($\Mfive$ very low)
+not present in the current donor base.
+
+\textbf{Scope of the insufficiency:}
+\begin{itemize}
+    \item Linearized 5D Einstein-Hilbert gravity
+    \item Flat and RS-warped backgrounds
+    \item Nambu--Goto brane arms with distributional source
+    \item In-brane node displacement (R3 path)
+    \item Any value of $\sigma$, $R$
+    \item Parametric in $\Mfive$, $R_5$
+\end{itemize}
+
+\textbf{Epistemic tag:} \tagDc\ (structural suppression within
+linearized gravity).
+\end{resultbox}
+
+\subsection{Impact on Candidate Landscape}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{Candidate} & \textbf{Before N2 WP2} & \textbf{After N2 WP2}
+& \textbf{Status} \\
+\midrule
+N1 Israel thin-junction & Bounded no-go & Unchanged & Dead end \\
+N7 thick-junction (monotone) & Bounded insufficiency & Unchanged
+& Narrowed \\
+N2 bulk backreaction & [OPEN] --- primary active & Bounded insufficiency
+($\kappa_5^2$-suppressed) & Narrowed \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ============================================================================
+\section{Summary}
+\label{sec:P2N2:summary}
+% ============================================================================
+
+\begin{resultbox}[title=N2 WP2 Summary]
+\textbf{Question asked:} Can the bulk gravitational backreaction from
+a displaced Y-junction generate a non-geometric contribution to $V(q)$?
+
+\textbf{Answer:} The mechanism is real but
+\textbf{$\kappa_5^2$-suppressed}: quantitatively irrelevant unless
+$\Mfive \lesssim 100\MeV$ [P].
+
+\textbf{Key results:}
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Item} & \textbf{Result} & \textbf{Tag} \\
+\midrule
+Cross-term & $\propto V_{\mathrm{geom}}$ (tension renorm.) & [Dc] \\
+LO self-energy & $\propto L_{\mathrm{tot}}$ (tension renorm.) & [Dc] \\
+NLO shape correction & Suppressed by $\kappa_5^2 \sigma R / R_5$ & [Dc] \\
+Threshold & $\Mfive \lesssim 100\MeV$ for relevance & [Dc] \\
+Sign of NLO & Undetermined & [OPEN] \\
+$\Mfive$ value & Not derived & [P] \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{N2 lane status after WP2:} Narrowed. Bulk backreaction is
+$\kappa_5^2$-suppressed for any $\Mfive \gtrsim 1\;\mathrm{GeV}$.
+The lane survives only under the additional hypothesis
+$\Mfive \lesssim 100\MeV$, which is not derived and has no support
+in the current donor base.
+
+\textbf{Cumulative status of all node-well candidates:}
+\begin{itemize}
+    \item N1 (Israel thin-junction): bounded no-go [Dc]
+    \item N7 (thick-junction monotone): bounded insufficiency [Dc]
+    \item N2 (bulk backreaction): bounded insufficiency
+          ($\kappa_5^2$-suppressed) [Dc]
+    \item N5 (Helfrich): falsified [Dc]
+    \item N4 ($\xi$-BC): falsified [Dc]
+    \item N6 (phenomenological): [P/Cal], no derivation
+\end{itemize}
+
+\textbf{No untested candidate remains} within the
+$S_{\mathrm{EH}} + S_{\mathrm{NG}}$ action class with
+$\Mfive \gtrsim 1\;\mathrm{GeV}$.
+
+\textbf{Anti-smuggling compliance:}
+\begin{itemize}
+    \item[$\checkmark$] No forbidden donors imported
+    \item[$\checkmark$] Background metric declared before computation
+    \item[$\checkmark$] $\tau_n$, $V_B$, $\Delta m_{np}$ not used
+    \item[$\checkmark$] Variant~2 treated as negative prior, not positive evidence
+    \item[$\checkmark$] $\kappa_5^2$-suppression reported honestly
+    \item[$\checkmark$] $\Mfive$ not tuned; results parametric
+\end{itemize}
+\end{resultbox}
