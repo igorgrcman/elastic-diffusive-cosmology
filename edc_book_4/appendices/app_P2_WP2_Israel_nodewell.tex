@@ -1,0 +1,691 @@
+% ============================================================================
+% Appendix: Phase 2 WP2 — Israel Junction Energy as Node-Well Candidate
+% ============================================================================
+% Status: [Dc|model] derivation attempt within declared 5D model
+% Scope: Test whether Israel junction matching conditions generate an
+%        attractive V_node(q) that could create a secondary minimum in V(q).
+% Phase 2 / WP2 / Put C step C2 deliverable
+% Governing documents: PHASE2_PLAN_V1.md, PHASE2_WP1_DONOR_NORMALIZATION.md
+% ============================================================================
+
+\chapter{Israel Junction Energy: Node-Well Candidate Test}
+\label{app:P2_WP2_Israel}
+
+% ============================================================================
+\section{Scope and Donor Discipline}
+\label{sec:P2WP2:scope}
+% ============================================================================
+
+\subsection{What This Appendix Tests}
+
+This appendix executes the \textbf{C2 step} of the Put~C corridor:
+insert the Y-junction configuration (displaced by collective coordinate $q$)
+into the junction sector of the total 5D action $S_{\mathrm{total}}$,
+and determine whether the Israel junction matching conditions generate
+a non-geometric energy contribution $V_{\mathrm{Israel}}(q)$.
+
+\textbf{Primary question:} Does $V_{\mathrm{Israel}}(q)$ provide an
+attractive (negative) contribution that could create a secondary minimum
+in the full potential $V(q) = V_{\mathrm{geom}}(q) + V_{\mathrm{Israel}}(q)$?
+
+\textbf{Allowed outcomes:}
+\begin{itemize}
+    \item \textbf{Positive:} $V_{\mathrm{Israel}}(q)$ is attractive and
+          creates a double-well in $V(q)$.
+    \item \textbf{Mixed:} $V_{\mathrm{Israel}}(q)$ exists but is
+          repulsive, insufficient, or requires fine-tuning.
+    \item \textbf{No-go:} Israel conditions for the Y-junction do not
+          generate a separate energy term, or the term is zero by symmetry.
+\end{itemize}
+
+A no-go result is a valid and informative outcome.
+
+\subsection{Donor Discipline}
+
+\textbf{Allowed inputs} (from WP1 normalization):
+\begin{itemize}
+    \item Put~C corridor structure (C1--C4) from D1 \tagDef
+    \item $V_{\mathrm{geom}}(q) = \tau L_{\mathrm{tot}}(q)$ from D3
+          (Appendix~\ref{app:vq_chosen_path}) \tagDc
+    \item $\sigma = 8.82\MeV/\fm^2$ \tagDc
+    \item $\delta = \hbar/(2 m_p c) \approx 0.105\fm$ \tagI
+    \item Variants~1--2 no-go as baseline (D2) \tagDc
+\end{itemize}
+
+\textbf{Forbidden imports:}
+\begin{itemize}
+    \item $V_B = 2\Delta m_{np}$ (must not constrain derivation)
+    \item Phenomenological Gaussian node well (Variant~3 shape)
+    \item $C = 100$ as independent evidence
+    \item $\tau_n \approx 878\second$ as constraint on $V(q)$
+    \item Helfrich bending as attraction source (falsified)
+\end{itemize}
+
+\textbf{Assumptions declared upfront:}
+\begin{enumerate}
+    \item Background metric: 5D warped product
+          $ds^2 = e^{2A(\xi)}\eta_{\mu\nu}dx^\mu dx^\nu + d\xi^2$ \tagI
+    \item Y-junction treated as codimension-2 defect in 5D \tagDef
+    \item Collective coordinate $q$ parametrizes in-brane node displacement
+          (inherited from R3) \tagDc
+    \item Adiabatic approximation: fast modes relax at fixed $q$ \tagP
+\end{enumerate}
+
+% ============================================================================
+\section{Setup: Y-Junction in 5D with Israel Conditions}
+\label{sec:P2WP2:setup}
+% ============================================================================
+
+\subsection{Israel Junction Conditions: Standard Formulation}
+
+The Israel junction conditions \tagDef\ relate the discontinuity in
+extrinsic curvature across a thin hypersurface $\Sigma$ to the
+stress-energy localized on $\Sigma$:
+\begin{equation}
+    [K_{ab}] - h_{ab}[K] = -\kappa_5^2\, S_{ab}
+    \label{eq:israel_standard}
+\end{equation}
+where $[K_{ab}] \equiv K_{ab}^+ - K_{ab}^-$ is the jump, $h_{ab}$ is
+the induced metric on $\Sigma$, $[K] = h^{ab}[K_{ab}]$, and $S_{ab}$
+is the brane stress-energy tensor. For a Nambu--Goto brane with
+tension $\sigma$:
+\begin{equation}
+    S_{ab} = -\sigma\, h_{ab}
+    \label{eq:brane_stress_energy}
+\end{equation}
+
+Substituting into Eq.~\eqref{eq:israel_standard}:
+\begin{equation}
+    [K_{ab}] - h_{ab}[K] = \kappa_5^2\, \sigma\, h_{ab}
+    \label{eq:israel_NG}
+\end{equation}
+
+Taking the trace: $[K](1 - 4) = \kappa_5^2 \sigma \times 4$, hence
+$[K] = -\frac{4}{3}\kappa_5^2\sigma$ in 4+1 dimensions
+(the brane worldvolume is 4-dimensional). Back-substituting:
+\begin{equation}
+    [K_{ab}] = -\frac{\kappa_5^2 \sigma}{3}\, h_{ab}
+    \label{eq:israel_trace}
+\end{equation}
+
+This is the standard thin-brane Israel matching for a single
+codimension-1 brane in 5D.
+
+\subsection{The Y-Junction Complication: Codimension-2}
+
+A Y-junction consists of three brane worldsheets $\Sigma_1, \Sigma_2,
+\Sigma_3$ meeting along a common $(2+1)$-dimensional worldline
+(the junction line $\mathcal{J}$). This is a \textbf{codimension-2}
+defect in the 5D bulk.
+
+\begin{assumptionbox}
+\textbf{Key structural distinction:}
+\begin{itemize}
+    \item Each brane arm $\Sigma_i$ is individually codimension-1 in 5D.
+          The Israel conditions Eq.~\eqref{eq:israel_standard} apply to
+          each arm away from the junction line.
+    \item At the junction line $\mathcal{J}$, the three arms meet.
+          The matching conditions at $\mathcal{J}$ involve
+          \textbf{three} extrinsic curvature tensors and the deficit
+          angle structure at the vertex.
+\end{itemize}
+This appendix addresses the junction-line contribution specifically.
+\end{assumptionbox}
+
+\subsection{Junction Node Energy from Deficit Angle}
+
+At the codimension-2 junction line $\mathcal{J}$, the gravitational
+contribution is related to the \textbf{conical deficit angle}
+$\Delta\theta$ around $\mathcal{J}$. In $(D+1)$ dimensions, a
+codimension-2 conical defect with deficit angle $\Delta\theta$ carries
+a distributional curvature \tagDer:
+\begin{equation}
+    R^{(D+1)} \supset 2\pi\,\Delta\theta\;\delta^{(2)}(\mathcal{J})
+    \label{eq:deficit_curvature}
+\end{equation}
+
+The gravitational energy associated with this deficit angle is:
+\begin{equation}
+    E_{\mathrm{deficit}} = \frac{\Delta\theta}{2\pi}\,
+    \frac{1}{\kappa_5^2}\,\mathcal{A}(\mathcal{J})
+    \label{eq:deficit_energy}
+\end{equation}
+where $\mathcal{A}(\mathcal{J})$ is the ``area'' (length in 1+1
+worldline sense) of the junction line.
+
+For a Y-junction with three arms meeting at angles $\theta_1, \theta_2,
+\theta_3$ (measured in the transverse 2-plane):
+\begin{equation}
+    \Delta\theta = 2\pi - (\theta_1 + \theta_2 + \theta_3)
+    \label{eq:deficit_Y}
+\end{equation}
+
+\subsection{Angles as Functions of $q$}
+
+When the junction node is at the Steiner equilibrium ($q = 0$), the
+$\Zthree$ symmetry dictates equal angles:
+\begin{equation}
+    \theta_1 = \theta_2 = \theta_3 = \frac{2\pi}{3}
+    \quad\Longrightarrow\quad
+    \Delta\theta(0) = 2\pi - 3 \times \frac{2\pi}{3} = 0
+    \label{eq:angles_steiner}
+\end{equation}
+
+\begin{resultbox}[title=Critical Observation]
+At the Steiner equilibrium, the deficit angle vanishes:
+$\Delta\theta(0) = 0$. The junction node in equilibrium carries
+\textbf{zero deficit-angle gravitational energy}.
+
+This is a direct consequence of the Steiner optimality theorem:
+the $120^\circ$ angles sum to $2\pi$ in the transverse plane,
+producing a flat (non-conical) geometry at the vertex.
+\tagDc
+\end{resultbox}
+
+When the node is displaced by $q > 0$ along the in-brane path
+(toward $\mathbf{P}_1$), the arm directions change. The angles between
+the worldsheets in the transverse 2-plane at the junction line become
+$q$-dependent: $\theta_i = \theta_i(q)$.
+
+\textbf{However}, a critical subtlety must be addressed: the angles
+$\theta_i(q)$ that enter the deficit-angle formula are the angles
+\emph{in the transverse 2-plane perpendicular to the junction line},
+not the in-brane angles between the arms.
+
+% ============================================================================
+\section{Israel Energy Derivation Attempt}
+\label{sec:P2WP2:derivation}
+% ============================================================================
+
+\subsection{Model: Static Y-Junction in Warped 5D}
+
+Consider the 5D metric:
+\begin{equation}
+    ds^2 = e^{2A(\xi)}\bigl(-dt^2 + d\mathbf{x}^2\bigr) + d\xi^2
+    \label{eq:5D_metric}
+\end{equation}
+where $\xi$ is the extra-dimensional coordinate and $A(\xi)$ is the
+warp factor \tagI.
+
+The Y-junction node sits at position $(\mathbf{x}_{\mathrm{node}}, \xi_0)$.
+In the in-brane displacement model, $\mathbf{x}_{\mathrm{node}} = (q, 0)$
+while $\xi_0$ remains fixed \tagDc.
+
+Each arm $i$ is a worldsheet connecting the node at
+$(\mathbf{x}_{\mathrm{node}}, \xi_0)$ to a boundary point
+$(\mathbf{P}_i, \xi_0)$ on the brane. In the static limit, the arm
+$i$ is a geodesic (straight line) in the $(x, y)$-plane at fixed
+$\xi = \xi_0$. The worldsheet of arm $i$ extends in the $(\xi, \ell_i)$
+plane where $\ell_i$ is the in-brane arc length along arm $i$.
+
+\subsection{Extrinsic Curvature of Each Arm}
+
+For arm $i$ embedded as a codimension-1 surface in the 5D bulk, the
+extrinsic curvature tensor $K_{ab}^{(i)}$ has components determined
+by the embedding. In the thin-brane approximation, each arm is a
+planar surface (no intrinsic curvature in the arm plane), and the
+extrinsic curvature is determined by how the arm normal varies along
+the surface.
+
+For a flat arm at fixed angle $\alpha_i$ in the $(x,y)$-plane:
+\begin{equation}
+    K_{ab}^{(i)} = 0 \quad\text{(along each flat arm, away from node)}
+    \label{eq:K_flat_arm}
+\end{equation}
+This is because a flat planar worldsheet in a warped-product background
+has vanishing extrinsic curvature in the directions within the
+worldsheet plane. The non-trivial extrinsic curvature arises only
+from the warp factor:
+\begin{equation}
+    K_{\mu\nu}^{(i)} = A'(\xi_0)\, e^{2A(\xi_0)}\, \eta_{\mu\nu}
+    \label{eq:K_warp}
+\end{equation}
+which is the same for all three arms (independent of arm direction
+or node displacement $q$). \tagDc
+
+\begin{edcopenbox}[title=Structural Result]
+\textbf{Finding:} The extrinsic curvature of each individual arm
+worldsheet, evaluated via the Israel conditions, depends on the
+warp factor $A'(\xi_0)$ and brane tension $\sigma$ but
+\textbf{not on the node displacement $q$}. The $q$-dependence
+enters only through the arm \emph{lengths} (which give
+$V_{\mathrm{geom}}$) and the \emph{angles} at the junction vertex.
+
+The Israel matching Eq.~\eqref{eq:israel_trace} constrains the
+bulk geometry on each side of each arm but does not introduce
+a $q$-dependent energy term \textbf{from the arm interiors}.
+\tagDc
+\end{edcopenbox}
+
+\subsection{Junction Vertex: Deficit-Angle Contribution}
+
+The remaining candidate for a $q$-dependent Israel energy is the
+deficit-angle term at the junction vertex (Eq.~\eqref{eq:deficit_energy}).
+
+\subsubsection{Transverse Angle Computation}
+
+The transverse 2-plane at a point on the junction line $\mathcal{J}$
+is spanned by two directions perpendicular to $\mathcal{J}$ and
+perpendicular to the $\xi$-direction. For the in-brane displacement
+model, $\mathcal{J}$ runs along the time direction, and the transverse
+plane is the spatial $(x, y)$-plane (at fixed $\xi = \xi_0$).
+
+The angles between the arms in the transverse plane are determined by
+the in-brane arm directions from the node to the boundary points:
+\begin{align}
+    \hat{e}_1(q) &= \frac{\mathbf{P}_1 - \mathbf{x}_{\mathrm{node}}}{|\mathbf{P}_1 - \mathbf{x}_{\mathrm{node}}|}
+        = \frac{(R - q, 0)}{R - q} = (1, 0) \label{eq:dir1}\\
+    \hat{e}_2(q) &= \frac{\mathbf{P}_2 - \mathbf{x}_{\mathrm{node}}}{|\mathbf{P}_2 - \mathbf{x}_{\mathrm{node}}|}
+        = \frac{(-R/2 - q,\; R\sqrt{3}/2)}{L_2(q)} \label{eq:dir2}\\
+    \hat{e}_3(q) &= \frac{\mathbf{P}_3 - \mathbf{x}_{\mathrm{node}}}{|\mathbf{P}_3 - \mathbf{x}_{\mathrm{node}}|}
+        = \frac{(-R/2 - q,\; -R\sqrt{3}/2)}{L_3(q)} \label{eq:dir3}
+\end{align}
+where $L_2(q) = L_3(q) = \sqrt{R^2 + Rq + q^2}$
+(Appendix~\ref{app:vq_chosen_path}).
+
+The angles between adjacent arms:
+\begin{align}
+    \cos\theta_{12}(q) &= \hat{e}_1 \cdot \hat{e}_2
+        = \frac{-(R/2 + q)}{L_2(q)} \label{eq:cos12}\\
+    \cos\theta_{13}(q) &= \hat{e}_1 \cdot \hat{e}_3
+        = \frac{-(R/2 + q)}{L_3(q)} = \cos\theta_{12}(q)
+        \label{eq:cos13}\\
+    \cos\theta_{23}(q) &= \hat{e}_2 \cdot \hat{e}_3
+        = \frac{(R/2 + q)^2 - 3R^2/4}{L_2(q)^2}
+        \label{eq:cos23}
+\end{align}
+
+At $q = 0$: $\cos\theta_{12} = \cos\theta_{13} = -1/2$, giving
+$\theta_{12} = \theta_{13} = 2\pi/3$. And
+$\cos\theta_{23} = (1/4 - 3/4)/1 = -1/2$, giving
+$\theta_{23} = 2\pi/3$. Consistent with $\Zthree$ Steiner angles.
+
+\subsubsection{Deficit Angle as Function of $q$}
+
+The total angle subtended by the three arms at the junction vertex is:
+\begin{equation}
+    \Theta(q) = \theta_{12}(q) + \theta_{23}(q) + \theta_{31}(q)
+    \label{eq:total_angle}
+\end{equation}
+where $\theta_{31} = \theta_{13}$ by the relabeling convention,
+and the three sectors are defined as the angles between successive
+arms going around the vertex (with appropriate sign conventions).
+
+\textbf{However}, this computation requires care about the full
+angular structure. The three arm directions divide the transverse
+plane into three sectors. The angles of these three sectors must sum
+to $2\pi$:
+\begin{equation}
+    \theta_{12}^{\mathrm{sector}} + \theta_{23}^{\mathrm{sector}}
+    + \theta_{31}^{\mathrm{sector}} = 2\pi
+    \label{eq:angle_sum}
+\end{equation}
+
+This is a \textbf{geometric identity} valid for any three rays from
+a common point in a 2D plane. Therefore:
+\begin{equation}
+    \boxed{\Delta\theta(q) = 2\pi - \Theta(q) = 0 \quad \forall\; q}
+    \label{eq:deficit_zero}
+\end{equation}
+
+\begin{resultbox}[title=Key Result: Deficit Angle Vanishes Identically]
+The deficit angle at the Y-junction node is \textbf{identically zero}
+for all node positions $q$, not just at the Steiner equilibrium. This
+is because three coplanar arms always divide the transverse plane into
+sectors whose angles sum to $2\pi$, regardless of the arm directions.
+
+\textbf{Consequence:} The deficit-angle mechanism cannot generate a
+$q$-dependent junction energy $V_{\mathrm{Israel}}(q)$.
+
+This result is \textbf{geometric} --- it follows from the
+in-brane displacement model (all arms lie in the same plane) and does
+not depend on the metric, warp factor, or tension values. \tagDc
+\end{resultbox}
+
+\subsection{Could Non-Coplanar Geometry Help?}
+
+The deficit-angle vanishing is a consequence of the coplanar arm
+geometry. If the junction arms were not coplanar (e.g., if the node
+displacement had a component in the $\xi$-direction), the angles
+in the transverse 2-plane would no longer sum to $2\pi$, and a
+deficit angle could arise.
+
+\textbf{Compact-direction displacement:} If the node moves along
+$\xi$ (the compact-direction path from
+Appendix~\ref{app:vq_chosen_path}~\S\ref{sec:vq:compact}), the three
+arms would tilt out of the brane plane. The angle between arm $i$ and
+the transverse plane would be:
+\begin{equation}
+    \phi_i(q) = \arctan\left(\frac{q}{R}\right)
+    \label{eq:tilt_angle}
+\end{equation}
+(the same for all three arms by $\Zthree$ symmetry). The projection
+of each arm into the transverse plane remains at $120^\circ$, and the
+angles between the projected arm directions still sum to $2\pi$.
+
+The deficit angle in the 2-plane perpendicular to $\mathcal{J}$ is
+determined by the \emph{solid angle} subtended by the three worldsheets.
+For the compact-direction displacement, the worldsheets tilt uniformly
+out of the transverse plane, but their mutual angles remain unchanged
+by $\Zthree$ symmetry. Therefore:
+\begin{equation}
+    \Delta\theta_{\xi}(q) = 0 \quad \forall\; q
+    \label{eq:deficit_compact}
+\end{equation}
+
+\begin{edcopenbox}[title=Structural Limitation]
+The deficit-angle mechanism for codimension-2 junction energy
+requires a configuration where the sum of angles around the
+junction line deviates from $2\pi$. For the Y-junction with
+three smooth worldsheet arms meeting at a line, this sum is
+always $2\pi$ by topological necessity (the arms partition
+the transverse plane). A deficit angle would require either:
+\begin{enumerate}
+    \item \textbf{A thick junction core} with internal structure that
+          modifies the angular sum (e.g., a finite-radius core with
+          non-trivial metric inside),
+    \item \textbf{A non-trivial topology} of the transverse space
+          (e.g., orbifold identification removing a sector),
+    \item \textbf{Additional worldsheets or branes} intersecting
+          the junction that remove angular sectors.
+\end{enumerate}
+None of these are present in the minimal Y-junction model.
+\tagDc
+\end{edcopenbox}
+
+% ============================================================================
+\section{Alternative Israel-Sector Contributions}
+\label{sec:P2WP2:alternatives}
+% ============================================================================
+
+Having established that the deficit-angle mechanism gives zero
+contribution, we examine whether other aspects of the Israel junction
+conditions could generate a $q$-dependent energy.
+
+\subsection{Arm-Interior Israel Energy}
+
+The Israel matching conditions on each arm (Eq.~\eqref{eq:israel_trace})
+relate the jump in extrinsic curvature to the tension $\sigma$.
+The gravitational energy stored in this matching is:
+\begin{equation}
+    E_{\mathrm{Israel}}^{(i)} = \frac{1}{\kappa_5^2}\int_{\Sigma_i}
+    d^4x\, \sqrt{-h}\, [K]
+    \label{eq:E_israel_arm}
+\end{equation}
+
+For a flat arm in warped background:
+\begin{equation}
+    E_{\mathrm{Israel}}^{(i)} = \frac{[K]}{\kappa_5^2}\,
+    e^{4A(\xi_0)}\, \mathcal{A}_i
+    \label{eq:E_israel_flat}
+\end{equation}
+where $\mathcal{A}_i$ is the worldvolume area of arm $i$.
+The factor $[K] = -\frac{4}{3}\kappa_5^2\sigma$ is fixed by the
+Israel conditions (Eq.~\eqref{eq:israel_trace}) and is
+\textbf{independent of $q$}.
+
+The $q$-dependence enters through $\mathcal{A}_i$, which is
+proportional to the arm length $L_i(q)$:
+\begin{equation}
+    E_{\mathrm{Israel}}^{(i)} \propto L_i(q)
+    \label{eq:E_israel_prop_L}
+\end{equation}
+
+Therefore:
+\begin{equation}
+    V_{\mathrm{Israel,arm}}(q) = \sum_{i=1}^3 E_{\mathrm{Israel}}^{(i)}
+    \propto L_{\mathrm{tot}}(q) \propto V_{\mathrm{geom}}(q)
+    \label{eq:V_israel_arm}
+\end{equation}
+
+\begin{resultbox}[title=Arm-Interior Israel Energy]
+The arm-interior Israel energy is \textbf{proportional to}
+$V_{\mathrm{geom}}(q)$. It does not introduce new $q$-dependence
+--- it merely renormalizes the effective tension:
+\begin{equation}
+    V_{\mathrm{geom+Israel}}(q) = \tau_{\mathrm{eff}} \times L_{\mathrm{tot}}(q)
+\end{equation}
+where $\tau_{\mathrm{eff}} = \tau + \delta\tau_{\mathrm{Israel}}$.
+This is a single-well potential (like $V_{\mathrm{geom}}$ alone) and
+\textbf{cannot create a secondary minimum}. \tagDc
+\end{resultbox}
+
+\subsection{Warp-Factor Gradient Coupling}
+
+If the warp factor varies across the junction region, the effective
+tension becomes position-dependent:
+\begin{equation}
+    \tau_{\mathrm{eff}}(q) = \sigma\, e^{2A(\xi_0)}\,
+    \bigl[1 + \mathcal{O}(A''(\xi_0)\, q^2)\bigr]
+\end{equation}
+
+For the in-brane displacement model (fixed $\xi_0$), this is
+\textbf{constant} --- the node does not move in the $\xi$-direction.
+For the compact-direction path, this could introduce $q$-dependence
+through $e^{2A(\xi_0 + q)}$, but such a term was already tested in
+Variant~2 of the Put~C execution report (D2), which found no
+metastability.
+
+\subsection{Gauss--Codazzi Constraint at the Vertex}
+
+The Gauss--Codazzi equations relate the bulk curvature, brane
+curvature, and extrinsic curvature. At the junction vertex, these
+impose a constraint on the geometry. However, the Gauss--Codazzi
+equations are \emph{constraints} (identities following from the
+embedding), not additional energy contributions. They do not generate
+a new term in the effective potential.
+
+% ============================================================================
+\section{Comparison to $V_{\mathrm{geom}}$ Baseline}
+\label{sec:P2WP2:comparison}
+% ============================================================================
+
+\subsection{Summary of All Israel-Sector Contributions}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{Mechanism} & \textbf{$q$-Dependence} & \textbf{Sign}
+& \textbf{Creates Well?} \\
+\midrule
+Deficit angle at node & $\Delta\theta(q) = 0$ & None & NO \\
+Arm-interior matching & $\propto L_{\mathrm{tot}}(q)$ & Repulsive
+& NO (renormalizes $\tau$) \\
+Warp-factor gradient & Constant (in-brane path) & --- & NO \\
+Gauss--Codazzi constraint & Not an energy term & --- & NO \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Net Israel contribution to $V(q)$:} proportional to
+$V_{\mathrm{geom}}(q)$. Single-well. No new attractive structure.
+
+\subsection{Comparison to Variant~3 Node Well}
+
+The Variant~3 phenomenological node well (D2, forbidden donor F4)
+used:
+\begin{equation}
+    V_{\mathrm{node}}^{(\mathrm{V3})} = -V_0\,
+    \exp\!\left(-\frac{(q - q_*)^2}{2w^2}\right)
+\end{equation}
+with $V_0 \approx 10\MeV$, $q_* \approx 2\fm$, $w \approx 0.4\fm$.
+This attractive Gaussian well is \textbf{not reproduced} by the Israel
+junction energy. The Israel sector provides no mechanism for an
+attractive minimum at $q_* > 0$.
+
+% ============================================================================
+\section{Shape Analysis and Robustness}
+\label{sec:P2WP2:shape}
+% ============================================================================
+
+\subsection{Model Independence}
+
+The vanishing of the deficit-angle contribution
+(Eq.~\eqref{eq:deficit_zero}) is \textbf{model-independent}:
+it holds for any choice of warp factor $A(\xi)$, any value of
+$\sigma$, and any arm length $R$. It is a consequence of planar
+geometry (three coplanar arms always partition $2\pi$).
+
+The proportionality of arm-interior Israel energy to $L_{\mathrm{tot}}$
+(Eq.~\eqref{eq:V_israel_arm}) holds for any warp factor that is
+evaluated at a single $\xi_0$ (i.e., for in-brane node displacement).
+
+\subsection{What Could Evade This No-Go}
+
+For the Israel junction mechanism to generate a non-trivial
+$V_{\mathrm{Israel}}(q)$, one would need:
+\begin{enumerate}
+    \item \textbf{Thick junction core:} A regularized junction with
+          core radius $\sim \delta$ and non-trivial internal metric.
+          The Israel conditions would be replaced by smooth matching
+          across the core, potentially introducing $q$-dependent
+          curvature energy. This goes beyond the thin-junction
+          approximation and is \textbf{out of scope} for the current
+          model.
+    \item \textbf{Non-planar Y-junction:} If the arms curve out of the
+          brane plane (e.g., junction arms as 3D surfaces rather than
+          2D worldsheets), the angular budget could differ from $2\pi$.
+          This would require a different embedding model.
+    \item \textbf{Higher-order gravitational terms:} Gauss--Bonnet or
+          higher-curvature corrections to the bulk action could introduce
+          junction energy terms not captured by standard Israel conditions.
+          This is additional physics beyond $S_{\mathrm{EH}} + S_{\mathrm{NG}}$.
+\end{enumerate}
+
+None of these are present in the minimal 5D model declared at the
+start of this appendix.
+
+% ============================================================================
+\section{Outcome Classification}
+\label{sec:P2WP2:outcome}
+% ============================================================================
+
+\begin{resultbox}[title=Phase 2 WP2 Outcome: Bounded No-Go]
+\textbf{Classification:} Bounded no-go within the minimal model.
+
+\textbf{Result:} The Israel junction matching conditions for a
+Y-junction displaced by collective coordinate $q$ do \textbf{not}
+generate an attractive $V_{\mathrm{Israel}}(q)$ in the minimal 5D
+model (Einstein--Hilbert bulk + Nambu--Goto branes + thin junction).
+Specifically:
+\begin{enumerate}
+    \item The deficit-angle energy at the junction node is identically
+          zero for all $q$ (coplanar arms always partition $2\pi$).
+    \item The arm-interior Israel energy is proportional to
+          $V_{\mathrm{geom}}(q) = \tau L_{\mathrm{tot}}(q)$ and
+          merely renormalizes the tension. It is single-well.
+    \item No other Israel-sector mechanism produces a
+          $q$-dependent attractive term.
+\end{enumerate}
+
+\textbf{Scope of no-go:} This result applies to:
+\begin{itemize}
+    \item Thin Y-junctions (distributional matching)
+    \item In-brane and compact-direction node displacement
+    \item Any warp factor $A(\xi)$ (flat, RS, or general)
+    \item Any value of brane tension $\sigma$
+\end{itemize}
+
+\textbf{What this does NOT falsify:}
+\begin{itemize}
+    \item The double-well postulate [P] for $V(q)$ per se --- other
+          mechanisms (thick junction core, bulk backreaction, additional
+          fields) remain open.
+    \item Candidate N2 (bulk gravitational backreaction) as an
+          alternative source of $V_{\mathrm{node}}$.
+    \item Thick junction models where the internal core structure
+          at scale $\delta$ contributes energy.
+\end{itemize}
+
+\textbf{Epistemic tag:} \tagDc\ (within declared minimal model).
+The no-go is model-dependent: it could be evaded by thick-junction
+or higher-curvature physics not present in the minimal action.
+\end{resultbox}
+
+\subsection{Impact on Phase 2 and Phase 1 Status}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{Ledger Item} & \textbf{Before WP2} & \textbf{After WP2}
+& \textbf{Change} \\
+\midrule
+$V_{\mathrm{node}}(q)$ origin & [OPEN] & [OPEN] (N1 excluded)
+& N1 ruled out \\
+Double-well structure & [P] & [P] (unchanged)
+& No closure \\
+$V_B$ from 5D & [P] & [P] (unchanged) & No closure \\
+Candidate landscape & N1 primary & N2 now primary & Narrowed \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ============================================================================
+\section{Recommended Next Steps}
+\label{sec:P2WP2:next}
+% ============================================================================
+
+Given the N1 no-go, the recommended Phase 2 continuation targets are:
+
+\begin{enumerate}
+    \item \textbf{N2: Bulk gravitational backreaction.} When the junction
+          node displaces, the bulk metric is perturbed. Solving the
+          linearized Einstein equations with the displaced junction as
+          source may reveal a $q$-dependent bulk energy. This was
+          partially tested in Put~C Variant~2 (warped metric scan) with
+          negative results, but that scan used specific metric ansatze.
+          A systematic treatment with junction-sourced perturbations
+          has not been attempted.
+
+    \item \textbf{Thick junction core.} Replacing the thin-junction
+          (distributional) treatment with a regularized core at scale
+          $\delta \approx 0.105\fm$. The internal core energy could
+          depend on $q$ through the changing stress configuration at
+          the vertex. This would require specifying the core structure
+          [P] and is a model-dependent extension.
+
+    \item \textbf{Re-evaluate the metastability mechanism.} If both
+          N1 and N2 yield no-go results, the double-well postulate [P]
+          may need to be reconsidered. Possible alternatives include:
+          non-perturbative effects, topological transitions, or
+          mechanisms not captured by the $S_{\mathrm{EH}} + S_{\mathrm{NG}}$
+          action class.
+\end{enumerate}
+
+% ============================================================================
+\section{Summary}
+\label{sec:P2WP2:summary}
+% ============================================================================
+
+\begin{resultbox}[title=WP2 Summary]
+\textbf{Question asked:} Can Israel junction conditions generate an
+attractive $V_{\mathrm{node}}(q)$ for the Y-junction?
+
+\textbf{Answer:} \textbf{No}, within the minimal 5D model.
+
+\textbf{Why:}
+\begin{enumerate}
+    \item Deficit angle at the coplanar Y-junction vertex is identically
+          zero ($\Delta\theta = 0$ for all $q$) by planar geometry.
+    \item Arm-interior Israel energy is $\propto L_{\mathrm{tot}}(q)$
+          (single-well), renormalizing tension only.
+    \item No other Israel-sector mechanism produces attraction.
+\end{enumerate}
+
+\textbf{Scope:} Valid for thin Y-junctions in any warped 5D background
+with Einstein--Hilbert + Nambu--Goto action.
+
+\textbf{What remains open:} The physical origin of
+$V_{\mathrm{node}}(q)$. Candidate N2 (bulk backreaction) and
+thick-junction models are the remaining avenues.
+
+\textbf{Anti-smuggling compliance:}
+\begin{itemize}
+    \item[$\checkmark$] No forbidden donors imported
+    \item[$\checkmark$] $\tau_n$, $V_B$, $\Delta m_{np}$ not used as
+          constraints
+    \item[$\checkmark$] No-go documented honestly; no forced double-well
+    \item[$\checkmark$] Scope of no-go bounded (model-dependent, not
+          absolute)
+\end{itemize}
+\end{resultbox}
