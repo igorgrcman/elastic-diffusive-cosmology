@@ -12,6 +12,7 @@ Canonical Phase 2 Execution Plan for Book IV / Neutron Line:
 | Version | Date | Notes |
 |---------|------|-------|
 | **v1.0** | **2026-03-13** | Initial plan. Derived from the recommended entry point in `BOOK4_NEUTRONLINE_FINAL_STATUS_AFTER_PHASE1.md` §12. |
+| **v1.1** | **2026-03-13** | Post-WP2 update. WP1 completed (donor normalization). WP2 executed: Israel junction energy (N1) tested → bounded no-go within minimal thin-junction S_EH + S_NG model. N1 reclassified as preserved dead-end. Surviving active lanes: N2 (bulk backreaction), thick-junction/internal-core. See `PHASE2_NEXTSTEP_PLAN_V1.md` for next-step lane selection. |
 
 ---
 
@@ -29,6 +30,39 @@ structure [P], barrier height V_B [P], effective mass M(q) [P],
 oscillation frequency ω₀ [P], and the E_arm ≡ Δm_np identification
 [OPEN]. Every other open item in the neutron-line ledger (L₀/δ, A, ω₀)
 requires V(q) as a prerequisite or co-input.
+
+---
+
+## 3A. Phase 2 Current Status (v1.1 Update)
+
+**As of 2026-03-13, after WP2 execution:**
+
+| Work Package | Status | Outcome |
+|-------------|--------|---------|
+| **WP-A (WP1)** | **Complete** | Donor normalization delivered (`PHASE2_WP1_DONOR_NORMALIZATION.md`). 14 donor assets inspected across 6 branches. 7 cleared, 5 archived as dead-end, 2 forbidden. Donor base clean. |
+| **WP-B (WP2)** | **Partial — N1 tested** | Israel junction energy (N1) tested as primary node-well candidate. Result: **bounded no-go** within minimal thin-junction S_EH + S_NG model. Deficit angle identically zero (coplanar geometry). Arm-interior Israel energy ∝ V_geom (tension renormalization only). No attractive term generated. See `appendices/app_P2_WP2_Israel_nodewell.tex` and `code/p2_wp2_israel_nodewell_check.py` (6/6 tests pass). |
+| **WP-C** | **Not reached** | Depends on WP-B producing a computable V(q). N1 yielded no new V(q) terms. |
+| **WP-D** | **Partial** | Conservative ch03 update noting N1 no-go. Full WP-D integration deferred to after next lane execution. |
+
+### Candidate Lane Status After WP2
+
+| # | Candidate | Status Before WP2 | Status After WP2 | Active? |
+|---|-----------|-------------------|-------------------|---------|
+| **N1** | Israel junction energy (thin) | [OPEN] — primary candidate | **Bounded no-go** [Dc] within minimal model | **NO — preserved dead-end** |
+| **N2** | Bulk gravitational backreaction | [OPEN] — speculative backup | [OPEN] — now primary surviving candidate | **YES** |
+| **N3** | Warp-factor gradient coupling | Partially tested — no metastability | Unchanged; subsumable under N2 | **Conditional** |
+| **N4** | Topological compact-direction | Partially falsified (ξ-BC) | Unchanged | **Limited** |
+| **N5** | Helfrich bending | FALSIFIED (260/260) | Unchanged | **NO** |
+| **N6** | Phenomenological Gaussian | [P/Cal] — no physical origin | Unchanged | **NO** |
+| **N7** | Thick-junction / internal-core | Not previously listed as separate candidate | Identified by WP2 as escape route from thin-junction no-go | **YES — new active candidate** |
+
+### Dead-End Preservation: N1
+
+The N1 no-go is preserved for the following reasons:
+1. **Prevents accidental revival.** Future work must not re-attempt thin-junction Israel conditions as a metastability source without new physics (e.g., higher-curvature terms, additional branes).
+2. **Constrains the model class.** The no-go applies to ALL thin Y-junctions in ANY warped 5D background with S_EH + S_NG — it is geometric (coplanar arm angular sum = 2π), not parameter-dependent.
+3. **Narrows the search.** Any viable node-well mechanism must involve physics not present in the thin-junction treatment: either internal core structure (thick-junction) or bulk field response (backreaction).
+4. **Reference:** `appendices/app_P2_WP2_Israel_nodewell.tex`, §6 (Outcome Classification).
 
 ---
 
@@ -131,6 +165,7 @@ and leaves the double-well open.
 | D11 | Helfrich NO-GO | `helfrich-well-from-action-v1` | Bending rigidity cannot source metastability | [Dc] NO-GO | ★★ — cautionary |
 | D12 | Minimal 5D models insufficient | D2 above | Variants 1–2 produce no metastability | [Dc] | ★★★★★ — defines the gap |
 | D13 | OPR-21 BVP infrastructure | `book2-opr21-bvp-foundation-v1` | Sturm-Liouville solver, Robin BC, eigenvalue extraction | [Dc]+[M] | ★★★ — if BVP needed |
+| D14 | **WP2 Israel no-go (v1.1)** | Current branch / `app_P2_WP2_Israel_nodewell.tex` + `p2_wp2_israel_nodewell_check.py` | N1 bounded no-go: thin-junction Israel conditions yield Δθ ≡ 0 and V_Israel ∝ V_geom. Constrains next-lane search. | [Dc] NO-GO | ★★★★★ — mandatory constraint |
 
 ### Critical Prior Finding from D2/D12
 
@@ -171,13 +206,12 @@ at q_n > 0?
 3. Combine with V_geom(q) [Dc] to form full V(q)
 4. Determine whether double-well structure exists
 
-**Candidate mechanisms** (to be investigated, not assumed):
-- Israel junction energy at the Y-junction vertex (gravitational matching
-  conditions across the junction)
-- Warp-factor backreaction on junction displacement
-- Topological energy cost of deforming the junction in the compact direction
-- Bulk field coupling to junction modes (e.g., scalar or gravitational
-  fluctuation spectrum change as junction moves)
+**Candidate mechanisms** (updated after WP2):
+- ~~Israel junction energy at the Y-junction vertex~~ — **bounded no-go** (WP2, v1.1). Thin-junction Israel conditions produce zero deficit angle and only tension renormalization. Not viable in minimal model.
+- Bulk gravitational backreaction (N2) — junction displacement sources bulk metric perturbation; energy change depends on q. Partially tested in Variant 2 with negative results, but not with junction-sourced perturbations. **Active.**
+- Thick-junction / internal-core structure (N7) — regularized core at scale δ with non-trivial internal metric and stress. Core energy depends on q through changing stress configuration at vertex. **Active — new candidate identified by WP2.**
+- ~~Topological energy of compact-direction deformation~~ — partially falsified (ξ-BC, V' > 0). Not viable as sole source.
+- ~~Warp-factor gradient coupling~~ — subsumable under N2; no independent mechanism identified.
 
 ---
 
@@ -246,9 +280,9 @@ double-well structure.
 
 | Step | Action | Output | Target Tag |
 |------|--------|--------|------------|
-| B1 | Write the explicit Israel junction conditions for a Y-junction displaced by q from Steiner point | Junction matching conditions in terms of q | [Dc] |
-| B2 | Compute the Israel junction energy contribution V_Israel(q) from the matching conditions | V_Israel(q) as function of q with explicit dependence on σ, metric, warp factor | [Dc] or [P*] |
-| B3 | Compute the bulk gravitational backreaction energy V_bulk(q) from linearized gravity around the background | V_bulk(q) or scaling estimate with identified coefficients | [Dc] or [P] |
+| B1 | ~~Write the explicit Israel junction conditions for a Y-junction displaced by q from Steiner point~~ | ~~Junction matching conditions in terms of q~~ | **DONE — WP2 bounded no-go** |
+| B2 | ~~Compute the Israel junction energy contribution V_Israel(q) from the matching conditions~~ | V_Israel ∝ V_geom (tension renormalization only); no attractive term | **DONE — no-go [Dc]** |
+| B3 | Compute the next-lane contribution to V(q) — either V_bulk(q) from linearized gravity (N2) or V_core(q) from thick-junction (N7). See `PHASE2_NEXTSTEP_PLAN_V1.md` for lane selection. | V_node(q) or scaling estimate with identified coefficients | [Dc] or [P] |
 | B4 | Combine V_geom [Dc] + V_Israel + V_bulk into full candidate V(q) | Candidate effective potential V(q; parameters) | [Dc\|model] |
 | B5 | Analyze V(q) for critical points: minima at q = 0 and q_n, maximum at q_B | Classification: single-well, double-well, or no bound state | [Dc] |
 | B6 | If double-well found: extract V_B, q_n, q_B, V''(q_n), V''(q_B) | Barrier parameters | [Dc\|model] |
@@ -395,6 +429,13 @@ gravity) is single-well. No secondary minimum. The double-well postulate
   or topology change). This constrains the theory and directs future work.
   The no-go is documented and preserved.
 
+**v1.1 note:** WP2 has partially realized Outcome D for the Israel
+junction sector specifically. Within the thin-junction S_EH + S_NG model
+class, Israel conditions do not produce attraction. This is a bounded
+no-go for one mechanism, not a total no-go for the double-well. Two
+active lanes remain (N2, N7). Full Outcome D applies only if all
+remaining lanes also yield no-go.
+
 ---
 
 ## 13. Circularity / Smuggling Risks
@@ -491,7 +532,7 @@ documented and compared.
 | ID | After | Decision Gate | Proceed If | Stop/Narrow If |
 |----|-------|--------------|------------|----------------|
 | **CP-A** | WP-A (gap analysis) | Are any candidate mechanisms for V_node tractable? | At least one mechanism can be computed from S_5D terms | All mechanisms require physics not in S_EDC → potential no-go; consult before WP-B |
-| **CP-B1** | Step B2 | Is V_Israel analytically tractable for the Y-junction? | Explicit functional form obtained | Codimension-2 junction matching too complex → pivot to effective model with declared ansatz [P] |
+| **CP-B1** | Step B2 | ~~Is V_Israel analytically tractable for the Y-junction?~~ | **RESOLVED (WP2):** V_Israel is tractable — result is bounded no-go. No attractive term. | Proceed to next lane (N2 or N7). See `PHASE2_NEXTSTEP_PLAN_V1.md`. |
 | **CP-B2** | Step B5 | Does full V(q) have double-well structure? | Yes → proceed to B6–B7, WP-C | No → document no-go; proceed directly to WP-D |
 | **CP-C** | Step C3 | Is the double-well region natural or fine-tuned? | Broad parameter region → strong result | Measure-zero or narrow region → document as fine-tuned; downgrade tag |
 | **CP-D** | WP-D complete | Do chapter updates match actual epistemic outcome? | Tags are honest; no overclaiming | Any mismatch between result and chapter language → fix before commit |

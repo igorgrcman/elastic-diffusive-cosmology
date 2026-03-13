@@ -166,28 +166,24 @@ term in V(q) are listed below.
 
 | # | Candidate Mechanism | Source | Physical Basis | Status | Admissible for WP2? |
 |---|--------------------|---------|----|--------|---------------------|
-| **N1** | Israel junction energy (V_Israel) | D1 corridor definition; not yet computed | Junction node displacement changes the matching conditions across the Y-junction worldsheet. Gravitational energy stored in the junction vertex depends on q. | **[OPEN] — never computed for Y-junction** | **YES — primary candidate** |
+| **N1** | Israel junction energy (V_Israel) | D1 corridor definition; **tested in WP2** | Junction node displacement changes the matching conditions across the Y-junction worldsheet. Gravitational energy stored in the junction vertex depends on q. | **Bounded no-go [Dc]** — deficit angle ≡ 0 (coplanar geometry); arm-interior energy ∝ V_geom (tension renormalization only). See `app_P2_WP2_Israel_nodewell.tex`. | **NO — preserved dead-end (WP2 v1.1)** |
 | **N2** | Bulk gravitational backreaction (V_bulk) | D1 corridor; Variant 2 tested warped metric | Linearized gravity in 5D: bulk field configuration responds to junction displacement. Energy cost/gain from metric perturbation. | **[OPEN] — Variant 2 scan found no metastability in minimal warped models** | **YES — speculative backup** |
 | **N3** | Warp-factor gradient coupling | Variant 2 (RS-like) | In a warped background, the warp factor A(ξ) creates a position-dependent tension. Moving the junction in q samples different warp factors. | **Partially tested [Dc] — no metastability found** | **Conditional — only if combined with N1 or new physics** |
 | **N4** | Topological energy of compact-direction deformation | `frozen-brane-bc-v1` investigated | Deforming the junction in the compact ξ-direction changes the topological structure. | **Partially FALSIFIED — ξ-BC alone give V' > 0** | **Limited — cannot be sole source; might contribute if combined with N1** |
 | **N5** | Helfrich bending rigidity | `helfrich-well-from-action-v1` | Bending energy κ(2H − c₀)² of the displaced junction dimple. | **FALSIFIED — 260/260 NO-GO** | **NO — dead end** |
 | **N6** | Phenomenological Gaussian well | Variant 3 | V_node = −V₀ exp(−(q−q*)²/2w²). Fitted parameters. | **[P/Cal] — no physical origin** | **NO — forbidden as [Dc] donor; allowed only as comparison baseline** |
 
-### Strongest Currently Admissible Hypothesis
+### Strongest Currently Admissible Hypothesis (Updated After WP2)
 
-**N1 (Israel junction energy)** is the primary admissible candidate. It is
-the only mechanism that:
-- arises from explicit terms in S_total (the junction matching conditions)
-- has not been tested and falsified
-- has a clear physical picture (junction displacement changes gravitational
-  matching at the vertex)
-- is tractable in principle (Israel conditions are standard GR formalism,
-  though codimension-2 requires care)
+~~**N1 (Israel junction energy)** was the primary admissible candidate.~~
+**N1 is now a bounded no-go** (WP2, 2026-03-13). Tested and found to
+produce zero deficit angle (coplanar geometry) and only tension
+renormalization. See `app_P2_WP2_Israel_nodewell.tex`.
 
-**N2 (bulk backreaction)** is the backup. Variant 2 tested warped metrics
-without finding metastability, but that scan used specific metric forms.
-Bulk backreaction in a different background or with junction-sourced
-perturbations could differ.
+**N2 (bulk backreaction)** and **N7 (thick-junction/internal-core)** are
+the surviving active candidates. N7 was identified by WP2 as the primary
+escape route from the thin-junction no-go. See `PHASE2_NEXTSTEP_PLAN_V1.md`
+for lane selection.
 
 ### What WP2 Must Explicitly Forbid Importing
 
