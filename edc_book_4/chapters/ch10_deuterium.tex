@@ -21,7 +21,9 @@ $B_d \approx 3\Kpin$ from topological pinning, where $\Kpin$ is the pinning
 constant from Chapter~\ref{ch:sigma_to_K}. Two independent arguments establish
 the effective bond count $N_{\text{bonds}} \approx 3$. The numerical result
 $B_d \approx 2.2\MeV$ matches the baseline datum to within $\sim 10\%$.
-Key uncertainty: the bond count derivation remains [P].
+Key status: the bond count is derived [Dc] within the local
+pairwise-additive pinning model (Appendix~\ref{app:nbonds}); full [Der]
+from $S_{\text{EDC}}$ remains open.
 \end{abstract}
 
 % ----------------------------------------------------------------------------
@@ -32,8 +34,8 @@ Key uncertainty: the bond count derivation remains [P].
 from topological pinning of two junctions (anchor + metastable).
 \textbf{Inputs:} (i)~Pinning constant $\Kpin \approx 0.74\;\MeV$ from Ch.~\ref{ch:sigma_to_K}~[Dc],
 (ii)~Y-junction geometry from Ch.~\ref{ch:anchor}~[Dc].
-\textbf{Outputs:} (i)~Effective bond count $N_{\text{bonds}} = 3$~[P],
-(ii)~$B_d = 3\Kpin \approx 2.2\;\MeV$~[Dc$\times$P],
+\textbf{Outputs:} (i)~Effective bond count $N_{\text{bonds}} = 3$~[Dc within pinning model],
+(ii)~$B_d = 3\Kpin \approx 2.2\;\MeV$~[Dc$\times$Dc(model)],
 (iii)~agreement with baseline to $\sim 10\%$.
 \textbf{Dependencies:} Ch.~\ref{ch:sigma_to_K} ($\Kpin$).
 \textbf{Forward links:} Bond counting to Ch.~\ref{ch:helium4} (closed-4 unit).
@@ -140,84 +142,94 @@ $\Kpin$ is universal (same for all bonds) & [P] & Approximation \\
 \end{center}
 
 % ============================================================================
-\section{Why $N_{\text{bonds}} \approx 3$}
+\section{Why $N_{\text{bonds}} = 3$}
 \label{sec:d:three}
 
 The effective bond count $N_{\text{bonds}} = 3$ is the central claim of
-this chapter. We provide \textbf{two independent arguments}.
+this chapter. We summarize the result here; the full derivation is given
+in Appendix~\ref{app:nbonds}.
 
-\subsection{Argument A: Contact Geometry (Y-Junction Overlap)}
+\subsection{Local Optimality Result}
 
-Each Y-junction has three arms extending at $120°$ angles. When two
-junctions form a contact:
+Appendix~\ref{app:nbonds} establishes $N_{\text{bonds}} = 3$ as a
+\textbf{local optimality result within the pairwise-additive pinning model}.
+The derivation proceeds via three lemmas:
 
-\begin{derivationbox}[title=Argument A: Three-Arm Coupling]
-    \textbf{Setup:} Junction $J_1$ has arms $(a_1, a_2, a_3)$ at angles
-    $(0°, 120°, 240°)$. Junction $J_2$ approaches with arms $(b_1, b_2, b_3)$.
+\begin{derivationbox}[title=Local Optimality of $N_{\text{bonds}} = 3$ (Summary)]
+    \textbf{Theorem~\ref{thm:nbonds_optimality}}
+    (Appendix~\ref{app:nbonds}):
+    Within the pairwise-additive pinning model, for two Y-junctions
+    sharing a contact face in the $\Msix$ lattice, the energy-minimizing
+    configuration has exactly $N_{\text{bonds}} = 3$ contact pairs.
 
-    \textbf{Contact constraint:} For stable binding, the arm configurations
-    must ``mesh''---each arm of $J_1$ couples to a complementary arm of $J_2$.
-
-    \textbf{Geometry:}
+    \medskip
+    \textbf{Proof outline:}
     \begin{itemize}
-        \item Three arms of $J_1$ engage three arms of $J_2$
-        \item Each engagement creates one coordination lock
-        \item Total locks: $N_{\text{bonds}} = 3$
+        \item \textbf{Lemma~\ref{lem:upper_bound} (Upper bound):}
+              Each Y-junction has 3 arms [Der]; within the contact model,
+              each arm supports at most one bond.
+              $\Rightarrow N_{\text{bonds}} \leq 3$.
+        \item \textbf{Lemma~\ref{lem:saturation} (Energetic saturation):}
+              Under four stated assumptions (pairwise additivity, locality,
+              no frustration penalty, no multi-arm coupling), the energy
+              $E(n) = n\Kpin$ is monotonically decreasing.
+              $\Rightarrow$ Minimum at $n = 3$.
+        \item \textbf{Lemma~\ref{lem:uniqueness} (Pairing uniqueness):}
+              Within the restricted geometric contact model, the
+              complementary-angle identity pairing is the unique
+              energy minimum, invariant under $\Zthree$.
     \end{itemize}
 
-    \textbf{Why not 6?} The Y-junction has only 3 arms (from $\Zthree$
-    symmetry). Each arm can engage at most one partner arm.
-
-    \textbf{Why not 1?} A single-arm contact is geometrically unstable---the
-    pair would rotate freely. Three contacts provide full orientation lock.
-
-    \textbf{Conclusion:} $N_{\text{bonds}} = 3$ [P]
+    \textbf{Epistemic status:}
+    [Dc] within the local pairwise-additive pinning model.
+    This is not a direct derivation from $S_{\text{EDC}}$ and not a
+    general topological proof. The four assumptions of
+    Lemma~\ref{lem:saturation} remain [P].
+    See Appendix~\ref{app:nbonds} for the full proof and residual
+    open items.
 \end{derivationbox}
 
-\subsection{Argument B: Dual Lattice Coordination (M$_6$ Structure)}
+\subsection{Supporting Geometric Arguments}
 
-In the M$_6$ coordination lattice, each junction site has coordination
-number 6 (from the $\Zsix$ symmetry). For a two-site contact:
+The local optimality result is consistent with two independent
+geometric motivations:
 
-\begin{derivationbox}[title=Argument B: Minimal Closure in Dual Lattice]
-    \textbf{M$_6$ structure:} Junctions sit on a lattice where each site
-    has 6 coordination directions.
+\begin{enumerate}
+    \item \textbf{Contact geometry (Y-junction overlap):}
+          Each Y-junction has 3 arms at $120°$ angles. In face-to-face
+          contact, the 3 arms of $J_1$ engage the 3 complementary arms
+          of $J_2$, yielding 3 coordination locks.
 
-    \textbf{Two-site contact:} When $J_1$ and $J_2$ occupy adjacent sites,
-    they share a subset of the 6 coordination directions.
+    \item \textbf{Dual lattice coordination ($\Msix$ structure):}
+          In the $\Msix$ lattice, each junction uses 3 of its 6
+          coordination directions for internal structure and shares
+          3 with neighbors.
+\end{enumerate}
 
-    \textbf{Counting:}
-    \begin{itemize}
-        \item Each junction uses 3 of its 6 directions for internal structure
-              (the Y-arms)
-        \item The remaining 3 directions point toward neighbors
-        \item For a pair: 3 shared coordination links
-    \end{itemize}
+Both arguments are consistent with $N = 3$ but do not independently
+constitute rigorous derivations.
 
-    \textbf{Cross-check:} The M$_6$ dual lattice has 4-fold local coordination.
-    A two-vertex edge in a $K_4$ graph subtends 3 additional edges---consistent
-    with 3 effective bonds.
-
-    \textbf{Conclusion:} $N_{\text{bonds}} = 3$ [P]
-\end{derivationbox}
-
-\subsection{Summary of Bond Count Arguments}
+\subsection{Summary of Bond Count Status}
 
 \begin{center}
 \begin{tabular}{llll}
 \toprule
-\textbf{Argument} & \textbf{Basis} & \textbf{Result} & \textbf{Tag} \\
+\textbf{Method} & \textbf{Basis} & \textbf{Result} & \textbf{Tag} \\
 \midrule
-A: Contact geometry & Y-junction arm count & $N = 3$ & [P] \\
-B: Dual lattice & M$_6$ coordination structure & $N = 3$ & [P] \\
+Local optimality & Pinning-model energy & $N = 3$ & [Dc] (within model) \\
+Contact geometry & Y-junction arm count & $N = 3$ & [P] (motivation) \\
+Dual lattice & M$_6$ coordination & $N = 3$ & [P] (motivation) \\
 \midrule
-\textbf{Combined} & Independent agreement & $N_{\text{bonds}} = 3$ & [P] \\
+\textbf{Combined} & Optimality + consistency & $N_{\text{bonds}} = 3$ &
+    [Dc] within pinning model \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-\textbf{Note:} Both arguments give $N = 3$, but neither is a rigorous
-derivation [Der]. The bond count remains a motivated hypothesis [P].
+\textbf{Scope:} The [Dc] tag applies within the local pairwise-additive
+pinning model. A full [Der] promotion requires deriving the pinning
+Hamiltonian $H_{\text{pin}}$ from $S_{\text{EDC}}$, which is beyond
+the current scope (see Appendix~\ref{app:nbonds}, Residual Open Items).
 
 % ============================================================================
 \section{Numerical Evaluation}
@@ -353,7 +365,9 @@ datum.
               order, with corrections bounded
     \end{enumerate}
 
-    Current status: Points 2 and 3 are satisfied. Point 1 remains [P].
+    Current status: Points 2 and 3 are satisfied. Point 1 is now [Dc]
+    within the pinning model (Appendix~\ref{app:nbonds}); full [Der]
+    from $S_{\text{EDC}}$ remains open.
 \end{edcopenbox}
 
 % ============================================================================
@@ -367,13 +381,12 @@ datum.
 \midrule
 $\Kpin \approx 0.74\MeV$ & [Dc] & Ch.~\ref{ch:sigma_to_K} & From $\bsigma$ \\
 $B_d = N_{\text{bonds}} \times \Kpin$ & [P] & Eq.~\eqref{eq:Bd_model} & Ansatz \\
-$N_{\text{bonds}} = 3$ (Argument A) & [P] & \S\ref{sec:d:three} & Y-geometry \\
-$N_{\text{bonds}} = 3$ (Argument B) & [P] & \S\ref{sec:d:three} & M$_6$ lattice \\
-$B_d \approx 2.22\MeV$ & [Dc]$\times$[P] & Eq.~\eqref{eq:Bd_result} & Calculation \\
+$N_{\text{bonds}} = 3$ (local optimality) & [Dc] (within model) & App.~\ref{app:nbonds} & Pinning model \\
+$B_d \approx 2.22\MeV$ & [Dc]$\times$[Dc(model)] & Eq.~\eqref{eq:Bd_result} & Calculation \\
 \midrule
 $B_d^{\text{exp}} = 2.224\MeV$ & [BL] & \S\ref{sec:d:baseline} & Measurement \\
 \midrule
-Rigorous $N = 3$ derivation & [OPEN] & — & From 5D action \\
+$H_{\text{pin}}$ from $S_{\text{EDC}}$ & [OPEN] & — & Put C corridor \\
 Corrections to linear model & [OPEN] & — & Higher order \\
 \bottomrule
 \end{tabular}
@@ -383,9 +396,13 @@ Corrections to linear model & [OPEN] & — & Higher order \\
 
 \begin{edcopenbox}[title=Open Problems]
     \begin{enumerate}
-        \item \textbf{Rigorous $N_{\text{bonds}} = 3$:} Derive the bond
-              count from the 5D action and M$_6$ topology, not from
-              geometric plausibility.
+        \item \textbf{$H_{\text{pin}}$ from $S_{\text{EDC}}$:} The bond
+              count $N = 3$ is derived within the pairwise-additive pinning
+              model (Appendix~\ref{app:nbonds}). Upgrading to [Der] requires
+              deriving $H_{\text{pin}}$ from the 5D action, which would
+              also test the four assumptions of Lemma~\ref{lem:saturation}
+              (pairwise additivity, locality, no frustration, no multi-arm
+              coupling).
 
         \item \textbf{Corrections beyond linear:} The model $B_d = N\Kpin$
               ignores:
@@ -455,17 +472,16 @@ a projection-level consistency check.
         \item Defined the two-junction bound state (A=2) as the minimal
               pinning configuration
         \item Established the model: $B_d = N_{\text{bonds}} \times \Kpin$
-        \item Provided two independent arguments for $N_{\text{bonds}} = 3$:
-              \begin{itemize}
-                  \item[A:] Y-junction arm counting (3 arms $\to$ 3 locks)
-                  \item[B:] M$_6$ dual lattice coordination (3 shared directions)
-              \end{itemize}
-        \item Computed $B_d = 3 \times 0.74\MeV = 2.22\MeV$ [Dc]$\times$[P]
+        \item Derived $N_{\text{bonds}} = 3$ as a local optimality result
+              within the pairwise-additive pinning model
+              (Appendix~\ref{app:nbonds}, [Dc] within model)
+        \item Computed $B_d = 3 \times 0.74\MeV = 2.22\MeV$ [Dc]$\times$[Dc(model)]
         \item Matched baseline $B_d^{\text{exp}} = 2.224\MeV$ to $< 1\%$
     \end{itemize}
 
-    \textbf{Key uncertainty:} $N_{\text{bonds}} = 3$ is motivated [P],
-    not rigorously derived [Der].
+    \textbf{Key residual:} The [Dc] tag applies within the declared pinning
+    model. A full [Der] from $S_{\text{EDC}}$ requires deriving the pinning
+    Hamiltonian from the 5D action (Put~C corridor).
 \end{resultbox}
 
 \bigskip

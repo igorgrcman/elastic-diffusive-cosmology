@@ -1,0 +1,244 @@
+% ============================================================================
+% Appendix: Local Optimality of N_bonds = 3 in the Pinning Model
+% ============================================================================
+% Status: [Dc] within local pairwise-additive pinning model
+% Scope: This is NOT a topological proof from S_EDC.
+%        It is an optimality result within a declared effective energy model.
+% Phase 1 / R4 deliverable (see PHASE1_PLAN_REVISED.md v3.1)
+% ============================================================================
+
+\chapter{Local Optimality of $N_{\text{bonds}} = 3$}
+\label{app:nbonds}
+
+\section*{Scope and Epistemic Status}
+
+This appendix derives $N_{\text{bonds}} = 3$ as a \textbf{local optimality
+result within the pairwise-additive pinning model}. It is not a direct
+derivation from $S_{\text{EDC}}$, nor a general topological proof. The
+result operates within the pinning Hamiltonian $H_{\text{pin}}$ defined in
+Chapter~\ref{ch:sigma_to_K}, which itself contains postulated assumptions
+about pairwise additivity and locality.
+
+\textbf{Intended epistemic tag:} [Dc] within the local pairwise-additive
+pinning model. A full [Der] promotion would require deriving $H_{\text{pin}}$
+from $S_{\text{EDC}}$, which is beyond the scope of this appendix.
+
+% ============================================================================
+
+\begin{theorem}[Local Optimality of $N_{\text{bonds}} = 3$]
+\label{thm:nbonds_optimality}
+Within the pairwise-additive pinning model, for two Y-junctions sharing a
+contact face in the $\Msix$ lattice, the energy-minimizing configuration
+has exactly $N_{\text{bonds}} = 3$ contact pairs.
+\end{theorem}
+
+The proof proceeds via three lemmas.
+
+% ============================================================================
+\section{Lemma 1: Upper Bound}
+% ============================================================================
+
+\begin{lemma}[Upper Bound on Bond Count]
+\label{lem:upper_bound}
+Within the contact model, $N_{\text{bonds}} \leq 3$.
+\end{lemma}
+
+\begin{proof}
+Each Y-junction has exactly 3 arms, by the $\Zthree$ Steiner geometry
+established in Chapter~\ref{ch:anchor}~[Der].
+
+Within the contact model, each arm can support at most one bond. This is
+a geometric constraint within the model: a bond is defined as a pairwise
+arm-to-arm contact between one arm of $J_1$ and one arm of $J_2$. Two
+worldsheet segments sharing the same contact face are treated as a single
+bond, not multiple independent bonds. This one-bond-per-arm constraint
+follows from the model's definition of bond as a pairwise contact, but
+has not been independently derived as a physical saturation theorem from
+the full 5D action.
+
+Since each junction contributes at most 3 arms, and each arm supports at
+most one bond:
+\begin{equation}
+    N_{\text{bonds}} \leq \min(3, 3) = 3.
+    \label{eq:nbonds_upper}
+\end{equation}
+\end{proof}
+
+\textbf{Status:} [Der] for the arm count; contact-model constraint for
+the one-bond-per-arm rule.
+
+% ============================================================================
+\section{Lemma 2: Energetic Preference for Saturation}
+% ============================================================================
+
+\begin{lemma}[Energetic Preference for Full Saturation]
+\label{lem:saturation}
+Within the local pairwise-additive pinning model, the total contact energy
+$E(n)$ for $n$ bonded pairs ($0 \leq n \leq 3$) is minimized at $n = 3$.
+\end{lemma}
+
+\begin{proof}
+Define the contact energy for $n$ bonded pairs:
+\begin{equation}
+    E(n) = n \times \Kpin + (3 - n) \times E_{\text{free}}
+    \label{eq:contact_energy}
+\end{equation}
+where $\Kpin < 0$ (binding, from Chapter~\ref{ch:sigma_to_K}~[Dc]) and
+$E_{\text{free}} = 0$ (free arm, reference level).
+
+This energy model requires the following assumptions, all of which are
+structurally necessary for the monotonicity argument:
+
+\begin{enumerate}
+    \item \textbf{Pairwise additivity}~[P]: The total energy is the sum of
+          individual pair contributions. There are no irreducible three-body
+          or higher-order terms.
+    \item \textbf{Locality}~[P]: No long-range inter-arm coupling exists
+          beyond the nearest contact. Arms that are not directly bonded do
+          not interact.
+    \item \textbf{No frustration penalty}~[P]: Adding a bond does not
+          create geometric strain that offsets the binding energy gained.
+          The junction geometry accommodates all three bonds without
+          distortion cost.
+    \item \textbf{No multi-arm nonlocal coupling}~[P]: There is no
+          collective effect whereby the engagement of one arm pair modifies
+          the binding energy available to another arm pair.
+\end{enumerate}
+
+Under these four assumptions, $E(n) = n \times \Kpin$ is monotonically
+decreasing in $n$ (since $\Kpin < 0$), and is therefore minimized at
+$n = 3$:
+\begin{equation}
+    E(3) = 3\Kpin < 2\Kpin = E(2) < \Kpin = E(1) < 0 = E(0).
+    \label{eq:monotonic}
+\end{equation}
+\end{proof}
+
+\begin{remark}[Monotonicity Failure Modes]
+\label{rem:failure_modes}
+If any of assumptions 1--4 fail, monotonicity in $n$ can fail. For example:
+\begin{itemize}
+    \item If frustration penalties grow faster than $|\Kpin|$ with increasing
+          $n$, the minimum could shift to $n < 3$.
+    \item If multi-arm coupling introduces a repulsive three-body term, the
+          energy at $n = 3$ could exceed the energy at $n = 2$.
+    \item If geometric strain from simultaneous three-arm engagement is
+          large enough, $n = 2$ could be globally preferred.
+\end{itemize}
+None of these scenarios is excluded by the current argument. They would
+require a different physical mechanism and can only be tested by explicit
+computation from the 5D action.
+\end{remark}
+
+\textbf{Status:} [Dc] within the declared pairwise-additive pinning model.
+This is not a general full-theory result.
+
+% ============================================================================
+\section{Lemma 3: Uniqueness of Pairing}
+% ============================================================================
+
+\begin{lemma}[Uniqueness up to $\Zthree$]
+\label{lem:uniqueness}
+Within the restricted geometric contact model (fixed Y-junction orientations,
+fixed arm directions), the $n = 3$ bond pairing is unique up to a $\Zthree$
+rotation.
+\end{lemma}
+
+\begin{proof}
+The three arms of $J_1$ are directed at angles $\{0°, 120°, 240°\}$.
+The three arms of $J_2$, facing $J_1$, are at complementary angles
+$\{180°, 300°, 60°\}$.
+
+A bond pairing is a bijection $\pi: \{a_1, a_2, a_3\} \to \{b_1, b_2, b_3\}$
+assigning each arm of $J_1$ to an arm of $J_2$. The angular mismatch for
+a pairing $\pi$ is:
+\begin{equation}
+    \Delta\theta(\pi) = \sum_{i=1}^{3}
+        \bigl|\alpha_i^{(J_1)} - \alpha_{\pi(i)}^{(J_2)} - 180°\bigr|
+    \label{eq:mismatch}
+\end{equation}
+where the subtraction of $180°$ accounts for the face-to-face orientation.
+
+The identity pairing $\pi = \text{id}$ (arm$_i \leftrightarrow$ arm$_i'$)
+has $\Delta\theta = 0$---perfect complementary alignment. Any non-identity
+permutation $\pi \in S_3 \setminus \{\text{id}\}$ creates nonzero mismatch
+for at least one pair. By the Steiner optimality principle
+(Chapter~\ref{ch:anchor}~[Der]), nonzero angular mismatch increases the
+brane area and hence the energy.
+
+The minimum-energy pairing is therefore $\pi = \text{id}$, which is unique
+within each $\Zthree$ orbit (the $\Zthree$ symmetry permutes the arm labels
+cyclically, giving equivalent configurations).
+\end{proof}
+
+\textbf{Scope:} This uniqueness holds within the restricted geometric contact
+model---fixed Y-junction orientations, fixed arm directions, and the mismatch
+energy defined above. It is \emph{not} uniqueness in the full configuration
+space of all admissible 5D brane deformations, where additional degrees of
+freedom (arm bending, junction displacement, brane twisting) could modify
+the energy landscape.
+
+% ============================================================================
+\section{Corollary: Deuterium Binding Energy}
+% ============================================================================
+
+\begin{corollary}[Binding Energy of the A=2 System]
+\label{cor:Bd}
+Within the local pairwise-additive pinning model,
+\begin{equation}
+    B_d = 3 \times \Kpin.
+    \label{eq:Bd_derived}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+By Lemma~\ref{lem:upper_bound}, $N_{\text{bonds}} \leq 3$.
+By Lemma~\ref{lem:saturation}, the energy minimum is at $n = 3$.
+Therefore $N_{\text{bonds}} = 3$, and $B_d = 3\Kpin$ follows from the
+linear pinning model (Eq.~\ref{eq:Bd_model} in Chapter~\ref{ch:deuterium}).
+\end{proof}
+
+\textbf{Numerical comparison:}
+With $\Kpin \approx 0.74\MeV$~[Dc] (Chapter~\ref{ch:sigma_to_K}):
+\begin{equation}
+    B_d^{\text{(EDC)}} = 3 \times 0.74\MeV = 2.22\MeV.
+\end{equation}
+The baseline datum is $B_d^{\text{exp}} = 2.224\MeV$~[BL]. Agreement: $< 1\%$.
+
+This numerical comparison is a consistency check, not derivation evidence.
+The close agreement does not elevate the epistemic status of the model
+assumptions.
+
+% ============================================================================
+\section{Residual Open Items}
+% ============================================================================
+
+The following items remain postulated~[P] and are not resolved by this
+appendix:
+
+\begin{enumerate}
+    \item \textbf{Pairwise additivity of $H_{\text{pin}}$}~[P]: The pinning
+          Hamiltonian is assumed to decompose as a sum of pair terms. Deriving
+          this from $S_{\text{EDC}}$ requires completing the Put~C corridor
+          (5D action $\to$ effective Hamiltonian reduction).
+
+    \item \textbf{Locality (no long-range coupling)}~[P]: Arms not in direct
+          contact are assumed non-interacting. In the full 5D theory, brane
+          tension could mediate indirect coupling.
+
+    \item \textbf{Frustration-free geometry}~[P]: The simultaneous engagement
+          of all three arm pairs is assumed to incur no geometric strain cost.
+          Verification requires explicit 5D embedding computation.
+
+    \item \textbf{Absence of multi-arm collective effects}~[P]: No three-body
+          or higher-order terms. This could be tested by computing the full
+          contact energy from the brane action for the two-junction system.
+
+    \item \textbf{Contact saturation (one bond per arm)}~[model constraint]:
+          Used as a model definition in Lemma~\ref{lem:upper_bound}. A
+          derivation from the 5D action could reveal whether multiple
+          independent contacts per arm are physically possible.
+\end{enumerate}
+
+Upgrading any of these requires explicit computation from the 5D action,
+which is the scope of the Put~C corridor work (Phase~1, Step~2/R3).
