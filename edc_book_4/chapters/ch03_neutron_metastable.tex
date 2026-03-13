@@ -28,8 +28,10 @@ $V(q)$, and the barrier height conjecture $\VB = 2 \times \Delta m_{np}$.
 configuration in a double-well potential; derive the barrier height $\VB = 2\Delta m_{np}$.
 \textbf{Inputs:} (i)~$\Zthree$ subgroup from Ch.~\ref{ch:junction}~[Der],
 (ii)~empirical $\taun \approx 880\second$~[BL], (iii)~empirical $\Delta m_{np} \approx 1.293\MeV$~[BL].
-\textbf{Outputs:} (i)~Reaction coordinate $q$~[Dc], (ii)~double-well $V(q)$ structure~[P],
-(iii)~barrier height $\VB = 2\Delta m_{np}$~[P], (iv)~branch label convention $s \in \{0,1\}$.
+\textbf{Outputs:} (i)~Reaction coordinate $q$~[Dc], (ii)~geometric sector
+$V_{\mathrm{geom}}(q)$~[Dc] (App.~\ref{app:vq_chosen_path}),
+(iii)~double-well $V(q)$ structure~[P],
+(iv)~barrier height $\VB = 2\Delta m_{np}$~[P], (v)~branch label convention $s \in \{0,1\}$.
 \textbf{Dependencies:} Ch.~\ref{ch:junction} ($\Zthree$ subgroup).
 \textbf{Forward links:} $V(q)$ and $\VB$ to Ch.~\ref{ch:instanton} (Euclidean action);
 branch label $s$ to Ch.~\ref{ch:helium4} (closed-4 minimality).
@@ -177,18 +179,45 @@ The barrier height measured from the metastable junction is:
     \VB = E_B - \Delta m_{np}
 \end{equation}
 
-\subsection{Shape: Open Question}
+\subsection{Shape: Partial Geometric Closure}
 
-\begin{edcopenbox}[title=Open: Explicit $V(q)$ from 5D]
-    The precise functional form of $V(q)$ is not yet derived from the
-    5D action. The double-well structure is postulated [P] based on:
+The geometric brane-energy contribution $V_{\mathrm{geom}}(q)$ has been
+computed along two chosen collective paths
+(Appendix~\ref{app:vq_chosen_path}). The Nambu--Goto arm-length
+calculation gives a \textbf{single-well} profile with a unique minimum
+at $q = 0$ (Steiner point):
+\begin{equation}
+    V_{\mathrm{geom}}(q) = \tau \times L_{\mathrm{tot}}(q), \quad
+    V_{\mathrm{geom}}''(0) = \frac{3\tau}{2R} > 0
+    \tagDc
+\end{equation}
+where $\tau$ is the string tension and $R$ the characteristic arm length.
+This geometric contribution is the dominant restoring-force term near
+the anchor minimum.
+
+The full effective potential along the chosen path is decomposed as:
+\begin{equation}
+    V(q) = V_{\mathrm{geom}}(q) + V_{\mathrm{node}}(q)
+         + V_{\mathrm{bulk}}(q) + \ldots
+\end{equation}
+The geometric sector $V_{\mathrm{geom}}$ does not produce a secondary
+minimum by itself---it is a single well. The double-well structure
+(a metastable minimum at $q_n > 0$) requires additional contributions
+from junction node energy and bulk effects.
+
+\begin{edcopenbox}[title=Open: Full $V(q)$ from 5D]
+    The geometric sector $V_{\mathrm{geom}}(q)$ is now [Dc] along the
+    chosen path (Appendix~\ref{app:vq_chosen_path}). What remains open:
     \begin{itemize}
-        \item Existence of two distinct minima (anchor, metastable)
-        \item Observed metastability of the metastable junction
-        \item Continuous configuration space requiring a barrier
+        \item Non-geometric terms ($V_{\mathrm{node}}, V_{\mathrm{bulk}}$)
+              that create the secondary minimum --- requires Put~C
+              completion (steps C2--C4)
+        \item Full double-well structure --- [P], pending non-geometric terms
+        \item $V(q)$ functional form from $S_{5\mathrm{D}}$ --- [OPEN]
     \end{itemize}
 
-    \textbf{Status:} $V(q)$ shape = [P]. Derivation from $S_{5D}$ = [OPEN].
+    \textbf{Status:} Geometric sector = [Dc]. Full $V(q)$ = [P].
+    Derivation from $S_{5D}$ = [OPEN].
     \tagOpen
 \end{edcopenbox}
 
@@ -230,20 +259,45 @@ This suggests the conjecture: $\VB = 2 \times \Delta m_{np}$.
         \label{eq:VB_conjecture}
     \end{equation}
 
-    \textbf{Argument:}
+    \textbf{Argument (in two steps):}
+
+    \emph{Step 1: $\Zthree$ symmetry $\Rightarrow$ factor of 3} \tagDer
     \begin{enumerate}
-        \item The barrier configuration is $\Zthree$-symmetric (all three
-              Y-junction arms equivalently stressed).
-        \item By $\Zthree$ symmetry, the total energy partitions equally:
-              each arm contributes $\Delta m_{np}$ to the deformation.
-        \item Therefore, the barrier lies at $E_B = 3 \times \Delta m_{np}$
-              above the anchor junction.
-        \item Since the metastable junction is at $\Delta m_{np}$:
-              \[
-                  \VB = E_B - E_n = 3\Delta m_{np} - \Delta m_{np} = 2\Delta m_{np}
-              \]
+        \item Define $\Earm$ as the per-arm deformation cost at the barrier
+              (a symbolic energy unit, not yet identified with any observable).
+        \item The barrier configuration is $\Zthree$-symmetric: all three
+              Y-junction arms are equivalently stressed.
+        \item By $\Zthree$ symmetry and energy additivity, the total barrier
+              energy partitions equally among the three arms:
+              \begin{equation}
+                  E_B = 3 \times \Earm \tagDer
+                  \label{eq:EB_3Earm}
+              \end{equation}
+        \item The metastable configuration has one effective deformation mode:
+              \begin{equation}
+                  E_n = 1 \times \Earm \tagDef
+                  \label{eq:En_1Earm}
+              \end{equation}
+        \item Therefore:
+              \begin{equation}
+                  \VB = E_B - E_n = 3\Earm - 1\Earm = 2\Earm \tagDer
+                  \label{eq:VB_2Earm}
+              \end{equation}
     \end{enumerate}
-    \tagP
+
+    \emph{Step 2: Identification $\Earm \leftrightarrow \Delta m_{np}$} \tagOPEN
+    \begin{itemize}
+        \item The observer records the metastable-anchor energy gap as
+              $\Delta m_{np} \approx 1.293\;\MeV$.
+        \item Identifying $\Earm \equiv \Delta m_{np}$ (projection-level
+              assumption, not yet derived from 5D action):
+              \begin{equation}
+                  \VB = 2 \times \Delta m_{np} \approx 2.59\;\MeV \tagP
+              \end{equation}
+    \end{itemize}
+
+    The factor of 2 follows from $\Zthree$ symmetry [Der]; the numeric
+    value requires the identification $\Earm \equiv \Delta m_{np}$ [OPEN].
 \end{derivationbox}
 
 \subsection{Physical Picture}
@@ -254,35 +308,48 @@ This suggests the conjecture: $\VB = 2 \times \Delta m_{np}$.
 State & Energy above anchor & Interpretation \\
 \midrule
 Anchor & $0$ & All arms at equilibrium (Steiner point) \\
-Metastable & $1 \times \Delta m_{np}$ & One effective deformation mode excited \\
-Barrier & $3 \times \Delta m_{np}$ & All three arms equally stressed \\
+Metastable & $1 \times \Earm$ & One effective deformation mode \\
+Barrier & $3 \times \Earm$ & All three arms equally stressed \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-The factor of 3 at the barrier reflects the $\Zthree$ symmetry: the transition
-state has the full junction symmetry restored, but at elevated energy.
+\noindent
+\emph{Projection note:} $\Earm$ is the per-arm deformation cost in Layer~A.
+The observer records the metastable energy as $\Delta m_{np} \approx 1.293\;\MeV$;
+identifying $\Earm \equiv \Delta m_{np}$ remains \tagOPEN{} (see \S\ref{sec:metastable:open_unit}).
+
+The factor of 3 at the barrier reflects the $\Zthree$ symmetry: at the saddle
+configuration, all three arms carry equal deformation.
 
 \subsection{Remaining Open Step}
+\label{sec:metastable:open_unit}
 
-\begin{edcopenbox}[title=Open: ``One unit per arm = $\Delta m_{np}$'']
-    The argument assumes that each arm contributes exactly $\Delta m_{np}$
-    to the barrier energy. This requires verification from the 5D action:
+\begin{edcopenbox}[title=Open: Unit Quantization and 5D Origin of $\Earm$]
+    The $\Zthree$ symmetry argument (Step~1) derives the factor of 3 from
+    symmetry alone. What remains open is the identification $\Earm \equiv \Delta m_{np}$:
     \begin{itemize}
-        \item Show that $V(q_B) = 3 \times \Delta m_{np}$
-        \item Identify the geometric origin of the energy unit
+        \item Derive $V(q)$ from the 5D action (bulk+brane+GHY+Israel) along
+              the reduction corridor (Put~C). \tagOPEN
+        \item Evaluate $V(q_B)$ and verify $E_B = 3\Earm$ at the $\Zthree$-symmetric
+              saddle. \tagOPEN
+        \item Identify the geometric origin of $\Earm$ and its projection to
+              the observer label $\Delta m_{np}$. \tagOPEN
     \end{itemize}
 
+    Until this is derived, the identification $\Earm \equiv \Delta m_{np}$
+    remains a projection-level assumption. \tagOPEN
+
     \textbf{Status:} Unit quantization = [OPEN].
-    \tagOpen
 \end{edcopenbox}
 
 % ============================================================================
-\section{Preview: Instanton Tunneling}
+\section{Preview: Barrier-Limited Transition}
 \label{sec:metastable:preview}
 
-The decay proceeds via \emph{quantum tunneling} through the barrier. The
-formalism is developed in Part~\ref{part:metastable} (Chapters~\ref{ch:instanton}--\ref{ch:tau_n}).
+The metastable junction undergoes a \emph{barrier-limited transition} to the
+anchor configuration. The transition rate is computed using the instanton
+formalism in Part~\ref{part:metastable} (Chapters~\ref{ch:instanton}--\ref{ch:tau_n}).
 
 \subsection{What Chapter~\ref{ch:instanton} Establishes}
 
@@ -328,7 +395,8 @@ $\taun \approx 880\second$ & [BL] & Eq.~\eqref{eq:tau_n_baseline} & Measurement 
 $\Delta m_{np} \approx 1.293\MeV$ & [BL] & Eq.~\eqref{eq:delta_m_np} & Measurement \\
 \midrule
 Reaction coordinate $q$ & [Dc] & \S\ref{sec:metastable:z3} & Model reduction \\
-Double-well structure & [P] & \S\ref{sec:metastable:doublewell} & Ansatz \\
+Geometric $V_{\mathrm{geom}}(q)$ & [Dc] & App.~\ref{app:vq_chosen_path} & Chosen path \\
+Double-well structure & [P] & \S\ref{sec:metastable:doublewell} & Needs non-geom.\ terms \\
 Metastable junction $\Zthree$-symmetric & [Dc] & \S\ref{sec:metastable:z3} & [BL]+[M] constraint \\
 Barrier $\Zthree$-symmetric & [Dc] & \S\ref{sec:metastable:barrier} & Minimal path \\
 $\VB = 2 \times \Delta m_{np}$ & [P] & Eq.~\eqref{eq:VB_conjecture} & Geometric motivation \\
