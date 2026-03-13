@@ -1,0 +1,447 @@
+% Appendix: Model-Dependent Localization Route for L₀/δ
+% Status: FILLED — R1 Mode B+ deliverable
+% Contamination check: PASSED (no SM terms)
+
+\chapter{Effective Localization Model for the $\Lzero/\bdelta$ Ratio}
+\label{app:L0delta_bvp}
+
+% ============================================================================
+\section{Scope and Limitations}
+\label{sec:L0d:scope}
+% ============================================================================
+
+This appendix constructs a \textbf{model-dependent} localization route for the
+ratio $\Lzero/\bdelta$. It does \emph{not} derive a unique universal constant
+from first principles.
+
+\begin{assumptionbox}[title=Scope Framing]
+\begin{itemize}
+    \item The model uses a one-dimensional square-well potential as an effective
+          localization ansatz for the junction wavefunction in the fifth dimension.
+    \item The strongest honest output is a \textbf{functional relation}
+          $\Lzero/\bdelta = F(\eta)$, where $\eta$ is a dimensionless well-strength
+          parameter~[P].
+    \item The compactification radius $R_5$ remains a \textbf{residual model input}
+          unless independently derived. No independent derivation of $R_5$ exists
+          in the current theory.
+    \item The value $\Lzero/\bdelta = \pi^2$ is \emph{one point on a continuous
+          curve}, not a naturally selected value within this model.
+\end{itemize}
+\end{assumptionbox}
+
+% ============================================================================
+\section{Delta-Scale Clarification}
+\label{sec:L0d:delta}
+% ============================================================================
+
+The broader EDC framework employs multiple thickness-like length scales. Before
+proceeding, we clarify which $\bdelta$ is used and acknowledge the ambiguity.
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{Scale} & \textbf{Value} & \textbf{Context} & \textbf{Status} \\
+\midrule
+$R_\xi$     & $\sim 0.002\fm$ & Membrane correlation length       & [P]+[BL] \\
+$\Delta$    & $\sim 0.003\fm$ & Loop-state mass formula            & [P] \\
+$\ell/(2\pi)$ & $\sim 0.002\fm$ & Orbifold radius                 & [Dc] \\
+$\bdelta$   & $\sim 0.105\fm$ & Junction-core / brane scale       & [I] \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Spread:} Factor $\sim 50$ between $R_\xi$ and $\bdelta$.
+
+\textbf{Choice for this appendix:}
+We use $\bdelta = \hbar/(2 m_p c) \approx 0.105\fm$~[I], the Compton-scale
+regularization from Book~I. This is the junction-core brane thickness --- the
+scale at which the effective potential transitions from well to barrier in the
+collective-coordinate description.
+
+\textbf{Justification:} The ratio $\Lzero/\bdelta$ appears in the instanton action
+$\SE/\hbar = \kappa \times (\Lzero/\bdelta)$, where the tunneling path has
+characteristic width $\bdelta$ (the barrier thickness scale). The EW-scale
+$R_\xi \sim 0.002\fm$ is the \emph{membrane correlation length}, not the junction
+barrier width. These are distinct physical quantities.
+
+\begin{edcopenbox}[title=Residual Risk: Delta Identification]
+    The identification of the instanton-relevant thickness with $\bdelta \approx
+    0.105\fm$ rather than $R_\xi \approx 0.002\fm$ is an assumption~[P]. If the
+    correct tunneling thickness is $R_\xi$, then $\Lzero/\bdelta \sim 500$, not
+    $\sim 10$, invalidating the entire $\pi^2$ hypothesis.
+    \tagP
+\end{edcopenbox}
+
+% ============================================================================
+\section{Model Definition}
+\label{sec:L0d:model}
+% ============================================================================
+
+\subsection{Physical Picture}
+
+The junction (topological defect) is localized in the fifth dimension by an
+effective potential. The \emph{localization length} $\Lzero$ is the decay scale
+of the junction wavefunction outside the potential well. This sets the spatial
+extent of the junction in the compact direction.
+
+\subsection{Choice of Effective Potential}
+
+We model the localizing potential as a symmetric square well:
+\begin{equation}
+    V(\xi) = \begin{cases}
+        -V_0 & \text{for } |\xi - \xi_0| < \bdelta/2 \\
+        0    & \text{otherwise}
+    \end{cases}
+    \label{eq:square_well}
+\end{equation}
+
+\textbf{Status:} This is a \emph{model ansatz}~[P], not a potential derived from
+the 5D action. The OPR-21 BVP infrastructure (Sturm-Liouville framework, Robin
+boundary conditions, eigenvalue extraction) from Book~II provides the mathematical
+scaffolding, but the physical potential $V(\xi)$ remains undetermined from first
+principles~[OPEN].
+
+\textbf{Why square well:} It is the simplest model that captures the essential
+physics---a localized attractive region of width $\bdelta$ and depth $V_0$---while
+yielding an analytically tractable transcendental equation. More realistic shapes
+(Gaussian, P\"oschl-Teller) modify the eigenvalues quantitatively but not
+qualitatively; the square well captures the scaling.
+
+\subsection{OPR-21 Infrastructure}
+
+The mathematical framework draws on the Book~II BVP foundation:
+\begin{itemize}
+    \item \textbf{Sturm-Liouville operator:}
+          $\hat{L}f = -d^2f/d\xi^2 + V(\xi)f = \lambda f$ on domain
+          $[0, \ell]$~[M]
+    \item \textbf{Self-adjointness:} Real potential + separated boundary
+          conditions $\Rightarrow$ real eigenvalues, orthogonal
+          eigenfunctions~[M]
+    \item \textbf{Robin BC framework:} General form
+          $\alpha f(0) + \beta f'(0) = 0$ available~[Dc]
+    \item \textbf{Numerical solver:} Finite-difference eigenvalue extraction,
+          validated on multiple toy potentials~[M]
+\end{itemize}
+
+\textbf{What OPR-21 provides:} Solver, Robin BC, eigenvalue framework, structural
+lane.
+
+\textbf{What OPR-21 does NOT provide:} Independent $R_5$, physical $V(\xi)$ from
+full 5D action, unique closure.
+
+% ============================================================================
+\section{Mathematical Lane}
+\label{sec:L0d:math}
+% ============================================================================
+
+\subsection{Eigenvalue Problem}
+
+The Schr\"odinger-type equation for the junction profile $\psi(\xi)$ in the
+effective model:
+\begin{equation}
+    -\frac{\hbar^2}{2M} \frac{d^2\psi}{d\xi^2} + V(\xi)\,\psi = E\,\psi
+    \label{eq:schrodinger}
+\end{equation}
+
+where $M$ is the effective mass of the collective coordinate (junction
+displacement). The ground-state bound energy $E < 0$ determines the localization
+length.
+
+\subsection{Dimensionless Variables}
+
+Define the dimensionless well strength:
+\begin{equation}
+    \eta = \frac{2M V_0 (\bdelta/2)^2}{\hbar^2}
+    = \frac{M V_0 \bdelta^2}{2\hbar^2}
+    \label{eq:eta_def}
+    \tagP
+\end{equation}
+
+This parameter controls the number and depth of bound states. For the
+square well, the ground state exists for all $\eta > 0$.
+
+\textbf{Epistemic status of $\eta$:} The parameter $\eta$ contains two
+undetermined quantities --- the well depth $V_0$~[P] and the effective mass
+$M$~[P]. Neither is derived from first principles; both are scaling estimates.
+Therefore $\eta$ itself is~[P].
+
+\subsection{Transcendental Equation}
+
+For the ground state (even parity), the standard square-well matching condition
+gives:
+\begin{equation}
+    \boxed{z \tan(z) = \sqrt{\eta - z^2}}
+    \label{eq:transcendental}
+\end{equation}
+
+where $z = k \cdot \bdelta/2$ is the dimensionless internal wavenumber, with
+$k^2 = 2M(V_0 - |E|)/\hbar^2$.
+
+The evanescent decay constant outside the well is:
+\begin{equation}
+    \kappa = \sqrt{2M|E|/\hbar^2}, \quad
+    \tilde{\kappa} = \kappa \bdelta/2 = \sqrt{\eta - z^2}
+\end{equation}
+
+\subsection{Localization Length}
+
+The localization length is defined as the $e$-folding decay scale of $\psi$
+outside the well:
+\begin{equation}
+    \psi(\xi) \propto e^{-\kappa|\xi|} \quad \text{for } |\xi| > \bdelta/2
+\end{equation}
+
+Therefore:
+\begin{equation}
+    \Lzero = \frac{1}{\kappa}, \quad
+    \frac{\Lzero}{\bdelta} = \frac{1}{2\tilde{\kappa}}
+    \label{eq:L0_delta_from_kappa}
+\end{equation}
+
+\subsection{Functional Relation}
+
+Combining Eqs.~\eqref{eq:transcendental} and~\eqref{eq:L0_delta_from_kappa}:
+\begin{equation}
+    \boxed{\frac{\Lzero}{\bdelta} = F(\eta)}
+    \label{eq:functional_relation}
+\end{equation}
+
+where $F(\eta)$ is obtained by solving the transcendental equation for
+$\tilde{\kappa}(\eta)$ and computing $1/(2\tilde{\kappa})$. Key properties:
+\begin{itemize}
+    \item $F(\eta)$ is monotonically decreasing: deeper well $\Rightarrow$
+          tighter localization
+    \item $F(\eta) \to \infty$ as $\eta \to 0^+$ (barely bound)
+    \item $F(\eta) \to 0$ as $\eta \to \infty$ (deeply bound)
+    \item The model produces a \emph{continuous family} of $\Lzero/\bdelta$
+          values, parameterized by $\eta$~[P]
+\end{itemize}
+
+% ============================================================================
+\section{Numerical Results}
+\label{sec:L0d:results}
+% ============================================================================
+
+The verification code (\texttt{r1\_L0delta\_verify.py}, status [Check]) solves
+Eq.~\eqref{eq:transcendental} and produces the following scan:
+
+\begin{center}
+\begin{tabular}{rrrrl}
+\toprule
+$\eta$ & $\Lzero/\bdelta$ & $\SE/\hbar$ & $\taun$ (A=1) & Note \\
+\midrule
+0.025 & 20.1 & 126.3 & $2.5 \times 10^{32}\second$ & Far too long \\
+0.034 & 15.0 & 94.6  & $4.0 \times 10^{18}\second$ & Far too long \\
+0.042 & 12.1 & 76.2  & $4.1 \times 10^{10}\second$ & Far too long \\
+0.051 & 10.1 & 63.7  & $1.5 \times 10^{5}\second$  & Too long \\
+\textbf{0.052} & \textbf{9.87} & \textbf{62.0} & $\mathbf{2.9 \times 10^{4}}\second$ &
+    $\leftarrow \pi^2$~[P] \\
+0.055 & 9.43 & 59.3  & $1.9 \times 10^{3}\second$  & $\leftarrow 3\pi$~[P] \\
+0.065 & 8.04 & 50.5  & $0.3\second$                 & Too short \\
+0.087 & 6.06 & 38.1  & $1.2 \times 10^{-6}\second$  & Far too short \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Key observation:} With $A = 1$, the value $\Lzero/\bdelta = \pi^2$ gives
+$\taun \approx 29{,}000\second$ --- a factor $\sim 33$ too long. To recover
+$\taun \approx 878\second$:
+\begin{itemize}
+    \item With $A = 1$: need $\Lzero/\bdelta \approx 9.31$
+    \item With semiclassical $A_{\text{sc}} \approx 0.84$: need
+          $\Lzero/\bdelta \approx 9.34$
+    \item Both are closer to $3\pi \approx 9.42$ than to
+          $\pi^2 \approx 9.87$
+\end{itemize}
+
+% ============================================================================
+\section{Candidate $R_5$ Assumptions}
+\label{sec:L0d:R5}
+% ============================================================================
+
+The compactification radius $R_5$ enters through the compact-dimension
+circumference $\ell = 2\pi R_5$. In the infinite-interval limit (used above),
+$R_5$ does not directly determine $\Lzero/\bdelta$ --- the well strength $\eta$
+does. However, the heuristic routes in Chapter~\ref{ch:L0delta} invoke specific
+$R_5$ assumptions.
+
+\begin{center}
+\begin{tabular}{llllll}
+\toprule
+\textbf{Assumption} & $R_5/\bdelta$ & $\ell/\bdelta$ & \textbf{Provenance}
+    & \textbf{Status} & \textbf{Heuristic $\Lzero/\bdelta$} \\
+\midrule
+Standing wave: $R_5 = \pi\bdelta$ & 3.14 & 19.7 & Ch.~\ref{ch:L0delta} §3
+    & [P] & $\pi^2$ \\
+Two-fold winding                  & 3.14 & 19.7 & Ch.~\ref{ch:L0delta} §3
+    & [P] & $\pi^2$ \\
+Steiner junction                  & —    & —    & Ch.~\ref{ch:L0delta} §3
+    & [P] & $3\pi$ \\
+Arm-count: $R_5 = 3\bdelta$       & 3.0  & 18.8 & Geometric
+    & [P] & — \\
+Free scan                         & var. & var. & None
+    & —   & — \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Critical distinction:} The standing-wave heuristic gives
+$\Lzero = \pi R_5 = \pi^2\bdelta$ through a half-wavelength matching argument,
+\emph{not} through the eigenvalue model of \S\ref{sec:L0d:math}. In the eigenvalue
+model, $\Lzero/\bdelta$ is set by $\eta$ (well strength), not by $R_5$ directly.
+These are different physical claims:
+\begin{itemize}
+    \item \textbf{Heuristic:} $\Lzero/\bdelta$ is fixed by $R_5$ via mode matching~[P]
+    \item \textbf{Eigenvalue model:} $\Lzero/\bdelta$ is fixed by $\eta$ via localization~[Dc within model]
+\end{itemize}
+
+Neither route derives $R_5$ or $\eta$ from first principles.
+
+% ============================================================================
+\section{Circularity Firewall}
+\label{sec:L0d:circularity}
+% ============================================================================
+
+\begin{quarantinebox}[title=Circularity Safeguards]
+The following circular or non-independent reasoning patterns must be explicitly
+avoided:
+
+\begin{enumerate}
+    \item \textbf{$R_5$ selection by $\taun$ matching:} If $R_5$ is chosen because
+          it reproduces $\taun \approx 878\second$, this is \textbf{calibration}~[Cal],
+          not derivation~[Der]. The model produces a continuous family of lifetimes;
+          any specific $\taun$ can be matched by choosing the right $\eta$ (hence $R_5$).
+
+    \item \textbf{Prefactor $A$ rescue:} If $\Lzero/\bdelta = \pi^2$ gives the
+          wrong $\taun$, retuning $A$ to fix it creates a \textbf{doubly
+          non-independent} closure. The prefactor $A$ and the exponent
+          $\Lzero/\bdelta$ must not be co-tuned.
+
+    \item \textbf{$C = (\Lzero/\bdelta)^2 = 100$ as independent evidence:}
+          The structural scaling $C \propto (\Lzero/\bdelta)^2$ is legitimate~[Dc].
+          However, the \emph{value} $C = 100$ uses $\Lzero = 1.0\fm$~[I] and
+          $\bdelta = 0.1\fm$~[I] as inputs. This is dimensional analysis confirming
+          itself --- not an independent constraint on $\Lzero/\bdelta$.
+
+    \item \textbf{Tension ``resolution'' as closure:} The claim that $\pi^2$
+          (static) vs.\ 9.33 (dynamic) represents ``quantum corrections'' depends
+          on $r_p$~[BL] as input. The ``dynamic'' value $\Lzero/\bdelta = (r_p +
+          \bdelta)/\bdelta = 9.33$ is a brane-to-observer map using measured data,
+          not a derived result.
+\end{enumerate}
+\end{quarantinebox}
+
+% ============================================================================
+\section{Relationship to Chapter~\ref{ch:L0delta} Legacy Routes}
+\label{sec:L0d:legacy}
+% ============================================================================
+
+Chapter~\ref{ch:L0delta} presents three heuristic approaches. This appendix
+provides the first model-dependent eigenvalue-based route. The relationship is:
+
+\begin{center}
+\begin{tabular}{lllll}
+\toprule
+\textbf{Route} & \textbf{Result} & \textbf{Type} & \textbf{Status}
+    & \textbf{This Appendix} \\
+\midrule
+Standing wave    & $\pi^2 = 9.87$ & Heuristic [P] & Motivational
+    & Consistent at $\eta = 0.052$ \\
+Two-fold winding & $\pi^2 = 9.87$ & Heuristic [P] & Motivational
+    & Same as standing wave \\
+Steiner junction & $3\pi = 9.42$  & Heuristic [P] & Alternative
+    & Consistent at $\eta = 0.055$ \\
+Empirical ($r_p$ map) & $9.33$    & Map [P]+[BL]  & Consistency check
+    & Closest to $\taun$ match \\
+\midrule
+BVP eigenvalue   & $F(\eta)$ curve & Model [Dc$|$P] & This appendix
+    & Continuous family \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Key finding:} The eigenvalue model does \emph{not} select among these
+candidates. All legacy values ($\pi^2$, $3\pi$, $9.33$) lie on the same curve
+$F(\eta)$, each corresponding to a different well strength $\eta$. The model
+converts the question ``what is $\Lzero/\bdelta$?'' into ``what is $\eta$?'' ---
+and $\eta$ remains undetermined~[P].
+
+% ============================================================================
+\section{Prefactor $A$ Donor}
+\label{sec:L0d:prefactor}
+% ============================================================================
+
+A semiclassical derivation of the prefactor $A$ exists as a donor result~[Der
+within 1D effective model]:
+\begin{equation}
+    A = \frac{\pi \cdot (\omega_0/\omega_B)}{\sqrt{\Lzero/\bdelta}}
+    \label{eq:A_semiclassical}
+\end{equation}
+
+where $\omega_0$ is the well frequency and $\omega_B$ is the barrier-top frequency.
+With $\omega_0/\omega_B \approx 0.82$~[Dc within model]:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+$\Lzero/\bdelta$ & $A_{\text{sc}}$ & $\taun(A_{\text{sc}})$ \\
+\midrule
+$\pi^2 = 9.87$  & 0.82 & $\sim 24{,}000\second$ \\
+$3\pi = 9.42$   & 0.84 & $\sim 1{,}600\second$  \\
+$9.33$           & 0.84 & $\sim 1{,}300\second$  \\
+$9.31$ (A=1 match) & 0.84 & $\sim 740\second$  \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Observation:} Even with the semiclassical $A$, no candidate value of
+$\Lzero/\bdelta$ reproduces $\taun = 878\second$ exactly without additional
+adjustment. The closest natural match is $\Lzero/\bdelta \approx 9.34$ with
+$A_{\text{sc}} \approx 0.84$, yielding $\taun \approx 1{,}300\second$ --- within
+a factor of 1.5, but not $< 1\%$ agreement. The $< 1\%$ agreement reported in
+Chapter~\ref{ch:tau_n} requires treating $A$ as a calibrated parameter~[Cal].
+
+% ============================================================================
+\section{Summary and Outcome}
+\label{sec:L0d:outcome}
+% ============================================================================
+
+\begin{resultbox}[title=R1 Mode B+ Outcome]
+    \textbf{What this appendix upgrades:}
+    \begin{itemize}
+        \item Provides an explicit eigenvalue-based model for $\Lzero/\bdelta$,
+              replacing pure heuristic arguments
+        \item Establishes $\Lzero/\bdelta = F(\eta)$ as a well-defined functional
+              relation~[Dc within model]
+        \item Quantifies the $\eta$ values needed for each candidate
+              ($\pi^2$: $\eta \approx 0.052$; $3\pi$: $\eta \approx 0.055$)
+        \item Documents delta-scale ambiguity as a systematic risk
+    \end{itemize}
+
+    \textbf{What remains:}
+
+    \begin{center}
+    \begin{tabular}{lll}
+    \toprule
+    \textbf{Item} & \textbf{Status} & \textbf{What is needed} \\
+    \midrule
+    $\Lzero/\bdelta = F(\eta)$ & [Dc$|$model] & Functional form computed \\
+    $\eta$ (well strength)     & [P]          & Derive $V_0$ and $M$ from 5D action \\
+    $R_5$ (compactification)   & [P]          & Derive from action or topology \\
+    $V(\xi)$ (physical potential) & [OPEN]    & Derive from full 5D variation \\
+    $\bdelta$ identification   & [P]          & Resolve $\bdelta$ vs $R_\xi$ ambiguity \\
+    $\Lzero/\bdelta = \pi^2$   & [P]          & One candidate among many \\
+    \bottomrule
+    \end{tabular}
+    \end{center}
+
+    \textbf{Status of $\pi^2$:}
+    \begin{itemize}
+        \item \textbf{Reproduced:} Yes --- at $\eta \approx 0.052$
+        \item \textbf{Naturally selected:} No --- $\pi^2$ has no preferred
+              status in the eigenvalue model
+        \item \textbf{Best $\taun$ match:} No --- $\Lzero/\bdelta \approx 9.33$
+              gives closer $\taun$, but that is calibration~[Cal]
+        \item \textbf{Overall:} $\pi^2$ remains a \emph{plausible candidate}~[P]
+              among a continuous family
+    \end{itemize}
+\end{resultbox}
