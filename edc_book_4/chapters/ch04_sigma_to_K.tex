@@ -56,6 +56,20 @@ The derivation chain:
 \label{sec:sigmaK:contact}
 % ============================================================================
 
+\begin{tcolorbox}[colback=gray!5,colframe=gray!50!black,title=Notation: Length Scales $\delta$ and $L_0$]
+This chapter uses two geometric parameters:
+\begin{itemize}
+    \item $\delta \approx 0.105\;\text{fm}$: brane thickness / flux tube radius.
+          \textbf{Source:} Postulated as $\delta = \hbar/(2 m_p c)$ (Compton regularization);
+          analyzed in Ch.~\ref{ch:L0delta}. \tagP
+    \item $L_0 \approx 1.0\;\text{fm}$: characteristic junction scale.
+          \textbf{Source:} Postulated via the ratio hypothesis $L_0/\delta = \pi^2$
+          in Ch.~\ref{ch:L0delta}. \tagP
+\end{itemize}
+Both are \emph{imported} into this chapter; their derivation status is [P] (postulated).
+The ratio $L_0/\delta \approx 9.87$ drives the instanton exponent in Ch.~\ref{ch:tau_n}.
+\end{tcolorbox}
+
 \subsection{The Physical Setup}
 
 From the M$_6$ geometry derivation (Ch.~\ref{ch:junction}):
@@ -105,41 +119,67 @@ When two junctions connect (leg-to-hub contact), three models apply:
 
 \subsection{Matched vs.\ Mismatched States}
 
-Consider two neighboring junctions with reaction coordinates $q_i$ and $q_j$:
+Consider two neighboring junctions with reaction coordinates $q_i$ and $q_j$.
+Define the mismatch parameter $\Delta q := q_i - q_j$.
 
 \begin{description}
-    \item[Matched states] ($q_i = q_j$): Contact surface is flat
+    \item[Matched states] ($\Delta q = 0$): Contact surface is flat
         \begin{equation}
             E_{\text{matched}} = \bsigma \times A_{\text{contact}}
+            \label{eq:E_matched}
         \end{equation}
-    \item[Mismatched states] ($q_i \neq q_j$): Contact surface curves
-        \begin{equation}
-            E_{\text{mismatched}} = \bsigma \times A_{\text{contact}} \times \bigl(1 + \kappa_c (q_i - q_j)^2\bigr)
-        \end{equation}
+    \item[Mismatched states] ($\Delta q \neq 0$): Contact surface must curve
+        to accommodate the angular difference between junctions.
 \end{description}
 
-\subsection{Curvature Contribution}
+\subsection{Scaling Bridge: Why Quadratic in $\Delta q$?}
+\label{sec:sigmaK:scaling_bridge}
 
-When $q_i \neq q_j$:
-\begin{itemize}
-    \item Junction angles differ from 120°
-    \item Contact surface must curve to accommodate
-    \item Curvature radius: $R_c \approx L_0 / |\Delta q|$
-\end{itemize}
+The mismatch energy depends on $(\Delta q)^2$ for small $\Delta q$. Here is the
+scaling argument:
 
-For small $\Delta q$:
-\begin{equation}
-    E_{\text{curv}} \approx \bsigma \times A_{\text{contact}} \times (\Delta q)^2
-\end{equation}
+\begin{enumerate}
+    \item \textbf{Symmetry constraint:} The energy must be symmetric under
+          $\Delta q \to -\Delta q$ (exchanging junction labels). Therefore,
+          the leading-order correction is \emph{even} in $\Delta q$.
+
+    \item \textbf{Curvature estimate:} When $\Delta q \neq 0$, junction angles
+          deviate from the equilibrium 120°. The contact surface curves with
+          characteristic radius:
+          \begin{equation}
+              R_c \sim \frac{L_0}{|\Delta q|}
+              \label{eq:R_c}
+          \end{equation}
+          This is a dimensional estimate \tagP: the only length scale available
+          for the curvature is $L_0$, and it must diverge as $\Delta q \to 0$.
+
+    \item \textbf{Curvature energy:} Bending a surface of area $A$ with tension
+          $\sigma$ and curvature $1/R$ costs energy $\sim \sigma A / R^2$.
+          Substituting $R_c \sim L_0/|\Delta q|$:
+          \begin{equation}
+              E_{\text{curv}} \sim \bsigma \cdot A_{\text{contact}} \cdot
+              \frac{(\Delta q)^2}{(L_0/L_0)^2}
+              = \bsigma \cdot A_{\text{contact}} \cdot (\Delta q)^2
+          \end{equation}
+          up to $O(1)$ geometric factors. \tagP
+\end{enumerate}
+
+\textbf{Summary:} The quadratic dependence on $\Delta q$ follows from symmetry
+and dimensional analysis. Unknown $O(1)$ prefactors are absorbed into the
+definition of $\Kpin$ below.
 
 \subsection{Total Mismatch Energy}
 
 \begin{derivationbox}[title=Mismatch Energy]
-    The energy cost of mismatch:
+    Combining the matched energy \eqref{eq:E_matched} with the curvature
+    correction, the mismatch energy cost is:
     \begin{equation}
-        \Delta E = E_{\text{mismatched}} - E_{\text{matched}} = \bsigma \times A_{\text{contact}} \times (\Delta q)^2 \tagDc
+        \Delta E := E_{\text{mismatched}} - E_{\text{matched}}
+                  = \bsigma \times A_{\text{contact}} \times (\Delta q)^2
         \label{eq:mismatch_energy}
     \end{equation}
+    up to $O(1)$ geometric factors absorbed into later definitions. \tagP
+
     This is the \textbf{pinning energy per bond}.
 \end{derivationbox}
 
@@ -164,23 +204,35 @@ Comparing with Eq.~\eqref{eq:mismatch_energy}:
 \subsection{The Geometric Factor $f$}
 
 Not all of the contact surface contributes to mismatch energy. The mismatch
-affects only the \textbf{boundary region}, not the full area.
+stress penetrates only a thin boundary layer, not the full contact area.
 
 \begin{derivationbox}[title=Effective Area and $f$ Factor]
-    Effective area:
+    Define the effective area fraction $f$:
     \begin{equation}
-        A_{\text{eff}} = f \times A_{\text{contact}} \tagI
+        A_{\text{eff}} = f \times A_{\text{contact}}
     \end{equation}
-    where $f < 1$ is a geometric factor from the penetration depth ratio:
-    \begin{equation}
-        f = \frac{w_{\text{eff}}}{r_{\text{contact}}} = \frac{\delta}{\sqrt{\delta L_0}} = \sqrt{\frac{\delta}{L_0}} \approx 0.32 \tagI
+
+    The factor $f$ is the ratio of the stress penetration depth $w_{\text{eff}}$
+    to the contact radius $r_{\text{contact}}$:
+    \begin{align}
+        r_{\text{contact}} &:= \sqrt{\delta \cdot L_0}
+            && \text{(from Eq.~\eqref{eq:contact_area})} \\[0.5em]
+        w_{\text{eff}} &:= \delta
+            && \text{(penetration depth $\sim$ brane thickness)} \\[0.5em]
+        f &:= \frac{w_{\text{eff}}}{r_{\text{contact}}}
+            = \frac{\delta}{\sqrt{\delta \cdot L_0}}
+            = \sqrt{\frac{\delta}{L_0}}
+            \approx 0.32
         \label{eq:f_factor}
-    \end{equation}
+    \end{align}
+    \tagI{} (identified ansatz; derivation remains OPEN)
 \end{derivationbox}
 
-\textbf{Physical interpretation:} The factor $f = \sqrt{\delta/L_0}$ represents
-the penetration depth ratio. The mismatch stress only affects a layer of
-thickness $\delta$ at the contact, while the contact radius is $\sqrt{\delta L_0}$.
+\textbf{Physical interpretation:} The factor $f = \sqrt{\delta/L_0}$ is a
+penetration-depth ratio. Mismatch stress affects only a layer of thickness
+$\delta$ at the contact boundary, while the full contact radius is
+$\sqrt{\delta L_0} \approx 0.32\;\text{fm}$. This ansatz is geometrically
+motivated but not rigorously derived from the 5D action.
 
 % ============================================================================
 \section{The $f$ Factor: Status and Open Questions}
@@ -233,20 +285,47 @@ The factor $f = \sqrt{\delta/L_0} \approx 0.32$ is \textbf{identified} [I], not
     \label{eq:K_numerical}
 \end{equation}
 
-\subsection{Phenomenological Check}
+\subsection{Consistency Check (Not a Fit)}
 
-From cluster binding energies (Ch.~\ref{ch:deuterium}):
+\begin{tcolorbox}[colback=yellow!5,colframe=orange!50!black,title=Anti-Tuning Declaration]
+The value $\Kpin \approx 0.93\;\MeV$ computed above is \emph{not} adjusted to
+match observation. The parameters $\bsigma$, $\delta$, $L_0$, and $f$ are fixed
+by their respective sources (Book~I, Ch.~\ref{ch:L0delta}, and dimensional
+ansatz). This subsection compares the model output to an independent benchmark;
+\textbf{no parameter is tuned here}.
+\end{tcolorbox}
+
+\textbf{Observer-level benchmark:} Chapters~\ref{ch:deuterium}--\ref{ch:helium4}
+derive cluster binding energies using $\Kpin$. Working backwards from measured
+binding energies (treated as baselines [BL]):
 \begin{itemize}
-    \item Deuterium binding: $B_d = 2.22\;\MeV \Rightarrow \Kpin \approx B_d/3 \approx 0.74\;\MeV$
-    \item Closed-4 pinning term: consistent with $\Kpin \approx 0.8\;\MeV$
+    \item From deuterium binding $B_d = 2.22\;\MeV$: implies $\Kpin \approx 0.74\;\MeV$
+    \item From closed-4 energy budget: implies $\Kpin \approx 0.8\;\MeV$
 \end{itemize}
 
-\textbf{Phenomenological range:} $\Kpin \in [0.7, 0.8]\;\MeV$
+\textbf{Comparison:}
+\begin{center}
+\begin{tabular}{lll}
+    \toprule
+    Source & $\Kpin$ (MeV) & Status \\
+    \midrule
+    Model (this chapter) & 0.93 & [Dc/I] \\
+    Benchmark (from binding) & 0.74--0.80 & [Cal] (Appendix~Q) \\
+    \bottomrule
+\end{tabular}
+\end{center}
 
-\textbf{Model prediction:} $\Kpin \approx 0.93\;\MeV$ (with $f = 0.32$)
+The model overshoots the benchmark by $\sim 15$--$25\%$. This discrepancy is
+\emph{not} hidden or tuned away. Possible sources:
+\begin{itemize}
+    \item The $f$-factor ansatz $f = \sqrt{\delta/L_0}$ may be too large
+    \item Higher-order corrections to the curvature energy are neglected
+    \item The contact geometry model (saddle surface) is approximate
+\end{itemize}
 
-\textbf{Agreement:} Within 15--20\%, which is excellent for a first-principles
-derivation with one identified (not derived) factor.
+Closing this gap requires a rigorous derivation of $f$ from the 5D action
+(OPEN Problem~4.1). Until then, the discrepancy is an honest limitation of
+the current model.
 
 \subsection{Sensitivity Analysis}
 
