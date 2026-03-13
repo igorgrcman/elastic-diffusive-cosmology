@@ -1,0 +1,666 @@
+% ============================================================================
+% Appendix: Phase 2 N7 — Thick-Junction Internal-Core Node-Well Test
+% ============================================================================
+% Status: [Dc|model] derivation/bounding attempt within declared model class
+% Scope: Test whether regularized thick-junction core energy at scale δ
+%        generates a non-geometric attractive sector in V(q) that could
+%        create a secondary minimum, beyond the accepted geometric baseline.
+% Phase 2 / N7 WP2 deliverable
+% Governing documents: PHASE2_NEXTSTEP_PLAN_V1.md,
+%                      audit/N7_WP1_DONOR_NORMALIZATION.md
+% ============================================================================
+
+\chapter{Thick-Junction Internal-Core Test for the Node-Well Sector}
+\label{app:P2_N7_core}
+
+% ============================================================================
+\section{Scope and Framing}
+\label{sec:P2N7:scope}
+% ============================================================================
+
+This appendix tests the \textbf{N7 thick-junction / internal-core lane}
+as a source of non-geometric attraction in the effective potential $V(q)$.
+It builds on the accepted geometric single-well baseline
+$V_{\mathrm{geom}}(q) = \tau L_{\mathrm{tot}}(q)$ \tagDc\
+(Appendix~\ref{app:vq_chosen_path}) and follows the N7~WP1 donor
+normalization and model boundary
+(\texttt{audit/N7\_WP1\_DONOR\_NORMALIZATION.md}).
+
+\textbf{What this appendix tests:}
+Does the internal energy of a regularized Y-junction core (at scale
+$\delta$) produce a $q$-dependent contribution $V_{\mathrm{core}}(q)$
+that can oppose the geometric restoring force and create a secondary
+minimum in the combined potential?
+
+\textbf{What this appendix does not claim:}
+\begin{itemize}
+    \item It does not claim full closure of $V(q)$.
+    \item It does not determine the core profile $f(q/\delta)$
+          from first principles.
+    \item It does not resolve the $L_0/\delta$ ratio.
+    \item A no-go is an allowed and informative outcome.
+\end{itemize}
+
+% ============================================================================
+\section{Donor Discipline}
+\label{sec:P2N7:donors}
+% ============================================================================
+
+\textbf{Allowed donor bundle} (from N7~WP1 normalization):
+\begin{itemize}
+    \item Separable core ansatz structure (D-N7-1) \tagDc\ structural
+    \item $V_{\mathrm{geom}}(q) = \tau L_{\mathrm{tot}}(q)$ (D-N7-2)
+          \tagDc
+    \item $\sigma = 8.82\MeV/\fm^2$ \tagDc
+    \item $\delta = \hbar/(2m_p c) \approx 0.105\fm$ \tagI
+    \item $L_0 \approx 1.0\fm$ \tagI
+    \item $E_0 = \sigma L_0^2$ \tagDc
+    \item WP2 Israel no-go (S-N7-3) \tagDc\ constraint
+\end{itemize}
+
+\textbf{Forbidden imports:}
+\begin{itemize}
+    \item $C = 100$ as independent evidence (F-N7-1)
+    \item Phenomenological Gaussian/Lorentzian profiles as [Dc] (F-N7-2)
+    \item Variant~3 fitted parameters ($V_0$, $q_*$, $w$)
+    \item $V_B = 2\Delta m_{np}$ as derivation constraint
+    \item $\tau_n \approx 878\second$ as input to $V(q)$
+    \item N1 Israel thin-junction energy (bounded no-go)
+\end{itemize}
+
+\textbf{Anti-smuggling test} (from N7~WP1 \S8.3):
+\emph{Delete all knowledge of $\tau_n$, $V_B \approx 2.6\MeV$, and the
+Variant~3 Gaussian from the derivation. Does the derivation still stand?}
+
+% ============================================================================
+\section{Model-Class Setup}
+\label{sec:P2N7:model}
+% ============================================================================
+
+\subsection{What ``Thick Junction'' Means}
+
+In the thin-junction approximation (WP2,
+Appendix~\ref{app:P2_WP2_Israel}), the Y-junction vertex is treated as
+a distributional (zero-width) matching condition. The Israel conditions
+apply at the vertex, and the result is $\Delta\theta \equiv 0$ with
+arm-interior energy $\propto V_{\mathrm{geom}}$ (single-well).
+
+In the \textbf{thick-junction model}, the vertex is regularized to a
+finite-size core of characteristic radius $\delta \approx 0.105\fm$ \tagI.
+Inside this core, the three worldsheets smoothly merge rather than
+meeting at a mathematical point. The energy stored in this merging
+region depends on the stress configuration, which changes when the
+junction node is displaced by $q$.
+
+\subsection{What ``Internal Core'' Means}
+
+The internal core is the region $r_\perp < r_0$ around the junction
+vertex, where $r_\perp$ is the transverse distance from the vertex and
+$r_0 = L_0$ \tagI\ is the transverse core radius (identified with the
+junction footprint). The core extends a distance $\sim \delta$ in the
+$q$-direction (the collective coordinate of node displacement).
+
+\subsection{Scales and Assumptions}
+
+\begin{assumptionbox}[title=N7 Model Assumptions]
+\begin{enumerate}
+    \item \textbf{Separable core density} [P]:
+          $\rho_{\mathrm{core}}(r_\perp, q) = \sigma \times
+           g_\perp(r_\perp / r_0) \times f(q/\delta)$
+    \item \textbf{Core scale} $\delta = \hbar/(2m_p c) \approx 0.105\fm$
+          [I] (Compton anchor)
+    \item \textbf{Transverse extent} $r_0 = L_0 \approx 1.0\fm$ [I]
+          (junction footprint)
+    \item \textbf{Transverse profile integral}
+          $I_\perp = \int d^2\xi\, g_\perp(|\xi|) \approx \pi$
+          for well-behaved profiles [Dc]
+    \item \textbf{Adiabatic approximation}: fast modes relax at
+          fixed $q$ [P]
+\end{enumerate}
+\end{assumptionbox}
+
+\subsection{Core Energy: Structural Form}
+
+From the separable ansatz (D-N7-1), integrating out transverse
+directions:
+\begin{equation}
+    V_{\mathrm{core}}(q) = -E_0 \times f(q/\delta)
+    \label{eq:N7_Vcore}
+    \tagDc
+\end{equation}
+where
+\begin{equation}
+    E_0 = \sigma \times r_0^2 \times I_\perp
+        = \sigma \times L_0^2 \times I_\perp
+    \label{eq:N7_E0}
+    \tagDc
+\end{equation}
+
+The energy scale $E_0$ is independent of $\delta$. With
+$I_\perp \approx \pi$:
+\begin{equation}
+    E_0 \approx \pi \times 8.82 \times 1.0^2
+        \approx 27.7\MeV
+    \label{eq:N7_E0_value}
+\end{equation}
+
+If $I_\perp$ is absorbed into $f$ (as in the donor convention where
+$f(0) = 1$ already includes the profile normalization):
+\begin{equation}
+    E_0 = \sigma L_0^2 \approx 8.82\MeV
+    \label{eq:N7_E0_convention}
+\end{equation}
+
+\textbf{Key point:} The energy scale $E_0 \sim O(10\MeV)$ is set by
+$\sigma$ and $L_0$ alone. It is of the right magnitude to compete
+with $V_{\mathrm{geom}}$, which varies by $\sim \tau R \sim O(10\MeV)$
+over the displacement range. The energy scale is \tagDc.
+
+The profile $f(q/\delta)$ is \textbf{not determined} by the separable
+ansatz. It encodes the $q$-dependence of the core energy and is the
+central open quantity.
+
+% ============================================================================
+\section{Core Reduction: Sign and Monotonicity Analysis}
+\label{sec:P2N7:reduction}
+% ============================================================================
+
+\subsection{Physical Argument for Profile Shape}
+
+The core energy $V_{\mathrm{core}}(q)$ depends on the stress
+configuration inside the regularized junction vertex. Two contributions
+determine the core energy at displacement $q$:
+
+\begin{enumerate}
+    \item \textbf{Binding energy} (negative): energy saved by the
+          three worldsheets merging in the core region rather than
+          remaining separate. This is the dominant attractive contribution.
+          At the Steiner configuration ($q = 0$), all three arms converge
+          symmetrically in the core, producing maximal binding.
+          As $q$ increases, the angular asymmetry reduces the efficiency
+          of the merging, and the binding energy weakens.
+
+    \item \textbf{Strain energy} (positive): energy cost of
+          accommodating the stress concentration at the junction vertex.
+          For an elastic medium, the strain energy density scales as
+          $\sigma^2/Y$ (where $Y$ is the elastic modulus). At $q = 0$
+          (Steiner), the $\Zthree$-symmetric stress distribution
+          minimizes the total strain energy (by the convexity of
+          $\sigma^2$: equal stress distribution minimizes $\sum \sigma_i^2$
+          at fixed $\sum \sigma_i$). Asymmetric configurations
+          ($q > 0$) have higher strain energy.
+\end{enumerate}
+
+Both contributions favor $q = 0$:
+\begin{itemize}
+    \item Binding energy is most negative at $q = 0$ (maximal overlap).
+    \item Strain energy is least positive at $q = 0$ (symmetric stress).
+\end{itemize}
+
+\begin{derivationbox}[title=Physical Sign Determination]
+Within the elastic-medium model of the regularized core, the core
+energy $V_{\mathrm{core}}(q)$ satisfies:
+\begin{equation}
+    V_{\mathrm{core}}(0) \leq V_{\mathrm{core}}(q)
+    \quad \text{for all } q > 0
+    \label{eq:N7_Vcore_min_at_zero}
+\end{equation}
+The Steiner configuration is a \textbf{minimum} of the core energy.
+\tagDcI
+
+\textbf{Consequence for the profile:} In the parameterization
+$V_{\mathrm{core}}(q) = -E_0 f(q/\delta)$ with $E_0 > 0$, this
+requires:
+\begin{equation}
+    f(0) \geq f(q/\delta) \quad \text{for all } q > 0
+    \label{eq:N7_f_peaked_at_zero}
+\end{equation}
+That is, $f$ is peaked at $q = 0$ and non-increasing for $q > 0$.
+\end{derivationbox}
+
+\textbf{Epistemic status of the sign argument:} This uses
+(i)~the separable ansatz [P], (ii)~the elastic-medium analogy for
+the brane [P], and (iii)~the convexity of $\sigma^2$ for strain energy
+[Der]. The argument is physically motivated but model-dependent.
+\tagDcI
+
+\subsection{Thin-Junction Limit Recovery}
+
+The N7 model must reduce to the WP2 no-go in the $\delta \to 0$
+limit. For any profile $f$ with $\int f(q/\delta)\, dq = \delta
+\int f(u)\, du = O(\delta)$:
+\begin{equation}
+    V_{\mathrm{core}}(q) = -E_0 f(q/\delta)
+    \xrightarrow{\delta \to 0}
+    -E_0 \times \delta \times c_f \times \delta_{\mathrm{Dirac}}(q)
+    \label{eq:N7_thin_limit}
+\end{equation}
+where $c_f = \int f(u)\, du$ is a dimensionless constant. The core
+contribution becomes a contact interaction at $q = 0$ with vanishing
+total weight ($\propto \delta \to 0$). It does not produce a secondary
+minimum, consistent with the WP2 no-go. \tagDc
+
+% ============================================================================
+\section{Monotone Profile No-Go}
+\label{sec:P2N7:nogo}
+% ============================================================================
+
+This is the central structural result of this appendix.
+
+\subsection{Statement}
+
+\begin{theorem}[Monotone Profile No-Go]
+\label{thm:monotone_nogo}
+Let $V_{\mathrm{geom}}(q) = \tau L_{\mathrm{tot}}(q)$ be the geometric
+baseline (Appendix~\ref{app:vq_chosen_path}), and let
+$V_{\mathrm{core}}(q) = -E_0 f(q/\delta)$ where $E_0 > 0$ and
+$f$ is any function satisfying:
+\begin{enumerate}
+    \item[(i)] $f(0) = \max_{q \geq 0} f(q/\delta)$
+          \quad (peaked at $q = 0$)
+    \item[(ii)] $f'(u) \leq 0$ for $u > 0$
+          \quad (non-increasing for $q > 0$)
+\end{enumerate}
+Then the combined potential
+$V(q) = V_{\mathrm{geom}}(q) + V_{\mathrm{core}}(q)$ has a unique
+minimum at $q = 0$. No secondary minimum exists for $q > 0$.
+\end{theorem}
+
+\begin{proof}
+Differentiate the combined potential:
+\begin{equation}
+    V'(q) = V_{\mathrm{geom}}'(q) + V_{\mathrm{core}}'(q)
+    = \tau L_{\mathrm{tot}}'(q) - \frac{E_0}{\delta}\, f'\!\left(\frac{q}{\delta}\right)
+    \label{eq:N7_Vprime}
+\end{equation}
+
+\textbf{Term 1:} $V_{\mathrm{geom}}'(q) = \tau L_{\mathrm{tot}}'(q) > 0$
+for all $q \in (0, R)$.
+
+This was established in Appendix~\ref{app:vq_chosen_path}: the Steiner
+point is the unique minimum of $L_{\mathrm{tot}}(q)$, and
+$L_{\mathrm{tot}}$ is strictly increasing for $q > 0$
+(Theorem~\ref{thm:steiner_min}).
+
+Explicitly, for the in-brane path:
+\begin{equation}
+    L_{\mathrm{tot}}'(q) = -1 + \frac{R + 2q}{\sqrt{R^2 + Rq + q^2}}
+    \label{eq:N7_Ltot_prime}
+\end{equation}
+At $q = 0$: $L_{\mathrm{tot}}'(0) = 0$. For $q > 0$:
+$(R + 2q)^2 = R^2 + 4Rq + 4q^2 > R^2 + Rq + q^2$ (since
+$3Rq + 3q^2 > 0$), so $(R+2q)/\sqrt{R^2+Rq+q^2} > 1$, hence
+$L_{\mathrm{tot}}'(q) > 0$. \tagDc
+
+\textbf{Term 2:} $V_{\mathrm{core}}'(q) = -(E_0/\delta) f'(q/\delta)$.
+By hypothesis (ii), $f'(q/\delta) \leq 0$ for $q > 0$, so
+$V_{\mathrm{core}}'(q) \geq 0$.
+
+\textbf{Combining:} For $q > 0$:
+\begin{equation}
+    V'(q) = \underbrace{V_{\mathrm{geom}}'(q)}_{> 0}
+           + \underbrace{V_{\mathrm{core}}'(q)}_{\geq 0}
+           > 0
+    \label{eq:N7_Vprime_positive}
+\end{equation}
+
+Since $V'(q) > 0$ for all $q > 0$, the potential $V(q)$ is strictly
+increasing on $(0, R)$. Its unique minimum on $[0, R)$ is at $q = 0$.
+No secondary minimum exists.
+\end{proof}
+
+\subsection{What This No-Go Covers}
+
+The monotone profile class includes all ``natural'' core profiles:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Profile} & \textbf{$f(u)$} & \textbf{Covered?} \\
+\midrule
+Gaussian & $e^{-u^2}$ & YES \\
+Lorentzian & $1/(1+u^2)$ & YES \\
+Squared Lorentzian & $1/(1+u^2)^2$ & YES \\
+Exponential & $e^{-|u|}$ & YES \\
+Disk (compact) & $\Theta(1-|u|)$ & YES \\
+Any $f$ with $f(0) = \max$ and $f' \leq 0$ & --- & YES \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{All three donor mechanisms (A1, A2, A3) from the junction-core
+execution report fall in this class.} They are all monotonically
+decaying from $q = 0$ and therefore cannot produce metastability.
+
+\subsection{What This No-Go Does Not Cover}
+
+The no-go applies only to profiles satisfying conditions (i) and (ii).
+Profiles that are \textbf{not} peaked at $q = 0$ --- i.e., profiles with
+$f(q_*/\delta) > f(0)$ for some $q_* > 0$ --- are not covered. Such
+profiles would represent core energy that is \emph{more attractive} at
+$q = q_*$ than at the Steiner equilibrium.
+
+\begin{edcopenbox}[title=Escape Route: Non-Monotone Core Energy]
+Metastability from the thick-junction core would require a profile $f$
+with a local maximum at some $q_* > 0$:
+\begin{equation}
+    f(q_*/\delta) > f(0)
+    \label{eq:N7_escape}
+\end{equation}
+
+\textbf{Physical meaning:} The core energy is \emph{lower} (more
+negative) when the junction node is displaced to $q = q_*$ than when
+it sits at the Steiner equilibrium. This would mean the Steiner
+configuration is \emph{not} the core energy minimum.
+
+\textbf{Physical plausibility:} The sign argument in
+\S\ref{sec:P2N7:reduction} provides a physical case against this:
+both binding energy (maximal overlap at $q=0$) and strain energy
+(minimized by $\Zthree$-symmetric stress at $q=0$) favor $q = 0$ as
+the core energy minimum. A non-monotone profile would require a
+mechanism that makes the core energy \emph{decrease} with increasing
+asymmetry, which has no obvious elastic-medium analogue.
+
+\textbf{Possible mechanism:} A qualitative change in core structure
+at some critical displacement (e.g., a $\Zthree \to \Ztwo$ symmetry
+transition inside the core that releases stress energy). This would
+require solving the internal core dynamics, which is beyond the
+separable ansatz framework.
+
+\textbf{Status:} [OPEN]. Not ruled out, but physically unmotivated
+within the natural model class.
+\tagOpen
+\end{edcopenbox}
+
+% ============================================================================
+\section{Depth and Shape Analysis}
+\label{sec:P2N7:depth}
+% ============================================================================
+
+\subsection{Core Contribution Near $q = 0$}
+
+For a monotone profile with $f(0) = 1$ and $f''(0) < 0$ (concave at
+origin):
+\begin{equation}
+    V_{\mathrm{core}}(q) \approx -E_0
+    \left(1 + \frac{1}{2} f''(0) \frac{q^2}{\delta^2}\right)
+    \label{eq:N7_Vcore_expand}
+\end{equation}
+
+The core contribution to the curvature at $q = 0$:
+\begin{equation}
+    V_{\mathrm{core}}''(0) = -\frac{E_0}{\delta^2}\, f''(0) > 0
+    \label{eq:N7_Vcore_curvature}
+\end{equation}
+(positive because $f''(0) < 0$ for peaked profiles).
+
+This \textbf{adds} to the geometric curvature:
+\begin{equation}
+    V''(0) = V_{\mathrm{geom}}''(0) + V_{\mathrm{core}}''(0)
+    = \frac{3\tau}{2R} + \frac{E_0 |f''(0)|}{\delta^2}
+    \label{eq:N7_V_curvature_total}
+\end{equation}
+
+The core makes the well at $q = 0$ \textbf{steeper}, not shallower. It
+\emph{reinforces} the geometric restoring force rather than opposing it.
+
+\subsection{Core Energy Width}
+
+The core contribution decays on scale $\delta \approx 0.105\fm$. For
+the Gaussian profile: $V_{\mathrm{core}}$ drops to $1/e$ of its maximum
+at $q = \delta$. Compared to the geometric scale $R \sim 1\fm$, the
+core attraction is concentrated in a narrow region $q \lesssim \delta
+\ll R$ around the Steiner minimum.
+
+\subsection{Can the Core Flatten the Geometric Rise?}
+
+Even though the core cannot create a secondary minimum (by the monotone
+no-go), it could in principle flatten the rising part of $V(q)$ near
+$q \approx \delta$, where the core attraction is decaying. The
+combined curvature at $q = 0$ is increased, but the slope at
+$q \approx \delta$ could be reduced relative to $V_{\mathrm{geom}}$
+alone.
+
+However, since $V'(q) > 0$ for all $q > 0$ (Theorem~\ref{thm:monotone_nogo}),
+the potential is still strictly increasing. There is no inflection
+point, no flattening to zero slope, and no reversal. The core merely
+modifies the rate of increase at small $q$ without changing the
+qualitative single-well structure.
+
+% ============================================================================
+\section{Comparison Against Geometric Baseline}
+\label{sec:P2N7:comparison}
+% ============================================================================
+
+\subsection{Combined Potential}
+
+\begin{equation}
+    V(q) = \tau L_{\mathrm{tot}}(q) - E_0 f(q/\delta)
+    \label{eq:N7_Vtotal}
+\end{equation}
+
+\textbf{At $q = 0$:}
+\begin{equation}
+    V(0) = 3\tau R - E_0
+    \label{eq:N7_V0}
+\end{equation}
+The core deepens the minimum by $E_0 \sim 8.82\MeV$ (or
+$\sim 27.7\MeV$ with the $I_\perp$ factor).
+
+\textbf{At $q \gg \delta$:}
+\begin{equation}
+    V(q) \approx \tau L_{\mathrm{tot}}(q)
+    \quad (f \to 0)
+    \label{eq:N7_Vlarge}
+\end{equation}
+The core attraction has decayed; only the geometric restoring force
+remains.
+
+\subsection{Does the Core Term Create New Structure?}
+
+\textbf{No.} The core term:
+\begin{itemize}
+    \item Does \textbf{not} oppose the geometric restoring force
+          ($V_{\mathrm{core}}'(q) \geq 0$ for $q > 0$)
+    \item Does \textbf{not} create a secondary minimum
+    \item Does \textbf{not} create a barrier
+    \item \textbf{Deepens} the primary well at $q = 0$
+    \item \textbf{Steepens} the curvature at $q = 0$
+\end{itemize}
+
+\subsection{Comparison to Variant~3}
+
+The Variant~3 phenomenological well (forbidden donor F-N7-2) used
+$V_{\mathrm{node}} = -V_0 \exp(-(q-q_*)^2/2w^2)$ with $q_* = 2\fm$.
+The critical difference is $q_* \neq 0$: the attraction is centered
+\emph{away from} the Steiner point, which allows it to oppose the
+geometric restoring force at $q \approx q_*$ and create a secondary
+minimum.
+
+The thick-junction core energy, by contrast, is centered at $q = 0$
+(the junction vertex). It adds to, rather than opposes, the geometric
+tendency toward $q = 0$.
+
+\textbf{Structural diagnosis:} The Variant~3 node well works because it
+has $V_{\mathrm{node}}'(q) < 0$ for $q < q_*$ (pulling toward $q_*$,
+opposing $V_{\mathrm{geom}}'$ which pulls toward $q = 0$). The
+thick-junction core has $V_{\mathrm{core}}'(q) > 0$ for $q > 0$
+(pulling toward $q = 0$, in the same direction as $V_{\mathrm{geom}}'$).
+This is why the core cannot substitute for Variant~3.
+
+% ============================================================================
+\section{Structural vs.\ Numeric Closure Firewall}
+\label{sec:P2N7:firewall}
+% ============================================================================
+
+\textbf{What is structural derivation in this appendix:}
+\begin{itemize}
+    \item The separable ansatz form
+          $V_{\mathrm{core}}(q) = -E_0 f(q/\delta)$ \tagDc\ structural
+    \item The energy scale $E_0 = \sigma L_0^2 \sim O(10\MeV)$
+          \tagDc\ (from dimensional closure)
+    \item The transverse integral $I_\perp \approx \pi$ for standard
+          profiles \tagDc
+    \item The monotone profile no-go
+          (Theorem~\ref{thm:monotone_nogo}) \tagDc
+    \item The sign argument: both binding and strain energy favor
+          $q = 0$ as core energy minimum \tagDcI
+    \item The thin-junction limit recovery \tagDc
+\end{itemize}
+
+\textbf{What is only parameterized (not derived):}
+\begin{itemize}
+    \item The profile $f(q/\delta)$ itself --- shape remains [OPEN]
+    \item Whether a non-monotone profile is physically realizable
+          --- [OPEN]
+    \item The separability of $\rho_{\mathrm{core}}(r_\perp, q)$
+          --- assumed [P]
+    \item The identification $r_0 = L_0$ --- [I]
+\end{itemize}
+
+\textbf{Why numeric barrier matching is not used:}
+The value $V_B \approx 2.6\MeV$ from the calibrated $\tau_n$ formula
+does not enter this analysis. No parameter in this appendix is adjusted
+to reproduce $V_B$, $\tau_n$, or $\Delta m_{np}$. The conclusion (no
+secondary minimum for monotone profiles) is \emph{independent} of these
+target values.
+
+\textbf{Why $C = 100$ reasoning is excluded:}
+The numerical value $C = (L_0/\delta)^2$ is not cited as evidence.
+Only the \emph{structural} scaling $E_0 = \sigma L_0^2$ is used,
+and this is the $\delta$-independent reformulation from the delta
+audit (N7~WP1 \S7.4).
+
+% ============================================================================
+\section{Outcome Classification}
+\label{sec:P2N7:outcome}
+% ============================================================================
+
+\begin{resultbox}[title=N7 WP2 Outcome: Bounded Insufficiency]
+\textbf{Classification:} Bounded insufficiency within the natural
+model class.
+
+\textbf{What was established:}
+\begin{enumerate}
+    \item \textbf{Energy scale [Dc]:} The thick-junction core energy
+          scale $E_0 = \sigma L_0^2 \sim O(10\MeV)$ is sufficient to
+          compete with $V_{\mathrm{geom}}$ in magnitude.
+    \item \textbf{Monotone profile no-go [Dc]:} If the core profile $f$
+          is peaked at $q = 0$ and monotonically non-increasing for
+          $q > 0$ (the physically motivated class), then $V(q) =
+          V_{\mathrm{geom}}(q) + V_{\mathrm{core}}(q)$ is a single-well
+          potential. No secondary minimum can exist.
+    \item \textbf{Sign result [Dc+I]:} Both binding energy (maximal
+          overlap) and strain energy (symmetric stress) favor the Steiner
+          configuration as the core energy minimum. The core contribution
+          \emph{reinforces} the geometric restoring force.
+    \item \textbf{Thin-junction limit [Dc]:} $V_{\mathrm{core}} \to 0$
+          as $\delta \to 0$, recovering the WP2 no-go.
+\end{enumerate}
+
+\textbf{What this means:}
+The thick-junction core, within the natural model class (monotone
+profile, elastic core), cannot produce a secondary minimum. The core
+energy deepens the Steiner well but does not create a competing
+attractive region at $q > 0$.
+
+\textbf{Why ``bounded insufficiency'' not ``no-go'':}
+The full model class is not ruled out. Non-monotone profiles
+($f(q_*/\delta) > f(0)$ for some $q_* > 0$) could in principle produce
+metastability, but require a physical mechanism that makes the core
+energy \emph{decrease} with displacement from Steiner. No such mechanism
+has been identified within the elastic-medium framework.
+
+\textbf{Scope of the insufficiency:}
+\begin{itemize}
+    \item Separable core ansatz with monotone profile
+    \item In-brane node displacement (R3 path)
+    \item Elastic-medium model for core stress
+    \item Any value of $\sigma$, $\delta$, $L_0$, $R$
+\end{itemize}
+
+\textbf{Epistemic tag:} \tagDc\ (structural no-go within model class).
+\end{resultbox}
+
+\subsection{Impact on Candidate Landscape}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{Candidate} & \textbf{Before N7 WP2} & \textbf{After N7 WP2}
+& \textbf{Status} \\
+\midrule
+N1 Israel thin-junction & Bounded no-go & Unchanged & Dead end \\
+N7 thick-junction (monotone) & Active & Bounded insufficiency
+& Narrowed \\
+N7 thick-junction (non-monotone) & Not tested & [OPEN] & Requires
+new physics \\
+N2 bulk backreaction & Backup & Promoted to primary & Active \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ============================================================================
+\section{Summary}
+\label{sec:P2N7:summary}
+% ============================================================================
+
+\begin{resultbox}[title=N7 WP2 Summary]
+\textbf{Question asked:} Can the thick-junction / internal-core
+contribution generate a non-geometric attractive sector in $V(q)$?
+
+\textbf{Answer:} \textbf{Not within the natural model class} (monotone
+core profile peaked at Steiner equilibrium).
+
+\textbf{Key results:}
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Item} & \textbf{Result} & \textbf{Tag} \\
+\midrule
+Energy scale $E_0$ & $\sigma L_0^2 \sim O(10\MeV)$ --- sufficient
+& [Dc] \\
+Monotone no-go & $V'(q) > 0$ for $q > 0$ --- no secondary min
+& [Dc] \\
+Sign of core term & Core reinforces geometric restoring force
+& [Dc+I] \\
+Thin-junction limit & $V_{\mathrm{core}} \to 0$ as $\delta \to 0$
+& [Dc] \\
+Profile $f(q/\delta)$ & Undetermined (central open quantity)
+& [OPEN] \\
+Non-monotone escape & Physically unmotivated but not ruled out
+& [OPEN] \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{N7 lane status after WP2:} Narrowed. The natural model class
+(monotone profile) produces bounded insufficiency. The lane is not
+dead --- non-monotone profiles or non-separable core physics could
+evade the no-go --- but it requires new physical input not present
+in the current donor base.
+
+\textbf{Recommended next step:}
+\begin{itemize}
+    \item \textbf{Primary:} Pivot to N2 (bulk backreaction) as the next
+          active lane. N2 has not been tested with junction-sourced
+          perturbations and could produce attraction through a different
+          mechanism (gravitational backreaction $V_{\mathrm{bulk}}(q)$
+          is not constrained by the monotone no-go).
+    \item \textbf{Secondary:} If a physical mechanism for non-monotone
+          core energy is identified (e.g., $\Zthree \to \Ztwo$ core
+          transition), revisit N7 with the specific model.
+    \item \textbf{If both N2 and N7 fail:} The double-well postulate
+          [P] is falsified within the $S_{\mathrm{EH}} + S_{\mathrm{NG}}$
+          model class.
+\end{itemize}
+
+\textbf{Anti-smuggling compliance:}
+\begin{itemize}
+    \item[$\checkmark$] No forbidden donors imported
+    \item[$\checkmark$] $C = 100$ not used as evidence
+    \item[$\checkmark$] No profile shape imported as [Dc]
+    \item[$\checkmark$] $\tau_n$, $V_B$, $\Delta m_{np}$ not used
+    \item[$\checkmark$] Monotone no-go derived structurally, not fitted
+    \item[$\checkmark$] Bounded insufficiency documented honestly
+\end{itemize}
+\end{resultbox}
