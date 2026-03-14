@@ -23,9 +23,13 @@ Therefore ALL reasoning, derivations, and decisions MUST be written to disk.
 
 Before doing ANY other work:
 
-1. **Read** all 5 docs files: `STATUS.md`, `TODO.md`, `DERIVATIONS.md`, `DECISIONS.md`, `SESSION_LOG.md`
-2. **Write** a short "Plan for this session" at the TOP of your response AND append to `docs/SESSION_LOG.md`
-3. **Only then** proceed with actual work
+1. **READ `docs/CANON_BUNDLE.md`** — contains ALL P0 canon in one file. **NO EXCEPTIONS.**
+2. If working in specific area, consult `docs/CANON_INDEX.md` for P1 references.
+3. **Write** a short "Plan for this session" at the TOP of your response AND append to `docs/SESSION_LOG.md`
+4. **Only then** proceed with actual work
+
+> **Why MANDATORY?** CANON_BUNDLE contains verified findings [Der], anti-patterns, and decisions.
+> Skipping it leads to re-deriving known results or repeating known errors.
 
 ---
 

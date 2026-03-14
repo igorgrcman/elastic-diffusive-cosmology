@@ -1,0 +1,70 @@
+% Appendix B: Kramers Validation Code
+% Full code listing
+% Status: FILLED
+
+\chapter{Code: Kramers Validation}
+\label{app:kramers}
+
+\section{Overview}
+
+This script performs Langevin dynamics simulations to validate the instanton
+escape time for \MetastableJunction{} transition. It implements Route F with strict
+acceptance criteria (RF-1 through RF-6).
+
+\textbf{Key features:}
+\begin{itemize}
+    \item BAOAB Langevin integrator for thermal fluctuations
+    \item Dimensionless parameters $\Theta = \Delta V / T_{\text{eff}}$ and $\Upsilon = \gamma / \omega_b$
+    \item 1000 trajectories per parameter point (RF-3)
+    \item Fine-tuning assessment (RF-5)
+    \item Book-ready verdict generation (RF-6)
+\end{itemize}
+
+\section{Full Listing}
+
+\lstinputlisting[
+    caption={book4\_kramers\_validation.py --- Route F Langevin validation},
+    label={lst:kramers}
+]{code/book4_kramers_validation.py}
+
+\section{Usage}
+
+\begin{verbatim}
+cd code/
+python3 kramers_double_well_v2.py
+\end{verbatim}
+
+Output includes:
+\begin{itemize}
+    \item 2D map $\tau(\Theta, \Upsilon)$
+    \item $\tau = 879\;\text{s}$ contour identification
+    \item Fine-tuning assessment
+    \item Visualization plots (if matplotlib available)
+\end{itemize}
+
+\section{Key Functions}
+
+\begin{description}
+    \item[\texttt{DimensionlessParams}]
+        Dataclass for Kramers dimensionless parameters
+    \item[\texttt{create\_quartic\_potential(Delta\_V, asymmetry)}]
+        Creates smooth double-well potential
+    \item[\texttt{langevin\_step\_BAOAB(x, v, dV, gamma, T, dt, rng)}]
+        Single BAOAB integration step
+    \item[\texttt{run\_escape\_ensemble(potential, Theta, Upsilon, ...)}]
+        Run ensemble of escape trajectories
+    \item[\texttt{check\_fine\_tuning(Theta, Upsilon, tau\_target)}]
+        Assess fine-tuning level (RF-5)
+\end{description}
+
+\section{Guardrails (RF-1 to RF-6)}
+
+\begin{description}
+    \item[RF-1] Potential from quartic double-well (anchored shape)
+    \item[RF-2] Dimensionless $\Theta$, $\Upsilon$ presentation
+    \item[RF-3] 1000 trajectories per point with full statistics
+    \item[RF-4] Kramers regime identification (overdamped/underdamped/turnover)
+    \item[RF-5] Fine-tuning check with explicit warnings
+    \item[RF-6] Book-ready verdict generation
+\end{description}
+

@@ -1829,3 +1829,5 @@ Before finalizing ANY 5D calculation:
 
 **Total P0 documents:** 7
 **Action:** Read this entire file at the start of every session. MANDATORY.
+
+<!-- Canon bundle last synced: 2026-03-14 (Wave 1 stash preservation) -->

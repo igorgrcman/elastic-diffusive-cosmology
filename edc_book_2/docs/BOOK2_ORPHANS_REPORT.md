@@ -1,18 +1,18 @@
 # Book 2 Orphans Report
 
-**Generated:** 2026-01-29 16:13
+**Generated:** 2026-01-29 17:10
 
 Files in `edc_papers/_shared/` that are NOT included in Book 2.
 
-## Summary: 0 orphan files
+## Summary: 1 orphan files
 
 ### Derivations (0 orphans)
 
 *All files included.*
 
-### Boxes (0 orphans)
+### Boxes (1 orphans)
 
-*All files included.*
+- `edc_papers/_shared/boxes/mn_gn_teaser_box.tex`
 
 ### Lemmas (0 orphans)
 

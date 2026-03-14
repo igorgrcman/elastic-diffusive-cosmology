@@ -1,6 +1,6 @@
 # Book 2 Include Graph
 
-**Generated:** 2026-01-29 16:13
+**Generated:** 2026-01-29 17:10
 
 ## Visualization (depth ≤ 3)
 
@@ -156,6 +156,12 @@ graph TD
     ch19_opr22_geff_from["ch19_opr22_geff_from_exchange"]
     EDC_Part_II_Weak_Sec --> ch20_epistemic_summa
     ch20_epistemic_summa["ch20_epistemic_summary_closure"]
+    EDC_Part_II_Weak_Sec --> XX_teaser_book3_nucl
+    XX_teaser_book3_nucl["XX_teaser_book3_nuclear_mn_gn"]
+    XX_teaser_book3_nucl --> BOOK_SECTION_NEUTRON
+    BOOK_SECTION_NEUTRON["BOOK_SECTION_NEUTRON_LIFETIME"]
+    XX_teaser_book3_nucl --> BOOK_SECTION_TOPOLOG
+    BOOK_SECTION_TOPOLOG["BOOK_SECTION_TOPOLOGICAL_PINNI"]
     EDC_Part_II_Weak_Sec --> APPENDIX_DERIVATION_
     APPENDIX_DERIVATION_["APPENDIX_DERIVATION_LIBRARY"]
     APPENDIX_DERIVATION_ --> projection_reduction
@@ -219,10 +225,10 @@ graph TD
 
 ## Statistics
 
-- Nodes: 107
-- Edges: 106
+- Nodes: 110
+- Edges: 109
 - Max depth: 3
-- Total lines: 40013
+- Total lines: 41915
 
 ## JSON Data
 

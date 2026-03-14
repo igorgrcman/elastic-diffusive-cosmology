@@ -1432,3 +1432,24 @@ Fix all 41 undefined references in the canonical Book 2 spine (EDC_BOOK2_WEAK_CA
 
 ### Open Questions
 None — all undefined references resolved.
+
+---
+
+## 2026-03-14 — Wave 1 Stash Preservation (archive branch)
+
+### Goal
+Preserve stash@{0} content as durable branch per Wave 1 protection protocol.
+This is an archive-only operation — no Book 2 content was authored or modified.
+
+### Work Performed
+- Applied stash@{0} (WIP from book-routeC-narrative-cleanup-v1) to archive branch
+- Committed all stashed changes including build artifacts for forensic completeness
+
+### Files Changed
+- Build artifacts and prior WIP changes from stash
+
+### Next Steps
+- None (archive branch, not active development)
+
+### Open Questions
+None — archive-only preservation.

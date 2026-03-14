@@ -1,0 +1,177 @@
+============================================================
+V7.8 CANONICAL PIPELINE
+Started: 2026-02-01T20:14:42.140696
+Data dir: /Users/igor/ClaudeAI/EDC_Project/elastic-diffusive-cosmology_repo/edc_book_2/repro_pack/data
+Output dir: /Users/igor/ClaudeAI/EDC_Project/elastic-diffusive-cosmology_repo/edc_book_2/repro_pack/outputs
+============================================================
+
+============================================================
+Running: Step 1: Coordination law fitting (n(A) = 6.1 * A^{1/3})
+Script: /Users/igor/ClaudeAI/EDC_Project/elastic-diffusive-cosmology_repo/edc_book_2/repro_pack/scripts/m_coordination_full_test.py
+Log: /Users/igor/ClaudeAI/EDC_Project/elastic-diffusive-cosmology_repo/edc_book_2/repro_pack/logs/m_coordination_full_test.log
+============================================================
+======================================================================
+FULL COORDINATION TEST: M6, M8, M9, M12
+======================================================================
+
+Fixed parameters:
+  σ = 8.82 MeV/fm²
+  K = 0.943 MeV (from σ, independent of n)
+  Δm_np = 1.293 MeV
+
+======================================================================
+TEST 1: BOUND NEUTRON LIFETIME
+======================================================================
+
+Free neutron: τ = 879.4 s
+Bound neutron needs: τ > 1e+13 s (stable)
+
+  n   |   ΔV_eff   |  S_eff/ℏ   |    τ_bound     |   Status  
+------------------------------------------------------------
+  6   |   2.707    |    86.8    |    5.06e+16    |  STABLE ✓ 
+  8   |   3.179    |    94.1    |    7.17e+19    |  STABLE ✓ 
+  9   |   3.414    |    97.5    |    2.20e+21    |  STABLE ✓ 
+ 12   |   4.121    |   107.1    |    3.32e+25    |  STABLE ✓ 
+
+======================================================================
+TEST 2: BINDING ENERGIES (Small Nuclei)
+======================================================================
+
+Note: These depend on LOCAL geometry, not lattice coordination n
+
+     Observable      |    Model     |   Observed   |   Error    |  Status 
+----------------------------------------------------------------------
+      B.E.(d)        |     2.83     |     2.22     |   +27.2   % |    OK   
+     B.E.(He-4)      |    30.49     |    28.30     |    +7.8   % |    OK   
+     B.E.(Be-8)      |    29.95     |    56.50     |   -47.0   % |  CHECK  
+      B.E.(2α)       |    60.98     |    56.59     |    +7.8   % |    OK   
+
+    Be-8 < 2α ?      | 29.95 < 60.98 ? → True
+      Observed       | 56.50 < 56.59 ? → True
+
+✓ Be-8 INSTABILITY CORRECTLY PREDICTED
+
+======================================================================
+TEST 3: NUCLEAR MATTER SATURATION
+======================================================================
+
+Observed: E/A = -16.0 MeV at ρ₀ = 0.16 fm⁻³
+
+  n   |   E_kin    |   E_pot/A    |  E/A model
+
+============================================================
+Running: Step 2: 5-fold cross-validation prefactor refit
+Script: /Users/igor/ClaudeAI/EDC_Project/elastic-diffusive-cosmology_repo/edc_book_2/repro_pack/scripts/prefactor_refit_cv.py
+Log: /Users/igor/ClaudeAI/EDC_Project/elastic-diffusive-cosmology_repo/edc_book_2/repro_pack/logs/prefactor_refit_cv.log
+============================================================
+===========================================================================
+PREFACTOR OPTIMIZATION WITH REFIT + 5-FOLD CV
+===========================================================================
+
+Dataset: 106 nuclides (all hindrance classes)
+A range: 206 - 257
+Hindrance distribution: H0=86, H1=8, H2=12
+
+---------------------------------------------------------------------------
+CROSS-VALIDATION RESULTS (5-fold, each fold refits all coefficients)
+---------------------------------------------------------------------------
+     p    CV R²  CV RMSE   CV MAE  CV Pass%          a±σ          g±σ          b±σ
+---------------------------------------------------------------------------
+  5.90   0.9365    1.274    0.987     78.4%  1.40±0.02 -1.18±0.20  -43.8±0.7
+  5.95   0.9491    1.144    0.881     83.1%  1.50±0.01 -1.65±0.14  -47.3±0.5
+  6.00   0.9651    0.951    0.720     85.9%  1.64±0.01 -2.06±0.11  -51.5±0.2 ◆
+  6.05   0.9728    0.840    0.601     90.6%  1.65±0.01 -1.89±0.09  -51.7±0.2
+  6.10   0.9713    0.863    0.615     90.6%  1.63±0.01 -1.75±0.10  -50.7±0.3 *
+  6.15   0.9713    0.863    0.615     90.6%  1.63±0.01 -1.74±0.10  -50.2±0.3
+  6.20   0.9713    0.863    0.615     90.6%  1.63±0.01 -1.72±0.09  -49.7±0.3
+
+* = historical default (6.1)
+◆ = proposed optimum (6.0)
+
+---------------------------------------------------------------------------
+FULL-DATASET FIT COMPARISON (p=6.0 vs p=6.1)
+---------------------------------------------------------------------------
+
+p = 6.0:
+  Coefficients: b=-51.52, a=1.636, g=-2.073, c1=1.037, c2=1.784
+  R² = 0.9760, RMSE = 0.897, MAE = 0.693, Pass = 88.7%
+
+p = 6.1:
+  Coefficients: b=-50.75, a=1.632, g=-1.763, c1=1.124, c2=1.532
+  R² = 0.9804, RMSE = 0.812, MAE = 0.589, Pass = 93.4%
+
+===========================================================================
+CONCLUSION
+===========================================================================
+
+Optimal prefactor (by CV R²): p = 6.05
+CV R² = 0.9728, CV RMSE = 0.840, CV Pass = 90.6%
+
+p=
+
+============================================================
+Running: Step 3: Superheavy out-of-sample validation
+Script: /Users/igor/ClaudeAI/EDC_Project/elastic-diffusive-cosmology_repo/edc_book_2/repro_pack/scripts/superheavy_oos_test.py
+Log: /Users/igor/ClaudeAI/EDC_Project/elastic-diffusive-cosmology_repo/edc_book_2/repro_pack/logs/superheavy_oos_test.log
+============================================================
+================================================================================
+SUPERHEAVY OUT-OF-SAMPLE TEST (Train: A≤257, Test: Z≥114)
+================================================================================
+
+Training set: 106 nuclides
+Test set: 6 superheavy nuclides
+
+--------------------------------------------------------------------------------
+PREFACTOR COMPARISON (all coefficients refitted on training set)
+--------------------------------------------------------------------------------
+    p  Train R²  SHE Mean Δ  SHE Max Δ  SHE Pass   Og-294 Δ
+--------------------------------------------------------------------------------
+ 5.95    0.9656        0.77       1.36 6/      6       1.05
+ 6.00    0.9760        0.93       1.73 5/      6       0.84 ◆
+ 6.05    0.9812        0.74       1.48 6/      6       0.58
+ 6.10    0.9804        0.47       1.11 6/      6       0.16 *
+ 6.15    0.9804        0.47       1.11 6/      6       0.16
+
+--------------------------------------------------------------------------------
+DETAILED SUPERHEAVY PREDICTIONS
+--------------------------------------------------------------------------------
+
+--- p = 6.0 ---
+Fitted: b=-51.52, a=1.636, g=-2.073, c1=1.037, c2=1.784
+
+Nuclide       A   d(n)  log t exp   log t GN  log t full  Δ(full)
+Fl-289      289   3.67       0.32       6.96       -0.65    0.97 ✓
+Fl-290      290   3.71       1.28       8.93        1.23    0.05 ✓
+Mc-290      290   3.71      -0.19       5.78       -1.92    1.73 ⚠
+Lv-293      293   3.85      -1.22       5.58       -2.40    1.18 ✓
+Ts-294      294   3.90      -1.59       5.71       -2.37    0.78 ✓
+Og-294      294   3.90      -3.15       4.08       -3.99    0.84 ✓
+
+--- p = 6.1 ---
+Fitted: b=-50.75, a=1.632, g=-1.763, c1=1.124, c2=1.532
+
+Nuclide       A   d(n)  log t exp   log t GN  log t full  Δ(full)
+Fl-289      289   4.33       0.32       7.59       -0.04    0.37 ✓
+Fl-290      290   4.38       1.28       9.55        1.84    0.56 ✓
+Mc-290      290   4.38      -0.19   
+
+Skipping sensitivity analysis (--skip-slow)
+
+============================================================
+Exporting CSV outputs...
+============================================================
+Exported: /Users/igor/ClaudeAI/EDC_Project/elastic-diffusive-cosmology_repo/edc_book_2/repro_pack/outputs/v78_oos_table.csv
+Exported: /Users/igor/ClaudeAI/EDC_Project/elastic-diffusive-cosmology_repo/edc_book_2/repro_pack/outputs/cv_fold_results.csv
+Exported: /Users/igor/ClaudeAI/EDC_Project/elastic-diffusive-cosmology_repo/edc_book_2/repro_pack/outputs/alpha100_fitted.csv (header only)
+
+============================================================
+PIPELINE SUMMARY
+============================================================
+  coordination: PASS
+  cv_refit: PASS
+  superheavy: PASS
+  sensitivity: SKIP
+
+Completed: 2026-02-01T20:14:42.427849
+Logs in: /Users/igor/ClaudeAI/EDC_Project/elastic-diffusive-cosmology_repo/edc_book_2/repro_pack/logs
+Outputs in: /Users/igor/ClaudeAI/EDC_Project/elastic-diffusive-cosmology_repo/edc_book_2/repro_pack/outputs

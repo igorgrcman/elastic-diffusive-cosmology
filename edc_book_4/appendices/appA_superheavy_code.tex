@@ -1,0 +1,70 @@
+% Appendix A: High-Coordination Predictions Code
+% Full code listing
+% Status: FILLED
+
+\chapter{Code: High-Coordination Predictions}
+\label{app:superheavy}
+
+\section{Overview}
+
+This script computes \ClosedFourRelease{} times for high-coordination clusters using the
+frustration-corrected baseline model. It implements the coordination distance
+$d(n)$ calculation and the full V7.8 M2 prediction model.
+
+\textbf{Key features:}
+\begin{itemize}
+    \item Generates allowed coordination set $S = \{2^a \times 3^b\}$
+    \item Computes frustration distance $d(n) = \min_{k \in S} |n(A) - k|$
+    \item Predicts release times using baseline law + frustration correction
+    \item Includes sensitivity analysis for prefactor $p$
+\end{itemize}
+
+\section{Full Listing}
+
+\lstinputlisting[
+    caption={book4\_highcoord\_predictions.py --- Frustration-corrected predictions},
+    label={lst:highcoord}
+]{code/book4_highcoord_predictions.py}
+
+\section{Usage}
+
+\begin{verbatim}
+cd code/
+python3 superheavy_predictions.py              # Basic output
+python3 superheavy_predictions.py --plot       # Generate plot
+python3 superheavy_predictions.py --save-csv   # Export to CSV
+python3 superheavy_predictions.py --sensitivity # Prefactor analysis
+\end{verbatim}
+
+\section{Key Functions}
+
+\begin{description}
+    \item[\texttt{generate\_allowed\_n(max\_n)}]
+        Generates M$_6$-allowed coordination numbers $n = 2^a \times 3^b$
+    \item[\texttt{calc\_d\_n(n\_A, allowed)}]
+        Computes frustration distance $d(n)$ to nearest allowed value
+    \item[\texttt{predict\_log\_t(Z, A, Q\_MeV, ...)}]
+        Main prediction function returning $\log_{10}(t_{1/2}/\text{s})$
+    \item[\texttt{generate\_predictions\_table(prefactor)}]
+        Generates full predictions table for superheavy elements
+\end{description}
+
+\section{Model Parameters}
+
+From V7.8 M2 fit (see Ch.~\ref{ch:frustrated}):
+
+\begin{center}
+\begin{tabular}{lll}
+    \toprule
+    Parameter & Value & Description \\
+    \midrule
+    $a$ & $1.632 \pm 0.028$ & GN slope coefficient \\
+    $g$ & $-1.763 \pm 0.142$ & Frustration coefficient \\
+    $c_1$ & $1.124 \pm 0.314$ & H1 hindrance \\
+    $c_2$ & $1.532 \pm 0.265$ & H2 hindrance \\
+    $b$ & $-50.75 \pm 0.91$ & Intercept \\
+    $p$ & $6.1$ & Prefactor $n(A) = p \times A^{1/3}$ [Cal] \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
