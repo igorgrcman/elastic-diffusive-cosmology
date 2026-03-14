@@ -1,0 +1,732 @@
+% ============================================================================
+% Appendix: Phase 2 NMCP — Non-Monotone Core-Profile Provenance Test
+% ============================================================================
+% Status: Provenance-first test of the NMCP loophole
+% Scope: Test whether any admissible physical mechanism within S_EH + S_NG
+%        breaks the q=0-centered monotone sign logic established in N7
+% Phase 2 / NMCP WP2 deliverable
+% Governing documents: audit/NMCP_WP1_DONOR_NORMALIZATION.md,
+%                      audit/MINIMAL_CLASS_CLOSURE_MEMO_AFTER_N1_N7_N2.md
+% ============================================================================
+
+\chapter{Non-Monotone Core-Profile Provenance Test for the Node-Well Sector}
+\label{app:P2_NMCP}
+
+% ============================================================================
+\section{Scope and Framing}
+\label{sec:NMCP:scope}
+% ============================================================================
+
+This appendix is a \textbf{provenance-first test} of the non-monotone
+core-profile (NMCP) loophole identified in Appendix~\ref{app:P2_N7_core}
+(\S Escape Route). It does not implement a non-monotone profile and
+scan for metastability. It asks the prior question: \emph{can any
+admissible physical mechanism within $S_{\mathrm{EH}} + S_{\mathrm{NG}}$
+generate an effective core energy that is not minimized at
+$q = 0$ (Steiner)?}
+
+\textbf{Why provenance first:} The NMCP lane has three freely tunable
+parameters (peak position $q_*$, width $w$, amplitude $A$) that can
+produce any desired $\VB$. Without provenance---a physical mechanism
+that selects the non-monotone structure before the target is
+known---any numerical success is indistinguishable from a
+phenomenological node well relabeled as ``core physics.''
+
+\textbf{What this appendix tests:}
+\begin{itemize}
+    \item Whether any of the three WP1 candidate mechanisms
+          (\S\ref{sec:NMCP:candidates}) breaks the N7 sign argument
+    \item Whether the sign argument extends beyond the monotone/separable
+          class
+    \item Whether non-monotonicity has provenance within
+          $S_{\mathrm{EH}} + S_{\mathrm{NG}}$ or requires
+          non-minimal extensions
+\end{itemize}
+
+\textbf{What this appendix does not claim:}
+\begin{itemize}
+    \item It does not compute a specific non-monotone $f(q/\delta)$.
+    \item It does not scan profiles or fit parameters.
+    \item It does not derive $V_B$, $\tau_n$, or any downstream quantity.
+    \item A no-go is an allowed and expected outcome.
+\end{itemize}
+
+% ============================================================================
+\section{Governing Constraint from N7}
+\label{sec:NMCP:constraint}
+% ============================================================================
+
+\subsection{The Monotone Profile No-Go}
+
+Appendix~\ref{app:P2_N7_core}, Theorem~\ref{thm:monotone_nogo}
+established:
+
+\begin{resultbox}[title=N7 Monotone Profile No-Go (restated)]
+If the core profile $f(q/\delta)$ satisfies
+(i)~$f(0) = \max f$ and (ii)~$f'(u) \leq 0$ for $u > 0$,
+then $V(q) = V_{\mathrm{geom}}(q) + V_{\mathrm{core}}(q)$
+has no secondary minimum: $V'(q) > 0$ for all $q > 0$.
+\tagDc
+\end{resultbox}
+
+This eliminated the natural model class (all standard profiles:
+Gaussian, Lorentzian, exponential, disk).
+
+\subsection{The Sign Argument}
+
+Underlying the monotone no-go is a \textbf{physical sign argument}
+(Appendix~\ref{app:P2_N7_core}, \S\ref{sec:P2N7:reduction}):
+
+\begin{enumerate}
+    \item \textbf{Binding energy} (negative contribution): the three
+          worldsheets merge in the core, saving energy relative to
+          separate arms. At $q = 0$ (Steiner, $\Zthree$-symmetric),
+          the overlap is \emph{maximal}. Any displacement $q > 0$
+          reduces the symmetry ($\Zthree \to \Ztwo$) and reduces the
+          overlap, making binding less negative:
+          \begin{equation}
+              E_{\mathrm{bind}}(0) \leq E_{\mathrm{bind}}(q)
+              \quad \text{for } q > 0
+              \label{eq:NMCP_bind}
+          \end{equation}
+
+    \item \textbf{Strain energy} (positive contribution): stress
+          concentration at the vertex costs energy. For an elastic
+          medium, the strain energy density scales as $\sigma^2 / Y$.
+          By convexity of $x \mapsto x^2$, equal stress distribution
+          ($\Zthree$-symmetric at $q = 0$) minimizes total strain
+          energy:
+          \begin{equation}
+              E_{\mathrm{strain}}(0) \leq E_{\mathrm{strain}}(q)
+              \quad \text{for } q > 0
+              \label{eq:NMCP_strain}
+          \end{equation}
+\end{enumerate}
+
+Both contributions favor $q = 0$. Combined:
+\begin{equation}
+    V_{\mathrm{core}}(0) = E_{\mathrm{bind}}(0) + E_{\mathrm{strain}}(0)
+    \leq E_{\mathrm{bind}}(q) + E_{\mathrm{strain}}(q)
+    = V_{\mathrm{core}}(q)
+    \label{eq:NMCP_sign_combined}
+\end{equation}
+
+\textbf{Epistemic status:} \tagDcI. Uses (i)~separable ansatz [P],
+(ii)~elastic-medium analogy [P], (iii)~convexity of $\sigma^2$ [Der].
+
+\textbf{The question for NMCP:} Does any admissible mechanism
+invalidate Eq.~\eqref{eq:NMCP_sign_combined}?
+
+% ============================================================================
+\section{Candidate Admissible Mechanisms}
+\label{sec:NMCP:candidates}
+% ============================================================================
+
+The NMCP WP1 normalization (\texttt{audit/NMCP\_WP1\_DONOR\_NORMALIZATION.md},
+\S7.1) identified exactly three candidate mechanisms that could, in
+principle, break the monotone sign logic. Each must be tested against:
+\begin{itemize}
+    \item[(A)] the sign argument (which assumption does it break?)
+    \item[(B)] the admissibility criteria (WP1 \S7.1, items 1--5)
+    \item[(C)] the quick-falsification conditions (WP1 \S11, QF-1 through QF-7)
+\end{itemize}
+
+\subsection{Candidate 1: $\Zthree \to \Ztwo$ Internal Symmetry Transition}
+
+\textbf{Mechanism:} At some critical displacement $q_*$, the
+three-fold symmetric junction core reorganizes to a two-fold
+configuration, releasing stress energy.
+
+\textbf{How it would break the sign argument:}
+The strain energy inequality Eq.~\eqref{eq:NMCP_strain} relies on
+$\Zthree$ being the minimum-strain configuration for all $q$. If
+a $\Zthree \to \Ztwo$ transition occurs at $q_*$, the strain energy
+could jump \emph{downward} at $q_*$ because the two-fold configuration
+might distribute stress more efficiently for asymmetric geometries.
+
+\textbf{Provenance test:}
+\begin{enumerate}
+    \item \textbf{What drives the transition?} Within the Nambu--Goto
+          action, the worldsheet energy depends only on total area (or
+          total length in the 1D reduction). There is no order parameter
+          that distinguishes $\Zthree$ from $\Ztwo$ core structure.
+          The Nambu--Goto action is proportional to arm lengths---it has
+          no internal degrees of freedom at the vertex.
+
+    \item \textbf{What about the regularized core?} The regularization
+          replaces the distributional vertex with a smooth merging region
+          of width $\delta$. Within an elastic-medium model, the stress
+          distribution evolves \emph{continuously} with $q$. There is no
+          bifurcation mechanism: as $q$ increases, the stress on arm 1
+          (toward $\mathbf{P}_1$) decreases while stress on arms 2--3
+          increases. The $\Ztwo$ residual symmetry ($\mathbf{P}_2
+          \leftrightarrow \mathbf{P}_3$) is maintained for all $q$, but
+          this is a continuous reduction from $\Zthree$, not a
+          first-order transition.
+
+    \item \textbf{First-order transition requirement:} A genuine
+          $\Zthree \to \Ztwo$ transition would require either:
+          \begin{itemize}
+              \item[(a)] a first-order phase transition in the core
+                    material (requiring a free energy with two competing
+                    local minima as a function of internal order parameter),
+                    or
+              \item[(b)] an instability threshold (a mode going soft at
+                    critical $q$, leading to spontaneous symmetry breaking
+                    within the core).
+          \end{itemize}
+          Neither exists in $S_{\mathrm{EH}} + S_{\mathrm{NG}}$. The
+          Nambu--Goto action has no internal degrees of freedom that could
+          undergo a phase transition. The Einstein--Hilbert action couples
+          to the brane stress-energy but does not introduce order parameters
+          at the junction vertex.
+\end{enumerate}
+
+\textbf{Verdict on Candidate 1:}
+\begin{resultbox}[title=Candidate 1: $\Zthree \to \Ztwo$ Transition]
+\textbf{Classification:} No provenance within
+$S_{\mathrm{EH}} + S_{\mathrm{NG}}$.
+
+The $\Zthree \to \Ztwo$ transition requires internal core dynamics
+(phase transition or instability) that are not present in the minimal
+action class. The Nambu--Goto action has no internal vertex degrees of
+freedom; the stress distribution evolves continuously with $q$; no
+bifurcation mechanism exists.
+
+This mechanism would require non-minimal extensions (e.g., additional
+fields coupling to the junction vertex, or higher-order brane terms
+with spontaneous symmetry-breaking potential).
+
+\textbf{Quick-falsification:} QF-6 triggered --- the mechanism requires
+physics not present in $S_{\mathrm{EH}} + S_{\mathrm{NG}}$.
+\tagDc
+\end{resultbox}
+
+\subsection{Candidate 2: Non-Separable Transverse-Longitudinal Coupling}
+
+\textbf{Mechanism:} If $\rho_{\mathrm{core}}(r_\perp, q) \neq
+g_\perp(r_\perp/r_0) \times f(q/\delta)$, a cross-coupling between
+transverse and longitudinal degrees of freedom could make the
+effective $f_{\mathrm{eff}}(q)$ (obtained after transverse integration)
+non-monotone.
+
+\textbf{How it would break the sign argument:}
+The separability assumption [P] was one of the stated premises of the
+sign argument. If separability fails, the binding and strain energy
+contributions cannot be factored into independent transverse and
+longitudinal parts. The effective $q$-dependence after integrating
+out $r_\perp$ could, in principle, differ from any monotone function.
+
+\textbf{Provenance test:}
+\begin{enumerate}
+    \item \textbf{Does the sign argument depend on separability?}
+          Consider the total core energy as a function of $q$, without
+          assuming separability:
+          \begin{equation}
+              V_{\mathrm{core}}(q) = \int d^2 r_\perp\;
+              \mathcal{E}_{\mathrm{core}}(r_\perp, q)
+              \label{eq:NMCP_nonsep_Vcore}
+          \end{equation}
+          where $\mathcal{E}_{\mathrm{core}}$ is the local core energy
+          density.
+
+    \item \textbf{Binding energy at each $r_\perp$:}
+          At any fixed transverse position $r_\perp$ within the core,
+          the binding energy density depends on how efficiently the three
+          worldsheets merge at that location. At $q = 0$ (Steiner), the
+          merger is $\Zthree$-symmetric at every $r_\perp$. At $q > 0$,
+          the asymmetry propagates into the core interior: the sheets
+          are closer to arm-1 at every $r_\perp$, reducing the symmetric
+          merger efficiency.
+
+          Therefore, at each $r_\perp$:
+          \begin{equation}
+              \mathcal{E}_{\mathrm{bind}}(r_\perp, 0)
+              \leq \mathcal{E}_{\mathrm{bind}}(r_\perp, q)
+              \quad \text{for } q > 0
+              \label{eq:NMCP_bind_local}
+          \end{equation}
+
+    \item \textbf{Strain energy at each $r_\perp$:}
+          By the same convexity argument ($\sigma^2$ is convex), the
+          strain energy density at each $r_\perp$ is minimized by the
+          symmetric stress distribution at $q = 0$:
+          \begin{equation}
+              \mathcal{E}_{\mathrm{strain}}(r_\perp, 0)
+              \leq \mathcal{E}_{\mathrm{strain}}(r_\perp, q)
+              \quad \text{for } q > 0
+              \label{eq:NMCP_strain_local}
+          \end{equation}
+
+    \item \textbf{Integration preserves the inequality:}
+          Integrating Eqs.~\eqref{eq:NMCP_bind_local} and
+          \eqref{eq:NMCP_strain_local} over all $r_\perp$:
+          \begin{equation}
+              V_{\mathrm{core}}(0) = \int d^2 r_\perp\;
+              [\mathcal{E}_{\mathrm{bind}} + \mathcal{E}_{\mathrm{strain}}]
+              (r_\perp, 0)
+              \leq V_{\mathrm{core}}(q)
+              \label{eq:NMCP_nonsep_sign}
+          \end{equation}
+          This holds \textbf{without the separability assumption}. The
+          sign argument is \emph{local in $r_\perp$}---it applies at each
+          transverse position independently. Separability was used in N7
+          for mathematical convenience (to extract the factored form
+          $V_{\mathrm{core}} = -E_0 f$), but the physical conclusion
+          ($q = 0$ is the core energy minimum) does not depend on it.
+\end{enumerate}
+
+\textbf{Verdict on Candidate 2:}
+\begin{resultbox}[title=Candidate 2: Non-Separable Coupling]
+\textbf{Classification:} Sign argument extends to the non-separable
+case. No escape route.
+
+The binding and strain energy arguments that establish $q = 0$ as the
+core energy minimum are \emph{local} in the transverse coordinate
+$r_\perp$. They apply at each $r_\perp$ independently, and integration
+over $r_\perp$ preserves the inequality. The non-separable case
+inherits the same sign logic as the separable case.
+
+Non-separable transverse-longitudinal coupling can modify the
+\emph{magnitude} and \emph{shape} of $V_{\mathrm{core}}(q)$ relative
+to the separable approximation, but it cannot change the sign:
+$V_{\mathrm{core}}(0) \leq V_{\mathrm{core}}(q)$ for all $q > 0$.
+
+\textbf{Quick-falsification:} QF-5 triggered --- the sign logic holds
+for all physically reasonable core models, including non-separable ones.
+\tagDc
+\end{resultbox}
+
+\subsection{Candidate 3: Core Topology Change}
+
+\textbf{Mechanism:} At some critical displacement $q_*$, the core
+topology changes (e.g., from connected to disconnected junction),
+releasing topological energy.
+
+\textbf{How it would break the sign argument:}
+The sign argument assumes continuous deformation. A topological
+transition could produce a non-analytic (discontinuous) change in
+$V_{\mathrm{core}}$ at $q_*$, bypassing the continuous sign logic.
+
+\textbf{Provenance test:}
+\begin{enumerate}
+    \item \textbf{What constitutes a topology change for a Y-junction?}
+          The junction is a topological defect where three worldsheets
+          meet. A topology change would mean the defect splits into
+          components, or two arms merge into one. In either case, this
+          is a singular event---the junction either exists or it does not.
+
+    \item \textbf{Is there a framework for this within
+          $S_{\mathrm{EH}} + S_{\mathrm{NG}}$?}
+          The Nambu--Goto action describes worldsheets with fixed
+          topology. Topology changes (worldsheet splitting, merging)
+          are not part of the classical action---they require either
+          quantum path integral contributions (worldsheet instantons)
+          or additional topological terms not present in $S_{\mathrm{NG}}$.
+
+    \item \textbf{Physical plausibility:} A Y-junction displaced by
+          $q \ll R$ does not approach any topological transition. The
+          relevant displacement range ($q \sim \delta \approx 0.1\fm$,
+          much smaller than $R \sim 1\fm$) is far from any singular
+          configuration.
+\end{enumerate}
+
+\textbf{Verdict on Candidate 3:}
+\begin{resultbox}[title=Candidate 3: Core Topology Change]
+\textbf{Classification:} No provenance within
+$S_{\mathrm{EH}} + S_{\mathrm{NG}}$. Highly speculative.
+
+The Nambu--Goto action has fixed worldsheet topology. Topology changes
+require quantum effects or additional topological terms not present
+in the minimal action class. The relevant displacement range
+($q \sim \delta \ll R$) is far from any singular configuration.
+
+No framework exists for computing topology-change contributions to
+$V(q)$ within $S_{\mathrm{EH}} + S_{\mathrm{NG}}$.
+
+\textbf{Quick-falsification:} QF-6 triggered --- requires physics not
+present in $S_{\mathrm{EH}} + S_{\mathrm{NG}}$.
+\tagDc
+\end{resultbox}
+
+% ============================================================================
+\section{Derivation: Extension of the Sign Argument Beyond Separability}
+\label{sec:NMCP:derivation}
+% ============================================================================
+
+The key new result of this appendix is the extension of the N7 sign
+argument to the \textbf{general (non-separable) case}. This closes the
+non-separable loophole that was left open by the N7 monotone no-go
+theorem.
+
+\begin{theorem}[General Core Sign Theorem]
+\label{thm:NMCP_general_sign}
+Let the junction core energy be
+\begin{equation}
+    V_{\mathrm{core}}(q) = \int d^2 r_\perp\;
+    \mathcal{E}_{\mathrm{core}}(r_\perp, q)
+    \label{eq:NMCP_general_Vcore}
+\end{equation}
+where $\mathcal{E}_{\mathrm{core}}(r_\perp, q)$ is the local core
+energy density at transverse position $r_\perp$ and node displacement
+$q$. Assume:
+\begin{enumerate}
+    \item[(A)] \textbf{Elastic brane:} The brane stress-energy in the
+          core region is described by an elastic medium with tension
+          $\sigma$ and stress distribution $\{\sigma_i(r_\perp, q)\}_{i=1}^3$
+          along the three arm directions.
+    \item[(B)] \textbf{$\Zthree$-symmetric equilibrium:} At $q = 0$
+          (Steiner), the stress distribution is $\Zthree$-symmetric:
+          $\sigma_1(r_\perp, 0) = \sigma_2(r_\perp, 0)
+          = \sigma_3(r_\perp, 0)$ for all $r_\perp$.
+    \item[(C)] \textbf{Convex strain energy:} The strain energy density
+          $\varepsilon_{\mathrm{strain}} = \sum_i \sigma_i^2 / (2Y)$
+          is convex in the stress components $\{\sigma_i\}$ at fixed
+          total stress $\sum_i \sigma_i = \mathrm{const}$.
+    \item[(D)] \textbf{Overlap monotonicity:} The binding energy density
+          at each $r_\perp$ satisfies
+          $\mathcal{E}_{\mathrm{bind}}(r_\perp, 0) \leq
+          \mathcal{E}_{\mathrm{bind}}(r_\perp, q)$ for all $q > 0$.
+          (The $\Zthree$-symmetric configuration maximizes the binding
+          efficiency of the three-sheet merger.)
+\end{enumerate}
+Then:
+\begin{equation}
+    V_{\mathrm{core}}(0) \leq V_{\mathrm{core}}(q)
+    \quad \text{for all } q > 0
+    \label{eq:NMCP_general_sign_result}
+\end{equation}
+The Steiner configuration minimizes the core energy.
+\end{theorem}
+
+\begin{proof}
+At each $r_\perp$, the core energy density is:
+\begin{equation}
+    \mathcal{E}_{\mathrm{core}}(r_\perp, q)
+    = \mathcal{E}_{\mathrm{bind}}(r_\perp, q)
+    + \mathcal{E}_{\mathrm{strain}}(r_\perp, q)
+\end{equation}
+
+By assumption (D):
+$\mathcal{E}_{\mathrm{bind}}(r_\perp, 0) \leq
+\mathcal{E}_{\mathrm{bind}}(r_\perp, q)$.
+
+By assumptions (B) and (C): the strain energy density at $q = 0$ is
+minimized by the $\Zthree$-symmetric stress distribution
+(equal distribution minimizes $\sum \sigma_i^2$ at fixed
+$\sum \sigma_i$, by convexity). For $q > 0$, the stress distribution
+is asymmetric, so
+$\mathcal{E}_{\mathrm{strain}}(r_\perp, 0) \leq
+\mathcal{E}_{\mathrm{strain}}(r_\perp, q)$.
+
+Adding the two inequalities at each $r_\perp$:
+\begin{equation}
+    \mathcal{E}_{\mathrm{core}}(r_\perp, 0)
+    \leq \mathcal{E}_{\mathrm{core}}(r_\perp, q)
+    \quad \text{for all } r_\perp,\; q > 0
+\end{equation}
+
+Integrating over $r_\perp$:
+\begin{equation}
+    V_{\mathrm{core}}(0) = \int d^2 r_\perp\;
+    \mathcal{E}_{\mathrm{core}}(r_\perp, 0)
+    \leq \int d^2 r_\perp\;
+    \mathcal{E}_{\mathrm{core}}(r_\perp, q)
+    = V_{\mathrm{core}}(q)
+\end{equation}
+\end{proof}
+
+\textbf{What this theorem adds beyond N7:}
+\begin{itemize}
+    \item N7 Theorem~\ref{thm:monotone_nogo} required the separable
+          ansatz and the monotone profile condition.
+    \item Theorem~\ref{thm:NMCP_general_sign} works for
+          \textbf{any} core energy density, separable or not.
+    \item The crucial insight: the sign argument is \emph{local in
+          $r_\perp$}. Separability was a mathematical convenience,
+          not a physical requirement.
+\end{itemize}
+
+\textbf{Assumptions:}
+The theorem rests on assumptions (A)--(D), all tagged:
+\begin{itemize}
+    \item[(A)] Elastic brane: [P]. This is the same model-class
+          assumption as N7. The brane is treated as an elastic medium.
+    \item[(B)] $\Zthree$-symmetric equilibrium: [Dc]. Follows from the
+          equilateral boundary configuration
+          (Appendix~\ref{app:vq_chosen_path}, boundary points
+          Eq.~\eqref{eq:boundary_points}).
+    \item[(C)] Convex strain energy: [Der]. $x \mapsto x^2$ is convex;
+          equal distribution minimizes $\sum x_i^2$ at fixed $\sum x_i$
+          (Schur convexity / rearrangement inequality).
+    \item[(D)] Overlap monotonicity: [P]. Physically motivated: symmetric
+          merger of three sheets at the vertex produces maximal binding
+          efficiency. But this is a model assumption, not a theorem.
+\end{itemize}
+
+\textbf{The weakest assumption is (D)} --- overlap monotonicity.
+Breaking this assumption would require a mechanism in which the
+binding of three worldsheets becomes \emph{more efficient} when the
+node is displaced from the symmetric position. This would contradict
+the generic principle that symmetric configurations maximize overlap
+for identical components. No such mechanism has been identified within
+$S_{\mathrm{EH}} + S_{\mathrm{NG}}$.
+
+% ============================================================================
+\section{Provenance Test}
+\label{sec:NMCP:provenance}
+% ============================================================================
+
+The WP1 provenance test (\S7.3) requires:
+
+\begin{quote}
+\emph{Remove all knowledge of $V_B$, $\tau_n$, $\Delta m_{np}$, and
+the Variant~3 Gaussian. Does the non-monotone profile still emerge
+from the stated physics?}
+\end{quote}
+
+\textbf{Answer: No.}
+
+\begin{enumerate}
+    \item \textbf{Is the off-center extremum generated by any tested
+          mechanism?}
+          No. All three WP1 candidate mechanisms fail:
+          \begin{itemize}
+              \item Candidate 1 ($\Zthree \to \Ztwo$ transition):
+                    requires non-minimal physics (QF-6)
+              \item Candidate 2 (non-separable coupling):
+                    sign argument extends to general case (QF-5)
+              \item Candidate 3 (topology change):
+                    requires non-minimal physics (QF-6)
+          \end{itemize}
+
+    \item \textbf{Is non-monotonicity effectively inserted by choice of
+          profile family?}
+          The only way to obtain $f(q_*/\delta) > f(0)$ within the
+          current framework is to postulate such a profile. No physical
+          mechanism generates it. Therefore, any non-monotone profile
+          used in a WP2 computation would be an inserted function,
+          not a derived one.
+
+    \item \textbf{Does the mechanism produce non-monotonicity before
+          fitting?}
+          No mechanism produces non-monotonicity at all. The sign
+          argument (now extended to non-separable case,
+          Theorem~\ref{thm:NMCP_general_sign}) establishes that
+          $V_{\mathrm{core}}(0) \leq V_{\mathrm{core}}(q)$ under the
+          elastic brane model assumptions. Non-monotonicity requires
+          breaking these assumptions.
+
+    \item \textbf{Does any new parameter simply play the role of hidden
+          $q_*$ / width / amplitude?}
+          Not applicable---no mechanism survived the provenance test.
+          If one were forced to proceed (against the evidence), any
+          non-monotone profile would introduce exactly the three
+          freely tunable parameters ($q_*$, $w$, amplitude) flagged
+          in WP1 \S9 as the primary circularity risks.
+\end{enumerate}
+
+\textbf{Provenance test result: FAILED.} No admissible mechanism within
+$S_{\mathrm{EH}} + S_{\mathrm{NG}}$ generates non-monotone core
+energy. The non-monotone loophole is formally open (the general sign
+theorem rests on assumptions (A)--(D), which are model-dependent) but
+physically empty within the current framework.
+
+% ============================================================================
+\section{Outcome Classification}
+\label{sec:NMCP:outcome}
+% ============================================================================
+
+\begin{resultbox}[title=NMCP WP2 Outcome: Bounded No-Go]
+\textbf{Classification:} Bounded no-go within
+$S_{\mathrm{EH}} + S_{\mathrm{NG}}$ under the elastic brane model.
+
+\textbf{What was established:}
+\begin{enumerate}
+    \item \textbf{General sign theorem [Dc]:} The core energy
+          $V_{\mathrm{core}}(q)$ is minimized at $q = 0$ (Steiner)
+          for \emph{any} core energy density (separable or not),
+          provided the elastic brane model assumptions (A)--(D) hold.
+          This extends the N7 monotone no-go from the separable class
+          to the general case.
+
+    \item \textbf{All three WP1 candidate mechanisms rejected:}
+          \begin{itemize}
+              \item $\Zthree \to \Ztwo$ transition: no provenance
+                    within $S_{\mathrm{EH}} + S_{\mathrm{NG}}$ (QF-6)
+              \item Non-separable coupling: sign argument extends to
+                    general case (QF-5)
+              \item Core topology change: no provenance within
+                    $S_{\mathrm{EH}} + S_{\mathrm{NG}}$ (QF-6)
+          \end{itemize}
+
+    \item \textbf{Provenance test failed:} No physical mechanism
+          generates non-monotone core energy within the minimal action
+          class. Non-monotonicity can only be inserted by postulating
+          a profile --- which is a disguised phenomenological node well.
+\end{enumerate}
+
+\textbf{What this means:}
+The NMCP loophole is \textbf{physically empty} within
+$S_{\mathrm{EH}} + S_{\mathrm{NG}}$. The non-monotone lane survives
+only as a formal mathematical possibility (the general sign theorem
+has model-dependent assumptions), but no mechanism within the minimal
+action class can instantiate it.
+
+\textbf{Scope of the no-go:}
+\begin{itemize}
+    \item Any core energy density (separable or non-separable)
+    \item Any regularization model satisfying the elastic brane
+          assumptions (A)--(D)
+    \item Any values of $\sigma$, $\delta$, $L_0$, $R$
+\end{itemize}
+
+\textbf{What could break the no-go:}
+\begin{itemize}
+    \item A mechanism that violates assumption (D) --- overlap
+          monotonicity. This would require asymmetric binding to be
+          \emph{more efficient} than symmetric binding, which contradicts
+          the generic principle for identical components.
+    \item Non-minimal action extensions: additional fields, higher-order
+          brane terms, topological contributions. These are outside
+          $S_{\mathrm{EH}} + S_{\mathrm{NG}}$.
+\end{itemize}
+
+\textbf{Why ``bounded no-go'' not ``absolute no-go'':}
+The theorem rests on the elastic brane model (A)--(D). A fundamentally
+different model of the junction core (not elastic, not stress-based)
+could evade the theorem. But no such model exists within
+$S_{\mathrm{EH}} + S_{\mathrm{NG}}$, and the elastic-medium treatment
+is the natural reduction of the Nambu--Goto brane.
+
+\textbf{Epistemic tag:} \tagDc\ (structural no-go within model class).
+\end{resultbox}
+
+% ============================================================================
+\section{What the Route Can and Cannot Claim}
+\label{sec:NMCP:claims}
+% ============================================================================
+
+\textbf{The NMCP route may claim:}
+\begin{itemize}
+    \item That it tested all three WP1-identified candidate mechanisms
+    \item That it extended the N7 sign argument beyond separability
+    \item That the provenance test was applied honestly
+    \item That the result is a genuine bounded no-go, not a failure
+          to compute
+\end{itemize}
+
+\textbf{The NMCP route may not claim:}
+\begin{itemize}
+    \item That non-monotone core profiles are absolutely impossible
+          (the theorem has model-dependent assumptions)
+    \item That the double-well is falsified (only the NMCP loophole
+          within $S_{\mathrm{EH}} + S_{\mathrm{NG}}$ is closed)
+    \item Any back-promotion of neutron-line epistemic status
+    \item That the remaining non-minimal escape routes (higher-order
+          brane terms, topological contributions) are also closed
+\end{itemize}
+
+% ============================================================================
+\section{Numerical Verification}
+\label{sec:NMCP:numerical}
+% ============================================================================
+
+The verification code (\texttt{code/p2\_nmcp\_provenance\_check.py})
+confirms the analytic results:
+
+\begin{enumerate}
+    \item \textbf{Sign check:} For a comprehensive family of core
+          energy models (Gaussian, Lorentzian, exponential, uniform,
+          and their non-separable generalizations), $V_{\mathrm{core}}(0)
+          \leq V_{\mathrm{core}}(q)$ for all sampled $q > 0$.
+    \item \textbf{Combined potential check:} $V(q) =
+          V_{\mathrm{geom}}(q) + V_{\mathrm{core}}(q)$ has
+          $V'(q) > 0$ for all $q > 0$ for all tested models.
+    \item \textbf{Non-monotone forced test:} If a non-monotone
+          profile is manually inserted (e.g., $f(u) = 1 + A\,u^2
+          e^{-u^2}$ with $A > 0$, which has a maximum at $u > 0$),
+          the code correctly detects metastability---but flags that
+          the profile has no provenance (it was inserted by hand).
+    \item \textbf{Parameter sensitivity:} The sign result
+          $V_{\mathrm{core}}(0) \leq V_{\mathrm{core}}(q)$ is
+          insensitive to $\sigma$, $\delta$, $L_0$, and $R$ for all
+          elastic-model profiles.
+\end{enumerate}
+
+All numerical checks are tagged \epistemictag{Check}. They confirm the
+analytic result but do not constitute independent evidence.
+
+% ============================================================================
+\section{Summary}
+\label{sec:NMCP:summary}
+% ============================================================================
+
+\begin{resultbox}[title=NMCP WP2 Summary]
+\textbf{Question asked:} Can any admissible physical mechanism within
+$S_{\mathrm{EH}} + S_{\mathrm{NG}}$ generate non-monotone core energy,
+producing a secondary minimum in $V(q)$?
+
+\textbf{Answer: No.}
+
+\textbf{Key results:}
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Item} & \textbf{Result} & \textbf{Tag} \\
+\midrule
+General sign theorem & $V_{\mathrm{core}}(0) \leq V_{\mathrm{core}}(q)$
+for all elastic cores & [Dc] \\
+$\Zthree \to \Ztwo$ transition & No provenance in
+$S_{\mathrm{EH}} + S_{\mathrm{NG}}$ & [Dc] \\
+Non-separable coupling & Sign extends to general case & [Dc] \\
+Core topology change & No framework in
+$S_{\mathrm{EH}} + S_{\mathrm{NG}}$ & [Dc] \\
+Provenance test & Failed: no mechanism generates non-monotonicity
+& [Dc] \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Classification:} Bounded no-go within
+$S_{\mathrm{EH}} + S_{\mathrm{NG}}$ under elastic brane model.
+
+\textbf{Impact:} The NMCP loophole from N7 is now closed within the
+elastic brane model class. Combined with the N7 monotone no-go, the
+\emph{entire} core-profile sector (monotone and non-monotone) is
+bounded: no core-energy contribution within $S_{\mathrm{EH}} +
+S_{\mathrm{NG}}$ can generate a secondary minimum in $V(q)$.
+
+\textbf{Updated candidate landscape:}
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{Candidate} & \textbf{Before NMCP} & \textbf{After NMCP}
+& \textbf{Status} \\
+\midrule
+N1 Israel thin-junction & Bounded no-go & Unchanged & Dead end \\
+N7 monotone core & Bounded insufficiency & Unchanged & Dead end \\
+N7 non-monotone core (NMCP) & [OPEN] & Bounded no-go & Dead end \\
+N2 bulk backreaction & Bounded insufficiency & Unchanged & Dead end \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Remaining escape routes (all non-minimal):}
+\begin{itemize}
+    \item Higher-order brane terms (DBI, Gauss--Bonnet)
+    \item Topological contributions (Chern--Simons)
+    \item Form-field coupling
+    \item Violation of assumption~(D) by non-elastic core physics
+\end{itemize}
+
+\textbf{Anti-smuggling compliance:}
+\begin{itemize}
+    \item[$\checkmark$] No forbidden donors imported
+    \item[$\checkmark$] No phenomenological profile inserted
+    \item[$\checkmark$] No target-driven parameter selection
+    \item[$\checkmark$] Provenance test applied before numerical work
+    \item[$\checkmark$] All candidate mechanisms tested against WP1 criteria
+    \item[$\checkmark$] Bounded no-go documented honestly
+\end{itemize}
+\end{resultbox}
