@@ -209,6 +209,82 @@ Detailed multi-paragraph narrative here...
 
 ---
 
+---
+
+## Case Study Standard (MANDATORY for Book Chapters)
+
+**Canon Rule KB-CANON-002:** Every particle case study (neutron, muon, tau, pion, electron, neutrino) MUST include the **At-a-Glance Box** at the beginning for reader orientation.
+
+### Purpose
+
+Readers approaching EDC need immediate clarity on:
+1. What the Standard Model says (baseline)
+2. What EDC says differently (interpretation)
+3. Why it matters (key insight)
+4. How to test it (falsifiability)
+
+### Usage
+
+```latex
+\begin{edcAtAGlance}{Neutron $\beta$-Decay}
+  \edcBaseline{$n \to p + e^- + \bar\nu_e$, $\tau_n = 879$ s, mediated by $W^-$ boson}
+  \edcEDCView{Junction relaxation pumps energy into thick brane; frozen projection yields outputs}
+  \edcKeyInsight{Decay is geometric relaxation, not point-particle vertex}
+  \edcFalsifiable{If decay products violate ledger closure or forbidden channels appear}
+\end{edcAtAGlance}
+```
+
+### What Each Field Contains
+
+| Field | Content | Tag |
+|-------|---------|-----|
+| `\edcBaseline` | Standard Model description (what we observe) | \tagBL{} |
+| `\edcEDCView` | EDC mechanistic interpretation | \tagP{}/\tagDc{} |
+| `\edcKeyInsight` | What EDC adds beyond SM (the "aha!") | — |
+| `\edcFalsifiable` | How this case could falsify EDC | — |
+
+### Full Case Study Structure
+
+A complete case study should have:
+
+1. **At-a-Glance Box** (mandatory, at start)
+2. **Ontology section**: What is this particle in 5D?
+3. **Mechanistic story**: The "film" of the process (Absorption → Dissipation → Release)
+4. **Channel selection**: Why these outputs and not others?
+5. **Ledger closure**: Energy/quantum number bookkeeping
+6. **Process diagram**: TikZ visualization
+7. **Falsifiability hooks**: Explicit ways this could fail
+
+### Example: Neutron Case Study At-a-Glance
+
+```latex
+\begin{edcAtAGlance}{Neutron $\beta$-Decay}
+  \edcBaseline{
+    Neutron decays via weak interaction: $n \to p + e^- + \bar\nu_e$ \\
+    Lifetime: $\tau_n = 879.4 \pm 0.6$ s (PDG 2024) \\
+    Mediated by virtual $W^-$ boson exchange \\
+    V$-$A structure from $SU(2)_L$ gauge theory
+  }
+  \edcEDCView{
+    Neutron = excited Y-junction (displaced from Steiner minimum) \\
+    Junction relaxation pumps $\Delta E \approx 1.29$ MeV into thick brane \\
+    Brane redistributes energy into layer modes \\
+    Frozen projection maps modes to allowed 3D outputs
+  }
+  \edcKeyInsight{
+    Decay is not a point-particle vertex but geometric relaxation of a 5D structure.
+    The ``weakness'' comes from bulk$\to$brane transfer, not a small coupling constant.
+  }
+  \edcFalsifiable{
+    \textbullet\ If outputs appear that violate Q-gate (e.g., $\mu^-$ without external energy) \\
+    \textbullet\ If ledger cannot close (energy ``disappears'') \\
+    \textbullet\ If mechanism predicts wrong selection rules
+  }
+\end{edcAtAGlance}
+```
+
+---
+
 ## Checklist Before Commit
 
 - [ ] All `\tagXXX` tags used appropriately
@@ -217,6 +293,7 @@ Detailed multi-paragraph narrative here...
 - [ ] No figure-related overfull hbox warnings
 - [ ] References use "Title (DOI: ...)" format, NOT "Paper 2/3"
 - [ ] **Every 5D/y/brane introduction has `\edcMechanismNote` (MANDATORY)**
+- [ ] **Every case study has `edcAtAGlance` box at start (MANDATORY)**
 
 ---
 
