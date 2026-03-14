@@ -1236,3 +1236,15 @@ Two TIER-2 gaps addressed:
   - V7.8 Mediation Analysis (M0-M7 hierarchy)
   - V7.8 Open Questions (kingpins, path to [Der])
   - Comparison of ε_f and d(n) approaches
+
+## 2026-03-14: OPR-28 G-Exponent Derivation Problem
+
+### Session Goals
+Lock the G-exponent derivation problem into the Book II OPR registry.
+
+### Changes Made
+- Created OPR-28 in `reorganized/appendices/opr_register.tex`
+- New "Gravity Sector Problems" section added to OPR register
+- OPR-28 captures: negative KK result (power −1 not +12), non-uniqueness of exponent pairs, status [I], upgrade condition
+- Summary table and priority order updated to include OPR-28
+- No canonical chapter text modified
