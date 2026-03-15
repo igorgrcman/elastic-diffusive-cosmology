@@ -12,7 +12,7 @@
 dimensionless when forming the ratio:
 
 ```
-σ̃ = σ / T_*
+σ̃ = σ / T_*                                          (OPR-30-CAN)
 ```
 
 where:
@@ -23,24 +23,37 @@ where:
 **[Dc]** T_* is NOT a free parameter. It must be derived from the fundamental
 constants of the 5D bulk-brane system using only internal EDC axioms.
 
+**[Dc]** This is the **unique canonical definition** of σ̃ per OPR-30 resolution.
+Prior definitions (σ̃ = σ/M̄_Pl⁴ in v48, σ̃ = σL²/M̄_Pl² in v62) are
+**deprecated** — see `OPR-30_SIGMA_TILDE_RESOLUTION.md` for full analysis.
+
 ---
 
 ## 2. Dimensional Analysis
 
 ### 2.1 Dimensions of σ (brane tension)
 
-**[I]** In natural units (ℏ = c = 1):
+**[Dc] DIMENSION CONVENTION (OPR-30):**
+
+In EDC, the brane is a codimension-1 defect (domain wall / 2-brane).
+The brane tension σ is energy per unit area:
 
 ```
-[σ] = [Energy] / [Area] = [M]¹ [L]⁻² = [M]³
+[σ] = [Energy] / [Area] = [M]¹ [L]⁻² = [M]³     (EDC canonical)
 ```
 
-where [M] denotes mass dimension.
+where [M] denotes mass dimension in natural units (ℏ = c = 1).
 
 In SI or mixed units:
 ```
 [σ] = MeV / fm² = MeV·fm⁻²
 ```
+
+**WARNING:** Some versions (v28–v66) implicitly use the Randall-Sundrum
+convention [σ] = M⁴ (3-brane tension = energy per volume). This is
+incompatible with EDC's [σ] = M³. See OPR-30 Section 6 for details.
+Under EDC conventions, the old β = σL²/M̄_Pl² has [M³·M⁻²/M²] = [M⁻¹]
+and is NOT dimensionless. This is a root error in the pre-v67 chain.
 
 ### 2.2 Dimensions of T_*
 

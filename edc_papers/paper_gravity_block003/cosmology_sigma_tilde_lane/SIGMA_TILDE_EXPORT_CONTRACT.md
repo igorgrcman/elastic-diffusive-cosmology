@@ -32,9 +32,11 @@ The export file `sigma_tilde_value.json` must:
 ## 3. Field Semantics
 
 ### sigma_tilde
-- `value`: The dimensionless ratio σ/T_* (null if TBD)
+- `value`: The dimensionless ratio σ/T_* per OPR-30-CAN (null if TBD)
 - `uncertainty`: Interval [lo, hi] in dimensionless units
 - `status`: One of "TBD", "DERIVED", "IMPORTED"
+- **Canonical definition**: σ̃ = σ/T_* (OPR-30). Prior definitions
+  (σ/M̄_Pl⁴ from v48, σL²/M̄_Pl² from v62) are DEPRECATED.
 
 ### t_star
 - `definition_ref`: Path to TSTAR_DEFINITION.md
