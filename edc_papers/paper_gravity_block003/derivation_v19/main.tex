@@ -1,0 +1,573 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{physics}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\newcommand{\Rxi}{R_\xi}
+\newcommand{\Mpl}{M_{\mathrm{Pl}}}
+\newcommand{\Mfive}{M_5}
+\newcommand{\MZ}{M_Z}
+\newcommand{\MW}{M_W}
+\newcommand{\vEW}{v_{\mathrm{EW}}}
+\newcommand{\calI}{\mathcal{I}}
+\newcommand{\GN}{G_N}
+\newcommand{\kfive}{\kappa_5}
+
+\title{Derivation v19: From 5D Action to 4D Newton Law\\
+and Calibrated Closure}
+\author{EDC Collaboration\\[3pt]
+\small\textit{Derivation note; explicit steps shown}}
+\date{February 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note presents a self-contained derivation of the bridge relation
+$\Mpl^2 = \Mfive^3 \calI$ from the 5D Einstein-Hilbert action, followed by
+explicit evaluation of the normalization integral $\calI$ for the compact flat
+extra dimension. The calibrated closure to the 5D Planck mass $\Mfive$ is then
+presented with full epistemic tagging. All steps are shown explicitly; this is
+a derivation document, not a summary.
+\end{abstract}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Setup: 5D Geometry and Action}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Manifold Structure}
+
+We consider a 5-dimensional spacetime $\mathcal{M}^5$ with coordinates
+$x^A = (x^\mu, \xi)$ where $\mu = 0,1,2,3$ labels the 4D brane directions
+and $\xi$ is the extra-dimensional coordinate. The 4D brane $\Sigma^4$ is
+located at $\xi = 0$.
+
+The 5D metric takes the warped form:
+\begin{equation}
+ds^2 = g_{AB}\, dx^A dx^B = e^{2A(\xi)} \eta_{\mu\nu} dx^\mu dx^\nu + d\xi^2
+\label{eq:metric-ansatz}
+\end{equation}
+where $A(\xi)$ is the warp factor and $\eta_{\mu\nu} = \mathrm{diag}(-1,+1,+1,+1)$
+is the 4D Minkowski metric.
+
+\subsection{Bulk Action}
+
+The gravitational dynamics are governed by the 5D Einstein-Hilbert action:
+\begin{equation}
+S_{\mathrm{bulk}} = \frac{1}{2\kfive^2} \int_{\mathcal{M}^5} d^5x \sqrt{-g^{(5)}}
+\left( R^{(5)} - 2\Lambda_5 \right)
+\label{eq:bulk-action}
+\end{equation}
+where $\kfive^2 = 8\pi/\Mfive^3$ is the 5D gravitational coupling, $R^{(5)}$ is
+the 5D Ricci scalar, and $\Lambda_5$ is the bulk cosmological constant.
+
+The Gibbons-Hawking-York boundary term ensures a well-posed variational problem:
+\begin{equation}
+S_{\mathrm{GHY}} = \frac{1}{\kfive^2} \int_{\partial\mathcal{M}} d^4x \sqrt{-\gamma}\, K
+\label{eq:GHY}
+\end{equation}
+where $\gamma_{\mu\nu}$ is the induced metric on the boundary and $K$ is the
+trace of the extrinsic curvature.
+
+\subsection{Brane Action}
+
+The brane at $\xi = 0$ carries tension $\sigma$:
+\begin{equation}
+S_{\mathrm{brane}} = -\sigma \int_{\Sigma^4} d^4x \sqrt{-\gamma}
+\label{eq:brane-action}
+\end{equation}
+
+The Israel junction conditions at the brane location relate the jump in
+extrinsic curvature to the brane stress-energy:
+\begin{equation}
+[K_{\mu\nu}] - \gamma_{\mu\nu}[K] = -\kfive^2 \left( T_{\mu\nu}^{\mathrm{brane}}
+- \frac{1}{3}\gamma_{\mu\nu} T^{\mathrm{brane}} \right)
+\label{eq:israel}
+\end{equation}
+For a pure-tension brane, this yields:
+\begin{equation}
+[K_{\mu\nu}] = -\frac{\kfive^2 \sigma}{3} \gamma_{\mu\nu}
+\label{eq:israel-tension}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Linearized Gravity and Mode Decomposition}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Metric Perturbation}
+
+We perturb around the background \eqref{eq:metric-ansatz}:
+\begin{equation}
+g_{AB} = \bar{g}_{AB} + h_{AB}
+\label{eq:metric-pert}
+\end{equation}
+where $\bar{g}_{AB}$ is the background metric and $h_{AB}$ is the perturbation.
+
+For the graviton sector, we focus on the transverse-traceless (TT) components
+$h_{\mu\nu}^{\mathrm{TT}}$ satisfying:
+\begin{equation}
+\partial^\mu h_{\mu\nu}^{\mathrm{TT}} = 0, \qquad
+\eta^{\mu\nu} h_{\mu\nu}^{\mathrm{TT}} = 0
+\label{eq:TT-gauge}
+\end{equation}
+
+\subsection{Kaluza-Klein Decomposition}
+
+We decompose the 4D graviton field into Kaluza-Klein modes:
+\begin{equation}
+h_{\mu\nu}^{\mathrm{TT}}(x,\xi) = \sum_n h_{\mu\nu}^{(n)}(x) \psi_n(\xi)
+\label{eq:KK-decomp}
+\end{equation}
+where $h_{\mu\nu}^{(n)}(x)$ are the 4D mass eigenstates and $\psi_n(\xi)$ are
+the extra-dimensional wavefunctions.
+
+\subsection{Equation of Motion for Mode Functions}
+
+Substituting the decomposition \eqref{eq:KK-decomp} into the linearized 5D
+Einstein equation:
+\begin{equation}
+\Box^{(5)} h_{\mu\nu}^{\mathrm{TT}} = 0
+\label{eq:5D-eom}
+\end{equation}
+and using the warped metric \eqref{eq:metric-ansatz}, we obtain:
+\begin{equation}
+e^{-2A} \Box^{(4)} h_{\mu\nu}^{(n)} \psi_n
++ h_{\mu\nu}^{(n)} \left[ \psi_n'' + 4A'\psi_n' \right] = 0
+\label{eq:separation}
+\end{equation}
+where primes denote $\partial_\xi$ and $\Box^{(4)} = \eta^{\mu\nu}\partial_\mu\partial_\nu$.
+
+Separating variables with $\Box^{(4)} h_{\mu\nu}^{(n)} = -m_n^2 h_{\mu\nu}^{(n)}$:
+\begin{equation}
+\psi_n'' + 4A'\psi_n' + m_n^2 e^{2A} \psi_n = 0
+\label{eq:mode-eq}
+\end{equation}
+
+\subsection{Zero-Mode Solution}
+
+For the massless graviton ($m_0 = 0$), equation \eqref{eq:mode-eq} becomes:
+\begin{equation}
+\psi_0'' + 4A'\psi_0' = 0
+\label{eq:zero-mode-eq}
+\end{equation}
+
+This can be rewritten as:
+\begin{equation}
+\frac{d}{d\xi}\left( e^{4A} \psi_0' \right) = 0
+\label{eq:zero-mode-conserved}
+\end{equation}
+
+Integrating once:
+\begin{equation}
+e^{4A} \psi_0' = C_1 = \mathrm{const}
+\label{eq:zero-mode-int1}
+\end{equation}
+
+For a normalizable zero-mode localized near the brane, we require $C_1 = 0$,
+giving:
+\begin{equation}
+\psi_0' = 0 \quad \Rightarrow \quad \psi_0(\xi) = \psi_0^{(0)} = \mathrm{const}
+\label{eq:zero-mode-const}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Derivation of the Normalization Integral}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{5D Kinetic Term}
+
+The kinetic term for the graviton in the 5D action is:
+\begin{equation}
+S_{\mathrm{kin}}^{(5)} = \frac{1}{2\kfive^2} \int d^5x \sqrt{-g^{(5)}}
+\left( -\frac{1}{4} g^{AC} g^{BD} \partial_A h_{CD} \partial_B h_{CD} + \ldots \right)
+\label{eq:5D-kinetic}
+\end{equation}
+where we show only the leading kinetic structure.
+
+For the TT perturbation in the warped background, the 5D metric determinant gives:
+\begin{equation}
+\sqrt{-g^{(5)}} = e^{4A(\xi)}
+\label{eq:sqrt-g5}
+\end{equation}
+(The exponent $4A$ arises from $\det(e^{2A}\eta_{\mu\nu}) = e^{8A}$ for the 4D block,
+combined with the $d\xi^2$ term; this follows from our metric convention \eqref{eq:metric-ansatz}.)
+
+\subsection{Reduction to 4D}
+
+Substituting the KK decomposition \eqref{eq:KK-decomp} with the zero-mode
+$\psi_0 = \mathrm{const}$:
+\begin{equation}
+S_{\mathrm{kin}}^{(5)} \supset \frac{1}{2\kfive^2} \int d^4x \int d\xi\, e^{4A}
+\left( -\frac{1}{4} |\psi_0|^2 \eta^{\mu\rho}\eta^{\nu\sigma}
+\partial_\mu h_{\rho\sigma}^{(0)} \partial_\nu h^{(0)}_{\rho\sigma} \right)
+\label{eq:reduction-step1}
+\end{equation}
+
+Factoring out the 4D integral:
+\begin{equation}
+S_{\mathrm{kin}}^{(5)} \supset \frac{|\psi_0|^2}{2\kfive^2}
+\left( \int d\xi\, e^{4A(\xi)} \right)
+\int d^4x \left( -\frac{1}{4} \partial_\mu h^{(0)}_{\rho\sigma}
+\partial^\mu h^{(0)\rho\sigma} \right)
+\label{eq:reduction-step2}
+\end{equation}
+
+\subsection{Identification of the 4D Planck Mass}
+
+The 4D Einstein-Hilbert action has the form:
+\begin{equation}
+S_{\mathrm{EH}}^{(4)} = \frac{\Mpl^2}{2} \int d^4x \sqrt{-g^{(4)}} R^{(4)}
+\label{eq:4D-EH}
+\end{equation}
+
+At the linearized level, this gives a kinetic term:
+\begin{equation}
+S_{\mathrm{kin}}^{(4)} = \frac{\Mpl^2}{2} \int d^4x
+\left( -\frac{1}{4} \partial_\mu h_{\rho\sigma} \partial^\mu h^{\rho\sigma} \right)
+\label{eq:4D-kinetic}
+\end{equation}
+
+Matching \eqref{eq:reduction-step2} to \eqref{eq:4D-kinetic}:
+\begin{equation}
+\frac{\Mpl^2}{2} = \frac{|\psi_0|^2}{2\kfive^2} \int d\xi\, e^{4A(\xi)}
+\label{eq:matching-step}
+\end{equation}
+
+Using $\kfive^2 = 8\pi/\Mfive^3$:
+\begin{equation}
+\Mpl^2 = \frac{\Mfive^3}{8\pi} |\psi_0|^2 \int d\xi\, e^{4A(\xi)}
+\label{eq:Mpl-almost}
+\end{equation}
+
+\subsection{Normalization Convention}
+
+We adopt the normalization:
+\begin{equation}
+\int d\xi\, e^{4A(\xi)} |\psi_0(\xi)|^2 = 8\pi \calI
+\label{eq:norm-convention}
+\end{equation}
+where $\calI$ has dimension of length.
+
+Substituting into \eqref{eq:Mpl-almost}:
+\begin{equation}
+\boxed{\Mpl^2 = \Mfive^3 \calI}
+\label{eq:bridge-relation}
+\end{equation}
+
+This is the \textbf{bridge relation} connecting the 4D and 5D Planck masses.
+\hfill (tag: [D])
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Compact Flat Case: Explicit Evaluation of $\calI$}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Setup: Flat Extra Dimension}
+
+Consider the simplest case: a flat extra dimension with $A(\xi) = 0$ and
+compact topology $\xi \in [0, \Rxi]$ (or equivalently $S^1$ of circumference $\Rxi$).
+
+The zero-mode equation \eqref{eq:zero-mode-eq} becomes:
+\begin{equation}
+\psi_0'' = 0
+\label{eq:flat-zero-mode-eq}
+\end{equation}
+
+The general solution is:
+\begin{equation}
+\psi_0(\xi) = a + b\xi
+\label{eq:flat-general-sol}
+\end{equation}
+
+\subsection{Boundary Conditions}
+
+For a compact dimension with periodic boundary conditions:
+\begin{equation}
+\psi_0(0) = \psi_0(\Rxi), \qquad \psi_0'(0) = \psi_0'(\Rxi)
+\label{eq:periodic-bc}
+\end{equation}
+
+From \eqref{eq:flat-general-sol}:
+\begin{equation}
+a = a + b\Rxi \quad \Rightarrow \quad b = 0
+\label{eq:bc-constraint}
+\end{equation}
+
+Therefore:
+\begin{equation}
+\psi_0(\xi) = a = \mathrm{const}
+\label{eq:flat-zero-mode-sol}
+\end{equation}
+
+\subsection{Normalization}
+
+The normalization integral \eqref{eq:norm-convention} with $A = 0$ becomes:
+\begin{equation}
+\int_0^{\Rxi} d\xi\, |\psi_0|^2 = |a|^2 \Rxi = 8\pi \calI
+\label{eq:flat-norm-integral}
+\end{equation}
+
+We can choose:
+\begin{equation}
+|a|^2 = \frac{8\pi}{\Rxi}
+\label{eq:a-choice}
+\end{equation}
+which gives:
+\begin{equation}
+\calI = \frac{1}{\Rxi} \cdot \Rxi = 1 \quad \text{(dimensionless convention)}
+\label{eq:I-dimensionless}
+\end{equation}
+
+Alternatively, with $|a|^2 = 8\pi$:
+\begin{equation}
+\boxed{\calI = \Rxi}
+\label{eq:I-equals-Rxi}
+\end{equation}
+
+We adopt the convention \eqref{eq:I-equals-Rxi} where $\calI$ carries dimension
+of length. \hfill (tag: [D], conditional on flat compact model)
+
+\subsection{Physical Interpretation}
+
+The result $\calI = \Rxi$ has a clear physical meaning: the effective 4D gravity
+strength is diluted by the volume of the extra dimension. A larger $\Rxi$ means
+more ``spreading'' of gravity into the bulk, reducing the apparent 4D Planck mass.
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Newton's Constant: Explicit Bridge}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{General Relation}
+
+Newton's gravitational constant in 4D is related to the Planck mass by:
+\begin{equation}
+\GN = \frac{1}{8\pi \Mpl^2}
+\label{eq:GN-Mpl}
+\end{equation}
+
+\noindent\textbf{Convention note:} We use $\Mpl = 1.221 \times 10^{19}$~GeV throughout,
+which is the standard Planck mass $m_{\mathrm{Pl}} = (\hbar c / \GN)^{1/2}$.
+The factor $8\pi$ in \eqref{eq:GN-Mpl} follows from matching to the 4D Einstein-Hilbert
+action in the form $S = (\Mpl^2/2)\int\sqrt{-g}\,R$, which absorbs the $16\pi\GN$
+denominator of the standard GR action.
+
+Substituting the bridge relation \eqref{eq:bridge-relation}:
+\begin{equation}
+\GN = \frac{1}{8\pi \Mfive^3 \calI}
+\label{eq:GN-general}
+\end{equation}
+
+\subsection{Compact Flat Case}
+
+For $\calI = \Rxi$:
+\begin{equation}
+\boxed{\GN = \frac{1}{8\pi \Mfive^3 \Rxi}}
+\label{eq:GN-compact}
+\end{equation}
+
+This is the \textbf{weak-field Newton law bridge} for a compact flat extra
+dimension. \hfill (tag: [D])
+
+\subsection{Gravitational Potential}
+
+The 4D gravitational potential between two masses $m_1, m_2$ separated by
+distance $r \gg \Rxi$ is:
+\begin{equation}
+V(r) = -\frac{\GN m_1 m_2}{r} = -\frac{m_1 m_2}{8\pi \Mfive^3 \Rxi \cdot r}
+\label{eq:Newton-potential}
+\end{equation}
+
+This recovers the standard $1/r$ behavior, confirming that the compact extra
+dimension is ``invisible'' at distances $r \gg \Rxi$.
+
+\subsection{Non-Compact Case (Remark)}
+
+For a non-compact extra dimension ($\Rxi \to \infty$), the integral $\calI$
+diverges. Regularization shows that the potential becomes:
+\begin{equation}
+V(r) \sim \frac{1}{r^2} \quad \text{(5D scaling)}
+\label{eq:5D-potential}
+\end{equation}
+which violates the observed $1/r$ Newton law. This excludes non-compact,
+flat extra dimensions without warping. The compact or warped scenarios are
+required to recover 4D gravity.
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Calibrated Closure}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Solving for $\Mfive$}
+
+From the bridge relation \eqref{eq:bridge-relation} with $\calI = \Rxi$:
+\begin{equation}
+\Mpl^2 = \Mfive^3 \Rxi
+\label{eq:bridge-flat}
+\end{equation}
+
+Solving for $\Mfive$:
+\begin{equation}
+\boxed{\Mfive = \left( \frac{\Mpl^2}{\Rxi} \right)^{1/3} = \Mpl^{2/3} \Rxi^{-1/3}}
+\label{eq:M5-closure}
+\end{equation}
+
+This is the \textbf{calibrated closure formula}. \hfill (tag: [D])
+
+\subsection{EW-Scale Identification}
+
+The compactification scale $\Rxi$ is not derivable from EDC axioms (Track A
+NO-GO, see v16). We therefore identify it with an electroweak length scale:
+\begin{equation}
+\boxed{\Rxi = \frac{\hbar c}{\MZ^{\mathrm{obs}}}}
+\label{eq:Rxi-identification}
+\end{equation}
+with $\MZ^{\mathrm{obs}} = 91.1876 \pm 0.0021$ GeV. \hfill (tag: [I]+[BL])
+
+This gives:
+\begin{equation}
+\Rxi = \frac{1.973 \times 10^{-16}~\mathrm{GeV \cdot m}}{91.1876~\mathrm{GeV}}
+= 2.165 \times 10^{-18}~\mathrm{m}
+\label{eq:Rxi-numerical}
+\end{equation}
+
+\subsection{Baseline Inputs}
+
+\begin{table}[h]
+\centering
+\caption{Baseline inputs for calibrated closure.}
+\label{tab:inputs}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Quantity & Symbol & Value & Tag \\
+\midrule
+4D Planck mass & $\Mpl^{\mathrm{obs}}$ & $1.221 \times 10^{19}$~GeV & [BL] \\
+Z boson mass & $\MZ^{\mathrm{obs}}$ & $91.1876 \pm 0.0021$~GeV & [BL] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Numerical Result}
+
+Substituting into \eqref{eq:M5-closure}:
+\begin{equation}
+\Mfive = \Mpl^{2/3} \MZ^{1/3}
+= (1.221 \times 10^{19})^{2/3} \times (91.1876)^{1/3}~\mathrm{GeV}
+\label{eq:M5-calculation}
+\end{equation}
+
+Computing:
+\begin{align}
+\Mpl^{2/3} &= (1.221 \times 10^{19})^{2/3} = 5.35 \times 10^{12}~\mathrm{GeV}
+\label{eq:Mpl-power} \\
+\MZ^{1/3} &= (91.1876)^{1/3} = 4.50~\mathrm{GeV}^{1/3}
+\label{eq:MZ-power}
+\end{align}
+
+Therefore:
+\begin{equation}
+\boxed{\Mfive = 2.41 \times 10^{13}~\mathrm{GeV}}
+\label{eq:M5-result}
+\end{equation}
+
+This is at the \textbf{GUT scale}, approximately $10^{-6} \Mpl$.
+
+\subsection{Error Budget}
+
+From error propagation:
+\begin{equation}
+\frac{\delta\Mfive}{\Mfive} = \sqrt{\left(\frac{2}{3}\frac{\delta\Mpl}{\Mpl}\right)^2
++ \left(\frac{1}{3}\frac{\delta\MZ}{\MZ}\right)^2}
+\label{eq:error-propagation}
+\end{equation}
+
+With $\delta\Mpl/\Mpl \approx 1.1 \times 10^{-5}$ and
+$\delta\MZ/\MZ \approx 2.3 \times 10^{-5}$:
+\begin{align}
+\frac{2}{3}\frac{\delta\Mpl}{\Mpl} &\approx 0.73 \times 10^{-5}
+\label{eq:Mpl-contrib} \\
+\frac{1}{3}\frac{\delta\MZ}{\MZ} &\approx 0.77 \times 10^{-5}
+\label{eq:MZ-contrib}
+\end{align}
+
+Total:
+\begin{equation}
+\frac{\delta\Mfive}{\Mfive} \approx 1.1 \times 10^{-5} \approx 0.001\%
+\label{eq:total-error}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Robustness Under EW-Scale Choice}
+%═══════════════════════════════════════════════════════════════════════════════
+
+The identification \eqref{eq:Rxi-identification} was tested with alternative
+EW scales (v17):
+
+\begin{table}[h]
+\centering
+\caption{Robustness of $\Mfive$ under different EW-scale identifications.}
+\label{tab:robustness}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+$M_*$ & Value (GeV) & $\Mfive$ (GeV) & $\Delta\log_{10}\Mfive$ & Tag \\
+\midrule
+$\MZ$ (canonical) & 91.19 & $2.41 \times 10^{13}$ & 0 (ref) & [BL] \\
+$\MW$ & 80.38 & $2.31 \times 10^{13}$ & $-0.018$ & [Dc] \\
+$\vEW$ & 246.2 & $3.35 \times 10^{13}$ & $+0.143$ & [BL] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Verdict:} All choices yield $\Mfive$ in the range
+$(2.3$--$3.4) \times 10^{13}$~GeV with $|\Delta\log_{10}\Mfive| < 0.15$.
+The closure is \textbf{order-of-magnitude stable}.
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Epistemic Summary}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\begin{table}[h]
+\centering
+\caption{Epistemic ledger for the derivation.}
+\label{tab:ledger}
+\begin{tabular}{@{}llc@{}}
+\toprule
+Relation & Source & Tag \\
+\midrule
+$\Mpl^2 = \Mfive^3 \calI$ & 5D$\to$4D reduction & [D] \\
+$\calI = \Rxi$ (flat compact) & Zero-mode normalization & [Dc] \\
+$\GN = 1/(8\pi\Mfive^3\Rxi)$ & Bridge algebra & [D] \\
+$\Mfive = \Mpl^{2/3}\Rxi^{-1/3}$ & Closure formula & [D] \\
+$\Rxi = \hbar c/\MZ$ & EW identification & [I] \\
+$\MZ = 91.1876$~GeV & Experiment (PDG) & [BL] \\
+$\Mpl = 1.221 \times 10^{19}$~GeV & Experiment (CODATA) & [BL] \\
+$\Mfive = 2.41 \times 10^{13}$~GeV & Numerical result & [D]$|$[BL] \\
+$\Rxi$ from axioms & Track A attempt & \textbf{NO-GO} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Conclusion}
+%═══════════════════════════════════════════════════════════════════════════════
+
+We have derived, from first principles:
+
+\begin{enumerate}
+\item The \textbf{bridge relation} $\Mpl^2 = \Mfive^3 \calI$ from KK reduction
+of the 5D Einstein-Hilbert action.
+\item The \textbf{normalization integral} $\calI = \Rxi$ for a flat compact
+extra dimension.
+\item The \textbf{Newton constant bridge} $\GN = 1/(8\pi\Mfive^3\Rxi)$.
+\item The \textbf{closure formula} $\Mfive = \Mpl^{2/3}\Rxi^{-1/3}$.
+\end{enumerate}
+
+Combined with the EW-scale identification $\Rxi = \hbar c/\MZ$ [I]+[BL], we
+obtain:
+\begin{equation}
+\Mfive = 2.41 \times 10^{13}~\mathrm{GeV} \pm 0.001\%
+\end{equation}
+
+The gravity sector is \textbf{CLOSED (calibrated)} under minimal baseline inputs.
+Internal derivation of $\Rxi$ remains \textbf{NO-GO}.
+
+\end{document}

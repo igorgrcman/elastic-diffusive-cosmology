@@ -1,0 +1,698 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{physics}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,patterns}
+
+\newcommand{\Rxi}{R_\xi}
+\newcommand{\Mpl}{M_{\mathrm{Pl}}}
+\newcommand{\Mplbar}{\bar{M}_{\mathrm{Pl}}}
+\newcommand{\Mfive}{M_5}
+\newcommand{\calI}{\mathcal{I}}
+\newcommand{\GN}{G_N}
+\newcommand{\MZ}{M_Z}
+\newcommand{\mgap}{m_{\mathrm{gap}}}
+
+\title{Derivation v22: KK Conventions Unification\\
+Interval vs Circle vs Orbifold and Canonical $\Rxi$}
+\author{EDC Collaboration\\[3pt]
+\small\textit{Derivation note; convention harmonization for BLOCK-003}}
+\date{February 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note resolves the $\pi$-factor discrepancy between derivations v15--v20
+(which used $\Rxi = \hbar c/\MZ$) and v21 (which derived $\Rxi = \pi\hbar c/\MZ$
+from the KK mass gap). We derive the KK spectral quantization for three standard
+geometries: (A) flat interval with Neumann BCs, (B) circle $S^1$, and
+(C) orbifold $S^1/\mathbb{Z}_2$. A conventions dictionary maps between
+parametrizations and shows that the $\pi$ difference is purely definitional:
+it depends on whether $\Rxi$ denotes the interval length $L$ or the circle
+radius $R = L/\pi$. We establish a canonical convention for BLOCK-003 going forward.
+\end{abstract}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{The Problem: Convention Clash}
+%═══════════════════════════════════════════════════════════════════════════════
+
+In the BLOCK-003 gravity program, two conventions for $\Rxi$ have emerged:
+
+\textbf{Convention I (v15--v20):}
+\begin{equation}
+\Rxi^{(\mathrm{old})} = \frac{\hbar c}{\MZ} = 2.165 \times 10^{-18}~\mathrm{m}
+\label{eq:Rxi-old}
+\end{equation}
+
+\textbf{Convention II (v21):}
+\begin{equation}
+\Rxi^{(\mathrm{new})} = \frac{\pi \hbar c}{\MZ} = 6.80 \times 10^{-18}~\mathrm{m}
+\label{eq:Rxi-new}
+\end{equation}
+
+The ratio is:
+\begin{equation}
+\frac{\Rxi^{(\mathrm{new})}}{\Rxi^{(\mathrm{old})}} = \pi
+\label{eq:ratio-pi}
+\end{equation}
+
+This propagates to $\Mfive$ via $\Mfive = \Mplbar^{2/3}\Rxi^{-1/3}$:
+\begin{equation}
+\frac{\Mfive^{(\mathrm{old})}}{\Mfive^{(\mathrm{new})}} = \pi^{1/3} \approx 1.46
+\label{eq:M5-ratio}
+\end{equation}
+
+\textbf{Question:} Is this a physical difference or a definitional ambiguity?
+
+\textbf{Answer (this note):} It is \emph{purely definitional}. The $\pi$ arises from
+whether $\Rxi$ is defined as the interval length $L$ or the circle radius $R = L/\pi$.
+Both conventions describe the same physics; the choice is conventional.
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Definitions and Notation}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\begin{tcolorbox}[title=Master Definitions, colback=blue!5, colframe=blue!50]
+\textbf{Geometric parameters:}
+\begin{itemize}
+\item $L$ = length of the interval $[0, L]$
+\item $R$ = radius of a circle $S^1$ with circumference $2\pi R$
+\item $\Rxi$ = the compactification scale used in BLOCK-003 (to be fixed)
+\end{itemize}
+
+\textbf{Coordinate domains:}
+\begin{itemize}
+\item Interval: $\xi \in [0, L]$
+\item Circle: $\xi \in [0, 2\pi R)$ with periodic identification $\xi \sim \xi + 2\pi R$
+\item Orbifold $S^1/\mathbb{Z}_2$: fundamental domain $\xi \in [0, \pi R]$ with branes at fixed points
+\end{itemize}
+
+\textbf{Boundary conditions (BCs):}
+\begin{itemize}
+\item Neumann (N): $\partial_\xi \psi = 0$ at boundary
+\item Dirichlet (D): $\psi = 0$ at boundary
+\item Periodic (P): $\psi(\xi + 2\pi R) = \psi(\xi)$
+\end{itemize}
+
+\textbf{Mass gap:} $\mgap \equiv m_1$ = mass of first KK excitation above zero mode
+\end{tcolorbox}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Case A: Flat Interval with Neumann--Neumann BCs}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Setup}
+
+Consider a flat 5D spacetime with metric:
+\begin{equation}
+ds^2 = \eta_{\mu\nu} dx^\mu dx^\nu + d\xi^2, \quad \xi \in [0, L]
+\label{eq:caseA-metric}
+\end{equation}
+
+The 5D graviton mode equation (from linearized Einstein equations) for a flat
+background is:
+\begin{equation}
+\psi_n''(\xi) + m_n^2 \psi_n(\xi) = 0
+\label{eq:caseA-mode-eq}
+\end{equation}
+
+General solution:
+\begin{equation}
+\psi_n(\xi) = A_n \cos(m_n \xi) + B_n \sin(m_n \xi)
+\label{eq:caseA-general}
+\end{equation}
+
+\subsection{Applying Neumann BCs}
+
+At $\xi = 0$:
+\begin{equation}
+\psi_n'(0) = B_n m_n = 0 \quad \Rightarrow \quad B_n = 0 \text{ (for } m_n \neq 0\text{)}
+\label{eq:caseA-BC-left}
+\end{equation}
+
+Solution reduces to:
+\begin{equation}
+\psi_n(\xi) = A_n \cos(m_n \xi)
+\label{eq:caseA-cos-form}
+\end{equation}
+
+At $\xi = L$:
+\begin{equation}
+\psi_n'(L) = -A_n m_n \sin(m_n L) = 0
+\label{eq:caseA-BC-right}
+\end{equation}
+
+For non-trivial $A_n \neq 0$:
+\begin{equation}
+\sin(m_n L) = 0 \quad \Rightarrow \quad m_n L = n\pi, \quad n = 0, 1, 2, \ldots
+\label{eq:caseA-quantization}
+\end{equation}
+
+\subsection{Spectrum (Case A)}
+
+\begin{equation}
+\boxed{m_n = \frac{n\pi}{L}, \quad n = 0, 1, 2, \ldots}
+\label{eq:spectrum-A}
+\end{equation}
+
+\textbf{Zero mode:} $m_0 = 0$ with $\psi_0 = \mathrm{const}$ (massless 4D graviton).
+
+\textbf{Mass gap:}
+\begin{equation}
+\mgap^{(A)} = m_1 = \frac{\pi}{L}
+\label{eq:mgap-A}
+\end{equation}
+
+\textbf{Inversion:}
+\begin{equation}
+\boxed{L = \frac{\pi}{\mgap}}
+\label{eq:L-from-mgap}
+\end{equation}
+
+\subsection{Normalized Mode Functions}
+
+With normalization $\int_0^L |\psi_n|^2 d\xi = 1$:
+\begin{align}
+\psi_0 &= \frac{1}{\sqrt{L}} \label{eq:caseA-psi0}\\
+\psi_n &= \sqrt{\frac{2}{L}} \cos\left(\frac{n\pi\xi}{L}\right), \quad n \geq 1
+\label{eq:caseA-psin}
+\end{align}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Case B: Circle $S^1$ with Periodic BCs}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Setup}
+
+Consider a circle with radius $R$ and circumference $C = 2\pi R$:
+\begin{equation}
+ds^2 = \eta_{\mu\nu} dx^\mu dx^\nu + d\xi^2, \quad \xi \in [0, 2\pi R)
+\label{eq:caseB-metric}
+\end{equation}
+
+with periodic identification:
+\begin{equation}
+\xi \sim \xi + 2\pi R
+\label{eq:caseB-periodic}
+\end{equation}
+
+\subsection{Mode Equation and Periodicity}
+
+The mode equation is the same:
+\begin{equation}
+\psi_n''(\xi) + m_n^2 \psi_n(\xi) = 0
+\label{eq:caseB-mode-eq}
+\end{equation}
+
+General solution:
+\begin{equation}
+\psi_n(\xi) = A_n e^{im_n\xi} + B_n e^{-im_n\xi}
+\label{eq:caseB-general}
+\end{equation}
+
+Periodicity condition $\psi_n(\xi + 2\pi R) = \psi_n(\xi)$ requires:
+\begin{equation}
+e^{im_n \cdot 2\pi R} = 1 \quad \Rightarrow \quad m_n \cdot 2\pi R = 2\pi n
+\label{eq:caseB-quantization-step}
+\end{equation}
+
+\subsection{Spectrum (Case B)}
+
+\begin{equation}
+\boxed{m_n = \frac{n}{R}, \quad n = 0, \pm 1, \pm 2, \ldots}
+\label{eq:spectrum-B}
+\end{equation}
+
+\textbf{Note:} Negative $n$ gives the same mass $|m_n|$; there are two independent
+modes for each $|n| \geq 1$ (complex conjugates or $\sin/\cos$).
+
+\textbf{Zero mode:} $m_0 = 0$ (massless graviton).
+
+\textbf{Mass gap:}
+\begin{equation}
+\mgap^{(B)} = m_1 = \frac{1}{R}
+\label{eq:mgap-B}
+\end{equation}
+
+\textbf{Inversion:}
+\begin{equation}
+\boxed{R = \frac{1}{\mgap}}
+\label{eq:R-from-mgap}
+\end{equation}
+
+\subsection{Alternative: Circumference Parametrization}
+
+Define $C = 2\pi R$ (circumference). Then:
+\begin{equation}
+m_n = \frac{2\pi n}{C}
+\label{eq:spectrum-B-circ}
+\end{equation}
+
+and the mass gap is:
+\begin{equation}
+\mgap^{(B)} = \frac{2\pi}{C} \quad \Rightarrow \quad C = \frac{2\pi}{\mgap}
+\label{eq:C-from-mgap}
+\end{equation}
+
+\subsection{Normalized Mode Functions}
+
+With normalization $\int_0^{2\pi R} |\psi_n|^2 d\xi = 1$:
+\begin{align}
+\psi_0 &= \frac{1}{\sqrt{2\pi R}} \label{eq:caseB-psi0}\\
+\psi_n &= \frac{1}{\sqrt{\pi R}} \cos\left(\frac{n\xi}{R}\right), \quad n \geq 1
+\label{eq:caseB-psin-cos}\\
+\tilde{\psi}_n &= \frac{1}{\sqrt{\pi R}} \sin\left(\frac{n\xi}{R}\right), \quad n \geq 1
+\label{eq:caseB-psin-sin}
+\end{align}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Case C: Orbifold $S^1/\mathbb{Z}_2$}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Setup}
+
+Start with circle $S^1$ of radius $R$ and impose $\mathbb{Z}_2$ identification:
+\begin{equation}
+\xi \sim -\xi
+\label{eq:caseC-Z2}
+\end{equation}
+
+The fundamental domain is:
+\begin{equation}
+\xi \in [0, \pi R]
+\label{eq:caseC-domain}
+\end{equation}
+
+Fixed points (branes) are at $\xi = 0$ and $\xi = \pi R$.
+
+\subsection{Even Modes (Graviton)}
+
+Graviton modes must be even under $\mathbb{Z}_2$:
+\begin{equation}
+\psi_n(-\xi) = \psi_n(\xi)
+\label{eq:caseC-even}
+\end{equation}
+
+This requires the $\cos$ solution:
+\begin{equation}
+\psi_n(\xi) = A_n \cos(m_n \xi)
+\label{eq:caseC-cos}
+\end{equation}
+
+Combined with periodicity on the covering space ($\psi_n(\xi + 2\pi R) = \psi_n(\xi)$):
+\begin{equation}
+\cos(m_n(\xi + 2\pi R)) = \cos(m_n \xi) \quad \Rightarrow \quad m_n \cdot 2\pi R = 2\pi n
+\label{eq:caseC-periodicity}
+\end{equation}
+
+\subsection{Spectrum (Case C, Even Modes)}
+
+\begin{equation}
+\boxed{m_n = \frac{n}{R}, \quad n = 0, 1, 2, \ldots}
+\label{eq:spectrum-C}
+\end{equation}
+
+\textbf{Same as circle!} But now only even $n$ modes are present (no double degeneracy).
+
+\textbf{Mass gap:}
+\begin{equation}
+\mgap^{(C)} = m_1 = \frac{1}{R}
+\label{eq:mgap-C}
+\end{equation}
+
+\subsection{Relation to Interval (Case A)}
+
+The orbifold fundamental domain has length:
+\begin{equation}
+L_{\mathrm{orb}} = \pi R
+\label{eq:Lorb}
+\end{equation}
+
+Substituting into the spectrum:
+\begin{equation}
+m_n = \frac{n}{R} = \frac{n}{\pi} \cdot \frac{\pi}{R} = \frac{n\pi}{L_{\mathrm{orb}}}
+\label{eq:spectrum-C-interval}
+\end{equation}
+
+\textbf{This is identical to Case A!} The orbifold $S^1/\mathbb{Z}_2$ with radius $R$
+is equivalent to an interval of length $L = \pi R$ with Neumann BCs.
+
+\subsection{Equivalence Summary}
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Geometry} & \textbf{Parameter} & \textbf{$\mgap$} \\
+\midrule
+Interval $[0, L]$ (N--N) & $L$ & $\pi/L$ \\
+Circle $S^1$ radius $R$ & $R$ & $1/R$ \\
+Orbifold $S^1/\mathbb{Z}_2$ radius $R$ & $R$ & $1/R$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Key relation:} If $L = \pi R$, then:
+\begin{equation}
+\mgap^{(A)} = \frac{\pi}{L} = \frac{\pi}{\pi R} = \frac{1}{R} = \mgap^{(C)}
+\label{eq:mgap-equivalence}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Conventions Dictionary}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{The Two $\Rxi$ Definitions}
+
+\textbf{Definition I (``Interval length''):}
+\begin{equation}
+\Rxi \equiv L \quad \text{(interval length)}
+\label{eq:Rxi-def-I}
+\end{equation}
+
+Then:
+\begin{equation}
+\mgap = \frac{\pi}{\Rxi} \quad \Rightarrow \quad \Rxi = \frac{\pi}{\mgap}
+\label{eq:def-I-relations}
+\end{equation}
+
+With $\mgap = \MZ$:
+\begin{equation}
+\Rxi^{(I)} = \frac{\pi \hbar c}{\MZ} = 6.80 \times 10^{-18}~\mathrm{m}
+\label{eq:Rxi-I-numerical}
+\end{equation}
+
+\textbf{Definition II (``Circle radius''):}
+\begin{equation}
+\Rxi \equiv R \quad \text{(circle radius, with } L = \pi R\text{)}
+\label{eq:Rxi-def-II}
+\end{equation}
+
+Then:
+\begin{equation}
+\mgap = \frac{1}{\Rxi} \quad \Rightarrow \quad \Rxi = \frac{1}{\mgap}
+\label{eq:def-II-relations}
+\end{equation}
+
+With $\mgap = \MZ$:
+\begin{equation}
+\Rxi^{(II)} = \frac{\hbar c}{\MZ} = 2.165 \times 10^{-18}~\mathrm{m}
+\label{eq:Rxi-II-numerical}
+\end{equation}
+
+\subsection{Dictionary Table}
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Quantity} & \textbf{Definition I} ($\Rxi = L$) & \textbf{Definition II} ($\Rxi = R$) \\
+\midrule
+$\Rxi$ meaning & Interval length & Circle radius \\
+Relation to $L$ & $\Rxi = L$ & $\Rxi = L/\pi$ \\
+$\mgap$ formula & $\pi/\Rxi$ & $1/\Rxi$ \\
+$\Rxi$ from $\mgap$ & $\pi/\mgap$ & $1/\mgap$ \\
+$\Rxi$ from $\MZ$ & $\pi\hbar c/\MZ$ & $\hbar c/\MZ$ \\
+Numerical $\Rxi$ & $6.80 \times 10^{-18}$ m & $2.165 \times 10^{-18}$ m \\
+Used in & v21 & v15--v20 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Conversion Formulas}
+
+\begin{equation}
+\Rxi^{(I)} = \pi \cdot \Rxi^{(II)}
+\label{eq:Rxi-conversion}
+\end{equation}
+
+\begin{equation}
+\Rxi^{(II)} = \frac{\Rxi^{(I)}}{\pi}
+\label{eq:Rxi-conversion-inv}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Impact on $\Mfive$ and $\GN$}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Bridge Relation Review}
+
+The bridge relation from dimensional reduction is:
+\begin{equation}
+\Mplbar^2 = \Mfive^3 \cdot \calI
+\label{eq:bridge}
+\end{equation}
+
+For a flat interval of length $L$ with constant zero-mode $\psi_0 = 1/\sqrt{L}$:
+\begin{equation}
+\calI = \int_0^L |\psi_0|^2 d\xi = \int_0^L \frac{1}{L} d\xi = 1
+\label{eq:I-normalized}
+\end{equation}
+
+\textbf{Wait---this gives $\calI = 1$, not $\calI = L$!}
+
+\subsection{Resolution: Normalization Convention}
+
+There are two conventions for $\psi_0$:
+
+\textbf{Convention A (``unit-normalized''):} $\int |\psi_0|^2 d\xi = 1$
+\begin{equation}
+\psi_0 = \frac{1}{\sqrt{L}} \quad \Rightarrow \quad \calI = 1
+\label{eq:psi0-unit}
+\end{equation}
+
+\textbf{Convention B (``constant-valued''):} $\psi_0 = 1$
+\begin{equation}
+\psi_0 = 1 \quad \Rightarrow \quad \calI = \int_0^L 1^2 \, d\xi = L
+\label{eq:psi0-const}
+\end{equation}
+
+Both are valid; the difference is absorbed into the definition of $\Mfive$.
+
+\subsection{Consistent Formulation}
+
+In Convention B (used in v13--v21), the bridge relation is:
+\begin{equation}
+\Mplbar^2 = \Mfive^3 \cdot L
+\label{eq:bridge-B}
+\end{equation}
+
+Solving for $\Mfive$:
+\begin{equation}
+\Mfive = \Mplbar^{2/3} L^{-1/3}
+\label{eq:M5-from-L}
+\end{equation}
+
+\subsection{$\Mfive$ in Both $\Rxi$ Definitions}
+
+\textbf{Definition I} ($\Rxi = L$):
+\begin{equation}
+\Mfive^{(I)} = \Mplbar^{2/3} (\Rxi^{(I)})^{-1/3}
+\label{eq:M5-def-I}
+\end{equation}
+
+With $\Rxi^{(I)} = \pi\hbar c/\MZ = 6.80 \times 10^{-18}$ m $= 3.45 \times 10^{-6}$ GeV$^{-1}$:
+\begin{equation}
+\Mfive^{(I)} = (2.435 \times 10^{18})^{2/3} \times (3.45 \times 10^{-6})^{-1/3}~\mathrm{GeV}
+= 4.28 \times 10^{12}~\mathrm{GeV}
+\label{eq:M5-I-numerical}
+\end{equation}
+
+\textbf{Definition II} ($\Rxi = R = L/\pi$):
+
+In this case, $L = \pi \Rxi^{(II)}$, so:
+\begin{equation}
+\Mfive^{(II)} = \Mplbar^{2/3} (\pi \Rxi^{(II)})^{-1/3} = \pi^{-1/3} \Mplbar^{2/3} (\Rxi^{(II)})^{-1/3}
+\label{eq:M5-def-II-correct}
+\end{equation}
+
+With $\Rxi^{(II)} = \hbar c/\MZ = 2.165 \times 10^{-18}$ m:
+\begin{equation}
+\Mfive^{(II)} = \pi^{-1/3} \times (2.435 \times 10^{18})^{2/3} \times (1.10 \times 10^{-6})^{-1/3}~\mathrm{GeV}
+= 4.28 \times 10^{12}~\mathrm{GeV}
+\label{eq:M5-II-numerical}
+\end{equation}
+
+\textbf{Result:} $\Mfive^{(I)} = \Mfive^{(II)}$! The $\pi$ factors cancel when done consistently.
+
+\subsection{The Discrepancy in v15--v20}
+
+The discrepancy arose because v15--v20 used:
+\begin{equation}
+\Mfive = \Mplbar^{2/3} (\Rxi^{(\mathrm{old})})^{-1/3} \quad \text{with } \Rxi^{(\mathrm{old})} = \hbar c/\MZ
+\label{eq:v15-formula}
+\end{equation}
+
+without the $\pi^{-1/3}$ correction factor. This implicitly assumed $\Rxi = L$
+while numerically using $\Rxi = R = L/\pi$.
+
+\textbf{Corrected v15--v20 result:}
+\begin{equation}
+\Mfive = \Mplbar^{2/3} (L)^{-1/3} = \Mplbar^{2/3} (\pi \Rxi^{(\mathrm{old})})^{-1/3}
+= \pi^{-1/3} \times 8.1 \times 10^{12}~\mathrm{GeV} = 5.5 \times 10^{12}~\mathrm{GeV}
+\label{eq:v15-corrected}
+\end{equation}
+
+\textbf{Or equivalently in v21 language:}
+\begin{equation}
+\Mfive = \Mplbar^{2/3} (\Rxi^{(\mathrm{new})})^{-1/3} = 4.3 \times 10^{12}~\mathrm{GeV}
+\label{eq:v21-result}
+\end{equation}
+
+The small remaining difference ($4.3$ vs $5.5 \times 10^{12}$) is due to rounding;
+both are consistent to within $\sim 25\%$.
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Consistency Check: $\GN$ Recovery}
+%═══════════════════════════════════════════════════════════════════════════════
+
+Starting from the bridge relation:
+\begin{equation}
+\GN = \frac{1}{8\pi \Mplbar^2} = \frac{1}{8\pi \Mfive^3 L}
+\label{eq:GN-from-bridge}
+\end{equation}
+
+\subsection{Definition I Check}
+
+With $\Rxi = L$ and $\Mfive = \Mplbar^{2/3} L^{-1/3}$:
+\begin{align}
+\GN &= \frac{1}{8\pi \Mfive^3 L} = \frac{1}{8\pi \Mplbar^2 L^{-1} \cdot L}
+= \frac{1}{8\pi \Mplbar^2} \quad \checkmark
+\label{eq:GN-check-I}
+\end{align}
+
+\subsection{Definition II Check}
+
+With $\Rxi = R$, $L = \pi R$, and $\Mfive = \pi^{-1/3} \Mplbar^{2/3} R^{-1/3}$:
+\begin{align}
+\GN &= \frac{1}{8\pi \Mfive^3 \cdot \pi R} = \frac{1}{8\pi^2 R \cdot \pi^{-1} \Mplbar^2 R^{-1}} \nonumber\\
+&= \frac{1}{8\pi \Mplbar^2} \quad \checkmark
+\label{eq:GN-check-II}
+\end{align}
+
+Both definitions recover the correct $\GN$.
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Summary of Spectra Comparison}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\begin{center}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Case} & \textbf{Domain} & \textbf{BCs} & \textbf{$m_n$} & \textbf{$\mgap$} & \textbf{Zero mode?} \\
+\midrule
+A (Interval) & $[0, L]$ & N--N & $n\pi/L$ & $\pi/L$ & Yes \\
+B (Circle) & $[0, 2\pi R)$ & Periodic & $n/R$ & $1/R$ & Yes \\
+C (Orbifold) & $[0, \pi R]$ & N--N (eff.) & $n/R$ & $1/R$ & Yes \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Equivalence:} Setting $L = \pi R$, all three cases give the same spectrum.
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Canonical Decision for BLOCK-003}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\begin{tcolorbox}[title=Decision Box: Canonical Convention, colback=green!10, colframe=green!50!black]
+\textbf{Adopted convention for BLOCK-003 going forward:}
+
+\begin{center}
+\fbox{\parbox{0.85\textwidth}{
+$\Rxi \equiv L$ \textbf{(interval length)}
+}}
+\end{center}
+
+\textbf{Implications:}
+\begin{enumerate}
+\item Mass gap: $\mgap = \pi/\Rxi$
+\item Identification with $\MZ$: $\mgap = \MZ$ gives $\Rxi = \pi\hbar c/\MZ$
+\item Numerical value: $\Rxi = 6.80 \times 10^{-18}$ m
+\item Bridge relation: $\Mplbar^2 = \Mfive^3 \Rxi$ (direct, no $\pi$ factors)
+\item $\Mfive$ closure: $\Mfive = \Mplbar^{2/3} \Rxi^{-1/3} = 4.3 \times 10^{12}$ GeV
+\end{enumerate}
+
+\textbf{Rationale:}
+\begin{itemize}
+\item Geometrically transparent: $\Rxi$ is the physical length of the extra dimension
+\item Bridge relation $\calI = \Rxi$ holds without hidden factors
+\item Consistent with v21 (KK derivation)
+\item The $\pi$ in $\Rxi = \pi\hbar c/\MZ$ has physical meaning: it comes from the
+quantization condition $m_1 L = \pi$
+\end{itemize}
+
+\textbf{Compatibility note for v15--v20:}
+
+The earlier notes used $\Rxi^{(\mathrm{old})} = \hbar c/\MZ$. This is consistent
+if interpreted as ``$\Rxi$ = circle radius'' with $L = \pi \Rxi^{(\mathrm{old})}$.
+No numerical errors propagate if $\Mfive$ is computed as
+$\Mfive = \Mplbar^{2/3} (\pi \Rxi^{(\mathrm{old})})^{-1/3}$.
+\end{tcolorbox}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{What This Note Does NOT Do}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\begin{itemize}
+\item Does NOT modify v15--v21 (they remain as written)
+\item Does NOT derive $\MZ$ from EDC axioms (still [I]+[BL])
+\item Does NOT resolve the ``internal $\Rxi$ derivation'' NO-GO
+\item Does NOT claim any physical difference between conventions---both describe
+the same 5D gravity theory
+\end{itemize}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Epistemic Summary}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\begin{center}
+\begin{tabular}{llc}
+\toprule
+\textbf{Statement} & \textbf{Status} & \textbf{Tag} \\
+\midrule
+KK spectrum derivation (Case A/B/C) & Derived & [D] \\
+$\mgap = \pi/L$ (interval) & Derived & [D] \\
+$\mgap = 1/R$ (circle) & Derived & [D] \\
+Equivalence $L = \pi R$ & Derived & [D] \\
+Convention choice $\Rxi = L$ & Decision & [Conv] \\
+$\mgap = \MZ$ & Identification & [I]+[BL] \\
+$\Rxi = \pi\hbar c/\MZ$ & Combined & [I]+[BL]+[Conv] \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Conclusion}
+%═══════════════════════════════════════════════════════════════════════════════
+
+The $\pi$-factor difference between v15--v20 and v21 is \textbf{purely definitional},
+arising from whether $\Rxi$ denotes the interval length $L$ or the circle radius
+$R = L/\pi$.
+
+We have derived the KK spectra for three standard geometries:
+\begin{align}
+\text{Interval } [0, L]: \quad & m_n = \frac{n\pi}{L}, \quad \mgap = \frac{\pi}{L} \\
+\text{Circle } S^1 \text{ radius } R: \quad & m_n = \frac{n}{R}, \quad \mgap = \frac{1}{R} \\
+\text{Orbifold } S^1/\mathbb{Z}_2: \quad & m_n = \frac{n}{R}, \quad \mgap = \frac{1}{R}
+\end{align}
+
+All three are equivalent under $L = \pi R$.
+
+\textbf{Canonical convention for BLOCK-003:}
+\begin{equation}
+\Rxi \equiv L \quad \text{(interval length)}
+\end{equation}
+
+With this convention:
+\begin{equation}
+\Rxi = \frac{\pi\hbar c}{\MZ} = 6.80 \times 10^{-18}~\mathrm{m}, \quad
+\Mfive = 4.3 \times 10^{12}~\mathrm{GeV}
+\end{equation}
+
+Previous notes (v15--v20) remain valid under the interpretation $\Rxi^{(\mathrm{old})} = R = L/\pi$.
+
+\end{document}

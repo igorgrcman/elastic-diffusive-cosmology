@@ -1,0 +1,362 @@
+% ============================================================================
+% BLOCK-003 Derivation v10: Tautology Audit + Order-of-Magnitude Check
+% ============================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{physics}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+
+% Theorem environments
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+
+% Epistemic tags
+\newcommand{\BL}{\textsc{[BL]}}
+\newcommand{\Post}{\textsc{[P]}}
+\newcommand{\Deriv}{\textsc{[Dc]}}
+\newcommand{\Open}{\textsc{[Open]}}
+\newcommand{\Taut}{\textcolor{red}{\textsc{[TAUT?]}}}
+
+% Boxes
+\newtcolorbox{auditbox}[1][]{colback=blue!5,colframe=blue!50!black,
+  title=#1,fonttitle=\bfseries}
+\newtcolorbox{resultbox}[1][]{colback=green!5,colframe=green!50!black,
+  title=#1,fonttitle=\bfseries}
+
+% Header/footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small BLOCK-003 / Derivation v10}
+\fancyhead[R]{\small EDC Gravity Program}
+\fancyfoot[C]{\thepage}
+
+\title{\textbf{EDC BLOCK-003 (Derivation v10):}\\[0.3em]
+Tautology Audit and Order-of-Magnitude Sanity Check}
+\author{EDC Working Document\\[0.5em]
+\small 2026-02-02 --- Diagnostic before further attempts}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+After NC-1 (v8) and NC-2 (v9) both returned INCONCLUSIVE due to degenerate
+parameter combinations, this note performs two diagnostics:
+\textbf{Part A (Tautology Audit):} We trace where 4D gravity concepts
+($G_N$, $1/r$ potential, Einstein equations) first enter the EDC framework
+to assess whether any ``derivation'' of $G_N$ is circular.
+\textbf{Part B (Order-of-Magnitude Check):} We set $\sigma = \sigma_0$
+(a reasonable ansatz) and compute $G_N^{\rm pred}$ to check if EDC is
+``in the right universe.''
+\textbf{Results:} Tautology risk is MEDIUM---the 5D framework uses $\kappa_5$
+without independent definition, potentially presupposing gravity. The
+order-of-magnitude check shows EDC \textit{can} produce $G_N \sim 10^{-11}$
+for reasonable $\sigma$, but requires fine-tuning.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ============================================================================
+% PART A: TAUTOLOGY AUDIT
+% ============================================================================
+\part{Tautology Audit}
+
+% ============================================================================
+\section{Purpose}
+% ============================================================================
+
+A ``derivation'' of $G_N$ is \textbf{tautological} if 4D gravity was
+already presupposed in the axioms or definitions. This audit traces the
+logical chain to identify potential circularity.
+
+\begin{auditbox}[Tautology Criterion]
+A derivation is circular if:
+\begin{enumerate}
+\item $G_N$ (or Planck mass) appears as an input parameter.
+\item The 4D Einstein equations are assumed before being ``derived.''
+\item A $1/r$ Newtonian potential is used to define scales that later
+``predict'' $1/r$ behavior.
+\end{enumerate}
+\end{auditbox}
+
+% ============================================================================
+\section{Assumption Ledger}
+% ============================================================================
+
+We trace where gravitational concepts enter the derivation chain.
+
+\begin{longtable}{p{3cm}p{4cm}p{2cm}p{4cm}}
+\toprule
+\textbf{Concept} & \textbf{Where Introduced} & \textbf{Tag} & \textbf{Tautology Risk} \\
+\midrule
+\endhead
+$\kappa_5^2$ (5D coupling) & 5D EH action $S_5 \sim \kappa_5^{-2} \int R^{(5)}$ &
+\BL & \Taut\ if $\kappa_5$ defined via $G_5$ \\
+$R^{(5)}$ (5D Ricci) & 5D metric variation & \BL & LOW (geometric) \\
+$R^{(4)}$ (4D Ricci) & Induced on brane & \Deriv & LOW (follows from $R^{(5)}$) \\
+$G_N$ & Matching $S_4 = \int R^{(4)}/(16\pi G_N)$ & \Deriv & MEDIUM (convention) \\
+$1/r$ potential & 4D Newtonian limit & \Deriv & LOW if derived from $R^{(4)}$ \\
+$M_{\rm Pl}$ & $M_{\rm Pl}^2 = 1/(8\pi G_N)$ & \BL & HIGH if used as input \\
+$\sigma$ (brane tension) & Brane action $S_{\rm brane} = -\sigma \int \sqrt{-h}$ &
+\BL & LOW (geometric) \\
+$L$ (compact dim.) & Extra dimension size & \Post & LOW (geometric) \\
+\bottomrule
+\caption{Assumption ledger for gravitational concepts.}
+\label{tab:ledger}
+\end{longtable}
+
+% ============================================================================
+\section{Critical Analysis}
+% ============================================================================
+
+\subsection{The $\kappa_5$ Question}
+
+The 5D gravitational coupling $\kappa_5$ is introduced in the bulk action:
+\[
+S_5 = \frac{1}{2\kappa_5^2} \int d^5X \sqrt{-g^{(5)}} R^{(5)}
+\]
+
+\textbf{Question:} How is $\kappa_5$ defined?
+
+\begin{itemize}
+\item \textbf{Option 1 (non-circular):} $\kappa_5$ is a fundamental constant
+of the 5D theory, with dimensions $[\kappa_5^2] = L^3$, to be determined by
+matching to observations.
+
+\item \textbf{Option 2 (potentially circular):} $\kappa_5$ is defined via
+$\kappa_5^2 = 8\pi G_5$, where $G_5$ is the ``5D Newton constant''---but
+what defines $G_5$ if not by analogy to 4D gravity?
+\end{itemize}
+
+\textbf{In EDC:} $\kappa_5^2 = C \sigma^{-3/4}$ is proposed, where $C$ is
+unfixed. This is \textit{not} directly circular (no $G_N$ input), but the
+\textit{interpretation} of $\kappa_5$ as ``gravitational'' presupposes that
+the 5D EH action describes gravity.
+
+\subsection{The Matching Step}
+
+The 4D Newton constant emerges from matching:
+\[
+\frac{L}{2\kappa_5^2} = \frac{1}{16\pi G_N}
+\]
+
+This is a \textit{definition} of $G_N$ in terms of $\kappa_5$ and $L$, not
+a derivation. The question is whether $G_N$ so defined has the correct
+physical interpretation (couples to stress-energy, produces $1/r$ potential).
+
+\textbf{Assessment:} This step is LOW tautology risk---it is standard
+dimensional reduction, not circular reasoning.
+
+\subsection{The 4D Einstein Equations}
+
+After reduction, the 4D Einstein equations emerge:
+\[
+G_{\mu\nu}^{(4)} = 8\pi G_N T_{\mu\nu}
+\]
+
+\textbf{Question:} Were these presupposed or derived?
+
+\textbf{Answer:} Derived from the 5D equations + junction conditions. This
+is legitimate \textit{if} the 5D equations are not themselves defined by
+requiring 4D GR in some limit.
+
+% ============================================================================
+\section{Tautology Risk Assessment}
+% ============================================================================
+
+\begin{resultbox}[Tautology Risk: MEDIUM]
+\textbf{Findings:}
+\begin{itemize}
+\item No explicit $G_N^{\rm obs}$ or $M_{\rm Pl}$ is used as input.
+\item The 5D EH action is assumed (not derived from more fundamental principles).
+\item The interpretation of $\kappa_5$ as ``gravitational'' is conventional,
+not proven.
+\item The matching step $G_N = \kappa_5^2/(8\pi L)$ is definitional, not
+circular.
+\end{itemize}
+
+\textbf{Conclusion:} The derivation is not \textit{strictly} tautological,
+but it assumes that 5D Einstein gravity is the correct bulk theory. This
+is a \textit{model assumption}, not a circularity.
+
+\textbf{Implication for BLOCK-003:} The problem is not tautology but
+\textit{underdetermination}---the model has one free parameter ($C$ or
+equivalent) that cannot be fixed without additional input.
+\end{resultbox}
+
+% ============================================================================
+% PART B: ORDER-OF-MAGNITUDE CHECK
+% ============================================================================
+\newpage
+\part{Order-of-Magnitude Sanity Check}
+
+% ============================================================================
+\section{Setup}
+% ============================================================================
+
+We set $\sigma = \sigma_0$ (an ansatz) and compute $G_N^{\rm pred}$ to check
+if the order of magnitude is reasonable.
+
+From v8:
+\begin{equation}
+G_N = \frac{C}{8\pi} \cdot \frac{\sigma^{-3/4}}{R_\xi}
+\label{eq:gn_formula}
+\end{equation}
+
+We adopt the NP1 convention: $C = 8\pi$. Then:
+\begin{equation}
+G_N = \frac{\sigma^{-3/4}}{R_\xi} = \sigma^{-3/4} \cdot R_\xi^{-1}
+\label{eq:gn_simple}
+\end{equation}
+
+% ============================================================================
+\section{Natural Units and Conversion}
+% ============================================================================
+
+In natural units ($\hbar = c = 1$):
+\begin{itemize}
+\item $[G_N] = L^2 / M = L^2 \cdot L = L^3$ (since $[M] = L^{-1}$)
+\item $[\sigma] = M / L^3 = L^{-4}$
+\item $[R_\xi] = L$
+\end{itemize}
+
+Check Eq.~\eqref{eq:gn_simple}:
+\[
+[G_N] = [\sigma^{-3/4}][R_\xi^{-1}] = (L^{-4})^{-3/4} \cdot L^{-1}
+= L^3 \cdot L^{-1} = L^2 \quad \text{???}
+\]
+
+\textbf{Problem:} Dimensions don't match! Let me recheck.
+
+In SI units: $[G_N] = \text{m}^3 / (\text{kg} \cdot \text{s}^2)$.
+
+In natural units where $\hbar = c = 1$ and we measure everything in GeV:
+\begin{itemize}
+\item $[G_N] = \text{GeV}^{-2}$
+\item $[\sigma] = \text{GeV}^4$ (energy density)
+\item $[R_\xi] = \text{GeV}^{-1}$
+\end{itemize}
+
+Then:
+\[
+[\sigma^{-3/4} / R_\xi] = \text{GeV}^{-3} / \text{GeV}^{-1} = \text{GeV}^{-2}
+\quad \checkmark
+\]
+
+% ============================================================================
+\section{Numerical Estimate}
+% ============================================================================
+
+\subsection{Input Values}
+
+\begin{itemize}
+\item $R_\xi = \hbar c / M_Z = 2.16 \times 10^{-18}$ m $\approx (91 \text{ GeV})^{-1}$
+\item $G_N^{\rm obs} = 6.674 \times 10^{-11}$ m$^3$ kg$^{-1}$ s$^{-2}$
+$\approx (1.22 \times 10^{19} \text{ GeV})^{-2} = M_{\rm Pl}^{-2}$
+\end{itemize}
+
+\subsection{Required $\sigma$ for Correct $G_N$}
+
+From Eq.~\eqref{eq:gn_simple} with $C = 8\pi$:
+\[
+G_N = \sigma^{-3/4} R_\xi^{-1}
+\]
+
+Solving for $\sigma$:
+\[
+\sigma^{-3/4} = G_N \cdot R_\xi
+\]
+\[
+\sigma = (G_N \cdot R_\xi)^{-4/3}
+\]
+
+In GeV units:
+\begin{align}
+G_N &\approx (1.22 \times 10^{19})^{-2} \text{ GeV}^{-2} \\
+R_\xi &\approx (91)^{-1} \text{ GeV}^{-1}
+\end{align}
+
+\[
+G_N \cdot R_\xi \approx \frac{1}{(1.22 \times 10^{19})^2 \times 91}
+= \frac{1}{1.35 \times 10^{40}} \text{ GeV}^{-3}
+\]
+
+\[
+\sigma = (1.35 \times 10^{40})^{4/3} \text{ GeV}^4
+\approx 3.6 \times 10^{53} \text{ GeV}^4
+\]
+
+\subsection{Is This Reasonable?}
+
+\begin{itemize}
+\item $\sigma^{1/4} \approx 2.4 \times 10^{13}$ GeV $\approx 10^{-6} M_{\rm Pl}$
+\item This is a GUT-scale energy density---high but not Planckian.
+\end{itemize}
+
+\textbf{Comparison:} In Randall-Sundrum, $\sigma \sim k M_5^3$ where $k$
+is the AdS curvature. For $k \sim M_{\rm Pl}$, $\sigma \sim M_{\rm Pl}^4$,
+which is much larger. The EDC value $\sigma \sim 10^{53}$ GeV$^4$ is
+\textit{smaller} than Planckian, which is a mild hierarchy.
+
+% ============================================================================
+\section{Order-of-Magnitude Verdict}
+% ============================================================================
+
+\begin{resultbox}[Order-of-Magnitude: PLAUSIBLE]
+\textbf{Finding:} To reproduce $G_N^{\rm obs}$ with $L = R_\xi$ and $C = 8\pi$,
+the required brane tension is:
+\[
+\sigma \approx 3.6 \times 10^{53} \text{ GeV}^4
+\quad \Leftrightarrow \quad
+\sigma^{1/4} \approx 2 \times 10^{13} \text{ GeV}
+\]
+
+\textbf{Assessment:}
+\begin{itemize}
+\item This is GUT-scale, not Planck-scale---a mild hierarchy.
+\item The model is ``in the right universe'' but requires $\sigma$ to be
+specified to this precision.
+\item No obvious contradiction with known physics.
+\end{itemize}
+
+\textbf{Caveat:} This is calibration, not prediction. We adjusted $\sigma$
+to match $G_N^{\rm obs}$. True closure requires deriving $\sigma$ from
+EDC field equations.
+\end{resultbox}
+
+% ============================================================================
+\section{Combined Conclusions}
+% ============================================================================
+
+\begin{auditbox}[Summary]
+\textbf{Part A (Tautology Audit):}
+\begin{itemize}
+\item Risk level: MEDIUM
+\item No strict circularity found
+\item Problem is underdetermination, not tautology
+\end{itemize}
+
+\textbf{Part B (Order-of-Magnitude):}
+\begin{itemize}
+\item EDC can produce correct $G_N$ for $\sigma \sim 10^{53}$ GeV$^4$
+\item This is GUT-scale tension (plausible)
+\item Requires $\sigma$ specification (same as before)
+\end{itemize}
+
+\textbf{BLOCK-003 Status:} Remains \Open.
+
+The missing element is confirmed to be: \textbf{derive $\sigma$ from EDC
+field equations} (or accept one calibration).
+\end{auditbox}
+
+\end{document}

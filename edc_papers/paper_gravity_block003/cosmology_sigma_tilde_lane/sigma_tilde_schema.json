@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sigma_tilde_value.schema.json",
+  "title": "Sigma Tilde Export Schema",
+  "description": "Schema for exporting dimensionless brane tension to BLOCK-004",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "created_utc",
+    "sigma_tilde",
+    "t_star",
+    "sigma_dimensional",
+    "provenance",
+    "firewall"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Schema version identifier"
+    },
+    "created_utc": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 timestamp of file creation"
+    },
+    "sigma_tilde": {
+      "type": "object",
+      "description": "Dimensionless brane tension parameter",
+      "required": ["value", "uncertainty", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "oneOf": [
+            { "type": "null", "description": "Null when status=TBD" },
+            {
+              "type": "object",
+              "description": "Value object when status=DERIVED or IMPORTED",
+              "required": ["central", "plus", "minus"],
+              "additionalProperties": false,
+              "properties": {
+                "central": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Central value (must be > 0)"
+                },
+                "plus": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "Positive uncertainty (>= 0)"
+                },
+                "minus": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "Negative uncertainty (>= 0)"
+                }
+              }
+            }
+          ],
+          "description": "Null if TBD, or object with central/plus/minus if DERIVED"
+        },
+        "uncertainty": {
+          "type": "object",
+          "required": ["type", "lo", "hi", "units"],
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "interval"
+            },
+            "lo": {
+              "type": ["number", "null"],
+              "description": "Lower endpoint or null"
+            },
+            "hi": {
+              "type": ["number", "null"],
+              "description": "Upper endpoint or null"
+            },
+            "units": {
+              "type": "string",
+              "const": "dimensionless"
+            }
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": ["TBD", "DERIVED", "IMPORTED"]
+        }
+      }
+    },
+    "t_star": {
+      "type": "object",
+      "description": "Characteristic scale for dimensionless conversion",
+      "required": ["definition_ref", "derivation_ref", "value", "units", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "definition_ref": {
+          "type": "string",
+          "description": "Path to TSTAR_DEFINITION.md"
+        },
+        "derivation_ref": {
+          "type": "string",
+          "description": "Path to TSTAR_DERIVATION_5D.md"
+        },
+        "value": {
+          "type": ["number", "null"],
+          "description": "Numeric value or null if TBD"
+        },
+        "units": {
+          "type": ["string", "null"],
+          "description": "Physical units or null"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["TBD", "DERIVED", "IMPORTED"]
+        }
+      }
+    },
+    "sigma_dimensional": {
+      "type": "object",
+      "description": "Dimensional brane tension (upstream)",
+      "required": ["value", "units", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": ["number", "null"],
+          "description": "Numeric value or null if TBD"
+        },
+        "units": {
+          "type": ["string", "null"],
+          "description": "Physical units or null"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["TBD", "DERIVED", "IMPORTED"]
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "description": "Derivation provenance and audit trail",
+      "required": ["method", "generated_by", "epistemic_tags", "parent_hashes", "sot_hash", "git_commit", "git_branch", "notes"],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "description": "Derivation method description"
+        },
+        "derivation_ref": {
+          "type": ["string", "null"],
+          "description": "Path to derivation document (required when DERIVED, null when TBD)"
+        },
+        "generated_by": {
+          "type": "string",
+          "description": "Script or process that generated this file"
+        },
+        "generated_at": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "Optional ISO8601 timestamp of derivation"
+        },
+        "epistemic_tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Epistemic status tags"
+        },
+        "parent_hashes": {
+          "type": "object",
+          "description": "Hash references to parent derivations",
+          "additionalProperties": { "type": "string" }
+        },
+        "sot_hash": {
+          "type": "string",
+          "description": "Source of Truth hash for this export"
+        },
+        "git_commit": {
+          "type": "string",
+          "description": "Git commit hash at generation time"
+        },
+        "git_branch": {
+          "type": "string",
+          "description": "Git branch at generation time"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional notes"
+        },
+        "import_source": {
+          "type": ["string", "null"],
+          "description": "External import source path (required when IMPORTED)"
+        }
+      }
+    },
+    "firewall": {
+      "type": "object",
+      "description": "Layer A firewall compliance",
+      "required": ["layer", "forbidden_gate_pass", "notes"],
+      "additionalProperties": false,
+      "properties": {
+        "layer": {
+          "type": "string",
+          "const": "A",
+          "description": "Must be Layer A only"
+        },
+        "forbidden_gate_pass": {
+          "type": "boolean",
+          "description": "Must be false (no forbidden content)"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Firewall compliance notes"
+        }
+      }
+    }
+  }
+}

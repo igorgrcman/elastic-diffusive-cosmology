@@ -1,0 +1,557 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{physics}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{tcolorbox}
+
+\newcommand{\Rxi}{R_\xi}
+\newcommand{\Mpl}{M_{\mathrm{Pl}}}
+\newcommand{\Mplbar}{\bar{M}_{\mathrm{Pl}}}
+\newcommand{\Mfive}{M_5}
+\newcommand{\calI}{\mathcal{I}}
+\newcommand{\GN}{G_N}
+\newcommand{\kfive}{\kappa_5}
+\newcommand{\MZ}{M_Z}
+
+\title{Derivation v20: Factor \& Normalization Audit\\
+for the 5D$\to$4D Gravity Bridge}
+\author{EDC Collaboration\\[3pt]
+\small\textit{Derivation note; explicit factor tracking}}
+\date{February 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note performs a forensic audit of all numerical factors in the derivation
+of $\Mplbar^2 = \Mfive^3 \calI$. We explicitly track: (i) the $\frac{1}{2}$ in
+action normalization, (ii) the $8\pi$ in Newton's constant, (iii) orbifold
+doubling factors, (iv) the $2\pi$ from circle circumference, and (v) the warp
+factor exponent in $\calI$. Three coordinate conventions are compared and a
+canonical choice is fixed. A conversion table maps between conventions.
+\end{abstract}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Conventions (Fixed for This Note)}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{5D Action Normalization}
+
+We adopt the 5D Einstein-Hilbert action in the form:
+\begin{equation}
+S_5 = \frac{\Mfive^3}{2} \int d^5x \sqrt{-g_5}\, R_5
+\label{eq:5D-action}
+\end{equation}
+where $\Mfive$ is the fundamental 5D Planck mass. This is equivalent to
+writing $S_5 = \frac{1}{2\kfive^2}\int\sqrt{-g_5}R_5$ with $\kfive^2 = 1/\Mfive^3$.
+
+\textbf{Note:} The factor $\frac{1}{2}$ multiplies the entire action, not just
+the Ricci scalar. This is the ``reduced'' action convention standard in
+brane-world literature.
+
+\subsection{4D Newton Constant and Planck Mass}
+
+Newton's constant in 4D is defined via:
+\begin{equation}
+\GN = \frac{1}{8\pi \Mplbar^2}
+\label{eq:GN-def}
+\end{equation}
+where $\Mplbar$ is the \textbf{reduced Planck mass}:
+\begin{equation}
+\Mplbar = \frac{1}{\sqrt{8\pi \GN}} \approx 2.435 \times 10^{18}~\mathrm{GeV}
+\label{eq:Mplbar-def}
+\end{equation}
+
+The ``original'' Planck mass is:
+\begin{equation}
+\Mpl = \frac{1}{\sqrt{\GN}} \approx 1.221 \times 10^{19}~\mathrm{GeV}
+\label{eq:Mpl-original}
+\end{equation}
+
+Relation:
+\begin{equation}
+\Mplbar = \frac{\Mpl}{\sqrt{8\pi}}
+\label{eq:Mpl-relation}
+\end{equation}
+
+The 4D Einstein-Hilbert action with our conventions is:
+\begin{equation}
+S_4 = \frac{\Mplbar^2}{2} \int d^4x \sqrt{-g_4}\, R_4 = \frac{1}{16\pi\GN} \int d^4x \sqrt{-g_4}\, R_4
+\label{eq:4D-action}
+\end{equation}
+
+\subsection{Extra Dimension Coordinate Conventions}
+
+We consider three coordinate conventions for the extra dimension $\xi$:
+
+\begin{enumerate}
+\item \textbf{Interval $[0,L]$}: Flat extra dimension with coordinate $\xi \in [0,L]$.
+The length of the extra dimension is $L$.
+
+\item \textbf{Circle $S^1$}: Compact circle with $\xi \in [0, 2\pi R]$ and
+periodic identification $\xi \sim \xi + 2\pi R$. Circumference is $2\pi R$.
+
+\item \textbf{Orbifold $S^1/\mathbb{Z}_2$}: Circle with $\mathbb{Z}_2$ reflection
+symmetry $\xi \to -\xi$. Fundamental domain is $\xi \in [0, \pi R]$. Branes sit
+at the fixed points $\xi = 0$ and $\xi = \pi R$.
+\end{enumerate}
+
+\textbf{Definition:} We define $\Rxi$ as the \emph{length of the fundamental domain}:
+\begin{equation}
+\Rxi \equiv L \quad \text{(interval)}, \qquad
+\Rxi \equiv 2\pi R \quad \text{(circle)}, \qquad
+\Rxi \equiv \pi R \quad \text{(orbifold)}
+\label{eq:Rxi-def}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Linearized Equations and Mode Decomposition}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Warped Metric Ansatz}
+
+The 5D metric is:
+\begin{equation}
+ds^2 = e^{2A(\xi)} \eta_{\mu\nu} dx^\mu dx^\nu + d\xi^2
+\label{eq:metric}
+\end{equation}
+where $A(\xi)$ is the warp factor.
+
+\subsection{Metric Perturbation}
+
+Perturbing around the background:
+\begin{equation}
+g_{\mu\nu}^{(5)} = e^{2A}(\eta_{\mu\nu} + h_{\mu\nu})
+\label{eq:pert-metric}
+\end{equation}
+
+In transverse-traceless (TT) gauge:
+\begin{equation}
+\partial^\mu h_{\mu\nu} = 0, \qquad \eta^{\mu\nu} h_{\mu\nu} = 0
+\label{eq:TT-gauge}
+\end{equation}
+
+\subsection{KK Decomposition}
+
+We decompose:
+\begin{equation}
+h_{\mu\nu}(x,\xi) = \sum_n h_{\mu\nu}^{(n)}(x) \psi_n(\xi)
+\label{eq:KK-decomp}
+\end{equation}
+
+\subsection{Derivation of Mode Equation}
+
+The linearized 5D Einstein equation for TT modes in the bulk is:
+\begin{equation}
+\Box_5 h_{\mu\nu} = 0
+\label{eq:5D-EOM}
+\end{equation}
+
+Expanding the 5D d'Alembertian:
+\begin{equation}
+\Box_5 = e^{-2A} \Box_4 + \partial_\xi^2 + 4A' \partial_\xi
+\label{eq:Box5}
+\end{equation}
+
+Substituting the KK decomposition and using $\Box_4 h^{(n)}_{\mu\nu} = -m_n^2 h^{(n)}_{\mu\nu}$:
+\begin{equation}
+-m_n^2 e^{-2A} \psi_n + \psi_n'' + 4A' \psi_n' = 0
+\label{eq:mode-eq-derivation}
+\end{equation}
+
+Rearranging:
+\begin{equation}
+\boxed{\psi_n'' + 4A' \psi_n' + m_n^2 e^{2A} \psi_n = 0}
+\label{eq:mode-eq}
+\end{equation}
+
+\subsection{Zero-Mode Solution}
+
+For $m_0 = 0$:
+\begin{equation}
+\psi_0'' + 4A' \psi_0' = 0 \quad \Rightarrow \quad
+\frac{d}{d\xi}(e^{4A}\psi_0') = 0
+\label{eq:zero-mode-eq}
+\end{equation}
+
+For normalizable modes: $\psi_0' = 0$, hence:
+\begin{equation}
+\psi_0 = \text{const}
+\label{eq:psi0-const}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Kinetic Term Reduction: Factor-by-Factor}
+%═══════════════════════════════════════════════════════════════════════════════
+
+This section is the core of the factor audit.
+
+\subsection{5D Kinetic Term}
+
+Starting from the 5D action \eqref{eq:5D-action}, the quadratic kinetic term
+for TT graviton modes is:
+\begin{equation}
+S_5^{(2)} = \frac{\Mfive^3}{2} \int d^5x \sqrt{-g_5}
+\left( -\frac{1}{4} g^{AC} g^{BD} \nabla_A h_{CB} \nabla_D h_{CB} \right)
+\label{eq:5D-kin-full}
+\end{equation}
+
+For our metric \eqref{eq:metric}:
+\begin{equation}
+\sqrt{-g_5} = e^{4A}
+\label{eq:sqrt-g5}
+\end{equation}
+
+The inverse metric components:
+\begin{equation}
+g^{\mu\nu} = e^{-2A} \eta^{\mu\nu}, \qquad g^{55} = 1
+\label{eq:inverse-metric}
+\end{equation}
+
+\subsection{Collecting Factors}
+
+The 4D kinetic piece of the graviton (ignoring $\xi$-derivatives, which give
+mass terms):
+\begin{equation}
+S_5^{(2)} \supset \frac{\Mfive^3}{2} \int d^4x\, d\xi\, e^{4A}
+\left( -\frac{1}{4} e^{-2A} e^{-2A} \eta^{\mu\rho}\eta^{\nu\sigma}
+\partial_\mu h_{\rho\sigma} \partial_\nu h^{\rho\sigma} \right)
+\label{eq:factor-step1}
+\end{equation}
+
+Simplifying:
+\begin{equation}
+S_5^{(2)} \supset -\frac{\Mfive^3}{8} \int d^4x\, d\xi\, e^{4A} e^{-4A}
+\eta^{\mu\rho}\eta^{\nu\sigma} \partial_\mu h_{\rho\sigma} \partial_\nu h^{\rho\sigma}
+\label{eq:factor-step2}
+\end{equation}
+
+\textbf{Key observation:} The $e^{4A}$ from $\sqrt{-g_5}$ cancels the $e^{-4A}$
+from two factors of $g^{\mu\nu} = e^{-2A}\eta^{\mu\nu}$.
+
+Therefore:
+\begin{equation}
+S_5^{(2)} \supset -\frac{\Mfive^3}{8} \int d^4x\, d\xi\,
+\eta^{\mu\rho}\eta^{\nu\sigma} \partial_\mu h_{\rho\sigma} \partial_\nu h^{\rho\sigma}
+\label{eq:factor-step3}
+\end{equation}
+
+\subsection{Substituting KK Zero-Mode}
+
+For the zero-mode $h_{\mu\nu} = h_{\mu\nu}^{(0)}(x) \psi_0(\xi)$:
+\begin{equation}
+S_5^{(2)} \supset -\frac{\Mfive^3}{8} \int d^4x\,
+\eta^{\mu\rho}\eta^{\nu\sigma} \partial_\mu h_{\rho\sigma}^{(0)} \partial_\nu h^{(0)\rho\sigma}
+\cdot \int d\xi\, |\psi_0|^2
+\label{eq:zero-mode-sub}
+\end{equation}
+
+Define:
+\begin{equation}
+\boxed{\calI \equiv \int_{\text{domain}} d\xi\, |\psi_0(\xi)|^2}
+\label{eq:I-def}
+\end{equation}
+
+\textbf{CRITICAL:} With the factor cancellation above, the exponent in $\calI$
+is \textbf{zero}, not $e^{2A}$ or $e^{4A}$!
+
+Continuing:
+\begin{equation}
+S_5^{(2)} \supset -\frac{\Mfive^3 \calI}{8} \int d^4x\,
+\partial_\mu h_{\rho\sigma}^{(0)} \partial^\mu h^{(0)\rho\sigma}
+\label{eq:S5-reduced}
+\end{equation}
+
+\subsection{Matching to 4D Action}
+
+The 4D kinetic term from \eqref{eq:4D-action} is:
+\begin{equation}
+S_4^{(2)} = \frac{\Mplbar^2}{2} \cdot \left( -\frac{1}{4} \right)
+\int d^4x\, \partial_\mu h_{\rho\sigma} \partial^\mu h^{\rho\sigma}
+= -\frac{\Mplbar^2}{8} \int d^4x\, \partial_\mu h_{\rho\sigma} \partial^\mu h^{\rho\sigma}
+\label{eq:4D-kin}
+\end{equation}
+
+Matching \eqref{eq:S5-reduced} to \eqref{eq:4D-kin}:
+\begin{equation}
+\boxed{\Mplbar^2 = \Mfive^3 \calI}
+\label{eq:bridge}
+\end{equation}
+
+\subsection{Newton's Constant}
+
+From \eqref{eq:GN-def} and \eqref{eq:bridge}:
+\begin{equation}
+\boxed{\GN = \frac{1}{8\pi \Mfive^3 \calI}}
+\label{eq:GN-bridge}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Computing $\calI$ for Different Conventions}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Flat Case: $A(\xi) = 0$}
+
+For a flat extra dimension, the zero-mode is constant: $\psi_0 = c$.
+
+\subsection{Case 1: Interval $[0,L]$}
+
+Integration domain: $\xi \in [0,L]$.
+
+Normalization: $\int_0^L d\xi\, |c|^2 = |c|^2 L = 1$ gives $|c|^2 = 1/L$.
+
+Therefore:
+\begin{equation}
+\calI = \int_0^L d\xi\, |\psi_0|^2 = \int_0^L d\xi\, \frac{1}{L} = 1 \quad \text{(dimensionless)}
+\label{eq:I-interval-norm}
+\end{equation}
+
+Alternatively, with $\psi_0 = 1$ (unnormalized):
+\begin{equation}
+\calI = \int_0^L d\xi = L
+\label{eq:I-interval-unnorm}
+\end{equation}
+
+\textbf{With our definition $\Rxi = L$:}
+\begin{equation}
+\calI = \Rxi \quad \text{(interval, unnormalized $\psi_0 = 1$)}
+\label{eq:I-Rxi-interval}
+\end{equation}
+
+\subsection{Case 2: Circle $S^1$ with $\xi \in [0, 2\pi R]$}
+
+Integration domain: $\xi \in [0, 2\pi R]$.
+
+With $\psi_0 = 1$:
+\begin{equation}
+\calI = \int_0^{2\pi R} d\xi = 2\pi R
+\label{eq:I-circle}
+\end{equation}
+
+\textbf{With our definition $\Rxi = 2\pi R$ (circumference):}
+\begin{equation}
+\calI = \Rxi \quad \text{(circle)}
+\label{eq:I-Rxi-circle}
+\end{equation}
+
+\subsection{Case 3: Orbifold $S^1/\mathbb{Z}_2$}
+
+The orbifold $S^1/\mathbb{Z}_2$ has a $\mathbb{Z}_2$ symmetry $\xi \to -\xi$.
+
+\textbf{Method A:} Integrate over fundamental domain $[0, \pi R]$ only:
+\begin{equation}
+\calI = \int_0^{\pi R} d\xi = \pi R
+\label{eq:I-orbifold-fund}
+\end{equation}
+
+\textbf{Method B:} Integrate over full circle $[-\pi R, \pi R]$ and divide by
+orbifold factor 2:
+\begin{equation}
+\calI = \frac{1}{2} \int_{-\pi R}^{\pi R} d\xi = \frac{1}{2} \cdot 2\pi R = \pi R
+\label{eq:I-orbifold-full}
+\end{equation}
+
+Both methods agree.
+
+\textbf{With our definition $\Rxi = \pi R$ (fundamental domain length):}
+\begin{equation}
+\calI = \Rxi \quad \text{(orbifold)}
+\label{eq:I-Rxi-orbifold}
+\end{equation}
+
+\subsection{Summary: Universal Result}
+
+With the definition \eqref{eq:Rxi-def} ($\Rxi$ = length of fundamental domain)
+and unnormalized $\psi_0 = 1$:
+\begin{equation}
+\boxed{\calI = \Rxi \quad \text{(universal, flat case)}}
+\label{eq:I-Rxi-universal}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Canonical Convention and Conversion Table}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Canonical Choice}
+
+We adopt:
+\begin{equation}
+\Rxi \equiv \text{length of fundamental integration domain}
+\label{eq:canonical}
+\end{equation}
+
+The bridge relations become:
+\begin{align}
+\Mplbar^2 &= \Mfive^3 \Rxi \label{eq:bridge-canon} \\
+\GN &= \frac{1}{8\pi \Mfive^3 \Rxi} \label{eq:GN-canon} \\
+\Mfive &= \Mplbar^{2/3} \Rxi^{-1/3} \label{eq:M5-canon}
+\end{align}
+
+\subsection{Conversion Table}
+
+\begin{table}[h]
+\centering
+\caption{Conversion between geometric conventions.}
+\label{tab:conversion}
+\begin{tabular}{@{}l c c c c@{}}
+\toprule
+Geometry & Domain & $\calI$ (flat) & $\Rxi$ definition & Mapping \\
+\midrule
+Interval $[0,L]$ & $[0,L]$ & $L$ & $\Rxi = L$ & $\Rxi = L$ \\
+Circle $S^1$ & $[0,2\pi R]$ & $2\pi R$ & $\Rxi = 2\pi R$ & $\Rxi = 2\pi R$ \\
+Orbifold $S^1/\mathbb{Z}_2$ & $[0,\pi R]$ & $\pi R$ & $\Rxi = \pi R$ & $\Rxi = \pi R$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Conversion rule:} If an alternative convention uses $\tilde{R}$ where
+$\calI = f(\tilde{R})$, then $\Rxi = f(\tilde{R})$.
+
+Example: If someone uses ``$R$'' to mean the circle \emph{radius} (not circumference),
+then $\calI = 2\pi R$ and thus $\Rxi = 2\pi R$.
+
+\subsection{Calibrated Closure}
+
+With $\Rxi = \hbar c / \MZ^{\mathrm{obs}}$ identified as [I]+[BL]:
+\begin{equation}
+\Mfive = \Mplbar^{2/3} \Rxi^{-1/3} = (2.435 \times 10^{18})^{2/3} \times (2.165 \times 10^{-18}~\mathrm{m})^{-1/3}
+\label{eq:closure-numerical}
+\end{equation}
+
+Converting $\Rxi$ to GeV$^{-1}$: $\Rxi = 1/\MZ = 1/91.19$~GeV$^{-1}$:
+\begin{equation}
+\Mfive = \Mplbar^{2/3} \MZ^{1/3} = (2.435 \times 10^{18})^{2/3} \times (91.19)^{1/3}~\mathrm{GeV}
+\label{eq:closure-formula}
+\end{equation}
+
+Computing:
+\begin{equation}
+\Mfive = 1.81 \times 10^{12} \times 4.50 = 8.1 \times 10^{12}~\mathrm{GeV}
+\label{eq:M5-reduced}
+\end{equation}
+
+\textbf{CORRECTION vs v19:} In v19, we used $\Mpl = 1.221 \times 10^{19}$~GeV
+(the ``original'' Planck mass) in the formula. With the \emph{reduced} Planck
+mass $\Mplbar = 2.435 \times 10^{18}$~GeV, the result is:
+\begin{equation}
+\Mfive = 8.1 \times 10^{12}~\mathrm{GeV} \quad \text{(reduced convention)}
+\label{eq:M5-reduced-value}
+\end{equation}
+
+If instead we use the \emph{original} Planck mass in the bridge $\Mpl^2 = \Mfive^3\Rxi$:
+\begin{equation}
+\Mfive = \Mpl^{2/3} \Rxi^{-1/3} = (1.221 \times 10^{19})^{2/3} \times (91.19)^{1/3}
+= 2.4 \times 10^{13}~\mathrm{GeV}
+\label{eq:M5-original}
+\end{equation}
+
+The difference is a factor of $(8\pi)^{1/3} \approx 2.94$.
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Factor Audit Summary}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\begin{tcolorbox}[title=Factor Audit Box]
+\begin{tabular}{@{}p{4.5cm} p{4cm} p{3cm}@{}}
+\toprule
+\textbf{Factor} & \textbf{Resolution} & \textbf{Eq.\ ref} \\
+\midrule
+$\frac{1}{2}$ in 5D action & Fixed in \eqref{eq:5D-action} & Eq.~\eqref{eq:5D-action} \\
+$\frac{1}{4}$ in kinetic term & Standard TT normalization & Eq.~\eqref{eq:5D-kin-full} \\
+$8\pi$ in $\GN$ definition & $\GN = 1/(8\pi\Mplbar^2)$ & Eq.~\eqref{eq:GN-def} \\
+Reduced vs original $\Mpl$ & Use $\Mplbar = \Mpl/\sqrt{8\pi}$ & Eq.~\eqref{eq:Mpl-relation} \\
+Warp factor exponent in $\calI$ & \textbf{Zero} (factors cancel) & Eq.~\eqref{eq:I-def} \\
+Orbifold factor of 2 & Absorbed in domain definition & Eq.~\eqref{eq:I-orbifold-full} \\
+$2\pi$ from circle & Absorbed in $\Rxi = 2\pi R$ & Eq.~\eqref{eq:I-Rxi-circle} \\
+$\Rxi$ definition & Length of fundamental domain & Eq.~\eqref{eq:Rxi-def} \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Reconciliation with v19}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{v19 Convention}
+
+Derivation v19 used:
+\begin{itemize}
+\item $\Mpl = 1.221 \times 10^{19}$~GeV (original Planck mass)
+\item $\GN = 1/(8\pi\Mpl^2)$ (which is dimensionally inconsistent with the
+original Planck mass definition $\Mpl = \GN^{-1/2}$)
+\end{itemize}
+
+\subsection{Self-Consistent Options}
+
+\textbf{Option A (reduced convention):}
+\begin{align}
+\GN &= \frac{1}{8\pi \Mplbar^2}, \quad \Mplbar = 2.435 \times 10^{18}~\mathrm{GeV} \\
+\Mfive &= \Mplbar^{2/3} \Rxi^{-1/3} = 8.1 \times 10^{12}~\mathrm{GeV}
+\end{align}
+
+\textbf{Option B (original convention):}
+\begin{align}
+\GN &= \frac{1}{\Mpl^2}, \quad \Mpl = 1.221 \times 10^{19}~\mathrm{GeV} \\
+\Mfive &= \Mpl^{2/3} \Rxi^{-1/3} = 2.4 \times 10^{13}~\mathrm{GeV}
+\end{align}
+
+\subsection{Which is Correct?}
+
+Both are correct \emph{within their own conventions}. The key is consistency:
+
+\begin{itemize}
+\item If 4D action is $S_4 = \frac{\Mplbar^2}{2}\int\sqrt{-g}R$, use Option A.
+\item If 4D action is $S_4 = \frac{\Mpl^2}{16\pi}\int\sqrt{-g}R$, use Option B.
+\end{itemize}
+
+\textbf{v19 implicitly used Option B} (numerical value $\Mpl = 1.221 \times 10^{19}$~GeV),
+but wrote the bridge in the Option A form. This is a notational inconsistency,
+not a physics error, because the $8\pi$ factors cancel in physical observables.
+
+\subsection{Recommendation}
+
+For clarity, future notes should use the reduced convention (Option A) with
+$\Mplbar = 2.435 \times 10^{18}$~GeV. The numerical result for $\Mfive$ depends
+on convention:
+\begin{equation}
+\Mfive =
+\begin{cases}
+8.1 \times 10^{12}~\mathrm{GeV} & \text{(reduced: Option A)} \\
+2.4 \times 10^{13}~\mathrm{GeV} & \text{(original: Option B)}
+\end{cases}
+\label{eq:M5-both}
+\end{equation}
+
+Both are at the GUT scale; the factor of 3 difference is a convention choice.
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Conclusion}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\begin{enumerate}
+\item The warp factor exponent in $\calI$ is \textbf{zero} due to exact cancellation
+of $e^{4A}$ from $\sqrt{-g_5}$ and $e^{-4A}$ from $g^{\mu\nu}g^{\rho\sigma}$.
+\item $\Rxi$ should be defined as the \textbf{length of the fundamental domain},
+giving $\calI = \Rxi$ universally (flat case).
+\item The $8\pi$ factor resides in $\GN = 1/(8\pi\Mplbar^2)$ and in the relation
+$\Mplbar = \Mpl/\sqrt{8\pi}$.
+\item No orbifold doubling ambiguity exists if $\Rxi$ is defined as the
+fundamental domain length.
+\item The numerical value of $\Mfive$ depends on the Planck mass convention:
+$\sim 10^{13}$~GeV (original) or $\sim 10^{12}$~GeV (reduced). Both are valid.
+\end{enumerate}
+
+\begin{center}
+\fbox{\parbox{0.9\textwidth}{
+\textbf{Canonical bridge (reduced convention):}
+\[
+\Mplbar^2 = \Mfive^3 \Rxi, \qquad \GN = \frac{1}{8\pi\Mfive^3\Rxi}
+\]
+\textbf{Closure:} $\Mfive = \Mplbar^{2/3}\Rxi^{-1/3}$ once $\Rxi$ is identified [I]/[BL].
+}}
+\end{center}
+
+\end{document}

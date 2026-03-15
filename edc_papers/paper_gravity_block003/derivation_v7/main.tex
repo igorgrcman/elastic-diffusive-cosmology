@@ -1,0 +1,330 @@
+% ============================================================================
+% BLOCK-003 Derivation v7: Normalization Candidate Catalog
+% ============================================================================
+% GUARDRAIL: This is a research catalog within paper_gravity_block003/ only.
+% Do NOT expand scope to edc_book_2/ or modify FROZEN main.tex.
+% ============================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+
+% Epistemic tags
+\newcommand{\BL}{\textsc{[BL]}}
+\newcommand{\Ident}{\textsc{[I]}}
+\newcommand{\Post}{\textsc{[P]}}
+\newcommand{\Deriv}{\textsc{[Dc]}}
+\newcommand{\Open}{\textsc{[Open]}}
+
+% Status box
+\newtcolorbox{statusbox}[1][]{
+  colback=yellow!10,
+  colframe=orange!80!black,
+  title=#1,
+  fonttitle=\bfseries
+}
+
+% Header/footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small BLOCK-003 / Derivation v7}
+\fancyhead[R]{\small EDC Gravity Program}
+\fancyfoot[C]{\thepage}
+
+\title{\textbf{EDC BLOCK-003 (Derivation v7):}\\[0.3em]
+Normalization Candidate Catalog\\[0.3em]
+\large How to Fix the Constant $C$ in $\kappa_5^2 = C \sigma^{-3/4}$?}
+\author{EDC Working Document\\[0.5em]
+\small 2026-02-02 --- Research note / catalog; not a results paper}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Derivations v3--v5 established that the 5D gravitational coupling satisfies
+$\kappa_5^2 = C \sigma^{-3/4}$ with the dimensionless constant $C$ unfixed
+by brane tension $\sigma$ alone (No-Go Lemma). This note catalogs 5 candidate
+normalization principles that could fix $C$ without circularly inserting the
+observed Newton constant $G_N^{\rm obs}$. For each candidate, we state the
+required extra input, assess circularity risk, and evaluate viability.
+\textbf{Outcome:} Catalog complete; one candidate (NC-1: graviton zero-mode
+normalization) identified as best next attempt. BLOCK-003 remains \Open.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ============================================================================
+\section{Context Recap}
+% ============================================================================
+
+From derivations v1--v5:
+
+\begin{itemize}
+\item \textbf{v1:} Standard brane-world reduction yields $G_N = \kappa_5^2 / (6\pi L)$
+for compact extra dimension of size $L$.
+
+\item \textbf{v2:} Testing $L = R_\xi$ (weak scale) is dimensionally consistent
+but leaves $\kappa_5^2$ unknown.
+
+\item \textbf{v3/v4:} Dimensional analysis uniquely gives
+$\kappa_5^2 = C \sigma^{-3/4}$, but $C$ cannot be fixed by $\sigma$ alone
+(No-Go Lemma: only 2 independent scales available).
+
+\item \textbf{v5:} Two clean options documented: NP1 (postulate $C = 8\pi$) or
+NP2 (calibrate to $G_N^{\rm obs}$).
+\end{itemize}
+
+\textbf{The question:} Can we find a \textit{non-circular} principle that
+fixes $C$ from EDC-internal or standard physics inputs, without fitting to
+$G_N^{\rm obs}$?
+
+% ============================================================================
+\section{Anti-Circularity Definition}
+\label{sec:circularity}
+% ============================================================================
+
+\begin{statusbox}[Anti-Circularity Criterion]
+A normalization principle is \textbf{circular} if it:
+\begin{enumerate}
+\item Uses $G_N^{\rm obs}$ (or $M_{\rm Pl}$) as input to fix $C$.
+\item Derives a scale that is itself defined via $G_N^{\rm obs}$.
+\item Tunes a free parameter to match $G_N^{\rm obs}$ predictions.
+\end{enumerate}
+A principle is \textbf{non-circular} if $C$ is determined before any
+comparison to gravitational observations.
+\end{statusbox}
+
+Note: Using $G_N^{\rm obs}$ for \textit{verification} (after $C$ is fixed)
+is allowed; using it as \textit{input} is not.
+
+% ============================================================================
+\section{Candidate Catalog}
+\label{sec:catalog}
+% ============================================================================
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{llp{3.5cm}p{2.8cm}ccp{2.5cm}}
+\toprule
+\textbf{ID} & \textbf{Name} & \textbf{Fixes $C$ via} & \textbf{Extra Input} &
+\textbf{Circ.} & \textbf{Status} & \textbf{Notes} \\
+\midrule
+NC-1 & Zero-mode norm. & Graviton KK reduction & $L$, BC type & LOW & Viable &
+Best candidate \\
+NC-2 & Induced gravity & DGP-like $R^{(4)}$ term & $N$, $\Lambda_{\rm UV}$ &
+MED & Underdetermined & Species count unknown \\
+NC-3 & RS warp matching & $M_{\rm Pl}^2 \sim \int e^{-2A}$ & $A(\xi)$, $k$ &
+MED & Missing input & EDC doesn't specify $A$ \\
+NC-4 & Topological quant. & Junction/Z$_6$ discrete & Topology data & LOW &
+Speculative & No mechanism yet \\
+NC-5 & Bulk $\Lambda_5$ match & $\Lambda_5 \sim \kappa_5^2 \rho_P$ &
+$\Lambda_5$ value & HIGH & Near-circular & $\Lambda_5$ often tuned \\
+\bottomrule
+\end{tabular}
+\caption{Normalization candidate catalog. Circularity risk:
+LOW = no $G_N^{\rm obs}$ dependence;
+MED = indirect dependence possible;
+HIGH = likely circular.}
+\label{tab:catalog}
+\end{table}
+
+% ============================================================================
+\section{Candidate Details}
+% ============================================================================
+
+\subsection{NC-1: Graviton Zero-Mode Normalization}
+
+\textbf{Idea:} In Kaluza-Klein reduction, the 4D graviton emerges as the
+zero-mode of the 5D metric fluctuation. The 4D Planck mass is determined by
+the normalization integral over the extra dimension.
+
+\textbf{Setup:} Consider the 5D Einstein-Hilbert action
+\[
+S_5 = \frac{1}{2\kappa_5^2} \int d^5X \sqrt{-g^{(5)}} R^{(5)}.
+\]
+For a factorizable ansatz $ds^2 = g_{\mu\nu}(x) dx^\mu dx^\nu + d\xi^2$
+with $\xi \in [0, L]$:
+\[
+S_5 \to \frac{L}{2\kappa_5^2} \int d^4x \sqrt{-g^{(4)}} R^{(4)} + \ldots
+\]
+Comparing with the 4D action $S_4 = (1/16\pi G_N) \int d^4x \sqrt{-g} R$:
+\begin{equation}
+\frac{1}{16\pi G_N} = \frac{L}{2\kappa_5^2}
+\quad \Rightarrow \quad
+G_N = \frac{\kappa_5^2}{8\pi L}
+\label{eq:nc1_gn}
+\end{equation}
+
+\textbf{How it fixes $C$:} If we require the zero-mode to be \textit{canonically
+normalized} (unit kinetic term), then:
+\begin{equation}
+\kappa_5^2 = 8\pi G_N L
+\label{eq:nc1_kappa}
+\end{equation}
+Combined with $\kappa_5^2 = C \sigma^{-3/4}$:
+\begin{equation}
+C = 8\pi G_N L \cdot \sigma^{3/4}
+\label{eq:nc1_c}
+\end{equation}
+
+\textbf{Circularity check:}
+\begin{itemize}
+\item If $L$ is specified independently (e.g., $L = R_\xi$), and $\sigma$ is
+EDC-internal, then $C$ is fixed \textit{without} using $G_N^{\rm obs}$ as input.
+\item However, Eq.~\eqref{eq:nc1_c} contains $G_N$. The question is: can we
+express $G_N$ in terms of EDC quantities before comparison to observation?
+\end{itemize}
+
+\textbf{Resolution:} Eq.~\eqref{eq:nc1_gn} is a \textit{derived relation},
+not an input. If we specify $L$ and $\kappa_5^2$ (with $C$ from convention),
+then $G_N$ is a \textit{prediction}. The canonical normalization condition
+(unit coefficient for $h_{\mu\nu}$ kinetic term) is a standard convention,
+not a fit.
+
+\textbf{Required input:} Compactification length $L$ (e.g., $L = R_\xi$ \Post).
+
+\textbf{Status:} \textbf{Viable} --- best candidate for P18-B attempt.
+
+\subsection{NC-2: Induced Gravity (DGP-like)}
+
+\textbf{Idea:} Even without a fundamental 5D Einstein term, quantum loops of
+brane-localized matter induce an effective $R^{(4)}$ term on the brane:
+\[
+S_{\rm induced} = \frac{M_4^2}{2} \int d^4x \sqrt{-h} R^{(4)}
+\]
+with $M_4^2 \sim N \Lambda_{\rm UV}^2 / (16\pi^2)$ in 4D.
+
+\textbf{How it fixes $C$:} The induced 4D Planck mass competes with the
+bulk-derived contribution. At long distances, the dominant term sets $G_N$.
+
+\textbf{Problem:} The induced mass depends on:
+\begin{itemize}
+\item $N$: number of species (unknown in EDC)
+\item $\Lambda_{\rm UV}$: UV cutoff (not specified)
+\item Regularization scheme (introduces $\mathcal{O}(1)$ factors)
+\end{itemize}
+
+\textbf{Circularity check:} LOW if $N$ and $\Lambda_{\rm UV}$ are EDC-specified;
+MED if they require external input or tuning.
+
+\textbf{Status:} \textbf{Underdetermined} --- cannot fix $C$ without specifying
+$N$ and $\Lambda_{\rm UV}$.
+
+\subsection{NC-3: Randall-Sundrum Warp Matching}
+
+\textbf{Idea:} In warped geometries with metric
+$ds^2 = e^{-2A(\xi)} \eta_{\mu\nu} dx^\mu dx^\nu + d\xi^2$,
+the 4D Planck mass is:
+\[
+M_{\rm Pl}^2 = \frac{1}{\kappa_5^2} \int_0^L d\xi\, e^{-2A(\xi)}
+\]
+
+\textbf{How it fixes $C$:} If $A(\xi)$ is specified, the integral is computable
+and relates $\kappa_5^2$ to $M_{\rm Pl}^2$.
+
+\textbf{Problem:} EDC does not currently specify:
+\begin{itemize}
+\item The warp factor $A(\xi)$
+\item The AdS curvature scale $k$ (in RS, $A = k|\xi|$)
+\end{itemize}
+
+\textbf{Circularity check:} MED --- if $k$ is fit to reproduce correct $G_N$,
+this becomes circular.
+
+\textbf{Status:} \textbf{Missing input} --- requires EDC to specify bulk
+geometry or warp factor.
+
+\subsection{NC-4: Topological Quantization}
+
+\textbf{Idea:} EDC's junction/Z$_6$ structure might provide discrete
+normalization. For example, if the junction action has a topological
+prefactor (winding number, Euler characteristic), this could quantize $C$.
+
+\textbf{How it fixes $C$:} Discrete topology $\Rightarrow$ $C \in \{c_1, c_2, \ldots\}$
+where $c_i$ are determined by topological data.
+
+\textbf{Problem:} No concrete mechanism exists in current EDC formulation.
+The Z$_6$ sector describes particle content, not gravitational normalization.
+
+\textbf{Circularity check:} LOW (topology is internal).
+
+\textbf{Status:} \textbf{Speculative} --- attractive in principle but no
+derivation pathway available.
+
+\subsection{NC-5: Bulk Cosmological Constant Matching}
+
+\textbf{Idea:} The bulk cosmological constant $\Lambda_5$ is related to
+$\kappa_5^2$ via Einstein equations. If $\Lambda_5$ is fixed by EDC
+(e.g., from Plenum energy density), this could constrain $\kappa_5^2$.
+
+\textbf{How it fixes $C$:} From $\Lambda_5 = -6k^2$ (AdS) and fine-tuning
+relations, one might extract $\kappa_5^2$.
+
+\textbf{Problem:} In standard RS, the relation is:
+\[
+\sigma = \frac{6k}{\kappa_5^2}
+\]
+which gives $\kappa_5^2 \sigma = 6k$, i.e., $C \sigma^{1/4} = 6k$.
+This requires knowing $k$, which is often tuned to hierarchy requirements.
+
+\textbf{Circularity check:} HIGH --- $\Lambda_5$ or $k$ is typically tuned
+to reproduce desired $G_N$ or hierarchy.
+
+\textbf{Status:} \textbf{Near-circular} --- unlikely to provide non-circular
+normalization.
+
+% ============================================================================
+\section{Summary and Recommendation}
+% ============================================================================
+
+\begin{table}[h]
+\centering
+\begin{tabular}{llll}
+\toprule
+\textbf{ID} & \textbf{Viability} & \textbf{Missing Element} & \textbf{Next Step} \\
+\midrule
+NC-1 & Viable & $L$ specification & \textbf{Attempt in P18-B} \\
+NC-2 & Underdetermined & $N$, $\Lambda_{\rm UV}$ & Requires EDC spectrum \\
+NC-3 & Missing input & $A(\xi)$, $k$ & Requires bulk geometry \\
+NC-4 & Speculative & Derivation mechanism & Future research \\
+NC-5 & Near-circular & Non-tuned $\Lambda_5$ & Unlikely path \\
+\bottomrule
+\end{tabular}
+\caption{Summary of candidate viability.}
+\label{tab:summary}
+\end{table}
+
+\begin{statusbox}[Recommendation]
+\textbf{Best next attempt: NC-1 (Graviton zero-mode normalization).}
+
+Rationale:
+\begin{itemize}
+\item Lowest circularity risk (standard KK procedure, no $G_N$ input).
+\item Only requires specifying $L$ (can use $L = R_\xi$ as \Post).
+\item Produces a concrete expression: $C = 8\pi L \sigma^{3/4} G_N$, but
+with $G_N$ as \textit{output}, not input.
+\item Clear success/fail criterion: if $G_N^{\rm predicted}$ matches
+$G_N^{\rm obs}$, the model is consistent; if not, it is falsified.
+\end{itemize}
+
+\textbf{P18-B task:} Derive $G_N$ from NC-1 with $L = R_\xi$, compute
+numerical prediction, compare to observation.
+\end{statusbox}
+
+\textbf{BLOCK-003 Status:} Remains \Open. This catalog identifies the path;
+execution is deferred to P18-B.
+
+\end{document}
