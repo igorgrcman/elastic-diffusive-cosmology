@@ -259,6 +259,45 @@ integrals for left/right fermion localization.
 conditions and compute overlap.
 
 % ════════════════════════════════════════════════════════════
+\section{Cosmology Lane Problems}
+% ════════════════════════════════════════════════════════════
+
+\subsection*{OPR-29: Dimensional Mismatch $\sigma_{\mathrm{EDC}}$ vs $\sigma_{\mathrm{brane}}$}
+\begin{tabular}{ll}
+\textbf{Status:} & \tagOpen{} \\
+\textbf{Location:} & Cosmology lane (cross-sector reference) \\
+\textbf{Dependencies:} & OPR-01, 5D action framework \\
+\textbf{Blocks:} & Cosmology lane closure, $\tilde\sigma$ derivation \\
+\textbf{Source:} & \texttt{WARPED\_GEOMETRY\_C\_DERIVATION.md} \S5.3, commit \texttt{c4cb6f8} \\
+\end{tabular}
+
+\textbf{Problem statement:} The EDC membrane tension $\sigma_{\mathrm{EDC}} \approx 8.82$
+MeV/fm$^2$ has dimensions $[M]^3$ (energy per 2D area), while the standard 3-brane
+tension in 5D gravity has dimensions $[M]^4$ (energy per 3D volume). The cosmology
+lane implicitly identifies these, but they are dimensionally distinct. This prevents
+connecting $\sigma_{\mathrm{EDC}}$ from nuclear calibration to the 5D gravitational
+junction conditions.
+
+\textbf{Consequence:} The cosmology lane cannot connect $\sigma_{\mathrm{EDC}}$ to
+5D gravitational geometry without resolving this mismatch. The quantity
+$\tilde\sigma = \sigma/T_*$ is not well-defined until the map between the two
+$\sigma$ conventions is specified.
+
+\textbf{Upgrade condition:} Provide explicit geometric map
+$\sigma_{\mathrm{brane}} = \sigma_{\mathrm{EDC}} \cdot f(\text{geometry})$
+where $f$ carries the missing dimension $[M]^1$. Candidate identifications:
+\begin{itemize}[nosep]
+\item $f = 1/R_\xi$ (compactification radius)
+\item $f = 1/\delta$ (brane thickness)
+\item $f = k$ (AdS curvature scale)
+\end{itemize}
+
+\textbf{Priority:} HIGH --- blocks cosmology lane closure and genuine
+$\tilde\sigma$ derivation.
+
+\bigskip
+
+% ════════════════════════════════════════════════════════════
 \section{Priority and Dependencies}
 % ════════════════════════════════════════════════════════════
 
@@ -301,6 +340,7 @@ conditions and compute overlap.
 \item \textbf{OPR-21} (BVP completion) --- unblocks mass spectrum
 \item \textbf{OPR-20, OPR-22, OPR-23} (normalizations) --- precision
 \item \textbf{OPR-28} ($G$ exponent derivation) --- gravity sector closure
+\item \textbf{OPR-29} ($\sigma$ dimensional mismatch) --- cosmology lane closure
 \item \textbf{OPR-17, OPR-24--27} (refinements) --- completeness
 \end{enumerate}
 
@@ -326,6 +366,7 @@ conditions and compute overlap.
 26 & CP violation & \tagOpen & Medium \\
 27 & Overlap integrals & \tagOpen & Medium \\
 28 & $G$ exponent derivation & \tagI & Critical \\
+29 & $\sigma_{\mathrm{EDC}}$ vs $\sigma_{\mathrm{brane}}$ dim.\ mismatch & \tagOpen & High \\
 \bottomrule
 \end{tabular}
 \end{center}

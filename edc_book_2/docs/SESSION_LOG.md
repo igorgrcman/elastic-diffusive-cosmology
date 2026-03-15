@@ -1,5 +1,26 @@
 # EDC Book 2 - Session Log
 
+## 2026-03-15: OPR-29 Added — Dimensional Mismatch σ_EDC vs σ_brane
+
+### Session Goals
+- Add OPR-29 to the Open Problems Register documenting the dimensional
+  mismatch between σ_EDC ([M]³) and σ_brane ([M]⁴)
+
+### Files Modified
+- `reorganized/appendices/opr_register.tex`
+  - Added OPR-29 entry under new "Cosmology Lane Problems" section
+  - Added OPR-29 to summary table (Status: OPEN, Priority: High)
+  - Added OPR-29 to priority order list
+
+### Context
+Warped geometry derivation (commit c4cb6f8) identified that the EDC membrane
+tension σ_EDC = 8.82 MeV/fm² has dimensions [M]³ (energy per 2D area), while
+the standard 3-brane tension in 5D gravity has dimensions [M]⁴ (energy per
+3D volume). This blocks the cosmology lane from connecting σ to 5D junction
+conditions. See `edc_book_4/derivations/WARPED_GEOMETRY_C_DERIVATION.md` §5.3.
+
+---
+
 ## 2026-02-07: V7.8 Topological Pinning Integration + Repo Hygiene
 
 ### Session Goals
