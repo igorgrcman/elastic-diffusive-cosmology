@@ -645,7 +645,7 @@ Six restructuring branches exist for journal submission: splitting into separate
 
 5. **Resolve δ ambiguity**: **MAPPED** (Step 5 of 9). See `audit/DELTA_CANONICAL_MAP.md`. FIVE distinct scales found (not four): R_ξ≈0.002fm [BL], Δ≈0.003fm [P], ℓ/(2π)=R_ξ [Dc], δ_J≈0.105fm [I], δ_BL [P]. Most dangerous confusion: δ_J vs R_ξ (50× gap). σ discrepancy: 8.82 vs 5.86 MeV/fm² (ratio≈3/2). 3 CRITICAL rederivations flagged. New OPR-34 proposed (σ discrepancy).
 
-6. **BVP master closure (OPR-21)**: This is the "master key" that unlocks G_F first-principles, generation counting, and mass spectrum.
+6. **BVP master closure (OPR-21)**: **PARTIAL** (Step 6 of 9). See `derivations/BVP_OPR21_CLOSURE_ATTEMPT.md`. Structure DERIVED [Dc]: V_eff = M²−M' from 5D Dirac, Robin BC κ=m_b/2 from Israel junction, SUSY QM framework with chirality asymmetry V_R−V_L = 2M'. N_bound=3 achievable at μ∈[13,17] (DW, ρ=0.25). **BLOCKED** by parameters: M₀, Δ, ℓ all [P]. Naive parameter mapping gives μ≈0.03, 500× too small — signals missing physics in M₀ identification. OPR-21 remains CONDITIONAL [Dc]. Closure requires OPR-01 (σ anchor) and OPR-04 (δ identity).
 
 ### 8.3 Strategic
 
