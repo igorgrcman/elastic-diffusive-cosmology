@@ -1255,13 +1255,13 @@ No mechanism currently explains σ̃ ≫ 1 in EDC.
   May give σ̃_eff ≫ 1.
   Status: [OPEN] — speculative; κ_H not derived in EDC.
 
-- **PATH-C: Non-perturbative α₃** —
-  The formula α₃ = 1/σ̃ may be valid at strong coupling (σ̃ ~ 1) with
-  non-perturbative corrections. α₃ = O(1) at the KK scale may be
-  physically acceptable if RG running from μ* down to M_Z gives
-  α_s(M_Z) ~ 0.118. Strong coupling at high scales with asymptotic
-  freedom is standard in QCD.
-  Status: [OPEN] — requires non-perturbative analysis / RG calculation.
+- **PATH-C: Non-perturbative α₃** — **CLOSED (FAILS)**
+  Analyzed in `opr31_analysis/OPR31_PATHC_ANALYSIS.md`. VERDICT B:
+  μ* = M_Z exactly (v21+v51), leaving zero energy range for RG running.
+  α₃(M_Z) = α₃(μ*) = 1/σ̃ = 1 ≠ 0.118. All alternative μ* choices
+  either hit Landau poles (μ* > 246 GeV) or fall below Λ_QCD.
+  KK threshold corrections are O(1), insufficient.
+  Status: [CLOSED] — fails; eliminated as resolution path.
 
 **Blocks**:
 - All numerical predictions in BLOCK-004 (τ_p, M_X, g_X)
@@ -1276,17 +1276,25 @@ No mechanism currently explains σ̃ ≫ 1 in EDC.
 
 **Upgrade condition**:
 OPR-31 is CLOSED iff:
-1. One of PATH-A, PATH-B, or PATH-C is identified as realized in EDC, AND
+1. One of PATH-A or PATH-B is identified as realized in EDC
+   (PATH-C eliminated — see OPR31_PATHC_ANALYSIS.md), AND
 2. σ̃ is derived numerically from EDC axioms without reference to
    experimental α_s(M_Z), AND
 3. The derivation is Layer A compliant (no external anchors)
 
 **Priority**: CRITICAL — blocks all numerical predictions in BLOCK-004.
 
+**Revised target** (from PATH-C analysis):
+Since μ* = M_Z and α₃(M_Z) = 1/σ̃ directly (no RG running),
+the target is σ̃ ≈ 1/α_s(M_Z) ≈ 8.5 — an O(10) enhancement
+over RS fine-tuning. This replaces the v67 target of σ̃ ~ 100.
+(Note: this target uses a Layer B anchor.)
+
 **No-smuggling certification**: ✓ PASS
 - σ̃ = 1 result comes from pure geometry (Israel junction)
 - No α_s(M_Z) or PDG data used in problem statement
 - Resolution paths are structural, not data-fitted
+- σ̃ ≈ 8.5 target is Layer B (explicitly flagged)
 
 ---
 
