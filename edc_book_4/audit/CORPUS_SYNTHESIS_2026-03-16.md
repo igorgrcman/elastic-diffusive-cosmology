@@ -637,7 +637,7 @@ Six restructuring branches exist for journal submission: splitting into separate
 
 2. **Propagate golden ratio result**: The electron soliton f(r)~C/r^φ proof should be incorporated into canonical Book IV or a standalone publication.
 
-3. **Publish superheavy predictions**: The Z=119,120 α-decay predictions are falsifiable and could establish priority.
+3. **Publish superheavy predictions**: **DRAFTED** (Step 8 of 9). See `papers/SUPERHEAVY_PREDICTIONS_v1.tex` and `papers/SUPERHEAVY_PREDICTIONS_SUMMARY.md`. Complete PRC-format paper with frustration-corrected Geiger-Nuttall law (V7.8 M2). Predictions: ²⁹⁸119 (0.6 s), ³⁰²120 (29 s), ³⁰⁴120 (780 s, N=184 shell). OOS validation: 6/6 pass, mean |Δ|=0.48 dex (16× improvement over baseline). Uncertainty ±1.3 dex dominated by theoretical Q_α. Targets Physical Review C.
 
 ### 8.2 Near-Term (Next Research Phase)
 
