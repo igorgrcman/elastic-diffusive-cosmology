@@ -643,7 +643,7 @@ Six restructuring branches exist for journal submission: splitting into separate
 
 4. **Close L₀/δ=π²**: **ATTEMPTED — FAIL** (Step 4 of 9). See `derivations/L0_DELTA_PI2_DERIVATION.md`. Seven routes attempted, all FAIL. L₀/δ = π² remains [P]. The problem is analogous to deriving α≈1/137 — requires full 5D dynamics (OPR-21). Numerically, L₀/δ=9.33 is better than π² (natural O(1) prefactor). New OPR-33 proposed.
 
-5. **Resolve δ ambiguity**: The 4 distinct δ scales need a definitive mapping or proof that they are distinct physical quantities.
+5. **Resolve δ ambiguity**: **MAPPED** (Step 5 of 9). See `audit/DELTA_CANONICAL_MAP.md`. FIVE distinct scales found (not four): R_ξ≈0.002fm [BL], Δ≈0.003fm [P], ℓ/(2π)=R_ξ [Dc], δ_J≈0.105fm [I], δ_BL [P]. Most dangerous confusion: δ_J vs R_ξ (50× gap). σ discrepancy: 8.82 vs 5.86 MeV/fm² (ratio≈3/2). 3 CRITICAL rederivations flagged. New OPR-34 proposed (σ discrepancy).
 
 6. **BVP master closure (OPR-21)**: This is the "master key" that unlocks G_F first-principles, generation counting, and mass spectrum.
 
