@@ -1222,79 +1222,128 @@ Canonical physical reader path is now locked:
 
 **Short name**: Derive σ̃ ≫ 1 from EDC axioms to ensure α₃ perturbativity
 
-**Status**: OPEN (Created 2026-03-16)
+**Status**: CLOSED (MOOT) — 2026-03-16
 
 **Source**: v68 §4.1, commit b868606
 
-**Problem**:
+**Resolution** (2026-03-16):
+The σ̃ enhancement problem was an artefact of Route A/C assumptions
+in v56 that fail numerically by 7-10 orders of magnitude. With
+Route A/C invalidated, the formula α₃ = 1/σ̃ does not hold, and
+constraint (B) of the σ̃ trilemma is eliminated. σ̃ = 1 is the
+correct structural value, consistent with Λ₄ (constraint A) and
+RS geometry (constraint C). No enhancement mechanism is needed
+or physically motivated.
+
+**Closed by**: G5C_DERIVATION_AUDIT.md + COSMOLOGICAL_CONSTANT_SIGMA_TILDE.md
+
+**Original problem** (now moot):
 At RS fine-tuning, σ̃ = σ_covariant/T_* = 1 (proven in v68, Task 2).
 BLOCK-004 derives α₃(μ*) = 1/σ̃. Therefore α₃ = 1 at RS tuning —
 strong coupling regime where perturbative BLOCK-004 derivations break down.
 Perturbative closure requires α₃ ≪ 1, i.e., σ̃ ≫ 1.
 No mechanism currently explains σ̃ ≫ 1 in EDC.
 
-**Context (Tasks 1–3)**:
+**Why moot**: The formula α₃ = 1/σ̃ requires Route A (g₅² = 4π/M₅),
+which gives α₃ = 5.2×10⁻¹² vs observed 0.118 — off by 10¹⁰.
+Route C alternatives also fail by 10⁷. g₅^(C) is instead a free
+parameter fixed by α_s(M_Z) = 0.118 (see OPR-32). The entire
+σ̃ trilemma dissolves because constraint (B) was an artefact.
+
+**Original context (Tasks 1–3)**:
 - Task 1 proved σ_BookI [M³] ≠ σ_covariant [M⁴] (different geometric objects)
 - Task 2 derived T_* = σ_RS = 3M₅³/(4πℓ) with C = 3/(4π) from Israel junction
 - Task 3 (v68) attempted Plenum derivation: σ = 2πRξ²ρP gives σ_BookI [M³],
   not σ_covariant [M⁴]. Cannot produce σ̃ directly.
 - v67's σ̃ = 100 ± 10 is INVALIDATED (wrong dimensions, wrong σ identification)
 
-**Three candidate resolution paths**:
+**Original candidate resolution paths** (all now moot):
 
-- **PATH-A: Plenum enhancement** —
-  σ_covariant^{EDC} = σ_RS + Δσ_Plenum where Δσ_Plenum arises from
-  Plenum pressure on the brane beyond what Λ₅ captures. Requires
-  deriving σ_covariant from the full EDC 5D action with Plenum field.
-  Status: [OPEN] — no mechanism currently known.
+- **PATH-A: Plenum enhancement** — MOOT (no enhancement needed)
+- **PATH-B: Helfrich bending rigidity** — MOOT (no enhancement needed)
+- **PATH-C: Non-perturbative α₃** — CLOSED (FAILS) per OPR31_PATHC_ANALYSIS.md
 
-- **PATH-B: Helfrich bending rigidity** —
-  EDC membrane has bending rigidity κ_H in addition to tension σ.
-  Brane action S = −∫d⁴x√{−g}[σ + κ_H K² + ...]. The K² term
-  modifies effective tension: σ_eff ≠ σ_RS even at RS tuning point.
-  May give σ̃_eff ≫ 1.
-  Status: [OPEN] — speculative; κ_H not derived in EDC.
-
-- **PATH-C: Non-perturbative α₃** — **CLOSED (FAILS)**
-  Analyzed in `opr31_analysis/OPR31_PATHC_ANALYSIS.md`. VERDICT B:
-  μ* = M_Z exactly (v21+v51), leaving zero energy range for RG running.
-  α₃(M_Z) = α₃(μ*) = 1/σ̃ = 1 ≠ 0.118. All alternative μ* choices
-  either hit Landau poles (μ* > 246 GeV) or fall below Λ_QCD.
-  KK threshold corrections are O(1), insufficient.
-  Status: [CLOSED] — fails; eliminated as resolution path.
-
-**Blocks**:
-- All numerical predictions in BLOCK-004 (τ_p, M_X, g_X)
-- α₃(μ*) numerical value
-- BLOCK-004 closure chain activation
-- v68 sigma_tilde_value.json (currently status: OPEN)
-
-**Where it appears**:
-- BLOCK-003: derivation_v68/main.tex §4.1
-- cosmology_sigma_tilde_lane: TASK2_GEOMETRIC_FACTOR_C.md §8.3
-- TSTAR_DERIVATION_5D.md v2.0 (corrected dimensions)
-
-**Upgrade condition**:
-OPR-31 is CLOSED iff:
-1. One of PATH-A or PATH-B is identified as realized in EDC
-   (PATH-C eliminated — see OPR31_PATHC_ANALYSIS.md), AND
-2. σ̃ is derived numerically from EDC axioms without reference to
-   experimental α_s(M_Z), AND
-3. The derivation is Layer A compliant (no external anchors)
-
-**Priority**: CRITICAL — blocks all numerical predictions in BLOCK-004.
-
-**Revised target** (from PATH-C analysis):
-Since μ* = M_Z and α₃(M_Z) = 1/σ̃ directly (no RG running),
-the target is σ̃ ≈ 1/α_s(M_Z) ≈ 8.5 — an O(10) enhancement
-over RS fine-tuning. This replaces the v67 target of σ̃ ~ 100.
-(Note: this target uses a Layer B anchor.)
+**Superseded by**: OPR-32 (g₅^(C) as irreducible free parameter)
 
 **No-smuggling certification**: ✓ PASS
 - σ̃ = 1 result comes from pure geometry (Israel junction)
-- No α_s(M_Z) or PDG data used in problem statement
-- Resolution paths are structural, not data-fitted
-- σ̃ ≈ 8.5 target is Layer B (explicitly flagged)
+- No α_s(M_Z) or PDG data used in closure argument
+- Resolution is structural: Route A/C failure is numerical fact
+
+---
+
+## OPR-32 [G] g₅^(C) is an irreducible free parameter of EDC
+
+**Short name**: 5D colour gauge coupling cannot be derived from EDC axioms
+
+**Status**: OPEN (Created 2026-03-16)
+
+**Source**: G5C_DERIVATION_AUDIT.md (edc_book_4/derivations/)
+
+**Problem**:
+The 5D colour gauge coupling g₅^(C) cannot be derived from EDC axioms
+P1-P4 or the 5D geometry. Every route tested fails:
+
+- **Route A** (g₅² = 4π/M₅): α₃ = 5.2×10⁻¹² vs 0.118 (off by 10¹⁰)
+- **Route C** (g₅² = 4π/σ^{1/4}): off by 10⁷
+- **Route C'** (g₅² = 4πc_C L): c_C absorbs g₅ as free parameter
+- **Membrane stiffness formula**: uses postulated r_e [P]
+
+**Root cause**: The 5D gauge kinetic term S₅ = -(1/4g₅²)∫F² and the
+5D gravitational action S₅^{grav} = M₅³∫R are independent sectors.
+EDC axioms P1-P4 constrain geometry, not gauge kinetic coefficients.
+
+**Impact**:
+- α₃ = 1/σ̃ (v56) is invalidated — it required Route A
+- OPR-31 (σ̃ enhancement) is rendered moot (CLOSED)
+- σ̃ = 1 is consistent picture (from v68 + Λ₄ analysis)
+- One external measurement suffices: α_s(M_Z) = 0.118
+
+**EDC vs SM comparison**:
+- SM: g_s, g_2, g_1 are three free parameters
+- EDC: g₅^(C), g₅^(L) reduced to one via PS hook [P]
+- That one parameter g₅^(C) requires α_s(M_Z) as input
+- EDC reduces 3 SM couplings to 1 via PS structure
+
+**Resolution paths**:
+
+- **PATH-1 (most honest)**: Accept g₅^(C) as free parameter.
+  One measurement (α_s(M_Z)) fixes it completely.
+  EDC then has same status as SM for gauge couplings.
+
+- **PATH-2 (anomaly cancellation)**: 5D mixed gauge-gravitational
+  anomalies may constrain g₅^(C). Not yet checked for PS gauge
+  group in EDC geometry. Low probability.
+
+- **PATH-3 (UV fixed point)**: If 5D gauge-gravity system has
+  asymptotic safety fixed point, g₅ could be determined.
+  Requires non-perturbative analysis. Speculative.
+
+**Blocks**:
+- α₃(μ*) prediction from first principles (requires g₅ as input)
+- Any claim that EDC determines all gauge couplings without measurement
+- v56 §4 formula α₃ = 1/σ̃ (invalidated)
+
+**Where it appears**:
+- edc_book_4/derivations/G5C_DERIVATION_AUDIT.md
+- edc_book_4/derivations/PS_UNIFICATION_HOOK_AUDIT.md
+- edc_papers/paper_gravity_block003/derivation_v56/ROUTE_FAILURE_NOTE.md
+- COSMOLOGICAL_CONSTANT_SIGMA_TILDE.md
+
+**Upgrade condition**:
+OPR-32 is CLOSED iff a mechanism within EDC dynamics is found that
+selects a unique value of g₅^(C) without using gauge coupling
+measurements as input.
+
+**Priority**: MEDIUM — fundamental but EDC still predictive with
+one gauge measurement as input. PS unification reduces 3 SM
+couplings to 1 free parameter, which is structural progress.
+
+**No-smuggling certification**: ✓ PASS
+- Route failure analysis uses only dimensional analysis and known scales
+- No SM observables smuggled into "derivation" — the point is that
+  derivation is impossible
+- α_s(M_Z) = 0.118 cited only as the measurement that fixes g₅
 
 ---
 
@@ -1324,7 +1373,8 @@ over RS fine-tuning. This replaces the v67 target of σ̃ ~ 100.
 | OPR-20 | ~25 (mediator mass) |
 | OPR-21 | ~30 (BVP profiles) |
 | OPR-22 | ~10 (first-principles G_F) |
-| OPR-31 | ~ALL BLOCK-004 numerics (τ_p, M_X, g_X, α₃) |
+| OPR-31 | CLOSED (MOOT) — artefact of Route A/C failure |
+| OPR-32 | ~ALL g₅-dependent predictions without α_s(M_Z) input |
 
 *Note: Claims may be blocked by multiple OPRs. Exact crosswalk in OPR_CLAIM_CROSSWALK.md*
 
