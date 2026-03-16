@@ -87,6 +87,7 @@ OPR-21 requirement (μ ∈ [μ₃⁻, μ₃⁺](V)) yields μ << μ₃⁻, creat
 | OPR-20 | [G] | Mediator mass from ξ-geometry | CONDITIONAL [Dc] |
 | OPR-21 | [B] | BVP mode profiles | STRONG PARTIAL |
 | OPR-22 | [C] | First-principles G_eff | CONDITIONAL [Dc] |
+| OPR-31 | [G] | α₃ perturbativity / σ̃ enhancement | OPEN |
 
 ---
 
@@ -1217,6 +1218,78 @@ Canonical physical reader path is now locked:
 
 ---
 
+## OPR-31 [G] α₃ Perturbativity and σ̃ Enhancement Mechanism
+
+**Short name**: Derive σ̃ ≫ 1 from EDC axioms to ensure α₃ perturbativity
+
+**Status**: OPEN (Created 2026-03-16)
+
+**Source**: v68 §4.1, commit b868606
+
+**Problem**:
+At RS fine-tuning, σ̃ = σ_covariant/T_* = 1 (proven in v68, Task 2).
+BLOCK-004 derives α₃(μ*) = 1/σ̃. Therefore α₃ = 1 at RS tuning —
+strong coupling regime where perturbative BLOCK-004 derivations break down.
+Perturbative closure requires α₃ ≪ 1, i.e., σ̃ ≫ 1.
+No mechanism currently explains σ̃ ≫ 1 in EDC.
+
+**Context (Tasks 1–3)**:
+- Task 1 proved σ_BookI [M³] ≠ σ_covariant [M⁴] (different geometric objects)
+- Task 2 derived T_* = σ_RS = 3M₅³/(4πℓ) with C = 3/(4π) from Israel junction
+- Task 3 (v68) attempted Plenum derivation: σ = 2πRξ²ρP gives σ_BookI [M³],
+  not σ_covariant [M⁴]. Cannot produce σ̃ directly.
+- v67's σ̃ = 100 ± 10 is INVALIDATED (wrong dimensions, wrong σ identification)
+
+**Three candidate resolution paths**:
+
+- **PATH-A: Plenum enhancement** —
+  σ_covariant^{EDC} = σ_RS + Δσ_Plenum where Δσ_Plenum arises from
+  Plenum pressure on the brane beyond what Λ₅ captures. Requires
+  deriving σ_covariant from the full EDC 5D action with Plenum field.
+  Status: [OPEN] — no mechanism currently known.
+
+- **PATH-B: Helfrich bending rigidity** —
+  EDC membrane has bending rigidity κ_H in addition to tension σ.
+  Brane action S = −∫d⁴x√{−g}[σ + κ_H K² + ...]. The K² term
+  modifies effective tension: σ_eff ≠ σ_RS even at RS tuning point.
+  May give σ̃_eff ≫ 1.
+  Status: [OPEN] — speculative; κ_H not derived in EDC.
+
+- **PATH-C: Non-perturbative α₃** —
+  The formula α₃ = 1/σ̃ may be valid at strong coupling (σ̃ ~ 1) with
+  non-perturbative corrections. α₃ = O(1) at the KK scale may be
+  physically acceptable if RG running from μ* down to M_Z gives
+  α_s(M_Z) ~ 0.118. Strong coupling at high scales with asymptotic
+  freedom is standard in QCD.
+  Status: [OPEN] — requires non-perturbative analysis / RG calculation.
+
+**Blocks**:
+- All numerical predictions in BLOCK-004 (τ_p, M_X, g_X)
+- α₃(μ*) numerical value
+- BLOCK-004 closure chain activation
+- v68 sigma_tilde_value.json (currently status: OPEN)
+
+**Where it appears**:
+- BLOCK-003: derivation_v68/main.tex §4.1
+- cosmology_sigma_tilde_lane: TASK2_GEOMETRIC_FACTOR_C.md §8.3
+- TSTAR_DERIVATION_5D.md v2.0 (corrected dimensions)
+
+**Upgrade condition**:
+OPR-31 is CLOSED iff:
+1. One of PATH-A, PATH-B, or PATH-C is identified as realized in EDC, AND
+2. σ̃ is derived numerically from EDC axioms without reference to
+   experimental α_s(M_Z), AND
+3. The derivation is Layer A compliant (no external anchors)
+
+**Priority**: CRITICAL — blocks all numerical predictions in BLOCK-004.
+
+**No-smuggling certification**: ✓ PASS
+- σ̃ = 1 result comes from pure geometry (Israel junction)
+- No α_s(M_Z) or PDG data used in problem statement
+- Resolution paths are structural, not data-fitted
+
+---
+
 ## Appendix: OPR → Claim Count Estimates
 
 | OPR | Estimated Blocked Claims |
@@ -1243,6 +1316,7 @@ Canonical physical reader path is now locked:
 | OPR-20 | ~25 (mediator mass) |
 | OPR-21 | ~30 (BVP profiles) |
 | OPR-22 | ~10 (first-principles G_F) |
+| OPR-31 | ~ALL BLOCK-004 numerics (τ_p, M_X, g_X, α₃) |
 
 *Note: Claims may be blocked by multiple OPRs. Exact crosswalk in OPR_CLAIM_CROSSWALK.md*
 
