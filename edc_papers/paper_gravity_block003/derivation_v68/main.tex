@@ -1,0 +1,665 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BLOCK-003 Derivation v68: Canonical σ̃ from EDC First Principles
+%%
+%% This version replaces the v67 σ̃ = 100 ± 10 claim, which is
+%% INVALIDATED by Task 1 (dimensional inequivalence) and Task 2
+%% (geometric factor derivation).
+%%
+%% Author: Igor Grčman (assisted by Claude)
+%% Date: March 2026
+%% Status: STRUCTURAL — σ̃ numerical value remains [OPEN]
+%% Build: XeLaTeX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,theorems}
+\usepackage{array,booktabs}
+\usepackage{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+\geometry{margin=1in}
+
+\IfFontExistsTF{TeX Gyre Termes}{%
+  \setmainfont{TeX Gyre Termes}
+  \setsansfont{TeX Gyre Heros}
+}{%
+  \setmainfont{Times New Roman}[Ligatures=TeX]
+}
+
+%% Colors
+\definecolor{derivedblue}{RGB}{0,100,180}
+\definecolor{conditionalgreen}{RGB}{0,128,100}
+\definecolor{proposedred}{RGB}{180,0,0}
+\definecolor{mathpurple}{RGB}{120,0,120}
+\definecolor{openred}{RGB}{200,0,0}
+\definecolor{invalidgray}{RGB}{120,120,120}
+
+%% Epistemic tags
+\newcommand{\tagDer}{\textcolor{derivedblue}{\textbf{[Der]}}}
+\newcommand{\tagDc}{\textcolor{conditionalgreen}{\textbf{[Dc]}}}
+\newcommand{\tagI}{\textcolor{mathpurple}{\textbf{[I]}}}
+\newcommand{\tagP}{\textcolor{proposedred}{\textbf{[P]}}}
+\newcommand{\tagOPEN}{\textcolor{openred}{\textbf{[OPEN]}}}
+\newcommand{\tagINV}{\textcolor{invalidgray}{\textbf{[INV]}}}
+
+%% Theorem envs
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{theorem}[proposition]{Theorem}
+\newtheorem{corollary}[proposition]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[proposition]{Definition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\title{\textbf{Canonical $\tilde{\sigma}$ from EDC First Principles}\\[0.5em]
+\large Derivation v68 --- Replacing v48--v67 $\tilde\sigma$ Definitions\\[0.3em]
+\normalsize BLOCK-003 / OPR-30 Canonical Closure}
+\author{Igor Gr\v{c}man}
+\date{March 2026}
+
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Executive Summary}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!70!black,
+  title={\textbf{What v68 Establishes}}]
+\begin{enumerate}
+\item \textbf{Canonical definition:} $\tilde\sigma = \sigma_{\rm cov}/T_*$
+  where $[\sigma_{\rm cov}] = M^4$ and $[T_*] = M^4$. \hfill \tagI
+\item \textbf{Geometric factor:} $T_* = \sigma_{\rm RS} = 3M_5^3/(4\pi\ell)$
+  from Israel junction on warped AdS$_5$. $C = 3/(4\pi)$. \hfill \tagDer
+\item \textbf{At RS fine-tuning:} $\tilde\sigma = 1$ exactly.
+  No free parameters. \hfill \tagI
+\item \textbf{$\sigma_{\rm BookI} \neq \sigma_{\rm cov}$:} Proven by
+  dimensional analysis. $[M^3] \neq [M^4]$. \hfill \tagDer
+\item \textbf{Plenum gives $\sigma_{\rm BookI}$, not $\sigma_{\rm cov}$:}
+  The formula $\sigma = 2\pi R_\xi^2 \rho_P$ has $[M^3]$. \hfill \tagI
+\item \textbf{v67's $\tilde\sigma = 100\pm10$ is INVALIDATED:}
+  Based on pre-correction dimensional analysis. \hfill \tagINV
+\item \textbf{$\tilde\sigma$ numerical value:} \tagOPEN{} ---
+  requires $\sigma_{\rm cov}$ from full EDC 5D action.
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!70!black,
+  title={\textbf{What Remains Open}}]
+\begin{enumerate}
+\item Numerical value of $\sigma_{\rm cov}$ (the EDC brane tension in
+  the 5D action)
+\item Whether EDC deviates from RS fine-tuning, and by how much
+\item The physical mechanism connecting Plenum density $\rho_P$ to
+  $\sigma_{\rm cov}$ at the $[M^4]$ level
+\item Numerical value of $\ell$ (requires $\Lambda_5$ from Plenum physics)
+\item Whether $\alpha_3 = 1/\tilde\sigma$ holds (or needs modification)
+\end{enumerate}
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Imports from Task~1 and Task~2}
+\label{sec:imports}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{From Task~1: Dimensional Inequivalence (DIMENSION\_CONVENTION\_SIGMA.md)}
+
+\begin{theorem}[Dimensional Inequivalence] \tagDer
+$\sigma_{\rm BookI}$ and $\sigma_{\rm cov}$ are dimensionally inequivalent:
+\begin{equation}
+\boxed{
+[\sigma_{\rm BookI}] = M^3, \qquad [\sigma_{\rm cov}] = M^4, \qquad
+\frac{[\sigma_{\rm cov}]}{[\sigma_{\rm BookI}]} = M^1
+}
+\end{equation}
+They represent different geometric objects in the EDC hierarchy:
+\begin{itemize}
+\item $\sigma_{\rm BookI} = m_e^3 c^4/(\alpha^3\hbar^2) = 8.82$~MeV/fm$^2$:
+  energy per 2D area of a domain-wall defect \textbf{within} the brane.
+\item $\sigma_{\rm cov}$: energy per 3D volume of the brane \textbf{itself}
+  in the 5D bulk.
+\end{itemize}
+\end{theorem}
+
+\begin{corollary} \tagI
+$\sigma_{\rm BookI}$ does not enter the ratio
+$\tilde\sigma = \sigma_{\rm cov}/T_*$.
+\end{corollary}
+
+\subsection{From Task~2: Geometric Factor $C$ (TASK2\_GEOMETRIC\_FACTOR\_C.md)}
+
+\begin{theorem}[RS Fine-Tuning Tension] \tagDer
+\label{thm:tstar}
+From the Israel junction conditions on a $\mathbb{Z}_2$-symmetric
+flat brane at $y = 0$ in warped AdS$_5$:
+\begin{equation}
+\boxed{
+T_* = \sigma_{\rm RS} = \frac{3M_5^3}{4\pi\ell}
+= \frac{6}{\kappa_5^2\ell}
+}
+\label{eq:tstar}
+\end{equation}
+where $\ell = \sqrt{-6/\Lambda_5}$ is the AdS radius and
+$\kappa_5^2 = 8\pi/M_5^3$.
+
+Dimensional verification: $[T_*] = [M^3/M^{-1}] = M^4 = [\sigma_{\rm cov}]$ \checkmark.
+\end{theorem}
+
+\begin{corollary}[Pure Geometric Result] \tagI
+\label{cor:stilde1}
+At exact RS fine-tuning: $\tilde\sigma = \sigma_{\rm RS}/T_* = 1$.
+
+This is independent of $M_5$, $\ell$, $\Lambda_5$, or any other parameter.
+\end{corollary}
+
+\begin{corollary}[Physical Meaning of $\tilde\sigma$] \tagDer
+$\tilde\sigma = \sigma_{\rm cov}/\sigma_{\rm RS}$ measures the brane's
+departure from RS fine-tuning:
+\begin{itemize}
+\item $\tilde\sigma = 1$: flat brane, $\Lambda_4 = 0$
+\item $\tilde\sigma > 1$: de Sitter brane, $\Lambda_4 > 0$
+\item $\tilde\sigma < 1$: anti-de Sitter brane, $\Lambda_4 < 0$
+\end{itemize}
+\end{corollary}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{EDC Plenum Pressure Balance: Attempted Derivation of $\tilde\sigma$}
+\label{sec:plenum}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{The Existing Plenum Derivation}
+
+\tagDer{} From \texttt{EDC\_Sigma\_From\_Pressure\_v1.tex}
+(Paper~2 derivations), the membrane tension is derived via pressure
+balance:
+
+\begin{enumerate}
+\item \textbf{Integrated pressure:}
+  $P_{\rm eff} = \int_0^{2\pi R_\xi} \rho_P\, d\xi
+  = 2\pi R_\xi \rho_P$,
+  where $\rho_P$ is the 5D Plenum energy density $[\rho_P] = M^5$.
+
+\item \textbf{Membrane thickness:} $\delta \sim R_\xi$ \tagP
+
+\item \textbf{Tension formula:}
+\begin{equation}
+\boxed{\sigma_{\rm BookI} = 2\pi R_\xi^2 \rho_P}
+\label{eq:sigma_plenum}
+\end{equation}
+\end{enumerate}
+
+\textbf{Dimensional check:}
+$[R_\xi^2 \rho_P] = M^{-2} \times M^5 = M^3$ \checkmark
+--- this gives $\sigma_{\rm BookI}$ with $[M^3]$.
+
+\subsection{Why This Cannot Give $\sigma_{\rm cov}$}
+
+\tagI{} The formula $\sigma = 2\pi R_\xi^2 \rho_P$ produces a quantity
+with dimension $[M^3]$, which is $\sigma_{\rm BookI}$ (energy per 2D area).
+
+The covariant brane tension $\sigma_{\rm cov}$ has $[M^4]$ (energy per
+3D volume). No combination of $R_\xi$ and $\rho_P$ alone bridges the
+gap without an additional scale:
+
+\begin{equation}
+\sigma_{\rm cov} = \sigma_{\rm BookI} \times \Lambda_{\rm bridge}
+\end{equation}
+
+where $[\Lambda_{\rm bridge}] = M^1$. Candidate bridging scales:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lccl}
+\toprule
+\textbf{Candidate} & \textbf{Symbol} & \textbf{Source} & \textbf{Status} \\
+\midrule
+$1/R_\xi$ & $M^1$ & Compact dimension & \tagP \\
+$1/\ell$ & $M^1$ & AdS radius & \tagP \\
+$k = \sqrt{-\Lambda_5/6}$ & $M^1$ & Bulk curvature & \tagP \\
+$M_5$ & $M^1$ & 5D Planck mass & \tagP \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{None of these identifications is derived from first principles.}
+Each would produce a different $\sigma_{\rm cov}$ and hence a different
+$\tilde\sigma$.
+
+\subsection{Attempted Derivation: $\sigma_{\rm cov}$ from Plenum}
+
+\tagP{} \textbf{Hypothesis:} If the EDC Plenum density $\rho_P$
+is the physical source of the bulk cosmological constant $\Lambda_5$,
+then:
+
+\begin{equation}
+\Lambda_5 = -2\kappa_5^2 \rho_P = -\frac{16\pi \rho_P}{M_5^3}
+\label{eq:lambda_from_rho}
+\end{equation}
+
+which gives $\ell^2 = -6/\Lambda_5 = 6M_5^3/(16\pi\rho_P)
+= 3M_5^3/(8\pi\rho_P)$.
+
+\tagI{} Dimensional check:
+$[\ell^2] = M^3/M^5 = M^{-2}$, so $[\ell] = M^{-1}$ \checkmark.
+
+\textbf{Under this hypothesis:}
+\begin{equation}
+T_* = \sigma_{\rm RS} = \frac{3M_5^3}{4\pi\ell}
+= \frac{3M_5^3}{4\pi}\sqrt{\frac{8\pi\rho_P}{3M_5^3}}
+= \frac{3M_5^3}{4\pi}\cdot\frac{\sqrt{8\pi\rho_P}}{\sqrt{3M_5^3}}
+\end{equation}
+
+Simplifying:
+\begin{equation}
+\boxed{
+T_* = \frac{M_5^{3/2}}{4\pi}\sqrt{24\pi\rho_P}
+= \frac{M_5^{3/2}\sqrt{6\rho_P}}{\sqrt{\pi}}
+}
+\label{eq:tstar_from_rho}
+\end{equation}
+
+\tagI{} Dimensional check:
+$[M_5^{3/2}\rho_P^{1/2}] = M^{3/2}\cdot M^{5/2} = M^4$ \checkmark.
+
+\subsection{$\tilde\sigma$ at RS Fine-Tuning}
+
+\tagI{} Regardless of the relation between $\rho_P$ and $\Lambda_5$,
+at RS fine-tuning:
+\begin{equation}
+\tilde\sigma = \frac{\sigma_{\rm cov}}{T_*}
+= \frac{\sigma_{\rm RS}}{\sigma_{\rm RS}} = 1
+\end{equation}
+
+\textbf{The Plenum determines the absolute scale of $T_*$ (through
+$\ell$), but NOT the dimensionless ratio $\tilde\sigma$ at fine-tuning.}
+
+\subsection{$\tilde\sigma$ Away from RS Fine-Tuning}
+
+\tagP{} If EDC deviates from RS fine-tuning, we need:
+\begin{equation}
+\sigma_{\rm cov}^{\rm EDC} = \sigma_{\rm RS} + \Delta\sigma_{\rm Plenum}
+\end{equation}
+
+Then:
+\begin{equation}
+\tilde\sigma = 1 + \frac{\Delta\sigma_{\rm Plenum}}{\sigma_{\rm RS}}
+\end{equation}
+
+For $\tilde\sigma = 100$: $\Delta\sigma_{\rm Plenum} = 99\,\sigma_{\rm RS}$.
+
+\tagOPEN{} The mechanism producing $\Delta\sigma_{\rm Plenum}$ is not
+derived. Possible sources:
+\begin{itemize}
+\item Helfrich bending rigidity ($\kappa_H K^2$ term in brane action)
+\item Non-uniform Plenum density near the brane
+\item Goldberger-Wise stabilization with EDC Plenum as bulk scalar
+\item Gauss-Bonnet corrections to 5D gravity
+\end{itemize}
+
+None of these has been computed in the EDC framework.
+
+\subsection{Anti-Circularity Check}
+
+\tagI{} The derivation chain is:
+\begin{center}
+\begin{tabular}{rcl}
+$\rho_P$ (Postulate P4) & $\to$ & $\Lambda_5 = -2\kappa_5^2\rho_P$ \\
+$\Lambda_5$ & $\to$ & $\ell = \sqrt{-6/\Lambda_5}$ \\
+$\ell, M_5$ & $\to$ & $T_* = 3M_5^3/(4\pi\ell)$ \\
+$\sigma_{\rm cov}$ & $\to$ & $\tilde\sigma = \sigma_{\rm cov}/T_*$ \\
+$\tilde\sigma$ & $\to$ & $\alpha_3 = 1/\tilde\sigma$ \\
+\end{tabular}
+\end{center}
+
+\textbf{No circularity:} $\alpha_3$ and $\tilde\sigma$ do not feed back
+into $\rho_P$, $M_5$, or $\ell$. The information flow is one-directional.
+
+\textbf{Layer~A compliance:} All inputs ($M_5$, $\rho_P$, $\ell$) are
+structural/gravitational. No PDG or experimental data used.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The $\tilde\sigma$ Result: Honest Assessment}
+\label{sec:result}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tcolorbox}[colback=green!5!white, colframe=green!60!black,
+  title={\textbf{What IS Derived}}]
+\begin{enumerate}
+\item $\tilde\sigma = \sigma_{\rm cov}/T_*$ with $[M^4/M^4] = M^0$
+  \checkmark \hfill \tagI
+\item $T_* = 3M_5^3/(4\pi\ell)$ from Israel junction \hfill \tagDer
+\item $C = 3/(4\pi) \approx 0.239$ \hfill \tagI
+\item At RS fine-tuning: $\tilde\sigma = 1$ \hfill \tagI
+\item $\sigma_{\rm BookI}$ does not enter $\tilde\sigma$ \hfill \tagDer
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!60!black,
+  title={\textbf{What is NOT Derived}}]
+\begin{enumerate}
+\item Numerical value of $\sigma_{\rm cov}$ \hfill \tagOPEN
+\item Numerical value of $\tilde\sigma$ \hfill \tagOPEN
+\item Whether $\tilde\sigma = 1$, $O(1)$, or $100$ \hfill \tagOPEN
+\item The Plenum mechanism for $\Delta\sigma_{\rm Plenum}$ \hfill \tagOPEN
+\item Whether $\alpha_3 = 1/\tilde\sigma$ is the correct relation
+  \hfill \tagP
+\end{enumerate}
+\end{tcolorbox}
+
+\subsection{The $\alpha_3$ Tension}
+
+\tagP{} If $\alpha_3 = 1/\tilde\sigma$ (from BLOCK-004):
+
+\begin{center}
+\begin{tabular}{ccc}
+\toprule
+$\tilde\sigma$ & $\alpha_3$ & Physical Regime \\
+\midrule
+1 & 1 & Strong coupling (problematic) \\
+10 & 0.1 & Marginal \\
+100 & 0.01 & Perturbative (desired) \\
+$3/(4\pi) \approx 0.24$ & $\approx 4.2$ & Route B convention; very strong \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{At RS fine-tuning, $\tilde\sigma = 1$ gives $\alpha_3 = 1$.}
+This is strong coupling where perturbation theory breaks down.
+
+For $\alpha_3 \sim 0.01$ (perturbatively safe), we need
+$\tilde\sigma \sim 100$, which requires the EDC brane to be
+$100\times$ above the RS fine-tuning tension.
+
+\tagOPEN{} This is a genuine physical tension. Resolution requires either:
+\begin{enumerate}[label=(\alph*)]
+\item A mechanism giving $\sigma_{\rm cov} \gg \sigma_{\rm RS}$
+  (Plenum enhancement), or
+\item Modification of $\alpha_3 = 1/\tilde\sigma$
+  (higher-order corrections), or
+\item Acceptance that EDC operates at strong coupling
+  (non-perturbative physics)
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Deprecation Log}
+\label{sec:deprecation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lp{3.5cm}p{5cm}c}
+\toprule
+\textbf{Version} & \textbf{Definition} & \textbf{Reason for Deprecation} & \textbf{Status} \\
+\midrule
+DEF-A (v48) & $\tilde\sigma = \sigma/\bar{M}_{\rm Pl}^4$
+  & $[\sigma] = M^3$ not $M^4$; wrong normalization & \tagINV \\
+DEF-B (v56) & $\beta = \tilde\sigma^4$
+  & Algebraic error (exponent should be 1, not 4) & \tagINV \\
+DEF-C (v62) & $\tilde\sigma = \sigma L^2/\bar{M}_{\rm Pl}^2$
+  & Equivalent to $\beta$; gives $\sim 10^{-36}$ & \tagINV \\
+DEF-D (v67) & $\tilde\sigma = \sigma/T_*$
+  & \textbf{Correct structure}, but v67 used $[T_*] = M^3$
+    and $\sigma = \sigma_{\rm BookI}$ giving
+    $\tilde\sigma = 100 \pm 10$ (invalidated) & \tagINV \\
+\midrule
+\textbf{v68} & $\tilde\sigma = \sigma_{\rm cov}/T_*$
+  & $[\sigma_{\rm cov}] = M^4$, $[T_*] = M^4$;
+    $T_* = 3M_5^3/(4\pi\ell)$; $\tilde\sigma = 1$ at RS tuning
+  & \textbf{CANONICAL} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Why v67's $\tilde\sigma = 100$ is Invalid}
+
+The v67 \texttt{sigma\_tilde\_value.json} claims:
+\begin{itemize}
+\item \texttt{status: "DERIVED"}
+\item \texttt{method: "5D\_brane\_world\_derivation"}
+\item \texttt{value: 100.0 $\pm$ 10.0}
+\item \texttt{t\_star units: "M\^{}3"} $\leftarrow$ \textbf{WRONG}
+  (should be $M^4$)
+\item \texttt{sigma\_dimensional units: "M\^{}3"} $\leftarrow$
+  \textbf{This is $\sigma_{\rm BookI}$, not $\sigma_{\rm cov}$}
+\end{itemize}
+
+\tagINV{} The v67 derivation:
+\begin{enumerate}
+\item Used $[\sigma] = M^3$ (Task~1 proves $[\sigma_{\rm cov}] = M^4$)
+\item Used $[T_*] = M^3$ (Task~2 proves $[T_*] = M^4$)
+\item Identified $\sigma_{\rm BookI}$ with $\sigma_{\rm cov}$ (proven
+  wrong --- different geometric objects)
+\item The Route A + B derivation gives $\tilde\sigma = 1$ at RS
+  fine-tuning, not $100$
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Closure Map}
+\label{sec:closure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{What Is Closed}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lccl}
+\toprule
+\textbf{Item} & \textbf{Result} & \textbf{Tag} & \textbf{Reference} \\
+\midrule
+$\tilde\sigma$ definition & $\sigma_{\rm cov}/T_*$ & \tagDc & OPR-30-CAN \\
+$[\sigma_{\rm cov}]$ & $M^4$ & \tagI & Task~1 \\
+$[T_*]$ & $M^4$ & \tagI & Task~1 \\
+$T_*$ formula & $3M_5^3/(4\pi\ell)$ & \tagDer & Task~2, Route~A \\
+$C$ value & $3/(4\pi) \approx 0.239$ & \tagI & Task~2 \\
+$\tilde\sigma$ at RS tuning & $1$ & \tagI & Task~2 \\
+$\sigma_{\rm BookI} \neq \sigma_{\rm cov}$ & Proven & \tagDer & Task~1 \\
+v67 $\tilde\sigma=100$ & Invalidated & \tagINV & Tasks~1+2 \\
+Dimensional consistency & All expressions verified & \tagI & Tasks~1+2 \\
+No-backflow & One-directional chain & \tagDc & \S\ref{sec:plenum} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{What Remains Open}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lp{6cm}c}
+\toprule
+\textbf{Item} & \textbf{Gap} & \textbf{Tag} \\
+\midrule
+$\sigma_{\rm cov}$ numerical & Must derive from full EDC 5D action
+  & \tagOPEN \\
+$\Lambda_5$ from Plenum & Companion~C \S13 item~1:
+  ``Why $\Lambda_5 < 0$?'' & \tagOPEN \\
+$\ell$ numerical & Requires $\Lambda_5$ & \tagOPEN \\
+$\Delta\sigma_{\rm Plenum}$ & Mechanism for departure from RS tuning
+  & \tagOPEN \\
+$\tilde\sigma$ numerical & Depends on all above & \tagOPEN \\
+$\alpha_3 = 1/\tilde\sigma$ validity & May need higher-order corrections
+  & \tagP \\
+$\sigma_{\rm BookI} \leftrightarrow \sigma_{\rm cov}$ bridge &
+  If related, what is $\Lambda_{\rm bridge}$? & \tagOPEN \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Critical Path to Numerical $\tilde\sigma$}
+
+\begin{equation}
+\underbrace{\text{EDC Plenum}}_{\tagOPEN}
+\xrightarrow{\rho_P \to \Lambda_5}
+\underbrace{\ell = \sqrt{-6/\Lambda_5}}_{\tagOPEN}
+\xrightarrow{M_5^3\ell = \bar{M}_{\rm Pl}^2}
+\underbrace{T_*}_{\tagDer}
+\xrightarrow{\sigma_{\rm cov}\text{ from EDC action}}
+\underbrace{\tilde\sigma}_{\tagOPEN}
+\end{equation}
+
+The bottleneck is $\sigma_{\rm cov}$: the covariant brane tension in the
+full EDC action, which requires physics beyond the RS vacuum approximation.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Epistemic Status Table}
+\label{sec:epistemic}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\footnotesize
+\begin{tabular}{p{5.5cm}ccp{3.5cm}}
+\toprule
+\textbf{Claim} & \textbf{Tag} & \textbf{Task} & \textbf{Notes} \\
+\midrule
+$\tilde\sigma = \sigma_{\rm cov}/T_*$ & \tagDc & OPR-30 & Canonical definition \\
+$[\sigma_{\rm cov}] = M^4$ & \tagI & 1 & From brane action \\
+$[\sigma_{\rm BookI}] = M^3$ & \tagI & 1 & From unit conversion \\
+$\sigma_{\rm BookI} \neq \sigma_{\rm cov}$ & \tagDer & 1 & Dimensional proof \\
+$[T_*] = M^4$ & \tagI & 2 & From $[\tilde\sigma] = M^0$ \\
+$T_* = 3M_5^3/(4\pi\ell)$ & \tagDer & 2 & Israel junction \\
+$C = 3/(4\pi)$ & \tagI & 2 & Geometric factor \\
+$\tilde\sigma = 1$ at RS tuning & \tagI & 2 & Identity \\
+$\sigma_{\rm BookI} = 2\pi R_\xi^2\rho_P$ & \tagDer & --- & Plenum pressure \\
+Plenum $\rho_P$ sources $\Lambda_5$ & \tagP & --- & Hypothesis \\
+$\sigma_{\rm cov}$ numerical value & \tagOPEN & 3 & Not derived \\
+$\tilde\sigma$ numerical value & \tagOPEN & 3 & Not derived \\
+$\Delta\sigma_{\rm Plenum}$ mechanism & \tagOPEN & 3 & Not derived \\
+$\alpha_3 = 1/\tilde\sigma$ & \tagP & v67 & From BLOCK-004 \\
+v67 $\tilde\sigma = 100 \pm 10$ & \tagINV & 1+2 & Pre-correction \\
+v48--v66 $\tilde\sigma$ defs & \tagINV & 1+2 & Deprecated \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Guard and Firewall Compliance}
+\label{sec:firewall}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Layer~A Compliance}
+
+This document contains \textbf{no}:
+\begin{itemize}
+\item Particle Data Group values
+\item Super-Kamiokande bounds
+\item Numeric $\tilde\sigma$ payloads
+\item Experimental lifetime bounds
+\item SM coupling constants (except $\alpha$ in $\sigma_{\rm BookI}$
+  formula, used only as negative example)
+\end{itemize}
+
+\subsection{Guard Checks}
+
+\begin{center}
+\begin{tabular}{lcl}
+\toprule
+\textbf{Guard} & \textbf{Status} & \textbf{Evidence} \\
+\midrule
+G1: Ontological purity & \checkmark & Pure geometric/gravitational \\
+G2: Empirical protocol & \checkmark & No experimental calibration \\
+G3: Epistemic honesty & \checkmark & All tags accurate; [OPEN] where open \\
+G4: Dimensional consistency & \checkmark & All expressions verified \\
+G5: No overclaiming & \checkmark & $\tilde\sigma$ numerical is [OPEN] \\
+G6: No circular logic & \checkmark & Anti-circularity check in \S\ref{sec:plenum} \\
+G7: No contamination & \checkmark & No back-calculation from $\alpha_3$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{No-Backflow Statement}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The derivation chain is strictly one-directional:
+
+\begin{equation}
+\underbrace{\text{5D Action}}_{\text{Layer A}}
+\to \underbrace{T_*}_{\text{derived}}
+\to \underbrace{\tilde\sigma}_{\text{[OPEN]}}
+\to \underbrace{\text{BLOCK-004}}_{\text{read-only}}
+\end{equation}
+
+\textbf{Forbidden feedback loops:}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Forbidden} & \textbf{Reason} \\
+\midrule
+$\tau_p \to T_*$ & Circular logic \\
+$\tilde\sigma \to M_5$ & Reverses information flow \\
+$\alpha_3 \to \sigma_{\rm cov}$ & Back-calculation \\
+BLOCK-004 $\to$ cosmology lane & Violates A-API$\sigma$2 \\
+External data $\to T_*$ & Violates Layer~A firewall \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Import Contract: v68 Replaces v67}
+\label{sec:contract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{A-API$\sigma$1 (Provider)}
+
+Cosmology lane provides $\tilde\sigma$ via
+\texttt{sigma\_tilde\_value.json}. \textbf{v68 update:}
+
+\begin{itemize}
+\item \texttt{status}: \texttt{"DERIVED"} $\to$ \texttt{"OPEN"}
+\item \texttt{value}: \texttt{100.0} $\to$ \texttt{null}
+\item \texttt{t\_star.units}: \texttt{"M\^{}3"} $\to$ \texttt{"M\^{}4"}
+\item \texttt{sigma\_dimensional.units}: \texttt{"M\^{}3"}
+  $\to$ \texttt{"M\^{}4"} (and rename to
+  \texttt{sigma\_covariant})
+\end{itemize}
+
+\subsection{A-API$\sigma$2 (Consumer)}
+
+BLOCK-004 reads $\tilde\sigma$ as \textbf{read-only}. When
+$\tilde\sigma$ has \texttt{status: "OPEN"}, BLOCK-004 operates
+in \textbf{conditional mode}: closure formulas are stated
+symbolically but not evaluated numerically.
+
+\subsection{A-API$\sigma$3 (Propagation)}
+
+Closure formulas are \textbf{structurally unchanged}:
+
+\begin{align}
+\alpha_3(\mu_*) &= 1/\tilde\sigma \label{eq:alpha3} \\
+M_X &= C_X\,\mu_*\,\tilde\sigma^{1/2} \\
+g_X &= \sqrt{4\pi/\tilde\sigma} \\
+\tau_p &\propto \tilde\sigma^4
+\end{align}
+
+\textbf{Note:} These formulas are valid for any $\tilde\sigma$. When
+$\tilde\sigma$ becomes numerically available, they activate.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{References}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Document} & \textbf{Role} \\
+\midrule
+DIMENSION\_CONVENTION\_SIGMA.md & Task~1: $[\sigma]$ proof \\
+TASK2\_GEOMETRIC\_FACTOR\_C.md & Task~2: $C$ derivation \\
+TSTAR\_DERIVATION\_5D.md (v2.0) & $T_*$ from 5D action \\
+TSTAR\_DEFINITION.md (v2.0) & $T_*$ definition roadmap \\
+OPR-30\_SIGMA\_TILDE\_RESOLUTION.md & Four-definition audit \\
+Companion~C (main.tex) & 5D reduction pipeline \\
+EDC\_Sigma\_From\_Pressure\_v1.tex & Plenum pressure balance \\
+derivation\_v67/ & Previous version (invalidated) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{document}
