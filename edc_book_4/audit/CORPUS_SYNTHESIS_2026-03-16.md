@@ -651,7 +651,7 @@ Six restructuring branches exist for journal submission: splitting into separate
 
 7. **Write "5 Pillars" summary paper**: **DRAFTED** (Step 7 of 9). See `papers/FIVE_PILLARS_DRAFT_v1.tex` and `papers/FIVE_PILLARS_SUMMARY.md`. Complete LaTeX paper draft (~4000 words) with all 5 derivation chains, accuracy table, epistemic tags on every step. Honest treatment: α is [Dc] not [Der] (3 irreducible [P]), τ_n is [Dc+P+Cal] (L₀/δ failed to derive), sin²θ_W is [Dc] (coupling map is [P]). Three failed derivations documented as falsifiability evidence. Golden ratio soliton [Dc] included. Total free parameters across all 5 pillars: 4. Targets journal publication.
 
-8. **Coordinate notation across all books**: The z/ξ/ζ notation issue and δ/Δ/R_ξ ambiguity need a single canonical reference.
+8. **Coordinate notation across all books**: **UNIFIED** (Step 9 of 9). See `notation/CANONICAL_NOTATION.md`, `notation/edc_macros.sty`, `notation/CORRECTION_CHECKLIST.md`. 85+ symbols catalogued, 9 conflicts resolved or tracked. CRITICAL: bare δ banned (>50 violations, 50× scale ambiguity); must use δ_J, δ_BL, Δ, R_ξ. z→ξ (5D) already fixed in Book II (Phase D); ~15 fixes needed in Book I. σ_jun (8.82) vs σ_cell (5.86) distinguished; OPR-34 tracks resolution. 61 LaTeX macros defined in edc_macros.sty. 40-item correction checklist produced (20 P0, 8 P1, 9 P2, 3 P3).
 
 9. **Build automated epistemic tag checker**: Several branches contain tools for this (book2-opr07-repropack-v1, book2-global-symbol-table-v1). Could be made into CI.
 
