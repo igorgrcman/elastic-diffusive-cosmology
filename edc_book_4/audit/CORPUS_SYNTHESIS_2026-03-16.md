@@ -633,7 +633,7 @@ Six restructuring branches exist for journal submission: splitting into separate
 
 ### 8.1 Immediate (Within Current Research Cycle)
 
-1. **Reconcile σ̃ across branches**: The 2026-03-16 session log says σ̃=1 and OPR-31=MOOT. The archive/nuclear-topology-discovery corrections from 2026-03-15 still have σ̃=100 as [Cal]. These need to be synchronized.
+1. **Reconcile σ̃ across branches**: **COMPLETED** (Step 3 of 9). See `SIGMA_TILDE_SYNC_REPORT.md`. Four incompatible definitions found (DEF-A through DEF-E). Canonical: σ̃ = σ_cov/T_* = 1 at RS fine-tuning (v68). `claude/analyze-codebase-KKY9n` synchronized. `research/topological-pinning` flagged as stale (σ̃ = 100). Archive branches frozen per policy.
 
 2. **Propagate golden ratio result**: The electron soliton f(r)~C/r^φ proof should be incorporated into canonical Book IV or a standalone publication.
 
