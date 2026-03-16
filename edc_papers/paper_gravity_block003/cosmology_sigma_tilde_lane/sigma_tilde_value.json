@@ -1,51 +1,54 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "2.0",
   "created_utc": "2026-02-09T06:45:00.000000+00:00",
+  "updated_utc": "2026-03-16T00:00:00.000000+00:00",
   "sigma_tilde": {
-    "value": {
-      "central": 100.0,
-      "plus": 10.0,
-      "minus": 10.0
-    },
+    "value": null,
     "uncertainty": {
       "type": "interval",
-      "lo": 90.0,
-      "hi": 110.0,
+      "lo": null,
+      "hi": null,
       "units": "dimensionless"
     },
-    "status": "DERIVED"
+    "status": "OPEN",
+    "structural_result": "sigma_tilde = 1 at RS fine-tuning (v68 Task 2)"
   },
   "t_star": {
     "definition_ref": "TSTAR_DEFINITION.md",
     "derivation_ref": "TSTAR_DERIVATION_5D.md",
-    "value": null,
-    "units": "M^3",
-    "status": "DERIVED"
+    "value": "3*M5^3/(4*pi*ell)",
+    "units": "M^4",
+    "status": "DERIVED",
+    "geometric_factor_C": "3/(4*pi)"
   },
-  "sigma_dimensional": {
+  "sigma_covariant": {
     "value": null,
-    "units": "M^3",
-    "status": "TBD"
+    "units": "M^4",
+    "status": "OPEN",
+    "note": "Must derive from full EDC 5D action. sigma_BookI [M^3] is NOT this quantity."
   },
   "provenance": {
     "method": "5D_brane_world_derivation",
     "derivation_ref": "EDC-COSMO-TSTAR-5D-ROUTEAB",
     "generated_by": "P80a",
     "generated_at": "2026-02-09T07:30:00.000000+00:00",
-    "epistemic_tags": ["derived", "structural", "no_external_anchors"],
+    "updated_by": "v68_canonical_closure",
+    "updated_at": "2026-03-16T00:00:00.000000+00:00",
+    "epistemic_tags": ["structural", "no_external_anchors", "invalidated_by_v68"],
     "parent_hashes": {
       "v65": "c4e7f2a1b8d30965",
-      "v67": "d8e9f0a1b2c34567"
+      "v67": "d8e9f0a1b2c34567",
+      "v68": "b868606"
     },
     "sot_hash": "edc_cosmo_tstar_5d_e41a228",
-    "git_commit": "e41a228b226aebb10e406c93d57eca6e601b11a4",
-    "git_branch": "research/topological-pinning-v7_8-integration",
-    "notes": "PHYSICAL_DERIVATION: sigma_tilde = 100 +/- 10 from 5D brane world (Route A + B). Layer A unchanged.",
+    "git_commit": "b868606",
+    "git_branch": "claude/analyze-codebase-KKY9n",
+    "notes": "INVALIDATED by v68 (commit b868606): v67 sigma_tilde = 100 used wrong dimensions [M^3] and wrong sigma identification (sigma_BookI instead of sigma_covariant). Task 1 proved [sigma_cov] = M^4 != [sigma_BookI] = M^3. Task 2 proved T_* = 3*M5^3/(4*pi*ell) with [M^4] and sigma_tilde = 1 at RS fine-tuning. Numerical value [OPEN] pending sigma_covariant from full EDC action. See OPR-31.",
     "import_source": null
   },
   "firewall": {
     "layer": "A",
     "forbidden_gate_pass": false,
-    "notes": "DERIVED numerics in quarantine only; no external anchors"
+    "notes": "Layer A structural derivation. No external anchors. sigma_tilde numerical value OPEN."
   }
 }
