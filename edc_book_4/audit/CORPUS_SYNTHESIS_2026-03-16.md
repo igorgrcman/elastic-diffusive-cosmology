@@ -540,7 +540,7 @@ The monolithic postulate "Plenum has no preferred internal direction" was decomp
 
 1. **Golden ratio tail exponent** (EDC_Research neutron-pathB-v5): φ=(1+√5)/2 emerges universally from brane soliton equation for Q=±1. This rigorous [Dc] result is on a Paper 3 branch and has NOT been incorporated into Book II or IV. **INTEGRATION IN PROGRESS** — see `GOLDEN_RATIO_INTEGRATION.md`. Present in Paper 3 journal and Companion B publications but absent from monograph series. Source: `boxes_pathB_research_v5/lemma_tail_exponent_robustness.tex` (94-line self-contained proof), `box_pathB_electron_soliton_full_EOM.tex` (full nonlinear EOM), `solve_electron_soliton_bvp_v5.py` (numerical verification).
 
-2. **C = (L₀/δ)² = 100 from junction-core geometry** (junction-core-derive-C-v1): This derivation on an early branch explains why the junction-core well coefficient C~100, using the two-scale structure (δ=0.1 fm vs L₀=1 fm). Status [Dc] but may not be in canonical text.
+2. **C = (L₀/δ)² = 100 from junction-core geometry** (junction-core-derive-C-v1): **ASSESSED** — see `JUNCTION_CORE_C100_ASSESSMENT.md`. The geometric insight C ∝ (L₀/δ)² is genuine [Dc], but C = 100 exactly is [I] (depends on L₀=1.0 fm and δ=0.1 fm, both pattern-matched). The derivation document was tuned to reproduce the best-fit answer. **COMPLETELY UNRELATED** to σ̃ = 100 (different physics sectors, zero cross-references). Key finding: if L₀/δ = π² then C = π⁴ ≈ 97 — a pure constant within 3% of 100. Not in canonical text.
 
 3. **Derive Γ₀ from local mode spectrum** (taskC-derive-Gamma0-v1): The prefactor Γ₀ in the tunneling rate was derived [Dc] from local mode spectrum. On a task branch, not in Book IV.
 
