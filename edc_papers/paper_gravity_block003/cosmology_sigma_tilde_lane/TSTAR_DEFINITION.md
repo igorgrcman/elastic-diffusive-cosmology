@@ -1,8 +1,9 @@
 # T_* Definition and Derivation Roadmap
 
-## Version: 1.0
-## Date: 2026-02-08
-## Status: STRUCTURAL ONLY (no numerics)
+## Version: 2.0
+## Date: 2026-03-16
+## Status: STRUCTURAL — corrected dimensions per Task 1+2
+## Changelog: v2.0 — [σ] corrected M³→M⁴; [T_*] corrected M³→M⁴; C derived = 3/(4π)
 
 ---
 
@@ -16,9 +17,12 @@ dimensionless when forming the ratio:
 ```
 
 where:
-- σ is the dimensional brane tension (units: energy per area, e.g., MeV/fm²)
-- T_* is the characteristic scale (same units as σ)
+- σ is the covariant 3-brane tension (units: [M]⁴ in natural units)
+- T_* is the characteristic scale (same units as σ, [M]⁴)
 - σ̃ is the dimensionless brane tension parameter
+
+**WARNING (v2.0):** σ here is σ_covariant [M⁴], NOT σ_BookI = 8.82 MeV/fm² [M³].
+See DIMENSION_CONVENTION_SIGMA.md for the proof that these are different quantities.
 
 **[Dc]** T_* is NOT a free parameter. It must be derived from the fundamental
 constants of the 5D bulk-brane system using only internal EDC axioms.
@@ -31,42 +35,47 @@ Prior definitions (σ̃ = σ/M̄_Pl⁴ in v48, σ̃ = σL²/M̄_Pl² in v62) are
 
 ## 2. Dimensional Analysis
 
-### 2.1 Dimensions of σ (brane tension)
+### 2.1 Dimensions of σ (brane tension) — v2.0 corrected
 
-**[Dc] DIMENSION CONVENTION (OPR-30):**
+**[Dc] DIMENSION CONVENTION (Task 1 resolution):**
 
-In EDC, the brane is a codimension-1 defect (domain wall / 2-brane).
-The brane tension σ is energy per unit area:
+In EDC, the brane Σ³ is a 3-brane (codimension-1 in 5D spacetime).
+Its worldvolume is 4-dimensional. The brane action is:
 
 ```
-[σ] = [Energy] / [Area] = [M]¹ [L]⁻² = [M]³     (EDC canonical)
+S_brane = −σ_covariant ∫ d⁴x √{−h}
 ```
 
-where [M] denotes mass dimension in natural units (ℏ = c = 1).
+For S to be dimensionless: [σ]·[M]⁻⁴ = M⁰, therefore:
 
-In SI or mixed units:
 ```
-[σ] = MeV / fm² = MeV·fm⁻²
+[σ_covariant] = [M]⁴     (3-brane tension = energy per 3-volume)
 ```
 
-**WARNING:** Some versions (v28–v66) implicitly use the Randall-Sundrum
-convention [σ] = M⁴ (3-brane tension = energy per volume). This is
-incompatible with EDC's [σ] = M³. See OPR-30 Section 6 for details.
-Under EDC conventions, the old β = σL²/M̄_Pl² has [M³·M⁻²/M²] = [M⁻¹]
-and is NOT dimensionless. This is a root error in the pre-v67 chain.
+**CORRECTION (v2.0):** The v1.0 stated [σ] = M³ (energy per 2D area).
+That dimension belongs to σ_BookI = 8.82 MeV/fm² (nuclear membrane
+tension), which is a DIFFERENT physical quantity — a 2D defect WITHIN
+the brane, not the brane itself. See DIMENSION_CONVENTION_SIGMA.md.
 
-### 2.2 Dimensions of T_*
+**WARNING:** The old β = σL²/M̄_Pl² was dimensionally inconsistent under
+BOTH conventions. Under [σ] = M⁴: [β] = M⁴·M⁻²/M² = M⁰ ✓, but the
+physical identification of σ with σ_BookI was wrong.
+
+### 2.2 Dimensions of T_* — v2.0 corrected
 
 **[Dc]** For σ̃ to be dimensionless, T_* must have the same dimensions as σ:
 
 ```
-[T_*] = [σ] = [M]³ (natural units)
+[T_*] = [σ_covariant] = [M]⁴ (natural units)
 ```
 
-or equivalently:
+**[Der]** From TASK2_GEOMETRIC_FACTOR_C.md, the explicit form is:
+
 ```
-[T_*] = MeV / fm² (mixed units)
+T_* = 3M₅³/(4πℓ) = σ_RS     (RS fine-tuning tension)
 ```
+
+where ℓ = √{−6/Λ₅} is the AdS radius.
 
 ### 2.3 Dimensionless Ratio
 
@@ -141,7 +150,7 @@ TODO: Identify exact functional form of f.
 
 **Step 4: Verify dimensional consistency** [P]
 
-Confirm [T_*] = [M]³ in natural units.
+Confirm [T_*] = [M]⁴ in natural units. (v2.0: corrected from M³)
 
 TODO: Complete dimensional verification.
 
@@ -182,11 +191,15 @@ inserted until a complete derivation with hash-locked provenance is available.
 
 | Claim | Tag | Status |
 |-------|-----|--------|
-| σ̃ = σ / T_* | [Dc] | Definitional |
-| [T_*] = [M]³ | [I] | Invariant from dimensional analysis |
-| T_* = f(κ₅, Λ₅, ...) | [P] | Awaiting 5D derivation |
-| Numeric value of T_* | [P] | TBD |
-| Numeric value of σ̃ | [P] | TBD (depends on T_*) |
+| σ̃ = σ_covariant / T_* | [Dc] | Definitional |
+| [σ_covariant] = [M]⁴ | [I] | Proven in Task 1 (v2.0) |
+| [T_*] = [M]⁴ | [I] | Invariant from [σ̃] = M⁰ (v2.0 corrected) |
+| T_* = 3M₅³/(4πℓ) = σ_RS | [Der] | Derived in Task 2 |
+| C = 3/(4π) | [I] | From Israel junction |
+| σ̃ = 1 at RS fine-tuning | [I] | Follows from T_* = σ_RS |
+| Numeric value of ℓ | [P] | Requires Λ₅ from Plenum |
+| Numeric value of σ_covariant | [P] | Requires EDC deviation from RS |
+| Numeric value of σ̃ | [P] | Depends on σ_covariant and ℓ |
 
 ---
 
@@ -258,14 +271,17 @@ This document is **Layer A only**.
 
 ## 8. TODO Summary
 
-| Task | Priority | Blocker |
-|------|----------|---------|
-| Write full 5D action | HIGH | None |
-| Derive Israel junction | HIGH | 5D action |
-| Extract T_* form | HIGH | Junction conditions |
-| Dimensional verification | MEDIUM | T_* form |
-| Compute σ̃ | LOW | T_* numeric value |
-| Propagate to BLOCK-004 | LOW | σ̃ value |
+| Task | Priority | Status |
+|------|----------|--------|
+| Write full 5D action | HIGH | DONE (TSTAR_DERIVATION_5D.md §2) |
+| Derive Israel junction | HIGH | DONE (§3) |
+| Extract T_* form | HIGH | DONE (§4, v2.0: T_* = 3M₅³/(4πℓ)) |
+| Derive geometric factor C | HIGH | DONE (Task 2: C = 3/(4π)) |
+| Dimensional verification | MEDIUM | DONE (§7, v2.0) |
+| Determine Λ₅ from Plenum | HIGH | OPEN (Companion C §13) |
+| Determine σ_covariant | HIGH | OPEN (depends on EDC vs RS) |
+| Compute σ̃ numerically | LOW | BLOCKED by Λ₅ and σ_covariant |
+| Propagate to BLOCK-004 | LOW | BLOCKED by σ̃ value |
 
 ---
 

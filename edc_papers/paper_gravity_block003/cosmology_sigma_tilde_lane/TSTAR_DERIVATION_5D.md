@@ -1,8 +1,10 @@
 # T_* Derivation from 5D Action
 
-## Version: 1.0
-## Date: 2026-02-08
-## Status: STRUCTURAL DERIVATION (symbols only, no numerics)
+## Version: 2.0
+## Date: 2026-03-16
+## Status: STRUCTURAL DERIVATION (corrected dimensions per Task 1+2)
+## Changelog: v2.0 — [σ] corrected from M³ to M⁴; T_* corrected from C·M₅³ to C·M₅³/ℓ
+##            See DIMENSION_CONVENTION_SIGMA.md (Task 1) and TASK2_GEOMETRIC_FACTOR_C.md (Task 2)
 
 ---
 
@@ -50,13 +52,19 @@ where M₅ is the 5D Planck mass with dimension [M₅] = [M]¹.
 
 ### 1.4 Brane Tension
 
-**[Dc]** The brane tension σ has dimension:
+**[Dc]** The covariant brane tension σ (3-brane in 5D) has dimension:
 
 ```
-[σ] = [Energy]/[Area] = [M]³
+[σ_covariant] = [M]⁴
 ```
 
-in natural units (ℏ = c = 1).
+in natural units (ℏ = c = 1). This follows from the brane action
+S = −σ∫d⁴x√{−h} being dimensionless: [σ]·[M]⁻⁴ = M⁰ → [σ] = M⁴.
+
+**WARNING (v2.0):** The v1.0 of this document incorrectly stated [σ] = M³.
+That dimension belongs to σ_BookI (energy per 2D area, nuclear membrane),
+which is a DIFFERENT physical quantity. See DIMENSION_CONVENTION_SIGMA.md
+for the proof that σ_BookI ≠ σ_covariant.
 
 ### 1.5 Induced Metric
 
@@ -156,20 +164,18 @@ where:
 - g = det(g_μν) is the induced 4D metric determinant
 - σ is the brane tension
 
-**[I]** Dimensional check:
+**[I]** Dimensional check (v2.0 corrected):
 
 ```
 [d⁴x] = [M]⁻⁴
 [√{-g}] = 1
-[σ] = [M]³
-[S_brane] = [M]⁻⁴ · [M]³ = [M]⁻¹ ...
+[σ_covariant] = [M]⁴
+[S_brane] = [M]⁻⁴ · [M]⁴ = [M]⁰ ✓
 ```
 
-**[Dc]** For action to be dimensionless in natural units, we interpret S_brane as integrated over proper 4D volume, giving:
-
-```
-[S_brane] = [M]⁰ ✓
-```
+**NOTE (v2.0):** The v1.0 dimensional check was wrong — it used [σ] = M³,
+getting [S] = M⁻¹, and then incorrectly claimed "proper 4D volume"
+fixes it. The actual fix: [σ_covariant] = M⁴, not M³.
 
 ### 2.4 Gibbons-Hawking-York Boundary Term
 
@@ -255,7 +261,7 @@ K_μν⁺ = (κ₅² σ / 18) g_μν
 
 ## 4. Route A: Junction/Geometry Derivation of T_*
 
-### 4.1 Characteristic Curvature Scale
+### 4.1 Characteristic Curvature Scale (v2.0 corrected)
 
 **[I]** From the junction condition, the extrinsic curvature is proportional to:
 
@@ -263,14 +269,14 @@ K_μν⁺ = (κ₅² σ / 18) g_μν
 K ~ κ₅² σ
 ```
 
-**[I]** Dimensional analysis:
+**[I]** Dimensional analysis (with corrected [σ] = M⁴):
 
 ```
 [K] = [M]¹
-[κ₅² σ] = [M]⁻³ · [M]³ = [M]⁰ ... (dimensionless!)
+[κ₅² σ] = [M]⁻³ · [M]⁴ = [M]¹ ✓  (matches [K])
 ```
 
-**[P]** This indicates the junction equation involves a dimensionless combination. To extract a tension scale, we need a reference length.
+This is now dimensionally consistent (v1.0 had [σ] = M³ → [κ₅²σ] = M⁰, wrong).
 
 ### 4.2 Bulk Curvature Length
 
@@ -288,104 +294,52 @@ K ~ κ₅² σ
 
 **[P]** For Λ₅ ≥ 0, an alternative characteristic length must be defined from the geometry.
 
-### 4.3 Characteristic Tension Scale (Route A)
+### 4.3 Characteristic Tension Scale (Route A) — v2.0
 
-**[Dc]** Define T_*^{(A)} from the junction condition and bulk scale:
+**[Der]** From the RS fine-tuning condition (flat brane at y = 0 in warped AdS₅):
 
 ```
-T_*^{(A)} = 6 / (κ₅² ℓ)
+σ_RS = 6/(κ₅² ℓ) = 6M₅³/(8πℓ) = 3M₅³/(4πℓ)
 ```
 
 **[I]** Dimensional verification:
 
 ```
-[T_*^{(A)}] = 1 / ([M]⁻³ · [M]⁻¹) = 1 / [M]⁻⁴ = [M]⁴ ...
+[T_*^{(A)}] = [M₅³/ℓ] = [M]³ / [M]⁻¹ = [M]⁴ ✓
 ```
 
-**[P]** Correction needed. Re-derive:
+**[Dc]** Route A result (v2.0):
 
 ```
-T_*^{(A)} = 6 / (κ₅² ℓ)
+T_*^{(A)} = C_A · M₅³/ℓ = 3M₅³/(4πℓ) = σ_RS
 ```
 
-has [M]⁴, but we need [M]³. Alternative:
-
-**[Dc]** Define:
-
-```
-T_*^{(A)} = (6/κ₅²) · (1/ℓ²)^{1/2} = 6 / (κ₅² ℓ^{1/2} · ℓ^{1/2})
-```
-
-**[P]** Or more directly, from the combination that appears in RS fine-tuning:
-
-```
-T_*^{(A)} = (Λ₅ / κ₅²)^{3/4} · C_A
-```
-
-where C_A is a dimensionless geometric factor.
-
-**[I]** Dimensional check:
-
-```
-[Λ₅/κ₅²] = [M]² / [M]⁻³ = [M]⁵
-[(Λ₅/κ₅²)^{3/4}] = [M]^{15/4} ... (not [M]³)
-```
-
-**[Dc]** Final Route A form (pending full derivation):
-
-```
-T_*^{(A)} = (6/κ₅²) / ℓ = 6M₅³ / (8π ℓ)
-```
-
-**[I]** Check:
-
-```
-[M₅³ / ℓ] = [M]³ / [M]⁻¹ = [M]⁴ ...
-```
-
-**[P]** The dimensionality requires careful treatment. Define:
-
-```
-T_*^{(A)} = C_A · M₅³ · (M₅ ℓ)^{-α}
-```
-
-where α is determined by requiring [T_*] = [M]³.
-
-**[I]** For [T_*] = [M]³:
-
-```
-[M₅³] · [M₅ ℓ]^{-α} = [M]³ · [M⁰]^{-α} = [M]³ ✓
-```
-
-So α = 0 gives T_*^{(A)} = C_A M₅³.
-
-**[Dc]** Route A result:
-
-```
-T_*^{(A)} = C_A · M₅³ = C_A · (8π/κ₅²)
-```
-
-where C_A is a dimensionless O(1) geometric factor from the junction analysis.
+where C_A = 3/(4π) ≈ 0.239 is determined by the Israel junction conditions.
 
 **[I]** Final dimensional check:
 
 ```
-[T_*^{(A)}] = [1/κ₅²] = [M]³ ✓
+[T_*^{(A)}] = [M₅³/ℓ] = [M]⁴ = [σ_covariant] ✓
 ```
+
+**NOTE (v2.0):** The v1.0 struggled to get [T_*] = M³ from T_* = 6/(κ₅²ℓ),
+which naturally gives M⁴. The "fix" of setting α = 0 and reverting to
+T_* = C·M₅³ was incorrect — the natural M⁴ result was correct all along.
+See TASK2_GEOMETRIC_FACTOR_C.md for the full derivation.
 
 ---
 
-## 5. Route B: 4D Effective Reduction Derivation of T_*
+## 5. Route B: 4D Effective Reduction Derivation of T_* (v2.0)
 
 ### 5.1 Effective 4D Planck Mass
 
-**[Dc]** The 4D Planck mass M₄ is related to the 5D quantities by:
+**[Der]** The 4D Planck mass is obtained by integrating the 5D action:
 
 ```
-M₄² = M₅³ ℓ / C_B
+M₄² = M₅³ ∫_{-∞}^{+∞} dy e^{-2|y|/ℓ} = M₅³ ℓ
 ```
 
-where C_B is a dimensionless integration factor depending on the warp profile.
+For single-brane RS with Z₂ symmetry and infinite extra dimension.
 
 **[I]** Dimensional check:
 
@@ -393,102 +347,99 @@ where C_B is a dimensionless integration factor depending on the warp profile.
 [M₅³ ℓ] = [M]³ · [M]⁻¹ = [M]² ✓
 ```
 
-### 5.2 Tension Scale from 4D Reduction
+### 5.2 Tension Scale from 4D Reduction (v2.0 corrected)
 
 **[Dc]** Define T_*^{(B)} from the 4D effective theory:
 
 ```
-T_*^{(B)} = M₄² / ℓ
+T_*^{(B)} = M₄² / ℓ² = M₅³ℓ / ℓ² = M₅³ / ℓ
 ```
 
 **[I]** Dimensional check:
 
 ```
-[T_*^{(B)}] = [M]² / [M]⁻¹ = [M]³ ✓
+[T_*^{(B)}] = [M]³ / [M]⁻¹ = [M]⁴ ✓
 ```
+
+**NOTE (v2.0):** v1.0 used T_*^(B) = M₄²/ℓ with [M³], which was
+forced by the incorrect [T_*] = M³ target. The corrected form uses
+M₄²/ℓ² to get [M⁴].
 
 ### 5.3 Relation to Route A
 
-**[I]** Using M₄² = M₅³ ℓ / C_B:
+**[I]** Comparing Route B (T_*^(B) = M₅³/ℓ) with Route A (T_*^(A) = 3M₅³/(4πℓ)):
 
 ```
-T_*^{(B)} = M₄² / ℓ = (M₅³ ℓ / C_B) / ℓ = M₅³ / C_B
+T_*^{(B)} / T_*^{(A)} = [M₅³/ℓ] / [3M₅³/(4πℓ)] = 4π/3 ≈ 4.189
 ```
 
-**[I]** Comparing with Route A (T_*^{(A)} = C_A M₅³):
+### 5.4 Interpretation
 
-```
-T_*^{(B)} / T_*^{(A)} = (1/C_B) / C_A = 1 / (C_A C_B)
-```
+**[Der]** Routes A and B give different T_* values because they
+capture different physical scales:
 
-### 5.4 Consistency Condition
+- **Route A:** T_* = σ_RS (the RS fine-tuning tension) → σ̃ = 1 at tuning
+- **Route B:** T_* = M₅³/ℓ (the gravitational mass⁴ scale) → σ̃ = 3/(4π) at tuning
 
-**[Dc]** For Routes A and B to be consistent:
+**[Dc]** We adopt Route A (T_* = σ_RS) as canonical because it gives
+σ̃ = 1 a clear physical interpretation: exact RS fine-tuning.
 
-```
-C_A · C_B = 1
-```
-
-or more generally, the ratio is a fixed constant of the geometry.
-
-**[P]** The explicit values of C_A and C_B require solving the warped geometry equations, which is not done here.
+See TASK2_GEOMETRIC_FACTOR_C.md §4 for the full comparison.
 
 ---
 
-## 6. Consistency Ratio
+## 6. Route Comparison (v2.0)
 
-### 6.1 Definition
+### 6.1 The ratio of routes
 
-**[Dc]** Define the consistency ratio:
-
-```
-R_{AB} = T_*^{(A)} / T_*^{(B)} = C_A · C_B
-```
-
-### 6.2 Expected Value
-
-**[P]** For a self-consistent derivation:
+**[I]** The ratio:
 
 ```
-R_{AB} = 1 + O(corrections)
+R_{AB} = T_*^{(A)} / T_*^{(B)} = [3M₅³/(4πℓ)] / [M₅³/ℓ] = 3/(4π)
 ```
 
-where corrections may arise from:
-- Higher-curvature terms (Gauss-Bonnet, etc.)
-- Quantum corrections
-- Non-Z₂ asymmetries
+### 6.2 Physical meaning
 
-### 6.3 Structural Form
+**[Der]** R_{AB} = 3/(4π) is NOT a correction — it is the geometric factor
+from the Israel junction conditions (the factor 6 in σ_RS = 6/(κ₅²ℓ)
+combined with the 8π from κ₅² = 8π/M₅³).
 
-**[I]** Both routes give T_* ∝ M₅³:
+This ratio is FIXED by the warped geometry. It does not receive corrections
+from higher-curvature terms unless the junction conditions themselves are
+modified.
+
+### 6.3 Structural Form (v2.0)
+
+**[I]** Both routes give T_* ∝ M₅³/ℓ:
 
 ```
-T_*^{(A)} = C_A M₅³
-T_*^{(B)} = M₅³ / C_B
+T_*^{(A)} = 3M₅³/(4πℓ) = σ_RS        [canonical]
+T_*^{(B)} = M₅³/ℓ                      [alternative]
 
-T_* = C · M₅³ = C · (8π/κ₅²)
+T_* = C · M₅³/ℓ
 ```
 
-where C is a dimensionless geometric coefficient.
+where C = 3/(4π) for Route A (canonical) or C = 1 for Route B.
 
 ---
 
-## 7. Dimensional Checks
+## 7. Dimensional Checks (v2.0 corrected)
 
 ### 7.1 Brane Tension Dimension
 
-**[I]** In natural units (c = ℏ = 1):
+**[I]** For a 3-brane (codimension-1 in 5D), the Nambu-Goto action
+S = −σ∫d⁴x√{−h} requires [σ] = M^{p+1} = M⁴:
 
 ```
-[σ] = [Energy]/[Area] = [M]¹ · [M]² = [M]³
+[σ_covariant] = [M]⁴     (3-brane tension = energy per 3-volume)
 ```
 
 ### 7.2 Characteristic Scale Dimension
 
-**[I]** From the derivation:
+**[I]** From the derivation (Route A):
 
 ```
-[T_*] = [M₅³] = [M]³ = [σ]
+[T_*] = [M₅³/ℓ] = [M]³ · [M]¹ = [M]⁴ = [σ_covariant]
 ```
 
 ### 7.3 Dimensionless Ratio
@@ -496,37 +447,41 @@ where C is a dimensionless geometric coefficient.
 **[I]** The dimensionless brane tension:
 
 ```
-σ̃ = σ / T_*
+σ̃ = σ_covariant / T_*
 
-[σ̃] = [M]³ / [M]³ = [M]⁰ = dimensionless ✓
+[σ̃] = [M]⁴ / [M]⁴ = [M]⁰ = dimensionless ✓
 ```
 
-### 7.4 Summary Table
+### 7.4 Summary Table (v2.0)
 
 | Quantity | Dimension | Expression |
 |----------|-----------|------------|
-| σ | [M]³ | Brane tension |
-| T_* | [M]³ | C · M₅³ |
-| σ̃ | [M]⁰ | σ / T_* |
+| σ_covariant | [M]⁴ | 3-brane tension |
+| T_* | [M]⁴ | C · M₅³/ℓ (C = 3/(4π)) |
+| σ̃ | [M]⁰ | σ_covariant / T_* |
 | κ₅² | [M]⁻³ | 8π/M₅³ |
 | Λ₅ | [M]² | Bulk cosmological constant |
 | ℓ | [M]⁻¹ | √{-6/Λ₅} |
+| σ_RS | [M]⁴ | 3M₅³/(4πℓ) = T_* |
+| σ_BookI | [M]³ | 8.82 MeV/fm² (NOT brane tension) |
 
 ---
 
 ## 8. Export Semantics
 
-### 8.1 Structural Result
+### 8.1 Structural Result (v2.0)
 
 **[Dc]** The characteristic tension scale is:
 
 ```
-T_* = C · M₅³
+T_* = C · M₅³/ℓ = 3M₅³/(4πℓ) = σ_RS
 ```
 
 where:
 - M₅ is the 5D Planck mass
-- C is a dimensionless O(1) geometric coefficient
+- ℓ = √{−6/Λ₅} is the AdS radius
+- C = 3/(4π) ≈ 0.239 is the geometric factor from Israel junction
+- T_* equals the RS fine-tuning tension σ_RS
 
 ### 8.2 Contract Reference
 
@@ -561,7 +516,7 @@ When M₅ is determined from upstream cosmology, the export proceeds via:
 **[Dc]** The derivation chain is strictly one-directional:
 
 ```
-5D Action → Israel Junction → T_* = C·M₅³ → σ̃ = σ/T_* → BLOCK-004
+5D Action → Israel Junction → T_* = C·M₅³/ℓ → σ̃ = σ_cov/T_* → BLOCK-004
                                                             ↓
                                                        (read-only)
 ```
@@ -592,15 +547,17 @@ This document maintains full compliance with:
 |-------|-----|--------|
 | Metric signature (-,+,+,+,+) | [Dc] | Definitional choice |
 | κ₅² = 8π/M₅³ | [Dc] | Definition |
-| [σ] = [M]³ | [I] | Invariant |
+| [σ_covariant] = [M]⁴ | [I] | Invariant (v2.0 corrected from M³) |
 | Israel junction equation | [I] | Mathematical identity |
 | S_μν = -σ g_μν (pure tension) | [Dc] | Model assumption |
 | Z₂ symmetry | [Dc] | Model assumption |
 | ℓ² = -6/Λ₅ | [Dc] | AdS length definition |
-| T_* = C·M₅³ | [Dc] | Derived structural form |
-| [T_*] = [M]³ | [I] | Dimensional identity |
-| σ̃ = σ/T_* dimensionless | [I] | Mathematical identity |
-| C_A, C_B values | [P] | Require explicit geometry solution |
+| T_* = 3M₅³/(4πℓ) = σ_RS | [Der] | Derived from Israel junction (v2.0) |
+| C = 3/(4π) | [I] | Geometric factor from junction |
+| [T_*] = [M]⁴ | [I] | Dimensional identity (v2.0 corrected) |
+| σ̃ = σ_cov/T_* dimensionless | [I] | Mathematical identity |
+| σ̃ = 1 at RS fine-tuning | [I] | Follows from T_* = σ_RS |
+| ℓ numerical value | [P] | Requires Λ₅ from Plenum |
 | M₅ numerical value | [P] | Awaiting upstream |
 
 ---
