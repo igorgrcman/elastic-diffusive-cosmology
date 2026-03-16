@@ -641,7 +641,7 @@ Six restructuring branches exist for journal submission: splitting into separate
 
 ### 8.2 Near-Term (Next Research Phase)
 
-4. **Close L₀/δ=π²**: This is the single most impactful open problem. If derived, τ_n becomes a genuine prediction.
+4. **Close L₀/δ=π²**: **ATTEMPTED — FAIL** (Step 4 of 9). See `derivations/L0_DELTA_PI2_DERIVATION.md`. Seven routes attempted, all FAIL. L₀/δ = π² remains [P]. The problem is analogous to deriving α≈1/137 — requires full 5D dynamics (OPR-21). Numerically, L₀/δ=9.33 is better than π² (natural O(1) prefactor). New OPR-33 proposed.
 
 5. **Resolve δ ambiguity**: The 4 distinct δ scales need a definitive mapping or proof that they are distinct physical quantities.
 
