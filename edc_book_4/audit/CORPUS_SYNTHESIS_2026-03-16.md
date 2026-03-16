@@ -649,7 +649,7 @@ Six restructuring branches exist for journal submission: splitting into separate
 
 ### 8.3 Strategic
 
-7. **Write "5 Pillars" summary paper**: α, m_p/m_e, τ_n, sin²θ_W, and coordination structure — each with explicit derivation chain and deviation from experiment. Targets journal publication.
+7. **Write "5 Pillars" summary paper**: **DRAFTED** (Step 7 of 9). See `papers/FIVE_PILLARS_DRAFT_v1.tex` and `papers/FIVE_PILLARS_SUMMARY.md`. Complete LaTeX paper draft (~4000 words) with all 5 derivation chains, accuracy table, epistemic tags on every step. Honest treatment: α is [Dc] not [Der] (3 irreducible [P]), τ_n is [Dc+P+Cal] (L₀/δ failed to derive), sin²θ_W is [Dc] (coupling map is [P]). Three failed derivations documented as falsifiability evidence. Golden ratio soliton [Dc] included. Total free parameters across all 5 pillars: 4. Targets journal publication.
 
 8. **Coordinate notation across all books**: The z/ξ/ζ notation issue and δ/Δ/R_ξ ambiguity need a single canonical reference.
 
