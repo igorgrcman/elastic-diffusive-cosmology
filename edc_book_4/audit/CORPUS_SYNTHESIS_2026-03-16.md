@@ -538,7 +538,7 @@ The monolithic postulate "Plenum has no preferred internal direction" was decomp
 
 ### 7.1 Results in Non-Canonical Branches Deserving Attention
 
-1. **Golden ratio tail exponent** (EDC_Research neutron-pathB-v5): φ=(1+√5)/2 emerges universally from brane soliton equation for Q=±1. This rigorous [Dc] result is on a Paper 3 branch and may not have been incorporated into Book II or IV.
+1. **Golden ratio tail exponent** (EDC_Research neutron-pathB-v5): φ=(1+√5)/2 emerges universally from brane soliton equation for Q=±1. This rigorous [Dc] result is on a Paper 3 branch and has NOT been incorporated into Book II or IV. **INTEGRATION IN PROGRESS** — see `GOLDEN_RATIO_INTEGRATION.md`. Present in Paper 3 journal and Companion B publications but absent from monograph series. Source: `boxes_pathB_research_v5/lemma_tail_exponent_robustness.tex` (94-line self-contained proof), `box_pathB_electron_soliton_full_EOM.tex` (full nonlinear EOM), `solve_electron_soliton_bvp_v5.py` (numerical verification).
 
 2. **C = (L₀/δ)² = 100 from junction-core geometry** (junction-core-derive-C-v1): This derivation on an early branch explains why the junction-core well coefficient C~100, using the two-scale structure (δ=0.1 fm vs L₀=1 fm). Status [Dc] but may not be in canonical text.
 
@@ -561,6 +561,71 @@ The monolithic postulate "Plenum has no preferred internal direction" was decomp
 2. **σ values**: Book II notation appendix: σ = 5.86 MeV/fm². Book IV Ch.4: σ = 8.82 MeV/fm². Both are [Dc] conditional. The different values may reflect different anchoring assumptions (OPR-01).
 
 3. **σ̃ session log entry** (2026-03-16): States σ̃=1 from RS geometry. But earlier today's correction (archive/nuclear-topology-discovery) retained σ̃=100±10 as [Cal]. The session log entry appears to be from a LATER session that supersedes the earlier correction.
+
+### 7.3 Additional Findings from Deep Branch Analysis (Enrichment Pass)
+
+*Added 2026-03-16 from comprehensive agent analysis of all 116 branches.*
+
+#### 7.3.1 EDC_Research Repo — Key Results Not in Synthesis v1
+
+| Finding | Branch | Tag | Notes |
+|---------|--------|-----|-------|
+| Z₃ quantization downgrade [Der]→[P] | neutron-pathB-foundation-closure-v1 | [P] | π₃(S¹×S²)=ℤ, not ℤ₃. Factor of 3 requires postulating CS level k=3. Documented in CLAIM_REGISTRY.md |
+| WKB No-Go Lemma (KB-LEMMA-001) | main | [Dc] | Multiplicative bridge Γ=A_weak×exp(−B/ℏ) gives τ≥τ_SM>τ_exp. Resolution: additive two-channel Γ_tot=Γ_SM+Γ_EDC |
+| Power-law exponent p=5/16 | main (kb/neutron/) | [I] | A_EDC=A₀^{11/16}×Γ_SM^{5/16}. Three candidate mechanisms: Clifford 5/16=D_bulk/dim(Cl₄), boundary GHY, spectral D_eff=16/5. None constitutes derivation |
+| R_det=0.63±0.10 | neutron-pathB-foundation-closure-v1 | [Cal] | Gel'fand-Yaglom determinant ratio for WKB prefactor |
+| Spin/helicity mapping h₃=h₅×χ | paper3-pathB-edition-v1 | [P] | Reproduces V−A without postulating SU(2)_L. Mapping rule itself is [P] |
+| Non-monotonic mechanism r₀>r₂>r₁ | neutron-pathB-next3-exploration | [P] | Z₃ vacuum construction candidates A (piecewise) and B (determinant-sector [OPEN]) |
+| Electron mass scale tension ~10⁴ | neutron-pathB-v5-electron-soliton-closure | [OPEN] | Nuclear tension option: σ~100 MeV/fm³, r_c~0.4 fm. Compton option: r_c~386 fm, σ~10⁻⁸ MeV/fm³ |
+| Framework Reference Paper (29 pages) | research/neutron-proton-mass-difference-5D | Mixed | 45 claims: 10 [Der], 12 [Dc], 1 [Cal], 7 [I], 8 [P], 7 [OPEN]. Contains m_p/m_e, α, Δm_np, SU(3) |
+| Symmetry Ops Companion (28 claims) | main | Mixed | 8 [P], 6 [Dc], 2 [Der], 3 [I], 1 [Cal], 8 [OPEN]. Z₆ factorization, quark windings, ξ-wave |
+
+#### 7.3.2 Repo 1 — Key Findings from Branch Exhaustion
+
+| Finding | Branch | Tag | Notes |
+|---------|--------|-----|-------|
+| μ-window correction [25,35)→[13,17] | book2-opr21r-* | [Dc] | The oft-cited [25,35) was Pöschl-Teller artifact. Physical domain wall: μ₃∈[13,17]. Changes σΔ³ from [52,102] to [14,24] |
+| Minimal-class exhaustion (consolidated) | multiple task branches | [Dc] | ALL S_EH+S_NG mechanisms tested: Israel thin-junction, thick-junction core (monotone), bulk backreaction (κ₅²-suppressed), flat Put C, warped Put C (125 combos), Helfrich (260/260), ξ-BC. ZERO produce double well |
+| Book II claim statistics | book2-chapter-audit-v1 | — | 201 total: 12 [Der] COMPLETE, 47 [Dc] PARTIAL, 134 MISSING→OPR assigned |
+| junction-core-well-v1 (+72k lines) | junction-core-well-v1 | [Dc] | Most computation-intensive branch. All parameter scans return single-well V(q). LOCAL ONLY — no remote backup |
+| 61 local-only branches | multiple | — | Risk: all research on these exists only on one machine. Highest-volume: junction-core-well-v1 (+72k lines) |
+| A_sc=π(ω₀/ω_B)/√(L₀/δ) semiclassical prefactor | book-routeC-narrative-cleanup-v1 | [Der within 1D model] | Upgrades A from [Cal] to [Der within model]. A_sc≈0.84 → τ≈24,000s (not 880s). Factor 27 gap |
+| OPR-28 G-exponent problem | archive/nuclear-topology-discovery | [I] | Standard KK: G∝R_ξ^{−1}. Part I formula: G∝R_ξ^{+12}. Exponent 12 is [I], not [Der] |
+| Neutron-proton mass difference | research/neutron-proton-mass-difference-5D | [Der given Cal] | Δm_np=(8/π)m_e≈1.302 MeV vs 1.293 MeV (0.6%). Requires V₃=−(4/π)m_e [Cal] |
+
+#### 7.3.3 Book IV Deep Dive — Chapter Completion Map
+
+All 17 chapters FILLED. Six parts: A (Topological Foundations, Ch.1-3), B (Pinning Mechanism, Ch.4-5), C (Metastable Lifetime, Ch.6-9), D (Cluster Binding, Ch.10-12), E (Closed-4 Release, Ch.13-15), F (Synthesis, Ch.16-17).
+
+**Metastable lifetime chain closure status:**
+- κ=2π: Genuinely closed [Dc]
+- V_geom(q) single-well: Genuinely closed [Dc]
+- N_bonds=3: Closed within model [Dc within model]
+- V(q) double-well: **[P]** — non-geometric terms not derived
+- V_B=2Δm_np: **[P]** — E_arm≡Δm_np unverified
+- L₀/δ=π²: **[P]** — one candidate in continuous family F(η)
+- τ_n≈880s: **[Dc]+[P]+[Cal]** — <1% agreement contingent on both [P] choices
+
+**Five ranked open problems (highest impact first):**
+1. Derive V(ξ) from 5D action → uniquely select L₀/δ
+2. Derive full V(q) including non-geometric terms
+3. Derive well-strength η from first principles
+4. Verify E_arm≡Δm_np identification
+5. Compute prefactor A from full 5D fluctuation determinant
+
+#### 7.3.4 Paper 3 Architecture (EDC_Research)
+
+Paper 3 has two editions:
+- **main.tex** (124 pages): Original pipeline approach
+- **main_pathB.tex** (136 pages): Path B brane-soliton perspective
+
+Path B tracks:
+- **Track A (Ring Geometry):** WKB prefactor A₀ via Gel'fand-Yaglom
+- **Track B (5D Reduction):** Bulk-to-brane output mapping
+- **Track C (Electron Soliton):** Q=−1 soliton EOM, energy functional, BVP solutions → **golden ratio φ**
+- **Track D (R_det):** Determinant ratio bounds (0.63±0.10 [Cal])
+
+Six restructuring branches exist for journal submission: splitting into separately DOI-able companion papers.
 
 ---
 
@@ -592,4 +657,4 @@ The monolithic postulate "Plenum has no preferred internal direction" was decomp
 
 ---
 
-*Synthesis produced by systematic traversal of 116 branches across 2 repositories. All git branch data verified against `git for-each-ref`, `git diff --name-only`, and `git show` on 2026-03-16.*
+*Synthesis produced by systematic traversal of 116 branches across 2 repositories. All git branch data verified against `git for-each-ref`, `git diff --name-only`, and `git show` on 2026-03-16. Enrichment pass (§7.3) added from comprehensive agent analysis of all branches including deep dives into EDC_Research (26 branches, Paper 3 + companions), repo1 research/archive/task branches (83+ branches), and Book IV chapters (17 chapters + 8 appendices + 8 derivations).*
